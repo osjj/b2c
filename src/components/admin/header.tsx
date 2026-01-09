@@ -11,11 +11,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Bell, Search, Moon, Sun } from "lucide-react"
+import { Bell, Search, Moon, Sun, LogOut } from "lucide-react"
 import { useState } from "react"
+import { logout } from "@/actions/auth"
 
-export function AdminHeader() {
+interface AdminHeaderProps {
+  user: {
+    name?: string | null
+    email?: string | null
+    role?: string
+  }
+}
+
+export function AdminHeader({ user }: AdminHeaderProps) {
   const [darkMode, setDarkMode] = useState(false)
+
+  const initials = user.name
+    ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+    : user.email?.[0]?.toUpperCase() || 'AD'
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -70,7 +83,7 @@ export function AdminHeader() {
             <Button variant="ghost" className="relative h-9 w-9 rounded-full">
               <Avatar className="h-9 w-9">
                 <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                  AD
+                  {initials}
                 </AvatarFallback>
               </Avatar>
             </Button>
@@ -78,16 +91,21 @@ export function AdminHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium">Admin User</p>
-                <p className="text-xs text-muted-foreground">admin@maison.com</p>
+                <p className="text-sm font-medium">{user.name || 'Admin User'}</p>
+                <p className="text-xs text-muted-foreground">{user.email}</p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Profile Settings</DropdownMenuItem>
             <DropdownMenuItem>Account</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive focus:text-destructive">
-              Logout
+            <DropdownMenuItem asChild className="text-destructive focus:text-destructive">
+              <form action={logout} className="w-full">
+                <button type="submit" className="flex w-full items-center">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </button>
+              </form>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ShoppingCart, User, Menu, Search, Heart } from "lucide-react"
+import { User, Menu, Search, Heart, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -10,8 +10,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react"
+import { logout } from "@/actions/auth"
+import { MiniCart } from "./mini-cart"
 
 const navLinks = [
   { href: "/products", label: "Shop All" },
@@ -20,9 +29,17 @@ const navLinks = [
   { href: "/sale", label: "Sale", highlight: true },
 ]
 
-export function Header() {
+interface HeaderProps {
+  user?: {
+    id?: string
+    name?: string | null
+    email?: string | null
+    role?: string
+  } | null
+}
+
+export function Header({ user }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
-  const [cartCount] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,21 +138,51 @@ export function Header() {
             <Button variant="ghost" size="icon" className="hover:bg-transparent hidden sm:flex">
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="hover:bg-transparent" asChild>
-              <Link href="/account">
-                <User className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="ghost" size="icon" className="hover:bg-transparent relative" asChild>
-              <Link href="/cart">
-                <ShoppingCart className="h-5 w-5" />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-            </Button>
+
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="hover:bg-transparent">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-2 py-1.5 text-sm font-medium">
+                    {user.name || user.email}
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/account">My Account</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/account/orders">My Orders</Link>
+                  </DropdownMenuItem>
+                  {user.role === 'ADMIN' && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link href="/admin">Admin Dashboard</Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <form action={logout}>
+                      <button type="submit" className="flex w-full items-center">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Logout
+                      </button>
+                    </form>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="ghost" size="sm" className="hover:bg-transparent" asChild>
+                <Link href="/login">Login</Link>
+              </Button>
+            )}
+
+            <MiniCart />
           </div>
         </div>
       </div>

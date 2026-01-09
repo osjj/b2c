@@ -77,6 +77,36 @@ enum Role {
 
 // ==================== Product Models ====================
 
+model Collection {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?  @db.Text
+  image       String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products ProductCollection[]
+
+  @@map("collections")
+}
+
+model ProductCollection {
+  id           String   @id @default(cuid())
+  productId    String
+  collectionId String
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  product    Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  collection Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, collectionId])
+  @@map("product_collections")
+}
+
 model Category {
   id          String     @id @default(cuid())
   name        String
@@ -115,8 +145,9 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  category   Category?        @relation(fields: [categoryId], references: [id])
-  images     ProductImage[]
+  category    Category?           @relation(fields: [categoryId], references: [id])
+  collections ProductCollection[]
+  images      ProductImage[]
   variants   ProductVariant[]
   cartItems  CartItem[]
   orderItems OrderItem[]

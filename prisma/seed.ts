@@ -83,7 +83,7 @@ async function main() {
   const products = await Promise.all([
     prisma.product.upsert({
       where: { slug: 'artisan-ceramic-vase' },
-      update: {},
+      update: { isActive: true },
       create: {
         name: 'Artisan Ceramic Vase',
         slug: 'artisan-ceramic-vase',
@@ -93,6 +93,7 @@ async function main() {
         stock: 24,
         sku: 'ACV-001',
         categoryId: categories[0].id,
+        isActive: true,
         isFeatured: true,
         images: {
           create: [
@@ -103,7 +104,7 @@ async function main() {
     }),
     prisma.product.upsert({
       where: { slug: 'linen-blend-throw' },
-      update: {},
+      update: { isActive: true },
       create: {
         name: 'Linen Blend Throw',
         slug: 'linen-blend-throw',
@@ -112,6 +113,7 @@ async function main() {
         stock: 12,
         sku: 'LBT-002',
         categoryId: categories[1].id,
+        isActive: true,
         isFeatured: true,
         images: {
           create: [
@@ -122,7 +124,7 @@ async function main() {
     }),
     prisma.product.upsert({
       where: { slug: 'handwoven-basket-set' },
-      update: {},
+      update: { isActive: true },
       create: {
         name: 'Handwoven Basket Set',
         slug: 'handwoven-basket-set',
@@ -131,6 +133,7 @@ async function main() {
         stock: 18,
         sku: 'HBS-003',
         categoryId: categories[3].id,
+        isActive: true,
         isFeatured: false,
         images: {
           create: [
@@ -141,7 +144,7 @@ async function main() {
     }),
     prisma.product.upsert({
       where: { slug: 'botanical-print' },
-      update: {},
+      update: { isActive: true },
       create: {
         name: 'Botanical Print',
         slug: 'botanical-print',
@@ -151,6 +154,7 @@ async function main() {
         stock: 8,
         sku: 'BP-004',
         categoryId: categories[2].id,
+        isActive: true,
         isFeatured: true,
         images: {
           create: [
@@ -161,7 +165,7 @@ async function main() {
     }),
     prisma.product.upsert({
       where: { slug: 'marble-candle-holder' },
-      update: {},
+      update: { isActive: true },
       create: {
         name: 'Marble Candle Holder',
         slug: 'marble-candle-holder',
@@ -170,6 +174,7 @@ async function main() {
         stock: 32,
         sku: 'MCH-005',
         categoryId: categories[0].id,
+        isActive: true,
         isFeatured: false,
         images: {
           create: [
@@ -180,7 +185,7 @@ async function main() {
     }),
     prisma.product.upsert({
       where: { slug: 'wool-area-rug' },
-      update: {},
+      update: { isActive: true },
       create: {
         name: 'Wool Area Rug',
         slug: 'wool-area-rug',
@@ -190,6 +195,7 @@ async function main() {
         stock: 6,
         sku: 'WAR-006',
         categoryId: categories[1].id,
+        isActive: true,
         isFeatured: true,
         images: {
           create: [

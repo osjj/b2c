@@ -1,220 +1,245 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Package, ShoppingCart, Users, DollarSign, TrendingUp, TrendingDown, ArrowUpRight } from "lucide-react"
-import Link from "next/link"
+import Link from 'next/link'
+import {
+  DollarSign,
+  ShoppingCart,
+  Package,
+  Users,
+  TrendingUp,
+  TrendingDown,
+  ArrowRight,
+  Clock,
+} from 'lucide-react'
+import { getOrderStats, getRecentOrders } from '@/actions/admin/orders'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { formatPrice, formatDate } from '@/lib/utils'
+import { prisma } from '@/lib/prisma'
 
-const stats = [
-  {
-    title: "Total Revenue",
-    value: "$12,450",
-    change: "+12.5%",
-    trend: "up",
-    icon: DollarSign,
-    href: "/admin/orders",
-  },
-  {
-    title: "Orders",
-    value: "156",
-    change: "+8.2%",
-    trend: "up",
-    icon: ShoppingCart,
-    href: "/admin/orders",
-  },
-  {
-    title: "Products",
-    value: "89",
-    change: "+3",
-    trend: "up",
-    icon: Package,
-    href: "/admin/products",
-  },
-  {
-    title: "Customers",
-    value: "2,420",
-    change: "+18.7%",
-    trend: "up",
-    icon: Users,
-    href: "/admin/customers",
-  },
-]
-
-const recentOrders = [
-  { id: "ORD-001", customer: "Sarah Johnson", amount: 245.00, status: "Completed", date: "2 hours ago" },
-  { id: "ORD-002", customer: "Michael Chen", amount: 189.50, status: "Processing", date: "4 hours ago" },
-  { id: "ORD-003", customer: "Emily Davis", amount: 320.00, status: "Pending", date: "6 hours ago" },
-  { id: "ORD-004", customer: "James Wilson", amount: 156.75, status: "Completed", date: "8 hours ago" },
-  { id: "ORD-005", customer: "Lisa Anderson", amount: 412.00, status: "Shipped", date: "1 day ago" },
-]
-
-const topProducts = [
-  { name: "Artisan Ceramic Vase", sales: 124, revenue: "$11,036" },
-  { name: "Linen Blend Throw", sales: 98, revenue: "$14,210" },
-  { name: "Handwoven Basket Set", sales: 87, revenue: "$5,916" },
-  { name: "Botanical Print", sales: 76, revenue: "$9,120" },
-]
-
-const statusColors: Record<string, string> = {
-  Completed: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-  Processing: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  Pending: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
-  Shipped: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400",
+async function getProductStats() {
+  const [total, lowStock, outOfStock] = await Promise.all([
+    prisma.product.count({ where: { isActive: true } }),
+    prisma.product.count({
+      where: { isActive: true, stock: { lte: 5, gt: 0 } },
+    }),
+    prisma.product.count({ where: { isActive: true, stock: 0 } }),
+  ])
+  return { total, lowStock, outOfStock }
 }
 
-export default function AdminDashboard() {
+async function getCustomerStats() {
+  const total = await prisma.user.count({ where: { role: 'CUSTOMER' } })
+  const thisMonth = new Date()
+  thisMonth.setDate(1)
+  thisMonth.setHours(0, 0, 0, 0)
+  const newThisMonth = await prisma.user.count({
+    where: { role: 'CUSTOMER', createdAt: { gte: thisMonth } },
+  })
+  return { total, newThisMonth }
+}
+
+export default async function AdminDashboard() {
+  const [orderStats, recentOrders, productStats, customerStats] =
+    await Promise.all([
+      getOrderStats(),
+      getRecentOrders(5),
+      getProductStats(),
+      getCustomerStats(),
+    ])
+
+  const revenueChange =
+    orderStats.lastMonthRevenue > 0
+      ? ((orderStats.thisMonthRevenue - orderStats.lastMonthRevenue) /
+          orderStats.lastMonthRevenue) *
+        100
+      : 0
+
+  const orderChange =
+    orderStats.lastMonthOrders > 0
+      ? ((orderStats.thisMonthOrders - orderStats.lastMonthOrders) /
+          orderStats.lastMonthOrders) *
+        100
+      : 0
+
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="font-serif text-3xl mb-1">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back! Here&apos;s what&apos;s happening with your store.</p>
-      </div>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold">Dashboard</h1>
 
-      {/* Stats Grid */}
+      {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <Link key={stat.title} href={stat.href}>
-            <Card className="hover:shadow-md transition-shadow cursor-pointer group">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  {stat.title}
-                </CardTitle>
-                <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                  <stat.icon className="h-5 w-5 text-primary" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <div className="flex items-center gap-1 mt-1">
-                  {stat.trend === "up" ? (
-                    <TrendingUp className="h-4 w-4 text-green-600" />
-                  ) : (
-                    <TrendingDown className="h-4 w-4 text-red-600" />
-                  )}
-                  <span className={`text-xs ${stat.trend === "up" ? "text-green-600" : "text-red-600"}`}>
-                    {stat.change}
-                  </span>
-                  <span className="text-xs text-muted-foreground">vs last month</span>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
-
-      {/* Charts & Tables */}
-      <div className="grid gap-6 lg:grid-cols-7">
-        {/* Recent Orders */}
-        <Card className="lg:col-span-4">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="font-serif text-xl">Recent Orders</CardTitle>
-            <Link
-              href="/admin/orders"
-              className="text-sm text-primary hover:underline flex items-center gap-1"
-            >
-              View All
-              <ArrowUpRight className="h-3 w-3" />
-            </Link>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              This Month Revenue
+            </CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {recentOrders.map((order) => (
-                <div
-                  key={order.id}
-                  className="flex items-center justify-between py-3 border-b last:border-0"
-                >
-                  <div className="flex items-center gap-4">
-                    <div>
-                      <p className="font-medium text-sm">{order.customer}</p>
-                      <p className="text-xs text-muted-foreground">{order.id}</p>
-                    </div>
-                  </div>
-                  <div className="text-right flex items-center gap-4">
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full ${statusColors[order.status]}`}
-                    >
-                      {order.status}
-                    </span>
-                    <div>
-                      <p className="font-medium text-sm">${order.amount.toFixed(2)}</p>
-                      <p className="text-xs text-muted-foreground">{order.date}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="text-2xl font-bold">
+              {formatPrice(orderStats.thisMonthRevenue)}
+            </div>
+            <div className="flex items-center text-xs text-muted-foreground mt-1">
+              {revenueChange >= 0 ? (
+                <TrendingUp className="h-3 w-3 text-green-500 mr-1" />
+              ) : (
+                <TrendingDown className="h-3 w-3 text-red-500 mr-1" />
+              )}
+              <span className={revenueChange >= 0 ? 'text-green-500' : 'text-red-500'}>
+                {revenueChange >= 0 ? '+' : ''}
+                {revenueChange.toFixed(1)}%
+              </span>
+              <span className="ml-1">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        {/* Top Products */}
-        <Card className="lg:col-span-3">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="font-serif text-xl">Top Products</CardTitle>
-            <Link
-              href="/admin/products"
-              className="text-sm text-primary hover:underline flex items-center gap-1"
-            >
-              View All
-              <ArrowUpRight className="h-3 w-3" />
-            </Link>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Orders This Month
+            </CardTitle>
+            <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              {topProducts.map((product, index) => (
-                <div
-                  key={product.name}
-                  className="flex items-center justify-between py-3 border-b last:border-0"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium text-muted-foreground w-5">
-                      #{index + 1}
-                    </span>
-                    <div>
-                      <p className="font-medium text-sm">{product.name}</p>
-                      <p className="text-xs text-muted-foreground">{product.sales} sales</p>
-                    </div>
-                  </div>
-                  <p className="font-medium text-sm">{product.revenue}</p>
-                </div>
-              ))}
+            <div className="text-2xl font-bold">{orderStats.thisMonthOrders}</div>
+            <div className="flex items-center text-xs text-muted-foreground mt-1">
+              {orderChange >= 0 ? (
+                <TrendingUp className="h-3 w-3 text-green-500 mr-1" />
+              ) : (
+                <TrendingDown className="h-3 w-3 text-red-500 mr-1" />
+              )}
+              <span className={orderChange >= 0 ? 'text-green-500' : 'text-red-500'}>
+                {orderChange >= 0 ? '+' : ''}
+                {orderChange.toFixed(1)}%
+              </span>
+              <span className="ml-1">from last month</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Active Products
+            </CardTitle>
+            <Package className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{productStats.total}</div>
+            <div className="text-xs text-muted-foreground mt-1">
+              {productStats.lowStock > 0 && (
+                <span className="text-yellow-600">
+                  {productStats.lowStock} low stock
+                </span>
+              )}
+              {productStats.lowStock > 0 && productStats.outOfStock > 0 && ' · '}
+              {productStats.outOfStock > 0 && (
+                <span className="text-red-500">
+                  {productStats.outOfStock} out of stock
+                </span>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Customers
+            </CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{customerStats.total}</div>
+            <div className="text-xs text-muted-foreground mt-1">
+              +{customerStats.newThisMonth} new this month
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Quick Actions */}
+      {/* Pending Orders Alert */}
+      {(orderStats.pendingOrders > 0 || orderStats.processingOrders > 0) && (
+        <Card className="border-yellow-200 bg-yellow-50">
+          <CardContent className="py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Clock className="h-5 w-5 text-yellow-600" />
+                <div>
+                  <p className="font-medium text-yellow-800">
+                    Orders Need Attention
+                  </p>
+                  <p className="text-sm text-yellow-600">
+                    {orderStats.pendingOrders} pending
+                    {orderStats.processingOrders > 0 &&
+                      ` · ${orderStats.processingOrders} processing`}
+                  </p>
+                </div>
+              </div>
+              <Button asChild size="sm">
+                <Link href="/admin/orders?status=PENDING">View Orders</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Recent Orders */}
       <Card>
-        <CardHeader>
-          <CardTitle className="font-serif text-xl">Quick Actions</CardTitle>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle>Recent Orders</CardTitle>
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="/admin/orders">
+              View All
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link
-              href="/admin/products/new"
-              className="p-4 rounded-lg border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-center group"
-            >
-              <Package className="h-6 w-6 mx-auto mb-2 text-muted-foreground group-hover:text-primary" />
-              <p className="text-sm font-medium">Add Product</p>
-            </Link>
-            <Link
-              href="/admin/categories/new"
-              className="p-4 rounded-lg border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-center group"
-            >
-              <Package className="h-6 w-6 mx-auto mb-2 text-muted-foreground group-hover:text-primary" />
-              <p className="text-sm font-medium">Add Category</p>
-            </Link>
-            <Link
-              href="/admin/orders"
-              className="p-4 rounded-lg border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-center group"
-            >
-              <ShoppingCart className="h-6 w-6 mx-auto mb-2 text-muted-foreground group-hover:text-primary" />
-              <p className="text-sm font-medium">View Orders</p>
-            </Link>
-            <Link
-              href="/admin/settings"
-              className="p-4 rounded-lg border-2 border-dashed border-border hover:border-primary hover:bg-primary/5 transition-colors text-center group"
-            >
-              <Users className="h-6 w-6 mx-auto mb-2 text-muted-foreground group-hover:text-primary" />
-              <p className="text-sm font-medium">Store Settings</p>
-            </Link>
+          <div className="space-y-4">
+            {recentOrders.map((order) => (
+              <Link
+                key={order.id}
+                href={`/admin/orders/${order.id}`}
+                className="flex items-center justify-between py-2 hover:bg-muted -mx-2 px-2 rounded-md transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <div>
+                    <p className="font-medium">{order.orderNumber}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {order.user?.name || order.email}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="text-right">
+                    <p className="font-medium">
+                      {formatPrice(Number(order.total))}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {formatDate(order.createdAt)}
+                    </p>
+                  </div>
+                  <Badge
+                    variant={
+                      order.status === 'PENDING'
+                        ? 'secondary'
+                        : order.status === 'CANCELLED'
+                        ? 'destructive'
+                        : 'default'
+                    }
+                  >
+                    {order.status}
+                  </Badge>
+                </div>
+              </Link>
+            ))}
+
+            {recentOrders.length === 0 && (
+              <p className="text-center text-muted-foreground py-4">
+                No orders yet
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>

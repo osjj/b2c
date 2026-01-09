@@ -1,6 +1,9 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import Link from 'next/link'
+import Image from 'next/image'
+import { Plus, Pencil, Search } from 'lucide-react'
+import { getProducts, deleteProduct } from '@/actions/products'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
   Table,
   TableBody,
@@ -8,184 +11,115 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { Plus, Search, MoreHorizontal, Edit, Trash2, Eye } from "lucide-react"
-import Link from "next/link"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
+import { formatPrice } from '@/lib/utils'
+import { DeleteButton } from '@/components/admin/delete-button'
+import { Pagination } from '@/components/admin/pagination'
 
-const products = [
-  {
-    id: "1",
-    name: "Artisan Ceramic Vase",
-    sku: "ACV-001",
-    price: 89,
-    stock: 24,
-    category: "Home Decor",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=100&h=100&fit=crop",
-  },
-  {
-    id: "2",
-    name: "Linen Blend Throw",
-    sku: "LBT-002",
-    price: 145,
-    stock: 12,
-    category: "Textiles",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=100&h=100&fit=crop",
-  },
-  {
-    id: "3",
-    name: "Handwoven Basket Set",
-    sku: "HBS-003",
-    price: 68,
-    stock: 0,
-    category: "Storage",
-    status: "Out of Stock",
-    image: "https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?w=100&h=100&fit=crop",
-  },
-  {
-    id: "4",
-    name: "Botanical Print",
-    sku: "BP-004",
-    price: 120,
-    stock: 8,
-    category: "Art",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1582201942988-13e60e4556ee?w=100&h=100&fit=crop",
-  },
-  {
-    id: "5",
-    name: "Marble Candle Holder",
-    sku: "MCH-005",
-    price: 55,
-    stock: 32,
-    category: "Home Decor",
-    status: "Active",
-    image: "https://images.unsplash.com/photo-1602028915047-37269d1a73f7?w=100&h=100&fit=crop",
-  },
-]
+export default async function AdminProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string; search?: string }>
+}) {
+  const params = await searchParams
+  const page = Number(params.page) || 1
+  const search = params.search || ''
 
-export default function ProductsPage() {
+  const { products, pagination } = await getProducts({ page, search })
+
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="font-serif text-3xl mb-1">Products</h1>
-          <p className="text-muted-foreground">Manage your product inventory</p>
-        </div>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Products</h1>
         <Button asChild>
           <Link href="/admin/products/new">
-            <Plus className="h-4 w-4 mr-2" />
+            <Plus className="mr-2 h-4 w-4" />
             Add Product
           </Link>
         </Button>
       </div>
 
-      {/* Filters */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search products..." className="pl-9" />
-            </div>
-            <div className="flex gap-2">
-              <Button variant="outline">All Products</Button>
-              <Button variant="outline">Active</Button>
-              <Button variant="outline">Out of Stock</Button>
-            </div>
+      <div className="flex items-center gap-4">
+        <form className="flex-1 max-w-sm">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              name="search"
+              placeholder="Search products..."
+              defaultValue={search}
+              className="pl-10"
+            />
           </div>
-        </CardContent>
-      </Card>
+        </form>
+      </div>
 
-      {/* Products Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="font-serif">All Products ({products.length})</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Product</TableHead>
-                <TableHead>SKU</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead className="text-right">Price</TableHead>
-                <TableHead className="text-right">Stock</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="w-10"></TableHead>
+      <div className="bg-white rounded-lg border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-16">Image</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>SKU</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead>Stock</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="w-24">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {products.map((product) => (
+              <TableRow key={product.id}>
+                <TableCell>
+                  {product.images[0] ? (
+                    <Image
+                      src={product.images[0].url}
+                      alt={product.name}
+                      width={40}
+                      height={40}
+                      className="rounded object-cover"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 bg-gray-100 rounded" />
+                  )}
+                </TableCell>
+                <TableCell className="font-medium">{product.name}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {product.sku || '-'}
+                </TableCell>
+                <TableCell>{formatPrice(Number(product.price))}</TableCell>
+                <TableCell>
+                  <Badge variant={product.stock > 0 ? 'default' : 'destructive'}>
+                    {product.stock}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <Badge variant={product.isActive ? 'default' : 'secondary'}>
+                    {product.isActive ? 'Active' : 'Draft'}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="icon" asChild>
+                      <Link href={`/admin/products/${product.id}`}>
+                        <Pencil className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <DeleteButton
+                      onDelete={async () => {
+                        'use server'
+                        await deleteProduct(product.id)
+                      }}
+                    />
+                  </div>
+                </TableCell>
               </TableRow>
-            </TableHeader>
-            <TableBody>
-              {products.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-lg overflow-hidden bg-muted">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <span className="font-medium">{product.name}</span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">{product.sku}</TableCell>
-                  <TableCell>{product.category}</TableCell>
-                  <TableCell className="text-right">${product.price}</TableCell>
-                  <TableCell className="text-right">{product.stock}</TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={product.status === "Active" ? "default" : "secondary"}
-                      className={
-                        product.status === "Active"
-                          ? "bg-green-100 text-green-700 hover:bg-green-100"
-                          : "bg-red-100 text-red-700 hover:bg-red-100"
-                      }
-                    >
-                      {product.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem>
-                          <Eye className="h-4 w-4 mr-2" />
-                          View
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Edit className="h-4 w-4 mr-2" />
-                          Edit
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="text-destructive">
-                          <Trash2 className="h-4 w-4 mr-2" />
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      <Pagination {...pagination} />
     </div>
   )
 }

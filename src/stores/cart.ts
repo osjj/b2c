@@ -1,29 +1,40 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-interface CartItem {
+export interface CartItem {
   productId: string
   variantId?: string
-  quantity: number
   name: string
   price: number
-  image?: string
+  image: string
+  quantity: number
+  stock?: number
 }
 
 interface CartStore {
   items: CartItem[]
+  isOpen: boolean
+
+  // Actions
   addItem: (item: CartItem) => void
   removeItem: (productId: string, variantId?: string) => void
   updateQuantity: (productId: string, quantity: number, variantId?: string) => void
   clearCart: () => void
-  getTotal: () => number
-  getItemCount: () => number
+  setCart: (items: CartItem[]) => void
+  openCart: () => void
+  closeCart: () => void
+  toggleCart: () => void
+
+  // Computed
+  getTotalItems: () => number
+  getTotalPrice: () => number
 }
 
 export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
+      isOpen: false,
 
       addItem: (item) => {
         set((state) => {
@@ -44,12 +55,17 @@ export const useCartStore = create<CartStore>()(
       removeItem: (productId, variantId) => {
         set((state) => ({
           items: state.items.filter(
-            (i) => !(i.productId === productId && i.variantId === variantId)
+            (item) => !(item.productId === productId && item.variantId === variantId)
           ),
         }))
       },
 
       updateQuantity: (productId, quantity, variantId) => {
+        if (quantity <= 0) {
+          get().removeItem(productId, variantId)
+          return
+        }
+
         set((state) => ({
           items: state.items.map((item) =>
             item.productId === productId && item.variantId === variantId
@@ -61,19 +77,28 @@ export const useCartStore = create<CartStore>()(
 
       clearCart: () => set({ items: [] }),
 
-      getTotal: () => {
+      setCart: (items) => set({ items }),
+
+      openCart: () => set({ isOpen: true }),
+
+      closeCart: () => set({ isOpen: false }),
+
+      toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
+
+      getTotalItems: () => {
+        return get().items.reduce((total, item) => total + item.quantity, 0)
+      },
+
+      getTotalPrice: () => {
         return get().items.reduce(
           (total, item) => total + item.price * item.quantity,
           0
         )
       },
-
-      getItemCount: () => {
-        return get().items.reduce((count, item) => count + item.quantity, 0)
-      },
     }),
     {
       name: 'cart-storage',
+      partialize: (state) => ({ items: state.items }),
     }
   )
 )
