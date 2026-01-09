@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
 import { auth } from '@/lib/auth'
+import { uploadToR2 } from '@/lib/r2'
 
 export async function POST(request: NextRequest) {
   try {
@@ -42,21 +41,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate unique filename
-    const ext = path.extname(file.name)
-    const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}${ext}`
+    const ext = file.name.split('.').pop() || 'jpg'
+    const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.${ext}`
 
-    // Ensure upload directory exists
-    const uploadDir = path.join(process.cwd(), 'public/uploads/products')
-    await mkdir(uploadDir, { recursive: true })
-
-    // Save file
+    // Upload to R2
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    const filePath = path.join(uploadDir, filename)
-    await writeFile(filePath, buffer)
-
-    // Return public URL
-    const url = `/uploads/products/${filename}`
+    const url = await uploadToR2(buffer, filename, file.type)
 
     return NextResponse.json({ url })
   } catch (error) {
