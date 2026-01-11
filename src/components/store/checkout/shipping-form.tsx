@@ -41,8 +41,8 @@ export function ShippingForm({ errors, defaultValues }: ShippingFormProps) {
             defaultValue={defaultValues?.phone}
             required
           />
-          {errors?.phone && (
-            <p className="text-sm text-red-500">{errors.phone[0]}</p>
+          {errors?.shippingPhone && (
+            <p className="text-sm text-red-500">{errors.shippingPhone[0]}</p>
           )}
         </div>
       </div>

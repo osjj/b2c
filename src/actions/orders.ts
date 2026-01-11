@@ -71,7 +71,32 @@ export async function createOrder(
 
   const result = checkoutSchema.safeParse(rawData)
   if (!result.success) {
-    return { errors: result.error.flatten().fieldErrors }
+    // Flatten nested errors for proper display
+    const flatErrors: Record<string, string[]> = {}
+    const formatted = result.error.format()
+
+    // Handle top-level errors
+    if (formatted.email?._errors) flatErrors.email = formatted.email._errors
+    if (formatted.phone?._errors) flatErrors.phone = formatted.phone._errors
+
+    // Handle shipping address errors
+    const shippingErrors = formatted.shippingAddress
+    if (shippingErrors && typeof shippingErrors === 'object') {
+      if ('name' in shippingErrors && shippingErrors.name?._errors)
+        flatErrors.name = shippingErrors.name._errors
+      if ('phone' in shippingErrors && shippingErrors.phone?._errors)
+        flatErrors.shippingPhone = shippingErrors.phone._errors
+      if ('province' in shippingErrors && shippingErrors.province?._errors)
+        flatErrors.province = shippingErrors.province._errors
+      if ('city' in shippingErrors && shippingErrors.city?._errors)
+        flatErrors.city = shippingErrors.city._errors
+      if ('district' in shippingErrors && shippingErrors.district?._errors)
+        flatErrors.district = shippingErrors.district._errors
+      if ('street' in shippingErrors && shippingErrors.street?._errors)
+        flatErrors.street = shippingErrors.street._errors
+    }
+
+    return { errors: flatErrors }
   }
 
   const { email, phone, shippingAddress, note, saveAddress } = result.data
@@ -98,6 +123,8 @@ export async function createOrder(
       }
     }
   }
+
+  let orderId: string
 
   try {
     // Create order in transaction
@@ -160,15 +187,19 @@ export async function createOrder(
       return newOrder
     })
 
+    orderId = order.id
+
     // Clear cart
     await clearCart()
-
-    revalidatePath('/account/orders')
-    redirect(`/checkout/success?orderId=${order.id}`)
   } catch (error) {
     console.error('Create order error:', error)
-    return { error: 'Failed to create order. Please try again.' }
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+    return { error: `Failed to create order: ${errorMessage}` }
   }
+
+  // Redirect outside try-catch to avoid catching Next.js redirect error
+  revalidatePath('/account/orders')
+  redirect(`/checkout/success?orderId=${orderId}`)
 }
 
 // Get order by ID
@@ -190,8 +221,12 @@ export async function getOrder(orderId: string) {
 
   if (!order) return null
 
-  // Check access: owner or admin
-  if (order.userId !== session?.user?.id && session?.user?.role !== 'ADMIN') {
+  // Check access: guest order (no userId), owner, or admin
+  const isGuestOrder = order.userId === null
+  const isOwner = order.userId === session?.user?.id
+  const isAdmin = session?.user?.role === 'ADMIN'
+
+  if (!isGuestOrder && !isOwner && !isAdmin) {
     return null
   }
 

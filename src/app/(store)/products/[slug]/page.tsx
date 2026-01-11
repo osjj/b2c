@@ -162,7 +162,15 @@ export default async function ProductDetailPage({
             {/* Add to Cart */}
             {product.stock > 0 ? (
               <div className="pt-4">
-                <AddToCartButton productId={product.id} size="lg" className="w-full md:w-auto px-12">
+                <AddToCartButton
+                  productId={product.id}
+                  productName={product.name}
+                  productPrice={Number(product.price)}
+                  productImage={product.images[0]?.url}
+                  stock={product.stock}
+                  size="lg"
+                  className="w-full md:w-auto px-12"
+                >
                   Add to Cart
                 </AddToCartButton>
               </div>

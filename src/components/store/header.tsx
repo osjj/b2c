@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { User, Menu, Search, Heart, LogOut } from "lucide-react"
+import { User, Menu, Search, Heart, LogOut, Package } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -98,8 +98,10 @@ export function Header({ user }: HeaderProps) {
             </Sheet>
 
             {/* Search button */}
-            <Button variant="ghost" size="icon" className="hover:bg-transparent hidden sm:flex">
-              <Search className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="hover:bg-transparent hidden sm:flex" asChild>
+              <Link href="/orders?tab=lookup" title="Order Lookup">
+                <Search className="h-5 w-5" />
+              </Link>
             </Button>
 
             {/* Desktop Navigation */}
@@ -177,9 +179,16 @@ export function Header({ user }: HeaderProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="ghost" size="sm" className="hover:bg-transparent" asChild>
-                <Link href="/login">Login</Link>
-              </Button>
+              <>
+                <Button variant="ghost" size="icon" className="hover:bg-transparent" asChild>
+                  <Link href="/orders" title="My Orders">
+                    <Package className="h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="sm" className="hover:bg-transparent" asChild>
+                  <Link href="/login">Login</Link>
+                </Button>
+              </>
             )}
 
             <MiniCart />

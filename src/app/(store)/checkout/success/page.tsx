@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { formatPrice, formatDate } from '@/lib/utils'
+import { SaveGuestOrder } from '@/components/store/save-guest-order'
+import { ClearCart } from '@/components/store/clear-cart'
 
 interface SuccessPageProps {
   searchParams: Promise<{ orderId?: string }>
@@ -39,6 +41,22 @@ export default async function CheckoutSuccessPage({
 
   return (
     <div className="container py-12 max-w-3xl">
+      {/* Clear cart from localStorage */}
+      <ClearCart />
+
+      {/* Save guest order to localStorage */}
+      {!order.userId && (
+        <SaveGuestOrder
+          order={{
+            orderId: order.id,
+            orderNumber: order.orderNumber,
+            email: order.email,
+            total: Number(order.total),
+            createdAt: order.createdAt.toISOString(),
+          }}
+        />
+      )}
+
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
           <CheckCircle className="h-8 w-8 text-green-600" />
