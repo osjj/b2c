@@ -127,30 +127,32 @@ model Category {
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  description String?  @db.Text
-  price       Decimal  @db.Decimal(10, 2)
-  comparePrice Decimal? @db.Decimal(10, 2)
-  cost        Decimal? @db.Decimal(10, 2)
-  sku         String?  @unique
-  barcode     String?
-  stock       Int      @default(0)
-  lowStock    Int      @default(5)
-  weight      Decimal? @db.Decimal(10, 2)
-  categoryId  String?
-  isActive    Boolean  @default(true)
-  isFeatured  Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(cuid())
+  name           String
+  slug           String   @unique
+  description    String?  @db.Text
+  specifications Json?    // Array of {name: string, value: string}
+  price          Decimal  @db.Decimal(10, 2)
+  comparePrice   Decimal? @db.Decimal(10, 2)
+  cost           Decimal? @db.Decimal(10, 2)
+  sku            String?  @unique
+  barcode        String?
+  stock          Int      @default(0)
+  lowStock       Int      @default(5)
+  weight         Decimal? @db.Decimal(10, 2)
+  categoryId     String?
+  isActive       Boolean  @default(true)
+  isFeatured     Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  category    Category?           @relation(fields: [categoryId], references: [id])
-  collections ProductCollection[]
-  images      ProductImage[]
-  variants   ProductVariant[]
-  cartItems  CartItem[]
-  orderItems OrderItem[]
+  category        Category?               @relation(fields: [categoryId], references: [id])
+  collections     ProductCollection[]
+  images          ProductImage[]
+  variants        ProductVariant[]
+  cartItems       CartItem[]
+  orderItems      OrderItem[]
+  attributeValues ProductAttributeValue[]
 
   @@index([categoryId])
   @@index([isActive, isFeatured])
@@ -320,4 +322,64 @@ model Setting {
   updatedAt DateTime @updatedAt
 
   @@map("settings")
+}
+
+// ==================== Attribute Models ====================
+
+model Attribute {
+  id           String        @id @default(cuid())
+  name         String
+  code         String        @unique
+  type         AttributeType
+  isRequired   Boolean       @default(false)
+  isFilterable Boolean       @default(false)
+  sortOrder    Int           @default(0)
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  options       AttributeOption[]
+  productValues ProductAttributeValue[]
+
+  @@map("attributes")
+}
+
+model AttributeOption {
+  id          String   @id @default(cuid())
+  attributeId String
+  value       String
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  attribute     Attribute               @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  productValues ProductAttributeValue[]
+
+  @@map("attribute_options")
+}
+
+model ProductAttributeValue {
+  id          String   @id @default(cuid())
+  productId   String
+  attributeId String
+  textValue   String?  @db.Text
+  optionId    String?
+  optionIds   String[] @default([])
+  boolValue   Boolean?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attribute Attribute        @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  option    AttributeOption? @relation(fields: [optionId], references: [id])
+
+  @@unique([productId, attributeId])
+  @@map("product_attribute_values")
+}
+
+enum AttributeType {
+  TEXT
+  TEXTAREA
+  SELECT
+  MULTISELECT
+  BOOLEAN
 }

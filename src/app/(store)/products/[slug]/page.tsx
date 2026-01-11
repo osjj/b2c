@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
 import { ProductCard } from '@/components/store/product-card'
+import { ProductImageGallery } from '@/components/store/product-image-gallery'
 
 export default async function ProductDetailPage({
   params,
@@ -66,47 +66,12 @@ export default async function ProductDetailPage({
       <div className="container mx-auto px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Images */}
-          <div className="space-y-4">
-            <div className="relative aspect-square overflow-hidden bg-muted">
-              {product.images[0] ? (
-                <Image
-                  src={product.images[0].url}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  No image
-                </div>
-              )}
-              {hasDiscount && (
-                <span className="absolute top-4 right-4 bg-red-500 text-white text-sm px-3 py-1">
-                  -{discountPercentage}%
-                </span>
-              )}
-            </div>
-
-            {/* Thumbnail gallery */}
-            {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-4">
-                {product.images.slice(0, 4).map((image, index) => (
-                  <div
-                    key={image.id}
-                    className="relative aspect-square overflow-hidden bg-muted cursor-pointer border-2 border-transparent hover:border-primary transition-colors"
-                  >
-                    <Image
-                      src={image.url}
-                      alt={`${product.name} ${index + 1}`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <ProductImageGallery
+            images={product.images}
+            productName={product.name}
+            hasDiscount={!!hasDiscount}
+            discountPercentage={discountPercentage}
+          />
 
           {/* Info */}
           <div className="space-y-6">
@@ -129,9 +94,46 @@ export default async function ProductDetailPage({
               )}
             </div>
 
-            {product.description && (
-              <p className="text-muted-foreground leading-relaxed">
-                {product.description}
+            {/* Product Attributes */}
+            {product.attributeValues && product.attributeValues.length > 0 && (
+              <div className="space-y-3">
+                {product.attributeValues
+                  .filter(av => av.attribute.isActive)
+                  .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
+                  .map((av) => {
+                    let displayValue = ''
+                    if (av.textValue) {
+                      displayValue = av.textValue
+                    } else if (av.option) {
+                      displayValue = av.option.value
+                    } else if (av.optionIds && av.optionIds.length > 0) {
+                      // For multiselect, find option values from attribute options
+                      const optionValues = av.optionIds
+                        .map(id => av.attribute.options?.find(opt => opt.id === id)?.value)
+                        .filter(Boolean)
+                      displayValue = optionValues.join(', ')
+                    } else if (av.boolValue !== null) {
+                      displayValue = av.boolValue ? 'Yes' : 'No'
+                    }
+
+                    if (!displayValue) return null
+
+                    return (
+                      <div key={av.id} className="space-y-1">
+                        <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                          {av.attribute.name}
+                        </p>
+                        <p className="text-sm font-medium">{displayValue}</p>
+                      </div>
+                    )
+                  })}
+              </div>
+            )}
+
+            {/* SKU */}
+            {product.sku && (
+              <p className="text-sm text-muted-foreground">
+                SKU: {product.sku}
               </p>
             )}
 
@@ -151,13 +153,6 @@ export default async function ProductDetailPage({
                 </>
               )}
             </div>
-
-            {/* SKU */}
-            {product.sku && (
-              <p className="text-sm text-muted-foreground">
-                SKU: {product.sku}
-              </p>
-            )}
 
             {/* Add to Cart */}
             {product.stock > 0 ? (
@@ -183,6 +178,33 @@ export default async function ProductDetailPage({
             )}
           </div>
         </div>
+
+        {/* Description Section */}
+        {product.description && (
+          <div className="mt-12 border-t pt-8">
+            <h2 className="font-serif text-2xl mb-4">Description</h2>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {product.description}
+            </p>
+          </div>
+        )}
+
+        {/* Specifications Section */}
+        {product.specifications && Array.isArray(product.specifications) && product.specifications.length > 0 && (
+          <div className="mt-12 border-t pt-8">
+            <h2 className="font-serif text-2xl mb-4">Specifications</h2>
+            <div className="bg-muted/30 rounded-lg overflow-hidden">
+              <dl className="divide-y">
+                {(product.specifications as Array<{name: string, value: string}>).map((spec, index) => (
+                  <div key={index} className="flex py-3 px-4">
+                    <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
+                    <dd className="w-2/3 font-medium">{spec.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Related Products */}

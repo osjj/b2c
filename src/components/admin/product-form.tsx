@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState, useState } from 'react'
-import { Product, Category, ProductImage, Collection } from '@prisma/client'
+import { Product, Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
 import { generateSlug } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -19,12 +19,24 @@ import {
 } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ImageUpload } from './image-upload'
+import { ProductAttributesInput } from './product-attributes-input'
+import { SpecificationsEditor, type Specification } from './specifications-editor'
+
+type AttributeWithOptions = Attribute & {
+  options: AttributeOption[]
+}
+
+type ProductAttributeValueWithRelations = ProductAttributeValue & {
+  attribute: Attribute
+  option?: AttributeOption | null
+}
 
 type ProductWithImages = {
   id: string
   name: string
   slug: string
   description: string | null
+  specifications?: unknown
   price: number
   comparePrice: number | null
   cost: number | null
@@ -34,6 +46,7 @@ type ProductWithImages = {
   isActive: boolean
   isFeatured: boolean
   images: ProductImage[]
+  attributeValues?: ProductAttributeValueWithRelations[]
 }
 
 interface ProductFormProps {
@@ -41,14 +54,36 @@ interface ProductFormProps {
   categories: Category[]
   collections?: Collection[]
   productCollectionIds?: string[]
+  attributes?: AttributeWithOptions[]
 }
 
-export function ProductForm({ product, categories, collections = [], productCollectionIds = [] }: ProductFormProps) {
+export function ProductForm({ product, categories, collections = [], productCollectionIds = [], attributes = [] }: ProductFormProps) {
   const [images, setImages] = useState<string[]>(
     product?.images.map((img) => img.url) || []
   )
   const [slug, setSlug] = useState(product?.slug || '')
   const [selectedCollections, setSelectedCollections] = useState<string[]>(productCollectionIds)
+  const [specifications, setSpecifications] = useState<Specification[]>(
+    (product?.specifications as Specification[]) || []
+  )
+
+  // Initialize attribute values from existing product
+  const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
+    if (!product?.attributeValues) return {}
+    const values: Record<string, any> = {}
+    for (const av of product.attributeValues) {
+      if (av.textValue !== null) {
+        values[av.attributeId] = av.textValue
+      } else if (av.optionId !== null) {
+        values[av.attributeId] = av.optionId
+      } else if (av.optionIds && av.optionIds.length > 0) {
+        values[av.attributeId] = av.optionIds
+      } else if (av.boolValue !== null) {
+        values[av.attributeId] = av.boolValue
+      }
+    }
+    return values
+  })
 
   const action = product
     ? updateProduct.bind(null, product.id)
@@ -85,6 +120,12 @@ export function ProductForm({ product, categories, collections = [], productColl
       {selectedCollections.map((id) => (
         <input key={id} type="hidden" name="collectionIds" value={id} />
       ))}
+
+      {/* Hidden input for attribute values */}
+      <input type="hidden" name="attributeValues" value={JSON.stringify(attributeValues)} />
+
+      {/* Hidden input for specifications */}
+      <input type="hidden" name="specifications" value={JSON.stringify(specifications)} />
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
@@ -209,6 +250,33 @@ export function ProductForm({ product, categories, collections = [], productColl
                   />
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {attributes.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Attributes</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ProductAttributesInput
+                  attributes={attributes}
+                  values={attributeValues}
+                  onChange={setAttributeValues}
+                />
+              </CardContent>
+            </Card>
+          )}
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Specifications</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SpecificationsEditor
+                specifications={specifications}
+                onChange={setSpecifications}
+              />
             </CardContent>
           </Card>
         </div>

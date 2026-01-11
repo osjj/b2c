@@ -10,6 +10,10 @@ const productSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   slug: z.string().min(1, 'Slug is required'),
   description: z.string().optional(),
+  specifications: z.array(z.object({
+    name: z.string(),
+    value: z.string(),
+  })).optional().nullable(),
   price: z.coerce.number().min(0, 'Price must be positive'),
   comparePrice: z.coerce.number().optional().nullable(),
   cost: z.coerce.number().optional().nullable(),
@@ -104,6 +108,12 @@ export async function getProduct(id: string) {
       category: true,
       images: { orderBy: { sortOrder: 'asc' } },
       variants: true,
+      attributeValues: {
+        include: {
+          attribute: true,
+          option: true,
+        },
+      },
     },
   })
 
@@ -131,6 +141,16 @@ export async function getProductBySlug(slug: string) {
       category: true,
       images: { orderBy: { sortOrder: 'asc' } },
       variants: { where: { stock: { gt: 0 } } },
+      attributeValues: {
+        include: {
+          attribute: {
+            include: {
+              options: true,
+            },
+          },
+          option: true,
+        },
+      },
     },
   })
 
@@ -159,10 +179,33 @@ export async function createProduct(
 
   const categoryIdRaw = formData.get('categoryId')
   const collectionIds = formData.getAll('collectionIds').filter(Boolean) as string[]
+  const attributeValuesJson = formData.get('attributeValues')
+  let attributeValues: Record<string, any> = {}
+  if (attributeValuesJson && typeof attributeValuesJson === 'string') {
+    try {
+      attributeValues = JSON.parse(attributeValuesJson)
+    } catch {
+      // ignore parse errors
+    }
+  }
+
+  const specificationsJson = formData.get('specifications')
+  let specifications: any[] | null = null
+  if (specificationsJson && typeof specificationsJson === 'string') {
+    try {
+      const parsed = JSON.parse(specificationsJson)
+      const filtered = parsed.filter((s: any) => s.name && s.value)
+      specifications = filtered.length > 0 ? filtered : null
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
+    specifications,
     price: formData.get('price'),
     comparePrice: formData.get('comparePrice') || null,
     cost: formData.get('cost') || null,
@@ -179,7 +222,7 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, ...productData } = result.data
+  const { images, specifications: validatedSpecs, ...productData } = result.data
 
   // Check slug uniqueness
   const existing = await prisma.product.findUnique({
@@ -193,6 +236,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
+        specifications: validatedSpecs ?? undefined,
         images: images?.length
           ? {
               create: images.map((url, index) => ({
@@ -214,6 +258,41 @@ export async function createProduct(
         })),
       })
     }
+
+    // Create product attribute values
+    if (Object.keys(attributeValues).length > 0) {
+      const attributes = await tx.attribute.findMany({
+        where: { id: { in: Object.keys(attributeValues) } },
+      })
+
+      for (const attr of attributes) {
+        const value = attributeValues[attr.id]
+        if (value === undefined || value === null || value === '') continue
+
+        const data: any = {
+          productId: product.id,
+          attributeId: attr.id,
+        }
+
+        switch (attr.type) {
+          case 'TEXT':
+          case 'TEXTAREA':
+            data.textValue = String(value)
+            break
+          case 'SELECT':
+            data.optionId = value
+            break
+          case 'MULTISELECT':
+            data.optionIds = Array.isArray(value) ? value : []
+            break
+          case 'BOOLEAN':
+            data.boolValue = Boolean(value)
+            break
+        }
+
+        await tx.productAttributeValue.create({ data })
+      }
+    }
   })
 
   revalidatePath('/admin/products')
@@ -231,10 +310,33 @@ export async function updateProduct(
 
   const categoryIdRaw = formData.get('categoryId')
   const collectionIds = formData.getAll('collectionIds').filter(Boolean) as string[]
+  const attributeValuesJson = formData.get('attributeValues')
+  let attributeValues: Record<string, any> = {}
+  if (attributeValuesJson && typeof attributeValuesJson === 'string') {
+    try {
+      attributeValues = JSON.parse(attributeValuesJson)
+    } catch {
+      // ignore parse errors
+    }
+  }
+
+  const specificationsJson = formData.get('specifications')
+  let specifications: any[] | null = null
+  if (specificationsJson && typeof specificationsJson === 'string') {
+    try {
+      const parsed = JSON.parse(specificationsJson)
+      const filtered = parsed.filter((s: any) => s.name && s.value)
+      specifications = filtered.length > 0 ? filtered : null
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
+    specifications,
     price: formData.get('price'),
     comparePrice: formData.get('comparePrice') || null,
     cost: formData.get('cost') || null,
@@ -251,7 +353,7 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, ...productData } = result.data
+  const { images, specifications: validatedSpecs, ...productData } = result.data
 
   // Check slug uniqueness (exclude current product)
   const existing = await prisma.product.findFirst({
@@ -268,11 +370,15 @@ export async function updateProduct(
     // Delete existing product collections
     await tx.productCollection.deleteMany({ where: { productId: id } })
 
+    // Delete existing attribute values
+    await tx.productAttributeValue.deleteMany({ where: { productId: id } })
+
     // Update product with new images
     await tx.product.update({
       where: { id },
       data: {
         ...productData,
+        specifications: validatedSpecs ?? undefined,
         images: images?.length
           ? {
               create: images.map((url, index) => ({
@@ -293,6 +399,41 @@ export async function updateProduct(
           sortOrder: index,
         })),
       })
+    }
+
+    // Create new product attribute values
+    if (Object.keys(attributeValues).length > 0) {
+      const attributes = await tx.attribute.findMany({
+        where: { id: { in: Object.keys(attributeValues) } },
+      })
+
+      for (const attr of attributes) {
+        const value = attributeValues[attr.id]
+        if (value === undefined || value === null || value === '') continue
+
+        const data: any = {
+          productId: id,
+          attributeId: attr.id,
+        }
+
+        switch (attr.type) {
+          case 'TEXT':
+          case 'TEXTAREA':
+            data.textValue = String(value)
+            break
+          case 'SELECT':
+            data.optionId = value
+            break
+          case 'MULTISELECT':
+            data.optionIds = Array.isArray(value) ? value : []
+            break
+          case 'BOOLEAN':
+            data.boolValue = Boolean(value)
+            break
+        }
+
+        await tx.productAttributeValue.create({ data })
+      }
     }
   })
 
