@@ -108,12 +108,13 @@ export async function createCategory(
 ): Promise<CategoryState> {
   await requireAdmin()
 
+  const parentIdValue = formData.get('parentId')
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description') || null,
     image: formData.get('image') || null,
-    parentId: formData.get('parentId') || null,
+    parentId: parentIdValue === 'none' || !parentIdValue ? null : parentIdValue,
     sortOrder: formData.get('sortOrder') || 0,
     isActive: formData.get('isActive') === 'true',
   }
@@ -146,12 +147,13 @@ export async function updateCategory(
 ): Promise<CategoryState> {
   await requireAdmin()
 
+  const parentIdValue = formData.get('parentId')
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description') || null,
     image: formData.get('image') || null,
-    parentId: formData.get('parentId') || null,
+    parentId: parentIdValue === 'none' || !parentIdValue ? null : parentIdValue,
     sortOrder: formData.get('sortOrder') || 0,
     isActive: formData.get('isActive') === 'true',
   }
