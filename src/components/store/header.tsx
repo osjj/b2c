@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils"
 import { useState, useEffect } from "react"
 import { logout } from "@/actions/auth"
 import { MiniCart } from "./mini-cart"
+import { MiniQuote } from "./mini-quote"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -184,6 +185,7 @@ export function Header({ user }: HeaderProps) {
               </>
             )}
 
+            <MiniQuote />
             <MiniCart />
           </div>
         </div>

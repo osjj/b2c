@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ProductImage, Category } from '@prisma/client'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from './add-to-cart-button'
+import { AddToQuoteButton } from './add-to-quote-button'
 
 type ProductWithRelations = {
   id: string
@@ -83,7 +84,18 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       </div>
 
       {product.stock > 0 && (
-        <AddToCartButton productId={product.id} variant="outline" size="sm" className="w-full" />
+        <div className="flex gap-2">
+          <AddToCartButton productId={product.id} variant="outline" size="sm" className="flex-1" />
+          <AddToQuoteButton
+            productId={product.id}
+            productName={product.name}
+            productPrice={Number(product.price)}
+            productImage={imageUrl}
+            variant="outline"
+            size="sm"
+            className="flex-1"
+          />
+        </div>
       )}
     </div>
   )

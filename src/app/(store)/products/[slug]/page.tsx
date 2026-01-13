@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
+import { AddToQuoteButton } from '@/components/store/add-to-quote-button'
 import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
@@ -155,9 +156,9 @@ export default async function ProductDetailPage({
               )}
             </div>
 
-            {/* Add to Cart */}
+            {/* Add to Cart & Quote */}
             {product.stock > 0 ? (
-              <div className="pt-4">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3">
                 <AddToCartButton
                   productId={product.id}
                   productName={product.name}
@@ -165,10 +166,22 @@ export default async function ProductDetailPage({
                   productImage={product.images[0]?.url}
                   stock={product.stock}
                   size="lg"
-                  className="w-full md:w-auto px-12"
+                  className="flex-1"
                 >
                   Add to Cart
                 </AddToCartButton>
+                <AddToQuoteButton
+                  productId={product.id}
+                  productName={product.name}
+                  productPrice={Number(product.price)}
+                  productImage={product.images[0]?.url}
+                  sku={product.sku || undefined}
+                  variant="outline"
+                  size="lg"
+                  className="flex-1"
+                >
+                  Add to Quote
+                </AddToQuoteButton>
               </div>
             ) : (
               <div className="pt-4">

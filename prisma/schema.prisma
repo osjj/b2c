@@ -154,6 +154,7 @@ model Product {
   cartItems       CartItem[]
   orderItems      OrderItem[]
   attributeValues ProductAttributeValue[]
+  quoteItems      QuoteItem[]
 
   @@index([categoryId])
   @@index([isActive, isFeatured])
@@ -383,4 +384,53 @@ enum AttributeType {
   SELECT
   MULTISELECT
   BOOLEAN
+}
+
+// ==================== Quote Models ====================
+
+model Quote {
+  id          String      @id @default(cuid())
+  quoteNumber String      @unique
+  name        String
+  email       String
+  contact     String      // WhatsApp / WeChat
+  companyName String?
+  remark      String?     @db.Text
+  fileUrl     String?     // 上传的文件URL
+  fileName    String?     // 上传的文件名
+  status      QuoteStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  items QuoteItem[]
+
+  @@index([status])
+  @@index([email])
+  @@map("quotes")
+}
+
+model QuoteItem {
+  id        String   @id @default(cuid())
+  quoteId   String
+  productId String
+  name      String
+  sku       String?
+  price     Decimal  @db.Decimal(10, 2)
+  image     String?
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+
+  quote   Quote   @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("quote_items")
+}
+
+enum QuoteStatus {
+  PENDING
+  PROCESSING
+  QUOTED
+  ACCEPTED
+  REJECTED
+  EXPIRED
 }

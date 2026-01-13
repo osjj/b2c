@@ -10,6 +10,7 @@ import {
   Layers,
   Tags,
   ShoppingCart,
+  FileText,
   Users,
   Settings,
   ChevronLeft,
@@ -27,6 +28,7 @@ const menuItems = [
   { href: "/admin/collections", label: "Collections", icon: Layers },
   { href: "/admin/attributes", label: "Attributes", icon: Tags },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/admin/quotes", label: "Quotes", icon: FileText },
   { href: "/admin/customers", label: "Customers", icon: Users },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ]
