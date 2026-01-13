@@ -23,10 +23,11 @@ import { logout } from "@/actions/auth"
 import { MiniCart } from "./mini-cart"
 
 const navLinks = [
-  { href: "/products", label: "Shop All" },
-  { href: "/categories", label: "Collections" },
-  { href: "/new-arrivals", label: "New Arrivals" },
-  { href: "/sale", label: "Sale", highlight: true },
+  { href: "/", label: "Home" },
+  { href: "/products", label: "Products" },
+  { href: "/cases", label: "Cases" },
+  { href: "/news", label: "News" },
+  { href: "/about", label: "About" },
 ]
 
 interface HeaderProps {
@@ -85,10 +86,7 @@ export function Header({ user }: HeaderProps) {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={cn(
-                        "py-4 text-lg font-light tracking-wide border-b border-border/50 transition-colors hover:text-primary",
-                        link.highlight && "text-primary font-medium"
-                      )}
+                      className="py-4 text-lg font-light tracking-wide border-b border-border/50 transition-colors hover:text-primary"
                     >
                       {link.label}
                     </Link>
@@ -110,12 +108,7 @@ export function Header({ user }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={cn(
-                    "text-sm tracking-wide editorial-link transition-colors",
-                    link.highlight
-                      ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
+                  className="text-sm tracking-wide editorial-link transition-colors text-muted-foreground hover:text-foreground"
                 >
                   {link.label}
                 </Link>
