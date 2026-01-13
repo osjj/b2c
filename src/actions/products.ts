@@ -10,6 +10,7 @@ const productSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   slug: z.string().min(1, 'Slug is required'),
   description: z.string().optional(),
+  content: z.any().optional().nullable(),
   specifications: z.array(z.object({
     name: z.string(),
     value: z.string(),
@@ -201,10 +202,22 @@ export async function createProduct(
     }
   }
 
+  const contentJson = formData.get('content')
+  let content: any = null
+  if (contentJson && typeof contentJson === 'string' && contentJson !== 'null') {
+    try {
+      const parsed = JSON.parse(contentJson)
+      content = parsed?.blocks?.length > 0 ? parsed : null
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
+    content,
     specifications,
     price: formData.get('price'),
     comparePrice: formData.get('comparePrice') || null,
@@ -222,7 +235,7 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, ...productData } = result.data
 
   // Check slug uniqueness
   const existing = await prisma.product.findUnique({
@@ -236,6 +249,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
+        content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
         images: images?.length
           ? {
@@ -332,10 +346,22 @@ export async function updateProduct(
     }
   }
 
+  const contentJson = formData.get('content')
+  let content: any = null
+  if (contentJson && typeof contentJson === 'string' && contentJson !== 'null') {
+    try {
+      const parsed = JSON.parse(contentJson)
+      content = parsed?.blocks?.length > 0 ? parsed : null
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
+    content,
     specifications,
     price: formData.get('price'),
     comparePrice: formData.get('comparePrice') || null,
@@ -353,7 +379,7 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, ...productData } = result.data
 
   // Check slug uniqueness (exclude current product)
   const existing = await prisma.product.findFirst({
@@ -378,6 +404,7 @@ export async function updateProduct(
       where: { id },
       data: {
         ...productData,
+        content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
         images: images?.length
           ? {

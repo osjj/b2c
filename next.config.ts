@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'shop.laifappe.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'placeholder.com',
+      },
     ],
   },
 };

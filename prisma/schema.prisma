@@ -131,6 +131,7 @@ model Product {
   name           String
   slug           String   @unique
   description    String?  @db.Text
+  content        Json?    // Editor.js JSON content for product detail page
   specifications Json?    // Array of {name: string, value: string}
   price          Decimal  @db.Decimal(10, 2)
   comparePrice   Decimal? @db.Decimal(10, 2)

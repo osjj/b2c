@@ -6,6 +6,7 @@ import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
 import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
+import { ContentRenderer } from '@/components/store/content-renderer'
 
 export default async function ProductDetailPage({
   params,
@@ -203,6 +204,14 @@ export default async function ProductDetailPage({
                 ))}
               </dl>
             </div>
+          </div>
+        )}
+
+        {/* Product Details Section (Editor.js Content) */}
+        {product.content && (
+          <div className="mt-12 border-t pt-8">
+            <h2 className="font-serif text-2xl mb-6">Product Details</h2>
+            <ContentRenderer content={product.content as any} />
           </div>
         )}
       </div>

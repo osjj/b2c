@@ -1,0 +1,460 @@
+{
+  "products": [
+    {
+      "name": "ProGuard Industrial Safety Helmet - White",
+      "slug": "proguard-industrial-safety-helmet-white",
+      "description": "Heavy-duty industrial safety helmet designed for construction, mining, and industrial environments. Features a 6-point suspension system for superior comfort and impact protection. ANSI Z89.1 Type I Class E certified.",
+      "price": 29.99,
+      "comparePrice": 39.99,
+      "stock": 500,
+      "sku": "SH-PG-001-WHT",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/safety-helmet-white-1.jpg",
+        "https://placeholder.com/products/safety-helmet-white-2.jpg",
+        "https://placeholder.com/products/safety-helmet-white-3.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "High-Density Polyethylene (HDPE)" },
+        { "name": "Suspension", "value": "6-Point Ratchet" },
+        { "name": "Weight", "value": "340g" },
+        { "name": "Certification", "value": "ANSI Z89.1 Type I Class E" },
+        { "name": "Color", "value": "White" },
+        { "name": "Size", "value": "Adjustable 52-63cm" }
+      ]
+    },
+    {
+      "name": "ProGuard Industrial Safety Helmet - Yellow",
+      "slug": "proguard-industrial-safety-helmet-yellow",
+      "description": "Heavy-duty industrial safety helmet designed for construction, mining, and industrial environments. Features a 6-point suspension system for superior comfort and impact protection. ANSI Z89.1 Type I Class E certified.",
+      "price": 29.99,
+      "comparePrice": 39.99,
+      "stock": 450,
+      "sku": "SH-PG-001-YLW",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/safety-helmet-yellow-1.jpg",
+        "https://placeholder.com/products/safety-helmet-yellow-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "High-Density Polyethylene (HDPE)" },
+        { "name": "Suspension", "value": "6-Point Ratchet" },
+        { "name": "Weight", "value": "340g" },
+        { "name": "Certification", "value": "ANSI Z89.1 Type I Class E" },
+        { "name": "Color", "value": "Yellow" },
+        { "name": "Size", "value": "Adjustable 52-63cm" }
+      ]
+    },
+    {
+      "name": "VentMax Breathable Safety Helmet",
+      "slug": "ventmax-breathable-safety-helmet",
+      "description": "Ventilated safety helmet with integrated air channels for maximum airflow in hot working conditions. Lightweight ABS shell with moisture-wicking sweatband. Ideal for outdoor construction and warehouse work.",
+      "price": 34.99,
+      "comparePrice": 44.99,
+      "stock": 320,
+      "sku": "SH-VM-002-BLU",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/ventmax-helmet-1.jpg",
+        "https://placeholder.com/products/ventmax-helmet-2.jpg",
+        "https://placeholder.com/products/ventmax-helmet-3.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "ABS Plastic" },
+        { "name": "Ventilation", "value": "8 Air Channels" },
+        { "name": "Suspension", "value": "4-Point Textile" },
+        { "name": "Weight", "value": "290g" },
+        { "name": "Certification", "value": "ANSI Z89.1 Type I Class C" },
+        { "name": "Color", "value": "Blue" },
+        { "name": "Size", "value": "Adjustable 54-62cm" }
+      ]
+    },
+    {
+      "name": "EliteGuard Premium Safety Helmet with Visor",
+      "slug": "eliteguard-premium-safety-helmet-visor",
+      "description": "Premium safety helmet with integrated retractable clear visor for eye protection. Features padded comfort liner, chin strap, and reflective strips for low-light visibility. Perfect for supervisors and site managers.",
+      "price": 54.99,
+      "comparePrice": 69.99,
+      "stock": 180,
+      "sku": "SH-EG-003-ORG",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/eliteguard-helmet-1.jpg",
+        "https://placeholder.com/products/eliteguard-helmet-2.jpg",
+        "https://placeholder.com/products/eliteguard-helmet-3.jpg",
+        "https://placeholder.com/products/eliteguard-helmet-4.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "Polycarbonate Shell" },
+        { "name": "Visor", "value": "Retractable Clear PC" },
+        { "name": "Suspension", "value": "6-Point Ratchet with Padding" },
+        { "name": "Weight", "value": "420g" },
+        { "name": "Certification", "value": "ANSI Z89.1 Type II Class E" },
+        { "name": "Features", "value": "Reflective Strips, Chin Strap" },
+        { "name": "Color", "value": "Orange" },
+        { "name": "Size", "value": "Adjustable 53-64cm" }
+      ]
+    },
+    {
+      "name": "ClearView Full Face Shield - Anti-Fog",
+      "slug": "clearview-full-face-shield-anti-fog",
+      "description": "Crystal clear polycarbonate face shield with anti-fog coating and adjustable headgear. Provides full-face protection against splashes, debris, and airborne particles. Lightweight and comfortable for extended wear.",
+      "price": 18.99,
+      "comparePrice": 24.99,
+      "stock": 800,
+      "sku": "FS-CV-001-CLR",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/face-shield-clear-1.jpg",
+        "https://placeholder.com/products/face-shield-clear-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Visor Material", "value": "Polycarbonate" },
+        { "name": "Coating", "value": "Anti-Fog, Anti-Scratch" },
+        { "name": "Visor Thickness", "value": "1.0mm" },
+        { "name": "Coverage", "value": "Full Face 200mm x 300mm" },
+        { "name": "Headgear", "value": "Adjustable Ratchet" },
+        { "name": "Weight", "value": "180g" },
+        { "name": "Certification", "value": "ANSI Z87.1+" }
+      ]
+    },
+    {
+      "name": "ClearView Face Shield with Chin Guard",
+      "slug": "clearview-face-shield-chin-guard",
+      "description": "Enhanced face shield with extended chin guard for additional protection. Features replaceable visor system and foam forehead cushion. Ideal for grinding, cutting, and chemical handling applications.",
+      "price": 24.99,
+      "comparePrice": 32.99,
+      "stock": 420,
+      "sku": "FS-CV-002-CLR",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/face-shield-chin-1.jpg",
+        "https://placeholder.com/products/face-shield-chin-2.jpg",
+        "https://placeholder.com/products/face-shield-chin-3.jpg"
+      ],
+      "specifications": [
+        { "name": "Visor Material", "value": "Polycarbonate" },
+        { "name": "Coating", "value": "Anti-Fog, Anti-Scratch" },
+        { "name": "Chin Guard", "value": "Integrated PP Chin Guard" },
+        { "name": "Visor Thickness", "value": "1.5mm" },
+        { "name": "Coverage", "value": "Full Face + Chin 220mm x 350mm" },
+        { "name": "Weight", "value": "240g" },
+        { "name": "Certification", "value": "ANSI Z87.1+" }
+      ]
+    },
+    {
+      "name": "ProShield Helmet-Mounted Face Shield",
+      "slug": "proshield-helmet-mounted-face-shield",
+      "description": "Universal face shield designed to attach to standard safety helmets. Features flip-up design for easy visor positioning. Compatible with most ANSI-rated hard hats.",
+      "price": 15.99,
+      "comparePrice": 21.99,
+      "stock": 600,
+      "sku": "FS-PS-003-CLR",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/helmet-face-shield-1.jpg",
+        "https://placeholder.com/products/helmet-face-shield-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Visor Material", "value": "Polycarbonate" },
+        { "name": "Mounting", "value": "Universal Helmet Slots" },
+        { "name": "Design", "value": "Flip-Up" },
+        { "name": "Visor Dimensions", "value": "200mm x 400mm" },
+        { "name": "Weight", "value": "120g" },
+        { "name": "Certification", "value": "ANSI Z87.1" }
+      ]
+    },
+    {
+      "name": "WeldMaster Auto-Darkening Welding Helmet",
+      "slug": "weldmaster-auto-darkening-welding-helmet",
+      "description": "Professional auto-darkening welding helmet with 1/25000s reaction time. Features adjustable shade range DIN 9-13, solar-powered with backup battery. Large 100x93mm viewing area for excellent visibility.",
+      "price": 89.99,
+      "comparePrice": 119.99,
+      "stock": 150,
+      "sku": "WH-WM-001-BLK",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/welding-helmet-auto-1.jpg",
+        "https://placeholder.com/products/welding-helmet-auto-2.jpg",
+        "https://placeholder.com/products/welding-helmet-auto-3.jpg",
+        "https://placeholder.com/products/welding-helmet-auto-4.jpg"
+      ],
+      "specifications": [
+        { "name": "Lens Type", "value": "Auto-Darkening LCD" },
+        { "name": "Shade Range", "value": "DIN 9-13 (Adjustable)" },
+        { "name": "Light State", "value": "DIN 4" },
+        { "name": "Reaction Time", "value": "1/25000 second" },
+        { "name": "Viewing Area", "value": "100mm x 93mm" },
+        { "name": "Power", "value": "Solar + CR2032 Battery" },
+        { "name": "Sensors", "value": "4 Arc Sensors" },
+        { "name": "Weight", "value": "490g" },
+        { "name": "Certification", "value": "ANSI Z87.1, EN379" }
+      ]
+    },
+    {
+      "name": "WeldMaster Pro Variable Shade Helmet",
+      "slug": "weldmaster-pro-variable-shade-helmet",
+      "description": "Top-of-the-line welding helmet with TRUE COLOR technology for accurate color representation. Extended shade range DIN 5-13, perfect for TIG, MIG, and Stick welding. Includes grinding mode.",
+      "price": 149.99,
+      "comparePrice": 199.99,
+      "stock": 80,
+      "sku": "WH-WM-002-BLK",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/welding-helmet-pro-1.jpg",
+        "https://placeholder.com/products/welding-helmet-pro-2.jpg",
+        "https://placeholder.com/products/welding-helmet-pro-3.jpg"
+      ],
+      "specifications": [
+        { "name": "Lens Type", "value": "TRUE COLOR Auto-Darkening" },
+        { "name": "Shade Range", "value": "DIN 5-9 / 9-13 (Adjustable)" },
+        { "name": "Grind Mode", "value": "Yes (DIN 3.5)" },
+        { "name": "Reaction Time", "value": "1/30000 second" },
+        { "name": "Viewing Area", "value": "100mm x 97mm" },
+        { "name": "Power", "value": "Solar + 2x CR2450 Battery" },
+        { "name": "Sensors", "value": "4 Arc Sensors" },
+        { "name": "Sensitivity Control", "value": "Adjustable" },
+        { "name": "Delay Control", "value": "0.1-1.0 second" },
+        { "name": "Weight", "value": "520g" },
+        { "name": "Certification", "value": "ANSI Z87.1, EN379, CSA Z94.3" }
+      ]
+    },
+    {
+      "name": "BasicWeld Passive Welding Helmet",
+      "slug": "basicweld-passive-welding-helmet",
+      "description": "Economy passive welding helmet with fixed DIN 10 shade lens. Durable PP shell with flip-up design. Great for occasional welding and DIY projects.",
+      "price": 24.99,
+      "comparePrice": 34.99,
+      "stock": 300,
+      "sku": "WH-BW-003-BLK",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/welding-helmet-basic-1.jpg",
+        "https://placeholder.com/products/welding-helmet-basic-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Lens Type", "value": "Passive (Fixed Shade)" },
+        { "name": "Shade", "value": "DIN 10" },
+        { "name": "Lens Size", "value": "108mm x 51mm" },
+        { "name": "Shell Material", "value": "Polypropylene" },
+        { "name": "Design", "value": "Flip-Up" },
+        { "name": "Weight", "value": "380g" },
+        { "name": "Certification", "value": "ANSI Z87.1" }
+      ]
+    },
+    {
+      "name": "SafeWork Ventilated Bump Cap - Navy",
+      "slug": "safework-ventilated-bump-cap-navy",
+      "description": "Lightweight bump cap with breathable mesh panels and internal ABS shell insert. Protects against minor bumps and scrapes in low-risk environments. Baseball cap style for casual appearance.",
+      "price": 16.99,
+      "comparePrice": 22.99,
+      "stock": 650,
+      "sku": "BC-SW-001-NVY",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/bump-cap-navy-1.jpg",
+        "https://placeholder.com/products/bump-cap-navy-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Outer Material", "value": "Cotton/Polyester Blend" },
+        { "name": "Inner Shell", "value": "ABS Plastic Insert" },
+        { "name": "Ventilation", "value": "Mesh Side Panels" },
+        { "name": "Style", "value": "Baseball Cap" },
+        { "name": "Weight", "value": "180g" },
+        { "name": "Color", "value": "Navy Blue" },
+        { "name": "Size", "value": "Adjustable 54-62cm" },
+        { "name": "Certification", "value": "EN812" }
+      ]
+    },
+    {
+      "name": "SafeWork Ventilated Bump Cap - Black",
+      "slug": "safework-ventilated-bump-cap-black",
+      "description": "Lightweight bump cap with breathable mesh panels and internal ABS shell insert. Protects against minor bumps and scrapes in low-risk environments. Baseball cap style for casual appearance.",
+      "price": 16.99,
+      "comparePrice": 22.99,
+      "stock": 580,
+      "sku": "BC-SW-001-BLK",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/bump-cap-black-1.jpg",
+        "https://placeholder.com/products/bump-cap-black-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Outer Material", "value": "Cotton/Polyester Blend" },
+        { "name": "Inner Shell", "value": "ABS Plastic Insert" },
+        { "name": "Ventilation", "value": "Mesh Side Panels" },
+        { "name": "Style", "value": "Baseball Cap" },
+        { "name": "Weight", "value": "180g" },
+        { "name": "Color", "value": "Black" },
+        { "name": "Size", "value": "Adjustable 54-62cm" },
+        { "name": "Certification", "value": "EN812" }
+      ]
+    },
+    {
+      "name": "IndustrialPro Bump Cap with LED Light",
+      "slug": "industrialpro-bump-cap-led-light",
+      "description": "Advanced bump cap with integrated rechargeable LED headlight. Features 3 brightness modes and USB charging. Perfect for warehouse workers and maintenance technicians.",
+      "price": 32.99,
+      "comparePrice": 44.99,
+      "stock": 220,
+      "sku": "BC-IP-002-GRY",
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        "https://placeholder.com/products/bump-cap-led-1.jpg",
+        "https://placeholder.com/products/bump-cap-led-2.jpg",
+        "https://placeholder.com/products/bump-cap-led-3.jpg"
+      ],
+      "specifications": [
+        { "name": "Outer Material", "value": "Ripstop Polyester" },
+        { "name": "Inner Shell", "value": "ABS Plastic Insert" },
+        { "name": "LED Light", "value": "200 Lumens, 3 Modes" },
+        { "name": "Battery", "value": "Rechargeable Li-ion (USB-C)" },
+        { "name": "Runtime", "value": "4-8 hours" },
+        { "name": "Weight", "value": "250g" },
+        { "name": "Color", "value": "Gray" },
+        { "name": "Size", "value": "Adjustable 55-63cm" },
+        { "name": "Certification", "value": "EN812" }
+      ]
+    },
+    {
+      "name": "FlameShield Welding Protective Hood",
+      "slug": "flameshield-welding-protective-hood",
+      "description": "Heavy-duty leather protective hood for welding and cutting operations. Full head, neck, and shoulder coverage. Features adjustable elastic band and reinforced seams for durability.",
+      "price": 38.99,
+      "comparePrice": 49.99,
+      "stock": 200,
+      "sku": "PH-FS-001-BRN",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/welding-hood-leather-1.jpg",
+        "https://placeholder.com/products/welding-hood-leather-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "Split Cowhide Leather" },
+        { "name": "Coverage", "value": "Head, Neck, Shoulders" },
+        { "name": "Closure", "value": "Elastic Band + Velcro" },
+        { "name": "Seams", "value": "Kevlar Stitched" },
+        { "name": "Heat Resistance", "value": "Up to 200°C" },
+        { "name": "Weight", "value": "320g" },
+        { "name": "Color", "value": "Brown" },
+        { "name": "Size", "value": "Universal Fit" }
+      ]
+    },
+    {
+      "name": "ArcGuard FR Cotton Protective Hood",
+      "slug": "arcguard-fr-cotton-protective-hood",
+      "description": "Flame-resistant cotton balaclava hood for arc flash and welding protection. Breathable design with face opening. Can be worn under welding helmets for added protection.",
+      "price": 22.99,
+      "comparePrice": 29.99,
+      "stock": 380,
+      "sku": "PH-AG-002-NVY",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/fr-hood-cotton-1.jpg",
+        "https://placeholder.com/products/fr-hood-cotton-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "100% FR Treated Cotton" },
+        { "name": "Style", "value": "Balaclava with Face Opening" },
+        { "name": "Coverage", "value": "Head and Neck" },
+        { "name": "Arc Rating", "value": "ATPV 12 cal/cm²" },
+        { "name": "Weight", "value": "95g" },
+        { "name": "Color", "value": "Navy Blue" },
+        { "name": "Size", "value": "One Size Fits Most" },
+        { "name": "Certification", "value": "NFPA 70E, ASTM F1506" }
+      ]
+    },
+    {
+      "name": "ChemPro Chemical Resistant Hood",
+      "slug": "chempro-chemical-resistant-hood",
+      "description": "Disposable chemical-resistant hood for hazardous material handling. Microporous film laminate provides barrier against liquid splashes and particulates. Elastic face opening for secure fit.",
+      "price": 8.99,
+      "comparePrice": null,
+      "stock": 2000,
+      "sku": "PH-CP-003-WHT",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/chem-hood-1.jpg",
+        "https://placeholder.com/products/chem-hood-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "Microporous Film Laminate" },
+        { "name": "Type", "value": "Disposable" },
+        { "name": "Coverage", "value": "Head, Neck, Upper Shoulders" },
+        { "name": "Face Opening", "value": "Elastic Bound" },
+        { "name": "Protection", "value": "Liquid Splash, Particulates" },
+        { "name": "Weight", "value": "45g" },
+        { "name": "Color", "value": "White" },
+        { "name": "Size", "value": "Universal" },
+        { "name": "Pack Size", "value": "Sold Individually" },
+        { "name": "Certification", "value": "Type 5/6 EN14126" }
+      ]
+    },
+    {
+      "name": "CoolMax Summer Safety Helmet",
+      "slug": "coolmax-summer-safety-helmet",
+      "description": "Ultra-ventilated safety helmet designed for hot weather conditions. Features 12 large ventilation ports and CoolMax sweat-wicking liner. Reduces heat buildup by up to 30%.",
+      "price": 42.99,
+      "comparePrice": 54.99,
+      "stock": 280,
+      "sku": "SH-CM-004-WHT",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/coolmax-helmet-1.jpg",
+        "https://placeholder.com/products/coolmax-helmet-2.jpg",
+        "https://placeholder.com/products/coolmax-helmet-3.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "High-Density Polyethylene (HDPE)" },
+        { "name": "Ventilation", "value": "12 Large Vents" },
+        { "name": "Liner", "value": "CoolMax Moisture-Wicking" },
+        { "name": "Suspension", "value": "6-Point Ratchet" },
+        { "name": "Weight", "value": "310g" },
+        { "name": "Color", "value": "White" },
+        { "name": "Size", "value": "Adjustable 52-63cm" },
+        { "name": "Certification", "value": "ANSI Z89.1 Type I Class C" }
+      ]
+    },
+    {
+      "name": "HiVis Reflective Safety Helmet",
+      "slug": "hivis-reflective-safety-helmet",
+      "description": "High-visibility safety helmet with 360-degree reflective strips for maximum visibility in low-light conditions. Bright fluorescent yellow color meets highway work zone requirements.",
+      "price": 36.99,
+      "comparePrice": 46.99,
+      "stock": 350,
+      "sku": "SH-HV-005-YLW",
+      "isActive": true,
+      "isFeatured": false,
+      "images": [
+        "https://placeholder.com/products/hivis-helmet-1.jpg",
+        "https://placeholder.com/products/hivis-helmet-2.jpg"
+      ],
+      "specifications": [
+        { "name": "Material", "value": "ABS Plastic" },
+        { "name": "Color", "value": "Fluorescent Yellow" },
+        { "name": "Reflective", "value": "360° 3M Scotchlite Strips" },
+        { "name": "Suspension", "value": "6-Point Ratchet" },
+        { "name": "Weight", "value": "360g" },
+        { "name": "Size", "value": "Adjustable 53-64cm" },
+        { "name": "Certification", "value": "ANSI Z89.1 Type I Class E, ANSI 107" }
+      ]
+    }
+  ]
+}

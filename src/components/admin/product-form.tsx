@@ -21,6 +21,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ImageUpload } from './image-upload'
 import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
+import { ContentEditor, type EditorJSData } from './content-editor'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -36,6 +37,7 @@ type ProductWithImages = {
   name: string
   slug: string
   description: string | null
+  content?: unknown
   specifications?: unknown
   price: number
   comparePrice: number | null
@@ -65,6 +67,9 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [selectedCollections, setSelectedCollections] = useState<string[]>(productCollectionIds)
   const [specifications, setSpecifications] = useState<Specification[]>(
     (product?.specifications as Specification[]) || []
+  )
+  const [content, setContent] = useState<EditorJSData | null>(
+    (product?.content as EditorJSData) || null
   )
 
   // Initialize attribute values from existing product
@@ -126,6 +131,9 @@ export function ProductForm({ product, categories, collections = [], productColl
 
       {/* Hidden input for specifications */}
       <input type="hidden" name="specifications" value={JSON.stringify(specifications)} />
+
+      {/* Hidden input for content */}
+      <input type="hidden" name="content" value={JSON.stringify(content)} />
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
@@ -276,6 +284,19 @@ export function ProductForm({ product, categories, collections = [], productColl
               <SpecificationsEditor
                 specifications={specifications}
                 onChange={setSpecifications}
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Product Details</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ContentEditor
+                value={content}
+                onChange={setContent}
+                placeholder="Add detailed product description with images..."
               />
             </CardContent>
           </Card>
