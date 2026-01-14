@@ -21,11 +21,12 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts  Account[]
-  sessions  Session[]
-  cart      Cart?
-  orders    Order[]
-  addresses Address[]
+  accounts     Account[]
+  sessions     Session[]
+  cart         Cart?
+  orders       Order[]
+  addresses    Address[]
+  chatSessions ChatSession[]
 
   @@map("users")
 }
@@ -433,4 +434,66 @@ enum QuoteStatus {
   ACCEPTED
   REJECTED
   EXPIRED
+}
+
+// ==================== Chat Models ====================
+
+enum SessionStatus {
+  ACTIVE
+  CLOSED
+}
+
+enum SenderType {
+  CUSTOMER
+  STAFF
+}
+
+enum AttachmentType {
+  IMAGE
+  FILE
+}
+
+model ChatSession {
+  id        String        @id @default(cuid())
+  visitorId String?
+  userId    String?
+  user      User?         @relation(fields: [userId], references: [id])
+  status    SessionStatus @default(ACTIVE)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  messages  ChatMessage[]
+
+  @@index([visitorId])
+  @@index([userId])
+  @@index([status])
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id          String           @id @default(cuid())
+  sessionId   String
+  session     ChatSession      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  senderType  SenderType
+  senderId    String?
+  content     String           @db.Text
+  attachments ChatAttachment[]
+  isRead      Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+
+  @@index([sessionId])
+  @@map("chat_messages")
+}
+
+model ChatAttachment {
+  id        String         @id @default(cuid())
+  messageId String
+  message   ChatMessage    @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  type      AttachmentType
+  url       String
+  fileName  String
+  fileSize  Int
+  createdAt DateTime       @default(now())
+
+  @@index([messageId])
+  @@map("chat_attachments")
 }
