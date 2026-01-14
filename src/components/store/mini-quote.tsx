@@ -16,8 +16,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
 import { createQuote } from '@/actions/quotes'
 
@@ -155,15 +153,15 @@ export function MiniQuote() {
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col w-full sm:max-w-lg">
-        <SheetHeader>
+      <SheetContent className="flex flex-col w-full sm:max-w-lg p-6">
+        <SheetHeader className="mb-4">
           <SheetTitle>
             {submitSuccess ? 'Quote Submitted' : showForm ? 'Request Quote' : `Quote List (${totalItems})`}
           </SheetTitle>
         </SheetHeader>
 
         {submitSuccess ? (
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
             <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
               <Check className="h-8 w-8 text-green-600" />
             </div>
@@ -178,8 +176,8 @@ export function MiniQuote() {
             <Button onClick={resetAndClose}>Continue Shopping</Button>
           </div>
         ) : showForm ? (
-          <form onSubmit={handleSubmit} className="flex-1 flex flex-col">
-            <ScrollArea className="flex-1 -mx-6 px-6">
+          <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0">
+            <div className="flex-1 overflow-y-auto pr-2">
               <div className="space-y-4 pb-4">
                 <div>
                   <Label htmlFor="name">Name *</Label>
@@ -272,7 +270,7 @@ export function MiniQuote() {
                   </div>
                 </div>
 
-                <Separator />
+                <div className="border-t my-2" />
 
                 <div>
                   <p className="text-sm font-medium mb-2">Items ({items.length})</p>
@@ -286,11 +284,10 @@ export function MiniQuote() {
                   </div>
                 </div>
               </div>
-            </ScrollArea>
+            </div>
 
-            <div className="pt-4 space-y-2">
-              <Separator />
-              <div className="flex gap-2 pt-2">
+            <div className="shrink-0 pt-4 space-y-2 border-t mt-4">
+              <div className="flex gap-2">
                 <Button type="button" variant="outline" className="flex-1" onClick={() => setShowForm(false)}>
                   Back
                 </Button>
@@ -319,8 +316,8 @@ export function MiniQuote() {
             </Button>
           </div>
         ) : (
-          <>
-            <ScrollArea className="flex-1 -mx-6 px-6">
+          <div className="flex-1 flex flex-col min-h-0">
+            <div className="flex-1 overflow-y-auto pr-2">
               <div className="space-y-4">
                 {items.map((item) => (
                   <div
@@ -358,10 +355,9 @@ export function MiniQuote() {
                   </div>
                 ))}
               </div>
-            </ScrollArea>
+            </div>
 
-            <div className="pt-4 space-y-4">
-              <Separator />
+            <div className="shrink-0 pt-4 space-y-4 border-t mt-4">
               <p className="text-sm text-muted-foreground text-center">
                 {totalItems} item(s) selected for quote
               </p>
@@ -370,7 +366,7 @@ export function MiniQuote() {
                 Request Quote
               </Button>
             </div>
-          </>
+          </div>
         )}
       </SheetContent>
     </Sheet>
