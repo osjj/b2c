@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth"
 import { Header } from "@/components/store/header"
 import { Footer } from "@/components/store/footer"
+import { ChatWidget } from "@/components/store/chat"
 
 export default async function StoreLayout({
   children,
@@ -14,6 +15,7 @@ export default async function StoreLayout({
       <Header user={session?.user} />
       <main className="flex-1">{children}</main>
       <Footer />
+      <ChatWidget />
     </div>
   )
 }
