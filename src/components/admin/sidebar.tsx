@@ -17,6 +17,7 @@ import {
   ChevronRight,
   LogOut,
   Store,
+  MessageSquare,
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -29,6 +30,7 @@ const menuItems = [
   { href: "/admin/attributes", label: "Attributes", icon: Tags },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/quotes", label: "Quotes", icon: FileText },
+  { href: "/admin/chat", label: "Chat", icon: MessageSquare },
   { href: "/admin/customers", label: "Customers", icon: Users },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ]
