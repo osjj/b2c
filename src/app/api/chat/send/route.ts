@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { auth } from '@/lib/auth'
-import { pusherServer } from '@/lib/pusher-server'
+import { getPusherServer } from '@/lib/pusher-server'
 
 export async function POST(request: NextRequest) {
   const body = await request.json()
@@ -64,11 +64,12 @@ export async function POST(request: NextRequest) {
   })
 
   // Push to Pusher
-  await pusherServer.trigger(`chat-session-${sessionId}`, 'new-message', message)
+  const pusher = getPusherServer()
+  await pusher.trigger(`chat-session-${sessionId}`, 'new-message', message)
 
   // Notify admin channel for new customer messages
   if (!isStaff) {
-    await pusherServer.trigger('admin-chat', 'new-message', {
+    await pusher.trigger('admin-chat', 'new-message', {
       sessionId,
       message,
     })

@@ -36,12 +36,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       style={{ animationDelay: `${0.05 + index * 0.05}s`, animationFillMode: 'both' }}
     >
       <Link href={`/products/${product.slug}`}>
-        <div className="relative aspect-[3/4] overflow-hidden bg-muted mb-4">
+        <div className="relative aspect-[3/4] overflow-hidden bg-white mb-4">
           <Image
             src={imageUrl}
             alt={product.name}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-contain transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors" />
 

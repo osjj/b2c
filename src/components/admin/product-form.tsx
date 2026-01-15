@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useState } from 'react'
+import { useActionState, useState, useRef, useTransition } from 'react'
 import { Product, Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
 import { generateSlug } from '@/lib/utils'
@@ -21,7 +21,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ImageUpload } from './image-upload'
 import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
-import { ContentEditor, type EditorJSData } from './content-editor'
+import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -71,6 +71,8 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [content, setContent] = useState<EditorJSData | null>(
     (product?.content as EditorJSData) || null
   )
+  const contentEditorRef = useRef<ContentEditorRef>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   // Initialize attribute values from existing product
   const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
@@ -94,10 +96,11 @@ export function ProductForm({ product, categories, collections = [], productColl
     ? updateProduct.bind(null, product.id)
     : createProduct
 
-  const [state, formAction, pending] = useActionState<ProductState, FormData>(
+  const [state, formAction] = useActionState<ProductState, FormData>(
     action,
     {}
   )
+  const [pending, startTransition] = useTransition()
 
   const handleNameChange = (name: string) => {
     if (!product) {
@@ -113,8 +116,32 @@ export function ProductForm({ product, categories, collections = [], productColl
     )
   }
 
+  // Handle form submission - save editor content first
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // Force save editor content before form submission
+    if (contentEditorRef.current) {
+      const editorData = await contentEditorRef.current.save()
+      if (editorData) {
+        setContent(editorData)
+        // Update hidden input directly since setState is async
+        const contentInput = formRef.current?.querySelector('input[name="content"]') as HTMLInputElement
+        if (contentInput) {
+          contentInput.value = JSON.stringify(editorData)
+        }
+      }
+    }
+
+    // Submit form via action
+    const formData = new FormData(formRef.current!)
+    startTransition(() => {
+      formAction(formData)
+    })
+  }
+
   return (
-    <form action={formAction} className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
       {state.error && (
         <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
           {state.error}
@@ -294,6 +321,7 @@ export function ProductForm({ product, categories, collections = [], productColl
             </CardHeader>
             <CardContent>
               <ContentEditor
+                ref={contentEditorRef}
                 value={content}
                 onChange={setContent}
                 placeholder="Add detailed product description with images..."

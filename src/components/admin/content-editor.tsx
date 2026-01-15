@@ -1,10 +1,14 @@
 'use client'
 
-import { useEffect, useRef, useId } from 'react'
+import { useEffect, useRef, useId, useImperativeHandle, forwardRef } from 'react'
 import type EditorJS from '@editorjs/editorjs'
 import type { OutputData } from '@editorjs/editorjs'
 
 export interface EditorJSData extends OutputData {}
+
+export interface ContentEditorRef {
+  save: () => Promise<EditorJSData | null>
+}
 
 interface ContentEditorProps {
   value?: EditorJSData | null
@@ -12,12 +16,26 @@ interface ContentEditorProps {
   placeholder?: string
 }
 
-export function ContentEditor({ value, onChange, placeholder = 'Start writing product details...' }: ContentEditorProps) {
+export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(function ContentEditor(
+  { value, onChange, placeholder = 'Start writing product details...' },
+  ref
+) {
   const editorInstanceRef = useRef<EditorJS | null>(null)
   const holderId = useId().replace(/:/g, '-')
   const onChangeRef = useRef(onChange)
   const initialValue = useRef(value)
   const isInitializing = useRef(false)
+
+  // Expose save method to parent
+  useImperativeHandle(ref, () => ({
+    async save() {
+      if (editorInstanceRef.current) {
+        const data = await editorInstanceRef.current.save()
+        return data
+      }
+      return null
+    },
+  }))
 
   // Keep onChange ref updated without triggering re-init
   useEffect(() => {
@@ -152,4 +170,4 @@ export function ContentEditor({ value, onChange, placeholder = 'Start writing pr
       <div id={holderId} className="prose prose-sm max-w-none" />
     </div>
   )
-}
+})

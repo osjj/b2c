@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import Image from 'next/image'
 
 interface Block {
@@ -72,11 +73,29 @@ function renderList(block: Block) {
   const { style, items } = block.data
   const Tag = style === 'ordered' ? 'ol' : 'ul'
 
+  // Handle both old format (string[]) and new format (object[])
+  const renderItems = (listItems: any[]): JSX.Element[] => {
+    return listItems.map((item: any, index: number) => {
+      // New format: { content: string, items: [] }
+      const content = typeof item === 'string' ? item : item.content
+      const nestedItems = typeof item === 'object' && item.items?.length > 0 ? item.items : null
+
+      return (
+        <li key={index}>
+          <span dangerouslySetInnerHTML={{ __html: content }} />
+          {nestedItems && (
+            <Tag className="mt-1">
+              {renderItems(nestedItems)}
+            </Tag>
+          )}
+        </li>
+      )
+    })
+  }
+
   return (
     <Tag key={block.id} className="text-muted-foreground">
-      {items.map((item: string, index: number) => (
-        <li key={index} dangerouslySetInnerHTML={{ __html: item }} />
-      ))}
+      {renderItems(items)}
     </Tag>
   )
 }
@@ -87,6 +106,9 @@ function renderImage(block: Block) {
 
   if (!url) return null
 
+  // Check if caption has actual content (not just <br> tags or whitespace)
+  const hasCaption = caption && caption.replace(/<br\s*\/?>/gi, '').trim().length > 0
+
   return (
     <figure
       key={block.id}
@@ -95,17 +117,18 @@ function renderImage(block: Block) {
       <div className={`relative ${withBorder ? 'border rounded-lg overflow-hidden' : ''}`}>
         <Image
           src={url}
-          alt={caption || 'Product detail image'}
+          alt={hasCaption ? caption : 'Product detail image'}
           width={800}
           height={600}
           className="w-full h-auto object-contain"
           sizes="(max-width: 768px) 100vw, 800px"
         />
       </div>
-      {caption && (
-        <figcaption className="text-center text-sm text-muted-foreground mt-2">
-          {caption}
-        </figcaption>
+      {hasCaption && (
+        <figcaption
+          className="text-center text-sm text-muted-foreground mt-2"
+          dangerouslySetInnerHTML={{ __html: caption }}
+        />
       )}
     </figure>
   )

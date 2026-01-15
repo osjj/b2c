@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { uploadToR2 } from '@/lib/r2'
+import sharp from 'sharp'
 
 export async function POST(request: NextRequest) {
   try {
@@ -31,23 +32,34 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate file size (max 5MB)
-    const maxSize = 5 * 1024 * 1024
+    // Validate file size (max 10MB for original, will be compressed)
+    const maxSize = 10 * 1024 * 1024
     if (file.size > maxSize) {
       return NextResponse.json(
-        { error: 'File too large. Max size: 5MB' },
+        { error: 'File too large. Max size: 10MB' },
         { status: 400 }
       )
     }
 
-    // Generate unique filename
-    const ext = file.name.split('.').pop() || 'jpg'
-    const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.${ext}`
-
-    // Upload to R2
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    const url = await uploadToR2(buffer, filename, file.type)
+
+    // Optimize image with sharp
+    // - Resize to max 2560px (4K enough), keep aspect ratio, don't enlarge small images
+    // - Convert to WebP with quality 90 (visually lossless)
+    const optimizedBuffer = await sharp(buffer)
+      .resize(2560, 2560, {
+        fit: 'inside',
+        withoutEnlargement: true,
+      })
+      .webp({ quality: 90 })
+      .toBuffer()
+
+    // Generate unique filename with .webp extension
+    const filename = `${Date.now()}-${Math.random().toString(36).substring(7)}.webp`
+
+    // Upload optimized image to R2
+    const url = await uploadToR2(optimizedBuffer, filename, 'image/webp')
 
     return NextResponse.json({ url })
   } catch (error) {
