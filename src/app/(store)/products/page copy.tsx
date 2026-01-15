@@ -70,14 +70,14 @@ export default async function ProductsPage({
             {currentCategory && (
               <>
                 <ChevronRight className="w-4 h-4" />
-                <span className="text-accent">{currentCategory.name}</span>
+                <span className="text-primary">{currentCategory.name}</span>
               </>
             )}
           </nav>
 
           <div className="flex items-start justify-between">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1.5 rounded-full text-sm font-medium mb-4 animate-fade-up">
+              <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-3 py-1.5 rounded-full text-sm font-medium mb-4 animate-fade-up">
                 <ShieldCheck className="w-4 h-4" />
                 专业防护装备
               </div>
@@ -92,12 +92,12 @@ export default async function ProductsPage({
             {/* Stats */}
             <div className="hidden lg:flex items-center gap-8 animate-fade-up stagger-2">
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent">{pagination.total}</div>
+                <div className="text-3xl font-bold text-primary">{pagination.total}</div>
                 <div className="text-sm text-primary-foreground/60">产品总数</div>
               </div>
               <div className="w-px h-12 bg-primary-foreground/20" />
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent">{categories.length}</div>
+                <div className="text-3xl font-bold text-primary">{categories.length}</div>
                 <div className="text-sm text-primary-foreground/60">产品类别</div>
               </div>
             </div>
