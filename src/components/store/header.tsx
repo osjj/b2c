@@ -185,8 +185,11 @@ export function Header({ user }: HeaderProps) {
               </>
             )}
 
-            <MiniQuote />
-            <MiniCart />
+            {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
+              <MiniQuote />
+            ) : (
+              <MiniCart />
+            )}
           </div>
         </div>
       </div>

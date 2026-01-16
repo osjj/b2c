@@ -156,32 +156,34 @@ export default async function ProductDetailPage({
               )}
             </div>
 
-            {/* Add to Cart & Quote */}
+            {/* Add to Cart or Quote based on project type */}
             {product.stock > 0 ? (
               <div className="pt-4 flex flex-col sm:flex-row gap-3">
-                <AddToCartButton
-                  productId={product.id}
-                  productName={product.name}
-                  productPrice={Number(product.price)}
-                  productImage={product.images[0]?.url}
-                  stock={product.stock}
-                  size="lg"
-                  className="flex-1"
-                >
-                  Add to Cart
-                </AddToCartButton>
-                <AddToQuoteButton
-                  productId={product.id}
-                  productName={product.name}
-                  productPrice={Number(product.price)}
-                  productImage={product.images[0]?.url}
-                  sku={product.sku || undefined}
-                  variant="outline"
-                  size="lg"
-                  className="flex-1"
-                >
-                  Add to Quote
-                </AddToQuoteButton>
+                {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
+                  <AddToQuoteButton
+                    productId={product.id}
+                    productName={product.name}
+                    productPrice={Number(product.price)}
+                    productImage={product.images[0]?.url}
+                    sku={product.sku || undefined}
+                    size="lg"
+                    className="flex-1"
+                  >
+                    Add to Quote
+                  </AddToQuoteButton>
+                ) : (
+                  <AddToCartButton
+                    productId={product.id}
+                    productName={product.name}
+                    productPrice={Number(product.price)}
+                    productImage={product.images[0]?.url}
+                    stock={product.stock}
+                    size="lg"
+                    className="flex-1"
+                  >
+                    Add to Cart
+                  </AddToCartButton>
+                )}
               </div>
             ) : (
               <div className="pt-4">

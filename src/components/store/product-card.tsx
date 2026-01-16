@@ -117,21 +117,24 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           {/* Actions */}
           {product.stock > 0 && (
             <div className="flex gap-2">
-              <AddToCartButton
-                productId={product.id}
-                variant="default"
-                size="sm"
-                className="flex-1 text-xs h-8"
-              />
-              <AddToQuoteButton
-                productId={product.id}
-                productName={product.name}
-                productPrice={Number(product.price)}
-                productImage={imageUrl}
-                variant="outline"
-                size="sm"
-                className="flex-1 text-xs h-8"
-              />
+              {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
+                <AddToQuoteButton
+                  productId={product.id}
+                  productName={product.name}
+                  productPrice={Number(product.price)}
+                  productImage={imageUrl}
+                  variant="default"
+                  size="sm"
+                  className="flex-1 text-xs h-8"
+                />
+              ) : (
+                <AddToCartButton
+                  productId={product.id}
+                  variant="default"
+                  size="sm"
+                  className="flex-1 text-xs h-8"
+                />
+              )}
             </div>
           )}
         </div>
