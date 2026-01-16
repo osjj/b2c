@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ProductImage, Category } from '@prisma/client'
 import { formatPrice } from '@/lib/utils'
+import { getLowestTierPrice } from '@/lib/pricing'
 import { AddToCartButton } from './add-to-cart-button'
 import { AddToQuoteButton } from './add-to-quote-button'
 import { ShieldCheck, Zap } from 'lucide-react'
@@ -20,6 +21,13 @@ type ProductWithRelations = {
   isFeatured: boolean
   images: ProductImage[]
   category: Category | null
+  priceTiers?: Array<{
+    id: string
+    minQuantity: number
+    maxQuantity: number | null
+    price: number
+    sortOrder: number
+  }>
 }
 
 interface ProductCardProps {
@@ -30,6 +38,20 @@ interface ProductCardProps {
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const imageUrl = product.images[0]?.url || '/placeholder.jpg'
   const hasDiscount = product.comparePrice && Number(product.comparePrice) > Number(product.price)
+  const isB2B = process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B'
+  const displayPrice = isB2B && product.priceTiers && product.priceTiers.length > 0
+    ? getLowestTierPrice(
+        product.priceTiers.map(t => ({
+          id: t.id,
+          minQuantity: t.minQuantity,
+          maxQuantity: t.maxQuantity,
+          price: Number(t.price),
+          sortOrder: t.sortOrder,
+        })),
+        Number(product.price)
+      )
+    : Number(product.price)
+  const showFromPrice = isB2B && product.priceTiers && product.priceTiers.length > 0
   const discountPercent = hasDiscount
     ? Math.round((1 - Number(product.price) / Number(product.comparePrice)) * 100)
     : 0
@@ -105,9 +127,11 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           {/* Price */}
           <div className="flex items-baseline gap-2 mb-3">
             <span className="text-lg font-bold text-accent">
-              {formatPrice(Number(product.price))}
+              {showFromPrice && <span className="text-sm font-normal">¥</span>}
+              {formatPrice(displayPrice).replace('¥', '')}
+              {showFromPrice && <span className="text-sm font-normal ml-0.5">起</span>}
             </span>
-            {hasDiscount && (
+            {!showFromPrice && hasDiscount && (
               <span className="text-xs text-muted-foreground line-through">
                 {formatPrice(Number(product.comparePrice))}
               </span>
