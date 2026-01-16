@@ -42,7 +42,8 @@ export function Header({ user }: HeaderProps) {
   const navLinks = [
     { href: "/", label: t('home') },
     { href: "/products", label: t('products') },
-    { href: "/categories", label: t('categories') },
+    { href: "/cases", label: t('cases') },
+    { href: "/news", label: t('news') },
     { href: "/about", label: t('about') },
   ]
 
