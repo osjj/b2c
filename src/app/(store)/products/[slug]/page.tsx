@@ -5,6 +5,7 @@ import { getProductBySlug, getProducts } from '@/actions/products'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
 import { AddToQuoteButton } from '@/components/store/add-to-quote-button'
+import { B2BProductActions } from '@/components/store/b2b-product-actions'
 import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
@@ -158,19 +159,23 @@ export default async function ProductDetailPage({
 
             {/* Add to Cart or Quote based on project type */}
             {product.stock > 0 ? (
-              <div className="pt-4 flex flex-col sm:flex-row gap-3">
+              <div className="pt-4">
                 {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
-                  <AddToQuoteButton
+                  <B2BProductActions
                     productId={product.id}
                     productName={product.name}
-                    productPrice={Number(product.price)}
                     productImage={product.images[0]?.url}
                     sku={product.sku || undefined}
-                    size="lg"
-                    className="flex-1"
-                  >
-                    Add to Quote
-                  </AddToQuoteButton>
+                    defaultPrice={Number(product.price)}
+                    priceTiers={product.priceTiers?.map(t => ({
+                      id: t.id,
+                      minQuantity: t.minQuantity,
+                      maxQuantity: t.maxQuantity,
+                      price: Number(t.price),
+                      sortOrder: t.sortOrder,
+                    })) || []}
+                    stock={product.stock}
+                  />
                 ) : (
                   <AddToCartButton
                     productId={product.id}
@@ -179,7 +184,7 @@ export default async function ProductDetailPage({
                     productImage={product.images[0]?.url}
                     stock={product.stock}
                     size="lg"
-                    className="flex-1"
+                    className="w-full"
                   >
                     Add to Cart
                   </AddToCartButton>
