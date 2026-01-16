@@ -266,7 +266,7 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, ...productData } = result.data
 
   // Check slug uniqueness
   const existing = await prisma.product.findUnique({
@@ -280,6 +280,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
+        category: categoryId ? { connect: { id: categoryId } } : undefined,
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
         images: images?.length
@@ -434,7 +435,7 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, ...productData } = result.data
 
   // Check slug uniqueness (exclude current product)
   const existing = await prisma.product.findFirst({
@@ -462,6 +463,7 @@ export async function updateProduct(
       where: { id },
       data: {
         ...productData,
+        category: categoryId ? { connect: { id: categoryId } } : { disconnect: true },
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
         images: images?.length
