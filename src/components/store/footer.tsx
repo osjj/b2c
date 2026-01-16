@@ -1,30 +1,35 @@
+'use client'
+
 import Link from "next/link"
 import { Instagram, Facebook, Twitter } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-
-const footerLinks = {
-  shop: [
-    { href: "/products", label: "All Products" },
-    { href: "/new-arrivals", label: "New Arrivals" },
-    { href: "/categories", label: "Collections" },
-    { href: "/sale", label: "Sale" },
-  ],
-  help: [
-    { href: "/shipping", label: "Shipping & Returns" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/contact", label: "Contact Us" },
-    { href: "/size-guide", label: "Size Guide" },
-  ],
-  about: [
-    { href: "/about", label: "Our Story" },
-    { href: "/sustainability", label: "Sustainability" },
-    { href: "/careers", label: "Careers" },
-    { href: "/press", label: "Press" },
-  ],
-}
+import { useTranslations } from "next-intl"
 
 export function Footer() {
+  const t = useTranslations('footer')
+  const tNav = useTranslations('nav')
+
+  const footerLinks = {
+    shop: [
+      { href: "/products", label: tNav('products') },
+      { href: "/new-arrivals", label: tNav('newArrivals') },
+      { href: "/categories", label: tNav('categories') },
+      { href: "/sale", label: tNav('deals') },
+    ],
+    help: [
+      { href: "/shipping", label: t('shippingInfo') },
+      { href: "/faq", label: t('faq') },
+      { href: "/contact", label: t('contactUs') },
+      { href: "/size-guide", label: t('sizeGuide') },
+    ],
+    about: [
+      { href: "/about", label: t('aboutUs') },
+      { href: "/sustainability", label: t('careers') },
+      { href: "/careers", label: t('careers') },
+      { href: "/press", label: t('press') },
+    ],
+  }
   return (
     <footer className="border-t bg-secondary/30 relative overflow-hidden">
       {/* Decorative element */}
@@ -33,18 +38,18 @@ export function Footer() {
       <div className="container mx-auto px-6 lg:px-8 pt-20 pb-12">
         {/* Newsletter Section */}
         <div className="text-center mb-16 max-w-xl mx-auto">
-          <h3 className="font-serif text-3xl mb-3">Join Our World</h3>
+          <h3 className="font-serif text-3xl mb-3">{t('subscribeNewsletter')}</h3>
           <p className="text-muted-foreground text-sm mb-6">
-            Subscribe for exclusive offers, early access to new arrivals, and curated stories.
+            {t('newsletter')}
           </p>
           <form className="flex gap-2 max-w-md mx-auto">
             <Input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t('enterEmail')}
               className="flex-1 bg-background border-border/50 focus:border-primary"
             />
             <Button className="luxury-btn px-8">
-              Subscribe
+              {t('subscribe')}
             </Button>
           </form>
         </div>
@@ -52,7 +57,7 @@ export function Footer() {
         {/* Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-16 mb-16">
           <div>
-            <h4 className="font-serif text-lg mb-6 tracking-wide">Shop</h4>
+            <h4 className="font-serif text-lg mb-6 tracking-wide">{tNav('shop')}</h4>
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.href}>
@@ -67,7 +72,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-serif text-lg mb-6 tracking-wide">Help</h4>
+            <h4 className="font-serif text-lg mb-6 tracking-wide">{tNav('help')}</h4>
             <ul className="space-y-3">
               {footerLinks.help.map((link) => (
                 <li key={link.href}>
@@ -82,7 +87,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-serif text-lg mb-6 tracking-wide">About</h4>
+            <h4 className="font-serif text-lg mb-6 tracking-wide">{t('aboutUs')}</h4>
             <ul className="space-y-3">
               {footerLinks.about.map((link) => (
                 <li key={link.href}>
@@ -97,7 +102,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-serif text-lg mb-6 tracking-wide">Follow</h4>
+            <h4 className="font-serif text-lg mb-6 tracking-wide">{t('followUs')}</h4>
             <div className="flex gap-4">
               <Link
                 href="#"
@@ -119,7 +124,7 @@ export function Footer() {
               </Link>
             </div>
             <p className="text-sm text-muted-foreground mt-6">
-              Customer Service<br />
+              {t('customerService')}<br />
               <a href="mailto:hello@maison.com" className="hover:text-foreground transition-colors">
                 hello@maison.com
               </a>
@@ -130,17 +135,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
-            <span>&copy; {new Date().getFullYear()} Maison. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Maison. {t('allRightsReserved')}</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
             <Link href="/privacy" className="hover:text-foreground transition-colors">
-              Privacy Policy
+              {t('privacyPolicy')}
             </Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">
-              Terms of Service
-            </Link>
-            <Link href="/cookies" className="hover:text-foreground transition-colors">
-              Cookie Settings
+              {t('termsOfService')}
             </Link>
           </div>
         </div>

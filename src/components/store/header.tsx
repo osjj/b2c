@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { User, Menu, Search, Heart, LogOut, Package } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
@@ -22,14 +23,7 @@ import { useState, useEffect } from "react"
 import { logout } from "@/actions/auth"
 import { MiniCart } from "./mini-cart"
 import { MiniQuote } from "./mini-quote"
-
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
-  { href: "/cases", label: "Cases" },
-  { href: "/news", label: "News" },
-  { href: "/about", label: "About" },
-]
+import { LanguageSwitcher } from "./language-switcher"
 
 interface HeaderProps {
   user?: {
@@ -41,7 +35,16 @@ interface HeaderProps {
 }
 
 export function Header({ user }: HeaderProps) {
+  const t = useTranslations('nav')
+  const tCommon = useTranslations('common')
   const [scrolled, setScrolled] = useState(false)
+
+  const navLinks = [
+    { href: "/", label: t('home') },
+    { href: "/products", label: t('products') },
+    { href: "/categories", label: t('categories') },
+    { href: "/about", label: t('about') },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,7 +82,7 @@ export function Header({ user }: HeaderProps) {
               <SheetContent side="left" className="w-80 pt-12">
                 <SheetHeader>
                   <SheetTitle className="text-left font-serif text-2xl tracking-wide">
-                    Menu
+                    {t('shop')}
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-1 mt-8">
@@ -98,7 +101,7 @@ export function Header({ user }: HeaderProps) {
 
             {/* Search button */}
             <Button variant="ghost" size="icon" className="hover:bg-transparent hidden sm:flex" asChild>
-              <Link href="/orders?tab=lookup" title="Order Lookup">
+              <Link href="/orders?tab=lookup" title={tCommon('search')}>
                 <Search className="h-5 w-5" />
               </Link>
             </Button>
@@ -148,16 +151,16 @@ export function Header({ user }: HeaderProps) {
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/account">My Account</Link>
+                    <Link href="/account">{t('account')}</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/account/orders">My Orders</Link>
+                    <Link href="/account/orders">{t('orders')}</Link>
                   </DropdownMenuItem>
                   {user.role === 'ADMIN' && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/admin">Admin Dashboard</Link>
+                        <Link href="/admin">Admin</Link>
                       </DropdownMenuItem>
                     </>
                   )}
@@ -166,7 +169,7 @@ export function Header({ user }: HeaderProps) {
                     <form action={logout}>
                       <button type="submit" className="flex w-full items-center">
                         <LogOut className="mr-2 h-4 w-4" />
-                        Logout
+                        {t('logout')}
                       </button>
                     </form>
                   </DropdownMenuItem>
@@ -175,15 +178,17 @@ export function Header({ user }: HeaderProps) {
             ) : (
               <>
                 <Button variant="ghost" size="icon" className="hover:bg-transparent" asChild>
-                  <Link href="/orders" title="My Orders">
+                  <Link href="/orders" title={t('orders')}>
                     <Package className="h-5 w-5" />
                   </Link>
                 </Button>
                 <Button variant="ghost" size="sm" className="hover:bg-transparent" asChild>
-                  <Link href="/login">Login</Link>
+                  <Link href="/login">{t('login')}</Link>
                 </Button>
               </>
             )}
+
+            <LanguageSwitcher />
 
             {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
               <MiniQuote />
