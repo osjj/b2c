@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import { getProducts } from '@/actions/products'
 import { getCategories } from '@/actions/categories'
 import { ProductCard } from '@/components/store/product-card'
@@ -28,6 +29,11 @@ export default async function ProductsPage({
   const category = params.category || ''
   const sort = params.sort || 'newest'
   const search = params.search || ''
+
+  const t = await getTranslations('common')
+  const tNav = await getTranslations('nav')
+  const tProduct = await getTranslations('product')
+  const tSearch = await getTranslations('search')
 
   const [{ products, pagination }, categories] = await Promise.all([
     getProducts({
@@ -64,9 +70,9 @@ export default async function ProductsPage({
         <div className="container mx-auto px-6 lg:px-8 py-16 relative">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-primary-foreground/60 mb-8 animate-fade-up">
-            <Link href="/" className="hover:text-primary-foreground transition-colors">首页</Link>
+            <Link href="/" className="hover:text-primary-foreground transition-colors">{tNav('home')}</Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-primary-foreground">产品中心</span>
+            <span className="text-primary-foreground">{tNav('products')}</span>
             {currentCategory && (
               <>
                 <ChevronRight className="w-4 h-4" />
@@ -79,13 +85,13 @@ export default async function ProductsPage({
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1.5 rounded-full text-sm font-medium mb-4 animate-fade-up">
                 <ShieldCheck className="w-4 h-4" />
-                专业防护装备
+                {tNav('products')}
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-up stagger-1">
-                {currentCategory ? currentCategory.name : '全部产品'}
+                {currentCategory ? currentCategory.name : t('all')}
               </h1>
               <p className="text-primary-foreground/70 text-lg animate-fade-up stagger-2">
-                {currentCategory?.description || '为您提供高品质工业安全防护装备，符合国际安全标准，守护每一位工作者的安全'}
+                {currentCategory?.description || tProduct('description')}
               </p>
             </div>
 
@@ -93,12 +99,12 @@ export default async function ProductsPage({
             <div className="hidden lg:flex items-center gap-8 animate-fade-up stagger-2">
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent">{pagination.total}</div>
-                <div className="text-sm text-primary-foreground/60">产品总数</div>
+                <div className="text-sm text-primary-foreground/60">{tNav('products')}</div>
               </div>
               <div className="w-px h-12 bg-primary-foreground/20" />
               <div className="text-center">
                 <div className="text-3xl font-bold text-accent">{categories.length}</div>
-                <div className="text-sm text-primary-foreground/60">产品类别</div>
+                <div className="text-sm text-primary-foreground/60">{tNav('categories')}</div>
               </div>
             </div>
           </div>
@@ -118,7 +124,7 @@ export default async function ProductsPage({
               }`}
             >
               <Package className="w-4 h-4" />
-              全部
+              {t('all')}
             </Link>
             {categories.map((cat) => (
               <Link
@@ -143,11 +149,11 @@ export default async function ProductsPage({
         <div className="flex items-center justify-between mb-6 pb-4 border-b">
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground">
-              共 <span className="font-semibold text-foreground">{pagination.total}</span> 件产品
+              <span className="font-semibold text-foreground">{pagination.total}</span> {tNav('products')}
             </span>
             {search && (
               <span className="text-sm bg-primary/10 text-primary px-2 py-0.5 rounded">
-                搜索: {search}
+                {tSearch('searchFor')}: {search}
               </span>
             )}
           </div>
@@ -159,13 +165,13 @@ export default async function ProductsPage({
               {search && <input type="hidden" name="search" value={search} />}
               <Select name="sort" defaultValue={sort}>
                 <SelectTrigger className="w-36 h-9 text-sm">
-                  <SelectValue placeholder="排序方式" />
+                  <SelectValue placeholder={t('sortBy')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="newest">最新上架</SelectItem>
-                  <SelectItem value="price-asc">价格从低到高</SelectItem>
-                  <SelectItem value="price-desc">价格从高到低</SelectItem>
-                  <SelectItem value="name">名称排序</SelectItem>
+                  <SelectItem value="newest">{t('newest')}</SelectItem>
+                  <SelectItem value="price-asc">{t('priceLowToHigh')}</SelectItem>
+                  <SelectItem value="price-desc">{t('priceHighToLow')}</SelectItem>
+                  <SelectItem value="name">{t('sortBy')}</SelectItem>
                 </SelectContent>
               </Select>
             </form>
@@ -182,13 +188,13 @@ export default async function ProductsPage({
         ) : (
           <div className="text-center py-20">
             <Package className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">暂无产品</h3>
-            <p className="text-muted-foreground mb-6">该分类下暂时没有产品，请查看其他分类</p>
+            <h3 className="text-lg font-semibold mb-2">{t('noResults')}</h3>
+            <p className="text-muted-foreground mb-6">{tSearch('noResults')}</p>
             <Link
               href="/products"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
-              查看全部产品
+              {t('seeAll')}
             </Link>
           </div>
         )}
