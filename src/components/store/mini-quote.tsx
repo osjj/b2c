@@ -33,6 +33,7 @@ export function MiniQuote() {
     contact: '',
     companyName: '',
     remark: '',
+    expectedPrice: '',
     fileUrl: '',
     fileName: '',
   })
@@ -88,6 +89,7 @@ export function MiniQuote() {
     try {
       const result = await createQuote({
         ...formData,
+        expectedPrice: formData.expectedPrice ? parseFloat(formData.expectedPrice) : undefined,
         items: items.map((item) => ({
           productId: item.productId,
           name: item.name,
@@ -118,6 +120,7 @@ export function MiniQuote() {
           contact: '',
           companyName: '',
           remark: '',
+          expectedPrice: '',
           fileUrl: '',
           fileName: '',
         })
@@ -243,6 +246,23 @@ export function MiniQuote() {
                 </div>
 
                 <div>
+                  <Label htmlFor="expectedPrice">Expected Total Price (Optional)</Label>
+                  <Input
+                    id="expectedPrice"
+                    name="expectedPrice"
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={formData.expectedPrice}
+                    onChange={handleInputChange}
+                    placeholder="Your expected total price"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Providing an expected price helps us offer you a better quote
+                  </p>
+                </div>
+
+                <div>
                   <Label htmlFor="file">Upload File</Label>
                   <div className="mt-1">
                     <Input
@@ -343,6 +363,11 @@ export function MiniQuote() {
                       <p className="text-sm text-muted-foreground">
                         Qty: {item.quantity}
                       </p>
+                      {item.tierLabel && (
+                        <p className="text-xs text-muted-foreground">
+                          ({item.tierLabel})
+                        </p>
+                      )}
                     </div>
                     <Button
                       variant="ghost"

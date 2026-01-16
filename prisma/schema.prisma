@@ -156,10 +156,27 @@ model Product {
   orderItems      OrderItem[]
   attributeValues ProductAttributeValue[]
   quoteItems      QuoteItem[]
+  priceTiers      PriceTier[]
 
   @@index([categoryId])
   @@index([isActive, isFeatured])
   @@map("products")
+}
+
+model PriceTier {
+  id          String   @id @default(cuid())
+  productId   String
+  minQuantity Int
+  maxQuantity Int?
+  price       Decimal  @db.Decimal(10, 2)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("price_tiers")
 }
 
 model ProductImage {
@@ -390,18 +407,19 @@ enum AttributeType {
 // ==================== Quote Models ====================
 
 model Quote {
-  id          String      @id @default(cuid())
-  quoteNumber String      @unique
-  name        String
-  email       String
-  contact     String      // WhatsApp / WeChat
-  companyName String?
-  remark      String?     @db.Text
-  fileUrl     String?     // 上传的文件URL
-  fileName    String?     // 上传的文件名
-  status      QuoteStatus @default(PENDING)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id            String      @id @default(cuid())
+  quoteNumber   String      @unique
+  name          String
+  email         String
+  contact       String      // WhatsApp / WeChat
+  companyName   String?
+  remark        String?     @db.Text
+  fileUrl       String?     // 上传的文件URL
+  fileName      String?     // 上传的文件名
+  expectedPrice Decimal?    @db.Decimal(10, 2)
+  status        QuoteStatus @default(PENDING)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 
   items QuoteItem[]
 

@@ -24,6 +24,11 @@ const productSchema = z.object({
   isActive: z.boolean().default(true),
   isFeatured: z.boolean().default(false),
   images: z.array(z.string()).optional(),
+  priceTiers: z.array(z.object({
+    minQuantity: z.coerce.number().int().min(1),
+    maxQuantity: z.coerce.number().int().min(1).nullable(),
+    price: z.coerce.number().min(0),
+  })).optional().nullable(),
 })
 
 export type ProductState = {
@@ -73,6 +78,7 @@ export async function getProducts({
       include: {
         category: true,
         images: { orderBy: { sortOrder: 'asc' }, take: 1 },
+        priceTiers: { orderBy: { sortOrder: 'asc' } },
       },
       orderBy: { createdAt: 'desc' },
       skip: (page - 1) * limit,
@@ -88,6 +94,10 @@ export async function getProducts({
     comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
     cost: p.cost ? Number(p.cost) : null,
     weight: p.weight ? Number(p.weight) : null,
+    priceTiers: p.priceTiers.map((t) => ({
+      ...t,
+      price: Number(t.price),
+    })),
   }))
 
   return {
@@ -115,6 +125,7 @@ export async function getProduct(id: string) {
           option: true,
         },
       },
+      priceTiers: { orderBy: { sortOrder: 'asc' } },
     },
   })
 
@@ -130,6 +141,10 @@ export async function getProduct(id: string) {
     variants: product.variants.map((v) => ({
       ...v,
       price: Number(v.price),
+    })),
+    priceTiers: product.priceTiers.map((t) => ({
+      ...t,
+      price: Number(t.price),
     })),
   }
 }
@@ -152,6 +167,7 @@ export async function getProductBySlug(slug: string) {
           option: true,
         },
       },
+      priceTiers: { orderBy: { sortOrder: 'asc' } },
     },
   })
 
@@ -167,6 +183,10 @@ export async function getProductBySlug(slug: string) {
     variants: product.variants.map((v) => ({
       ...v,
       price: Number(v.price),
+    })),
+    priceTiers: product.priceTiers.map((t) => ({
+      ...t,
+      price: Number(t.price),
     })),
   }
 }
@@ -213,6 +233,17 @@ export async function createProduct(
     }
   }
 
+  const priceTiersJson = formData.get('priceTiers')
+  let priceTiers: any[] | null = null
+  if (priceTiersJson && typeof priceTiersJson === 'string') {
+    try {
+      const parsed = JSON.parse(priceTiersJson)
+      priceTiers = parsed.length > 0 ? parsed : null
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
@@ -235,7 +266,7 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, ...productData } = result.data
 
   // Check slug uniqueness
   const existing = await prisma.product.findUnique({
@@ -249,6 +280,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
+        category: categoryId ? { connect: { id: categoryId } } : undefined,
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
         images: images?.length
@@ -261,6 +293,19 @@ export async function createProduct(
           : undefined,
       },
     })
+
+    // Create price tiers
+    if (priceTiers && priceTiers.length > 0) {
+      await tx.priceTier.createMany({
+        data: priceTiers.map((tier, index) => ({
+          productId: product.id,
+          minQuantity: tier.minQuantity,
+          maxQuantity: tier.maxQuantity,
+          price: tier.price,
+          sortOrder: index,
+        })),
+      })
+    }
 
     // Create product collections
     if (collectionIds.length) {
@@ -357,6 +402,17 @@ export async function updateProduct(
     }
   }
 
+  const priceTiersJson = formData.get('priceTiers')
+  let priceTiers: any[] | null = null
+  if (priceTiersJson && typeof priceTiersJson === 'string') {
+    try {
+      const parsed = JSON.parse(priceTiersJson)
+      priceTiers = parsed.length > 0 ? parsed : null
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   const rawData = {
     name: formData.get('name'),
     slug: formData.get('slug'),
@@ -379,7 +435,7 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, ...productData } = result.data
 
   // Check slug uniqueness (exclude current product)
   const existing = await prisma.product.findFirst({
@@ -399,11 +455,15 @@ export async function updateProduct(
     // Delete existing attribute values
     await tx.productAttributeValue.deleteMany({ where: { productId: id } })
 
+    // Delete existing price tiers
+    await tx.priceTier.deleteMany({ where: { productId: id } })
+
     // Update product with new images
     await tx.product.update({
       where: { id },
       data: {
         ...productData,
+        category: categoryId ? { connect: { id: categoryId } } : { disconnect: true },
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
         images: images?.length
@@ -416,6 +476,19 @@ export async function updateProduct(
           : undefined,
       },
     })
+
+    // Create new price tiers
+    if (priceTiers && priceTiers.length > 0) {
+      await tx.priceTier.createMany({
+        data: priceTiers.map((tier, index) => ({
+          productId: id,
+          minQuantity: tier.minQuantity,
+          maxQuantity: tier.maxQuantity,
+          price: tier.price,
+          sortOrder: index,
+        })),
+      })
+    }
 
     // Create new product collections
     if (collectionIds.length) {
