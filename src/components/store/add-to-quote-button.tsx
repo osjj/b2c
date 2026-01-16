@@ -13,6 +13,7 @@ interface AddToQuoteButtonProps extends Omit<React.ComponentProps<typeof Button>
   productImage?: string
   sku?: string
   variantId?: string
+  tierLabel?: string
 }
 
 export function AddToQuoteButton({
@@ -23,6 +24,7 @@ export function AddToQuoteButton({
   productImage,
   sku,
   variantId,
+  tierLabel,
   children,
   ...props
 }: AddToQuoteButtonProps) {
@@ -40,6 +42,7 @@ export function AddToQuoteButton({
         image: productImage || '',
         quantity,
         sku,
+        tierLabel,
       })
       openQuote()
       setIsAdded(true)

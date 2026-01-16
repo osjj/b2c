@@ -33,6 +33,19 @@ export function B2BProductActions({
   const subtotal = currentPrice * quantity
   const nextTierHint = getNextTierHint(priceTiers, quantity, defaultPrice)
 
+  const getCurrentTierLabel = () => {
+    if (!priceTiers || priceTiers.length === 0) return undefined
+    const sortedTiers = [...priceTiers].sort((a, b) => a.minQuantity - b.minQuantity)
+    for (const tier of sortedTiers) {
+      if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
+        return tier.maxQuantity === null
+          ? `${tier.minQuantity}件及以上阶梯价`
+          : `${tier.minQuantity}-${tier.maxQuantity}件阶梯价`
+      }
+    }
+    return undefined
+  }
+
   return (
     <div className="space-y-6">
       {/* 阶梯价格表 */}
@@ -90,6 +103,7 @@ export function B2BProductActions({
         productImage={productImage}
         sku={sku}
         quantity={quantity}
+        tierLabel={getCurrentTierLabel()}
         size="lg"
         className="w-full"
       >

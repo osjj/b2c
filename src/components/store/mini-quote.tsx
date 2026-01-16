@@ -343,6 +343,11 @@ export function MiniQuote() {
                       <p className="text-sm text-muted-foreground">
                         Qty: {item.quantity}
                       </p>
+                      {item.tierLabel && (
+                        <p className="text-xs text-muted-foreground">
+                          ({item.tierLabel})
+                        </p>
+                      )}
                     </div>
                     <Button
                       variant="ghost"

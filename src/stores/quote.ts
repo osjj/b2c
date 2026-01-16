@@ -9,6 +9,7 @@ export interface QuoteItem {
   image: string
   quantity: number
   sku?: string
+  tierLabel?: string  // 例如 "11-50件阶梯价"
 }
 
 interface QuoteStore {
