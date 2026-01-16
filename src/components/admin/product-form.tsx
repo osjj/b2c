@@ -23,6 +23,10 @@ import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
+import { TranslationTabs } from './translation-tabs'
+import { TranslatableInput } from './translatable-input'
+import { TranslatableTextarea } from './translatable-textarea'
+import { locales, defaultLocale, type Locale } from '@/i18n/config'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -57,6 +61,11 @@ type ProductWithImages = {
     price: number
     sortOrder: number
   }>
+  translations?: Array<{
+    locale: string
+    name: string
+    description: string | null
+  }>
 }
 
 interface ProductFormProps {
@@ -89,6 +98,42 @@ export function ProductForm({ product, categories, collections = [], productColl
   const contentEditorRef = useRef<ContentEditorRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
+  // Translation state
+  const [activeLocale, setActiveLocale] = useState<Locale>(defaultLocale)
+  const [translations, setTranslations] = useState<Record<Locale, { name: string; description: string }>>(() => {
+    const initial = {} as Record<Locale, { name: string; description: string }>
+    locales.forEach((locale) => {
+      if (locale === defaultLocale) {
+        initial[locale] = {
+          name: product?.name || '',
+          description: product?.description || '',
+        }
+      } else {
+        const existing = product?.translations?.find((t) => t.locale === locale)
+        initial[locale] = {
+          name: existing?.name || '',
+          description: existing?.description || '',
+        }
+      }
+    })
+    return initial
+  })
+
+  const updateTranslation = (locale: Locale, field: 'name' | 'description', value: string) => {
+    setTranslations((prev) => ({
+      ...prev,
+      [locale]: { ...prev[locale], [field]: value },
+    }))
+    // Auto-generate slug from default locale name
+    if (locale === defaultLocale && field === 'name' && !product) {
+      setSlug(generateSlug(value))
+    }
+  }
+
+  const completedLocales = locales.filter(
+    (locale) => translations[locale]?.name
+  )
+
   // Initialize attribute values from existing product
   const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
     if (!product?.attributeValues) return {}
@@ -116,12 +161,6 @@ export function ProductForm({ product, categories, collections = [], productColl
     {}
   )
   const [pending, startTransition] = useTransition()
-
-  const handleNameChange = (name: string) => {
-    if (!product) {
-      setSlug(generateSlug(name))
-    }
-  }
 
   const toggleCollection = (collectionId: string) => {
     setSelectedCollections(prev =>
@@ -180,6 +219,11 @@ export function ProductForm({ product, categories, collections = [], productColl
       {/* Hidden input for price tiers */}
       <input type="hidden" name="priceTiers" value={JSON.stringify(priceTiers)} />
 
+      {/* Hidden inputs for translations */}
+      <input type="hidden" name="name" value={translations[defaultLocale]?.name || ''} />
+      <input type="hidden" name="description" value={translations[defaultLocale]?.description || ''} />
+      <input type="hidden" name="translations" value={JSON.stringify(translations)} />
+
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
           <Card>
@@ -187,19 +231,27 @@ export function ProductForm({ product, categories, collections = [], productColl
               <CardTitle>Basic Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name *</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  defaultValue={product?.name}
-                  onChange={(e) => handleNameChange(e.target.value)}
-                  required
-                />
-                {state.errors?.name && (
-                  <p className="text-sm text-red-500">{state.errors.name[0]}</p>
-                )}
-              </div>
+              {/* Translation Tabs */}
+              <TranslationTabs
+                activeLocale={activeLocale}
+                onLocaleChange={setActiveLocale}
+                completedLocales={completedLocales}
+              />
+
+              {/* Name field - translatable */}
+              <TranslatableInput
+                name="productName"
+                label="Product Name"
+                values={Object.fromEntries(
+                  locales.map((l) => [l, translations[l]?.name || ''])
+                ) as Record<Locale, string>}
+                onChange={(locale, value) => updateTranslation(locale, 'name', value)}
+                activeLocale={activeLocale}
+                required
+              />
+              {state.errors?.name && (
+                <p className="text-sm text-red-500">{state.errors.name[0]}</p>
+              )}
 
               <div className="space-y-2">
                 <Label htmlFor="slug">Slug *</Label>
@@ -212,15 +264,17 @@ export function ProductForm({ product, categories, collections = [], productColl
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  name="description"
-                  defaultValue={product?.description || ''}
-                  rows={5}
-                />
-              </div>
+              {/* Description field - translatable */}
+              <TranslatableTextarea
+                name="productDescription"
+                label="Description"
+                values={Object.fromEntries(
+                  locales.map((l) => [l, translations[l]?.description || ''])
+                ) as Record<Locale, string>}
+                onChange={(locale, value) => updateTranslation(locale, 'description', value)}
+                activeLocale={activeLocale}
+                rows={5}
+              />
             </CardContent>
           </Card>
 
