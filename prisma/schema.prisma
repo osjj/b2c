@@ -89,7 +89,8 @@ model Collection {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  products ProductCollection[]
+  products     ProductCollection[]
+  translations CollectionTranslation[]
 
   @@map("collections")
 }
@@ -120,9 +121,10 @@ model Category {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
-  children Category[] @relation("CategoryTree")
-  products Product[]
+  parent       Category?              @relation("CategoryTree", fields: [parentId], references: [id])
+  children     Category[]             @relation("CategoryTree")
+  products     Product[]
+  translations CategoryTranslation[]
 
   @@map("categories")
 }
@@ -157,6 +159,7 @@ model Product {
   attributeValues ProductAttributeValue[]
   quoteItems      QuoteItem[]
   priceTiers      PriceTier[]
+  translations    ProductTranslation[]
 
   @@index([categoryId])
   @@index([isActive, isFeatured])
@@ -360,6 +363,7 @@ model Attribute {
 
   options       AttributeOption[]
   productValues ProductAttributeValue[]
+  translations  AttributeTranslation[]
 
   @@map("attributes")
 }
@@ -371,8 +375,9 @@ model AttributeOption {
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
 
-  attribute     Attribute               @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  attribute     Attribute                    @relation(fields: [attributeId], references: [id], onDelete: Cascade)
   productValues ProductAttributeValue[]
+  translations  AttributeOptionTranslation[]
 
   @@map("attribute_options")
 }
@@ -514,4 +519,85 @@ model ChatAttachment {
 
   @@index([messageId])
   @@map("chat_attachments")
+}
+
+// ==================== Translation Models ====================
+
+model ProductTranslation {
+  id          String   @id @default(cuid())
+  productId   String
+  locale      String
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, locale])
+  @@index([productId])
+  @@index([locale])
+  @@map("product_translations")
+}
+
+model CategoryTranslation {
+  id          String   @id @default(cuid())
+  categoryId  String
+  locale      String
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, locale])
+  @@index([categoryId])
+  @@map("category_translations")
+}
+
+model CollectionTranslation {
+  id           String     @id @default(cuid())
+  collectionId String
+  locale       String
+  name         String
+  description  String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@unique([collectionId, locale])
+  @@index([collectionId])
+  @@map("collection_translations")
+}
+
+model AttributeTranslation {
+  id          String    @id @default(cuid())
+  attributeId String
+  locale      String
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  attribute   Attribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+
+  @@unique([attributeId, locale])
+  @@index([attributeId])
+  @@map("attribute_translations")
+}
+
+model AttributeOptionTranslation {
+  id        String          @id @default(cuid())
+  optionId  String
+  locale    String
+  value     String
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  option    AttributeOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@unique([optionId, locale])
+  @@index([optionId])
+  @@map("attribute_option_translations")
 }
