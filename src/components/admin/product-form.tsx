@@ -22,6 +22,7 @@ import { ImageUpload } from './image-upload'
 import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
+import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -49,6 +50,13 @@ type ProductWithImages = {
   isFeatured: boolean
   images: ProductImage[]
   attributeValues?: ProductAttributeValueWithRelations[]
+  priceTiers?: Array<{
+    id: string
+    minQuantity: number
+    maxQuantity: number | null
+    price: number
+    sortOrder: number
+  }>
 }
 
 interface ProductFormProps {
@@ -70,6 +78,13 @@ export function ProductForm({ product, categories, collections = [], productColl
   )
   const [content, setContent] = useState<EditorJSData | null>(
     (product?.content as EditorJSData) || null
+  )
+  const [priceTiers, setPriceTiers] = useState<PriceTierInput[]>(
+    product?.priceTiers?.map((t) => ({
+      minQuantity: t.minQuantity,
+      maxQuantity: t.maxQuantity,
+      price: Number(t.price),
+    })) || []
   )
   const contentEditorRef = useRef<ContentEditorRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -161,6 +176,9 @@ export function ProductForm({ product, categories, collections = [], productColl
 
       {/* Hidden input for content */}
       <input type="hidden" name="content" value={JSON.stringify(content)} />
+
+      {/* Hidden input for price tiers */}
+      <input type="hidden" name="priceTiers" value={JSON.stringify(priceTiers)} />
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
@@ -256,6 +274,19 @@ export function ProductForm({ product, categories, collections = [], productColl
                   />
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>批量定价</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <PriceTiersEditor
+                tiers={priceTiers}
+                onChange={setPriceTiers}
+                defaultPrice={product?.price || 0}
+              />
             </CardContent>
           </Card>
 
