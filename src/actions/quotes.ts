@@ -10,6 +10,7 @@ const quoteSchema = z.object({
   contact: z.string().min(1, 'WhatsApp/WeChat is required'),
   companyName: z.string().optional(),
   remark: z.string().optional(),
+  expectedPrice: z.number().min(0).optional(),
   fileUrl: z.string().optional(),
   fileName: z.string().optional(),
   items: z.array(z.object({
@@ -51,7 +52,7 @@ export async function createQuote(data: z.infer<typeof quoteSchema>): Promise<Qu
     return { errors: flatErrors }
   }
 
-  const { name, email, contact, companyName, remark, fileUrl, fileName, items } = result.data
+  const { name, email, contact, companyName, remark, expectedPrice, fileUrl, fileName, items } = result.data
 
   try {
     const quote = await prisma.quote.create({
@@ -62,6 +63,7 @@ export async function createQuote(data: z.infer<typeof quoteSchema>): Promise<Qu
         contact,
         companyName: companyName || null,
         remark: remark || null,
+        expectedPrice: expectedPrice || null,
         fileUrl: fileUrl || null,
         fileName: fileName || null,
         items: {
