@@ -1,11 +1,36 @@
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
-import { isRtlLocale } from '@/i18n/config'
+import { isRtlLocale, locales, defaultLocale } from '@/i18n/config'
+
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+
+  // Generate alternate language links for hreflang tags
+  const languages: Record<string, string> = {}
+  locales.forEach((loc) => {
+    languages[loc] = `${baseUrl}/${loc}`
+  })
+  languages['x-default'] = `${baseUrl}/${defaultLocale}`
+
+  return {
+    alternates: {
+      canonical: `${baseUrl}/${locale}`,
+      languages,
+    },
+  }
 }
 
 export default async function LocaleLayout({
