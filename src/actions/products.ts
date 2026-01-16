@@ -126,6 +126,7 @@ export async function getProduct(id: string) {
         },
       },
       priceTiers: { orderBy: { sortOrder: 'asc' } },
+      translations: true,
     },
   })
 
@@ -294,6 +295,33 @@ export async function createProduct(
       },
     })
 
+    // Parse and create translations
+    const translationsJson = formData.get('translations')
+    let translations: Record<string, { name: string; description: string }> = {}
+    if (translationsJson && typeof translationsJson === 'string') {
+      try {
+        translations = JSON.parse(translationsJson)
+      } catch {
+        // ignore parse errors
+      }
+    }
+
+    // Create translations for non-default locales
+    const translationEntries = Object.entries(translations).filter(
+      ([locale, data]) => locale !== 'en' && data.name
+    )
+
+    if (translationEntries.length > 0) {
+      await tx.productTranslation.createMany({
+        data: translationEntries.map(([locale, data]) => ({
+          productId: product.id,
+          locale,
+          name: data.name,
+          description: data.description || null,
+        })),
+      })
+    }
+
     // Create price tiers
     if (priceTiers && priceTiers.length > 0) {
       await tx.priceTier.createMany({
@@ -458,6 +486,9 @@ export async function updateProduct(
     // Delete existing price tiers
     await tx.priceTier.deleteMany({ where: { productId: id } })
 
+    // Delete existing translations
+    await tx.productTranslation.deleteMany({ where: { productId: id } })
+
     // Update product with new images
     await tx.product.update({
       where: { id },
@@ -534,6 +565,33 @@ export async function updateProduct(
 
         await tx.productAttributeValue.create({ data })
       }
+    }
+
+    // Parse and create translations
+    const translationsJson = formData.get('translations')
+    let translations: Record<string, { name: string; description: string }> = {}
+    if (translationsJson && typeof translationsJson === 'string') {
+      try {
+        translations = JSON.parse(translationsJson)
+      } catch {
+        // ignore parse errors
+      }
+    }
+
+    // Create translations for non-default locales
+    const translationEntries = Object.entries(translations).filter(
+      ([locale, data]) => locale !== 'en' && data.name
+    )
+
+    if (translationEntries.length > 0) {
+      await tx.productTranslation.createMany({
+        data: translationEntries.map(([locale, data]) => ({
+          productId: id,
+          locale,
+          name: data.name,
+          description: data.description || null,
+        })),
+      })
     }
   })
 
