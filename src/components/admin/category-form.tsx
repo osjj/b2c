@@ -16,9 +16,21 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { TranslationTabs } from './translation-tabs'
+import { TranslatableInput } from './translatable-input'
+import { TranslatableTextarea } from './translatable-textarea'
+import { locales, defaultLocale, type Locale } from '@/i18n/config'
+
+type CategoryWithTranslations = Category & {
+  translations?: Array<{
+    locale: string
+    name: string
+    description: string | null
+  }>
+}
 
 interface CategoryFormProps {
-  category?: Category
+  category?: CategoryWithTranslations
   categories: Category[]
 }
 
@@ -32,6 +44,42 @@ function generateSlug(name: string): string {
 export function CategoryForm({ category, categories }: CategoryFormProps) {
   const [slug, setSlug] = useState(category?.slug || '')
 
+  // Translation state
+  const [activeLocale, setActiveLocale] = useState<Locale>(defaultLocale)
+  const [translations, setTranslations] = useState<Record<Locale, { name: string; description: string }>>(() => {
+    const initial = {} as Record<Locale, { name: string; description: string }>
+    locales.forEach((locale) => {
+      if (locale === defaultLocale) {
+        initial[locale] = {
+          name: category?.name || '',
+          description: category?.description || '',
+        }
+      } else {
+        const existing = category?.translations?.find((t) => t.locale === locale)
+        initial[locale] = {
+          name: existing?.name || '',
+          description: existing?.description || '',
+        }
+      }
+    })
+    return initial
+  })
+
+  const updateTranslation = (locale: Locale, field: 'name' | 'description', value: string) => {
+    setTranslations((prev) => ({
+      ...prev,
+      [locale]: { ...prev[locale], [field]: value },
+    }))
+    // Auto-generate slug from default locale name
+    if (locale === defaultLocale && field === 'name' && !category) {
+      setSlug(generateSlug(value))
+    }
+  }
+
+  const completedLocales = locales.filter(
+    (locale) => translations[locale]?.name
+  )
+
   const action = category
     ? updateCategory.bind(null, category.id)
     : createCategory
@@ -41,12 +89,6 @@ export function CategoryForm({ category, categories }: CategoryFormProps) {
     {}
   )
 
-  const handleNameChange = (name: string) => {
-    if (!category) {
-      setSlug(generateSlug(name))
-    }
-  }
-
   return (
     <form action={formAction} className="space-y-6 max-w-2xl">
       {state.error && (
@@ -55,24 +97,37 @@ export function CategoryForm({ category, categories }: CategoryFormProps) {
         </div>
       )}
 
+      {/* Hidden inputs for translations */}
+      <input type="hidden" name="name" value={translations[defaultLocale]?.name || ''} />
+      <input type="hidden" name="description" value={translations[defaultLocale]?.description || ''} />
+      <input type="hidden" name="translations" value={JSON.stringify(translations)} />
+
       <Card>
         <CardHeader>
           <CardTitle>Category Information</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name *</Label>
-            <Input
-              id="name"
-              name="name"
-              defaultValue={category?.name}
-              onChange={(e) => handleNameChange(e.target.value)}
-              required
-            />
-            {state.errors?.name && (
-              <p className="text-sm text-red-500">{state.errors.name[0]}</p>
-            )}
-          </div>
+          {/* Translation Tabs */}
+          <TranslationTabs
+            activeLocale={activeLocale}
+            onLocaleChange={setActiveLocale}
+            completedLocales={completedLocales}
+          />
+
+          {/* Name field - translatable */}
+          <TranslatableInput
+            name="categoryName"
+            label="Category Name"
+            values={Object.fromEntries(
+              locales.map((l) => [l, translations[l]?.name || ''])
+            ) as Record<Locale, string>}
+            onChange={(locale, value) => updateTranslation(locale, 'name', value)}
+            activeLocale={activeLocale}
+            required
+          />
+          {state.errors?.name && (
+            <p className="text-sm text-red-500">{state.errors.name[0]}</p>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="slug">Slug *</Label>
@@ -85,15 +140,17 @@ export function CategoryForm({ category, categories }: CategoryFormProps) {
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              name="description"
-              defaultValue={category?.description || ''}
-              rows={3}
-            />
-          </div>
+          {/* Description field - translatable */}
+          <TranslatableTextarea
+            name="categoryDescription"
+            label="Description"
+            values={Object.fromEntries(
+              locales.map((l) => [l, translations[l]?.description || ''])
+            ) as Record<Locale, string>}
+            onChange={(locale, value) => updateTranslation(locale, 'description', value)}
+            activeLocale={activeLocale}
+            rows={3}
+          />
 
           <div className="space-y-2">
             <Label htmlFor="parentId">Parent Category</Label>

@@ -83,6 +83,7 @@ export async function getCategory(id: string) {
     include: {
       parent: true,
       children: true,
+      translations: true,
       _count: { select: { products: true } },
     },
   })
@@ -132,7 +133,36 @@ export async function createCategory(
     return { error: 'Slug already exists' }
   }
 
-  await prisma.category.create({ data: result.data })
+  // Parse translations
+  const translationsJson = formData.get('translations')
+  let translations: Record<string, { name: string; description: string }> = {}
+  if (translationsJson && typeof translationsJson === 'string') {
+    try {
+      translations = JSON.parse(translationsJson)
+    } catch {
+      // ignore parse errors
+    }
+  }
+
+  await prisma.$transaction(async (tx) => {
+    const category = await tx.category.create({ data: result.data })
+
+    // Create translations for non-default locales
+    const translationEntries = Object.entries(translations).filter(
+      ([locale, data]) => locale !== 'en' && data.name
+    )
+
+    if (translationEntries.length > 0) {
+      await tx.categoryTranslation.createMany({
+        data: translationEntries.map(([locale, data]) => ({
+          categoryId: category.id,
+          locale,
+          name: data.name,
+          description: data.description || null,
+        })),
+      })
+    }
+  })
 
   revalidatePath('/admin/categories')
   revalidatePath('/categories')
@@ -176,9 +206,42 @@ export async function updateCategory(
     return { error: 'Category cannot be its own parent' }
   }
 
-  await prisma.category.update({
-    where: { id },
-    data: result.data,
+  // Parse translations
+  const translationsJson = formData.get('translations')
+  let translations: Record<string, { name: string; description: string }> = {}
+  if (translationsJson && typeof translationsJson === 'string') {
+    try {
+      translations = JSON.parse(translationsJson)
+    } catch {
+      // ignore parse errors
+    }
+  }
+
+  await prisma.$transaction(async (tx) => {
+    // Delete existing translations
+    await tx.categoryTranslation.deleteMany({ where: { categoryId: id } })
+
+    // Update category
+    await tx.category.update({
+      where: { id },
+      data: result.data,
+    })
+
+    // Create translations for non-default locales
+    const translationEntries = Object.entries(translations).filter(
+      ([locale, data]) => locale !== 'en' && data.name
+    )
+
+    if (translationEntries.length > 0) {
+      await tx.categoryTranslation.createMany({
+        data: translationEntries.map(([locale, data]) => ({
+          categoryId: id,
+          locale,
+          name: data.name,
+          description: data.description || null,
+        })),
+      })
+    }
   })
 
   revalidatePath('/admin/categories')
