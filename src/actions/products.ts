@@ -352,7 +352,11 @@ export async function createProduct(
         await tx.productAttributeValue.create({ data })
       }
     }
-  })
+  },
+  {
+    timeout: 30000, // 30 seconds timeout for complex product creation
+  }
+  )
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
@@ -445,12 +449,13 @@ export async function updateProduct(
     return { error: 'Slug already exists' }
   }
 
-  await prisma.$transaction(async (tx) => {
-    // Delete existing images
-    await tx.productImage.deleteMany({ where: { productId: id } })
+  await prisma.$transaction(
+    async (tx) => {
+      // Delete existing images
+      await tx.productImage.deleteMany({ where: { productId: id } })
 
-    // Delete existing product collections
-    await tx.productCollection.deleteMany({ where: { productId: id } })
+      // Delete existing product collections
+      await tx.productCollection.deleteMany({ where: { productId: id } })
 
     // Delete existing attribute values
     await tx.productAttributeValue.deleteMany({ where: { productId: id } })
@@ -535,7 +540,11 @@ export async function updateProduct(
         await tx.productAttributeValue.create({ data })
       }
     }
-  })
+  },
+  {
+    timeout: 30000, // 30 seconds timeout for complex product updates
+  }
+  )
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
@@ -543,11 +552,16 @@ export async function updateProduct(
   redirect('/admin/products')
 }
 
-// Delete product
+// Delete product (soft delete - marks as inactive instead of hard delete)
 export async function deleteProduct(id: string) {
   await requireAdmin()
 
-  await prisma.product.delete({ where: { id } })
+  // Use soft delete to preserve order history integrity
+  // Products with existing orders cannot be hard deleted due to foreign key constraints
+  await prisma.product.update({
+    where: { id },
+    data: { isActive: false },
+  })
 
   revalidatePath('/admin/products')
   revalidatePath('/products')

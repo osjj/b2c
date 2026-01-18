@@ -53,7 +53,7 @@ export default function SettingsPage() {
                   <Input
                     id="contactEmail"
                     type="email"
-                    defaultValue="hello@maison.com"
+                    defaultValue="597167998qq01@gmail.com"
                   />
                 </div>
                 <div className="space-y-2">

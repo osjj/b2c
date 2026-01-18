@@ -30,12 +30,12 @@ export default function FactoryShowcase() {
               Our Factory
             </p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              World-Class Manufacturing Facility
+              Professional Manufacturing Excellence
             </h2>
             <p className="text-muted-foreground mb-8">
-              Our state-of-the-art manufacturing facility combines advanced technology with skilled
-              craftsmanship to deliver premium quality PPE products. Every item undergoes rigorous
-              quality control before shipment.
+              Our advanced manufacturing facility utilizes cutting-edge technology and expert craftsmanship to
+              produce high-quality PPE products. Each item is thoroughly tested to meet strict quality standards 
+              before it is shipped.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">

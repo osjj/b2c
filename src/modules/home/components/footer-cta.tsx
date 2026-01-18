@@ -32,7 +32,7 @@ export default function FooterCTA() {
             <Button
               size="lg"
               variant="outline"
-              className="h-14 px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+              className="h-14 px-8 bg-transparent border-white/30 text-white hover:bg-white hover:text-primary"
               asChild
             >
               <Link href="/products">
@@ -47,12 +47,12 @@ export default function FooterCTA() {
             <div>
               <Mail className="h-6 w-6 mx-auto mb-2 opacity-80" />
               <p className="text-sm opacity-80">Email</p>
-              <p className="font-semibold">sales@ppepro.com</p>
+              <p className="font-semibold">597167998qq01@gmail.com</p>
             </div>
             <div>
               <MessageCircle className="h-6 w-6 mx-auto mb-2 opacity-80" />
               <p className="text-sm opacity-80">WhatsApp</p>
-              <p className="font-semibold">+86 123 4567 8900</p>
+              <p className="font-semibold">+86 180 2930 9938</p>
             </div>
             <div>
               <ArrowRight className="h-6 w-6 mx-auto mb-2 opacity-80" />

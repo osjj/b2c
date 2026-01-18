@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { User, Menu, Search, Heart, LogOut, Package } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -42,6 +43,12 @@ interface HeaderProps {
 
 export function Header({ user }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/"
+    return pathname.startsWith(href)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,13 +74,13 @@ export function Header({ user }: HeaderProps) {
 
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          {/* Left section - Mobile menu & Search */}
-          <div className="flex items-center gap-4 w-1/3">
+          {/* Left section - Logo & Navigation */}
+          <div className="flex items-center gap-8">
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="hover:bg-transparent">
-                  <Menu className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="hover:bg-accent">
+                  <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-80 pt-12">
@@ -87,7 +94,10 @@ export function Header({ user }: HeaderProps) {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="py-4 text-lg font-light tracking-wide border-b border-border/50 transition-colors hover:text-primary"
+                      className={cn(
+                        "py-4 text-lg font-light tracking-wide border-b border-border/50 transition-colors hover:text-primary",
+                        isActive(link.href) && "text-primary font-medium"
+                      )}
                     >
                       {link.label}
                     </Link>
@@ -96,29 +106,7 @@ export function Header({ user }: HeaderProps) {
               </SheetContent>
             </Sheet>
 
-            {/* Search button */}
-            <Button variant="ghost" size="icon" className="hover:bg-transparent hidden sm:flex" asChild>
-              <Link href="/orders?tab=lookup" title="Order Lookup">
-                <Search className="h-5 w-5" />
-              </Link>
-            </Button>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8 ml-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm tracking-wide editorial-link transition-colors text-muted-foreground hover:text-foreground"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Center - Logo */}
-          <div className="flex-1 flex justify-center">
+            {/* Logo */}
             <Link href="/" className="group">
               <h1 className="font-serif text-2xl md:text-3xl tracking-[0.2em] font-medium transition-colors group-hover:text-primary">
                 MAISON
@@ -127,19 +115,45 @@ export function Header({ user }: HeaderProps) {
                 CURATED GOODS
               </p>
             </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-8 group/nav">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "text-base font-medium tracking-wide transition-all relative",
+                    "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-primary after:transition-all",
+                    isActive(link.href)
+                      ? "text-primary after:w-full group-hover/nav:text-foreground/50 group-hover/nav:after:w-0 hover:!text-primary hover:!after:w-full"
+                      : "text-foreground/80 after:w-0 hover:text-primary hover:after:w-full"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
           {/* Right section - Actions */}
-          <div className="flex items-center justify-end gap-2 w-1/3">
-            <Button variant="ghost" size="icon" className="hover:bg-transparent hidden sm:flex">
-              <Heart className="h-5 w-5" />
+          <div className="flex items-center gap-3">
+            {/* Search button */}
+            <Button variant="ghost" size="icon" className="hover:bg-accent hidden sm:flex" asChild>
+              <Link href="/orders?tab=lookup" title="Order Lookup">
+                <Search className="h-6 w-6" />
+              </Link>
+            </Button>
+
+            <Button variant="ghost" size="icon" className="hover:bg-accent hidden sm:flex">
+              <Heart className="h-6 w-6" />
             </Button>
 
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="hover:bg-transparent">
-                    <User className="h-5 w-5" />
+                  <Button variant="ghost" size="icon" className="hover:bg-accent">
+                    <User className="h-6 w-6" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
@@ -174,12 +188,12 @@ export function Header({ user }: HeaderProps) {
               </DropdownMenu>
             ) : (
               <>
-                <Button variant="ghost" size="icon" className="hover:bg-transparent" asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-accent" asChild>
                   <Link href="/orders" title="My Orders">
-                    <Package className="h-5 w-5" />
+                    <Package className="h-6 w-6" />
                   </Link>
                 </Button>
-                <Button variant="ghost" size="sm" className="hover:bg-transparent" asChild>
+                <Button variant="ghost" size="sm" className="hover:bg-accent text-base" asChild>
                   <Link href="/login">Login</Link>
                 </Button>
               </>

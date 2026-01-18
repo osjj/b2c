@@ -32,31 +32,31 @@ const values = [
 
 // Statistics data
 const stats = [
-  { value: "10+", label: "Years Experience" },
+  { value: "20+", label: "Years Experience" },
   { value: "10,000+", label: "Enterprise Clients" },
-  { value: "50,000+", label: "Product Types" },
+  { value: "1,000+", label: "Product Types" },
   { value: "98%", label: "Customer Satisfaction" },
 ]
 
 // Company history
 const history = [
   {
-    year: "2015",
+    year: "2003",
     title: "Company Founded",
-    description: "Established safety equipment supply platform, began serving enterprise clients",
+    description: "Established in Foshan, Guangdong, China, began serving enterprise clients with safety equipment",
   },
   {
-    year: "2017",
+    year: "2008",
     title: "Business Expansion",
-    description: "Product line expanded to 6 major categories, client base exceeded 1,000",
+    description: "Product line expanded to cover comprehensive PPE categories, client base exceeded 1,000",
   },
   {
-    year: "2019",
+    year: "2015",
     title: "Platform Upgrade",
     description: "Launched online ordering platform, achieved full-process digitalization",
   },
   {
-    year: "2022",
+    year: "2020",
     title: "Industry Leader",
     description: "Client base exceeded 10,000, became industry-leading B2B safety equipment supplier",
   },
@@ -99,20 +99,42 @@ export default function AboutPage() {
             Company Profile
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            We are a professional platform focused on B2B safety equipment supply, established in 2015.
-            After years of development, we have become a leading safety equipment supplier in the industry,
-            providing quality products and services to over 10,000 enterprise clients.
+            We are a professional <strong className="text-foreground">B2B</strong> <strong className="text-foreground">labor protection and PPE products supplier</strong> headquartered in <strong className="text-foreground">Foshan, Guangdong, China</strong>, <strong className="text-foreground">established in 2003</strong>. With over 20 years of industry experience, we focus on the manufacturing and supply of industrial safety products, supported by an integrated system covering product development, production, quality control, and global distribution.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Our products cover safety helmets, face shields, welding helmets, bump caps, protective hoods
-            and many other categories. We have a complete supply chain system and quality management system,
-            committed to providing customers with high-quality products, competitive prices and professional
-            technical support.
+            Our product range includes <strong className="text-foreground">1,000+ PPE and safety items</strong>, such as head, hand, and foot protection, protective clothing, and various industrial safety accessories. We have <strong className="text-foreground">served more than 10,000 customers</strong> worldwide, including distributors, contractors, manufacturers, and engineering companies, delivering consistent quality and reliable supply.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Adhering to the service philosophy of &quot;Quality First, Customer Supreme&quot;, we continuously
-            optimize procurement processes, improve service quality, and create greater value for customers.
+            With proven experience in <strong className="text-foreground">large-scale engineering and infrastructure projects</strong> and <strong className="text-foreground">partnerships with well-known enterprises</strong>, we provide <strong className="text-foreground">one-stop procurement solutions</strong> for engineering projects to simplify sourcing and ensure efficient delivery. We also offer flexible <strong className="text-foreground">OEM and ODM services</strong>, including product customization, branding, and packaging, helping partners meet specific project and market requirements.
           </p>
+        </div>
+
+        {/* Company Images */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-6xl mx-auto">
+          <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+            <Image
+              src="/company/f1.webp"
+              alt="Company facility 1"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+            <Image
+              src="/company/f2.webp"
+              alt="Company facility 2"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+            <Image
+              src="/company/f3.webp"
+              alt="Company facility 3"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 

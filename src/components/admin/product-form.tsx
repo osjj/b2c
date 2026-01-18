@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useState, useRef, useTransition } from 'react'
+import { useActionState, useState, useRef, useTransition, useCallback } from 'react'
 import { Product, Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
 import { generateSlug } from '@/lib/utils'
@@ -23,6 +23,8 @@ import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
+import { AIGenerateButton } from './ai-product-generator'
+import type { AIGeneratedProduct } from '@/types/ai-generation'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -68,6 +70,20 @@ interface ProductFormProps {
 }
 
 export function ProductForm({ product, categories, collections = [], productCollectionIds = [], attributes = [] }: ProductFormProps) {
+  // Form key for forcing re-render when AI data is applied
+  const [formKey, setFormKey] = useState(0)
+
+  // Basic info fields (controlled for AI fill)
+  const [name, setName] = useState(product?.name || '')
+  const [description, setDescription] = useState(product?.description || '')
+  const [price, setPrice] = useState(product?.price ? Number(product.price) : '')
+  const [comparePrice, setComparePrice] = useState(product?.comparePrice ? Number(product.comparePrice) : '')
+  const [sku, setSku] = useState(product?.sku || '')
+  const [stock, setStock] = useState(product?.stock ?? 0)
+  const [categoryId, setCategoryId] = useState(product?.categoryId || 'none')
+  const [isActive, setIsActive] = useState(product?.isActive ?? true)
+  const [isFeatured, setIsFeatured] = useState(product?.isFeatured ?? false)
+
   const [images, setImages] = useState<string[]>(
     product?.images.map((img) => img.url) || []
   )
@@ -117,11 +133,60 @@ export function ProductForm({ product, categories, collections = [], productColl
   )
   const [pending, startTransition] = useTransition()
 
-  const handleNameChange = (name: string) => {
+  const handleNameChange = (newName: string) => {
+    setName(newName)
     if (!product) {
-      setSlug(generateSlug(name))
+      setSlug(generateSlug(newName))
     }
   }
+
+  // Handle AI generated data
+  const handleAIApply = useCallback((data: AIGeneratedProduct) => {
+    // Update all form fields with AI generated data
+    setName(data.name)
+    setSlug(data.slug)
+    setDescription(data.description)
+    setPrice(data.price)
+    if (data.comparePrice) setComparePrice(data.comparePrice)
+    setSku(data.sku)
+    setStock(data.stock)
+    setIsActive(data.isActive)
+    setIsFeatured(data.isFeatured)
+
+    // Update images (filter out placeholders)
+    const validImages = data.images.filter(
+      (img) => img.startsWith('http') || img.startsWith('data:')
+    )
+    if (validImages.length > 0) {
+      setImages(validImages)
+    }
+
+    // Update specifications
+    if (data.specifications) {
+      setSpecifications(data.specifications)
+    }
+
+    // Update content (force editor re-render)
+    if (data.content) {
+      setContent(data.content)
+      setFormKey((k) => k + 1) // Force ContentEditor to reinitialize
+    }
+
+    // Update price tiers
+    if (data.priceTiers) {
+      setPriceTiers(data.priceTiers)
+    }
+
+    // Update category
+    if (data.categoryId) {
+      setCategoryId(data.categoryId)
+    }
+
+    // Update collections
+    if (data.collectionIds) {
+      setSelectedCollections(data.collectionIds)
+    }
+  }, [])
 
   const toggleCollection = (collectionId: string) => {
     setSelectedCollections(prev =>
@@ -157,6 +222,15 @@ export function ProductForm({ product, categories, collections = [], productColl
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+      {/* AI Generate Button at top */}
+      <div className="flex justify-end">
+        <AIGenerateButton
+          categories={categories}
+          collections={collections}
+          onApply={handleAIApply}
+        />
+      </div>
+
       {state.error && (
         <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
           {state.error}
@@ -192,7 +266,7 @@ export function ProductForm({ product, categories, collections = [], productColl
                 <Input
                   id="name"
                   name="name"
-                  defaultValue={product?.name}
+                  value={name}
                   onChange={(e) => handleNameChange(e.target.value)}
                   required
                 />
@@ -217,7 +291,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                 <Textarea
                   id="description"
                   name="description"
-                  defaultValue={product?.description || ''}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   rows={5}
                 />
               </div>
@@ -247,7 +322,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                     type="number"
                     step="0.01"
                     min="0"
-                    defaultValue={product?.price ? Number(product.price) : ''}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value ? Number(e.target.value) : '')}
                     required
                   />
                 </div>
@@ -259,7 +335,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                     type="number"
                     step="0.01"
                     min="0"
-                    defaultValue={product?.comparePrice ? Number(product.comparePrice) : ''}
+                    value={comparePrice}
+                    onChange={(e) => setComparePrice(e.target.value ? Number(e.target.value) : '')}
                   />
                 </div>
                 <div className="space-y-2">
@@ -301,7 +378,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                   <Input
                     id="sku"
                     name="sku"
-                    defaultValue={product?.sku || ''}
+                    value={sku}
+                    onChange={(e) => setSku(e.target.value)}
                   />
                 </div>
                 <div className="space-y-2">
@@ -311,7 +389,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                     name="stock"
                     type="number"
                     min="0"
-                    defaultValue={product?.stock ?? 0}
+                    value={stock}
+                    onChange={(e) => setStock(Number(e.target.value) || 0)}
                     required
                   />
                 </div>
@@ -352,6 +431,7 @@ export function ProductForm({ product, categories, collections = [], productColl
             </CardHeader>
             <CardContent>
               <ContentEditor
+                key={formKey}
                 ref={contentEditorRef}
                 value={content}
                 onChange={setContent}
@@ -372,7 +452,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                 <Switch
                   id="isActive"
                   name="isActive"
-                  defaultChecked={product?.isActive ?? true}
+                  checked={isActive}
+                  onCheckedChange={setIsActive}
                   value="true"
                 />
               </div>
@@ -381,7 +462,8 @@ export function ProductForm({ product, categories, collections = [], productColl
                 <Switch
                   id="isFeatured"
                   name="isFeatured"
-                  defaultChecked={product?.isFeatured ?? false}
+                  checked={isFeatured}
+                  onCheckedChange={setIsFeatured}
                   value="true"
                 />
               </div>
@@ -393,7 +475,7 @@ export function ProductForm({ product, categories, collections = [], productColl
               <CardTitle>Category</CardTitle>
             </CardHeader>
             <CardContent>
-              <Select name="categoryId" defaultValue={product?.categoryId || 'none'}>
+              <Select name="categoryId" value={categoryId} onValueChange={setCategoryId}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>

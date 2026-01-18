@@ -260,3 +260,50 @@ export async function getProductCollections(productId: string) {
 
   return productCollections.map((pc) => pc.collection)
 }
+
+// Get products from a collection by slug (for homepage featured products)
+export async function getCollectionProducts(slug: string, limit = 8) {
+  const collection = await prisma.collection.findUnique({
+    where: { slug, isActive: true },
+    include: {
+      products: {
+        where: {
+          product: { isActive: true },
+        },
+        include: {
+          product: {
+            include: {
+              images: { orderBy: { sortOrder: 'asc' }, take: 1 },
+              priceTiers: { orderBy: { minQuantity: 'asc' }, take: 1 },
+            },
+          },
+        },
+        orderBy: { sortOrder: 'asc' },
+        take: limit,
+      },
+    },
+  })
+
+  if (!collection) return null
+
+  return {
+    collection: {
+      id: collection.id,
+      name: collection.name,
+      slug: collection.slug,
+      description: collection.description,
+    },
+    products: collection.products.map((pc) => ({
+      id: pc.product.id,
+      name: pc.product.name,
+      slug: pc.product.slug,
+      description: pc.product.description,
+      price: Number(pc.product.price),
+      comparePrice: pc.product.comparePrice ? Number(pc.product.comparePrice) : null,
+      image: pc.product.images[0]?.url || null,
+      lowestTierPrice: pc.product.priceTiers[0]
+        ? Number(pc.product.priceTiers[0].price)
+        : null,
+    })),
+  }
+}
