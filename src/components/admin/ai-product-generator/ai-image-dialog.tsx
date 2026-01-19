@@ -47,6 +47,7 @@ export function AIImageDialog({
   // 模型选择
   const [model, setModel] = useState<string>(DEFAULT_IMAGE_MODEL)
   const [aspectRatio, setAspectRatio] = useState<string>('1:1')
+  const [imageCount, setImageCount] = useState<number>(1)
 
   // 提示词
   const [prompt, setPrompt] = useState('')
@@ -142,7 +143,7 @@ export function AIImageDialog({
         body: JSON.stringify({
           referenceImages: validImages,
           prompt: prompt.trim(),
-          count: 1,
+          count: imageCount,
           model,
           aspectRatio,
         }),
@@ -207,6 +208,7 @@ export function AIImageDialog({
       setImages([])
       setModel(DEFAULT_IMAGE_MODEL)
       setAspectRatio('1:1')
+      setImageCount(1)
       setPrompt('')
       setGeneratedImages([])
       setSelectedImages(new Set())
@@ -278,7 +280,7 @@ export function AIImageDialog({
           </div>
 
           {/* 模型和比例选择 */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label>Image Model</Label>
               <Select value={model} onValueChange={setModel}>
@@ -308,6 +310,21 @@ export function AIImageDialog({
                   <SelectItem value="4:3">4:3</SelectItem>
                   <SelectItem value="3:4">3:4</SelectItem>
                   <SelectItem value="21:9">21:9 (Ultra Wide)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Image Count</Label>
+              <Select value={String(imageCount)} onValueChange={(v) => setImageCount(Number(v))}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Count" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">1</SelectItem>
+                  <SelectItem value="2">2</SelectItem>
+                  <SelectItem value="3">3</SelectItem>
+                  <SelectItem value="4">4</SelectItem>
                 </SelectContent>
               </Select>
             </div>
