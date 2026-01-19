@@ -24,7 +24,7 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
   const holderId = useId().replace(/:/g, '-')
   const onChangeRef = useRef(onChange)
   const initialValue = useRef(value)
-  const isInitializing = useRef(false)
+  const isInitializedRef = useRef(false)
 
   // Expose save method to parent
   useImperativeHandle(ref, () => ({
@@ -43,19 +43,25 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
   }, [onChange])
 
   useEffect(() => {
-    // Prevent double initialization in StrictMode
-    if (editorInstanceRef.current || isInitializing.current) return
+    // 防止重复初始化
+    if (isInitializedRef.current) {
+      return
+    }
+    isInitializedRef.current = true
 
-    isInitializing.current = true
+    let editorInstance: EditorJS | null = null
+    let isCancelled = false
 
     const initEditor = async () => {
+      // 等待 DOM 渲染完成
+      await new Promise(resolve => setTimeout(resolve, 0))
+
       const holderElement = document.getElementById(holderId)
-      if (!holderElement) {
-        isInitializing.current = false
+      if (!holderElement || isCancelled) {
         return
       }
 
-      // Clear any existing content from previous mount
+      // 清空容器
       holderElement.innerHTML = ''
 
       const EditorJS = (await import('@editorjs/editorjs')).default
@@ -66,9 +72,7 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
       const Quote = (await import('@editorjs/quote')).default
       const ImageTool = (await import('@editorjs/image')).default
 
-      // Check again after async imports
-      if (editorInstanceRef.current) {
-        isInitializing.current = false
+      if (isCancelled) {
         return
       }
 
@@ -144,24 +148,29 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
       })
 
       await editor.isReady
+
+      if (isCancelled) {
+        editor.destroy?.()
+        return
+      }
+
+      editorInstance = editor
       editorInstanceRef.current = editor
-      isInitializing.current = false
     }
 
     initEditor()
 
     return () => {
-      const editor = editorInstanceRef.current
-      if (editor) {
-        // Use setTimeout to avoid destroying during render
-        setTimeout(() => {
-          if (editor.destroy) {
-            editor.destroy()
-          }
-        }, 0)
-        editorInstanceRef.current = null
+      isCancelled = true
+      if (editorInstance) {
+        try {
+          editorInstance.destroy?.()
+        } catch {
+          // 忽略销毁错误
+        }
       }
-      isInitializing.current = false
+      editorInstanceRef.current = null
+      isInitializedRef.current = false
     }
   }, [holderId, placeholder])
 

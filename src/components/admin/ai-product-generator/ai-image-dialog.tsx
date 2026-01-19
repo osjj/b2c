@@ -47,7 +47,6 @@ export function AIImageDialog({
   // 模型选择
   const [model, setModel] = useState<string>(DEFAULT_IMAGE_MODEL)
   const [aspectRatio, setAspectRatio] = useState<string>('1:1')
-  const [imageSize, setImageSize] = useState<string>('1K')
 
   // 提示词
   const [prompt, setPrompt] = useState('')
@@ -60,6 +59,32 @@ export function AIImageDialog({
 
   // 初始化时使用主弹框的参考图
   const effectiveImages = images.length > 0 ? images : referenceImages
+
+  // 将 URL 转换为 base64 (通过后端 API 代理避免 CORS 问题)
+  const urlToBase64 = async (url: string): Promise<string> => {
+    // 如果已经是 base64，直接返回
+    if (url.startsWith('data:')) {
+      return url
+    }
+
+    try {
+      const response = await fetch('/api/image-to-base64', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      })
+
+      const result = await response.json()
+      if (result.success && result.base64) {
+        return result.base64
+      }
+      console.error('Failed to convert image:', result.error)
+      return ''
+    } catch (error) {
+      console.error('Failed to convert URL to base64:', error)
+      return ''
+    }
+  }
 
   // 图片上传
   const handleImageUpload = useCallback(async (files: FileList) => {
@@ -104,20 +129,22 @@ export function AIImageDialog({
 
     setGenerating(true)
     setError('')
-    setGeneratedImages([])
-    setSelectedImages(new Set())
 
     try {
+      // 将所有图片转换为 base64 格式
+      const base64Images = await Promise.all(
+        effectiveImages.map((img) => urlToBase64(img))
+      )
+      const validImages = base64Images.filter((img) => img.length > 0)
       const response = await fetch('/api/ai/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          referenceImages: effectiveImages,
+          referenceImages: validImages,
           prompt: prompt.trim(),
-          count: 4,
+          count: 1,
           model,
           aspectRatio,
-          imageSize,
         }),
       })
 
@@ -127,9 +154,17 @@ export function AIImageDialog({
         throw new Error(result.error || 'Failed to generate images')
       }
 
-      setGeneratedImages(result.images)
-      // 默认选中所有图片
-      setSelectedImages(new Set(result.images.map((_, i) => i)))
+      // 将新生成的图片添加到已有图片前面
+      setGeneratedImages((prev) => [...result.images!, ...prev])
+      // 更新选中状态：选中新生成的图片
+      setSelectedImages((prev) => {
+        // 已有图片的索引需要向后偏移
+        const newCount = result.images!.length
+        const shiftedPrev = new Set(Array.from(prev).map((i) => i + newCount))
+        // 新生成的图片默认选中
+        const newSelected = new Set(result.images!.map((_, i) => i))
+        return new Set([...newSelected, ...shiftedPrev])
+      })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate images')
     } finally {
@@ -172,7 +207,6 @@ export function AIImageDialog({
       setImages([])
       setModel(DEFAULT_IMAGE_MODEL)
       setAspectRatio('1:1')
-      setImageSize('1K')
       setPrompt('')
       setGeneratedImages([])
       setSelectedImages(new Set())
@@ -244,7 +278,7 @@ export function AIImageDialog({
           </div>
 
           {/* 模型和比例选择 */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Image Model</Label>
               <Select value={model} onValueChange={setModel}>
@@ -274,20 +308,6 @@ export function AIImageDialog({
                   <SelectItem value="4:3">4:3</SelectItem>
                   <SelectItem value="3:4">3:4</SelectItem>
                   <SelectItem value="21:9">21:9 (Ultra Wide)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label>Image Size</Label>
-              <Select value={imageSize} onValueChange={setImageSize}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select size" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1K">1K</SelectItem>
-                  <SelectItem value="2K">2K</SelectItem>
-                  <SelectItem value="4K">4K</SelectItem>
                 </SelectContent>
               </Select>
             </div>

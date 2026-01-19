@@ -23,7 +23,7 @@ import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
-import { AIGenerateButton } from './ai-product-generator'
+import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 
 type AttributeWithOptions = Attribute & {
@@ -104,6 +104,9 @@ export function ProductForm({ product, categories, collections = [], productColl
   )
   const contentEditorRef = useRef<ContentEditorRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
+
+  // AI 图片生成弹框状态 (用于 Product Details)
+  const [contentAiImageDialogOpen, setContentAiImageDialogOpen] = useState(false)
 
   // Initialize attribute values from existing product
   const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
@@ -195,6 +198,63 @@ export function ProductForm({ product, categories, collections = [], productColl
         : [...prev, collectionId]
     )
   }
+
+  // 处理 AI 生成的图片并插入到 Content Editor
+  const handleContentAIImagesGenerated = useCallback(async (generatedImages: string[]) => {
+    // 上传 base64 图片到服务器
+    const uploadedUrls: string[] = []
+
+    for (const base64 of generatedImages) {
+      try {
+        const response = await fetch(base64)
+        const blob = await response.blob()
+        const file = new File([blob], `ai-content-${Date.now()}.png`, { type: 'image/png' })
+
+        const formData = new FormData()
+        formData.append('file', file)
+
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (res.ok) {
+          const { url } = await res.json()
+          uploadedUrls.push(url)
+        }
+      } catch (error) {
+        console.error('Failed to upload AI generated image:', error)
+      }
+    }
+
+    if (uploadedUrls.length > 0) {
+      // 将图片添加到 content 中
+      const imageBlocks = uploadedUrls.map((url) => ({
+        id: `img-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        type: 'image',
+        data: {
+          file: { url },
+          caption: '',
+          withBorder: false,
+          stretched: false,
+          withBackground: false,
+        },
+      }))
+
+      setContent((prev) => {
+        const newContent = prev ? { ...prev } : { time: Date.now(), version: '2.28.2', blocks: [] }
+        return {
+          ...newContent,
+          blocks: [...(newContent.blocks || []), ...imageBlocks],
+        }
+      })
+
+      // 强制 ContentEditor 重新渲染
+      setFormKey((k) => k + 1)
+    }
+
+    setContentAiImageDialogOpen(false)
+  }, [])
 
   // Handle form submission - save editor content first
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -304,7 +364,7 @@ export function ProductForm({ product, categories, collections = [], productColl
               <CardTitle>Images</CardTitle>
             </CardHeader>
             <CardContent>
-              <ImageUpload value={images} onChange={setImages} />
+              <ImageUpload value={images} onChange={setImages} productName={name} />
             </CardContent>
           </Card>
 
@@ -426,8 +486,23 @@ export function ProductForm({ product, categories, collections = [], productColl
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <CardTitle>Product Details</CardTitle>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setContentAiImageDialogOpen(true)}
+                className="gap-2"
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" />
+                  <path d="M12 12L12 21" />
+                  <path d="M12 12L20 7.5" />
+                  <path d="M12 12L4 7.5" />
+                </svg>
+                AI 生成图片
+              </Button>
             </CardHeader>
             <CardContent>
               <ContentEditor
@@ -439,6 +514,15 @@ export function ProductForm({ product, categories, collections = [], productColl
               />
             </CardContent>
           </Card>
+
+          {/* AI Image Dialog for Product Details */}
+          <AIImageDialog
+            open={contentAiImageDialogOpen}
+            onOpenChange={setContentAiImageDialogOpen}
+            referenceImages={images}
+            productName={name}
+            onImagesGenerated={handleContentAIImagesGenerated}
+          />
         </div>
 
         <div className="space-y-6">
