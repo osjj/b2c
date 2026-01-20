@@ -216,7 +216,7 @@ export async function generateImages(
     const baseModel = model || DEFAULT_IMAGE_MODEL
     const modelId = buildImageModelName(baseModel, aspectRatio, imageSize)
     console.log(`Using image model: ${modelId} (base: ${baseModel}, ratio: ${aspectRatio}, size: ${imageSize})`)
-
+    console.log(`GEMINI_API_ENDPOINT------:${GEMINI_API_ENDPOINT}`)
     for (let i = 0; i < count; i++) {
       const response = await fetch(
         `${GEMINI_API_ENDPOINT}/v1beta/models/${modelId}:generateContent?key=${GEMINI_API_KEY}`,

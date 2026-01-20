@@ -110,6 +110,48 @@ export interface GenerateImageResponse {
   error?: string
 }
 
+// 第三方图片生成接口配置
+export interface ThirdPartyImageConfig {
+  url: string
+  apiKey: string
+  model: string
+}
+
+// 第三方图片生成模型列表
+export const NANO_BANANA_MODELS = [
+  { id: 'nano-banana-fast', name: 'Nano Banana Fast' },
+  { id: 'nano-banana', name: 'Nano Banana' },
+  { id: 'nano-banana-pro', name: 'Nano Banana Pro' },
+  { id: 'nano-banana-pro-vt', name: 'Nano Banana Pro VT' },
+  { id: 'nano-banana-pro-cl', name: 'Nano Banana Pro CL' },
+  { id: 'nano-banana-pro-vip', name: 'Nano Banana Pro VIP (1K/2K)' },
+  { id: 'nano-banana-pro-4k-vip', name: 'Nano Banana Pro 4K VIP' },
+]
+
+// 第三方接口请求参数
+export interface ThirdPartyImageRequest {
+  model: string
+  prompt: string
+  aspectRatio?: string
+  imageSize?: string
+  urls?: string[]
+  webHook?: string
+  shutProgress?: boolean
+}
+
+// 第三方接口响应
+export interface ThirdPartyImageResponse {
+  id: string
+  results: Array<{
+    url: string
+    content?: string
+  }>
+  progress: number
+  status: 'succeeded' | 'processing' | 'failed'
+  failure_reason?: string
+  error?: string
+}
+
 // 图片生成预设提示词
 export interface ImagePromptPreset {
   id: string
@@ -118,12 +160,74 @@ export interface ImagePromptPreset {
   prompt: string
 }
 
+// 图片角度预设
+export interface ImageAnglePreset {
+  id: string
+  name: string
+  nameZh: string
+  prompt: string
+}
+
+export const IMAGE_ANGLE_PRESETS: ImageAnglePreset[] = [
+  {
+    id: 'front',
+    name: 'Front View',
+    nameZh: '正面',
+    prompt: 'front view, facing camera directly',
+  },
+  {
+    id: 'side',
+    name: 'Side View',
+    nameZh: '侧面',
+    prompt: 'side view, 90 degree angle, profile shot',
+  },
+  {
+    id: 'back',
+    name: 'Back View',
+    nameZh: '背面',
+    prompt: 'back view, rear angle, showing back side',
+  },
+  {
+    id: 'top',
+    name: 'Top View',
+    nameZh: '俯视',
+    prompt: 'top-down view, bird eye view, overhead shot',
+  },
+  {
+    id: 'three-quarter',
+    name: '3/4 View',
+    nameZh: '45度角',
+    prompt: 'three-quarter view, 45 degree angle, dynamic perspective',
+  },
+  {
+    id: 'bottom',
+    name: 'Bottom View',
+    nameZh: '仰视',
+    prompt: 'bottom view, low angle shot, looking up',
+  },
+]
+
+// 默认的4角度组合
+export const DEFAULT_ANGLE_COMBINATION = ['front', 'side', 'back', 'top']
+
+// 电商白底图专用 prompt
+export const WHITE_BG_BASE_PROMPT =
+  'Single product photo, centered, isolated on pure white background (#FFFFFF). ' +
+  'Professional e-commerce studio lighting, subtle contact shadow, no harsh reflections. ' +
+  'Product fully visible, not cropped, consistent scale, 3/4 height framing with safe margins. ' +
+  'High detail, sharp focus, realistic materials, accurate colors, no distortion.'
+
+export const WHITE_BG_NEGATIVE_PROMPT =
+  'No text, no watermark, no logo, no badge, no price tag, no border, no collage, ' +
+  'no extra objects, no props, no hands, no people, no background scene, ' +
+  'no reflections of environment, no dramatic lighting, no vignetting.'
+
 export const IMAGE_PROMPT_PRESETS: ImagePromptPreset[] = [
   {
     id: 'white-bg',
     name: 'White Background',
     nameZh: '电商白底图',
-    prompt: 'Professional product photography on pure white background, studio lighting, high resolution, e-commerce style, clean and minimal',
+    prompt: `${WHITE_BG_BASE_PROMPT} [Negative: ${WHITE_BG_NEGATIVE_PROMPT}]`,
   },
   {
     id: 'scene',

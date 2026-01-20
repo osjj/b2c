@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import Image from 'next/image'
-import { Upload, X, Loader2, ImageIcon, Check } from 'lucide-react'
+import { Upload, X, Loader2, ImageIcon, Check, RotateCcw, Settings } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -14,6 +14,16 @@ import {
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { Switch } from '@/components/ui/switch'
+import { Input } from '@/components/ui/input'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
 import {
   Select,
   SelectContent,
@@ -22,8 +32,15 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
-import { IMAGE_PROMPT_PRESETS, GEMINI_IMAGE_MODELS, DEFAULT_IMAGE_MODEL } from '@/types/ai-generation'
-import type { GenerateImageResponse } from '@/types/ai-generation'
+import {
+  IMAGE_PROMPT_PRESETS,
+  GEMINI_IMAGE_MODELS,
+  DEFAULT_IMAGE_MODEL,
+  IMAGE_ANGLE_PRESETS,
+  DEFAULT_ANGLE_COMBINATION,
+  NANO_BANANA_MODELS,
+} from '@/types/ai-generation'
+import type { GenerateImageResponse, ThirdPartyImageConfig } from '@/types/ai-generation'
 
 interface AIImageDialogProps {
   open: boolean
@@ -58,6 +75,28 @@ export function AIImageDialog({
   const [selectedImages, setSelectedImages] = useState<Set<number>>(new Set())
   const [error, setError] = useState('')
 
+  // 多角度模式
+  const [multiAngleMode, setMultiAngleMode] = useState(false)
+  const [angleSelections, setAngleSelections] = useState<string[]>(
+    [...DEFAULT_ANGLE_COMBINATION]
+  )
+  const [generatingProgress, setGeneratingProgress] = useState<{
+    current: number
+    total: number
+    currentAngle: string
+  } | null>(null)
+
+  // 第三方接口配置
+  const [thirdPartyConfig, setThirdPartyConfig] = useState<ThirdPartyImageConfig>({
+    url: 'https://grsai.dakka.com.cn/v1/draw/nano-banana',
+    apiKey: '',
+    model: 'nano-banana-fast',
+  })
+  const [settingsOpen, setSettingsOpen] = useState(false)
+
+  // 判断是否使用第三方接口
+  const useThirdParty = thirdPartyConfig.url && thirdPartyConfig.apiKey
+
   // 初始化时使用主弹框的参考图
   const effectiveImages = images.length > 0 ? images : referenceImages
 
@@ -89,13 +128,13 @@ export function AIImageDialog({
 
   // 图片上传
   const handleImageUpload = useCallback(async (files: FileList) => {
-    if (images.length >= 3) return
+    if (images.length >= 10) return
 
     setUploading(true)
     const newImages: string[] = []
 
     for (const file of Array.from(files)) {
-      if (images.length + newImages.length >= 3) break
+      if (images.length + newImages.length >= 10) break
 
       const reader = new FileReader()
       const base64 = await new Promise<string>((resolve) => {
@@ -121,6 +160,77 @@ export function AIImageDialog({
     setPrompt(productContext + presetPrompt)
   }
 
+  // 更新角度选择
+  const updateAngleSelection = (index: number, angleId: string) => {
+    setAngleSelections((prev) => {
+      const newSelections = [...prev]
+      newSelections[index] = angleId
+      return newSelections
+    })
+  }
+
+  // 重置为默认角度
+  const resetToDefaultAngles = () => {
+    setAngleSelections([...DEFAULT_ANGLE_COMBINATION])
+  }
+
+  // 获取角度的中文名称
+  const getAngleName = (angleId: string) => {
+    const angle = IMAGE_ANGLE_PRESETS.find((a) => a.id === angleId)
+    return angle?.nameZh || angleId
+  }
+
+  // 构建最终的图片生成 prompt
+  // 顺序：productName + anglePrompt + userPrompt
+  const buildFinalPrompt = (userPrompt: string, anglePrompt?: string) => {
+    const parts: string[] = []
+
+    // 1. 产品名称
+    if (productName) {
+      parts.push(`Product: ${productName}`)
+    }
+
+    // 2. 角度描述
+    if (anglePrompt) {
+      parts.push(anglePrompt)
+    }
+
+    // 3. 用户自定义 prompt（包含预设内容，如白底图的完整 prompt）
+    if (userPrompt.trim()) {
+      parts.push(userPrompt.trim())
+    }
+
+    return parts.join('. ')
+  }
+
+  // 使用第三方接口生成单张图片
+  const generateWithThirdParty = async (
+    finalPrompt: string,
+    referenceUrls: string[]
+  ): Promise<string[]> => {
+    const response = await fetch('/api/ai/generate-image-third-party', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        url: thirdPartyConfig.url,
+        apiKey: thirdPartyConfig.apiKey,
+        model: thirdPartyConfig.model,
+        prompt: finalPrompt,
+        aspectRatio: aspectRatio === '1:1' ? 'auto' : aspectRatio,
+        imageSize: '1K',
+        referenceImages: referenceUrls,
+      }),
+    })
+
+    const result: GenerateImageResponse = await response.json()
+
+    if (!result.success || !result.images) {
+      throw new Error(result.error || 'Third-party generation failed')
+    }
+
+    return result.images
+  }
+
   // 生成图片
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -137,37 +247,131 @@ export function AIImageDialog({
         effectiveImages.map((img) => urlToBase64(img))
       )
       const validImages = base64Images.filter((img) => img.length > 0)
-      const response = await fetch('/api/ai/generate-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          referenceImages: validImages,
-          prompt: prompt.trim(),
-          count: imageCount,
-          model,
-          aspectRatio,
-        }),
-      })
 
-      const result: GenerateImageResponse = await response.json()
+      if (multiAngleMode) {
+        // 多角度模式：分别为每个角度生成图片
+        const allGeneratedImages: string[] = []
+        const totalAngles = angleSelections.length
 
-      if (!result.success || !result.images) {
-        throw new Error(result.error || 'Failed to generate images')
+        for (let i = 0; i < totalAngles; i++) {
+          const angleId = angleSelections[i]
+          const anglePreset = IMAGE_ANGLE_PRESETS.find((a) => a.id === angleId)
+          if (!anglePreset) continue
+
+          setGeneratingProgress({
+            current: i + 1,
+            total: totalAngles,
+            currentAngle: anglePreset.nameZh,
+          })
+
+          // 使用 buildFinalPrompt 构建完整提示词
+          const finalPrompt = buildFinalPrompt(prompt, anglePreset.prompt)
+
+          let images: string[] = []
+
+          if (useThirdParty) {
+            // 使用第三方接口
+            images = await generateWithThirdParty(finalPrompt, validImages)
+          } else {
+            // 使用 Gemini 接口
+            const response = await fetch('/api/ai/generate-image', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                referenceImages: validImages,
+                prompt: finalPrompt,
+                count: 1,
+                model,
+                aspectRatio,
+              }),
+            })
+
+            const result: GenerateImageResponse = await response.json()
+            if (result.success && result.images) {
+              images = result.images
+            }
+          }
+
+          if (images.length > 0) {
+            allGeneratedImages.push(images[0])
+          }
+        }
+
+        setGeneratingProgress(null)
+
+        if (allGeneratedImages.length === 0) {
+          throw new Error('Failed to generate any images')
+        }
+
+        // 将新生成的图片添加到已有图片前面
+        setGeneratedImages((prev) => [...allGeneratedImages, ...prev])
+        // 更新选中状态：选中新生成的图片
+        setSelectedImages((prev) => {
+          const newCount = allGeneratedImages.length
+          const shiftedPrev = new Set(Array.from(prev).map((i) => i + newCount))
+          const newSelected = new Set(allGeneratedImages.map((_, i) => i))
+          return new Set([...newSelected, ...shiftedPrev])
+        })
+      } else {
+        // 普通模式：一次生成多张
+        const finalPrompt = buildFinalPrompt(prompt)
+
+        let generatedImagesResult: string[] = []
+
+        if (useThirdParty) {
+          // 使用第三方接口（第三方一次只生成1张，需要循环）
+          for (let i = 0; i < imageCount; i++) {
+            setGeneratingProgress({
+              current: i + 1,
+              total: imageCount,
+              currentAngle: `图片 ${i + 1}`,
+            })
+            const images = await generateWithThirdParty(finalPrompt, validImages)
+            if (images.length > 0) {
+              generatedImagesResult.push(images[0])
+            }
+          }
+          setGeneratingProgress(null)
+        } else {
+          // 使用 Gemini 接口
+          const response = await fetch('/api/ai/generate-image', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              referenceImages: validImages,
+              prompt: finalPrompt,
+              count: imageCount,
+              model,
+              aspectRatio,
+            }),
+          })
+
+          const result: GenerateImageResponse = await response.json()
+
+          if (!result.success || !result.images) {
+            throw new Error(result.error || 'Failed to generate images')
+          }
+
+          generatedImagesResult = result.images
+        }
+
+        if (generatedImagesResult.length === 0) {
+          throw new Error('Failed to generate any images')
+        }
+
+        // 将新生成的图片添加到已有图片前面
+        setGeneratedImages((prev) => [...generatedImagesResult, ...prev])
+        // 更新选中状态：选中新生成的图片
+        setSelectedImages((prev) => {
+          const newCount = generatedImagesResult.length
+          const shiftedPrev = new Set(Array.from(prev).map((i) => i + newCount))
+          const newSelected = new Set(generatedImagesResult.map((_, i) => i))
+          return new Set([...newSelected, ...shiftedPrev])
+        })
       }
-
-      // 将新生成的图片添加到已有图片前面
-      setGeneratedImages((prev) => [...result.images!, ...prev])
-      // 更新选中状态：选中新生成的图片
-      setSelectedImages((prev) => {
-        // 已有图片的索引需要向后偏移
-        const newCount = result.images!.length
-        const shiftedPrev = new Set(Array.from(prev).map((i) => i + newCount))
-        // 新生成的图片默认选中
-        const newSelected = new Set(result.images!.map((_, i) => i))
-        return new Set([...newSelected, ...shiftedPrev])
-      })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to generate images')
+      setGeneratingProgress(null)
     } finally {
       setGenerating(false)
     }
@@ -213,6 +417,9 @@ export function AIImageDialog({
       setGeneratedImages([])
       setSelectedImages(new Set())
       setError('')
+      setMultiAngleMode(false)
+      setAngleSelections([...DEFAULT_ANGLE_COMBINATION])
+      setGeneratingProgress(null)
     }
     onOpenChange(isOpen)
   }
@@ -220,22 +427,128 @@ export function AIImageDialog({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-6xl">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <ImageIcon className="h-5 w-5" />
-            AI Image Generator
-          </DialogTitle>
-          <DialogDescription>
-            Generate product images using AI based on reference images and prompt
-          </DialogDescription>
+        <DialogHeader className="flex flex-row items-start justify-between">
+          <div>
+            <DialogTitle className="flex items-center gap-2">
+              <ImageIcon className="h-5 w-5" />
+              AI Image Generator
+              {useThirdParty && (
+                <span className="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full">
+                  第三方
+                </span>
+              )}
+            </DialogTitle>
+            <DialogDescription>
+              Generate product images using AI based on reference images and prompt
+            </DialogDescription>
+          </div>
+
+          {/* 设置按钮 */}
+          <Sheet open={settingsOpen} onOpenChange={setSettingsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn(
+                  'h-8 w-8',
+                  useThirdParty && 'text-green-600'
+                )}
+              >
+                <Settings className="h-4 w-4" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>第三方接口配置</SheetTitle>
+                <SheetDescription>
+                  配置后将使用第三方接口生成图片，清空 API Key 可恢复使用 Gemini
+                </SheetDescription>
+              </SheetHeader>
+
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <Label>API URL</Label>
+                  <Input
+                    value={thirdPartyConfig.url}
+                    onChange={(e) =>
+                      setThirdPartyConfig((prev) => ({
+                        ...prev,
+                        url: e.target.value,
+                      }))
+                    }
+                    placeholder="https://..."
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label>API Key</Label>
+                  <Input
+                    type="password"
+                    value={thirdPartyConfig.apiKey}
+                    onChange={(e) =>
+                      setThirdPartyConfig((prev) => ({
+                        ...prev,
+                        apiKey: e.target.value,
+                      }))
+                    }
+                    placeholder="输入 API Key 以启用第三方接口"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label>模型</Label>
+                  <Select
+                    value={thirdPartyConfig.model}
+                    onValueChange={(v) =>
+                      setThirdPartyConfig((prev) => ({
+                        ...prev,
+                        model: v,
+                      }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {NANO_BANANA_MODELS.map((m) => (
+                        <SelectItem key={m.id} value={m.id}>
+                          {m.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="pt-4 flex justify-between items-center border-t">
+                  <span className="text-sm text-muted-foreground">
+                    状态：{useThirdParty ? '已启用第三方接口' : '使用 Gemini（默认）'}
+                  </span>
+                  {useThirdParty && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() =>
+                        setThirdPartyConfig((prev) => ({
+                          ...prev,
+                          apiKey: '',
+                        }))
+                      }
+                    >
+                      清除配置
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </DialogHeader>
 
         <div className="space-y-4 py-4">
           {/* 参考图片 */}
           <div className="space-y-2">
-            <Label>Reference Images</Label>
-            <div className="flex gap-2">
-              {effectiveImages.slice(0, 3).map((src, index) => (
+            <Label>Reference Images (Max 10)</Label>
+            <div className="flex flex-wrap gap-2">
+              {effectiveImages.slice(0, 10).map((src, index) => (
                 <div key={index} className="relative w-20 h-20 group">
                   <Image
                     src={src}
@@ -255,7 +568,7 @@ export function AIImageDialog({
                 </div>
               ))}
 
-              {effectiveImages.length < 3 && (
+              {effectiveImages.length < 10 && (
                 <label
                   className={cn(
                     'w-20 h-20 border-2 border-dashed rounded-md flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors',
@@ -265,6 +578,7 @@ export function AIImageDialog({
                   <input
                     type="file"
                     accept="image/*"
+                    multiple
                     className="hidden"
                     onChange={(e) => e.target.files && handleImageUpload(e.target.files)}
                     disabled={uploading}
@@ -316,7 +630,11 @@ export function AIImageDialog({
 
             <div className="space-y-2">
               <Label>Image Count</Label>
-              <Select value={String(imageCount)} onValueChange={(v) => setImageCount(Number(v))}>
+              <Select
+                value={String(imageCount)}
+                onValueChange={(v) => setImageCount(Number(v))}
+                disabled={multiAngleMode}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Count" />
                 </SelectTrigger>
@@ -328,6 +646,64 @@ export function AIImageDialog({
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          {/* 多角度模式 */}
+          <div className="space-y-3 p-4 border rounded-lg bg-muted/30">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Switch
+                  id="multi-angle-mode"
+                  checked={multiAngleMode}
+                  onCheckedChange={setMultiAngleMode}
+                />
+                <Label htmlFor="multi-angle-mode" className="cursor-pointer">
+                  多角度模式
+                </Label>
+                <span className="text-xs text-muted-foreground">
+                  (自动生成4张不同角度的图片)
+                </span>
+              </div>
+              {multiAngleMode && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={resetToDefaultAngles}
+                  className="h-7 text-xs gap-1"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                  重置默认
+                </Button>
+              )}
+            </div>
+
+            {multiAngleMode && (
+              <div className="grid grid-cols-4 gap-3">
+                {angleSelections.map((angleId, index) => (
+                  <div key={index} className="space-y-1">
+                    <Label className="text-xs text-muted-foreground">
+                      图片 {index + 1}
+                    </Label>
+                    <Select
+                      value={angleId}
+                      onValueChange={(v) => updateAngleSelection(index, v)}
+                    >
+                      <SelectTrigger className="h-8">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {IMAGE_ANGLE_PRESETS.map((angle) => (
+                          <SelectItem key={angle.id} value={angle.id}>
+                            {angle.nameZh}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* 提示词 */}
@@ -370,12 +746,14 @@ export function AIImageDialog({
             {generating ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Generating Images...
+                {generatingProgress
+                  ? `生成中 (${generatingProgress.current}/${generatingProgress.total}) - ${generatingProgress.currentAngle}...`
+                  : 'Generating Images...'}
               </>
             ) : (
               <>
                 <ImageIcon className="h-4 w-4" />
-                Generate Images
+                {multiAngleMode ? '生成4张多角度图片' : 'Generate Images'}
               </>
             )}
           </Button>
