@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import Image from 'next/image'
-import { Upload, X, Loader2, Sparkles, ZoomIn } from 'lucide-react'
+import { Upload, X, Loader2, Sparkles, ZoomIn, Wand2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { AIImageDialog } from './ai-product-generator'
@@ -24,6 +24,8 @@ export function ImageUpload({
   const [uploading, setUploading] = useState(false)
   const [aiDialogOpen, setAiDialogOpen] = useState(false)
   const [previewImage, setPreviewImage] = useState<string | null>(null)
+  // 单图重新生成：记录要替换的图片索引，-1 表示添加新图片模式
+  const [regenerateIndex, setRegenerateIndex] = useState<number>(-1)
 
   const handleUpload = useCallback(
     async (files: FileList) => {
@@ -64,13 +66,28 @@ export function ImageUpload({
     onChange(newUrls)
   }
 
+  // 打开 AI 弹框（添加新图片模式）
+  const openAiDialogForAdd = () => {
+    setRegenerateIndex(-1)
+    setAiDialogOpen(true)
+  }
+
+  // 打开 AI 弹框（重新生成指定图片）
+  const openAiDialogForRegenerate = (index: number) => {
+    setRegenerateIndex(index)
+    setAiDialogOpen(true)
+  }
+
   // 处理 AI 生成的图片
   const handleAIImagesGenerated = async (generatedImages: string[]) => {
     // 上传 base64 图片到服务器
     const uploadedUrls: string[] = []
 
     for (const base64 of generatedImages) {
-      if (value.length + uploadedUrls.length >= maxImages) break
+      // 在替换模式下只需要第一张图
+      if (regenerateIndex >= 0 && uploadedUrls.length >= 1) break
+      // 在添加模式下检查数量限制
+      if (regenerateIndex < 0 && value.length + uploadedUrls.length >= maxImages) break
 
       try {
         // 将 base64 转换为 Blob
@@ -96,9 +113,18 @@ export function ImageUpload({
     }
 
     if (uploadedUrls.length > 0) {
-      onChange([...value, ...uploadedUrls])
+      if (regenerateIndex >= 0) {
+        // 替换模式：用新图片替换指定位置的图片
+        const newValue = [...value]
+        newValue[regenerateIndex] = uploadedUrls[0]
+        onChange(newValue)
+      } else {
+        // 添加模式：追加新图片
+        onChange([...value, ...uploadedUrls])
+      }
     }
     setAiDialogOpen(false)
+    setRegenerateIndex(-1)
   }
 
   return (
@@ -122,6 +148,15 @@ export function ImageUpload({
               title="查看大图"
             >
               <ZoomIn className="h-4 w-4" />
+            </button>
+            {/* AI 重新生成按钮 */}
+            <button
+              type="button"
+              onClick={() => openAiDialogForRegenerate(index)}
+              className="absolute top-2 left-10 p-1 bg-purple-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+              title="AI 重新生成"
+            >
+              <Wand2 className="h-4 w-4" />
             </button>
             {/* 删除按钮 */}
             <button
@@ -173,7 +208,7 @@ export function ImageUpload({
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => setAiDialogOpen(true)}
+            onClick={openAiDialogForAdd}
             className="gap-2"
           >
             <Sparkles className="h-4 w-4" />
@@ -184,8 +219,15 @@ export function ImageUpload({
 
       <AIImageDialog
         open={aiDialogOpen}
-        onOpenChange={setAiDialogOpen}
-        referenceImages={value}
+        onOpenChange={(open) => {
+          setAiDialogOpen(open)
+          if (!open) setRegenerateIndex(-1)
+        }}
+        referenceImages={
+          regenerateIndex >= 0
+            ? [value[regenerateIndex]] // 重新生成模式：只用当前图片
+            : value // 添加模式：用所有图片
+        }
         productName={productName}
         onImagesGenerated={handleAIImagesGenerated}
       />

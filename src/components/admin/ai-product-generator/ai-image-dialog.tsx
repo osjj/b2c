@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
 import { Upload, X, Loader2, ImageIcon, Check, RotateCcw, Settings } from 'lucide-react'
 import {
@@ -97,8 +97,15 @@ export function AIImageDialog({
   // 判断是否使用第三方接口
   const useThirdParty = thirdPartyConfig.url && thirdPartyConfig.apiKey
 
-  // 初始化时使用主弹框的参考图
-  const effectiveImages = images.length > 0 ? images : referenceImages
+  // 弹框打开时，将父组件的参考图初始化到本地状态
+  useEffect(() => {
+    if (open && referenceImages.length > 0 && images.length === 0) {
+      setImages([...referenceImages])
+    }
+  }, [open, referenceImages, images.length])
+
+  // 使用本地 images 状态（已包含初始化的参考图）
+  const effectiveImages = images
 
   // 将 URL 转换为 base64 (通过后端 API 代理避免 CORS 问题)
   const urlToBase64 = async (url: string): Promise<string> => {
@@ -556,15 +563,13 @@ export function AIImageDialog({
                     fill
                     className="object-cover rounded-md"
                   />
-                  {images.length > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => removeImage(index)}
-                      className="absolute -top-1 -right-1 p-0.5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    className="absolute -top-1 -right-1 p-0.5 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
                 </div>
               ))}
 
