@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useId, useImperativeHandle, forwardRef } from 'react'
+import { useEffect, useRef, useId, useImperativeHandle, forwardRef, useState, useCallback } from 'react'
 import type EditorJS from '@editorjs/editorjs'
 import type { OutputData } from '@editorjs/editorjs'
+import { ImagePreviewDialog } from './image-preview-dialog'
 
 export interface EditorJSData extends OutputData {}
 
@@ -25,6 +26,21 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
   const onChangeRef = useRef(onChange)
   const initialValue = useRef(value)
   const isInitializedRef = useRef(false)
+
+  // 图片预览状态
+  const [previewImage, setPreviewImage] = useState<string | null>(null)
+
+  // 处理图片点击事件
+  const handleImageClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement
+    // 检查是否点击的是图片
+    if (target.tagName === 'IMG') {
+      const imgSrc = (target as HTMLImageElement).src
+      if (imgSrc) {
+        setPreviewImage(imgSrc)
+      }
+    }
+  }, [])
 
   // Expose save method to parent
   useImperativeHandle(ref, () => ({
@@ -175,8 +191,21 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
   }, [holderId, placeholder])
 
   return (
-    <div className="min-h-[300px] border rounded-md p-4 bg-background">
-      <div id={holderId} className="prose prose-sm max-w-none" />
-    </div>
+    <>
+      <div
+        className="min-h-[300px] border rounded-md p-4 bg-background"
+        onClick={handleImageClick}
+      >
+        <div id={holderId} className="prose prose-sm max-w-none [&_img]:cursor-pointer [&_img]:transition-opacity [&_img:hover]:opacity-80" />
+      </div>
+
+      {/* 图片预览弹框 */}
+      <ImagePreviewDialog
+        open={!!previewImage}
+        onOpenChange={(open) => !open && setPreviewImage(null)}
+        src={previewImage || ''}
+        alt="图片预览"
+      />
+    </>
   )
 })

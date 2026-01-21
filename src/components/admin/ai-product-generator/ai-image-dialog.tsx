@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import Image from 'next/image'
-import { Upload, X, Loader2, ImageIcon, Check, RotateCcw, Settings } from 'lucide-react'
+import { Upload, X, Loader2, ImageIcon, Check, RotateCcw, Settings, ZoomIn } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -32,6 +32,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
+import { ImagePreviewDialog } from '../image-preview-dialog'
 import {
   IMAGE_PROMPT_PRESETS,
   GEMINI_IMAGE_MODELS,
@@ -94,15 +95,26 @@ export function AIImageDialog({
   })
   const [settingsOpen, setSettingsOpen] = useState(false)
 
+  // 图片预览状态
+  const [previewImage, setPreviewImage] = useState<string | null>(null)
+
   // 判断是否使用第三方接口
   const useThirdParty = thirdPartyConfig.url && thirdPartyConfig.apiKey
 
+  // 标记是否已初始化（防止删除后重新初始化）
+  const [initialized, setInitialized] = useState(false)
+
   // 弹框打开时，将父组件的参考图初始化到本地状态
   useEffect(() => {
-    if (open && referenceImages.length > 0 && images.length === 0) {
+    if (open && !initialized && referenceImages.length > 0) {
       setImages([...referenceImages])
+      setInitialized(true)
     }
-  }, [open, referenceImages, images.length])
+    // 弹框关闭时重置初始化标记
+    if (!open) {
+      setInitialized(false)
+    }
+  }, [open, referenceImages, initialized])
 
   // 使用本地 images 状态（已包含初始化的参考图）
   const effectiveImages = images
@@ -433,8 +445,8 @@ export function AIImageDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-6xl">
-        <DialogHeader className="flex flex-row items-start justify-between">
+      <DialogContent className="max-w-6xl max-h-[90vh] flex flex-col">
+        <DialogHeader className="flex flex-row items-start justify-between flex-shrink-0">
           <div>
             <DialogTitle className="flex items-center gap-2">
               <ImageIcon className="h-5 w-5" />
@@ -550,7 +562,7 @@ export function AIImageDialog({
           </Sheet>
         </DialogHeader>
 
-        <div className="space-y-4 py-4">
+        <div className="space-y-4 py-4 overflow-y-auto flex-1">
           {/* 参考图片 */}
           <div className="space-y-2">
             <Label>Reference Images (Max 10)</Label>
@@ -561,8 +573,19 @@ export function AIImageDialog({
                     src={src}
                     alt={`Reference ${index + 1}`}
                     fill
-                    className="object-cover rounded-md"
+                    className="object-cover rounded-md cursor-pointer"
+                    onClick={() => setPreviewImage(src)}
                   />
+                  {/* 放大按钮 */}
+                  <button
+                    type="button"
+                    onClick={() => setPreviewImage(src)}
+                    className="absolute top-1 left-1 p-0.5 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    title="查看大图"
+                  >
+                    <ZoomIn className="h-3 w-3" />
+                  </button>
+                  {/* 删除按钮 */}
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
@@ -780,7 +803,7 @@ export function AIImageDialog({
                     type="button"
                     onClick={() => toggleImageSelection(index)}
                     className={cn(
-                      'relative aspect-square rounded-lg overflow-hidden border-2 transition-all',
+                      'relative aspect-square rounded-lg overflow-hidden border-2 transition-all group',
                       selectedImages.has(index)
                         ? 'border-primary ring-2 ring-primary/20'
                         : 'border-transparent hover:border-muted-foreground/30'
@@ -792,6 +815,18 @@ export function AIImageDialog({
                       fill
                       className="object-cover"
                     />
+                    {/* 放大按钮 */}
+                    <div
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setPreviewImage(src)
+                      }}
+                      className="absolute top-2 left-2 p-1 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer hover:bg-black/70"
+                      title="查看大图"
+                    >
+                      <ZoomIn className="h-3 w-3" />
+                    </div>
+                    {/* 选中标记 */}
                     {selectedImages.has(index) && (
                       <div className="absolute top-2 right-2 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
                         <Check className="h-3 w-3 text-primary-foreground" />
@@ -807,7 +842,7 @@ export function AIImageDialog({
           )}
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="flex-shrink-0">
           <Button type="button" variant="outline" onClick={() => handleClose(false)}>
             Cancel
           </Button>
@@ -820,6 +855,14 @@ export function AIImageDialog({
           </Button>
         </DialogFooter>
       </DialogContent>
+
+      {/* 图片预览弹框 */}
+      <ImagePreviewDialog
+        open={!!previewImage}
+        onOpenChange={(open) => !open && setPreviewImage(null)}
+        src={previewImage || ''}
+        alt="图片预览"
+      />
     </Dialog>
   )
 }

@@ -247,4 +247,30 @@ export const IMAGE_PROMPT_PRESETS: ImagePromptPreset[] = [
     nameZh: '多角度展示',
     prompt: 'Product from different angles, front view, side view, top view, professional e-commerce photography, white background',
   },
+  {
+    id: 'exploded-safety-shoe',
+    name: 'Exploded View (Safety Shoe)',
+    nameZh: '产品拆解图（劳保鞋）',
+    prompt:
+      'A professional technical infographic, an exploded material breakdown view, based on the reference image of the safety shoe. ' +
+      'Style: Clean pure white background, studio lighting, high resolution, photorealistic rendering emphasizing realistic material textures (suede, rubber, metal, fabric). ' +
+      'Composition: 1. Main Assembly - At the top center, show the complete, fully assembled safety shoe, looking solid and high-quality. ' +
+      '2. Exploded Components - Below the main product, separate and isolate key internal components arranged horizontally, including: a steel toe cap, a yellow Kevlar puncture-resistant midsole layer, and a black rubber outsole. Render these parts with technical precision. ' +
+      '3. Connections - Draw glowing, translucent lines (yellow light beams) connecting these separated components from below back to their hidden internal positions within the main assembly above, showing where they fit. ' +
+      'Labels & Details: Add clean blue pointer lines with arrows pointing to various features on the main product and the separated components. ' +
+      'Include professional English text labels, for example: "Anti-impact steel head" pointing to the toe cap, "KEVLAR MIDSOLE" pointing to the middle layer, and "RUBBER SOLE" pointing to the bottom layer. ' +
+      'Optional: Add small inset close-up views at the bottom showing specific textures (e.g., anti-slip tread pattern).',
+  },
+  {
+    id: 'split-detail',
+    name: 'Split Detail View',
+    nameZh: '上下细节图',
+    prompt:
+      'A professional technical photograph, divided horizontally into two distinct macro sections (split-screen view, top and bottom). ' +
+      'Top Section Composition: Extreme macro close-up capturing the raw texture of the heavy-duty full-grain leather upper. ' +
+      'Bottom Section Composition: Extreme macro close-up capturing the raw texture of the high-density slip-resistant rubber sole. ' +
+      'Visual Details (Applied to both sections): In both halves, show flawless execution: double-row heavy-duty stitching with perfect tension and uniform spacing, OR clean, smooth welding beads with zero porosity or spatter, OR a perfectly flush joint with no gaps, glue residue, or misalignment. The assembly looks robust, industrial-grade, and built to last. ' +
+      'Lighting & Style: Consistent professional studio lighting across the entire frame, designed to cast micro-shadows that highlight the depth and tactile quality of both surface textures equally. No blurring, highly detailed texture map style.'+
+      'Add clean, technical text labels in the corner of each section. Top left corner says: "MATERIAL A: [Name of Top Material]". Bottom left corner says: "MATERIAL B: [Name of Bottom Material]'
+  },
 ]
