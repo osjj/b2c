@@ -173,10 +173,24 @@ export function AIImageDialog({
 
   // 应用预设提示词
   const applyPreset = (presetPrompt: string) => {
-    const productContext = productName
-      ? `Product: ${productName}. `
-      : ''
-    setPrompt(productContext + presetPrompt)
+    let processedPrompt = presetPrompt
+
+    // 检查并替换 [Product Name] 占位符
+    if (presetPrompt.includes('[Product Name]')) {
+      if (productName) {
+        processedPrompt = processedPrompt.replace(/\[Product Name\]/g, productName)
+      } else {
+        // 如果没有产品名称，使用通用描述
+        processedPrompt = processedPrompt.replace(/\[Product Name\]/g, 'the product')
+      }
+      setPrompt(processedPrompt)
+    } else {
+      // 对于没有占位符的预设，在前面添加产品名称
+      const productContext = productName
+        ? `Product: ${productName}. `
+        : ''
+      setPrompt(productContext + presetPrompt)
+    }
   }
 
   // 更新角度选择

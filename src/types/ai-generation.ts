@@ -229,11 +229,26 @@ export const IMAGE_PROMPT_PRESETS: ImagePromptPreset[] = [
     nameZh: '电商白底图',
     prompt: `${WHITE_BG_BASE_PROMPT} [Negative: ${WHITE_BG_NEGATIVE_PROMPT}]`,
   },
+  // {
+  //   id: 'scene',
+  //   name: 'Scene Photo',
+  //   nameZh: '场景图',
+  //   prompt: 'Product in use scenario, lifestyle photography, natural lighting, professional commercial photography, showing product in real-world context',
+  // },
   {
-    id: 'scene',
-    name: 'Scene Photo',
-    nameZh: '场景图',
-    prompt: 'Product in use scenario, lifestyle photography, natural lighting, professional commercial photography, showing product in real-world context',
+    id: 'scene-industrial-worker',
+    name: 'Industrial Worker Action',
+    nameZh: '车间工人操作图',
+    // 注意：这里需要占位符 [Product Name]，实际使用时替换
+    prompt: 'Professional B2B photography inside a modern manufacturing facility. A skilled technician wearing appropriate PPE (uniform, safety glasses, gloves) is actively using the [Product Name] to perform a precision task. Focus on the product and hands in action. Blurred automated equipment background. Cool-tone functional lighting. Medium shot.',
+  },
+  // 更新：施工工人场景
+  {
+    id: 'scene-construction-worker',
+    name: 'Construction Worker Action',
+    nameZh: '施工工人作业图',
+    // 注意：这里需要占位符 [Product Name]，实际使用时替换
+    prompt: 'Rugged professional photography at an active engineering construction site. A construction worker wearing hard hat, high-vis vest, and gloves is using the [Product Name] in a real-world scenario (e.g., kneeling or operating tool). Product looks durable and engaged in work. Blurred background of steel structures and heavy machinery. Natural outdoor daylight. Low-angle shot.',
   },
   {
     id: 'detail',
