@@ -17,7 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { ImageUpload } from './image-upload'
 import { ProductAttributesInput } from './product-attributes-input'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
@@ -59,6 +60,13 @@ type ProductWithImages = {
     price: number
     sortOrder: number
   }>
+  // SEO Fields
+  metaTitle?: string | null
+  metaDescription?: string | null
+  metaKeywords?: string | null
+  ogTitle?: string | null
+  ogDescription?: string | null
+  ogImage?: string | null
 }
 
 interface ProductFormProps {
@@ -107,6 +115,14 @@ export function ProductForm({ product, categories, collections = [], productColl
 
   // AI 图片生成弹框状态 (用于 Product Details)
   const [contentAiImageDialogOpen, setContentAiImageDialogOpen] = useState(false)
+
+  // SEO Fields
+  const [metaTitle, setMetaTitle] = useState(product?.metaTitle || '')
+  const [metaDescription, setMetaDescription] = useState(product?.metaDescription || '')
+  const [metaKeywords, setMetaKeywords] = useState(product?.metaKeywords || '')
+  const [ogTitle, setOgTitle] = useState(product?.ogTitle || '')
+  const [ogDescription, setOgDescription] = useState(product?.ogDescription || '')
+  const [ogImage, setOgImage] = useState(product?.ogImage || '')
 
   // Initialize attribute values from existing product
   const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
@@ -313,6 +329,14 @@ export function ProductForm({ product, categories, collections = [], productColl
 
       {/* Hidden input for price tiers */}
       <input type="hidden" name="priceTiers" value={JSON.stringify(priceTiers)} />
+
+      {/* Hidden inputs for SEO fields */}
+      <input type="hidden" name="metaTitle" value={metaTitle} />
+      <input type="hidden" name="metaDescription" value={metaDescription} />
+      <input type="hidden" name="metaKeywords" value={metaKeywords} />
+      <input type="hidden" name="ogTitle" value={ogTitle} />
+      <input type="hidden" name="ogDescription" value={ogDescription} />
+      <input type="hidden" name="ogImage" value={ogImage} />
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
@@ -523,6 +547,125 @@ export function ProductForm({ product, categories, collections = [], productColl
             productName={name}
             onImagesGenerated={handleContentAIImagesGenerated}
           />
+
+          {/* SEO Settings Card */}
+          <Card>
+            <CardHeader>
+              <CardTitle>SEO Settings</CardTitle>
+              <CardDescription>
+                Optimize how this product appears in search engines and social media
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Meta Title */}
+              <div className="space-y-2">
+                <Label htmlFor="metaTitle">Meta Title</Label>
+                <Input
+                  id="metaTitle"
+                  value={metaTitle}
+                  onChange={(e) => setMetaTitle(e.target.value)}
+                  placeholder={name || 'Auto-generated from product name'}
+                  maxLength={60}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Recommended: 50-60 characters</span>
+                  <span className={metaTitle.length > 60 ? 'text-red-500' : ''}>
+                    {metaTitle.length}/60
+                  </span>
+                </div>
+              </div>
+
+              {/* Meta Description */}
+              <div className="space-y-2">
+                <Label htmlFor="metaDescription">Meta Description</Label>
+                <Textarea
+                  id="metaDescription"
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                  placeholder={description?.slice(0, 160) || 'Auto-generated from product description'}
+                  rows={3}
+                  maxLength={160}
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Recommended: 120-160 characters</span>
+                  <span className={metaDescription.length > 160 ? 'text-red-500' : ''}>
+                    {metaDescription.length}/160
+                  </span>
+                </div>
+              </div>
+
+              {/* Meta Keywords */}
+              <div className="space-y-2">
+                <Label htmlFor="metaKeywords">Keywords</Label>
+                <Input
+                  id="metaKeywords"
+                  value={metaKeywords}
+                  onChange={(e) => setMetaKeywords(e.target.value)}
+                  placeholder="safety gloves, work gloves, PPE"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Comma-separated keywords (optional, low SEO impact)
+                </p>
+              </div>
+
+              <Separator className="my-4" />
+
+              <h4 className="font-medium">Social Media (Open Graph)</h4>
+
+              {/* OG Title */}
+              <div className="space-y-2">
+                <Label htmlFor="ogTitle">Social Title</Label>
+                <Input
+                  id="ogTitle"
+                  value={ogTitle}
+                  onChange={(e) => setOgTitle(e.target.value)}
+                  placeholder="Defaults to Meta Title"
+                />
+              </div>
+
+              {/* OG Description */}
+              <div className="space-y-2">
+                <Label htmlFor="ogDescription">Social Description</Label>
+                <Textarea
+                  id="ogDescription"
+                  value={ogDescription}
+                  onChange={(e) => setOgDescription(e.target.value)}
+                  placeholder="Defaults to Meta Description"
+                  rows={2}
+                />
+              </div>
+
+              {/* OG Image URL */}
+              <div className="space-y-2">
+                <Label htmlFor="ogImage">Social Image URL</Label>
+                <Input
+                  id="ogImage"
+                  value={ogImage}
+                  onChange={(e) => setOgImage(e.target.value)}
+                  placeholder="Defaults to first product image"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Recommended: 1200x630px. Leave empty to use the first product image.
+                </p>
+              </div>
+
+              {/* SEO Preview */}
+              <div className="mt-6 p-4 bg-muted rounded-lg">
+                <h4 className="text-sm font-medium mb-2">Search Preview</h4>
+                <div className="space-y-1">
+                  <p className="text-blue-600 text-lg truncate">
+                    {metaTitle || name || 'Product Title'}
+                  </p>
+                  <p className="text-green-700 text-sm">
+                    {process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'}/products/{slug || 'product-slug'}
+                  </p>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {metaDescription || description?.slice(0, 160) || 'Product description...'}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="space-y-6">

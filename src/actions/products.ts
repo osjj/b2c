@@ -29,6 +29,13 @@ const productSchema = z.object({
     maxQuantity: z.coerce.number().int().min(1).nullable(),
     price: z.coerce.number().min(0),
   })).optional().nullable(),
+  // SEO Fields
+  metaTitle: z.string().max(60).optional().nullable(),
+  metaDescription: z.string().max(160).optional().nullable(),
+  metaKeywords: z.string().optional().nullable(),
+  ogTitle: z.string().max(60).optional().nullable(),
+  ogDescription: z.string().max(200).optional().nullable(),
+  ogImage: z.string().optional().nullable(),
 })
 
 export type ProductState = {
@@ -259,6 +266,13 @@ export async function createProduct(
     isActive: formData.get('isActive') === 'true',
     isFeatured: formData.get('isFeatured') === 'true',
     images: formData.getAll('images').filter(Boolean) as string[],
+    // SEO Fields
+    metaTitle: formData.get('metaTitle') || null,
+    metaDescription: formData.get('metaDescription') || null,
+    metaKeywords: formData.get('metaKeywords') || null,
+    ogTitle: formData.get('ogTitle') || null,
+    ogDescription: formData.get('ogDescription') || null,
+    ogImage: formData.get('ogImage') || null,
   }
 
   const result = productSchema.safeParse(rawData)
@@ -266,7 +280,7 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, ...productData } = result.data
 
   // Check slug uniqueness
   const existing = await prisma.product.findUnique({
@@ -283,6 +297,13 @@ export async function createProduct(
         category: categoryId ? { connect: { id: categoryId } } : undefined,
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
+        // SEO Fields
+        metaTitle: metaTitle ?? undefined,
+        metaDescription: metaDescription ?? undefined,
+        metaKeywords: metaKeywords ?? undefined,
+        ogTitle: ogTitle ?? undefined,
+        ogDescription: ogDescription ?? undefined,
+        ogImage: ogImage ?? undefined,
         images: images?.length
           ? {
               create: images.map((url, index) => ({
@@ -432,6 +453,13 @@ export async function updateProduct(
     isActive: formData.get('isActive') === 'true',
     isFeatured: formData.get('isFeatured') === 'true',
     images: formData.getAll('images').filter(Boolean) as string[],
+    // SEO Fields
+    metaTitle: formData.get('metaTitle') || null,
+    metaDescription: formData.get('metaDescription') || null,
+    metaKeywords: formData.get('metaKeywords') || null,
+    ogTitle: formData.get('ogTitle') || null,
+    ogDescription: formData.get('ogDescription') || null,
+    ogImage: formData.get('ogImage') || null,
   }
 
   const result = productSchema.safeParse(rawData)
@@ -439,7 +467,7 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, ...productData } = result.data
+  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, ...productData } = result.data
 
   // Check slug uniqueness (exclude current product)
   const existing = await prisma.product.findFirst({
@@ -471,6 +499,13 @@ export async function updateProduct(
         category: categoryId ? { connect: { id: categoryId } } : { disconnect: true },
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
+        // SEO Fields
+        metaTitle: metaTitle ?? null,
+        metaDescription: metaDescription ?? null,
+        metaKeywords: metaKeywords ?? null,
+        ogTitle: ogTitle ?? null,
+        ogDescription: ogDescription ?? null,
+        ogImage: ogImage ?? null,
         images: images?.length
           ? {
               create: images.map((url, index) => ({

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
 import { formatPrice } from '@/lib/utils'
@@ -9,6 +10,83 @@ import { B2BProductActions } from '@/components/store/b2b-product-actions'
 import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
+import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
+
+type Props = {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const product = await getProductBySlug(slug)
+
+  if (!product) {
+    return {
+      title: 'Product Not Found',
+      description: 'The requested product could not be found.',
+    }
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const productUrl = `${baseUrl}/products/${slug}`
+  const productImage = (product as any).ogImage || product.images[0]?.url
+  const productImageAlt = product.images[0]?.alt || product.name
+
+  // Use SEO fields from database if available, otherwise fallback to defaults
+  const title = (product as any).metaTitle || product.name
+  const description =
+    (product as any).metaDescription ||
+    product.description?.slice(0, 160) ||
+    `Shop ${product.name} at PPE Pro. High-quality protective equipment.`
+
+  // Parse keywords from database or generate defaults
+  const keywordsFromDb = (product as any).metaKeywords
+  const keywords = keywordsFromDb
+    ? keywordsFromDb.split(',').map((k: string) => k.trim())
+    : [product.name, product.category?.name, 'PPE', 'safety equipment', product.sku].filter(Boolean)
+
+  // OG fields with fallbacks
+  const ogTitle = (product as any).ogTitle || title
+  const ogDescription = (product as any).ogDescription || description
+
+  return {
+    title,
+    description,
+    keywords: keywords as string[],
+    openGraph: {
+      title: ogTitle,
+      description: ogDescription,
+      url: productUrl,
+      siteName: 'PPE Pro',
+      images: productImage
+        ? [
+            {
+              url: productImage,
+              width: 800,
+              height: 800,
+              alt: productImageAlt,
+            },
+          ]
+        : [],
+      type: 'website',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: ogDescription,
+      images: productImage ? [productImage] : [],
+    },
+    alternates: {
+      canonical: productUrl,
+    },
+    other: {
+      'product:price:amount': String(product.price),
+      'product:price:currency': 'USD',
+      'product:availability': product.stock > 0 ? 'in stock' : 'out of stock',
+    },
+  }
+}
 
 export default async function ProductDetailPage({
   params,
@@ -37,8 +115,25 @@ export default async function ProductDetailPage({
     ? Math.round((1 - Number(product.price) / Number(product.comparePrice)) * 100)
     : 0
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+  // Breadcrumb items for JSON-LD
+  const breadcrumbItems = [
+    { name: 'Home', url: baseUrl },
+    { name: 'Products', url: `${baseUrl}/products` },
+    ...(product.category
+      ? [{ name: product.category.name, url: `${baseUrl}/categories/${product.category.slug}` }]
+      : []),
+    { name: product.name, url: `${baseUrl}/products/${product.slug}` },
+  ]
+
   return (
-    <div>
+    <>
+      {/* SEO: Structured Data */}
+      <ProductJsonLd product={product as any} baseUrl={baseUrl} />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+
+      <div>
       {/* Breadcrumb */}
       <div className="container mx-auto px-6 lg:px-8 py-4">
         <nav className="flex items-center text-sm text-muted-foreground">
@@ -247,6 +342,7 @@ export default async function ProductDetailPage({
           </div>
         </section>
       )}
-    </div>
+      </div>
+    </>
   )
 }

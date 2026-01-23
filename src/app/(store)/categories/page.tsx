@@ -1,5 +1,16 @@
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { getCategoryTree } from '@/actions/categories'
+
+export const metadata: Metadata = {
+  title: 'Product Categories',
+  description: 'Browse our complete range of PPE products organized by category. Find safety gloves, shoes, workwear, and more protective equipment.',
+  openGraph: {
+    title: 'Product Categories',
+    description: 'Browse our complete range of PPE products organized by category.',
+    type: 'website',
+  },
+}
 
 export default async function CategoriesPage() {
   const categories = await getCategoryTree()

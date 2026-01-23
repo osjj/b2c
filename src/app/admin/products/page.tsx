@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge'
 import { formatPrice } from '@/lib/utils'
 import { DeleteButton } from '@/components/admin/delete-button'
 import { Pagination } from '@/components/admin/pagination'
+import { ClickableTableRow } from '@/components/admin/clickable-table-row'
 
 export default async function AdminProductsPage({
   searchParams,
@@ -69,7 +70,7 @@ export default async function AdminProductsPage({
           </TableHeader>
           <TableBody>
             {products.map((product) => (
-              <TableRow key={product.id}>
+              <ClickableTableRow key={product.id} href={`/admin/products/${product.id}`}>
                 <TableCell>
                   {product.images[0] ? (
                     <Image
@@ -113,7 +114,7 @@ export default async function AdminProductsPage({
                     />
                   </div>
                 </TableCell>
-              </TableRow>
+              </ClickableTableRow>
             ))}
           </TableBody>
         </Table>

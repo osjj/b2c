@@ -1,11 +1,72 @@
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
 import { getCategoryBySlug } from '@/actions/categories'
 import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
 import { StorePagination } from '@/components/store/store-pagination'
+import { CategoryJsonLd, BreadcrumbJsonLd } from '@/components/seo'
+
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ page?: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
+  const category = await getCategoryBySlug(slug)
+
+  if (!category) {
+    return {
+      title: 'Category Not Found',
+      description: 'The requested category could not be found.',
+    }
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const categoryUrl = `${baseUrl}/categories/${slug}`
+
+  // Use SEO fields from database if available, otherwise fallback to defaults
+  const title = (category as any).metaTitle || `${category.name} Products`
+  const description =
+    (category as any).metaDescription ||
+    category.description ||
+    `Browse our selection of ${category.name}. High-quality protective equipment from PPE Pro.`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: categoryUrl,
+      siteName: 'PPE Pro',
+      images: category.image
+        ? [
+            {
+              url: category.image,
+              width: 800,
+              height: 600,
+              alt: category.name,
+            },
+          ]
+        : [],
+      type: 'website',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: category.image ? [category.image] : [],
+    },
+    alternates: {
+      canonical: categoryUrl,
+    },
+  }
+}
 
 export default async function CategoryPage({
   params,
@@ -31,8 +92,22 @@ export default async function CategoryPage({
     activeOnly: true,
   })
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+  // Breadcrumb items for JSON-LD
+  const breadcrumbItems = [
+    { name: 'Home', url: baseUrl },
+    { name: 'Categories', url: `${baseUrl}/categories` },
+    { name: category.name, url: `${baseUrl}/categories/${category.slug}` },
+  ]
+
   return (
-    <div>
+    <>
+      {/* SEO: Structured Data */}
+      <CategoryJsonLd category={category} products={products} baseUrl={baseUrl} />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+
+      <div>
       {/* Breadcrumb */}
       <div className="container mx-auto px-6 lg:px-8 py-4">
         <nav className="flex items-center text-sm text-muted-foreground">
@@ -114,6 +189,7 @@ export default async function CategoryPage({
           </Suspense>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }

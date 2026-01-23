@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { getProducts } from '@/actions/products'
 import { getCategories } from '@/actions/categories'
 import { ProductCard } from '@/components/store/product-card'
@@ -12,6 +13,53 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ShieldCheck, Filter, Package, ChevronRight } from 'lucide-react'
+
+type Props = {
+  searchParams: Promise<{
+    page?: string
+    category?: string
+    sort?: string
+    search?: string
+  }>
+}
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const params = await searchParams
+  const { category, search, page } = params
+
+  let title = 'All Products'
+  let description = 'Browse our complete selection of professional protective equipment. Safety gloves, shoes, workwear and more.'
+
+  if (search) {
+    title = `Search results for "${search}"`
+    description = `Find ${search} in our collection of safety equipment and PPE products.`
+  }
+
+  if (page && Number(page) > 1) {
+    title += ` - Page ${page}`
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/products`,
+      siteName: 'PPE Pro',
+      type: 'website',
+    },
+    robots: {
+      index: !search, // Don't index search result pages
+      follow: true,
+    },
+    alternates: {
+      canonical: search ? undefined : `${baseUrl}/products`,
+    },
+  }
+}
 
 export default async function ProductsPage({
   searchParams,

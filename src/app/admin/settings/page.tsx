@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function SettingsPage() {
   return (
@@ -17,6 +18,7 @@ export default function SettingsPage() {
       <Tabs defaultValue="general" className="space-y-6">
         <TabsList>
           <TabsTrigger value="general">General</TabsTrigger>
+          <TabsTrigger value="seo">SEO</TabsTrigger>
           <TabsTrigger value="payments">Payments</TabsTrigger>
           <TabsTrigger value="shipping">Shipping</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
@@ -83,6 +85,165 @@ export default function SettingsPage() {
                 </div>
               </div>
               <Button>Save Changes</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="seo" className="space-y-6">
+          {/* Global SEO Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif">Global SEO Settings</CardTitle>
+              <CardDescription>
+                Default settings for all pages. Individual pages can override these.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="defaultTitle">Default Page Title</Label>
+                <Input
+                  id="defaultTitle"
+                  defaultValue="PPE Pro | Professional Safety Equipment"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="titleTemplate">Title Template</Label>
+                <Input id="titleTemplate" defaultValue="%s | PPE Pro" />
+                <p className="text-sm text-muted-foreground">
+                  %s will be replaced with the page title
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="defaultDescription">Default Meta Description</Label>
+                <Textarea
+                  id="defaultDescription"
+                  rows={3}
+                  defaultValue="Leading manufacturer of personal protective equipment. Safety gloves, shoes, workwear, and more."
+                />
+              </div>
+              <Button>Save Changes</Button>
+            </CardContent>
+          </Card>
+
+          {/* Search Engine Verification */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif">Search Engine Verification</CardTitle>
+              <CardDescription>
+                Add verification codes for search engine webmaster tools
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="googleVerification">Google Search Console</Label>
+                <Input
+                  id="googleVerification"
+                  placeholder="google-site-verification=xxxxx"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="bingVerification">Bing Webmaster Tools</Label>
+                <Input id="bingVerification" placeholder="msvalidate.01=xxxxx" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="yandexVerification">Yandex Webmaster</Label>
+                <Input id="yandexVerification" placeholder="yandex-verification=xxxxx" />
+              </div>
+              <Button>Save Changes</Button>
+            </CardContent>
+          </Card>
+
+          {/* Social Media Defaults */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif">Social Media Defaults</CardTitle>
+              <CardDescription>
+                Default settings for social media sharing
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="defaultOgImage">Default OG Image URL</Label>
+                <Input
+                  id="defaultOgImage"
+                  placeholder="https://example.com/og-image.jpg"
+                />
+                <p className="text-sm text-muted-foreground">
+                  Recommended: 1200x630px
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="twitterHandle">Twitter Handle</Label>
+                <Input id="twitterHandle" placeholder="@yourhandle" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="facebookAppId">Facebook App ID</Label>
+                <Input id="facebookAppId" placeholder="Optional" />
+              </div>
+              <Button>Save Changes</Button>
+            </CardContent>
+          </Card>
+
+          {/* Robots.txt Configuration */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif">Robots.txt Preview</CardTitle>
+              <CardDescription>
+                Current robots.txt configuration (managed via code)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Textarea
+                id="robotsRules"
+                rows={10}
+                className="font-mono text-sm"
+                readOnly
+                defaultValue={`User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /orders/
+
+Sitemap: https://your-domain.com/sitemap.xml`}
+              />
+              <p className="text-sm text-muted-foreground">
+                To modify robots.txt, edit <code className="bg-muted px-1 py-0.5 rounded">src/app/robots.ts</code>
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Sitemap Info */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-serif">Sitemap</CardTitle>
+              <CardDescription>
+                Your sitemap is automatically generated
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="p-4 bg-muted rounded-lg">
+                <p className="text-sm">
+                  Sitemap URL: <code className="bg-background px-1 py-0.5 rounded">/sitemap.xml</code>
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  The sitemap is automatically generated and includes all active products, categories, and collections.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <Button variant="outline" asChild>
+                  <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer">
+                    View Sitemap
+                  </a>
+                </Button>
+                <Button variant="outline" asChild>
+                  <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer">
+                    Google Search Console
+                  </a>
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

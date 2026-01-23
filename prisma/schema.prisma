@@ -120,6 +120,10 @@ model Category {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
+  // SEO Fields
+  metaTitle       String?   @map("meta_title")
+  metaDescription String?   @db.Text @map("meta_description")
+
   parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
   children Category[] @relation("CategoryTree")
   products Product[]
@@ -147,6 +151,14 @@ model Product {
   isFeatured     Boolean  @default(false)
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+
+  // SEO Fields
+  metaTitle       String?   @map("meta_title")
+  metaDescription String?   @db.Text @map("meta_description")
+  metaKeywords    String?   @map("meta_keywords")
+  ogTitle         String?   @map("og_title")
+  ogDescription   String?   @db.Text @map("og_description")
+  ogImage         String?   @map("og_image")
 
   category        Category?               @relation(fields: [categoryId], references: [id])
   collections     ProductCollection[]
