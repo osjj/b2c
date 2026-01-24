@@ -1,12 +1,19 @@
-import { Product, ProductImage, Category } from "@prisma/client";
+import { ProductImage, Category } from "@prisma/client";
 
-type ProductWithRelations = Product & {
+interface ProductForJsonLd {
+  name: string;
+  slug: string;
+  description: string | null;
+  sku: string | null;
+  price: number;
+  comparePrice: number | null;
+  stock: number;
   images: ProductImage[];
   category: Category | null;
-};
+}
 
 interface ProductJsonLdProps {
-  product: ProductWithRelations;
+  product: ProductForJsonLd;
   baseUrl: string;
 }
 
@@ -29,7 +36,7 @@ export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
       "@type": "Offer",
       url: `${baseUrl}/products/${product.slug}`,
       priceCurrency: "USD",
-      price: Number(product.price),
+      price: product.price,
       priceValidUntil: new Date(
         Date.now() + 30 * 24 * 60 * 60 * 1000
       ).toISOString().split("T")[0],
@@ -45,10 +52,10 @@ export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
   };
 
   // 如果有原价，添加折扣信息
-  if (product.comparePrice && Number(product.comparePrice) > Number(product.price)) {
+  if (product.comparePrice && product.comparePrice > product.price) {
     (jsonLd.offers as Record<string, unknown>).priceSpecification = {
       "@type": "PriceSpecification",
-      price: Number(product.price),
+      price: product.price,
       priceCurrency: "USD",
       valueAddedTaxIncluded: false,
     };

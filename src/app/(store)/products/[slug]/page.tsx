@@ -130,7 +130,7 @@ export default async function ProductDetailPage({
   return (
     <>
       {/* SEO: Structured Data */}
-      <ProductJsonLd product={product as any} baseUrl={baseUrl} />
+      <ProductJsonLd product={product} baseUrl={baseUrl} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
 
       <div>

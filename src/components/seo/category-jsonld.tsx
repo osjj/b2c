@@ -1,8 +1,14 @@
-import { Category, Product } from "@prisma/client";
+import { Category } from "@prisma/client";
+
+interface ProductForJsonLd {
+  name: string;
+  slug: string;
+  price: number;
+}
 
 interface CategoryJsonLdProps {
   category: Category;
-  products: Product[];
+  products: ProductForJsonLd[];
   baseUrl: string;
 }
 
@@ -25,7 +31,7 @@ export function CategoryJsonLd({ category, products, baseUrl }: CategoryJsonLdPr
           url: `${baseUrl}/products/${product.slug}`,
           offers: {
             "@type": "Offer",
-            price: Number(product.price),
+            price: product.price,
             priceCurrency: "USD",
           },
         },
