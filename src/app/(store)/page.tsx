@@ -4,6 +4,7 @@ import CategoryGrid from "@/modules/home/components/category-grid"
 import IndustrySolutions from "@/modules/home/components/industry-solutions"
 import FeaturedProductsB2B from "@/modules/home/components/featured-products-b2b"
 import FactoryShowcase from "@/modules/home/components/factory-showcase"
+import AboutCompany from "@/modules/home/components/about-company"
 import Testimonials from "@/modules/home/components/testimonials"
 import FooterCTA from "@/modules/home/components/footer-cta"
 import { Metadata } from "next"
@@ -20,25 +21,28 @@ export default function HomePage() {
       {/* Section 1: Hero */}
       <HeroSection />
 
-      {/* Section 2: Trust Bar */}
+      {/* Section 2: About Company */}
+      <AboutCompany />
+
+      {/* Section 3: Trust Bar */}
       <TrustBar />
 
-      {/* Section 3: Category Grid */}
+      {/* Section 4: Category Grid */}
       <CategoryGrid />
 
-      {/* Section 4: Industry Solutions */}
+      {/* Section 5: Industry Solutions */}
       <IndustrySolutions />
 
-      {/* Section 5: Featured Products */}
+      {/* Section 6: Featured Products */}
       <FeaturedProductsB2B />
 
-      {/* Section 6: Factory Showcase */}
+      {/* Section 7: Factory Showcase */}
       <FactoryShowcase />
 
-      {/* Section 7: Testimonials / Case Studies */}
+      {/* Section 8: Testimonials / Case Studies */}
       <Testimonials />
 
-      {/* Section 8: Footer CTA */}
+      {/* Section 9: Footer CTA */}
       <FooterCTA />
     </div>
   )
