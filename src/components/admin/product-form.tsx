@@ -26,6 +26,7 @@ import { ContentEditor, type EditorJSData, type ContentEditorRef } from './conte
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
+import type { ImageData } from '@/types/image'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -92,8 +93,8 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [isActive, setIsActive] = useState(product?.isActive ?? true)
   const [isFeatured, setIsFeatured] = useState(product?.isFeatured ?? false)
 
-  const [images, setImages] = useState<string[]>(
-    product?.images.map((img) => img.url) || []
+  const [images, setImages] = useState<ImageData[]>(
+    product?.images.map((img) => ({ url: img.url, alt: img.alt || '' })) || []
   )
   const [slug, setSlug] = useState(product?.slug || '')
   const [selectedCollections, setSelectedCollections] = useState<string[]>(productCollectionIds)
@@ -177,7 +178,10 @@ export function ProductForm({ product, categories, collections = [], productColl
       (img) => img.startsWith('http') || img.startsWith('data:')
     )
     if (validImages.length > 0) {
-      setImages(validImages)
+      setImages(validImages.map((url, index) => ({
+        url,
+        alt: index === 0 ? data.name : `${data.name} - Image ${index + 1}`,
+      })))
     }
 
     // Update specifications
@@ -329,6 +333,9 @@ export function ProductForm({ product, categories, collections = [], productColl
 
       {/* Hidden input for price tiers */}
       <input type="hidden" name="priceTiers" value={JSON.stringify(priceTiers)} />
+
+      {/* Hidden input for images with alt */}
+      <input type="hidden" name="images" value={JSON.stringify(images)} />
 
       {/* Hidden inputs for SEO fields */}
       <input type="hidden" name="metaTitle" value={metaTitle} />
@@ -543,7 +550,7 @@ export function ProductForm({ product, categories, collections = [], productColl
           <AIImageDialog
             open={contentAiImageDialogOpen}
             onOpenChange={setContentAiImageDialogOpen}
-            referenceImages={images}
+            referenceImages={images.map((img) => img.url)}
             productName={name}
             onImagesGenerated={handleContentAIImagesGenerated}
           />

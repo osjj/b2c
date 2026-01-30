@@ -5,12 +5,14 @@ import Image from 'next/image'
 import { Upload, X, Loader2, Sparkles, ZoomIn, Wand2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { AIImageDialog } from './ai-product-generator'
 import { ImagePreviewDialog } from './image-preview-dialog'
+import type { ImageData } from '@/types/image'
 
 interface ImageUploadProps {
-  value: string[]
-  onChange: (urls: string[]) => void
+  value: ImageData[]
+  onChange: (images: ImageData[]) => void
   maxImages?: number
   productName?: string
 }
@@ -27,15 +29,23 @@ export function ImageUpload({
   // 单图重新生成：记录要替换的图片索引，-1 表示添加新图片模式
   const [regenerateIndex, setRegenerateIndex] = useState<number>(-1)
 
+  // 生成默认 alt 文本
+  const generateDefaultAlt = (index: number) => {
+    if (productName) {
+      return index === 0 ? productName : `${productName} - Image ${index + 1}`
+    }
+    return `Product image ${index + 1}`
+  }
+
   const handleUpload = useCallback(
     async (files: FileList) => {
       if (value.length >= maxImages) return
 
       setUploading(true)
-      const newUrls: string[] = []
+      const newImages: ImageData[] = []
 
       for (const file of Array.from(files)) {
-        if (value.length + newUrls.length >= maxImages) break
+        if (value.length + newImages.length >= maxImages) break
 
         const formData = new FormData()
         formData.append('file', file)
@@ -48,22 +58,31 @@ export function ImageUpload({
 
           if (res.ok) {
             const { url } = await res.json()
-            newUrls.push(url)
+            newImages.push({
+              url,
+              alt: generateDefaultAlt(value.length + newImages.length),
+            })
           }
         } catch (error) {
           console.error('Upload failed:', error)
         }
       }
 
-      onChange([...value, ...newUrls])
+      onChange([...value, ...newImages])
       setUploading(false)
     },
-    [value, onChange, maxImages]
+    [value, onChange, maxImages, productName]
   )
 
   const handleRemove = (index: number) => {
-    const newUrls = value.filter((_, i) => i !== index)
-    onChange(newUrls)
+    const newImages = value.filter((_, i) => i !== index)
+    onChange(newImages)
+  }
+
+  const handleAltChange = (index: number, alt: string) => {
+    const newImages = [...value]
+    newImages[index] = { ...newImages[index], alt }
+    onChange(newImages)
   }
 
   // 打开 AI 弹框（添加新图片模式）
@@ -81,13 +100,13 @@ export function ImageUpload({
   // 处理 AI 生成的图片
   const handleAIImagesGenerated = async (generatedImages: string[]) => {
     // 上传 base64 图片到服务器
-    const uploadedUrls: string[] = []
+    const uploadedImages: ImageData[] = []
 
     for (const base64 of generatedImages) {
       // 在替换模式下只需要第一张图
-      if (regenerateIndex >= 0 && uploadedUrls.length >= 1) break
+      if (regenerateIndex >= 0 && uploadedImages.length >= 1) break
       // 在添加模式下检查数量限制
-      if (regenerateIndex < 0 && value.length + uploadedUrls.length >= maxImages) break
+      if (regenerateIndex < 0 && value.length + uploadedImages.length >= maxImages) break
 
       try {
         // 将 base64 转换为 Blob
@@ -105,22 +124,27 @@ export function ImageUpload({
 
         if (res.ok) {
           const { url } = await res.json()
-          uploadedUrls.push(url)
+          uploadedImages.push({
+            url,
+            alt: regenerateIndex >= 0
+              ? value[regenerateIndex].alt // 保留原 alt
+              : generateDefaultAlt(value.length + uploadedImages.length),
+          })
         }
       } catch (error) {
         console.error('Failed to upload AI generated image:', error)
       }
     }
 
-    if (uploadedUrls.length > 0) {
+    if (uploadedImages.length > 0) {
       if (regenerateIndex >= 0) {
         // 替换模式：用新图片替换指定位置的图片
         const newValue = [...value]
-        newValue[regenerateIndex] = uploadedUrls[0]
+        newValue[regenerateIndex] = uploadedImages[0]
         onChange(newValue)
       } else {
         // 添加模式：追加新图片
-        onChange([...value, ...uploadedUrls])
+        onChange([...value, ...uploadedImages])
       }
     }
     setAiDialogOpen(false)
@@ -130,43 +154,51 @@ export function ImageUpload({
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {value.map((url, index) => (
-          <div key={url} className="relative aspect-square group">
-            <Image
-              src={url}
-              alt={`Product image ${index + 1}`}
-              fill
-              className="object-cover rounded-lg cursor-pointer"
-              onClick={() => setPreviewImage(url)}
+        {value.map((image, index) => (
+          <div key={image.url} className="space-y-2">
+            <div className="relative aspect-square group">
+              <Image
+                src={image.url}
+                alt={image.alt || `Product image ${index + 1}`}
+                fill
+                className="object-cover rounded-lg cursor-pointer"
+                onClick={() => setPreviewImage(image.url)}
+              />
+              {/* 放大按钮 */}
+              <button
+                type="button"
+                onClick={() => setPreviewImage(image.url)}
+                className="absolute top-2 left-2 p-1 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                title="查看大图"
+              >
+                <ZoomIn className="h-4 w-4" />
+              </button>
+              {/* AI 重新生成按钮 */}
+              <button
+                type="button"
+                onClick={() => openAiDialogForRegenerate(index)}
+                className="absolute top-2 left-10 p-1 bg-purple-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                title="AI 重新生成"
+              >
+                <Wand2 className="h-4 w-4" />
+              </button>
+              {/* 删除按钮 */}
+              <button
+                type="button"
+                onClick={() => handleRemove(index)}
+                className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                title="删除图片"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            {/* Alt 文本输入框 */}
+            <Input
+              value={image.alt}
+              onChange={(e) => handleAltChange(index, e.target.value)}
+              placeholder="Image description for SEO"
+              className="text-sm"
             />
-            <input type="hidden" name="images" value={url} />
-            {/* 放大按钮 */}
-            <button
-              type="button"
-              onClick={() => setPreviewImage(url)}
-              className="absolute top-2 left-2 p-1 bg-black/50 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-              title="查看大图"
-            >
-              <ZoomIn className="h-4 w-4" />
-            </button>
-            {/* AI 重新生成按钮 */}
-            <button
-              type="button"
-              onClick={() => openAiDialogForRegenerate(index)}
-              className="absolute top-2 left-10 p-1 bg-purple-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-              title="AI 重新生成"
-            >
-              <Wand2 className="h-4 w-4" />
-            </button>
-            {/* 删除按钮 */}
-            <button
-              type="button"
-              onClick={() => handleRemove(index)}
-              className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-              title="删除图片"
-            >
-              <X className="h-4 w-4" />
-            </button>
           </div>
         ))}
 
@@ -225,8 +257,8 @@ export function ImageUpload({
         }}
         referenceImages={
           regenerateIndex >= 0
-            ? [value[regenerateIndex]] // 重新生成模式：只用当前图片
-            : value // 添加模式：用所有图片
+            ? [value[regenerateIndex].url] // 重新生成模式：只用当前图片
+            : value.map((img) => img.url) // 添加模式：用所有图片
         }
         productName={productName}
         onImagesGenerated={handleAIImagesGenerated}

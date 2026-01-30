@@ -23,7 +23,10 @@ const productSchema = z.object({
   categoryId: z.string().optional().nullable(),
   isActive: z.boolean().default(true),
   isFeatured: z.boolean().default(false),
-  images: z.array(z.string()).optional(),
+  images: z.array(z.object({
+    url: z.string(),
+    alt: z.string(),
+  })).optional(),
   priceTiers: z.array(z.object({
     minQuantity: z.coerce.number().int().min(1),
     maxQuantity: z.coerce.number().int().min(1).nullable(),
@@ -265,7 +268,15 @@ export async function createProduct(
     categoryId: categoryIdRaw && categoryIdRaw !== 'none' ? categoryIdRaw : null,
     isActive: formData.get('isActive') === 'true',
     isFeatured: formData.get('isFeatured') === 'true',
-    images: formData.getAll('images').filter(Boolean) as string[],
+    images: (() => {
+      const imagesRaw = formData.get('images') as string
+      if (!imagesRaw) return []
+      try {
+        return JSON.parse(imagesRaw)
+      } catch {
+        return []
+      }
+    })(),
     // SEO Fields
     metaTitle: formData.get('metaTitle') || null,
     metaDescription: formData.get('metaDescription') || null,
@@ -304,10 +315,11 @@ export async function createProduct(
         ogTitle: ogTitle ?? undefined,
         ogDescription: ogDescription ?? undefined,
         ogImage: ogImage ?? undefined,
-        images: images?.length
+    images: images?.length
           ? {
-              create: images.map((url, index) => ({
-                url,
+              create: images.map((img, index) => ({
+                url: img.url,
+                alt: img.alt || '',
                 sortOrder: index,
               })),
             }
@@ -452,7 +464,15 @@ export async function updateProduct(
     categoryId: categoryIdRaw && categoryIdRaw !== 'none' ? categoryIdRaw : null,
     isActive: formData.get('isActive') === 'true',
     isFeatured: formData.get('isFeatured') === 'true',
-    images: formData.getAll('images').filter(Boolean) as string[],
+    images: (() => {
+      const imagesRaw = formData.get('images') as string
+      if (!imagesRaw) return []
+      try {
+        return JSON.parse(imagesRaw)
+      } catch {
+        return []
+      }
+    })(),
     // SEO Fields
     metaTitle: formData.get('metaTitle') || null,
     metaDescription: formData.get('metaDescription') || null,
@@ -506,10 +526,11 @@ export async function updateProduct(
         ogTitle: ogTitle ?? null,
         ogDescription: ogDescription ?? null,
         ogImage: ogImage ?? null,
-        images: images?.length
+    images: images?.length
           ? {
-              create: images.map((url, index) => ({
-                url,
+              create: images.map((img, index) => ({
+                url: img.url,
+                alt: img.alt || '',
                 sortOrder: index,
               })),
             }
