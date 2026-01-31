@@ -15,7 +15,7 @@ import { Play, Calendar, Users, Ruler, ArrowRight } from "lucide-react"
 const stats = [
   {
     icon: Calendar,
-    value: "2013",
+    value: "2003",
     label: "Founded In",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
@@ -169,7 +169,7 @@ export default function AboutCompany() {
           <div className="lg:col-span-2 flex flex-col justify-center">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
               Professional Factory Production Since{" "}
-              <span className="text-primary">2013</span>
+              <span className="text-primary">2003</span>
             </h3>
 
             <p className="text-slate-300 leading-relaxed mb-8">

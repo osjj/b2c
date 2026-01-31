@@ -104,7 +104,18 @@ function renderImage(block: Block) {
   const { file, caption, stretched, withBorder, withBackground } = block.data
   const url = file?.url || block.data.url
 
-  if (!url) return null
+  // Validate URL: must exist, not be empty/whitespace, and be a valid URL format
+  if (!url || typeof url !== 'string' || !url.trim()) return null
+
+  const trimmedUrl = url.trim()
+
+  // Check if it's a valid URL (absolute or relative path starting with /)
+  const isValidUrl = trimmedUrl.startsWith('/') ||
+    trimmedUrl.startsWith('http://') ||
+    trimmedUrl.startsWith('https://') ||
+    trimmedUrl.startsWith('data:')
+
+  if (!isValidUrl) return null
 
   // Check if caption has actual content (not just <br> tags or whitespace)
   const hasCaption = caption && caption.replace(/<br\s*\/?>/gi, '').trim().length > 0
@@ -116,7 +127,7 @@ function renderImage(block: Block) {
     >
       <div className={`relative ${withBorder ? 'border rounded-lg overflow-hidden' : ''}`}>
         <Image
-          src={url}
+          src={trimmedUrl}
           alt={hasCaption ? caption : 'Product detail image'}
           width={800}
           height={600}

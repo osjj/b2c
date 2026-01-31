@@ -63,7 +63,7 @@ export default function HeroSection() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-border/50">
             <div>
-              <div className="text-3xl font-bold text-primary">15+</div>
+              <div className="text-3xl font-bold text-primary">20+</div>
               <div className="text-sm text-muted-foreground">Years Experience</div>
             </div>
             <div>
