@@ -127,9 +127,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           {/* Price */}
           <div className="flex items-baseline gap-2 mb-3">
             <span className="text-lg font-bold text-accent">
-              {showFromPrice && <span className="text-sm font-normal">¥</span>}
-              {formatPrice(displayPrice).replace('¥', '')}
-              {showFromPrice && <span className="text-sm font-normal ml-0.5">起</span>}
+              {showFromPrice && <span className="text-sm font-normal">From </span>}
+              {formatPrice(displayPrice)}
             </span>
             {!showFromPrice && hasDiscount && (
               <span className="text-xs text-muted-foreground line-through">

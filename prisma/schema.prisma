@@ -147,6 +147,7 @@ model Product {
   lowStock       Int      @default(5)
   weight         Decimal? @db.Decimal(10, 2)
   categoryId     String?
+  sortOrder      Int      @default(0)
   isActive       Boolean  @default(true)
   isFeatured     Boolean  @default(false)
   createdAt      DateTime @default(now())

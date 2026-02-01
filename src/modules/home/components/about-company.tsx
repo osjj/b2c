@@ -1,16 +1,28 @@
 "use client"
 
 import { useState } from "react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { X } from "lucide-react"
 import { Play, Calendar, Users, Ruler, ArrowRight } from "lucide-react"
+
+const PannellumViewer = dynamic(() => import("@/components/pannellum-viewer"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-slate-800">
+      <div className="text-white/60 text-sm">Loading VR viewer...</div>
+    </div>
+  ),
+})
 
 const stats = [
   {
@@ -43,10 +55,47 @@ const galleryImages = [
   { src: "/company/f3.webp", alt: "Modern manufacturing equipment" },
 ]
 
-const vrImages = [
-  { src: "/company/f1.webp", label: "Production Workshop" },
-  { src: "/company/f2.webp", label: "Assembly Line" },
-  { src: "/company/f3.webp", label: "Quality Lab" },
+const vrScenes = [
+  {
+    id: "factory",
+    label: "Factory Tour",
+    cubeMapPreview: {
+      front: "/vr/f.jpg",
+      right: "/vr/l.jpg",
+      back: "/vr/b.jpg",
+      left: "/vr/r.jpg",
+      up: "/vr/u.jpg",
+      down: "/vr/d.jpg",
+    },
+    cubeMapHD: {
+      front: "/vr2/f.jpg",
+      right: "/vr2/l.jpg",
+      back: "/vr2/b.jpg",
+      left: "/vr2/r.jpg",
+      up: "/vr2/u.jpg",
+      down: "/vr2/d.jpg",
+    },
+  },
+  {
+    id: "workshop",
+    label: "Workshop Tour",
+    cubeMapPreview: {
+      front: "/vr3/b.jpg",
+      right: "/vr3/r.jpg",
+      back: "/vr3/f.jpg",
+      left: "/vr3/l.jpg",
+      up: "/vr3/u.jpg",
+      down: "/vr3/d.jpg",
+    },
+    cubeMapHD: {
+      front: "/vr4/b.jpg",
+      right: "/vr4/r.jpg",
+      back: "/vr4/f.jpg",
+      left: "/vr4/l.jpg",
+      up: "/vr4/u.jpg",
+      down: "/vr4/d.jpg",
+    },
+  },
 ]
 
 function Icon360({ className }: { className?: string }) {
@@ -73,7 +122,7 @@ function Icon360({ className }: { className?: string }) {
 export default function AboutCompany() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [vrOpen, setVrOpen] = useState(false)
-  const [activeVr, setActiveVr] = useState<(typeof vrImages)[0] | null>(null)
+  const [activeVr, setActiveVr] = useState<(typeof vrScenes)[0] | null>(null)
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -213,37 +262,45 @@ export default function AboutCompany() {
 
         {/* VR Factory Tour - full width */}
         <div className="mt-12">
-          <p className="text-sm tracking-wide uppercase text-slate-400 mb-4 font-medium">
+          <p className="text-sm tracking-wide uppercase text-slate-400 font-medium mb-4">
             VR Factory Tour
           </p>
-          <div className="grid grid-cols-3 gap-4">
-            {vrImages.map((vr) => (
+
+          {/* VR Scenes Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {vrScenes.map((scene) => (
               <button
-                key={vr.label}
+                key={scene.id}
                 onClick={() => {
-                  setActiveVr(vr)
+                  setActiveVr(scene)
                   setVrOpen(true)
                 }}
-                className="group relative overflow-hidden rounded-lg border border-white/10 aspect-[4/3] cursor-pointer"
+                className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video w-full block group cursor-pointer"
               >
-                <Image
-                  src={vr.src}
-                  alt={vr.label}
-                  fill
-                  className="object-cover"
-                />
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                {/* 360 icon */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-                  <Icon360 className="w-8 h-8 text-white drop-shadow-lg group-hover:scale-110 transition-transform" />
-                  <span className="text-white text-[10px] font-semibold tracking-wide uppercase">
-                    360&deg;
-                  </span>
+                {/* Background VR animation */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <PannellumViewer
+                    cubeMap={scene.cubeMapPreview}
+                    autoRotate={-1}
+                    autoLoad={true}
+                    showControls={false}
+                  />
+                </div>
+                {/* Click overlay with VR icon */}
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <Image
+                    src="/vr360.png"
+                    alt="360° VR"
+                    width={120}
+                    height={120}
+                    className="opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                  />
                 </div>
                 {/* Label */}
-                <div className="absolute bottom-2 left-2 right-2">
-                  <span className="text-white text-xs font-medium drop-shadow">{vr.label}</span>
+                <div className="absolute bottom-3 left-3 right-3">
+                  <span className="text-white text-sm font-medium drop-shadow bg-black/40 px-3 py-1 rounded-lg">
+                    {scene.label}
+                  </span>
                 </div>
               </button>
             ))}
@@ -258,47 +315,36 @@ export default function AboutCompany() {
         </div>
       </div>
 
-      {/* VR Modal */}
+      {/* VR Modal - HD Version */}
       <Dialog open={vrOpen} onOpenChange={setVrOpen}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-slate-900 border-white/10">
-          <DialogHeader className="px-6 pt-5 pb-0">
-            <DialogTitle className="text-white">
-              {activeVr?.label} — 360° View
+        <DialogContent className="max-w-6xl p-0 overflow-hidden bg-slate-900 border-white/10" showCloseButton={false}>
+          <DialogHeader className="px-6 pt-5 pb-3">
+            <DialogTitle className="text-white flex items-center gap-2">
+              {activeVr?.label} — 360° Virtual Tour
+              <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded">HD</span>
             </DialogTitle>
           </DialogHeader>
+          {/* Custom close button */}
+          <DialogClose className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors">
+            <X className="w-4 h-4" />
+            <span className="sr-only">Close</span>
+          </DialogClose>
           <div className="relative aspect-video bg-slate-800">
-            {activeVr && (
-              <Image
-                src={activeVr.src}
-                alt={activeVr.label}
-                fill
-                className="object-cover"
+            {vrOpen && activeVr && (
+              <PannellumViewer
+                cubeMap={activeVr.cubeMapHD}
+                autoRotate={-2}
+                autoLoad={true}
               />
             )}
-            {/* VR placeholder overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/30">
-              <Icon360 className="w-16 h-16 text-white/80 mb-3 animate-spin-slow" />
-              <p className="text-white/80 text-sm font-medium">
-                Drag to explore 360° view
-              </p>
-              <p className="text-white/40 text-xs mt-1">
-                VR experience coming soon
-              </p>
-            </div>
+          </div>
+          <div className="px-6 py-3 bg-slate-800/50 border-t border-white/10">
+            <p className="text-white/60 text-xs text-center">
+              Drag to look around • Use controls to navigate
+            </p>
           </div>
         </DialogContent>
       </Dialog>
-
-      {/* slow spin animation */}
-      <style jsx>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        :global(.animate-spin-slow) {
-          animation: spin-slow 6s linear infinite;
-        }
-      `}</style>
     </section>
   )
 }

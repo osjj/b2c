@@ -147,7 +147,7 @@ export function PriceTiersEditor({ tiers, onChange, defaultPrice = 0 }: PriceTie
               </div>
               <div className="col-span-4">
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">¥</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">$</span>
                   <Input
                     type="number"
                     step="0.01"
@@ -176,7 +176,7 @@ export function PriceTiersEditor({ tiers, onChange, defaultPrice = 0 }: PriceTie
 
       {tiers.length > 0 && defaultPrice > 0 && (
         <p className="text-xs text-muted-foreground">
-          对比标准单价 ¥{defaultPrice.toFixed(2)}，最高可节省{' '}
+          Compare to standard price ${defaultPrice.toFixed(2)}, save up to{' '}
           {Math.round((1 - Math.min(...tiers.map(t => t.price)) / defaultPrice) * 100)}%
         </p>
       )}

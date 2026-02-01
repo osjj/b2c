@@ -53,15 +53,19 @@ export async function getProducts({
   limit = 10,
   search = '',
   categoryId = '',
+  categoryIds = [],
   isActive,
   activeOnly = false,
+  orderBy = 'sortOrder',
 }: {
   page?: number
   limit?: number
   search?: string
   categoryId?: string
+  categoryIds?: string[]
   isActive?: boolean
   activeOnly?: boolean
+  orderBy?: 'sortOrder' | 'createdAt' | 'name' | 'price'
 } = {}) {
   const where: any = {}
 
@@ -72,7 +76,10 @@ export async function getProducts({
     ]
   }
 
-  if (categoryId) {
+  // Support both single categoryId and multiple categoryIds
+  if (categoryIds.length > 0) {
+    where.categoryId = { in: categoryIds }
+  } else if (categoryId) {
     where.categoryId = categoryId
   }
 
@@ -82,6 +89,15 @@ export async function getProducts({
     where.isActive = true
   }
 
+  // Build orderBy clause
+  const orderByClause: any = orderBy === 'sortOrder'
+    ? [{ sortOrder: 'asc' }, { createdAt: 'desc' }]
+    : orderBy === 'name'
+    ? { name: 'asc' }
+    : orderBy === 'price'
+    ? { price: 'asc' }
+    : { createdAt: 'desc' }
+
   const [productsRaw, total] = await Promise.all([
     prisma.product.findMany({
       where,
@@ -90,7 +106,7 @@ export async function getProducts({
         images: { orderBy: { sortOrder: 'asc' }, take: 1 },
         priceTiers: { orderBy: { sortOrder: 'asc' } },
       },
-      orderBy: { createdAt: 'desc' },
+      orderBy: orderByClause,
       skip: (page - 1) * limit,
       take: limit,
     }),
@@ -608,15 +624,80 @@ export async function updateProduct(
   redirect('/admin/products')
 }
 
-// Delete product (soft delete - marks as inactive instead of hard delete)
-export async function deleteProduct(id: string) {
+// Archive product (soft delete - marks as inactive)
+export async function archiveProduct(id: string) {
   await requireAdmin()
 
-  // Use soft delete to preserve order history integrity
-  // Products with existing orders cannot be hard deleted due to foreign key constraints
   await prisma.product.update({
     where: { id },
     data: { isActive: false },
+  })
+
+  revalidatePath('/admin/products')
+  revalidatePath('/products')
+}
+
+// Permanently delete product (hard delete)
+// Only works for products without order history
+export async function deleteProduct(id: string) {
+  await requireAdmin()
+
+  // Check if product has any order items
+  const orderItemCount = await prisma.orderItem.count({
+    where: { productId: id },
+  })
+
+  if (orderItemCount > 0) {
+    throw new Error(
+      `Cannot delete product: it has ${orderItemCount} order(s) associated. Use archive instead.`
+    )
+  }
+
+  // Delete related records first (in order of dependencies)
+  await prisma.$transaction(async (tx) => {
+    // Delete price tiers
+    await tx.priceTier.deleteMany({ where: { productId: id } })
+    // Delete cart items
+    await tx.cartItem.deleteMany({ where: { productId: id } })
+    // Delete images
+    await tx.productImage.deleteMany({ where: { productId: id } })
+    // Delete attribute values
+    await tx.productAttributeValue.deleteMany({ where: { productId: id } })
+    // Delete collection associations
+    await tx.productCollection.deleteMany({ where: { productId: id } })
+    // Finally delete the product
+    await tx.product.delete({ where: { id } })
+  })
+
+  revalidatePath('/admin/products')
+  revalidatePath('/products')
+}
+
+// Update product sort order (for drag-and-drop reordering)
+export async function updateProductsOrder(productIds: string[]) {
+  await requireAdmin()
+
+  // Update sort order for each product based on array position
+  await prisma.$transaction(
+    productIds.map((id, index) =>
+      prisma.product.update({
+        where: { id },
+        data: { sortOrder: index },
+      })
+    )
+  )
+
+  revalidatePath('/admin/products')
+  revalidatePath('/products')
+}
+
+// Update single product sort order
+export async function updateProductSortOrder(productId: string, sortOrder: number) {
+  await requireAdmin()
+
+  await prisma.product.update({
+    where: { id: productId },
+    data: { sortOrder },
   })
 
   revalidatePath('/admin/products')

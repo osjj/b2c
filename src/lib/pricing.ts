@@ -73,7 +73,7 @@ export function getNextTierHint(
 }
 
 /**
- * 获取最低阶梯价格（用于产品卡片显示"¥XX起"）
+ * Get lowest tier price (for product card "From $XX" display)
  */
 export function getLowestTierPrice(
   priceTiers: PriceTier[],
