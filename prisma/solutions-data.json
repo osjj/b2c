@@ -102,8 +102,7 @@
       { "categorySlug": "head-protection", "description": "Hard hats and bump caps designed to protect against falling objects and head impacts common on construction sites." },
       { "categorySlug": "eye-protection", "description": "Safety glasses and goggles to shield eyes from dust, debris, sparks, and harmful UV rays." },
       { "categorySlug": "hand-protection", "description": "Work gloves for handling rough materials, protection from cuts, and grip enhancement." },
-      { "categorySlug": "foot-protection", "description": "Steel-toe boots and safety footwear to protect against crushing hazards and punctures." },
-      { "categorySlug": "fall-protection", "description": "Harnesses, lanyards, and anchor systems for working at heights safely." }
+      { "categorySlug": "foot-protection", "description": "Steel-toe boots and safety footwear to protect against crushing hazards and punctures." }
     ],
     "materials": [
       { "material": "abs-plastic", "description": "Lightweight and impact-resistant material used in hard hat shells, providing excellent protection without added weight." },
