@@ -27,6 +27,8 @@ import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
+import { INDUSTRY_LABELS } from '@/types/solution'
+import type { Industry } from '@prisma/client'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -68,6 +70,8 @@ type ProductWithImages = {
   ogTitle?: string | null
   ogDescription?: string | null
   ogImage?: string | null
+  // Usage Scenes for Solution association
+  usageScenes?: string[]
 }
 
 interface ProductFormProps {
@@ -124,6 +128,9 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [ogTitle, setOgTitle] = useState(product?.ogTitle || '')
   const [ogDescription, setOgDescription] = useState(product?.ogDescription || '')
   const [ogImage, setOgImage] = useState(product?.ogImage || '')
+
+  // Usage Scenes for Solution association
+  const [usageScenes, setUsageScenes] = useState<string[]>(product?.usageScenes || [])
 
   // Initialize attribute values from existing product
   const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
@@ -344,6 +351,9 @@ export function ProductForm({ product, categories, collections = [], productColl
       <input type="hidden" name="ogTitle" value={ogTitle} />
       <input type="hidden" name="ogDescription" value={ogDescription} />
       <input type="hidden" name="ogImage" value={ogImage} />
+
+      {/* Hidden input for usage scenes */}
+      <input type="hidden" name="usageScenes" value={JSON.stringify(usageScenes)} />
 
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
@@ -751,6 +761,40 @@ export function ProductForm({ product, categories, collections = [], productColl
               </CardContent>
             </Card>
           )}
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Industry Solutions</CardTitle>
+              <CardDescription>
+                Select industries where this product is applicable
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {(Object.entries(INDUSTRY_LABELS) as [Industry, string][]).map(([value, label]) => (
+                  <div key={value} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`industry-${value}`}
+                      checked={usageScenes.includes(value)}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          setUsageScenes([...usageScenes, value])
+                        } else {
+                          setUsageScenes(usageScenes.filter((s) => s !== value))
+                        }
+                      }}
+                    />
+                    <label
+                      htmlFor={`industry-${value}`}
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                    >
+                      {label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 

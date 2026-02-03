@@ -1,0 +1,233 @@
+[
+  {
+    "slug": "construction-safety-solutions",
+    "title": "Construction Safety Solutions",
+    "subtitle": "Comprehensive PPE solutions designed for construction sites, protecting workers from falls, head injuries, and other common workplace hazards.",
+    "industry": "CONSTRUCTION",
+    "coverImage": null,
+    "isActive": true,
+    "sortOrder": 0,
+    "hazardsContent": {
+      "time": 1706000000000,
+      "version": "2.28.2",
+      "blocks": [
+        {
+          "id": "hazard1",
+          "type": "header",
+          "data": { "text": "Common Hazards in Construction", "level": 2 }
+        },
+        {
+          "id": "hazard2",
+          "type": "paragraph",
+          "data": { "text": "Construction sites present numerous safety challenges that require proper protective equipment and safety protocols." }
+        },
+        {
+          "id": "hazard3",
+          "type": "list",
+          "data": {
+            "style": "unordered",
+            "items": [
+              { "content": "<b>Falls from height</b> - One of the leading causes of construction fatalities", "items": [] },
+              { "content": "<b>Falling objects</b> - Tools, materials, and debris can cause serious head injuries", "items": [] },
+              { "content": "<b>Struck-by hazards</b> - Moving vehicles, cranes, and swinging loads", "items": [] },
+              { "content": "<b>Electrical hazards</b> - Exposed wiring and overhead power lines", "items": [] },
+              { "content": "<b>Caught-in/between hazards</b> - Heavy machinery and equipment", "items": [] }
+            ]
+          }
+        }
+      ]
+    },
+    "standardsContent": {
+      "time": 1706000000000,
+      "version": "2.28.2",
+      "blocks": [
+        {
+          "id": "std1",
+          "type": "header",
+          "data": { "text": "Safety Standards & Certifications", "level": 2 }
+        },
+        {
+          "id": "std2",
+          "type": "paragraph",
+          "data": { "text": "All PPE for construction must meet strict safety standards to ensure worker protection." }
+        },
+        {
+          "id": "std3",
+          "type": "list",
+          "data": {
+            "style": "unordered",
+            "items": [
+              { "content": "<b>ANSI Z89.1</b> - Standard for industrial head protection", "items": [] },
+              { "content": "<b>ANSI Z87.1</b> - Eye and face protection standards", "items": [] },
+              { "content": "<b>OSHA 1926</b> - Construction industry safety standards", "items": [] },
+              { "content": "<b>EN 397</b> - European standard for industrial safety helmets", "items": [] },
+              { "content": "<b>CSA Z94.1</b> - Canadian standards for industrial protective headwear", "items": [] }
+            ]
+          }
+        }
+      ]
+    },
+    "faqContent": {
+      "time": 1706000000000,
+      "version": "2.28.2",
+      "blocks": [
+        {
+          "id": "faq1",
+          "type": "header",
+          "data": { "text": "Frequently Asked Questions", "level": 2 }
+        },
+        {
+          "id": "faq2",
+          "type": "header",
+          "data": { "text": "What PPE is required on construction sites?", "level": 3 }
+        },
+        {
+          "id": "faq3",
+          "type": "paragraph",
+          "data": { "text": "At minimum, construction workers typically need hard hats, safety glasses, high-visibility vests, steel-toe boots, and gloves. Additional PPE may be required based on specific tasks." }
+        },
+        {
+          "id": "faq4",
+          "type": "header",
+          "data": { "text": "How often should hard hats be replaced?", "level": 3 }
+        },
+        {
+          "id": "faq5",
+          "type": "paragraph",
+          "data": { "text": "Hard hat shells should be replaced every 2-5 years depending on manufacturer recommendations. Suspensions should be replaced annually. Replace immediately if cracked, dented, or after any impact." }
+        }
+      ]
+    },
+    "ppeCategories": [
+      { "categorySlug": "head-protection", "description": "Hard hats and bump caps designed to protect against falling objects and head impacts common on construction sites." },
+      { "categorySlug": "eye-protection", "description": "Safety glasses and goggles to shield eyes from dust, debris, sparks, and harmful UV rays." },
+      { "categorySlug": "hand-protection", "description": "Work gloves for handling rough materials, protection from cuts, and grip enhancement." },
+      { "categorySlug": "foot-protection", "description": "Steel-toe boots and safety footwear to protect against crushing hazards and punctures." },
+      { "categorySlug": "fall-protection", "description": "Harnesses, lanyards, and anchor systems for working at heights safely." }
+    ],
+    "materials": [
+      { "material": "abs-plastic", "description": "Lightweight and impact-resistant material used in hard hat shells, providing excellent protection without added weight." },
+      { "material": "cowhide-leather", "description": "Durable natural material for heavy-duty work gloves, offering excellent abrasion resistance and comfort." },
+      { "material": "steel", "description": "Used in safety toe caps for footwear, providing maximum protection against compression and impact." },
+      { "material": "nylon", "description": "Strong synthetic fiber used in fall protection harnesses and straps for its high tensile strength." }
+    ],
+    "metaTitle": "Construction Safety PPE Solutions | PPE Pro",
+    "metaDescription": "Complete PPE solutions for construction sites. Hard hats, safety glasses, fall protection, and more. OSHA compliant safety equipment.",
+    "metaKeywords": "construction PPE, hard hats, fall protection, safety glasses, construction safety, OSHA compliant"
+  },
+  {
+    "slug": "chemical-industry-safety",
+    "title": "Chemical Industry Safety Solutions",
+    "subtitle": "Specialized PPE solutions for chemical processing and handling, protecting workers from hazardous substances, splashes, and toxic exposures.",
+    "industry": "CHEMICAL",
+    "coverImage": null,
+    "isActive": true,
+    "sortOrder": 1,
+    "hazardsContent": {
+      "time": 1706000000000,
+      "version": "2.28.2",
+      "blocks": [
+        {
+          "id": "chazard1",
+          "type": "header",
+          "data": { "text": "Chemical Industry Hazards", "level": 2 }
+        },
+        {
+          "id": "chazard2",
+          "type": "paragraph",
+          "data": { "text": "Workers in the chemical industry face unique hazards that require specialized protective equipment and rigorous safety protocols." }
+        },
+        {
+          "id": "chazard3",
+          "type": "list",
+          "data": {
+            "style": "unordered",
+            "items": [
+              { "content": "<b>Chemical burns</b> - Contact with corrosive acids, bases, and reactive substances", "items": [] },
+              { "content": "<b>Toxic inhalation</b> - Exposure to harmful vapors, gases, and fumes", "items": [] },
+              { "content": "<b>Skin absorption</b> - Hazardous chemicals that penetrate through skin contact", "items": [] },
+              { "content": "<b>Eye injuries</b> - Splashes and vapors that can cause severe eye damage", "items": [] },
+              { "content": "<b>Fire and explosion</b> - Flammable and reactive chemical combinations", "items": [] }
+            ]
+          }
+        }
+      ]
+    },
+    "standardsContent": {
+      "time": 1706000000000,
+      "version": "2.28.2",
+      "blocks": [
+        {
+          "id": "cstd1",
+          "type": "header",
+          "data": { "text": "Chemical Safety Standards", "level": 2 }
+        },
+        {
+          "id": "cstd2",
+          "type": "paragraph",
+          "data": { "text": "Chemical industry PPE must meet stringent standards for chemical resistance and barrier protection." }
+        },
+        {
+          "id": "cstd3",
+          "type": "list",
+          "data": {
+            "style": "unordered",
+            "items": [
+              { "content": "<b>OSHA 1910.132</b> - General PPE requirements for hazardous substances", "items": [] },
+              { "content": "<b>NFPA 1991</b> - Vapor-protective ensembles for hazmat emergencies", "items": [] },
+              { "content": "<b>EN 374</b> - Gloves providing protection against chemicals and micro-organisms", "items": [] },
+              { "content": "<b>NIOSH</b> - Respiratory protection standards and certifications", "items": [] },
+              { "content": "<b>ASTM F739</b> - Test method for permeation of liquids and gases through protective clothing", "items": [] }
+            ]
+          }
+        }
+      ]
+    },
+    "faqContent": {
+      "time": 1706000000000,
+      "version": "2.28.2",
+      "blocks": [
+        {
+          "id": "cfaq1",
+          "type": "header",
+          "data": { "text": "Frequently Asked Questions", "level": 2 }
+        },
+        {
+          "id": "cfaq2",
+          "type": "header",
+          "data": { "text": "What gloves should I use for chemical handling?", "level": 3 }
+        },
+        {
+          "id": "cfaq3",
+          "type": "paragraph",
+          "data": { "text": "Glove selection depends on the specific chemicals being handled. Nitrile gloves work well for many solvents and oils. Neoprene is effective against acids and bases. Always check chemical resistance charts and breakthrough times." }
+        },
+        {
+          "id": "cfaq4",
+          "type": "header",
+          "data": { "text": "When is respiratory protection required?", "level": 3 }
+        },
+        {
+          "id": "cfaq5",
+          "type": "paragraph",
+          "data": { "text": "Respiratory protection is required when airborne contaminants exceed permissible exposure limits (PELs) and engineering controls are not feasible. A proper respirator fit test and medical evaluation are mandatory." }
+        }
+      ]
+    },
+    "ppeCategories": [
+      { "categorySlug": "respiratory", "description": "Respirators and breathing apparatus to protect against toxic gases, vapors, and particulates in chemical environments." },
+      { "categorySlug": "eye-protection", "description": "Chemical splash goggles and face shields providing sealed protection against liquid splashes and vapors." },
+      { "categorySlug": "hand-protection", "description": "Chemical-resistant gloves made from nitrile, neoprene, or other barrier materials rated for specific chemicals." },
+      { "categorySlug": "body-protection", "description": "Chemical suits, aprons, and coveralls that provide full-body protection against spills and splashes." }
+    ],
+    "materials": [
+      { "material": "nitrile", "description": "Excellent chemical resistance to oils, greases, and many solvents. Ideal for general chemical handling gloves." },
+      { "material": "rubber", "description": "Natural and synthetic rubber provides good resistance to acids, bases, and aqueous solutions." },
+      { "material": "polyester", "description": "Used in chemical-resistant coveralls and suits, often with specialized coatings for enhanced protection." },
+      { "material": "nylon", "description": "Base material for many coated gloves, providing dexterity while supporting chemical-resistant coatings." }
+    ],
+    "metaTitle": "Chemical Industry PPE Solutions | PPE Pro",
+    "metaDescription": "Specialized PPE for chemical processing and handling. Chemical-resistant gloves, respirators, splash protection, and safety suits.",
+    "metaKeywords": "chemical PPE, chemical resistant gloves, respirators, chemical suits, hazmat protection, chemical safety"
+  }
+]

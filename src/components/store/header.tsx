@@ -27,6 +27,7 @@ import { MiniQuote } from "./mini-quote"
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
+  { href: "/solutions", label: "Solutions" },
   { href: "/cases", label: "Cases" },
   { href: "/news", label: "News" },
   { href: "/about", label: "About" },

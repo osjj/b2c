@@ -150,6 +150,7 @@ model Product {
   sortOrder      Int      @default(0)
   isActive       Boolean  @default(true)
   isFeatured     Boolean  @default(false)
+  usageScenes    String[] @default([]) // Industry tags for Solution association: ["CONSTRUCTION", "FACTORY", ...]
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
@@ -527,4 +528,53 @@ model ChatAttachment {
 
   @@index([messageId])
   @@map("chat_attachments")
+}
+
+// ==================== Solution Models ====================
+
+enum Industry {
+  CONSTRUCTION
+  FACTORY
+  MINING
+  ELECTRICAL
+  WAREHOUSE
+  CHEMICAL
+  FOOD_PROCESSING
+  LOGISTICS
+}
+
+model Solution {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  subtitle    String?  @db.Text // Hero subtitle/intro
+  industry    Industry
+  coverImage  String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+
+  // 3 Editor.js content blocks
+  hazardsContent    Json?  // Common hazards section
+  standardsContent  Json?  // Standards & certifications section
+  faqContent        Json?  // FAQ section
+
+  // PPE category cards (JSON array)
+  // [{ categorySlug: "head-protection", description: "..." }, ...]
+  ppeCategories     Json?
+
+  // Material cards (JSON array)
+  // [{ material: "abs-plastic", description: "..." }, ...]
+  materials         Json?
+
+  // SEO fields
+  metaTitle       String?   @map("meta_title")
+  metaDescription String?   @db.Text @map("meta_description")
+  metaKeywords    String?   @map("meta_keywords")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([industry])
+  @@index([isActive])
+  @@map("solutions")
 }
