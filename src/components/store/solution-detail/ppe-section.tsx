@@ -1,50 +1,41 @@
 'use client'
 
+import type { ComponentType } from 'react'
 import Link from 'next/link'
-import { HardHat, Hand, Footprints, Eye, Shield, Wind, Shirt, ArrowRight } from 'lucide-react'
+import { HardHat, Hand, Footprints, Eye, Shield, Wind, Shirt, Tag, ArrowRight } from 'lucide-react'
 import type { PpeCategoryItem } from '@/types/solution'
 
-// PPE Categories with icons
-const PPE_CATEGORY_META: Record<string, {
-  label: string
-  Icon: React.ComponentType<{ className?: string }>
-}> = {
-  'head-protection': {
-    label: 'Head Protection',
-    Icon: HardHat,
-  },
-  'hand-protection': {
-    label: 'Hand Protection',
-    Icon: Hand,
-  },
-  'foot-protection': {
-    label: 'Foot Protection',
-    Icon: Footprints,
-  },
-  'eye-protection': {
-    label: 'Eye Protection',
-    Icon: Eye,
-  },
-  'fall-protection': {
-    label: 'Fall Protection',
-    Icon: Shield,
-  },
-  'respiratory': {
-    label: 'Respiratory Protection',
-    Icon: Wind,
-  },
-  'body-protection': {
-    label: 'Body Protection',
-    Icon: Shirt,
-  },
+const PPE_ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {
+  'head-protection': HardHat,
+  'hand-protection': Hand,
+  'foot-protection': Footprints,
+  'eye-protection': Eye,
+  'fall-protection': Shield,
+  respiratory: Wind,
+  'body-protection': Shirt,
 }
+
+type CategoryLabel = {
+  slug: string
+  name: string
+  isActive?: boolean
+}
+
+const formatSlug = (slug: string) =>
+  slug
+    .split('-')
+    .filter(Boolean)
+    .map((segment) => segment[0]?.toUpperCase() + segment.slice(1))
+    .join(' ')
 
 interface PpeSectionProps {
   categories: PpeCategoryItem[] | null
+  categoryLabels?: CategoryLabel[]
 }
 
-export function PpeSection({ categories }: PpeSectionProps) {
+export function PpeSection({ categories, categoryLabels = [] }: PpeSectionProps) {
   if (!categories?.length) return null
+  const labelMap = new Map(categoryLabels.map((category) => [category.slug, category]))
 
   return (
     <section id="ppe-categories" className="scroll-mt-28 py-12 md:py-16">
@@ -67,15 +58,20 @@ export function PpeSection({ categories }: PpeSectionProps) {
       </div>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {categories.map((item) => {
-          const meta = PPE_CATEGORY_META[item.categorySlug]
-          if (!meta) return null
-          const { label, Icon } = meta
+          const categoryMeta = labelMap.get(item.categorySlug)
+          const label = categoryMeta?.name || formatSlug(item.categorySlug)
+          const isActive = categoryMeta?.isActive !== false
+          const Icon = PPE_ICON_MAP[item.categorySlug] || Tag
 
           return (
             <Link
               key={item.categorySlug}
               href={`/categories/${item.categorySlug}`}
-              className="group relative overflow-hidden rounded-2xl border bg-background/80 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+              onClick={isActive ? undefined : (event) => event.preventDefault()}
+              aria-disabled={!isActive}
+              className={`group relative overflow-hidden rounded-2xl border bg-background/80 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer ${
+                isActive ? '' : 'opacity-60 cursor-not-allowed'
+              }`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               <div className="relative z-10 flex items-start gap-4">
@@ -92,6 +88,11 @@ export function PpeSection({ categories }: PpeSectionProps) {
                   {item.description && (
                     <p className="text-sm text-muted-foreground line-clamp-2">
                       {item.description}
+                    </p>
+                  )}
+                  {!isActive && (
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      Category inactive
                     </p>
                   )}
                 </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState, useState, useRef, useTransition } from 'react'
-import { Solution, Industry } from '@prisma/client'
+import { Industry, Category } from '@prisma/client'
 import { createSolution, updateSolution, type SolutionState } from '@/actions/solutions'
 import { generateSlug } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -50,9 +50,10 @@ interface SolutionWithJsonFields {
 
 interface SolutionFormProps {
   solution?: SolutionWithJsonFields
+  categories: Category[]
 }
 
-export function SolutionForm({ solution }: SolutionFormProps) {
+export function SolutionForm({ solution, categories }: SolutionFormProps) {
   // Basic info fields
   const [title, setTitle] = useState(solution?.title || '')
   const [slug, setSlug] = useState(solution?.slug || '')
@@ -257,6 +258,7 @@ export function SolutionForm({ solution }: SolutionFormProps) {
               <PpeCategoriesEditor
                 value={ppeCategories}
                 onChange={setPpeCategories}
+                categories={categories}
               />
               <input
                 type="hidden"

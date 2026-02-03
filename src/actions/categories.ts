@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
@@ -97,6 +98,29 @@ export async function getCategoryBySlug(slug: string) {
         where: { isActive: true },
         orderBy: { sortOrder: 'asc' },
       },
+    },
+  })
+}
+
+// Get categories by slug list
+export async function getCategoriesBySlugs(
+  slugs: string[],
+  { includeInactive = false }: { includeInactive?: boolean } = {}
+) {
+  if (slugs.length === 0) return []
+
+  const where: Prisma.CategoryWhereInput = { slug: { in: slugs } }
+  if (!includeInactive) {
+    where.isActive = true
+  }
+
+  return prisma.category.findMany({
+    where,
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      isActive: true,
     },
   })
 }

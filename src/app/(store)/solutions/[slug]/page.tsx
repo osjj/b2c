@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Factory, HardHat, Home, ShieldCheck } from 'lucide-react'
+import { getCategoriesBySlugs } from '@/actions/categories'
 import { getSolutionBySlug, getProductsBySolution } from '@/actions/solutions'
 import { INDUSTRY_LABELS, type PpeCategoryItem, type MaterialItem } from '@/types/solution'
 import { Button } from '@/components/ui/button'
@@ -105,6 +106,10 @@ export default async function SolutionDetailPage({ params }: Props) {
   const faqContent = solution.faqContent as EditorJSContent | null
   const ppeCategories = solution.ppeCategories as PpeCategoryItem[] | null
   const materials = solution.materials as MaterialItem[] | null
+  const ppeCategorySlugs = ppeCategories?.map((item) => item.categorySlug) ?? []
+  const ppeCategoryLabels = ppeCategorySlugs.length
+    ? await getCategoriesBySlugs(ppeCategorySlugs, { includeInactive: true })
+    : []
 
   // Build table of contents
   const tocItems = [
@@ -206,7 +211,7 @@ export default async function SolutionDetailPage({ params }: Props) {
           {/* Content Sections */}
           <div className="space-y-12">
             <HazardsSection content={hazardsContent} />
-            <PpeSection categories={ppeCategories} />
+            <PpeSection categories={ppeCategories} categoryLabels={ppeCategoryLabels} />
             <MaterialsSection materials={materials} />
             <ProductsSection products={products} industryName={industryLabel} />
             <StandardsSection content={standardsContent} />
