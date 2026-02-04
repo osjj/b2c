@@ -40,7 +40,7 @@ const productSchema = z.object({
   ogDescription: z.string().max(200).optional().nullable(),
   ogImage: z.string().optional().nullable(),
   // Usage Scenes for Solution association
-  usageScenes: z.array(z.string()).optional().nullable(),
+  usageScenes: z.array(z.string()).default([]),
 })
 
 export type ProductState = {

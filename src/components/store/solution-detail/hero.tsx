@@ -1,9 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
-import { INDUSTRY_LABELS } from '@/types/solution'
-import type { Industry } from '@prisma/client'
+import { formatUsageSceneLabel, type UsageScene } from '@/lib/usage-scenes'
 import { Shield, Package, Award, HelpCircle, AlertTriangle, ChevronRight } from 'lucide-react'
 
 interface TocItem {
@@ -14,7 +12,7 @@ interface TocItem {
 interface SolutionHeroProps {
   title: string
   subtitle?: string | null
-  industry: Industry
+  usageScenes: string[]
   coverImage?: string | null
   tocItems: TocItem[]
   stats: {
@@ -36,7 +34,7 @@ const TOC_ICONS: Record<string, typeof Shield> = {
   'faq': HelpCircle,
 }
 
-export function SolutionHero({ title, subtitle, industry, coverImage, tocItems, stats }: SolutionHeroProps) {
+export function SolutionHero({ title, subtitle, usageScenes, coverImage, tocItems, stats }: SolutionHeroProps) {
   return (
     <section className="relative border-b bg-slate-900">
       {/* Cover image - subtle */}
@@ -59,7 +57,8 @@ export function SolutionHero({ title, subtitle, industry, coverImage, tocItems, 
           <div className="inline-flex items-center gap-2 rounded bg-white/10 px-2.5 py-1 text-white/90">
             <Shield className="h-3.5 w-3.5 text-amber-400" />
             <span className="text-xs font-medium uppercase tracking-wider">
-              {INDUSTRY_LABELS[industry]}
+              {usageScenes.slice(0, 2).map((s) => formatUsageSceneLabel(s as UsageScene)).join(' · ')}
+              {usageScenes.length > 2 && ` +${usageScenes.length - 2}`}
             </span>
           </div>
 

@@ -150,7 +150,7 @@ model Product {
   sortOrder      Int      @default(0)
   isActive       Boolean  @default(true)
   isFeatured     Boolean  @default(false)
-  usageScenes    String[] @default([]) // Industry tags for Solution association: ["CONSTRUCTION", "FACTORY", ...]
+  usageScenes    String[] @default([]) // Usage scene tags for Solution association: ["construction", "height-work", ...]
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
@@ -532,23 +532,12 @@ model ChatAttachment {
 
 // ==================== Solution Models ====================
 
-enum Industry {
-  CONSTRUCTION
-  FACTORY
-  MINING
-  ELECTRICAL
-  WAREHOUSE
-  CHEMICAL
-  FOOD_PROCESSING
-  LOGISTICS
-}
-
 model Solution {
   id          String   @id @default(cuid())
   slug        String   @unique
   title       String
   subtitle    String?  @db.Text // Hero subtitle/intro
-  industry    Industry
+  usageScenes String[] @default([])
   coverImage  String?
   isActive    Boolean  @default(true)
   sortOrder   Int      @default(0)
@@ -574,7 +563,6 @@ model Solution {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([industry])
   @@index([isActive])
   @@map("solutions")
 }

@@ -5,22 +5,12 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
-import type { Industry } from '@prisma/client'
 
 const solutionSchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
   title: z.string().min(1, 'Title is required'),
   subtitle: z.string().optional().nullable(),
-  industry: z.enum([
-    'CONSTRUCTION',
-    'FACTORY',
-    'MINING',
-    'ELECTRICAL',
-    'WAREHOUSE',
-    'CHEMICAL',
-    'FOOD_PROCESSING',
-    'LOGISTICS',
-  ]),
+  usageScenes: z.array(z.string()).min(1, 'Usage scenes are required'),
   coverImage: z.string().optional().nullable(),
   isActive: z.boolean().default(true),
   sortOrder: z.coerce.number().int().default(0),
@@ -45,14 +35,14 @@ export async function getSolutions({
   page = 1,
   limit = 10,
   search = '',
-  industry,
+  usageScene,
   isActive,
   activeOnly = false,
 }: {
   page?: number
   limit?: number
   search?: string
-  industry?: Industry
+  usageScene?: string
   isActive?: boolean
   activeOnly?: boolean
 } = {}) {
@@ -65,8 +55,8 @@ export async function getSolutions({
     ]
   }
 
-  if (industry) {
-    where.industry = industry
+  if (usageScene) {
+    where.usageScenes = { has: usageScene }
   }
 
   if (typeof isActive === 'boolean') {
@@ -114,9 +104,9 @@ export async function getSolutionBySlug(slug: string) {
   return solution
 }
 
-// Get products by solution industry (via usageScenes)
+// Get products by solution usage scenes
 export async function getProductsBySolution(
-  industry: Industry,
+  usageScenes: string[],
   {
     page = 1,
     limit = 12,
@@ -127,9 +117,17 @@ export async function getProductsBySolution(
     categorySlug?: string
   } = {}
 ) {
+  // Return empty if no usage scenes provided
+  if (!usageScenes || usageScenes.length === 0) {
+    return {
+      products: [],
+      pagination: { page, limit, total: 0, totalPages: 0 },
+    }
+  }
+
   const where: any = {
     isActive: true,
-    usageScenes: { has: industry },
+    usageScenes: { hasSome: usageScenes },
   }
 
   if (categorySlug) {
@@ -201,7 +199,20 @@ export async function createSolution(
     slug: formData.get('slug'),
     title: formData.get('title'),
     subtitle: formData.get('subtitle') || null,
-    industry: formData.get('industry'),
+    usageScenes: (() => {
+      const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
+      if (values.length === 1) {
+        const value = values[0]?.trim()
+        if (value?.startsWith('[')) {
+          try {
+            return JSON.parse(value)
+          } catch {
+            return values
+          }
+        }
+      }
+      return values
+    })(),
     coverImage: formData.get('coverImage') || null,
     isActive: formData.get('isActive') === 'true',
     sortOrder: formData.get('sortOrder') || 0,
@@ -235,7 +246,7 @@ export async function createSolution(
       slug: data.slug,
       title: data.title,
       subtitle: data.subtitle,
-      industry: data.industry,
+      usageScenes: data.usageScenes,
       coverImage: data.coverImage,
       isActive: data.isActive,
       sortOrder: data.sortOrder,
@@ -287,7 +298,20 @@ export async function updateSolution(
     slug: formData.get('slug'),
     title: formData.get('title'),
     subtitle: formData.get('subtitle') || null,
-    industry: formData.get('industry'),
+    usageScenes: (() => {
+      const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
+      if (values.length === 1) {
+        const value = values[0]?.trim()
+        if (value?.startsWith('[')) {
+          try {
+            return JSON.parse(value)
+          } catch {
+            return values
+          }
+        }
+      }
+      return values
+    })(),
     coverImage: formData.get('coverImage') || null,
     isActive: formData.get('isActive') === 'true',
     sortOrder: formData.get('sortOrder') || 0,
@@ -322,7 +346,7 @@ export async function updateSolution(
       slug: data.slug,
       title: data.title,
       subtitle: data.subtitle,
-      industry: data.industry,
+      usageScenes: data.usageScenes,
       coverImage: data.coverImage,
       isActive: data.isActive,
       sortOrder: data.sortOrder,

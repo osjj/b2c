@@ -2,7 +2,16 @@
   "slug": "ppe-safety-equipment-for-construction-sites",
   "title": "PPE Safety Equipment for Construction Sites",
   "subtitle": "A complete head-to-toe PPE guide for construction environments, helping contractors and site managers select compliant protective equipment for real-world hazards.",
-  "industry": "CONSTRUCTION",
+  "usageScenes": [
+    "construction",
+    "height-work",
+    "steel-work",
+    "falling-objects",
+    "fall-protection",
+    "heavy-duty",
+    "impact-resistant",
+    "slip-resistant"
+  ],
   "coverImage": null,
   "isActive": true,
   "sortOrder": 2,

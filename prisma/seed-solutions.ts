@@ -8,7 +8,7 @@
  * npx tsx prisma/seed-solutions.ts
  */
 
-import { PrismaClient, Industry } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -18,7 +18,7 @@ interface SolutionData {
   slug: string
   title: string
   subtitle: string | null
-  industry: Industry
+  usageScenes: string[]
   coverImage: string | null
   isActive: boolean
   sortOrder: number
@@ -60,7 +60,7 @@ async function main() {
           data: {
             title: solution.title,
             subtitle: solution.subtitle,
-            industry: solution.industry,
+            usageScenes: solution.usageScenes,
             coverImage: solution.coverImage,
             isActive: solution.isActive,
             sortOrder: solution.sortOrder,
@@ -83,7 +83,7 @@ async function main() {
             slug: solution.slug,
             title: solution.title,
             subtitle: solution.subtitle,
-            industry: solution.industry,
+            usageScenes: solution.usageScenes,
             coverImage: solution.coverImage,
             isActive: solution.isActive,
             sortOrder: solution.sortOrder,

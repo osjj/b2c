@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { ChevronRight, Home, MessageSquare, ShoppingBag } from 'lucide-react'
 import { getCategoriesBySlugs } from '@/actions/categories'
 import { getSolutionBySlug, getProductsBySolution } from '@/actions/solutions'
-import { INDUSTRY_LABELS, type PpeCategoryItem, type MaterialItem } from '@/types/solution'
+import { formatUsageSceneLabel, type UsageScene } from '@/lib/usage-scenes'
+import { type PpeCategoryItem, type MaterialItem } from '@/types/solution'
 import {
   SolutionHero,
   HazardsSection,
@@ -43,15 +44,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   const solutionUrl = `${baseUrl}/solutions/${slug}`
 
+  const usageScenesLabel = solution.usageScenes
+    .slice(0, 2)
+    .map((s: string) => formatUsageSceneLabel(s as UsageScene))
+    .join(', ')
+
   const title = solution.metaTitle || solution.title
   const description =
     solution.metaDescription ||
     solution.subtitle ||
-    `Discover PPE solutions for ${INDUSTRY_LABELS[solution.industry]}. Safety equipment, standards, and products.`
+    `Discover PPE solutions for ${usageScenesLabel}. Safety equipment, standards, and products.`
 
   const keywords = solution.metaKeywords
     ? solution.metaKeywords.split(',').map((k: string) => k.trim())
-    : [solution.title, INDUSTRY_LABELS[solution.industry], 'PPE', 'safety equipment', 'protective gear']
+    : [solution.title, usageScenesLabel, 'PPE', 'safety equipment', 'protective gear']
 
   return {
     title,
@@ -94,7 +100,7 @@ export default async function SolutionDetailPage({ params }: Props) {
     notFound()
   }
 
-  const { products } = await getProductsBySolution(solution.industry, { limit: 8 })
+  const { products } = await getProductsBySolution(solution.usageScenes, { limit: 8 })
 
   const hazardsContent = solution.hazardsContent as EditorJSContent | null
   const standardsContent = solution.standardsContent as EditorJSContent | null
@@ -115,7 +121,10 @@ export default async function SolutionDetailPage({ params }: Props) {
     faqContent?.blocks?.length && { id: 'faq', title: 'FAQ' },
   ].filter(Boolean) as { id: string; title: string }[]
 
-  const industryLabel = INDUSTRY_LABELS[solution.industry]
+  const industryLabel = solution.usageScenes
+    .slice(0, 2)
+    .map((s: string) => formatUsageSceneLabel(s as UsageScene))
+    .join(', ')
   const summaryStats = {
     ppeCount: ppeCategories?.length ?? 0,
     materialsCount: materials?.length ?? 0,
@@ -150,7 +159,7 @@ export default async function SolutionDetailPage({ params }: Props) {
       <SolutionHero
         title={solution.title}
         subtitle={solution.subtitle}
-        industry={solution.industry}
+        usageScenes={solution.usageScenes}
         coverImage={solution.coverImage}
         tocItems={tocItems}
         stats={summaryStats}
