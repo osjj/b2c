@@ -1,5 +1,4 @@
 export { SolutionHero } from './hero'
-export { TableOfContents } from './table-of-contents'
 export { HazardsSection } from './hazards-section'
 export { PpeSection } from './ppe-section'
 export { MaterialsSection } from './materials-section'

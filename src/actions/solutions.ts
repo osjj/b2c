@@ -107,7 +107,7 @@ export async function getSolution(id: string) {
 
 // Get solution by slug (for store)
 export async function getSolutionBySlug(slug: string) {
-  const solution = await prisma.solution.findUnique({
+  const solution = await prisma.solution.findFirst({
     where: { slug, isActive: true },
   })
 

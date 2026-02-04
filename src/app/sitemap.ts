@@ -22,6 +22,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     select: { slug: true, updatedAt: true },
   });
 
+  // 获取所有活跃 Solutions
+  const solutions = await prisma.solution.findMany({
+    where: { isActive: true },
+    select: { slug: true, updatedAt: true },
+  });
+
   // 静态页面
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -60,6 +66,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/solutions`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 
   // 产品页面
@@ -86,5 +98,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...productPages, ...categoryPages, ...collectionPages];
+  // Solutions 页面
+  const solutionPages: MetadataRoute.Sitemap = solutions.map((solution) => ({
+    url: `${baseUrl}/solutions/${solution.slug}`,
+    lastModified: solution.updatedAt,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...productPages, ...categoryPages, ...collectionPages, ...solutionPages];
 }

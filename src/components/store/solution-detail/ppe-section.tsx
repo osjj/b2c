@@ -38,68 +38,54 @@ export function PpeSection({ categories, categoryLabels = [] }: PpeSectionProps)
   const labelMap = new Map(categoryLabels.map((category) => [category.slug, category]))
 
   return (
-    <section id="ppe-categories" className="scroll-mt-28 py-12 md:py-16">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Protection Plan
-          </p>
-          <h2 className="mt-2 text-2xl md:text-3xl font-serif font-bold">
-            PPE Categories
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Curated equipment groups aligned to your jobsite hazards.
-          </p>
+    <section id="ppe-categories" className="scroll-mt-20">
+      <div className="rounded-lg border bg-card">
+        <div className="flex items-center justify-between px-4 py-2.5 border-b bg-muted/30">
+          <div className="flex items-center gap-2">
+            <Shield className="h-4 w-4 text-amber-600" />
+            <h2 className="text-sm font-semibold">PPE Categories</h2>
+          </div>
+          <span className="text-xs text-muted-foreground">{categories.length} types</span>
         </div>
-        <div className="flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs text-muted-foreground">
-          <Shield className="h-4 w-4 text-amber-600" />
-          {categories.length} categories
-        </div>
-      </div>
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {categories.map((item) => {
-          const categoryMeta = labelMap.get(item.categorySlug)
-          const label = categoryMeta?.name || formatSlug(item.categorySlug)
-          const isActive = categoryMeta?.isActive !== false
-          const Icon = PPE_ICON_MAP[item.categorySlug] || Tag
+        <div className="p-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+            {categories.map((item) => {
+              const categoryMeta = labelMap.get(item.categorySlug)
+              const label = categoryMeta?.name || formatSlug(item.categorySlug)
+              const isActive = categoryMeta?.isActive !== false
+              const Icon = PPE_ICON_MAP[item.categorySlug] || Tag
 
-          return (
-            <Link
-              key={item.categorySlug}
-              href={`/categories/${item.categorySlug}`}
-              onClick={isActive ? undefined : (event) => event.preventDefault()}
-              aria-disabled={!isActive}
-              className={`group relative overflow-hidden rounded-2xl border bg-background/80 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer ${
-                isActive ? '' : 'opacity-60 cursor-not-allowed'
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
-                  <Icon className="h-6 w-6 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {label}
-                    </h3>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              return (
+                <Link
+                  key={item.categorySlug}
+                  href={`/categories/${item.categorySlug}`}
+                  onClick={isActive ? undefined : (event) => event.preventDefault()}
+                  aria-disabled={!isActive}
+                  className={`group flex items-start gap-3 rounded-md border p-3 transition-all hover:border-primary/30 hover:bg-primary/5 ${
+                    isActive ? '' : 'opacity-50 cursor-not-allowed'
+                  }`}
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-primary/10 text-primary">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  {item.description && (
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {item.description}
-                    </p>
-                  )}
-                  {!isActive && (
-                    <p className="mt-2 text-xs text-muted-foreground">
-                      Category inactive
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Link>
-          )
-        })}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1">
+                      <h3 className="text-sm font-medium text-foreground group-hover:text-primary truncate">
+                        {label}
+                      </h3>
+                      <ArrowRight className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                    </div>
+                    {item.description && (
+                      <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )

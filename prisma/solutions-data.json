@@ -1,232 +1,195 @@
-[
+[{
+  "slug": "ppe-safety-equipment-for-construction-sites",
+  "title": "PPE Safety Equipment for Construction Sites",
+  "subtitle": "A complete head-to-toe PPE guide for construction environments, helping contractors and site managers select compliant protective equipment for real-world hazards.",
+  "industry": "CONSTRUCTION",
+  "coverImage": null,
+  "isActive": true,
+  "sortOrder": 2,
+
+  "hazardsContent": {
+  "time": 1706000000000,
+  "version": "2.28.2",
+  "blocks": [
+    {
+      "id": "hz1",
+      "type": "header",
+      "data": { "text": "Common Hazards on Construction Sites", "level": 2 }
+    },
+    {
+      "id": "hz2",
+      "type": "paragraph",
+      "data": { "text": "Construction sites are dynamic environments where multiple high-risk activities happen simultaneously. Workers operate at heights, handle heavy materials, and work around moving machinery. Proper PPE is not optional — it is the first line of defense against daily workplace hazards." }
+    },
+    {
+      "id": "hz3",
+      "type": "header",
+      "data": { "text": "Major Risk Factors Faced by Construction Workers", "level": 3 }
+    },
+    {
+      "id": "hz4",
+      "type": "list",
+      "data": {
+        "style": "unordered",
+        "items": [
+          { "content": "<b>Falls from height</b> – Working on scaffolding, ladders, roofs, and steel structures exposes workers to severe fall risks.", "items": [] },
+          { "content": "<b>Falling objects</b> – Tools, steel bars, concrete debris, and materials frequently drop from upper levels.", "items": [] },
+          { "content": "<b>Slips, trips, and uneven surfaces</b> – Mud, gravel, dust, and water create unstable walking conditions.", "items": [] },
+          { "content": "<b>Sharp and rough materials</b> – Handling wood, metal sheets, rebar, and concrete can cause cuts and abrasions.", "items": [] },
+          { "content": "<b>Dust and airborne particles</b> – Cement dust and debris irritate eyes and lungs over time.", "items": [] },
+          { "content": "<b>Heavy equipment and vehicle movement</b> – Excavators, cranes, and trucks pose constant struck-by hazards.", "items": [] }
+        ]
+      }
+    },
+    {
+      "id": "hz5",
+      "type": "paragraph",
+      "data": { "text": "Selecting PPE based on these hazards ensures workers are protected from head to toe while maintaining comfort and mobility throughout long work shifts." }
+    }
+  ]
+},
+
+  "standardsContent":{
+  "time": 1706000000000,
+  "version": "2.28.2",
+  "blocks": [
+    {
+      "id": "st1",
+      "type": "header",
+      "data": { "text": "Construction PPE Standards & Compliance", "level": 2 }
+    },
+    {
+      "id": "st2",
+      "type": "paragraph",
+      "data": { "text": "PPE used on construction sites must comply with internationally recognized safety standards. As a certified PPE manufacturer, we provide full documentation including test reports, certificates, and declaration of conformity for all products to support your compliance and audit requirements." }
+    },
+    {
+      "id": "st3",
+      "type": "list",
+      "data": {
+        "style": "unordered",
+        "items": [
+          { "content": "<b>ANSI Z89.1</b> – Industrial head protection standard defining impact and electrical protection classes for hard hats.", "items": [] },
+          { "content": "<b>ANSI Z87.1</b> – Performance requirements for eye and face protection against debris and impact.", "items": [] },
+          { "content": "<b>OSHA 1926 Subpart E</b> – Regulations requiring PPE use in construction environments.", "items": [] },
+          { "content": "<b>EN 397</b> – European standard for industrial safety helmets and shock absorption.", "items": [] },
+          { "content": "<b>EN ISO 20345</b> – Safety footwear standard covering toe protection, puncture resistance, and slip resistance.", "items": [] }
+        ]
+      }
+    },
+    {
+      "id": "st4",
+      "type": "paragraph",
+      "data": { "text": "When sourcing PPE for construction projects, contractors should always verify certificates, test reports, and compliance documentation from suppliers. We provide complete documentation packages with every bulk order to ensure regulatory compliance." }
+    }
+  ]
+},
+
+  "faqContent": {
+  "time": 1706000000000,
+  "version": "2.28.2",
+  "blocks": [
+    {
+      "id": "fq1",
+      "type": "header",
+      "data": { "text": "Frequently Asked Questions", "level": 2 }
+    },
+    {
+      "id": "fq2",
+      "type": "header",
+      "data": { "text": "What is the minimum order quantity (MOQ) for construction PPE?", "level": 3 }
+    },
+    {
+      "id": "fq3",
+      "type": "paragraph",
+      "data": { "text": "Our standard MOQ varies by product category: 500 pieces for hard hats and safety helmets, 1000 pairs for safety boots and footwear, and 2000 pairs for work gloves. We offer flexible MOQ options for first-time buyers, sample orders for quality evaluation, and mixed container solutions for distributors requiring multiple product categories." }
+    },
+    {
+      "id": "fq4",
+      "type": "header",
+      "data": { "text": "Can you provide OEM/ODM customization for construction PPE?", "level": 3 }
+    },
+    {
+      "id": "fq5",
+      "type": "paragraph",
+      "data": { "text": "Yes, we offer comprehensive OEM and ODM services. Customization options include logo printing, custom color matching, branded packaging, and private label programs. For hard hats, we can customize shell colors, suspension systems, and add accessories like chin straps or earmuff attachments. Private label programs are available for orders of 5000+ units with dedicated production lines." }
+    },
+    {
+      "id": "fq6",
+      "type": "header",
+      "data": { "text": "What certifications and compliance documents do you provide?", "level": 3 }
+    },
+    {
+      "id": "fq7",
+      "type": "paragraph",
+      "data": { "text": "All our construction PPE products are certified to international standards including ANSI (US), EN/CE (Europe), and AS/NZS (Australia). We provide complete documentation packages including original certificates, third-party test reports, declaration of conformity (DoC), and material safety data sheets (MSDS). These documents support customs clearance, workplace safety audits, and regulatory compliance requirements." }
+    },
+    {
+      "id": "fq8",
+      "type": "header",
+      "data": { "text": "What is the typical lead time for bulk construction PPE orders?", "level": 3 }
+    },
+    {
+      "id": "fq9",
+      "type": "paragraph",
+      "data": { "text": "Standard products from our warehouse ship within 7-10 days. Production orders for stock items require 15-20 days. OEM and customized orders typically need 30-45 days depending on complexity and quantity. We maintain safety stock programs for repeat customers with predictable demand, enabling faster fulfillment and priority production scheduling." }
+    },
+    {
+      "id": "fq10",
+      "type": "header",
+      "data": { "text": "Do you offer volume pricing or distributor discounts?", "level": 3 }
+    },
+    {
+      "id": "fq11",
+      "type": "paragraph",
+      "data": { "text": "Yes, we offer tiered pricing structures starting at 1000+ units with progressive discounts for larger quantities. Annual contract customers receive additional rebates and price protection. Distributor partnership programs include exclusive territory options, marketing support, co-branded materials, and priority access to new product launches. Contact our B2B sales team for a customized quotation based on your volume requirements." }
+    }
+  ]
+},
+
+"ppeCategories": [
   {
-    "slug": "construction-safety-solutions",
-    "title": "Construction Safety Solutions",
-    "subtitle": "Comprehensive PPE solutions designed for construction sites, protecting workers from falls, head injuries, and other common workplace hazards.",
-    "industry": "CONSTRUCTION",
-    "coverImage": null,
-    "isActive": true,
-    "sortOrder": 0,
-    "hazardsContent": {
-      "time": 1706000000000,
-      "version": "2.28.2",
-      "blocks": [
-        {
-          "id": "hazard1",
-          "type": "header",
-          "data": { "text": "Common Hazards in Construction", "level": 2 }
-        },
-        {
-          "id": "hazard2",
-          "type": "paragraph",
-          "data": { "text": "Construction sites present numerous safety challenges that require proper protective equipment and safety protocols." }
-        },
-        {
-          "id": "hazard3",
-          "type": "list",
-          "data": {
-            "style": "unordered",
-            "items": [
-              { "content": "<b>Falls from height</b> - One of the leading causes of construction fatalities", "items": [] },
-              { "content": "<b>Falling objects</b> - Tools, materials, and debris can cause serious head injuries", "items": [] },
-              { "content": "<b>Struck-by hazards</b> - Moving vehicles, cranes, and swinging loads", "items": [] },
-              { "content": "<b>Electrical hazards</b> - Exposed wiring and overhead power lines", "items": [] },
-              { "content": "<b>Caught-in/between hazards</b> - Heavy machinery and equipment", "items": [] }
-            ]
-          }
-        }
-      ]
-    },
-    "standardsContent": {
-      "time": 1706000000000,
-      "version": "2.28.2",
-      "blocks": [
-        {
-          "id": "std1",
-          "type": "header",
-          "data": { "text": "Safety Standards & Certifications", "level": 2 }
-        },
-        {
-          "id": "std2",
-          "type": "paragraph",
-          "data": { "text": "All PPE for construction must meet strict safety standards to ensure worker protection." }
-        },
-        {
-          "id": "std3",
-          "type": "list",
-          "data": {
-            "style": "unordered",
-            "items": [
-              { "content": "<b>ANSI Z89.1</b> - Standard for industrial head protection", "items": [] },
-              { "content": "<b>ANSI Z87.1</b> - Eye and face protection standards", "items": [] },
-              { "content": "<b>OSHA 1926</b> - Construction industry safety standards", "items": [] },
-              { "content": "<b>EN 397</b> - European standard for industrial safety helmets", "items": [] },
-              { "content": "<b>CSA Z94.1</b> - Canadian standards for industrial protective headwear", "items": [] }
-            ]
-          }
-        }
-      ]
-    },
-    "faqContent": {
-      "time": 1706000000000,
-      "version": "2.28.2",
-      "blocks": [
-        {
-          "id": "faq1",
-          "type": "header",
-          "data": { "text": "Frequently Asked Questions", "level": 2 }
-        },
-        {
-          "id": "faq2",
-          "type": "header",
-          "data": { "text": "What PPE is required on construction sites?", "level": 3 }
-        },
-        {
-          "id": "faq3",
-          "type": "paragraph",
-          "data": { "text": "At minimum, construction workers typically need hard hats, safety glasses, high-visibility vests, steel-toe boots, and gloves. Additional PPE may be required based on specific tasks." }
-        },
-        {
-          "id": "faq4",
-          "type": "header",
-          "data": { "text": "How often should hard hats be replaced?", "level": 3 }
-        },
-        {
-          "id": "faq5",
-          "type": "paragraph",
-          "data": { "text": "Hard hat shells should be replaced every 2-5 years depending on manufacturer recommendations. Suspensions should be replaced annually. Replace immediately if cracked, dented, or after any impact." }
-        }
-      ]
-    },
-    "ppeCategories": [
-      { "categorySlug": "head-protection", "description": "Hard hats and bump caps designed to protect against falling objects and head impacts common on construction sites." },
-      { "categorySlug": "eye-protection", "description": "Safety glasses and goggles to shield eyes from dust, debris, sparks, and harmful UV rays." },
-      { "categorySlug": "hand-protection", "description": "Work gloves for handling rough materials, protection from cuts, and grip enhancement." },
-      { "categorySlug": "foot-protection", "description": "Steel-toe boots and safety footwear to protect against crushing hazards and punctures." }
-    ],
-    "materials": [
-      { "material": "abs-plastic", "description": "Lightweight and impact-resistant material used in hard hat shells, providing excellent protection without added weight." },
-      { "material": "cowhide-leather", "description": "Durable natural material for heavy-duty work gloves, offering excellent abrasion resistance and comfort." },
-      { "material": "steel", "description": "Used in safety toe caps for footwear, providing maximum protection against compression and impact." },
-      { "material": "nylon", "description": "Strong synthetic fiber used in fall protection harnesses and straps for its high tensile strength." }
-    ],
-    "metaTitle": "Construction Safety PPE Solutions | PPE Pro",
-    "metaDescription": "Complete PPE solutions for construction sites. Hard hats, safety glasses, fall protection, and more. OSHA compliant safety equipment.",
-    "metaKeywords": "construction PPE, hard hats, fall protection, safety glasses, construction safety, OSHA compliant"
+    "categorySlug": "head-protection",
+    "description": "ANSI Z89.1 and EN 397 certified safety helmets available in bulk quantities. OEM customization includes logo printing, custom colors, suspension systems, and accessory integration. MOQ 500 pcs with 15-20 day production lead time."
   },
   {
-    "slug": "chemical-industry-safety",
-    "title": "Chemical Industry Safety Solutions",
-    "subtitle": "Specialized PPE solutions for chemical processing and handling, protecting workers from hazardous substances, splashes, and toxic exposures.",
-    "industry": "CHEMICAL",
-    "coverImage": null,
-    "isActive": true,
-    "sortOrder": 1,
-    "hazardsContent": {
-      "time": 1706000000000,
-      "version": "2.28.2",
-      "blocks": [
-        {
-          "id": "chazard1",
-          "type": "header",
-          "data": { "text": "Chemical Industry Hazards", "level": 2 }
-        },
-        {
-          "id": "chazard2",
-          "type": "paragraph",
-          "data": { "text": "Workers in the chemical industry face unique hazards that require specialized protective equipment and rigorous safety protocols." }
-        },
-        {
-          "id": "chazard3",
-          "type": "list",
-          "data": {
-            "style": "unordered",
-            "items": [
-              { "content": "<b>Chemical burns</b> - Contact with corrosive acids, bases, and reactive substances", "items": [] },
-              { "content": "<b>Toxic inhalation</b> - Exposure to harmful vapors, gases, and fumes", "items": [] },
-              { "content": "<b>Skin absorption</b> - Hazardous chemicals that penetrate through skin contact", "items": [] },
-              { "content": "<b>Eye injuries</b> - Splashes and vapors that can cause severe eye damage", "items": [] },
-              { "content": "<b>Fire and explosion</b> - Flammable and reactive chemical combinations", "items": [] }
-            ]
-          }
-        }
-      ]
-    },
-    "standardsContent": {
-      "time": 1706000000000,
-      "version": "2.28.2",
-      "blocks": [
-        {
-          "id": "cstd1",
-          "type": "header",
-          "data": { "text": "Chemical Safety Standards", "level": 2 }
-        },
-        {
-          "id": "cstd2",
-          "type": "paragraph",
-          "data": { "text": "Chemical industry PPE must meet stringent standards for chemical resistance and barrier protection." }
-        },
-        {
-          "id": "cstd3",
-          "type": "list",
-          "data": {
-            "style": "unordered",
-            "items": [
-              { "content": "<b>OSHA 1910.132</b> - General PPE requirements for hazardous substances", "items": [] },
-              { "content": "<b>NFPA 1991</b> - Vapor-protective ensembles for hazmat emergencies", "items": [] },
-              { "content": "<b>EN 374</b> - Gloves providing protection against chemicals and micro-organisms", "items": [] },
-              { "content": "<b>NIOSH</b> - Respiratory protection standards and certifications", "items": [] },
-              { "content": "<b>ASTM F739</b> - Test method for permeation of liquids and gases through protective clothing", "items": [] }
-            ]
-          }
-        }
-      ]
-    },
-    "faqContent": {
-      "time": 1706000000000,
-      "version": "2.28.2",
-      "blocks": [
-        {
-          "id": "cfaq1",
-          "type": "header",
-          "data": { "text": "Frequently Asked Questions", "level": 2 }
-        },
-        {
-          "id": "cfaq2",
-          "type": "header",
-          "data": { "text": "What gloves should I use for chemical handling?", "level": 3 }
-        },
-        {
-          "id": "cfaq3",
-          "type": "paragraph",
-          "data": { "text": "Glove selection depends on the specific chemicals being handled. Nitrile gloves work well for many solvents and oils. Neoprene is effective against acids and bases. Always check chemical resistance charts and breakthrough times." }
-        },
-        {
-          "id": "cfaq4",
-          "type": "header",
-          "data": { "text": "When is respiratory protection required?", "level": 3 }
-        },
-        {
-          "id": "cfaq5",
-          "type": "paragraph",
-          "data": { "text": "Respiratory protection is required when airborne contaminants exceed permissible exposure limits (PELs) and engineering controls are not feasible. A proper respirator fit test and medical evaluation are mandatory." }
-        }
-      ]
-    },
-    "ppeCategories": [
-      { "categorySlug": "respiratory", "description": "Respirators and breathing apparatus to protect against toxic gases, vapors, and particulates in chemical environments." },
-      { "categorySlug": "eye-protection", "description": "Chemical splash goggles and face shields providing sealed protection against liquid splashes and vapors." },
-      { "categorySlug": "hand-protection", "description": "Chemical-resistant gloves made from nitrile, neoprene, or other barrier materials rated for specific chemicals." },
-      { "categorySlug": "body-protection", "description": "Chemical suits, aprons, and coveralls that provide full-body protection against spills and splashes." }
-    ],
-    "materials": [
-      { "material": "nitrile", "description": "Excellent chemical resistance to oils, greases, and many solvents. Ideal for general chemical handling gloves." },
-      { "material": "rubber", "description": "Natural and synthetic rubber provides good resistance to acids, bases, and aqueous solutions." },
-      { "material": "polyester", "description": "Used in chemical-resistant coveralls and suits, often with specialized coatings for enhanced protection." },
-      { "material": "nylon", "description": "Base material for many coated gloves, providing dexterity while supporting chemical-resistant coatings." }
-    ],
-    "metaTitle": "Chemical Industry PPE Solutions | PPE Pro",
-    "metaDescription": "Specialized PPE for chemical processing and handling. Chemical-resistant gloves, respirators, splash protection, and safety suits.",
-    "metaKeywords": "chemical PPE, chemical resistant gloves, respirators, chemical suits, hazmat protection, chemical safety"
+    "categorySlug": "eye-protection",
+    "description": "ANSI Z87.1 certified safety glasses and goggles for construction environments. Anti-fog, anti-scratch coatings available. Bulk packaging options for site distribution. MOQ 1000 pcs with custom branding available."
+  },
+  {
+    "categorySlug": "hand-protection",
+    "description": "EN 388 rated work gloves for construction material handling. Multiple protection levels available from general purpose to cut-resistant. OEM private label programs for distributors. MOQ 2000 pairs with 20-day delivery."
+  },
+  {
+    "categorySlug": "foot-protection",
+    "description": "EN ISO 20345 certified safety boots with steel toe, composite toe, and puncture-resistant options. Bulk wholesale pricing for contractors. OEM customization for branding and specifications. MOQ 1000 pairs."
+  },
+  {
+    "categorySlug": "body-protection",
+    "description": "EN ISO 20471 high-visibility vests and protective workwear meeting construction site requirements. Custom printing for company branding. Bulk orders with volume discounts. MOQ 500 pcs with fast turnaround."
   }
-]
+],
+
+"materials": [
+  {
+    "material": "abs-plastic",
+    "description": "Industrial-grade ABS plastic for hard hat shells. Lightweight yet highly impact-resistant, meeting ANSI Type I and Type II requirements. Available in custom colors for OEM orders with consistent batch quality."
+  },
+  {
+    "material": "cowhide-leather",
+    "description": "Premium cowhide leather sourced from certified tanneries. Superior abrasion resistance and durability for heavy-duty construction gloves. Available in various grades for different price points and MOQ requirements."
+  },
+  {
+    "material": "rubber",
+    "description": "High-traction rubber outsole compounds with slip-resistant patterns. Tested to SRC slip resistance standards. Custom compound formulations available for OEM orders with specific performance requirements."
+  },
+  {
+    "material": "steel",
+    "description": "Reinforced steel toe caps meeting EN 12568 and ASTM F2413 impact standards. 200J impact protection with consistent quality across bulk production. Lightweight composite alternatives available for specific applications."
+  }
+],
+
+  "metaTitle": "Construction PPE Supplier | Bulk Safety Equipment & OEM Solutions",
+  "metaDescription": "Wholesale construction PPE from certified manufacturer. Hard hats, safety boots, gloves with OEM customization, compliance documentation, and volume pricing for contractors and distributors.",
+  "metaKeywords": "construction PPE supplier, wholesale safety equipment, OEM hard hats, bulk safety boots, PPE manufacturer, ANSI certified PPE, construction site safety wholesale, industrial PPE distributor"
+}]

@@ -19,26 +19,15 @@ export function StandardsSection({ content }: StandardsSectionProps) {
   if (!content?.blocks?.length) return null
 
   return (
-    <section id="standards" className="scroll-mt-28 py-12 md:py-16">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Compliance
-          </p>
-          <h2 className="mt-2 text-2xl md:text-3xl font-serif font-bold">
-            Standards & Certifications
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Certifications and standards aligned to industry requirements.
-          </p>
+    <section id="standards" className="scroll-mt-20">
+      <div className="rounded-lg border border-emerald-200/50 bg-emerald-50/30">
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-emerald-200/50 bg-emerald-100/40">
+          <Award className="h-4 w-4 text-emerald-700" />
+          <h2 className="text-sm font-semibold text-emerald-900">Standards & Certifications</h2>
         </div>
-        <div className="flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs text-muted-foreground">
-          <Award className="h-4 w-4 text-primary" />
-          Verified guidance
+        <div className="p-4 text-sm [&_.prose]:prose-sm">
+          <ContentRenderer content={content} />
         </div>
-      </div>
-      <div className="mt-6 rounded-2xl border bg-card/90 p-6 md:p-8 shadow-sm">
-        <ContentRenderer content={content} />
       </div>
     </section>
   )
