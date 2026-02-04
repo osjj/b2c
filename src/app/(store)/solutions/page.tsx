@@ -5,8 +5,7 @@ import { Award, ChevronRight, Factory, HardHat, Shield, ShieldCheck } from 'luci
 import { getSolutions } from '@/actions/solutions'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { INDUSTRY_LABELS } from '@/types/solution'
-import type { Industry } from '@prisma/client'
+import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 export const metadata: Metadata = {
   title: 'Industry Solutions | PPE Pro',
@@ -51,21 +50,21 @@ function BlueprintBackground() {
 export default async function SolutionsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ industry?: string }>
+  searchParams: Promise<{ scene?: string }>
 }) {
   const params = await searchParams
-  const industryFilter = params.industry as Industry | undefined
+  const sceneFilter = params.scene
 
   const { solutions } = await getSolutions({
     activeOnly: true,
-    industry: industryFilter,
+    usageScene: sceneFilter,
     limit: 50,
   })
 
-  const industries = Object.entries(INDUSTRY_LABELS) as [Industry, string][]
-  const activeIndustryCount = new Set(solutions.map((solution) => solution.industry)).size
+  const allScenes = USAGE_SCENES.map((scene) => [scene, formatUsageSceneLabel(scene)] as const)
+  const activeSceneCount = new Set(solutions.flatMap((solution) => solution.usageScenes)).size
   const featuredSolutions = solutions.slice(0, 3)
-  const activeIndustryLabel = industryFilter ? INDUSTRY_LABELS[industryFilter] : 'All Industries'
+  const activeSceneLabel = sceneFilter ? formatUsageSceneLabel(sceneFilter as typeof USAGE_SCENES[number]) : 'All Scenes'
 
   return (
     <div className="relative overflow-hidden bg-ppe-bg-page">
@@ -110,9 +109,9 @@ export default async function SolutionsPage({
                   <MetalTexture />
                   <div className="relative z-10">
                     <p className="text-2xl font-bold text-foreground">
-                      {activeIndustryCount || industries.length}+
+                      {activeSceneCount || allScenes.length}+
                     </p>
-                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Industries</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Scenes</p>
                   </div>
                 </div>
                 <div className="relative overflow-hidden rounded-xl border border-foreground/10 bg-background/85 px-4 py-4 shadow-[0_14px_28px_rgba(15,23,42,0.12)]">
@@ -182,14 +181,14 @@ export default async function SolutionsPage({
         </div>
         </section>
 
-        {/* Industry Filter Tabs */}
+        {/* Usage Scene Filter Tabs */}
         <section className="sticky top-16 z-10 border-y border-foreground/10 bg-background/80 backdrop-blur">
           <div className="container mx-auto py-4 px-6 lg:px-8">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <p className="text-sm text-muted-foreground">Showing</p>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-base font-semibold text-foreground">{activeIndustryLabel}</span>
+                  <span className="text-base font-semibold text-foreground">{activeSceneLabel}</span>
                   <span className="text-xs text-muted-foreground">•</span>
                   <span className="text-sm text-muted-foreground">{solutions.length} active solutions</span>
                 </div>
@@ -197,17 +196,17 @@ export default async function SolutionsPage({
               <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
                 <Link href="/solutions" className="cursor-pointer">
                   <Button
-                    variant={!industryFilter ? 'default' : 'outline'}
+                    variant={!sceneFilter ? 'default' : 'outline'}
                     size="sm"
                     className="rounded-full"
                   >
-                    All Industries
+                    All Scenes
                   </Button>
                 </Link>
-                {industries.map(([value, label]) => (
-                  <Link key={value} href={`/solutions?industry=${value}`} className="cursor-pointer">
+                {allScenes.map(([value, label]) => (
+                  <Link key={value} href={`/solutions?scene=${value}`} className="cursor-pointer">
                     <Button
-                      variant={industryFilter === value ? 'default' : 'outline'}
+                      variant={sceneFilter === value ? 'default' : 'outline'}
                       size="sm"
                       className="whitespace-nowrap rounded-full"
                     >
@@ -229,11 +228,11 @@ export default async function SolutionsPage({
                 <Shield className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <h2 className="text-2xl font-bold mb-2">No Solutions Found</h2>
                 <p className="text-muted-foreground mb-6">
-                  {industryFilter
-                    ? `No solutions available for ${INDUSTRY_LABELS[industryFilter]} yet.`
+                  {sceneFilter
+                    ? `No solutions available for ${formatUsageSceneLabel(sceneFilter as typeof USAGE_SCENES[number])} yet.`
                     : 'No solutions available at the moment.'}
                 </p>
-                {industryFilter && (
+                {sceneFilter && (
                   <Button asChild variant="outline">
                     <Link href="/solutions">View All Solutions</Link>
                   </Button>
@@ -264,7 +263,7 @@ export default async function SolutionsPage({
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                         <Badge className="absolute bottom-4 left-4 bg-white/90 text-foreground">
-                          {INDUSTRY_LABELS[solution.industry]}
+                          {solution.usageScenes[0] ? formatUsageSceneLabel(solution.usageScenes[0] as typeof USAGE_SCENES[number]) : 'General'}
                         </Badge>
                       </div>
 
@@ -326,7 +325,7 @@ export default async function SolutionsPage({
                       <div className="relative z-10">
                         <div className="flex items-center justify-between">
                           <Badge className="bg-primary/10 text-primary">
-                            {INDUSTRY_LABELS[solution.industry]}
+                            {solution.usageScenes[0] ? formatUsageSceneLabel(solution.usageScenes[0] as typeof USAGE_SCENES[number]) : 'General'}
                           </Badge>
                           <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
                         </div>

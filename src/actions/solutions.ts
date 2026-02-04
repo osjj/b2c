@@ -5,13 +5,11 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
-import type { Industry } from '@prisma/client'
 
 const solutionSchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
   title: z.string().min(1, 'Title is required'),
   subtitle: z.string().optional().nullable(),
-  industry: z.enum(['CONSTRUCTION', 'FACTORY', 'MINING', 'ELECTRICAL', 'WAREHOUSE', 'CHEMICAL', 'FOOD_PROCESSING', 'LOGISTICS']).default('CONSTRUCTION'),
   usageScenes: z.array(z.string()).min(1, 'Usage scenes are required'),
   coverImage: z.string().optional().nullable(),
   isActive: z.boolean().default(true),
@@ -38,7 +36,6 @@ export async function getSolutions({
   limit = 10,
   search = '',
   usageScene,
-  industry,
   isActive,
   activeOnly = false,
 }: {
@@ -46,7 +43,6 @@ export async function getSolutions({
   limit?: number
   search?: string
   usageScene?: string
-  industry?: Industry
   isActive?: boolean
   activeOnly?: boolean
 } = {}) {
@@ -61,10 +57,6 @@ export async function getSolutions({
 
   if (usageScene) {
     where.usageScenes = { has: usageScene }
-  }
-
-  if (industry) {
-    where.industry = industry
   }
 
   if (typeof isActive === 'boolean') {
@@ -207,7 +199,6 @@ export async function createSolution(
     slug: formData.get('slug'),
     title: formData.get('title'),
     subtitle: formData.get('subtitle') || null,
-    industry: formData.get('industry') || 'CONSTRUCTION',
     usageScenes: (() => {
       const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
       if (values.length === 1) {
@@ -255,7 +246,6 @@ export async function createSolution(
       slug: data.slug,
       title: data.title,
       subtitle: data.subtitle,
-      industry: data.industry,
       usageScenes: data.usageScenes,
       coverImage: data.coverImage,
       isActive: data.isActive,
@@ -308,7 +298,6 @@ export async function updateSolution(
     slug: formData.get('slug'),
     title: formData.get('title'),
     subtitle: formData.get('subtitle') || null,
-    industry: formData.get('industry') || 'CONSTRUCTION',
     usageScenes: (() => {
       const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
       if (values.length === 1) {
@@ -357,7 +346,6 @@ export async function updateSolution(
       slug: data.slug,
       title: data.title,
       subtitle: data.subtitle,
-      industry: data.industry,
       usageScenes: data.usageScenes,
       coverImage: data.coverImage,
       isActive: data.isActive,

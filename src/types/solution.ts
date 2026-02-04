@@ -1,5 +1,9 @@
-import type { Industry, Solution } from '@prisma/client'
+import type { Solution } from '@prisma/client'
 import type { OutputData } from '@editorjs/editorjs'
+import { USAGE_SCENES, formatUsageSceneLabel, type UsageScene } from '@/lib/usage-scenes'
+
+// Re-export usage scene utilities for convenience
+export { USAGE_SCENES, formatUsageSceneLabel, type UsageScene }
 
 // PPE Categories preset list
 export const PPE_CATEGORIES = [
@@ -23,18 +27,6 @@ export const MATERIALS = [
   { key: 'kevlar', label: 'Kevlar' },
   { key: 'nitrile', label: 'Nitrile' },
 ] as const
-
-// Industry labels for display
-export const INDUSTRY_LABELS: Record<Industry, string> = {
-  CONSTRUCTION: 'Construction',
-  FACTORY: 'Factory',
-  MINING: 'Mining',
-  ELECTRICAL: 'Electrical',
-  WAREHOUSE: 'Warehouse',
-  CHEMICAL: 'Chemical',
-  FOOD_PROCESSING: 'Food Processing',
-  LOGISTICS: 'Logistics',
-}
 
 // PPE Category item stored in Solution.ppeCategories JSON
 export interface PpeCategoryItem {
@@ -62,7 +54,7 @@ export interface SolutionFormData {
   slug: string
   title: string
   subtitle?: string | null
-  industry: Industry
+  usageScenes: string[]
   coverImage?: string | null
   isActive: boolean
   sortOrder: number
@@ -82,13 +74,10 @@ export interface SolutionListItem {
   slug: string
   title: string
   subtitle: string | null
-  industry: Industry
+  usageScenes: string[]
   coverImage: string | null
   isActive: boolean
   sortOrder: number
   createdAt: Date
   updatedAt: Date
 }
-
-// Re-export Industry enum type
-export type { Industry }

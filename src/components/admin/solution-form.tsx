@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState, useState, useRef, useTransition } from 'react'
-import { Industry, Category } from '@prisma/client'
+import { Category } from '@prisma/client'
 import { createSolution, updateSolution, type SolutionState } from '@/actions/solutions'
 import { generateSlug } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -9,20 +9,14 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { ImageUpload } from './image-upload'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 import { PpeCategoriesEditor } from './ppe-categories-editor'
 import { MaterialsEditor } from './materials-editor'
-import { INDUSTRY_LABELS, type PpeCategoryItem, type MaterialItem } from '@/types/solution'
+import { USAGE_SCENES, formatUsageSceneLabel, type PpeCategoryItem, type MaterialItem } from '@/types/solution'
 import type { ImageData } from '@/types/image'
 import type { JsonValue } from '@prisma/client/runtime/library'
 
@@ -32,7 +26,7 @@ interface SolutionWithJsonFields {
   slug: string
   title: string
   subtitle: string | null
-  industry: Industry
+  usageScenes: string[]
   coverImage: string | null
   isActive: boolean
   sortOrder: number
@@ -58,7 +52,7 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
   const [title, setTitle] = useState(solution?.title || '')
   const [slug, setSlug] = useState(solution?.slug || '')
   const [subtitle, setSubtitle] = useState(solution?.subtitle || '')
-  const [industry, setIndustry] = useState<Industry>(solution?.industry || 'CONSTRUCTION')
+  const [usageScenes, setUsageScenes] = useState<string[]>(solution?.usageScenes || [])
   const [coverImage, setCoverImage] = useState<ImageData[]>(
     solution?.coverImage ? [{ url: solution.coverImage, alt: solution.title }] : []
   )
@@ -154,7 +148,7 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
             <CardHeader>
               <CardTitle>Basic Information</CardTitle>
               <CardDescription>
-                Solution title, industry, and basic details
+                Solution title, usage scenes, and basic details
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -190,23 +184,34 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="industry">Industry *</Label>
-                <Select
-                  name="industry"
-                  value={industry}
-                  onValueChange={(value) => setIndustry(value as Industry)}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select industry" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(INDUSTRY_LABELS).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Label>Usage Scenes *</Label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 p-4 border rounded-lg">
+                  {USAGE_SCENES.map((scene) => (
+                    <div key={scene} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`scene-${scene}`}
+                        checked={usageScenes.includes(scene)}
+                        onCheckedChange={(checked) => {
+                          if (checked) {
+                            setUsageScenes([...usageScenes, scene])
+                          } else {
+                            setUsageScenes(usageScenes.filter((s) => s !== scene))
+                          }
+                        }}
+                      />
+                      <label
+                        htmlFor={`scene-${scene}`}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                      >
+                        {formatUsageSceneLabel(scene)}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+                <input type="hidden" name="usageScenes" value={JSON.stringify(usageScenes)} />
+                {state.errors?.usageScenes && (
+                  <p className="text-sm text-destructive">{state.errors.usageScenes[0]}</p>
+                )}
               </div>
 
               <div className="space-y-2">

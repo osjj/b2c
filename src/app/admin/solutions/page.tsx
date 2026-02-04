@@ -21,24 +21,23 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Pagination } from '@/components/admin/pagination'
-import { INDUSTRY_LABELS } from '@/types/solution'
-import type { Industry } from '@prisma/client'
+import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 import { SolutionActions } from './solution-actions'
 
 export default async function AdminSolutionsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; search?: string; industry?: string }>
+  searchParams: Promise<{ page?: string; search?: string; scene?: string }>
 }) {
   const params = await searchParams
   const page = Number(params.page) || 1
   const search = params.search || ''
-  const industry = params.industry as Industry | undefined
+  const sceneFilter = params.scene
 
   const { solutions, pagination } = await getSolutions({
     page,
     search,
-    industry: industry || undefined,
+    usageScene: sceneFilter || undefined,
   })
 
   return (
@@ -67,15 +66,15 @@ export default async function AdminSolutionsPage({
         </form>
         <form>
           <input type="hidden" name="search" value={search} />
-          <Select name="industry" defaultValue={industry || 'all'}>
+          <Select name="scene" defaultValue={sceneFilter || 'all'}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Filter by industry" />
+              <SelectValue placeholder="Filter by scene" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Industries</SelectItem>
-              {Object.entries(INDUSTRY_LABELS).map(([value, label]) => (
-                <SelectItem key={value} value={value}>
-                  {label}
+              <SelectItem value="all">All Scenes</SelectItem>
+              {USAGE_SCENES.map((scene) => (
+                <SelectItem key={scene} value={scene}>
+                  {formatUsageSceneLabel(scene)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -89,7 +88,7 @@ export default async function AdminSolutionsPage({
             <TableRow>
               <TableHead className="w-[80px]">Image</TableHead>
               <TableHead>Title</TableHead>
-              <TableHead>Industry</TableHead>
+              <TableHead>Usage Scenes</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Order</TableHead>
               <TableHead className="text-right">Actions</TableHead>
@@ -128,9 +127,16 @@ export default async function AdminSolutionsPage({
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary">
-                      {INDUSTRY_LABELS[solution.industry]}
-                    </Badge>
+                    <div className="flex flex-wrap gap-1">
+                      {solution.usageScenes.slice(0, 2).map((scene) => (
+                        <Badge key={scene} variant="secondary">
+                          {formatUsageSceneLabel(scene as typeof USAGE_SCENES[number])}
+                        </Badge>
+                      ))}
+                      {solution.usageScenes.length > 2 && (
+                        <Badge variant="outline">+{solution.usageScenes.length - 2}</Badge>
+                      )}
+                    </div>
                   </TableCell>
                   <TableCell>
                     {solution.isActive ? (

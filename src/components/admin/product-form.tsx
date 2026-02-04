@@ -27,8 +27,7 @@ import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
-import { INDUSTRY_LABELS } from '@/types/solution'
-import type { Industry } from '@prisma/client'
+import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 type AttributeWithOptions = Attribute & {
   options: AttributeOption[]
@@ -764,31 +763,31 @@ export function ProductForm({ product, categories, collections = [], productColl
 
           <Card>
             <CardHeader>
-              <CardTitle>Industry Solutions</CardTitle>
+              <CardTitle>Usage Scenes</CardTitle>
               <CardDescription>
-                Select industries where this product is applicable
+                Select usage scenes where this product is applicable
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {(Object.entries(INDUSTRY_LABELS) as [Industry, string][]).map(([value, label]) => (
-                  <div key={value} className="flex items-center space-x-2">
+                {USAGE_SCENES.map((scene) => (
+                  <div key={scene} className="flex items-center space-x-2">
                     <Checkbox
-                      id={`industry-${value}`}
-                      checked={usageScenes.includes(value)}
+                      id={`scene-${scene}`}
+                      checked={usageScenes.includes(scene)}
                       onCheckedChange={(checked) => {
                         if (checked) {
-                          setUsageScenes([...usageScenes, value])
+                          setUsageScenes([...usageScenes, scene])
                         } else {
-                          setUsageScenes(usageScenes.filter((s) => s !== value))
+                          setUsageScenes(usageScenes.filter((s) => s !== scene))
                         }
                       }}
                     />
                     <label
-                      htmlFor={`industry-${value}`}
+                      htmlFor={`scene-${scene}`}
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                     >
-                      {label}
+                      {formatUsageSceneLabel(scene)}
                     </label>
                   </div>
                 ))}
