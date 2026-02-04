@@ -468,6 +468,17 @@ enum QuoteStatus {
   EXPIRED
 }
 
+enum Industry {
+  CONSTRUCTION
+  FACTORY
+  MINING
+  ELECTRICAL
+  WAREHOUSE
+  CHEMICAL
+  FOOD_PROCESSING
+  LOGISTICS
+}
+
 // ==================== Chat Models ====================
 
 enum SessionStatus {
@@ -537,6 +548,7 @@ model Solution {
   slug        String   @unique
   title       String
   subtitle    String?  @db.Text // Hero subtitle/intro
+  industry    Industry @default(CONSTRUCTION)
   usageScenes String[] @default([])
   coverImage  String?
   isActive    Boolean  @default(true)
