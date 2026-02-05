@@ -1,0 +1,61 @@
+model Solution {
+  id             String   @id
+  slug           String   @unique
+  title          String
+  excerpt        String?
+  coverImage     String?  @map("cover_image")
+
+  isActive       Boolean  @default(true) @map("is_active")
+  sortOrder      Int      @default(0)    @map("sort_order")
+
+  seoTitle       String?  @map("seo_title")
+  seoDescription String?  @map("seo_description")
+  seoKeywords    String?  @map("seo_keywords")
+
+  usageScenes    String[] @default([])   @map("usage_scenes")
+
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt      @map("updated_at")
+
+  sections       SolutionSection[]
+  productLinks   SolutionProductLink[]
+
+  @@map("solutions")
+}
+
+model SolutionSection {
+  id         String   @id
+  solutionId String   @map("solution_id")
+  sort       Int      @default(0)
+  type       String
+  key        String
+  title      String?
+  enabled    Boolean  @default(true)
+  data       Json     @default("{}")
+
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt      @map("updated_at")
+
+  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  @@unique([solutionId, key])
+  @@index([solutionId, sort])
+  @@index([solutionId, type])
+  @@map("solution_sections")
+}
+
+model SolutionProductLink {
+  id         String   @id
+  solutionId String   @map("solution_id")
+  blockKey   String   @map("block_key")
+  productId  String   @map("product_id")
+  sort       Int      @default(0)
+
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  @@unique([solutionId, blockKey, productId])
+  @@index([solutionId, blockKey, sort])
+  @@map("solution_product_links")
+}

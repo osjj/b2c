@@ -1,7 +1,2 @@
 export { SolutionHero } from './hero'
-export { HazardsSection } from './hazards-section'
-export { PpeSection } from './ppe-section'
-export { MaterialsSection } from './materials-section'
-export { ProductsSection } from './products-section'
-export { StandardsSection } from './standards-section'
-export { FaqSection } from './faq-section'
+export { SolutionSections } from './sections'

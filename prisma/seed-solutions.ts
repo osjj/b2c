@@ -1,41 +1,44 @@
-/**
- * Solutions 批量导入脚本
- *
- * 使用方法:
- * npx ts-node --compiler-options '{"module":"CommonJS"}' prisma/seed-solutions.ts
- *
- * 或者如果上面的命令不工作，可以用:
- * npx tsx prisma/seed-solutions.ts
- */
-
+'use client'
 import { PrismaClient } from '@prisma/client'
 import * as fs from 'fs'
 import * as path from 'path'
+import { randomUUID } from 'crypto'
 
 const prisma = new PrismaClient()
+
+interface SolutionSectionData {
+  key: string
+  type: string
+  title?: string | null
+  enabled?: boolean
+  sort?: number
+  data: any
+}
 
 interface SolutionData {
   slug: string
   title: string
-  subtitle: string | null
+  excerpt: string | null
   usageScenes: string[]
   coverImage: string | null
   isActive: boolean
   sortOrder: number
-  hazardsContent: any
-  standardsContent: any
-  faqContent: any
-  ppeCategories: any
-  materials: any
-  metaTitle: string | null
-  metaDescription: string | null
-  metaKeywords: string | null
+  seoTitle: string | null
+  seoDescription: string | null
+  seoKeywords: string | null
+  sections: SolutionSectionData[]
+}
+
+const createId = () => {
+  if (typeof randomUUID === 'function') {
+    return randomUUID()
+  }
+  return `id_${Date.now()}_${Math.random().toString(16).slice(2)}`
 }
 
 async function main() {
   console.log('🚀 开始导入 Solutions 数据...\n')
 
-  // 读取 JSON 数据文件
   const dataPath = path.join(__dirname, 'solutions-data.json')
   const rawData = fs.readFileSync(dataPath, 'utf-8')
   const solutions: SolutionData[] = JSON.parse(rawData)
@@ -43,63 +46,53 @@ async function main() {
   console.log(`📦 找到 ${solutions.length} 条数据\n`)
 
   let created = 0
-  let updated = 0
+  let skipped = 0
   let errors = 0
 
   for (const solution of solutions) {
     try {
-      // 检查是否已存在（通过 slug）
       const existing = await prisma.solution.findUnique({
-        where: { slug: solution.slug }
+        where: { slug: solution.slug },
       })
 
       if (existing) {
-        // 更新现有记录
-        await prisma.solution.update({
-          where: { slug: solution.slug },
-          data: {
-            title: solution.title,
-            subtitle: solution.subtitle,
-            usageScenes: solution.usageScenes,
-            coverImage: solution.coverImage,
-            isActive: solution.isActive,
-            sortOrder: solution.sortOrder,
-            hazardsContent: solution.hazardsContent,
-            standardsContent: solution.standardsContent,
-            faqContent: solution.faqContent,
-            ppeCategories: solution.ppeCategories,
-            materials: solution.materials,
-            metaTitle: solution.metaTitle,
-            metaDescription: solution.metaDescription,
-            metaKeywords: solution.metaKeywords,
-          }
-        })
-        console.log(`✏️  更新: ${solution.title} (${solution.slug})`)
-        updated++
-      } else {
-        // 创建新记录
-        await prisma.solution.create({
-          data: {
-            slug: solution.slug,
-            title: solution.title,
-            subtitle: solution.subtitle,
-            usageScenes: solution.usageScenes,
-            coverImage: solution.coverImage,
-            isActive: solution.isActive,
-            sortOrder: solution.sortOrder,
-            hazardsContent: solution.hazardsContent,
-            standardsContent: solution.standardsContent,
-            faqContent: solution.faqContent,
-            ppeCategories: solution.ppeCategories,
-            materials: solution.materials,
-            metaTitle: solution.metaTitle,
-            metaDescription: solution.metaDescription,
-            metaKeywords: solution.metaKeywords,
-          }
-        })
-        console.log(`✅ 创建: ${solution.title} (${solution.slug})`)
-        created++
+        console.log(`⏭️  跳过: ${solution.title} (${solution.slug})`)
+        skipped++
+        continue
       }
+
+      const normalizedSections = (solution.sections || []).map((section, index) => ({
+        id: createId(),
+        sort: typeof section.sort === 'number' ? section.sort : index,
+        type: section.type,
+        key: section.key || `section-${index + 1}`,
+        title: section.title ?? null,
+        enabled: section.enabled ?? true,
+        data: section.data ?? {},
+      }))
+
+      await prisma.solution.create({
+        data: {
+          id: createId(),
+          slug: solution.slug,
+          title: solution.title,
+          excerpt: solution.excerpt,
+          usageScenes: solution.usageScenes,
+          coverImage: solution.coverImage,
+          isActive: solution.isActive,
+          sortOrder: solution.sortOrder,
+          seoTitle: solution.seoTitle,
+          seoDescription: solution.seoDescription,
+          seoKeywords: solution.seoKeywords,
+          sections: normalizedSections.length
+            ? {
+                create: normalizedSections,
+              }
+            : undefined,
+        },
+      })
+      console.log(`✅ 创建: ${solution.title} (${solution.slug})`)
+      created++
     } catch (error) {
       console.error(`❌ 错误: ${solution.title} - ${error}`)
       errors++
@@ -109,7 +102,7 @@ async function main() {
   console.log('\n' + '='.repeat(50))
   console.log(`📊 导入完成!`)
   console.log(`   ✅ 创建: ${created}`)
-  console.log(`   ✏️  更新: ${updated}`)
+  console.log(`   ⏭️  跳过: ${skipped}`)
   console.log(`   ❌ 错误: ${errors}`)
   console.log('='.repeat(50))
 }

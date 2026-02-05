@@ -289,7 +289,7 @@ export default async function SolutionsPage({
                     <article className="relative bg-card rounded-2xl border border-border overflow-hidden shadow-sm hover:shadow-2xl hover:border-primary/20 transition-all duration-500">
                       <div className="grid md:grid-cols-2">
                         {/* Image Side */}
-                        <div className="relative aspect-[4/3] md:aspect-auto bg-secondary overflow-hidden">
+                        <div className="relative aspect-[16/9] md:aspect-auto bg-secondary overflow-hidden">
                           {featuredSolution.coverImage ? (
                             <Image
                               src={featuredSolution.coverImage}
@@ -324,9 +324,9 @@ export default async function SolutionsPage({
                             {featuredSolution.title}
                           </h3>
 
-                          {featuredSolution.subtitle && (
+                          {featuredSolution.excerpt && (
                             <p className="text-muted-foreground mb-6 line-clamp-3">
-                              {featuredSolution.subtitle}
+                              {featuredSolution.excerpt}
                             </p>
                           )}
 
@@ -372,7 +372,7 @@ export default async function SolutionsPage({
                     >
                       <article className="h-full bg-card rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 flex flex-col">
                         {/* Image section */}
-                        <div className="relative aspect-[16/10] bg-secondary overflow-hidden">
+                        <div className="relative aspect-[16/9] bg-secondary overflow-hidden">
                           {solution.coverImage ? (
                             <Image
                               src={solution.coverImage}
@@ -408,9 +408,9 @@ export default async function SolutionsPage({
                           <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
                             {solution.title}
                           </h3>
-                          {solution.subtitle && (
+                          {solution.excerpt && (
                             <p className="text-xs text-muted-foreground line-clamp-2 mb-3 flex-1">
-                              {solution.subtitle}
+                              {solution.excerpt}
                             </p>
                           )}
 

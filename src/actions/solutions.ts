@@ -5,23 +5,40 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
+import type { SolutionSectionInput, SolutionSectionType } from '@/types/solution'
+
+const SECTION_TYPES = [
+  'hero',
+  'paragraphs',
+  'list',
+  'table',
+  'group',
+  'callout',
+  'cta',
+  'faq',
+] as const satisfies SolutionSectionType[]
+
+const sectionSchema = z.object({
+  key: z.string().min(1, 'Section key is required'),
+  type: z.enum(SECTION_TYPES),
+  title: z.string().optional().nullable(),
+  enabled: z.boolean().default(true),
+  sort: z.coerce.number().int().optional(),
+  data: z.any().default({}),
+})
 
 const solutionSchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
   title: z.string().min(1, 'Title is required'),
-  subtitle: z.string().optional().nullable(),
+  excerpt: z.string().optional().nullable(),
   usageScenes: z.array(z.string()).min(1, 'Usage scenes are required'),
   coverImage: z.string().optional().nullable(),
   isActive: z.boolean().default(true),
   sortOrder: z.coerce.number().int().default(0),
-  hazardsContent: z.any().optional().nullable(),
-  standardsContent: z.any().optional().nullable(),
-  faqContent: z.any().optional().nullable(),
-  ppeCategories: z.any().optional().nullable(),
-  materials: z.any().optional().nullable(),
-  metaTitle: z.string().max(60).optional().nullable(),
-  metaDescription: z.string().max(160).optional().nullable(),
-  metaKeywords: z.string().optional().nullable(),
+  seoTitle: z.string().max(60).optional().nullable(),
+  seoDescription: z.string().max(160).optional().nullable(),
+  seoKeywords: z.string().optional().nullable(),
+  sections: z.array(sectionSchema).default([]),
 })
 
 export type SolutionState = {
@@ -29,6 +46,49 @@ export type SolutionState = {
   errors?: Record<string, string[]>
   success?: boolean
 }
+
+const createId = () => {
+  if (globalThis.crypto?.randomUUID) {
+    return globalThis.crypto.randomUUID()
+  }
+  return `id_${Date.now()}_${Math.random().toString(16).slice(2)}`
+}
+
+const parseUsageScenes = (formData: FormData) => {
+  const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
+  if (values.length === 1) {
+    const value = values[0]?.trim()
+    if (value?.startsWith('[')) {
+      try {
+        return JSON.parse(value)
+      } catch {
+        return values
+      }
+    }
+  }
+  return values
+}
+
+const parseSectionsField = (formData: FormData): SolutionSectionInput[] => {
+  const value = formData.get('sections')
+  if (!value || typeof value !== 'string' || value === 'null') return []
+  try {
+    const parsed = JSON.parse(value)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+const normalizeSections = (sections: SolutionSectionInput[]) =>
+  sections.map((section, index) => ({
+    key: section.key?.trim() || `section-${index + 1}`,
+    type: section.type,
+    title: section.title ?? null,
+    enabled: section.enabled ?? true,
+    sort: typeof section.sort === 'number' ? section.sort : index,
+    data: section.data ?? {},
+  }))
 
 // Get all solutions with pagination and filters
 export async function getSolutions({
@@ -90,6 +150,7 @@ export async function getSolutions({
 export async function getSolution(id: string) {
   const solution = await prisma.solution.findUnique({
     where: { id },
+    include: { sections: { orderBy: { sort: 'asc' } } },
   })
 
   return solution
@@ -99,73 +160,10 @@ export async function getSolution(id: string) {
 export async function getSolutionBySlug(slug: string) {
   const solution = await prisma.solution.findFirst({
     where: { slug, isActive: true },
+    include: { sections: { orderBy: { sort: 'asc' } } },
   })
 
   return solution
-}
-
-// Get products by solution usage scenes
-export async function getProductsBySolution(
-  usageScenes: string[],
-  {
-    page = 1,
-    limit = 12,
-    categorySlug,
-  }: {
-    page?: number
-    limit?: number
-    categorySlug?: string
-  } = {}
-) {
-  // Return empty if no usage scenes provided
-  if (!usageScenes || usageScenes.length === 0) {
-    return {
-      products: [],
-      pagination: { page, limit, total: 0, totalPages: 0 },
-    }
-  }
-
-  const where: any = {
-    isActive: true,
-    usageScenes: { hasSome: usageScenes },
-  }
-
-  if (categorySlug) {
-    where.category = { slug: categorySlug }
-  }
-
-  const [productsRaw, total] = await Promise.all([
-    prisma.product.findMany({
-      where,
-      include: {
-        category: true,
-        images: { orderBy: { sortOrder: 'asc' }, take: 1 },
-      },
-      orderBy: [{ sortOrder: 'asc' }, { createdAt: 'desc' }],
-      skip: (page - 1) * limit,
-      take: limit,
-    }),
-    prisma.product.count({ where }),
-  ])
-
-  // Convert Decimal to number for client component serialization
-  const products = productsRaw.map((p) => ({
-    ...p,
-    price: Number(p.price),
-    comparePrice: p.comparePrice ? Number(p.comparePrice) : null,
-    cost: p.cost ? Number(p.cost) : null,
-    weight: p.weight ? Number(p.weight) : null,
-  }))
-
-  return {
-    products,
-    pagination: {
-      page,
-      limit,
-      total,
-      totalPages: Math.ceil(total / limit),
-    },
-  }
 }
 
 // Create solution
@@ -175,55 +173,18 @@ export async function createSolution(
 ): Promise<SolutionState> {
   await requireAdmin()
 
-  // Parse JSON fields
-  const parseJsonField = (fieldName: string) => {
-    const value = formData.get(fieldName)
-    if (!value || typeof value !== 'string' || value === 'null') return null
-    try {
-      const parsed = JSON.parse(value)
-      // For Editor.js content, check if it has blocks
-      if (parsed?.blocks !== undefined) {
-        return parsed.blocks.length > 0 ? parsed : null
-      }
-      // For arrays, check if not empty
-      if (Array.isArray(parsed)) {
-        return parsed.length > 0 ? parsed : null
-      }
-      return parsed
-    } catch {
-      return null
-    }
-  }
-
   const rawData = {
     slug: formData.get('slug'),
     title: formData.get('title'),
-    subtitle: formData.get('subtitle') || null,
-    usageScenes: (() => {
-      const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
-      if (values.length === 1) {
-        const value = values[0]?.trim()
-        if (value?.startsWith('[')) {
-          try {
-            return JSON.parse(value)
-          } catch {
-            return values
-          }
-        }
-      }
-      return values
-    })(),
+    excerpt: formData.get('excerpt') || null,
+    usageScenes: parseUsageScenes(formData),
     coverImage: formData.get('coverImage') || null,
     isActive: formData.get('isActive') === 'true',
     sortOrder: formData.get('sortOrder') || 0,
-    hazardsContent: parseJsonField('hazardsContent'),
-    standardsContent: parseJsonField('standardsContent'),
-    faqContent: parseJsonField('faqContent'),
-    ppeCategories: parseJsonField('ppeCategories'),
-    materials: parseJsonField('materials'),
-    metaTitle: formData.get('metaTitle') || null,
-    metaDescription: formData.get('metaDescription') || null,
-    metaKeywords: formData.get('metaKeywords') || null,
+    seoTitle: formData.get('seoTitle') || null,
+    seoDescription: formData.get('seoDescription') || null,
+    seoKeywords: formData.get('seoKeywords') || null,
+    sections: parseSectionsField(formData),
   }
 
   const result = solutionSchema.safeParse(rawData)
@@ -233,7 +194,6 @@ export async function createSolution(
 
   const data = result.data
 
-  // Check slug uniqueness
   const existing = await prisma.solution.findUnique({
     where: { slug: data.slug },
   })
@@ -241,23 +201,34 @@ export async function createSolution(
     return { error: 'Slug already exists' }
   }
 
+  const normalizedSections = normalizeSections(data.sections)
+
   await prisma.solution.create({
     data: {
+      id: createId(),
       slug: data.slug,
       title: data.title,
-      subtitle: data.subtitle,
+      excerpt: data.excerpt,
       usageScenes: data.usageScenes,
       coverImage: data.coverImage,
       isActive: data.isActive,
       sortOrder: data.sortOrder,
-      hazardsContent: data.hazardsContent ?? undefined,
-      standardsContent: data.standardsContent ?? undefined,
-      faqContent: data.faqContent ?? undefined,
-      ppeCategories: data.ppeCategories ?? undefined,
-      materials: data.materials ?? undefined,
-      metaTitle: data.metaTitle,
-      metaDescription: data.metaDescription,
-      metaKeywords: data.metaKeywords,
+      seoTitle: data.seoTitle,
+      seoDescription: data.seoDescription,
+      seoKeywords: data.seoKeywords,
+      sections: normalizedSections.length
+        ? {
+            create: normalizedSections.map((section) => ({
+              id: createId(),
+              sort: section.sort,
+              type: section.type,
+              key: section.key,
+              title: section.title,
+              enabled: section.enabled,
+              data: section.data,
+            })),
+          }
+        : undefined,
     },
   })
 
@@ -274,55 +245,18 @@ export async function updateSolution(
 ): Promise<SolutionState> {
   await requireAdmin()
 
-  // Parse JSON fields
-  const parseJsonField = (fieldName: string) => {
-    const value = formData.get(fieldName)
-    if (!value || typeof value !== 'string' || value === 'null') return null
-    try {
-      const parsed = JSON.parse(value)
-      // For Editor.js content, check if it has blocks
-      if (parsed?.blocks !== undefined) {
-        return parsed.blocks.length > 0 ? parsed : null
-      }
-      // For arrays, check if not empty
-      if (Array.isArray(parsed)) {
-        return parsed.length > 0 ? parsed : null
-      }
-      return parsed
-    } catch {
-      return null
-    }
-  }
-
   const rawData = {
     slug: formData.get('slug'),
     title: formData.get('title'),
-    subtitle: formData.get('subtitle') || null,
-    usageScenes: (() => {
-      const values = formData.getAll('usageScenes').filter((value) => typeof value === 'string') as string[]
-      if (values.length === 1) {
-        const value = values[0]?.trim()
-        if (value?.startsWith('[')) {
-          try {
-            return JSON.parse(value)
-          } catch {
-            return values
-          }
-        }
-      }
-      return values
-    })(),
+    excerpt: formData.get('excerpt') || null,
+    usageScenes: parseUsageScenes(formData),
     coverImage: formData.get('coverImage') || null,
     isActive: formData.get('isActive') === 'true',
     sortOrder: formData.get('sortOrder') || 0,
-    hazardsContent: parseJsonField('hazardsContent'),
-    standardsContent: parseJsonField('standardsContent'),
-    faqContent: parseJsonField('faqContent'),
-    ppeCategories: parseJsonField('ppeCategories'),
-    materials: parseJsonField('materials'),
-    metaTitle: formData.get('metaTitle') || null,
-    metaDescription: formData.get('metaDescription') || null,
-    metaKeywords: formData.get('metaKeywords') || null,
+    seoTitle: formData.get('seoTitle') || null,
+    seoDescription: formData.get('seoDescription') || null,
+    seoKeywords: formData.get('seoKeywords') || null,
+    sections: parseSectionsField(formData),
   }
 
   const result = solutionSchema.safeParse(rawData)
@@ -332,7 +266,6 @@ export async function updateSolution(
 
   const data = result.data
 
-  // Check slug uniqueness (exclude current solution)
   const existing = await prisma.solution.findFirst({
     where: { slug: data.slug, NOT: { id } },
   })
@@ -340,25 +273,41 @@ export async function updateSolution(
     return { error: 'Slug already exists' }
   }
 
-  await prisma.solution.update({
-    where: { id },
-    data: {
-      slug: data.slug,
-      title: data.title,
-      subtitle: data.subtitle,
-      usageScenes: data.usageScenes,
-      coverImage: data.coverImage,
-      isActive: data.isActive,
-      sortOrder: data.sortOrder,
-      hazardsContent: data.hazardsContent,
-      standardsContent: data.standardsContent,
-      faqContent: data.faqContent,
-      ppeCategories: data.ppeCategories,
-      materials: data.materials,
-      metaTitle: data.metaTitle,
-      metaDescription: data.metaDescription,
-      metaKeywords: data.metaKeywords,
-    },
+  const normalizedSections = normalizeSections(data.sections)
+
+  await prisma.$transaction(async (tx) => {
+    await tx.solution.update({
+      where: { id },
+      data: {
+        slug: data.slug,
+        title: data.title,
+        excerpt: data.excerpt,
+        usageScenes: data.usageScenes,
+        coverImage: data.coverImage,
+        isActive: data.isActive,
+        sortOrder: data.sortOrder,
+        seoTitle: data.seoTitle,
+        seoDescription: data.seoDescription,
+        seoKeywords: data.seoKeywords,
+      },
+    })
+
+    await tx.solutionSection.deleteMany({ where: { solutionId: id } })
+
+    if (normalizedSections.length) {
+      await tx.solutionSection.createMany({
+        data: normalizedSections.map((section) => ({
+          id: createId(),
+          solutionId: id,
+          sort: section.sort,
+          type: section.type,
+          key: section.key,
+          title: section.title,
+          enabled: section.enabled,
+          data: section.data,
+        })),
+      })
+    }
   })
 
   revalidatePath('/admin/solutions')

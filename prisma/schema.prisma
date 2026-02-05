@@ -7,26 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ==================== Auth Models ====================
-
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String        @unique
   emailVerified DateTime?
   password      String?
   image         String?
   phone         String?
-  role          Role      @default(CUSTOMER)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  accounts     Account[]
-  sessions     Session[]
-  cart         Cart?
-  orders       Order[]
-  addresses    Address[]
-  chatSessions ChatSession[]
+  role          Role          @default(CUSTOMER)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  accounts      Account[]
+  addresses     Address[]
+  cart          Cart?
+  chatSessions  ChatSession[]
+  orders        Order[]
+  sessions      Session[]
 
   @@map("users")
 }
@@ -37,15 +34,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -56,8 +52,7 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
 }
@@ -71,106 +66,91 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-enum Role {
-  CUSTOMER
-  ADMIN
-}
-
-// ==================== Product Models ====================
-
 model Collection {
-  id          String   @id @default(cuid())
+  id          String              @id @default(cuid())
   name        String
-  slug        String   @unique
-  description String?  @db.Text
+  slug        String              @unique
+  description String?
   image       String?
-  sortOrder   Int      @default(0)
-  isActive    Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  products ProductCollection[]
+  sortOrder   Int                 @default(0)
+  isActive    Boolean             @default(true)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  products    ProductCollection[]
 
   @@map("collections")
 }
 
 model ProductCollection {
-  id           String   @id @default(cuid())
+  id           String     @id @default(cuid())
   productId    String
   collectionId String
-  sortOrder    Int      @default(0)
-  createdAt    DateTime @default(now())
-
-  product    Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
-  collection Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  sortOrder    Int        @default(0)
+  createdAt    DateTime   @default(now())
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  product      Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([productId, collectionId])
   @@map("product_collections")
 }
 
 model Category {
-  id          String     @id @default(cuid())
-  name        String
-  slug        String     @unique
-  description String?
-  image       String?
-  parentId    String?
-  sortOrder   Int        @default(0)
-  isActive    Boolean    @default(true)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-
-  // SEO Fields
-  metaTitle       String?   @map("meta_title")
-  metaDescription String?   @db.Text @map("meta_description")
-
-  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
-  children Category[] @relation("CategoryTree")
-  products Product[]
+  id              String     @id @default(cuid())
+  name            String
+  slug            String     @unique
+  description     String?
+  image           String?
+  parentId        String?
+  sortOrder       Int        @default(0)
+  isActive        Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  metaDescription String?    @map("meta_description")
+  metaTitle       String?    @map("meta_title")
+  parent          Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children        Category[] @relation("CategoryTree")
+  products        Product[]
 
   @@map("categories")
 }
 
 model Product {
-  id             String   @id @default(cuid())
-  name           String
-  slug           String   @unique
-  description    String?  @db.Text
-  content        Json?    // Editor.js JSON content for product detail page
-  specifications Json?    // Array of {name: string, value: string}
-  price          Decimal  @db.Decimal(10, 2)
-  comparePrice   Decimal? @db.Decimal(10, 2)
-  cost           Decimal? @db.Decimal(10, 2)
-  sku            String?  @unique
-  barcode        String?
-  stock          Int      @default(0)
-  lowStock       Int      @default(5)
-  weight         Decimal? @db.Decimal(10, 2)
-  categoryId     String?
-  sortOrder      Int      @default(0)
-  isActive       Boolean  @default(true)
-  isFeatured     Boolean  @default(false)
-  usageScenes    String[] @default([]) // Usage scene tags for Solution association: ["construction", "height-work", ...]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  // SEO Fields
-  metaTitle       String?   @map("meta_title")
-  metaDescription String?   @db.Text @map("meta_description")
-  metaKeywords    String?   @map("meta_keywords")
-  ogTitle         String?   @map("og_title")
-  ogDescription   String?   @db.Text @map("og_description")
-  ogImage         String?   @map("og_image")
-
-  category        Category?               @relation(fields: [categoryId], references: [id])
+  id              String                  @id @default(cuid())
+  name            String
+  slug            String                  @unique
+  description     String?
+  price           Decimal                 @db.Decimal(10, 2)
+  comparePrice    Decimal?                @db.Decimal(10, 2)
+  cost            Decimal?                @db.Decimal(10, 2)
+  sku             String?                 @unique
+  barcode         String?
+  stock           Int                     @default(0)
+  lowStock        Int                     @default(5)
+  weight          Decimal?                @db.Decimal(10, 2)
+  categoryId      String?
+  isActive        Boolean                 @default(true)
+  isFeatured      Boolean                 @default(false)
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+  specifications  Json?
+  content         Json?
+  metaDescription String?                 @map("meta_description")
+  metaKeywords    String?                 @map("meta_keywords")
+  metaTitle       String?                 @map("meta_title")
+  ogDescription   String?                 @map("og_description")
+  ogImage         String?                 @map("og_image")
+  ogTitle         String?                 @map("og_title")
+  sortOrder       Int                     @default(0)
+  usageScenes     String[]                @default([])
+  cartItems       CartItem[]
+  orderItems      OrderItem[]
+  priceTiers      PriceTier[]
+  attributeValues ProductAttributeValue[]
   collections     ProductCollection[]
   images          ProductImage[]
   variants        ProductVariant[]
-  cartItems       CartItem[]
-  orderItems      OrderItem[]
-  attributeValues ProductAttributeValue[]
+  category        Category?               @relation(fields: [categoryId], references: [id])
   quoteItems      QuoteItem[]
-  priceTiers      PriceTier[]
 
   @@index([categoryId])
   @@index([isActive, isFeatured])
@@ -186,8 +166,7 @@ model PriceTier {
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@index([productId])
   @@map("price_tiers")
@@ -200,77 +179,69 @@ model ProductImage {
   alt       String?
   sortOrder Int      @default(0)
   createdAt DateTime @default(now())
-
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("product_images")
 }
 
 model ProductVariant {
-  id        String   @id @default(cuid())
-  productId String
-  name      String
-  sku       String   @unique
-  price     Decimal  @db.Decimal(10, 2)
-  stock     Int      @default(0)
-  options   Json?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id         String      @id @default(cuid())
+  productId  String
+  name       String
+  sku        String      @unique
+  price      Decimal     @db.Decimal(10, 2)
+  stock      Int         @default(0)
+  options    Json?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
   cartItems  CartItem[]
   orderItems OrderItem[]
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("product_variants")
 }
 
-// ==================== Cart Models ====================
-
 model Cart {
-  id        String   @id @default(cuid())
-  userId    String?  @unique
-  sessionId String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user  User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items CartItem[]
+  id        String     @id @default(cuid())
+  userId    String?    @unique
+  sessionId String?    @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  items     CartItem[]
+  user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("carts")
 }
 
 model CartItem {
-  id        String   @id @default(cuid())
+  id        String          @id @default(cuid())
   cartId    String
   productId String
   variantId String?
-  quantity  Int      @default(1)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  cart    Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  product Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
-  variant ProductVariant? @relation(fields: [variantId], references: [id])
+  quantity  Int             @default(1)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  cart      Cart            @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product   Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  variant   ProductVariant? @relation(fields: [variantId], references: [id])
 
   @@unique([cartId, productId, variantId])
   @@map("cart_items")
 }
 
-// ==================== Order Models ====================
-
 model Order {
-  id              String      @id @default(cuid())
-  orderNumber     String      @unique
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
   userId          String?
   email           String
   phone           String?
-  status          OrderStatus @default(PENDING)
+  status          OrderStatus   @default(PENDING)
   paymentStatus   PaymentStatus @default(PENDING)
   paymentMethod   String?
-  subtotal        Decimal     @db.Decimal(10, 2)
-  shippingFee     Decimal     @default(0) @db.Decimal(10, 2)
-  discount        Decimal     @default(0) @db.Decimal(10, 2)
-  total           Decimal     @db.Decimal(10, 2)
+  subtotal        Decimal       @db.Decimal(10, 2)
+  shippingFee     Decimal       @default(0) @db.Decimal(10, 2)
+  discount        Decimal       @default(0) @db.Decimal(10, 2)
+  total           Decimal       @db.Decimal(10, 2)
   note            String?
   shippingAddress Json?
   billingAddress  Json?
@@ -278,11 +249,10 @@ model Order {
   shippedAt       DateTime?
   deliveredAt     DateTime?
   cancelledAt     DateTime?
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-
-  user  User?       @relation(fields: [userId], references: [id])
-  items OrderItem[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  items           OrderItem[]
+  user            User?         @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@index([status])
@@ -291,21 +261,244 @@ model Order {
 }
 
 model OrderItem {
-  id         String  @id @default(cuid())
-  orderId    String
-  productId  String
-  variantId  String?
-  name       String
-  sku        String?
-  price      Decimal @db.Decimal(10, 2)
-  quantity   Int
-  total      Decimal @db.Decimal(10, 2)
-
-  order   Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product Product         @relation(fields: [productId], references: [id])
-  variant ProductVariant? @relation(fields: [variantId], references: [id])
+  id        String          @id @default(cuid())
+  orderId   String
+  productId String
+  variantId String?
+  name      String
+  sku       String?
+  price     Decimal         @db.Decimal(10, 2)
+  quantity  Int
+  total     Decimal         @db.Decimal(10, 2)
+  order     Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product         @relation(fields: [productId], references: [id])
+  variant   ProductVariant? @relation(fields: [variantId], references: [id])
 
   @@map("order_items")
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  phone     String
+  province  String
+  city      String
+  district  String
+  street    String
+  zipCode   String?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("addresses")
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model Attribute {
+  id            String                  @id @default(cuid())
+  name          String
+  code          String                  @unique
+  type          AttributeType
+  isRequired    Boolean                 @default(false)
+  isFilterable  Boolean                 @default(false)
+  sortOrder     Int                     @default(0)
+  isActive      Boolean                 @default(true)
+  createdAt     DateTime                @default(now())
+  updatedAt     DateTime                @updatedAt
+  options       AttributeOption[]
+  productValues ProductAttributeValue[]
+
+  @@map("attributes")
+}
+
+model AttributeOption {
+  id            String                  @id @default(cuid())
+  attributeId   String
+  value         String
+  sortOrder     Int                     @default(0)
+  createdAt     DateTime                @default(now())
+  attribute     Attribute               @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  productValues ProductAttributeValue[]
+
+  @@map("attribute_options")
+}
+
+model ProductAttributeValue {
+  id          String           @id @default(cuid())
+  productId   String
+  attributeId String
+  textValue   String?
+  optionId    String?
+  optionIds   String[]         @default([])
+  boolValue   Boolean?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  attribute   Attribute        @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  option      AttributeOption? @relation(fields: [optionId], references: [id])
+  product     Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, attributeId])
+  @@map("product_attribute_values")
+}
+
+model Quote {
+  id            String      @id @default(cuid())
+  quoteNumber   String      @unique
+  name          String
+  email         String
+  contact       String
+  companyName   String?
+  remark        String?
+  fileUrl       String?
+  fileName      String?
+  status        QuoteStatus @default(PENDING)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  expectedPrice Decimal?    @db.Decimal(10, 2)
+  items         QuoteItem[]
+
+  @@index([status])
+  @@index([email])
+  @@map("quotes")
+}
+
+model QuoteItem {
+  id        String   @id @default(cuid())
+  quoteId   String
+  productId String
+  name      String
+  sku       String?
+  price     Decimal  @db.Decimal(10, 2)
+  image     String?
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id])
+  quote     Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+
+  @@map("quote_items")
+}
+
+model ChatSession {
+  id        String        @id @default(cuid())
+  visitorId String?
+  userId    String?
+  status    SessionStatus @default(ACTIVE)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  messages  ChatMessage[]
+  user      User?         @relation(fields: [userId], references: [id])
+
+  @@index([visitorId])
+  @@index([userId])
+  @@index([status])
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id          String           @id @default(cuid())
+  sessionId   String
+  senderType  SenderType
+  senderId    String?
+  content     String
+  isRead      Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+  attachments ChatAttachment[]
+  session     ChatSession      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@map("chat_messages")
+}
+
+model ChatAttachment {
+  id        String         @id @default(cuid())
+  messageId String
+  type      AttachmentType
+  url       String
+  fileName  String
+  fileSize  Int
+  createdAt DateTime       @default(now())
+  message   ChatMessage    @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@index([messageId])
+  @@map("chat_attachments")
+}
+
+model Solution {
+  id             String   @id
+  slug           String   @unique
+  title          String
+  excerpt        String?
+  coverImage     String?  @map("cover_image")
+
+  isActive       Boolean  @default(true) @map("is_active")
+  sortOrder      Int      @default(0)    @map("sort_order")
+
+  seoTitle       String?  @map("seo_title")
+  seoDescription String?  @map("seo_description")
+  seoKeywords    String?  @map("seo_keywords")
+
+  usageScenes    String[] @default([])   @map("usage_scenes")
+
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt      @map("updated_at")
+
+  sections       SolutionSection[]
+  productLinks   SolutionProductLink[]
+
+  @@map("solutions")
+}
+
+model SolutionSection {
+  id         String   @id
+  solutionId String   @map("solution_id")
+  sort       Int      @default(0)
+  type       String
+  key        String
+  title      String?
+  enabled    Boolean  @default(true)
+  data       Json     @default("{}")
+
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt      @map("updated_at")
+
+  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  @@unique([solutionId, key])
+  @@index([solutionId, sort])
+  @@index([solutionId, type])
+  @@map("solution_sections")
+}
+
+model SolutionProductLink {
+  id         String   @id
+  solutionId String   @map("solution_id")
+  blockKey   String   @map("block_key")
+  productId  String   @map("product_id")
+  sort       Int      @default(0)
+
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  @@unique([solutionId, blockKey, productId])
+  @@index([solutionId, blockKey, sort])
+  @@map("solution_product_links")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
 }
 
 enum OrderStatus {
@@ -325,138 +518,12 @@ enum PaymentStatus {
   REFUNDED
 }
 
-// ==================== Address Model ====================
-
-model Address {
-  id         String  @id @default(cuid())
-  userId     String
-  name       String
-  phone      String
-  province   String
-  city       String
-  district   String
-  street     String
-  zipCode    String?
-  isDefault  Boolean @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("addresses")
-}
-
-// ==================== Settings Model ====================
-
-model Setting {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  value     Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("settings")
-}
-
-// ==================== Attribute Models ====================
-
-model Attribute {
-  id           String        @id @default(cuid())
-  name         String
-  code         String        @unique
-  type         AttributeType
-  isRequired   Boolean       @default(false)
-  isFilterable Boolean       @default(false)
-  sortOrder    Int           @default(0)
-  isActive     Boolean       @default(true)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-
-  options       AttributeOption[]
-  productValues ProductAttributeValue[]
-
-  @@map("attributes")
-}
-
-model AttributeOption {
-  id          String   @id @default(cuid())
-  attributeId String
-  value       String
-  sortOrder   Int      @default(0)
-  createdAt   DateTime @default(now())
-
-  attribute     Attribute               @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  productValues ProductAttributeValue[]
-
-  @@map("attribute_options")
-}
-
-model ProductAttributeValue {
-  id          String   @id @default(cuid())
-  productId   String
-  attributeId String
-  textValue   String?  @db.Text
-  optionId    String?
-  optionIds   String[] @default([])
-  boolValue   Boolean?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
-  attribute Attribute        @relation(fields: [attributeId], references: [id], onDelete: Cascade)
-  option    AttributeOption? @relation(fields: [optionId], references: [id])
-
-  @@unique([productId, attributeId])
-  @@map("product_attribute_values")
-}
-
 enum AttributeType {
   TEXT
   TEXTAREA
   SELECT
   MULTISELECT
   BOOLEAN
-}
-
-// ==================== Quote Models ====================
-
-model Quote {
-  id            String      @id @default(cuid())
-  quoteNumber   String      @unique
-  name          String
-  email         String
-  contact       String      // WhatsApp / WeChat
-  companyName   String?
-  remark        String?     @db.Text
-  fileUrl       String?     // 上传的文件URL
-  fileName      String?     // 上传的文件名
-  expectedPrice Decimal?    @db.Decimal(10, 2)
-  status        QuoteStatus @default(PENDING)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-
-  items QuoteItem[]
-
-  @@index([status])
-  @@index([email])
-  @@map("quotes")
-}
-
-model QuoteItem {
-  id        String   @id @default(cuid())
-  quoteId   String
-  productId String
-  name      String
-  sku       String?
-  price     Decimal  @db.Decimal(10, 2)
-  image     String?
-  quantity  Int      @default(1)
-  createdAt DateTime @default(now())
-
-  quote   Quote   @relation(fields: [quoteId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id])
-
-  @@map("quote_items")
 }
 
 enum QuoteStatus {
@@ -467,8 +534,6 @@ enum QuoteStatus {
   REJECTED
   EXPIRED
 }
-
-// ==================== Chat Models ====================
 
 enum SessionStatus {
   ACTIVE
@@ -483,86 +548,4 @@ enum SenderType {
 enum AttachmentType {
   IMAGE
   FILE
-}
-
-model ChatSession {
-  id        String        @id @default(cuid())
-  visitorId String?
-  userId    String?
-  user      User?         @relation(fields: [userId], references: [id])
-  status    SessionStatus @default(ACTIVE)
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
-  messages  ChatMessage[]
-
-  @@index([visitorId])
-  @@index([userId])
-  @@index([status])
-  @@map("chat_sessions")
-}
-
-model ChatMessage {
-  id          String           @id @default(cuid())
-  sessionId   String
-  session     ChatSession      @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  senderType  SenderType
-  senderId    String?
-  content     String           @db.Text
-  attachments ChatAttachment[]
-  isRead      Boolean          @default(false)
-  createdAt   DateTime         @default(now())
-
-  @@index([sessionId])
-  @@map("chat_messages")
-}
-
-model ChatAttachment {
-  id        String         @id @default(cuid())
-  messageId String
-  message   ChatMessage    @relation(fields: [messageId], references: [id], onDelete: Cascade)
-  type      AttachmentType
-  url       String
-  fileName  String
-  fileSize  Int
-  createdAt DateTime       @default(now())
-
-  @@index([messageId])
-  @@map("chat_attachments")
-}
-
-// ==================== Solution Models ====================
-
-model Solution {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  title       String
-  subtitle    String?  @db.Text // Hero subtitle/intro
-  usageScenes String[] @default([])
-  coverImage  String?
-  isActive    Boolean  @default(true)
-  sortOrder   Int      @default(0)
-
-  // 3 Editor.js content blocks
-  hazardsContent    Json?  // Common hazards section
-  standardsContent  Json?  // Standards & certifications section
-  faqContent        Json?  // FAQ section
-
-  // PPE category cards (JSON array)
-  // [{ categorySlug: "head-protection", description: "..." }, ...]
-  ppeCategories     Json?
-
-  // Material cards (JSON array)
-  // [{ material: "abs-plastic", description: "..." }, ...]
-  materials         Json?
-
-  // SEO fields
-  metaTitle       String?   @map("meta_title")
-  metaDescription String?   @db.Text @map("meta_description")
-  metaKeywords    String?   @map("meta_keywords")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([isActive])
-  @@map("solutions")
 }

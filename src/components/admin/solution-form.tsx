@@ -1,7 +1,6 @@
 'use client'
 
 import { useActionState, useState, useRef, useTransition } from 'react'
-import { Category } from '@prisma/client'
 import { createSolution, updateSolution, type SolutionState } from '@/actions/solutions'
 import { generateSlug } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -13,45 +12,75 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { ImageUpload } from './image-upload'
-import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
-import { PpeCategoriesEditor } from './ppe-categories-editor'
-import { MaterialsEditor } from './materials-editor'
-import { USAGE_SCENES, formatUsageSceneLabel, type PpeCategoryItem, type MaterialItem } from '@/types/solution'
+import { SolutionSectionsEditor } from './solution-sections-editor'
+import { USAGE_SCENES, formatUsageSceneLabel, type SolutionSectionInput } from '@/types/solution'
 import type { ImageData } from '@/types/image'
 import type { JsonValue } from '@prisma/client/runtime/library'
 
-// Solution with loose typing for JSON fields since Prisma returns JsonValue
+interface SolutionSectionRecord {
+  key: string
+  type: string
+  title: string | null
+  enabled: boolean
+  sort: number
+  data: JsonValue
+}
+
 interface SolutionWithJsonFields {
   id: string
   slug: string
   title: string
-  subtitle: string | null
+  excerpt: string | null
   usageScenes: string[]
   coverImage: string | null
   isActive: boolean
   sortOrder: number
-  hazardsContent: JsonValue
-  standardsContent: JsonValue
-  faqContent: JsonValue
-  ppeCategories: JsonValue
-  materials: JsonValue
-  metaTitle: string | null
-  metaDescription: string | null
-  metaKeywords: string | null
+  seoTitle: string | null
+  seoDescription: string | null
+  seoKeywords: string | null
+  sections: SolutionSectionRecord[]
   createdAt: Date
   updatedAt: Date
 }
 
 interface SolutionFormProps {
   solution?: SolutionWithJsonFields
-  categories: Category[]
 }
 
-export function SolutionForm({ solution, categories }: SolutionFormProps) {
-  // Basic info fields
+const fallbackSectionData = (type: SolutionSectionInput['type']) => {
+  switch (type) {
+    case 'hero':
+      return { intro: '', bullets: [] }
+    case 'paragraphs':
+      return { paragraphs: [''] }
+    case 'list':
+      return { items: [{ title: '', text: '' }] }
+    case 'table':
+      return { headers: [''], rows: [['']] }
+    case 'group':
+      return { groups: [{ title: '', items: [''] }] }
+    case 'callout':
+      return { text: '' }
+    case 'cta':
+      return {
+        title: '',
+        text: '',
+        primaryLabel: '',
+        primaryHref: '',
+        secondaryLabel: '',
+        secondaryHref: '',
+      }
+    case 'faq':
+      return { items: [{ q: '', a: '' }] }
+    default:
+      return { text: '' }
+  }
+}
+
+export function SolutionForm({ solution }: SolutionFormProps) {
   const [title, setTitle] = useState(solution?.title || '')
   const [slug, setSlug] = useState(solution?.slug || '')
-  const [subtitle, setSubtitle] = useState(solution?.subtitle || '')
+  const [excerpt, setExcerpt] = useState(solution?.excerpt || '')
   const [usageScenes, setUsageScenes] = useState<string[]>(solution?.usageScenes || [])
   const [coverImage, setCoverImage] = useState<ImageData[]>(
     solution?.coverImage ? [{ url: solution.coverImage, alt: solution.title }] : []
@@ -59,34 +88,24 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
   const [isActive, setIsActive] = useState(solution?.isActive ?? true)
   const [sortOrder, setSortOrder] = useState(solution?.sortOrder ?? 0)
 
-  // Editor.js content fields
-  const [hazardsContent, setHazardsContent] = useState<EditorJSData | null>(
-    (solution?.hazardsContent as unknown as EditorJSData) || null
-  )
-  const [standardsContent, setStandardsContent] = useState<EditorJSData | null>(
-    (solution?.standardsContent as unknown as EditorJSData) || null
-  )
-  const [faqContent, setFaqContent] = useState<EditorJSData | null>(
-    (solution?.faqContent as unknown as EditorJSData) || null
-  )
+  const initialSections = (solution?.sections || [])
+    .slice()
+    .sort((a, b) => a.sort - b.sort)
+    .map((section) => ({
+      key: section.key,
+      type: section.type as SolutionSectionInput['type'],
+      title: section.title,
+      enabled: section.enabled ?? true,
+      sort: section.sort,
+      data: (section.data ?? fallbackSectionData(section.type as SolutionSectionInput['type'])) as SolutionSectionInput['data'],
+    }))
 
-  // PPE Categories and Materials
-  const [ppeCategories, setPpeCategories] = useState<PpeCategoryItem[]>(
-    (solution?.ppeCategories as unknown as PpeCategoryItem[]) || []
-  )
-  const [materials, setMaterials] = useState<MaterialItem[]>(
-    (solution?.materials as unknown as MaterialItem[]) || []
-  )
+  const [sections, setSections] = useState<SolutionSectionInput[]>(initialSections)
 
-  // SEO Fields
-  const [metaTitle, setMetaTitle] = useState(solution?.metaTitle || '')
-  const [metaDescription, setMetaDescription] = useState(solution?.metaDescription || '')
-  const [metaKeywords, setMetaKeywords] = useState(solution?.metaKeywords || '')
+  const [seoTitle, setSeoTitle] = useState(solution?.seoTitle || '')
+  const [seoDescription, setSeoDescription] = useState(solution?.seoDescription || '')
+  const [seoKeywords, setSeoKeywords] = useState(solution?.seoKeywords || '')
 
-  // Editor refs
-  const hazardsEditorRef = useRef<ContentEditorRef>(null)
-  const standardsEditorRef = useRef<ContentEditorRef>(null)
-  const faqEditorRef = useRef<ContentEditorRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
   const action = solution
@@ -103,37 +122,22 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    // Save all editors
-    const [hazardsData, standardsData, faqData] = await Promise.all([
-      hazardsEditorRef.current?.save(),
-      standardsEditorRef.current?.save(),
-      faqEditorRef.current?.save(),
-    ])
-
-    // Update hidden inputs
-    if (formRef.current) {
-      const hazardsInput = formRef.current.querySelector('input[name="hazardsContent"]') as HTMLInputElement
-      const standardsInput = formRef.current.querySelector('input[name="standardsContent"]') as HTMLInputElement
-      const faqInput = formRef.current.querySelector('input[name="faqContent"]') as HTMLInputElement
-
-      if (hazardsInput) hazardsInput.value = JSON.stringify(hazardsData)
-      if (standardsInput) standardsInput.value = JSON.stringify(standardsData)
-      if (faqInput) faqInput.value = JSON.stringify(faqData)
-    }
-
-    // Submit form
     const formData = new FormData(formRef.current!)
     startTransition(() => {
       formAction(formData)
     })
   }
 
+  const sectionsPayload = sections.map((section, index) => ({
+    ...section,
+    key: section.key?.trim() || `section-${index + 1}`,
+    sort: index,
+  }))
+
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
-      {/* Error Display */}
       {state.error && (
         <div className="bg-destructive/10 text-destructive px-4 py-3 rounded-lg">
           {state.error}
@@ -141,14 +145,12 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Content */}
         <div className="lg:col-span-2 space-y-8">
-          {/* Basic Info */}
           <Card>
             <CardHeader>
               <CardTitle>Basic Information</CardTitle>
               <CardDescription>
-                Solution title, usage scenes, and basic details
+                Solution title, usage scenes, and introduction
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -215,12 +217,12 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="subtitle">Subtitle / Hero Description</Label>
+                <Label htmlFor="excerpt">Excerpt / Intro</Label>
                 <Textarea
-                  id="subtitle"
-                  name="subtitle"
-                  value={subtitle}
-                  onChange={(e) => setSubtitle(e.target.value)}
+                  id="excerpt"
+                  name="excerpt"
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
                   placeholder="Brief introduction displayed in the hero section..."
                   rows={3}
                 />
@@ -228,119 +230,25 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
             </CardContent>
           </Card>
 
-          {/* Hazards Section */}
           <Card>
             <CardHeader>
-              <CardTitle>Common Hazards</CardTitle>
+              <CardTitle>Sections</CardTitle>
               <CardDescription>
-                Describe common hazards in this industry
+                Build structured content blocks for this solution
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ContentEditor
-                ref={hazardsEditorRef}
-                value={hazardsContent}
-                onChange={setHazardsContent}
-                placeholder="Describe common hazards..."
-              />
+              <SolutionSectionsEditor value={sections} onChange={setSections} />
               <input
                 type="hidden"
-                name="hazardsContent"
-                value={JSON.stringify(hazardsContent)}
-              />
-            </CardContent>
-          </Card>
-
-          {/* PPE Categories Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle>PPE Categories</CardTitle>
-              <CardDescription>
-                Select relevant PPE categories and provide descriptions
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <PpeCategoriesEditor
-                value={ppeCategories}
-                onChange={setPpeCategories}
-                categories={categories}
-              />
-              <input
-                type="hidden"
-                name="ppeCategories"
-                value={JSON.stringify(ppeCategories)}
-              />
-            </CardContent>
-          </Card>
-
-          {/* Materials Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Materials</CardTitle>
-              <CardDescription>
-                Select relevant materials used in PPE for this industry
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <MaterialsEditor value={materials} onChange={setMaterials} />
-              <input
-                type="hidden"
-                name="materials"
-                value={JSON.stringify(materials)}
-              />
-            </CardContent>
-          </Card>
-
-          {/* Standards Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Standards & Certifications</CardTitle>
-              <CardDescription>
-                Relevant safety standards and certifications
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ContentEditor
-                ref={standardsEditorRef}
-                value={standardsContent}
-                onChange={setStandardsContent}
-                placeholder="Describe safety standards and certifications..."
-              />
-              <input
-                type="hidden"
-                name="standardsContent"
-                value={JSON.stringify(standardsContent)}
-              />
-            </CardContent>
-          </Card>
-
-          {/* FAQ Section */}
-          <Card>
-            <CardHeader>
-              <CardTitle>FAQ</CardTitle>
-              <CardDescription>
-                Frequently asked questions for this industry solution
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ContentEditor
-                ref={faqEditorRef}
-                value={faqContent}
-                onChange={setFaqContent}
-                placeholder="Add FAQ content..."
-              />
-              <input
-                type="hidden"
-                name="faqContent"
-                value={JSON.stringify(faqContent)}
+                name="sections"
+                value={JSON.stringify(sectionsPayload)}
               />
             </CardContent>
           </Card>
         </div>
 
-        {/* Sidebar */}
         <div className="space-y-6">
-          {/* Cover Image */}
           <Card>
             <CardHeader>
               <CardTitle>Cover Image</CardTitle>
@@ -363,7 +271,6 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
             </CardContent>
           </Card>
 
-          {/* Status */}
           <Card>
             <CardHeader>
               <CardTitle>Status</CardTitle>
@@ -399,7 +306,6 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
             </CardContent>
           </Card>
 
-          {/* SEO */}
           <Card>
             <CardHeader>
               <CardTitle>SEO Settings</CardTitle>
@@ -409,34 +315,34 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="metaTitle">
-                  Meta Title
+                <Label htmlFor="seoTitle">
+                  SEO Title
                   <span className="text-muted-foreground ml-2">
-                    ({metaTitle.length}/60)
+                    ({seoTitle.length}/60)
                   </span>
                 </Label>
                 <Input
-                  id="metaTitle"
-                  name="metaTitle"
-                  value={metaTitle}
-                  onChange={(e) => setMetaTitle(e.target.value)}
+                  id="seoTitle"
+                  name="seoTitle"
+                  value={seoTitle}
+                  onChange={(e) => setSeoTitle(e.target.value)}
                   placeholder="SEO title..."
                   maxLength={60}
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="metaDescription">
-                  Meta Description
+                <Label htmlFor="seoDescription">
+                  SEO Description
                   <span className="text-muted-foreground ml-2">
-                    ({metaDescription.length}/160)
+                    ({seoDescription.length}/160)
                   </span>
                 </Label>
                 <Textarea
-                  id="metaDescription"
-                  name="metaDescription"
-                  value={metaDescription}
-                  onChange={(e) => setMetaDescription(e.target.value)}
+                  id="seoDescription"
+                  name="seoDescription"
+                  value={seoDescription}
+                  onChange={(e) => setSeoDescription(e.target.value)}
                   placeholder="SEO description..."
                   maxLength={160}
                   rows={3}
@@ -444,19 +350,18 @@ export function SolutionForm({ solution, categories }: SolutionFormProps) {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="metaKeywords">Meta Keywords</Label>
+                <Label htmlFor="seoKeywords">SEO Keywords</Label>
                 <Input
-                  id="metaKeywords"
-                  name="metaKeywords"
-                  value={metaKeywords}
-                  onChange={(e) => setMetaKeywords(e.target.value)}
+                  id="seoKeywords"
+                  name="seoKeywords"
+                  value={seoKeywords}
+                  onChange={(e) => setSeoKeywords(e.target.value)}
                   placeholder="keyword1, keyword2, keyword3"
                 />
               </div>
             </CardContent>
           </Card>
 
-          {/* Actions */}
           <Card>
             <CardContent className="pt-6">
               <Button type="submit" className="w-full" disabled={pending}>

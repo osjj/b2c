@@ -1,204 +1,932 @@
-[{
-  "slug": "ppe-safety-equipment-for-construction-sites",
-  "title": "PPE Safety Equipment for Construction Sites",
-  "subtitle": "A complete head-to-toe PPE guide for construction environments, helping contractors and site managers select compliant protective equipment for real-world hazards.",
-  "usageScenes": [
-    "construction",
-    "height-work",
-    "steel-work",
-    "falling-objects",
-    "fall-protection",
-    "heavy-duty",
-    "impact-resistant",
-    "slip-resistant"
-  ],
-  "coverImage": null,
-  "isActive": true,
-  "sortOrder": 2,
-
-  "hazardsContent": {
-  "time": 1706000000000,
-  "version": "2.28.2",
-  "blocks": [
-    {
-      "id": "hz1",
-      "type": "header",
-      "data": { "text": "Common Hazards on Construction Sites", "level": 2 }
-    },
-    {
-      "id": "hz2",
-      "type": "paragraph",
-      "data": { "text": "Construction sites are dynamic environments where multiple high-risk activities happen simultaneously. Workers operate at heights, handle heavy materials, and work around moving machinery. Proper PPE is not optional — it is the first line of defense against daily workplace hazards." }
-    },
-    {
-      "id": "hz3",
-      "type": "header",
-      "data": { "text": "Major Risk Factors Faced by Construction Workers", "level": 3 }
-    },
-    {
-      "id": "hz4",
-      "type": "list",
-      "data": {
-        "style": "unordered",
-        "items": [
-          { "content": "<b>Falls from height</b> – Working on scaffolding, ladders, roofs, and steel structures exposes workers to severe fall risks.", "items": [] },
-          { "content": "<b>Falling objects</b> – Tools, steel bars, concrete debris, and materials frequently drop from upper levels.", "items": [] },
-          { "content": "<b>Slips, trips, and uneven surfaces</b> – Mud, gravel, dust, and water create unstable walking conditions.", "items": [] },
-          { "content": "<b>Sharp and rough materials</b> – Handling wood, metal sheets, rebar, and concrete can cause cuts and abrasions.", "items": [] },
-          { "content": "<b>Dust and airborne particles</b> – Cement dust and debris irritate eyes and lungs over time.", "items": [] },
-          { "content": "<b>Heavy equipment and vehicle movement</b> – Excavators, cranes, and trucks pose constant struck-by hazards.", "items": [] }
-        ]
+[
+  {
+    "slug": "ppe-safety-equipment-for-construction-sites",
+    "title": "What PPE Is Required on Construction Sites?",
+    "excerpt": "Construction sites expose workers to hazards such as falling objects, sharp materials, heavy equipment, dust, noise, and fall risks. This guide explains why each PPE item is necessary and how to choose the right equipment.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "steel-work",
+      "falling-objects",
+      "fall-protection",
+      "heavy-duty",
+      "impact-resistant",
+      "slip-resistant"
+    ],
+    "coverImage": null,
+    "isActive": true,
+    "sortOrder": 1,
+    "seoTitle": "Construction Site PPE Requirements | Safety Equipment Guide",
+    "seoDescription": "A practical guide to required PPE for construction sites, common hazards, task-specific gear, safety standards, and FAQs.",
+    "seoKeywords": "construction site PPE, required PPE, safety helmet, cut resistant gloves, steel toe boots, fall protection, OSHA 1926, ANSI Z89.1",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "intro": "Construction sites expose workers to multiple hazards such as falling objects, sharp materials, heavy equipment, dust, noise, and fall risks. To reduce injuries and comply with safety regulations, the following personal protective equipment (PPE) is commonly required on most construction sites:",
+          "bullets": [
+            "Safety helmets",
+            "Cut-resistant gloves",
+            "Steel toe safety boots",
+            "High visibility clothing",
+            "Eye protection",
+            "Fall protection equipment when working at height"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains why each PPE item is necessary, when it should be used, and how to choose the right equipment for construction environments."
+          ]
+        }
+      },
+      {
+        "key": "construction-hazards",
+        "type": "table",
+        "title": "Common Construction Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Falling objects",
+              "Head trauma",
+              "Safety helmet"
+            ],
+            [
+              "Sharp steel, concrete, tools",
+              "Hand cuts and punctures",
+              "Cut-resistant gloves"
+            ],
+            [
+              "Heavy materials and machinery",
+              "Foot crush injuries",
+              "Steel toe safety boots"
+            ],
+            [
+              "Dust, debris, sparks",
+              "Eye injuries",
+              "Safety goggles"
+            ],
+            [
+              "Loud machinery",
+              "Hearing loss",
+              "Earplugs or earmuffs"
+            ],
+            [
+              "Working at height",
+              "Fatal falls",
+              "Full body harness and lanyard"
+            ],
+            [
+              "Vehicle movement",
+              "Low visibility accidents",
+              "Hi-vis reflective vest"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Construction Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Working at Height",
+              "items": [
+                "Full body harness",
+                "Shock-absorbing lanyard",
+                "Helmet with chin strap",
+                "Anti-slip safety boots"
+              ]
+            },
+            {
+              "title": "Handling Steel, Rebar, and Concrete",
+              "items": [
+                "Cut-resistant gloves",
+                "Reinforced safety boots",
+                "Eye protection from debris"
+              ]
+            },
+            {
+              "title": "Dusty and Demolition Environments",
+              "items": [
+                "Safety goggles",
+                "Respirators or dust masks",
+                "Hi-vis clothing for visibility"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Construction Sites",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Safety Helmets",
+              "text": "Protection from falling objects and overhead impact"
+            },
+            {
+              "title": "Work Gloves",
+              "text": "Cut, abrasion, and impact resistance for material handling"
+            },
+            {
+              "title": "Safety Boots",
+              "text": "Steel toe, puncture resistance, anti-slip outsole"
+            },
+            {
+              "title": "Hi-Vis Clothing",
+              "text": "Visibility around vehicles and machinery"
+            },
+            {
+              "title": "Eye Protection",
+              "text": "Protection from dust, debris, and sparks"
+            },
+            {
+              "title": "Fall Protection",
+              "text": "Harnesses and lanyards for elevated work"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Construction Projects",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "For efficient procurement, many contractors purchase PPE in kits based on job requirements.",
+            "For most construction workers, daily tasks require a basic set of PPE including:",
+            "Below are examples of PPE commonly selected by contractors for this type of work:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Safety helmet for overhead hazards"
+            },
+            {
+              "text": "Cut-resistant gloves for material handling"
+            },
+            {
+              "text": "Steel toe safety boots for foot protection"
+            },
+            {
+              "text": "High visibility vest for jobsite visibility"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Industrial Safety Helmet H300"
+            },
+            {
+              "title": "Cut Resistant Gloves G12"
+            },
+            {
+              "title": "Steel Toe Safety Boots B88"
+            },
+            {
+              "title": "Hi-Vis Reflective Vest HV01"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "ANSI Z89.1",
+              "text": "Industrial head protection"
+            },
+            {
+              "title": "ANSI Z87.1",
+              "text": "Eye and face protection"
+            },
+            {
+              "title": "OSHA 1926",
+              "text": "Construction safety regulations"
+            },
+            {
+              "title": "EN 397",
+              "text": "Helmet safety standard"
+            },
+            {
+              "title": "EN 388",
+              "text": "Protective gloves standard"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Certified products and test reports help ensure compliance on job sites."
+        }
+      },
+      {
+        "key": "construction-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is PPE mandatory on construction sites?",
+              "a": "Yes. OSHA and international safety regulations require workers to wear appropriate PPE based on job risks."
+            },
+            {
+              "q": "How often should PPE be replaced?",
+              "a": "Helmets typically every 2 to 5 years. Gloves and boots should be replaced based on wear and tear."
+            },
+            {
+              "q": "Can PPE be customized with company branding?",
+              "a": "Yes, many PPE items can be customized with logos, colors, and packaging for contractors and distributors."
+            },
+            {
+              "q": "How do I choose the right PPE for my project?",
+              "a": "Assess the job hazards, worker tasks, and environment. PPE kits can simplify selection."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Construction Project?",
+        "enabled": true,
+        "data": {
+          "title": "Need PPE for Your Construction Project?",
+          "text": "If you are sourcing PPE for construction sites, we provide bulk supply, certification documents, and customized PPE kits for contractors and distributors.",
+          "primaryLabel": "Request a Quote",
+          "primaryHref": "/quote",
+          "secondaryLabel": "Contact Us",
+          "secondaryHref": "/contact"
+        }
       }
-    },
-    {
-      "id": "hz5",
-      "type": "paragraph",
-      "data": { "text": "Selecting PPE based on these hazards ensures workers are protected from head to toe while maintaining comfort and mobility throughout long work shifts." }
-    }
-  ]
-},
-
-  "standardsContent":{
-  "time": 1706000000000,
-  "version": "2.28.2",
-  "blocks": [
-    {
-      "id": "st1",
-      "type": "header",
-      "data": { "text": "Construction PPE Standards & Compliance", "level": 2 }
-    },
-    {
-      "id": "st2",
-      "type": "paragraph",
-      "data": { "text": "PPE used on construction sites must comply with internationally recognized safety standards. As a certified PPE manufacturer, we provide full documentation including test reports, certificates, and declaration of conformity for all products to support your compliance and audit requirements." }
-    },
-    {
-      "id": "st3",
-      "type": "list",
-      "data": {
-        "style": "unordered",
-        "items": [
-          { "content": "<b>ANSI Z89.1</b> – Industrial head protection standard defining impact and electrical protection classes for hard hats.", "items": [] },
-          { "content": "<b>ANSI Z87.1</b> – Performance requirements for eye and face protection against debris and impact.", "items": [] },
-          { "content": "<b>OSHA 1926 Subpart E</b> – Regulations requiring PPE use in construction environments.", "items": [] },
-          { "content": "<b>EN 397</b> – European standard for industrial safety helmets and shock absorption.", "items": [] },
-          { "content": "<b>EN ISO 20345</b> – Safety footwear standard covering toe protection, puncture resistance, and slip resistance.", "items": [] }
-        ]
+    ]
+  },
+  {
+    "slug": "ppe-safety-equipment-for-factory-manufacturing",
+    "title": "PPE Safety Equipment for Factory and Manufacturing",
+    "excerpt": "Factory floors expose teams to moving machinery, sharp edges, noise, heat, and airborne particles. This guide explains required PPE and how to build compliant protection programs for manufacturing sites.",
+    "usageScenes": [
+      "heavy-duty",
+      "impact-resistant",
+      "cut-resistant",
+      "eye-protection",
+      "steel-work"
+    ],
+    "coverImage": null,
+    "isActive": true,
+    "sortOrder": 2,
+    "seoTitle": "Factory PPE Supplier | Manufacturing Safety Equipment",
+    "seoDescription": "Required PPE for factory and manufacturing environments. Hazards, task-based PPE, safety standards, and FAQs.",
+    "seoKeywords": "factory PPE, manufacturing safety equipment, cut resistant gloves, safety goggles, ear protection, OSHA 1910, ANSI Z87.1",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "intro": "Manufacturing facilities combine heavy equipment, moving parts, hot work, and airborne debris. To reduce injuries and keep production running safely, factories typically require the following PPE:",
+          "bullets": [
+            "Safety helmets where overhead hazards exist",
+            "Cut-resistant or abrasion-resistant gloves",
+            "Safety goggles or face shields",
+            "Hearing protection for high-noise areas",
+            "Steel toe safety shoes",
+            "Flame-resistant or heat-resistant gear for hot work"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide outlines common factory hazards, task-based PPE selection, and key standards to help procurement teams and safety managers build compliant programs."
+          ]
+        }
+      },
+      {
+        "key": "factory-hazards",
+        "type": "table",
+        "title": "Common Factory Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Moving machinery",
+              "Crush or pinch injuries",
+              "Fitted workwear and protective gloves"
+            ],
+            [
+              "Sharp metal and cutting tools",
+              "Lacerations",
+              "Cut-resistant gloves"
+            ],
+            [
+              "Flying debris",
+              "Eye injuries",
+              "Safety goggles or face shield"
+            ],
+            [
+              "High noise",
+              "Hearing loss",
+              "Earplugs or earmuffs"
+            ],
+            [
+              "Welding or hot work",
+              "Burns",
+              "Welding helmet and heat-resistant gloves"
+            ],
+            [
+              "Chemical handling",
+              "Skin or eye irritation",
+              "Chemical-resistant gloves and goggles"
+            ],
+            [
+              "Slippery floors",
+              "Slips and falls",
+              "Slip-resistant safety shoes"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Manufacturing Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Machining and Cutting",
+              "items": [
+                "Cut-resistant gloves",
+                "Safety goggles",
+                "Protective sleeves"
+              ]
+            },
+            {
+              "title": "Welding and Thermal Work",
+              "items": [
+                "Welding helmet",
+                "Heat-resistant gloves",
+                "Flame-resistant workwear"
+              ]
+            },
+            {
+              "title": "Chemical Handling and Cleaning",
+              "items": [
+                "Chemical-resistant gloves",
+                "Splash goggles",
+                "Protective aprons"
+              ]
+            },
+            {
+              "title": "Assembly and Packaging",
+              "items": [
+                "Light-duty gloves",
+                "Anti-slip safety shoes",
+                "Hearing protection if required"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Factories",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Head Protection",
+              "text": "Safety helmets for overhead or impact risk"
+            },
+            {
+              "title": "Hand Protection",
+              "text": "Cut, abrasion, and heat resistance"
+            },
+            {
+              "title": "Eye and Face Protection",
+              "text": "Goggles, face shields, welding helmets"
+            },
+            {
+              "title": "Foot Protection",
+              "text": "Steel toe and slip-resistant safety shoes"
+            },
+            {
+              "title": "Hearing Protection",
+              "text": "Earplugs or earmuffs for high-noise zones"
+            },
+            {
+              "title": "Body Protection",
+              "text": "Flame-resistant, chemical, or anti-static workwear"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Manufacturing Sites",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Many factories purchase PPE in standardized kits so each role receives the right protection for daily tasks.",
+            "A basic factory PPE set typically includes the following items:",
+            "Below are example PPE items commonly selected for manufacturing teams:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Safety helmet where impact risks exist"
+            },
+            {
+              "text": "Cut-resistant gloves for handling metal parts"
+            },
+            {
+              "text": "Safety goggles for debris and splash protection"
+            },
+            {
+              "text": "Steel toe safety shoes"
+            },
+            {
+              "text": "Hearing protection for high-noise areas"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Impact Safety Helmet H220"
+            },
+            {
+              "title": "Cut Resistant Gloves G18"
+            },
+            {
+              "title": "Anti-Fog Safety Goggles E12"
+            },
+            {
+              "title": "Steel Toe Safety Shoes S90"
+            },
+            {
+              "title": "Industrial Earplugs EP30"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "OSHA 1910 Subpart I",
+              "text": "General industry PPE requirements"
+            },
+            {
+              "title": "ANSI Z87.1",
+              "text": "Eye and face protection"
+            },
+            {
+              "title": "ANSI/ISEA 105",
+              "text": "Hand protection performance"
+            },
+            {
+              "title": "EN 388",
+              "text": "Protective gloves against mechanical risks"
+            },
+            {
+              "title": "EN ISO 11611",
+              "text": "Protective clothing for welding"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Request test reports, certificates, and declaration of conformity for audits and compliance checks."
+        }
+      },
+      {
+        "key": "factory-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Do factories need different PPE for different departments?",
+              "a": "Yes. Machining, welding, chemical handling, and assembly have different hazards, so PPE should be role-specific."
+            },
+            {
+              "q": "Can PPE be customized with factory branding?",
+              "a": "Yes. We offer logo printing, custom colors, and branded packaging for bulk orders."
+            },
+            {
+              "q": "What documentation do you provide for compliance?",
+              "a": "We provide certificates, test reports, and declaration of conformity for applicable standards."
+            },
+            {
+              "q": "What is the typical lead time for factory PPE orders?",
+              "a": "Standard items ship within 15 to 20 days. Customized orders typically require 30 to 45 days."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Factory?",
+        "enabled": true,
+        "data": {
+          "title": "Need PPE for Your Factory?",
+          "text": "We supply certified PPE kits for manufacturing teams with bulk pricing and OEM branding options.",
+          "primaryLabel": "Request a Quote",
+          "primaryHref": "/quote",
+          "secondaryLabel": "Contact Us",
+          "secondaryHref": "/contact"
+        }
       }
-    },
-    {
-      "id": "st4",
-      "type": "paragraph",
-      "data": { "text": "When sourcing PPE for construction projects, contractors should always verify certificates, test reports, and compliance documentation from suppliers. We provide complete documentation packages with every bulk order to ensure regulatory compliance." }
-    }
-  ]
-},
-
-  "faqContent": {
-  "time": 1706000000000,
-  "version": "2.28.2",
-  "blocks": [
-    {
-      "id": "fq1",
-      "type": "header",
-      "data": { "text": "Frequently Asked Questions", "level": 2 }
-    },
-    {
-      "id": "fq2",
-      "type": "header",
-      "data": { "text": "What is the minimum order quantity (MOQ) for construction PPE?", "level": 3 }
-    },
-    {
-      "id": "fq3",
-      "type": "paragraph",
-      "data": { "text": "Our standard MOQ varies by product category: 500 pieces for hard hats and safety helmets, 1000 pairs for safety boots and footwear, and 2000 pairs for work gloves. We offer flexible MOQ options for first-time buyers, sample orders for quality evaluation, and mixed container solutions for distributors requiring multiple product categories." }
-    },
-    {
-      "id": "fq4",
-      "type": "header",
-      "data": { "text": "Can you provide OEM/ODM customization for construction PPE?", "level": 3 }
-    },
-    {
-      "id": "fq5",
-      "type": "paragraph",
-      "data": { "text": "Yes, we offer comprehensive OEM and ODM services. Customization options include logo printing, custom color matching, branded packaging, and private label programs. For hard hats, we can customize shell colors, suspension systems, and add accessories like chin straps or earmuff attachments. Private label programs are available for orders of 5000+ units with dedicated production lines." }
-    },
-    {
-      "id": "fq6",
-      "type": "header",
-      "data": { "text": "What certifications and compliance documents do you provide?", "level": 3 }
-    },
-    {
-      "id": "fq7",
-      "type": "paragraph",
-      "data": { "text": "All our construction PPE products are certified to international standards including ANSI (US), EN/CE (Europe), and AS/NZS (Australia). We provide complete documentation packages including original certificates, third-party test reports, declaration of conformity (DoC), and material safety data sheets (MSDS). These documents support customs clearance, workplace safety audits, and regulatory compliance requirements." }
-    },
-    {
-      "id": "fq8",
-      "type": "header",
-      "data": { "text": "What is the typical lead time for bulk construction PPE orders?", "level": 3 }
-    },
-    {
-      "id": "fq9",
-      "type": "paragraph",
-      "data": { "text": "Standard products from our warehouse ship within 7-10 days. Production orders for stock items require 15-20 days. OEM and customized orders typically need 30-45 days depending on complexity and quantity. We maintain safety stock programs for repeat customers with predictable demand, enabling faster fulfillment and priority production scheduling." }
-    },
-    {
-      "id": "fq10",
-      "type": "header",
-      "data": { "text": "Do you offer volume pricing or distributor discounts?", "level": 3 }
-    },
-    {
-      "id": "fq11",
-      "type": "paragraph",
-      "data": { "text": "Yes, we offer tiered pricing structures starting at 1000+ units with progressive discounts for larger quantities. Annual contract customers receive additional rebates and price protection. Distributor partnership programs include exclusive territory options, marketing support, co-branded materials, and priority access to new product launches. Contact our B2B sales team for a customized quotation based on your volume requirements." }
-    }
-  ]
-},
-
-"ppeCategories": [
-  {
-    "categorySlug": "head-protection",
-    "description": "ANSI Z89.1 and EN 397 certified safety helmets available in bulk quantities. OEM customization includes logo printing, custom colors, suspension systems, and accessory integration. MOQ 500 pcs with 15-20 day production lead time."
+    ]
   },
   {
-    "categorySlug": "eye-protection",
-    "description": "ANSI Z87.1 certified safety glasses and goggles for construction environments. Anti-fog, anti-scratch coatings available. Bulk packaging options for site distribution. MOQ 1000 pcs with custom branding available."
-  },
-  {
-    "categorySlug": "hand-protection",
-    "description": "EN 388 rated work gloves for construction material handling. Multiple protection levels available from general purpose to cut-resistant. OEM private label programs for distributors. MOQ 2000 pairs with 20-day delivery."
-  },
-  {
-    "categorySlug": "foot-protection",
-    "description": "EN ISO 20345 certified safety boots with steel toe, composite toe, and puncture-resistant options. Bulk wholesale pricing for contractors. OEM customization for branding and specifications. MOQ 1000 pairs."
-  },
-  {
-    "categorySlug": "body-protection",
-    "description": "EN ISO 20471 high-visibility vests and protective workwear meeting construction site requirements. Custom printing for company branding. Bulk orders with volume discounts. MOQ 500 pcs with fast turnaround."
+    "slug": "ppe-safety-equipment-for-warehouse-logistics",
+    "title": "PPE Safety Equipment for Warehouse and Logistics",
+    "excerpt": "Warehouse and logistics centers involve forklift traffic, loading docks, manual handling, and slip hazards. This guide covers required PPE and safety standards for distribution operations.",
+    "usageScenes": [
+      "heavy-duty",
+      "slip-resistant",
+      "impact-resistant"
+    ],
+    "coverImage": null,
+    "isActive": true,
+    "sortOrder": 3,
+    "seoTitle": "Warehouse PPE Supplier | Logistics Safety Equipment",
+    "seoDescription": "Required PPE for warehouse and logistics operations. Hazards, task-based PPE, safety standards, and FAQs.",
+    "seoKeywords": "warehouse PPE, logistics safety equipment, forklift safety gear, hi-vis vests, steel toe boots, OSHA 1910, ANSI ISEA 107",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "intro": "Warehouses and logistics centers combine vehicle traffic, loading docks, and manual handling. To reduce injuries and improve visibility, the following PPE is commonly required:",
+          "bullets": [
+            "Hi-vis reflective vests",
+            "Steel toe safety shoes",
+            "Work gloves for handling cartons and pallets",
+            "Safety helmets where falling objects are possible",
+            "Eye protection for dust and debris",
+            "Hearing protection in high-noise areas"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains common warehouse hazards, task-based PPE selection, and the standards most distribution sites follow."
+          ]
+        }
+      },
+      {
+        "key": "warehouse-hazards",
+        "type": "table",
+        "title": "Common Warehouse Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Forklift traffic",
+              "Struck-by incidents",
+              "Hi-vis vest and safety shoes"
+            ],
+            [
+              "Manual handling",
+              "Cuts or crush injuries",
+              "Work gloves and safety shoes"
+            ],
+            [
+              "Loading docks",
+              "Falls from edges",
+              "Fall protection when required"
+            ],
+            [
+              "Falling objects",
+              "Head injuries",
+              "Safety helmet"
+            ],
+            [
+              "Dust and debris",
+              "Eye irritation",
+              "Safety glasses"
+            ],
+            [
+              "Wet floors",
+              "Slips and trips",
+              "Slip-resistant footwear"
+            ],
+            [
+              "Noise exposure",
+              "Hearing loss",
+              "Earplugs or earmuffs"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Warehouse Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Forklift and Loading Dock Operations",
+              "items": [
+                "Hi-vis reflective vest",
+                "Steel toe safety shoes",
+                "Hard hat where overhead work exists"
+              ]
+            },
+            {
+              "title": "Picking and Packing",
+              "items": [
+                "Light-duty work gloves",
+                "Safety shoes",
+                "Optional eye protection for dusty zones"
+              ]
+            },
+            {
+              "title": "Palletizing and Racking",
+              "items": [
+                "Cut-resistant gloves",
+                "Safety helmet",
+                "Anti-slip footwear"
+              ]
+            },
+            {
+              "title": "Cold Storage",
+              "items": [
+                "Thermal gloves",
+                "Insulated workwear",
+                "Slip-resistant boots"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Warehouses",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "High Visibility Clothing",
+              "text": "Improves visibility around forklifts and vehicles"
+            },
+            {
+              "title": "Safety Footwear",
+              "text": "Toe protection and slip-resistant outsoles"
+            },
+            {
+              "title": "Hand Protection",
+              "text": "Cut and abrasion resistance for handling pallets"
+            },
+            {
+              "title": "Head Protection",
+              "text": "Required where overhead loads or racking risks exist"
+            },
+            {
+              "title": "Eye Protection",
+              "text": "Protection from dust, debris, and packaging materials"
+            },
+            {
+              "title": "Fall Protection",
+              "text": "Needed for elevated maintenance or dock edges"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Warehouse Operations",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Many distribution centers supply standardized PPE kits for new hires and contractors.",
+            "A typical warehouse PPE kit includes:",
+            "Below are example PPE items commonly selected for logistics teams:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Hi-vis reflective vest"
+            },
+            {
+              "text": "Steel toe safety shoes"
+            },
+            {
+              "text": "Work gloves"
+            },
+            {
+              "text": "Safety glasses"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Hi-Vis Reflective Vest HV08"
+            },
+            {
+              "title": "Steel Toe Safety Shoes S60"
+            },
+            {
+              "title": "General Purpose Gloves G06"
+            },
+            {
+              "title": "Anti-Fog Safety Glasses E10"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "OSHA 1910",
+              "text": "General industry PPE requirements"
+            },
+            {
+              "title": "ANSI/ISEA 107",
+              "text": "High-visibility safety apparel"
+            },
+            {
+              "title": "ANSI Z87.1",
+              "text": "Eye and face protection"
+            },
+            {
+              "title": "ANSI Z89.1",
+              "text": "Industrial head protection"
+            },
+            {
+              "title": "EN ISO 20345",
+              "text": "Safety footwear standard"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "We provide compliance documents and test reports with every bulk order."
+        }
+      },
+      {
+        "key": "warehouse-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is hi-vis clothing required in warehouses?",
+              "a": "Many sites require hi-vis apparel where forklifts and vehicles operate to improve visibility and reduce struck-by incidents."
+            },
+            {
+              "q": "What type of safety shoes are recommended?",
+              "a": "Steel toe or composite toe shoes with slip-resistant outsoles are common for warehouse work."
+            },
+            {
+              "q": "Do warehouse workers need helmets?",
+              "a": "Hard hats are required where overhead loads, racking work, or falling object risks exist."
+            },
+            {
+              "q": "Can you supply PPE kits for new hires?",
+              "a": "Yes. We assemble PPE kits tailored to job roles for fast onboarding and consistent compliance."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Warehouse?",
+        "enabled": true,
+        "data": {
+          "title": "Need PPE for Your Warehouse?",
+          "text": "We supply bulk PPE kits for warehouses and logistics centers with certification documents and fast lead times.",
+          "primaryLabel": "Request a Quote",
+          "primaryHref": "/quote",
+          "secondaryLabel": "Contact Us",
+          "secondaryHref": "/contact"
+        }
+      }
+    ]
   }
-],
-
-"materials": [
-  {
-    "material": "abs-plastic",
-    "description": "Industrial-grade ABS plastic for hard hat shells. Lightweight yet highly impact-resistant, meeting ANSI Type I and Type II requirements. Available in custom colors for OEM orders with consistent batch quality."
-  },
-  {
-    "material": "cowhide-leather",
-    "description": "Premium cowhide leather sourced from certified tanneries. Superior abrasion resistance and durability for heavy-duty construction gloves. Available in various grades for different price points and MOQ requirements."
-  },
-  {
-    "material": "rubber",
-    "description": "High-traction rubber outsole compounds with slip-resistant patterns. Tested to SRC slip resistance standards. Custom compound formulations available for OEM orders with specific performance requirements."
-  },
-  {
-    "material": "steel",
-    "description": "Reinforced steel toe caps meeting EN 12568 and ASTM F2413 impact standards. 200J impact protection with consistent quality across bulk production. Lightweight composite alternatives available for specific applications."
-  }
-],
-
-  "metaTitle": "Construction PPE Supplier | Bulk Safety Equipment & OEM Solutions",
-  "metaDescription": "Wholesale construction PPE from certified manufacturer. Hard hats, safety boots, gloves with OEM customization, compliance documentation, and volume pricing for contractors and distributors.",
-  "metaKeywords": "construction PPE supplier, wholesale safety equipment, OEM hard hats, bulk safety boots, PPE manufacturer, ANSI certified PPE, construction site safety wholesale, industrial PPE distributor"
-}]
+]
