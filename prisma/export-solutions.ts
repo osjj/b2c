@@ -36,15 +36,34 @@ async function main() {
 
   const solutions = await prisma.solution.findMany({
     orderBy: [{ sortOrder: 'asc' }, { createdAt: 'asc' }],
-    include: {
-      sections: {
-        orderBy: { sort: 'asc' },
-      },
-      productLinks: {
-        orderBy: [{ blockKey: 'asc' }, { sort: 'asc' }],
-      },
-    },
   })
+
+  const solutionIds = solutions.map((solution) => solution.id)
+
+  const [sections, productLinks] = await Promise.all([
+    prisma.solutionSection.findMany({
+      where: { solutionId: { in: solutionIds } },
+      orderBy: [{ solutionId: 'asc' }, { sort: 'asc' }],
+    }),
+    prisma.solutionProductLink.findMany({
+      where: { solutionId: { in: solutionIds } },
+      orderBy: [{ solutionId: 'asc' }, { blockKey: 'asc' }, { sort: 'asc' }],
+    }),
+  ])
+
+  const sectionsBySolutionId = new Map<string, typeof sections>()
+  for (const section of sections) {
+    const list = sectionsBySolutionId.get(section.solutionId) || []
+    list.push(section)
+    sectionsBySolutionId.set(section.solutionId, list)
+  }
+
+  const linksBySolutionId = new Map<string, typeof productLinks>()
+  for (const link of productLinks) {
+    const list = linksBySolutionId.get(link.solutionId) || []
+    list.push(link)
+    linksBySolutionId.set(link.solutionId, list)
+  }
 
   const payload: ExportSolutionItem[] = solutions.map((solution) => ({
     slug: solution.slug,
@@ -57,14 +76,14 @@ async function main() {
     seoTitle: solution.seoTitle,
     seoDescription: solution.seoDescription,
     seoKeywords: solution.seoKeywords,
-    sections: solution.sections.map((section) => ({
+    sections: (sectionsBySolutionId.get(solution.id) || []).map((section) => ({
       key: section.key,
       type: section.type,
       title: section.title,
       enabled: section.enabled,
       data: section.data,
     })),
-    productLinks: solution.productLinks.map((link) => ({
+    productLinks: (linksBySolutionId.get(solution.id) || []).map((link) => ({
       blockKey: link.blockKey,
       productId: link.productId,
       sort: link.sort,
@@ -84,4 +103,3 @@ main()
   .finally(async () => {
     await prisma.$disconnect()
   })
-
