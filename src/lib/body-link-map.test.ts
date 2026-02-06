@@ -8,6 +8,17 @@ test('isBodyLinkedList only enables body map for essential categories with valid
       {
         title: 'Safety Helmets',
         text: 'Protection from falling objects and overhead impact',
+        bodyAnchorKey: 'head',
+      },
+    ]),
+    true
+  )
+
+  assert.equal(
+    isBodyLinkedList('essential-categories', [
+      {
+        title: 'Safety Helmets',
+        text: 'Protection from falling objects and overhead impact',
         bodyAnchor: { x: 50, y: 10 },
       },
     ]),

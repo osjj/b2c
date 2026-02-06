@@ -73,13 +73,13 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             {/* Stock Status */}
             {product.stock === 0 && (
               <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
-                <span className="text-sm font-semibold text-muted-foreground">缺货</span>
+                <span className="text-sm font-semibold text-muted-foreground">Out of Stock</span>
               </div>
             )}
 
             {product.stock > 0 && product.stock <= 10 && (
               <span className="absolute bottom-3 right-3 bg-amber-500 text-white text-[10px] font-medium px-2 py-0.5 rounded">
-                仅剩 {product.stock} 件
+                Only {product.stock} left
               </span>
             )}
           </div>
@@ -91,7 +91,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="flex items-center gap-1.5 mb-2">
             <ShieldCheck className="w-3 h-3 text-primary" />
             <span className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider">
-              {product.category?.name || '未分类'}
+              {product.category?.name || 'Uncategorized'}
             </span>
           </div>
 

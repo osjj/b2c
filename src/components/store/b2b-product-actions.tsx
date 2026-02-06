@@ -39,8 +39,8 @@ export function B2BProductActions({
     for (const tier of sortedTiers) {
       if (quantity >= tier.minQuantity && (tier.maxQuantity === null || quantity <= tier.maxQuantity)) {
         return tier.maxQuantity === null
-          ? `${tier.minQuantity}件及以上阶梯价`
-          : `${tier.minQuantity}-${tier.maxQuantity}件阶梯价`
+          ? `Tiered price for ${tier.minQuantity}+ units`
+          : `Tiered price for ${tier.minQuantity}-${tier.maxQuantity} units`
       }
     }
     return undefined
@@ -48,10 +48,10 @@ export function B2BProductActions({
 
   return (
     <div className="space-y-6">
-      {/* 阶梯价格表 */}
+      {/* Tiered pricing table */}
       {priceTiers.length > 0 && (
         <div className="space-y-2">
-          <p className="text-sm font-medium">批量价格</p>
+          <p className="text-sm font-medium">Bulk Pricing</p>
           <PriceTiersTable
             tiers={priceTiers}
             currentQuantity={quantity}
@@ -60,9 +60,9 @@ export function B2BProductActions({
         </div>
       )}
 
-      {/* 数量选择 */}
+      {/* Quantity selector */}
       <div className="space-y-2">
-        <p className="text-sm font-medium">数量</p>
+        <p className="text-sm font-medium">Quantity</p>
         <QuantitySelector
           value={quantity}
           onChange={setQuantity}
@@ -71,31 +71,31 @@ export function B2BProductActions({
         />
       </div>
 
-      {/* 当前价格和小计 */}
+      {/* Current unit price and subtotal */}
       <div className="flex items-baseline justify-between py-3 border-t border-b">
         <div className="space-y-1">
-          <p className="text-sm text-muted-foreground">当前单价</p>
+          <p className="text-sm text-muted-foreground">Unit Price</p>
           <p className="text-xl font-bold text-primary">{formatPrice(currentPrice)}</p>
         </div>
         <div className="text-right space-y-1">
-          <p className="text-sm text-muted-foreground">小计</p>
+          <p className="text-sm text-muted-foreground">Subtotal</p>
           <p className="text-xl font-bold">{formatPrice(subtotal)}</p>
         </div>
       </div>
 
-      {/* 下一阶梯提示 */}
+      {/* Next tier hint */}
       {nextTierHint && (
         <div className="flex items-start gap-2 p-3 bg-amber-50 text-amber-800 rounded-lg text-sm">
           <Lightbulb className="h-5 w-5 shrink-0 mt-0.5" />
           <p>
-            再加 <strong>{nextTierHint.quantityNeeded}</strong> 件即可享受{' '}
-            <strong>{formatPrice(nextTierHint.nextPrice)}/件</strong> 的优惠价，
-            节省 {nextTierHint.savingsPercent}%
+            Add <strong>{nextTierHint.quantityNeeded}</strong> more units to unlock{' '}
+            <strong>{formatPrice(nextTierHint.nextPrice)}/unit</strong> and save{' '}
+            {nextTierHint.savingsPercent}%
           </p>
         </div>
       )}
 
-      {/* 加入询价单按钮 */}
+      {/* Add to quote button */}
       <AddToQuoteButton
         productId={productId}
         productName={productName}
@@ -107,7 +107,7 @@ export function B2BProductActions({
         size="lg"
         className="w-full"
       >
-        加入询价单
+        Add to Quote
       </AddToQuoteButton>
     </div>
   )

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import {
   shouldShowBodyAnchorEditor,
   toggleListItemBodyAnchor,
+  updateListItemBodyAnchorKey,
   updateListItemBodyAnchorValue,
 } from './body-anchor-editor'
 
@@ -16,6 +17,7 @@ test('toggleListItemBodyAnchor enables and disables anchor cleanly', () => {
   const baseItem = { title: 'Helmet', text: 'Head protection' }
 
   const enabled = toggleListItemBodyAnchor(baseItem, true)
+  assert.equal(enabled.bodyAnchorKey, 'chest')
   assert.deepEqual(enabled.bodyAnchor, { x: 50, y: 50 })
 
   const disabled = toggleListItemBodyAnchor(
@@ -23,6 +25,17 @@ test('toggleListItemBodyAnchor enables and disables anchor cleanly', () => {
     false
   )
   assert.equal(disabled.bodyAnchor, undefined)
+  assert.equal(disabled.bodyAnchorKey, undefined)
+})
+
+test('updateListItemBodyAnchorKey only accepts preset key', () => {
+  const item = { title: 'Helmet', bodyAnchorKey: 'head' }
+
+  const updated = updateListItemBodyAnchorKey(item, 'eyes')
+  assert.equal(updated.bodyAnchorKey, 'eyes')
+
+  const unchanged = updateListItemBodyAnchorKey(item, 'random-key')
+  assert.equal(unchanged.bodyAnchorKey, 'head')
 })
 
 test('updateListItemBodyAnchorValue updates target axis and keeps sibling value', () => {

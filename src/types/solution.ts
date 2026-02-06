@@ -46,6 +46,7 @@ export interface BodyAnchorPoint {
 export interface SectionListItem {
   title?: string
   text?: string
+  bodyAnchorKey?: string
   bodyAnchor?: BodyAnchorPoint
 }
 

@@ -4,10 +4,9 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import Image from 'next/image'
 import type { BodyAnchorPoint, SectionListData } from '@/types/solution'
 import {
-  clampBodyAnchor,
   createConnectorPath,
-  isValidBodyAnchor,
 } from '@/lib/body-link-map'
+import { resolveListItemBodyAnchor } from '@/lib/body-anchor-points'
 
 type BodyLinkMapSectionProps = {
   imageSrc?: string
@@ -40,11 +39,12 @@ export function BodyLinkMapSection({
     () =>
       items
         .map((item, index) => {
-          if (!isValidBodyAnchor(item.bodyAnchor)) return null
+          const resolvedAnchor = resolveListItemBodyAnchor(item)
+          if (!resolvedAnchor) return null
           return {
             ...item,
             itemKey: `${item.title || 'item'}-${index}`,
-            bodyAnchor: clampBodyAnchor(item.bodyAnchor),
+            bodyAnchor: resolvedAnchor,
           }
         })
         .filter((item): item is NonNullable<typeof item> => item !== null),
@@ -179,13 +179,16 @@ export function BodyLinkMapSection({
                   onMouseLeave={() => setActiveItemKey(null)}
                   onFocus={() => setActiveItemKey(item.itemKey)}
                   onBlur={() => setActiveItemKey(null)}
-                  className={`absolute z-20 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-all ${
-                    isActive
-                      ? 'scale-125 border-primary bg-primary'
-                      : 'border-primary/60 bg-background'
-                  }`}
+                  className="absolute z-30 h-4 w-4 -translate-x-1/2 -translate-y-1/2 transition-transform focus-visible:outline-none"
                   style={{ left: `${item.bodyAnchor.x}%`, top: `${item.bodyAnchor.y}%` }}
-                />
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`absolute inset-0 rounded-full transition-all ${
+                      isActive ? 'scale-110 bg-slate-500/60' : 'bg-slate-400/45'
+                    }`}
+                  />
+                </button>
               )
             })}
           </div>

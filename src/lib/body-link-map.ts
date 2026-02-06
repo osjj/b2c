@@ -25,10 +25,14 @@ export function clampBodyAnchor(anchor: BodyAnchorPoint): BodyAnchorPoint {
 
 export function isBodyLinkedList(
   sectionKey: string,
-  items: Array<{ bodyAnchor?: unknown }>
+  items: Array<{ bodyAnchor?: unknown; bodyAnchorKey?: string }>
 ): boolean {
   if (sectionKey !== 'essential-categories') return false
-  return items.some((item) => isValidBodyAnchor(item.bodyAnchor))
+  return items.some(
+    (item) =>
+      (typeof item.bodyAnchorKey === 'string' && item.bodyAnchorKey.trim().length > 0) ||
+      isValidBodyAnchor(item.bodyAnchor)
+  )
 }
 
 export function createConnectorPath(start: BodyAnchorPoint, end: BodyAnchorPoint): string {

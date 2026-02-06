@@ -101,7 +101,7 @@ export function ChatWindow({ onClose, onMinimize }: ChatWindowProps) {
     <div className="w-80 sm:w-96 h-[500px] bg-background border rounded-2xl shadow-2xl flex flex-col overflow-hidden">
       {/* Header */}
       <div className="bg-primary text-primary-foreground px-4 py-3 flex items-center justify-between">
-        <h3 className="font-medium">在线客服</h3>
+        <h3 className="font-medium">Live Support</h3>
         <div className="flex items-center gap-1">
           <Button variant="ghost" size="icon" className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20" onClick={onMinimize}>
             <Minus className="h-4 w-4" />
@@ -115,7 +115,7 @@ export function ChatWindow({ onClose, onMinimize }: ChatWindowProps) {
       {/* Messages */}
       {loading ? (
         <div className="flex-1 flex items-center justify-center">
-          <p className="text-muted-foreground text-sm">加载中...</p>
+          <p className="text-muted-foreground text-sm">Loading...</p>
         </div>
       ) : (
         <ChatMessages messages={messages} />

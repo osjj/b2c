@@ -54,11 +54,11 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           )
         } else {
           setAttachments((prev) => prev.filter((a) => a.file !== file))
-          alert(data.error || '上传失败')
+          alert(data.error || 'Upload failed')
         }
       } catch {
         setAttachments((prev) => prev.filter((a) => a.file !== file))
-        alert('上传失败')
+        alert('Upload failed')
       }
     }
 
@@ -152,7 +152,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="输入消息..."
+          placeholder="Type a message..."
           disabled={disabled || sending}
           rows={1}
           className={cn(

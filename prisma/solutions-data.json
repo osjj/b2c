@@ -100,11 +100,18 @@
       },
       {
         "key": "task-based-ppe",
-        "type": "group",
+        "type": "taskCards",
         "title": "PPE for Different Construction Tasks",
         "enabled": true,
         "data": {
-          "groups": [
+          "cards": [
+            {
+              "items": [],
+              "scene": "construction",
+              "title": "Construction",
+              "checked": true,
+              "description": ""
+            },
             {
               "items": [
                 "Full body harness",
@@ -112,7 +119,9 @@
                 "Helmet with chin strap",
                 "Anti-slip safety boots"
               ],
+              "scene": "height-work",
               "title": "Working at Height",
+              "checked": true,
               "description": "Select fall-arrest PPE that stays secure during elevated movement and helps reduce drop risk at every anchor point."
             },
             {
@@ -121,8 +130,59 @@
                 "Reinforced safety boots",
                 "Eye protection from debris"
               ],
+              "scene": "steel-work",
               "title": "Handling Steel, Rebar, and Concrete",
+              "checked": true,
               "description": "Prioritize cut, puncture, and impact protection for repetitive handling of sharp or abrasive construction materials."
+            },
+            {
+              "items": [],
+              "scene": "falling-objects",
+              "title": "Falling Objects",
+              "checked": true,
+              "description": ""
+            },
+            {
+              "items": [],
+              "scene": "fall-protection",
+              "title": "Fall Protection",
+              "checked": true,
+              "description": ""
+            },
+            {
+              "items": [],
+              "scene": "heavy-duty",
+              "title": "Heavy Duty",
+              "checked": true,
+              "description": ""
+            },
+            {
+              "items": [],
+              "scene": "impact-resistant",
+              "title": "Impact Resistant",
+              "checked": true,
+              "description": ""
+            },
+            {
+              "items": [],
+              "scene": "slip-resistant",
+              "title": "Slip Resistant",
+              "checked": true,
+              "description": ""
+            },
+            {
+              "items": [],
+              "scene": "cut-resistant",
+              "title": "Cut Resistant",
+              "checked": false,
+              "description": ""
+            },
+            {
+              "items": [],
+              "scene": "eye-protection",
+              "title": "Eye Protection",
+              "checked": false,
+              "description": ""
             },
             {
               "items": [
@@ -130,8 +190,17 @@
                 "Respirators or dust masks",
                 "Hi-vis clothing for visibility"
               ],
+              "scene": "dusty-work",
               "title": "Dusty and Demolition Environments",
+              "checked": true,
               "description": "Use sealed eye and respiratory protection to control airborne particles and maintain visibility in high-debris tasks."
+            },
+            {
+              "items": [],
+              "scene": "wet-ground",
+              "title": "Wet Ground",
+              "checked": false,
+              "description": ""
             }
           ]
         }
@@ -143,57 +212,62 @@
         "enabled": true,
         "data": {
           "image": "/body.png",
-          "imageAlt": "Body map showing construction PPE protection points",
           "items": [
             {
+              "text": "Protection from falling objects and overhead impact",
+              "title": "Safety Helmets",
               "bodyAnchor": {
                 "x": 50,
                 "y": 9
               },
-              "text": "Protection from falling objects and overhead impact",
-              "title": "Safety Helmets"
+              "bodyAnchorKey": "head"
             },
             {
+              "text": "Protection from dust, debris, and sparks",
+              "title": "Eye Protection",
               "bodyAnchor": {
                 "x": 50,
                 "y": 18
               },
-              "text": "Protection from dust, debris, and sparks",
-              "title": "Eye Protection"
+              "bodyAnchorKey": "eyes"
             },
             {
+              "text": "Visibility around vehicles and machinery",
+              "title": "Hi-Vis Clothing",
               "bodyAnchor": {
                 "x": 50,
                 "y": 35
-              },
-              "text": "Visibility around vehicles and machinery",
-              "title": "Hi-Vis Clothing"
+              }
             },
             {
+              "text": "Cut, abrasion, and impact resistance for material handling",
+              "title": "Work Gloves",
               "bodyAnchor": {
                 "x": 39,
                 "y": 47
               },
-              "text": "Cut, abrasion, and impact resistance for material handling",
-              "title": "Work Gloves"
+              "bodyAnchorKey": "left-hand"
             },
             {
+              "text": "Harnesses and lanyards for elevated work",
+              "title": "Fall Protection",
               "bodyAnchor": {
                 "x": 50,
                 "y": 53
               },
-              "text": "Harnesses and lanyards for elevated work",
-              "title": "Fall Protection"
+              "bodyAnchorKey": "waist"
             },
             {
+              "text": "Steel toe, puncture resistance, anti-slip outsole",
+              "title": "Safety Boots",
               "bodyAnchor": {
                 "x": 50,
                 "y": 90
               },
-              "text": "Steel toe, puncture resistance, anti-slip outsole",
-              "title": "Safety Boots"
+              "bodyAnchorKey": "feet"
             }
-          ]
+          ],
+          "imageAlt": "Body map showing construction PPE protection points"
         }
       },
       {

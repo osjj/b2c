@@ -20,9 +20,9 @@ export function PriceTiersTable({ tiers, currentQuantity, defaultPrice }: PriceT
   return (
     <div className="border rounded-lg overflow-hidden">
       <div className="grid grid-cols-3 text-sm font-medium bg-muted/50 px-4 py-2">
-        <div>数量</div>
-        <div>单价</div>
-        <div className="text-right">节省</div>
+        <div>Quantity</div>
+        <div>Unit Price</div>
+        <div className="text-right">Savings</div>
       </div>
       <div className="divide-y">
         {sortedTiers.map((tier, index) => {
@@ -42,10 +42,10 @@ export function PriceTiersTable({ tiers, currentQuantity, defaultPrice }: PriceT
             >
               <div>
                 {tier.minQuantity}
-                {tier.maxQuantity ? `-${tier.maxQuantity}` : '+'}件
+                {tier.maxQuantity ? `-${tier.maxQuantity}` : '+'} units
               </div>
               <div className={cn(isActive && 'text-primary')}>
-                {formatPrice(tier.price)}/件
+                {formatPrice(tier.price)}/unit
               </div>
               <div className="text-right flex items-center justify-end gap-2">
                 {savings > 0 ? (
@@ -55,7 +55,7 @@ export function PriceTiersTable({ tiers, currentQuantity, defaultPrice }: PriceT
                 )}
                 {isLowest && (
                   <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded">
-                    推荐
+                    Recommended
                   </span>
                 )}
               </div>

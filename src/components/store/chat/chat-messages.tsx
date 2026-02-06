@@ -18,7 +18,7 @@ export function ChatMessages({ messages }: ChatMessagesProps) {
   if (messages.length === 0) {
     return (
       <div className="flex-1 flex items-center justify-center text-muted-foreground text-sm">
-        <p>发送消息开始对话</p>
+        <p>Send a message to start the conversation</p>
       </div>
     )
   }

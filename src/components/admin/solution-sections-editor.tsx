@@ -37,9 +37,14 @@ import {
 import {
   shouldShowBodyAnchorEditor,
   toggleListItemBodyAnchor,
-  updateListItemBodyAnchorValue,
+  updateListItemBodyAnchorKey,
 } from '@/lib/body-anchor-editor'
 import { isValidBodyAnchor } from '@/lib/body-link-map'
+import {
+  BODY_ANCHOR_POINTS,
+  getBodyAnchorPointByKey,
+  isValidBodyAnchorKey,
+} from '@/lib/body-anchor-points'
 
 const SECTION_OPTIONS: { value: SolutionSectionType; label: string }[] = [
   { value: 'hero', label: 'Hero Intro' },
@@ -437,43 +442,49 @@ function ListEditor({
                     </Label>
                     <Checkbox
                       id={`list-item-anchor-enabled-${index}`}
-                      checked={isValidBodyAnchor(item.bodyAnchor)}
+                      checked={
+                        isValidBodyAnchorKey(item.bodyAnchorKey) ||
+                        isValidBodyAnchor(item.bodyAnchor)
+                      }
                       onCheckedChange={(checked) =>
                         replaceItem(index, toggleListItemBodyAnchor(item, checked === true))
                       }
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="space-y-1">
-                      <Label className="text-[11px] text-muted-foreground">Anchor X (0-100)</Label>
-                      <Input
-                        type="number"
-                        min={0}
-                        max={100}
-                        step={0.1}
-                        value={isValidBodyAnchor(item.bodyAnchor) ? item.bodyAnchor.x : ''}
-                        disabled={!isValidBodyAnchor(item.bodyAnchor)}
-                        onChange={(e) =>
-                          replaceItem(index, updateListItemBodyAnchorValue(item, 'x', e.target.value))
-                        }
-                        placeholder="50"
-                      />
-                    </div>
-                    <div className="space-y-1">
-                      <Label className="text-[11px] text-muted-foreground">Anchor Y (0-100)</Label>
-                      <Input
-                        type="number"
-                        min={0}
-                        max={100}
-                        step={0.1}
-                        value={isValidBodyAnchor(item.bodyAnchor) ? item.bodyAnchor.y : ''}
-                        disabled={!isValidBodyAnchor(item.bodyAnchor)}
-                        onChange={(e) =>
-                          replaceItem(index, updateListItemBodyAnchorValue(item, 'y', e.target.value))
-                        }
-                        placeholder="50"
-                      />
-                    </div>
+                  <div className="space-y-1">
+                    <Label className="text-[11px] text-muted-foreground">Preset Anchor Point</Label>
+                    <Select
+                      value={
+                        isValidBodyAnchorKey(item.bodyAnchorKey) ? item.bodyAnchorKey : 'chest'
+                      }
+                      onValueChange={(value) =>
+                        replaceItem(index, updateListItemBodyAnchorKey(item, value))
+                      }
+                      disabled={
+                        !isValidBodyAnchorKey(item.bodyAnchorKey) &&
+                        !isValidBodyAnchor(item.bodyAnchor)
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a body point" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {BODY_ANCHOR_POINTS.map((point) => (
+                          <SelectItem key={point.key} value={point.key}>
+                            {point.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground">
+                    {(() => {
+                      const point = getBodyAnchorPointByKey(
+                        isValidBodyAnchorKey(item.bodyAnchorKey) ? item.bodyAnchorKey : 'chest'
+                      )
+                      if (!point) return null
+                      return `Coordinates: x=${point.x}, y=${point.y}`
+                    })()}
                   </div>
                 </div>
               )}
