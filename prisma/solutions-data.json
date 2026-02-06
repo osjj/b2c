@@ -142,30 +142,56 @@
         "title": "Essential PPE Categories for Construction Sites",
         "enabled": true,
         "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing construction PPE protection points",
           "items": [
             {
+              "bodyAnchor": {
+                "x": 50,
+                "y": 9
+              },
               "text": "Protection from falling objects and overhead impact",
               "title": "Safety Helmets"
             },
             {
-              "text": "Cut, abrasion, and impact resistance for material handling",
-              "title": "Work Gloves"
-            },
-            {
-              "text": "Steel toe, puncture resistance, anti-slip outsole",
-              "title": "Safety Boots"
-            },
-            {
-              "text": "Visibility around vehicles and machinery",
-              "title": "Hi-Vis Clothing"
-            },
-            {
+              "bodyAnchor": {
+                "x": 50,
+                "y": 18
+              },
               "text": "Protection from dust, debris, and sparks",
               "title": "Eye Protection"
             },
             {
+              "bodyAnchor": {
+                "x": 50,
+                "y": 35
+              },
+              "text": "Visibility around vehicles and machinery",
+              "title": "Hi-Vis Clothing"
+            },
+            {
+              "bodyAnchor": {
+                "x": 39,
+                "y": 47
+              },
+              "text": "Cut, abrasion, and impact resistance for material handling",
+              "title": "Work Gloves"
+            },
+            {
+              "bodyAnchor": {
+                "x": 50,
+                "y": 53
+              },
               "text": "Harnesses and lanyards for elevated work",
               "title": "Fall Protection"
+            },
+            {
+              "bodyAnchor": {
+                "x": 50,
+                "y": 90
+              },
+              "text": "Steel toe, puncture resistance, anti-slip outsole",
+              "title": "Safety Boots"
             }
           ]
         }

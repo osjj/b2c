@@ -4,6 +4,8 @@ import Image from 'next/image'
 import type { ProductImage, Category } from '@prisma/client'
 import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/store/product-card'
+import { BodyLinkMapSection } from './body-link-map-section'
+import { isBodyLinkedList } from '@/lib/body-link-map'
 import { getTaskScenePreset, normalizeTaskCards, normalizeTaskCardsFromLegacyGroups } from '@/lib/task-cards'
 import type {
   SolutionSectionItem,
@@ -169,6 +171,11 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
     case 'list': {
       const data = section.data as SectionListData
       const items = Array.isArray(data?.items) ? data.items : []
+      if (isBodyLinkedList(section.key, items)) {
+        return common(
+          <BodyLinkMapSection imageSrc={data?.image} imageAlt={data?.imageAlt} items={items} />
+        )
+      }
       return common(
         <ul className="space-y-3">
           {items.map((item, index) => (

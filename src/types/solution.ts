@@ -38,8 +38,21 @@ export interface SectionParagraphsData {
   mode?: RecommendationMode
 }
 
+export interface BodyAnchorPoint {
+  x: number
+  y: number
+}
+
+export interface SectionListItem {
+  title?: string
+  text?: string
+  bodyAnchor?: BodyAnchorPoint
+}
+
 export interface SectionListData {
-  items: { title?: string; text?: string }[]
+  image?: string
+  imageAlt?: string
+  items: SectionListItem[]
 }
 
 export interface SectionTableData {

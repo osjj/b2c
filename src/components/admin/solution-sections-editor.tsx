@@ -34,6 +34,12 @@ import {
   normalizeTaskCards,
   normalizeTaskCardsFromLegacyGroups,
 } from '@/lib/task-cards'
+import {
+  shouldShowBodyAnchorEditor,
+  toggleListItemBodyAnchor,
+  updateListItemBodyAnchorValue,
+} from '@/lib/body-anchor-editor'
+import { isValidBodyAnchor } from '@/lib/body-link-map'
 
 const SECTION_OPTIONS: { value: SolutionSectionType; label: string }[] = [
   { value: 'hero', label: 'Hero Intro' },
@@ -296,7 +302,13 @@ function SectionDataEditor({
         <ParagraphsEditor data={section.data as SectionParagraphsData} onChange={onChange} />
       )
     case 'list':
-      return <ListEditor data={section.data as SectionListData} onChange={onChange} />
+      return (
+        <ListEditor
+          sectionKey={section.key}
+          data={section.data as SectionListData}
+          onChange={onChange}
+        />
+      )
     case 'table':
       return <TableEditor data={section.data as SectionTableData} onChange={onChange} />
     case 'group':
@@ -367,9 +379,11 @@ function ParagraphsEditor({
 }
 
 function ListEditor({
+  sectionKey,
   data,
   onChange,
 }: {
+  sectionKey: string
   data: SectionListData
   onChange: (data: SectionListData) => void
 }) {
@@ -377,15 +391,20 @@ function ListEditor({
 
   const updateItem = (index: number, patch: Partial<SectionListData['items'][number]>) => {
     const next = items.map((item, i) => (i === index ? { ...item, ...patch } : item))
-    onChange({ items: next })
+    onChange({ ...data, items: next })
+  }
+
+  const replaceItem = (index: number, nextItem: SectionListData['items'][number]) => {
+    const next = items.map((item, i) => (i === index ? nextItem : item))
+    onChange({ ...data, items: next })
   }
 
   const addItem = () => {
-    onChange({ items: [...items, { title: '', text: '' }] })
+    onChange({ ...data, items: [...items, { title: '', text: '' }] })
   }
 
   const removeItem = (index: number) => {
-    onChange({ items: items.filter((_, i) => i !== index) })
+    onChange({ ...data, items: items.filter((_, i) => i !== index) })
   }
 
   return (
@@ -407,6 +426,57 @@ function ListEditor({
                 placeholder="Item text"
                 rows={2}
               />
+              {shouldShowBodyAnchorEditor(sectionKey) && (
+                <div className="rounded-md border bg-muted/30 p-3 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <Label
+                      htmlFor={`list-item-anchor-enabled-${index}`}
+                      className="text-xs text-muted-foreground"
+                    >
+                      Enable body anchor
+                    </Label>
+                    <Checkbox
+                      id={`list-item-anchor-enabled-${index}`}
+                      checked={isValidBodyAnchor(item.bodyAnchor)}
+                      onCheckedChange={(checked) =>
+                        replaceItem(index, toggleListItemBodyAnchor(item, checked === true))
+                      }
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className="text-[11px] text-muted-foreground">Anchor X (0-100)</Label>
+                      <Input
+                        type="number"
+                        min={0}
+                        max={100}
+                        step={0.1}
+                        value={isValidBodyAnchor(item.bodyAnchor) ? item.bodyAnchor.x : ''}
+                        disabled={!isValidBodyAnchor(item.bodyAnchor)}
+                        onChange={(e) =>
+                          replaceItem(index, updateListItemBodyAnchorValue(item, 'x', e.target.value))
+                        }
+                        placeholder="50"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className="text-[11px] text-muted-foreground">Anchor Y (0-100)</Label>
+                      <Input
+                        type="number"
+                        min={0}
+                        max={100}
+                        step={0.1}
+                        value={isValidBodyAnchor(item.bodyAnchor) ? item.bodyAnchor.y : ''}
+                        disabled={!isValidBodyAnchor(item.bodyAnchor)}
+                        onChange={(e) =>
+                          replaceItem(index, updateListItemBodyAnchorValue(item, 'y', e.target.value))
+                        }
+                        placeholder="50"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="flex justify-end">
                 <Button
                   type="button"
