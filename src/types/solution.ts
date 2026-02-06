@@ -25,6 +25,8 @@ export type SolutionSectionType =
   | 'cta'
   | 'faq'
 
+export type RecommendationMode = 'rule' | 'manual'
+
 export interface SectionHeroData {
   intro: string
   bullets?: string[]
@@ -32,6 +34,7 @@ export interface SectionHeroData {
 
 export interface SectionParagraphsData {
   paragraphs: string[]
+  mode?: RecommendationMode
 }
 
 export interface SectionListData {

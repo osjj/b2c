@@ -6,6 +6,14 @@ import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
 import type { SolutionSectionInput, SolutionSectionType } from '@/types/solution'
+import type { Prisma } from '@prisma/client'
+import {
+  normalizeManualProductIds,
+  RECOMMENDATION_MODES,
+  RECOMMENDED_PPE_BLOCK_KEY,
+  resolveRecommendationMode,
+  withRecommendationModeForSection,
+} from '@/lib/solution-recommendations'
 
 const SECTION_TYPES = [
   'hero',
@@ -38,6 +46,8 @@ const solutionSchema = z.object({
   seoTitle: z.string().max(60).optional().nullable(),
   seoDescription: z.string().max(160).optional().nullable(),
   seoKeywords: z.string().optional().nullable(),
+  recommendationMode: z.enum(RECOMMENDATION_MODES).default('rule'),
+  manualProductIds: z.array(z.string()).default([]),
   sections: z.array(sectionSchema).default([]),
 })
 
@@ -80,6 +90,17 @@ const parseSectionsField = (formData: FormData): SolutionSectionInput[] => {
   }
 }
 
+const parseManualProductIds = (formData: FormData): string[] => {
+  const value = formData.get('manualProductIds')
+  if (!value || typeof value !== 'string' || value === 'null') return []
+  try {
+    const parsed = JSON.parse(value)
+    return normalizeManualProductIds(parsed)
+  } catch {
+    return []
+  }
+}
+
 const normalizeSections = (sections: SolutionSectionInput[]) =>
   sections.map((section, index) => ({
     key: section.key?.trim() || `section-${index + 1}`,
@@ -87,7 +108,7 @@ const normalizeSections = (sections: SolutionSectionInput[]) =>
     title: section.title ?? null,
     enabled: section.enabled ?? true,
     sort: typeof section.sort === 'number' ? section.sort : index,
-    data: section.data ?? {},
+    data: (section.data ?? {}) as unknown as Prisma.InputJsonValue,
   }))
 
 // Get all solutions with pagination and filters
@@ -106,7 +127,7 @@ export async function getSolutions({
   isActive?: boolean
   activeOnly?: boolean
 } = {}) {
-  const where: any = {}
+  const where: Prisma.SolutionWhereInput = {}
 
   if (search) {
     where.OR = [
@@ -150,7 +171,10 @@ export async function getSolutions({
 export async function getSolution(id: string) {
   const solution = await prisma.solution.findUnique({
     where: { id },
-    include: { sections: { orderBy: { sort: 'asc' } } },
+    include: {
+      sections: { orderBy: { sort: 'asc' } },
+      productLinks: { orderBy: { sort: 'asc' } },
+    },
   })
 
   return solution
@@ -160,7 +184,10 @@ export async function getSolution(id: string) {
 export async function getSolutionBySlug(slug: string) {
   const solution = await prisma.solution.findFirst({
     where: { slug, isActive: true },
-    include: { sections: { orderBy: { sort: 'asc' } } },
+    include: {
+      sections: { orderBy: { sort: 'asc' } },
+      productLinks: { orderBy: { sort: 'asc' } },
+    },
   })
 
   return solution
@@ -184,6 +211,8 @@ export async function createSolution(
     seoTitle: formData.get('seoTitle') || null,
     seoDescription: formData.get('seoDescription') || null,
     seoKeywords: formData.get('seoKeywords') || null,
+    recommendationMode: resolveRecommendationMode(formData.get('recommendationMode')),
+    manualProductIds: parseManualProductIds(formData),
     sections: parseSectionsField(formData),
   }
 
@@ -201,7 +230,8 @@ export async function createSolution(
     return { error: 'Slug already exists' }
   }
 
-  const normalizedSections = normalizeSections(data.sections)
+  const sectionsWithMode = withRecommendationModeForSection(data.sections, data.recommendationMode)
+  const normalizedSections = normalizeSections(sectionsWithMode)
 
   await prisma.solution.create({
     data: {
@@ -229,6 +259,17 @@ export async function createSolution(
             })),
           }
         : undefined,
+      productLinks:
+        data.recommendationMode === 'manual' && data.manualProductIds.length
+          ? {
+              create: data.manualProductIds.map((productId, index) => ({
+                id: createId(),
+                blockKey: RECOMMENDED_PPE_BLOCK_KEY,
+                productId,
+                sort: index,
+              })),
+            }
+          : undefined,
     },
   })
 
@@ -256,6 +297,8 @@ export async function updateSolution(
     seoTitle: formData.get('seoTitle') || null,
     seoDescription: formData.get('seoDescription') || null,
     seoKeywords: formData.get('seoKeywords') || null,
+    recommendationMode: resolveRecommendationMode(formData.get('recommendationMode')),
+    manualProductIds: parseManualProductIds(formData),
     sections: parseSectionsField(formData),
   }
 
@@ -273,7 +316,8 @@ export async function updateSolution(
     return { error: 'Slug already exists' }
   }
 
-  const normalizedSections = normalizeSections(data.sections)
+  const sectionsWithMode = withRecommendationModeForSection(data.sections, data.recommendationMode)
+  const normalizedSections = normalizeSections(sectionsWithMode)
 
   await prisma.$transaction(async (tx) => {
     await tx.solution.update({
@@ -305,6 +349,22 @@ export async function updateSolution(
           title: section.title,
           enabled: section.enabled,
           data: section.data,
+        })),
+      })
+    }
+
+    await tx.solutionProductLink.deleteMany({
+      where: { solutionId: id, blockKey: RECOMMENDED_PPE_BLOCK_KEY },
+    })
+
+    if (data.recommendationMode === 'manual' && data.manualProductIds.length) {
+      await tx.solutionProductLink.createMany({
+        data: data.manualProductIds.map((productId, index) => ({
+          id: createId(),
+          solutionId: id,
+          blockKey: RECOMMENDED_PPE_BLOCK_KEY,
+          productId,
+          sort: index,
         })),
       })
     }

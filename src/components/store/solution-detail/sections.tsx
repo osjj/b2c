@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import type { ProductImage, Category } from '@prisma/client'
 import { Button } from '@/components/ui/button'
+import { ProductCard } from '@/components/store/product-card'
 import type {
   SolutionSectionItem,
   SectionHeroData,
@@ -15,15 +17,53 @@ import type {
 
 interface SolutionSectionsProps {
   sections: SolutionSectionItem[]
+  productsBySectionKey?: Record<string, RecommendedProduct[]>
 }
 
-export function SolutionSections({ sections }: SolutionSectionsProps) {
+type RecommendedProduct = {
+  id: string
+  name: string
+  slug: string
+  description: string | null
+  price: number
+  comparePrice: number | null
+  stock: number
+  isActive: boolean
+  isFeatured: boolean
+  images: ProductImage[]
+  category: Category | null
+  priceTiers?: Array<{
+    id: string
+    minQuantity: number
+    maxQuantity: number | null
+    price: number
+    sortOrder: number
+  }>
+}
+
+export function SolutionSections({ sections, productsBySectionKey = {} }: SolutionSectionsProps) {
   if (!sections || sections.length === 0) return null
 
   return (
     <div className="space-y-10">
-      {sections.map((section) => (
-        <SectionRenderer key={section.key} section={section} />
+      {sections.map((section) => {
+        const products = productsBySectionKey[section.key] || []
+        return (
+          <div key={section.key} className="space-y-6">
+            <SectionRenderer section={section} />
+            {products.length > 0 && <SectionProducts products={products} />}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function SectionProducts({ products }: { products: RecommendedProduct[] }) {
+  return (
+    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+      {products.map((product, index) => (
+        <ProductCard key={product.id} product={product} index={index} />
       ))}
     </div>
   )

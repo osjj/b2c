@@ -7,9 +7,36 @@ import { formatUsageSceneLabel, type UsageScene } from '@/lib/usage-scenes'
 import { SolutionHero, SolutionSections } from '@/components/store/solution-detail'
 import { TableOfContents } from '@/components/store/solution-detail/table-of-contents'
 import type { SolutionSectionItem } from '@/types/solution'
+import { prisma } from '@/lib/prisma'
+import {
+  RECOMMENDED_PPE_BLOCK_KEY,
+  resolveRecommendationMode,
+} from '@/lib/solution-recommendations'
+import type { ProductImage, Category } from '@prisma/client'
 
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+type RecommendedProduct = {
+  id: string
+  name: string
+  slug: string
+  description: string | null
+  price: number
+  comparePrice: number | null
+  stock: number
+  isActive: boolean
+  isFeatured: boolean
+  images: ProductImage[]
+  category: Category | null
+  priceTiers?: Array<{
+    id: string
+    minQuantity: number
+    maxQuantity: number | null
+    price: number
+    sortOrder: number
+  }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -82,9 +109,80 @@ export default async function SolutionDetailPage({ params }: Props) {
     notFound()
   }
 
-  const sections = ((solution.sections || []) as SolutionSectionItem[])
+  const sections = ((solution.sections || []) as unknown as SolutionSectionItem[])
     .filter((section) => section.enabled)
     .sort((a, b) => a.sort - b.sort)
+
+  const recommendedSection = sections.find((section) => section.key === RECOMMENDED_PPE_BLOCK_KEY)
+  const recommendationMode = resolveRecommendationMode(
+    (recommendedSection?.data as { mode?: unknown } | undefined)?.mode
+  )
+  const manualProductIds = (solution.productLinks || [])
+    .filter((link) => link.blockKey === RECOMMENDED_PPE_BLOCK_KEY)
+    .sort((a, b) => a.sort - b.sort)
+    .map((link) => link.productId)
+
+  let recommendedProducts: RecommendedProduct[] = []
+
+  if (recommendedSection) {
+    if (recommendationMode === 'manual' && manualProductIds.length > 0) {
+      const rawProducts = await prisma.product.findMany({
+        where: {
+          isActive: true,
+          id: { in: manualProductIds },
+        },
+        include: {
+          category: true,
+          images: { orderBy: { sortOrder: 'asc' }, take: 1 },
+          priceTiers: { orderBy: { sortOrder: 'asc' } },
+        },
+      })
+
+      const productOrder = new Map(manualProductIds.map((id, index) => [id, index]))
+      recommendedProducts = rawProducts
+        .sort((a, b) => (productOrder.get(a.id) ?? 9999) - (productOrder.get(b.id) ?? 9999))
+        .map((product) => ({
+          ...product,
+          price: Number(product.price),
+          comparePrice: product.comparePrice ? Number(product.comparePrice) : null,
+          priceTiers: product.priceTiers.map((tier) => ({
+            ...tier,
+            price: Number(tier.price),
+          })),
+        }))
+    }
+
+    if (recommendationMode === 'rule' && solution.usageScenes.length > 0) {
+      const rawProducts = await prisma.product.findMany({
+        where: {
+          isActive: true,
+          usageScenes: { hasSome: solution.usageScenes },
+        },
+        include: {
+          category: true,
+          images: { orderBy: { sortOrder: 'asc' }, take: 1 },
+          priceTiers: { orderBy: { sortOrder: 'asc' } },
+        },
+        orderBy: [{ isFeatured: 'desc' }, { sortOrder: 'asc' }, { createdAt: 'desc' }],
+        take: 6,
+      })
+
+      recommendedProducts = rawProducts.map((product) => ({
+        ...product,
+        price: Number(product.price),
+        comparePrice: product.comparePrice ? Number(product.comparePrice) : null,
+        priceTiers: product.priceTiers.map((tier) => ({
+          ...tier,
+          price: Number(tier.price),
+        })),
+      }))
+    }
+  }
+
+  const productsBySectionKey =
+    recommendedSection && recommendedProducts.length > 0
+      ? { [recommendedSection.key]: recommendedProducts }
+      : {}
 
   const tocItems = sections
     .filter((section) => section.title)
@@ -125,12 +223,12 @@ export default async function SolutionDetailPage({ params }: Props) {
               <TableOfContents items={tocItems} />
             </aside>
             <div className="max-w-4xl space-y-6">
-              <SolutionSections sections={sections} />
+              <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
             </div>
           </div>
         ) : (
           <div className="max-w-4xl space-y-6">
-            <SolutionSections sections={sections} />
+            <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
           </div>
         )}
       </div>

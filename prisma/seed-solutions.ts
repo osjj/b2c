@@ -12,7 +12,7 @@ interface SolutionSectionData {
   title?: string | null
   enabled?: boolean
   sort?: number
-  data: any
+  data: unknown
 }
 
 interface SolutionData {
@@ -27,6 +27,11 @@ interface SolutionData {
   seoDescription: string | null
   seoKeywords: string | null
   sections: SolutionSectionData[]
+  productLinks?: Array<{
+    blockKey: string
+    productId: string
+    sort?: number
+  }>
 }
 
 const createId = () => {
@@ -71,6 +76,13 @@ async function main() {
         data: section.data ?? {},
       }))
 
+      const normalizedProductLinks = (solution.productLinks || []).map((link, index) => ({
+        id: createId(),
+        blockKey: link.blockKey,
+        productId: link.productId,
+        sort: typeof link.sort === 'number' ? link.sort : index,
+      }))
+
       await prisma.solution.create({
         data: {
           id: createId(),
@@ -87,6 +99,11 @@ async function main() {
           sections: normalizedSections.length
             ? {
                 create: normalizedSections,
+              }
+            : undefined,
+          productLinks: normalizedProductLinks.length
+            ? {
+                create: normalizedProductLinks,
               }
             : undefined,
         },
