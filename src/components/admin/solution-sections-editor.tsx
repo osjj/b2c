@@ -1,11 +1,14 @@
 'use client'
 
+import { useMemo, useState } from 'react'
+import Image from 'next/image'
 import { Plus, Trash2, ArrowUp, ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   Select,
   SelectContent,
@@ -21,10 +24,16 @@ import type {
   SectionListData,
   SectionTableData,
   SectionGroupData,
+  SectionTaskCardsData,
   SectionCalloutData,
   SectionCtaData,
   SectionFaqData,
 } from '@/types/solution'
+import {
+  getTaskScenePreset,
+  normalizeTaskCards,
+  normalizeTaskCardsFromLegacyGroups,
+} from '@/lib/task-cards'
 
 const SECTION_OPTIONS: { value: SolutionSectionType; label: string }[] = [
   { value: 'hero', label: 'Hero Intro' },
@@ -32,6 +41,7 @@ const SECTION_OPTIONS: { value: SolutionSectionType; label: string }[] = [
   { value: 'list', label: 'List' },
   { value: 'table', label: 'Table' },
   { value: 'group', label: 'Grouped List' },
+  { value: 'taskCards', label: 'Task Cards' },
   { value: 'callout', label: 'Callout' },
   { value: 'cta', label: 'CTA' },
   { value: 'faq', label: 'FAQ' },
@@ -44,7 +54,7 @@ const createKey = (type: string) => {
   return `${type}-${Date.now()}-${Math.random().toString(16).slice(2)}`
 }
 
-const createDefaultData = (type: SolutionSectionType) => {
+const createDefaultData = (type: SolutionSectionType, usageScenes: string[] = []) => {
   switch (type) {
     case 'hero':
       return { intro: '', bullets: [] } satisfies SectionHeroData
@@ -56,6 +66,8 @@ const createDefaultData = (type: SolutionSectionType) => {
       return { headers: [''], rows: [['']] } satisfies SectionTableData
     case 'group':
       return { groups: [{ title: '', items: [''] }] } satisfies SectionGroupData
+    case 'taskCards':
+      return normalizeTaskCards(undefined, usageScenes) satisfies SectionTaskCardsData
     case 'callout':
       return { text: '' } satisfies SectionCalloutData
     case 'cta':
@@ -76,10 +88,11 @@ const createDefaultData = (type: SolutionSectionType) => {
 
 interface SolutionSectionsEditorProps {
   value: SolutionSectionInput[]
+  usageScenes?: string[]
   onChange: (value: SolutionSectionInput[]) => void
 }
 
-export function SolutionSectionsEditor({ value, onChange }: SolutionSectionsEditorProps) {
+export function SolutionSectionsEditor({ value, usageScenes = [], onChange }: SolutionSectionsEditorProps) {
   const addSection = () => {
     const type: SolutionSectionType = 'paragraphs'
     onChange([
@@ -89,7 +102,7 @@ export function SolutionSectionsEditor({ value, onChange }: SolutionSectionsEdit
         type,
         title: '',
         enabled: true,
-        data: createDefaultData(type),
+        data: createDefaultData(type, usageScenes),
       },
     ])
   }
@@ -120,6 +133,11 @@ export function SolutionSectionsEditor({ value, onChange }: SolutionSectionsEdit
         <div className="space-y-4">
           {value.map((section, index) => (
             <div key={section.key} className="rounded-xl border bg-card p-4 space-y-4">
+              {section.key === 'task-based-ppe' && (
+                <p className="rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-xs text-muted-foreground">
+                  This block uses fixed Task Cards mode with 12 usage scenes and preset task images.
+                </p>
+              )}
               <div className="flex flex-wrap items-center gap-3 justify-between">
                 <div className="flex items-center gap-2">
                   <Button
@@ -166,28 +184,32 @@ export function SolutionSectionsEditor({ value, onChange }: SolutionSectionsEdit
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Section Type</Label>
-                  <Select
-                    value={section.type}
-                    onValueChange={(value) => {
-                      const type = value as SolutionSectionType
-                      updateSection(index, {
-                        type,
-                        data: createDefaultData(type),
-                        key: section.key || createKey(type),
-                      })
-                    }}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {SECTION_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  {section.key === 'task-based-ppe' ? (
+                    <Input value="Task Cards (fixed)" disabled />
+                  ) : (
+                    <Select
+                      value={section.type}
+                      onValueChange={(value) => {
+                        const type = value as SolutionSectionType
+                        updateSection(index, {
+                          type,
+                          data: createDefaultData(type, usageScenes),
+                          key: section.key || createKey(type),
+                        })
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {SECTION_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -212,7 +234,15 @@ export function SolutionSectionsEditor({ value, onChange }: SolutionSectionsEdit
 
               <SectionDataEditor
                 section={section}
-                onChange={(data) => updateSection(index, { data })}
+                usageScenes={usageScenes}
+                onChange={(data) =>
+                  updateSection(
+                    index,
+                    section.key === 'task-based-ppe'
+                      ? { data, type: 'taskCards' }
+                      : { data }
+                  )
+                }
               />
             </div>
           ))}
@@ -229,11 +259,35 @@ export function SolutionSectionsEditor({ value, onChange }: SolutionSectionsEdit
 
 function SectionDataEditor({
   section,
+  usageScenes,
   onChange,
 }: {
   section: SolutionSectionInput
+  usageScenes: string[]
   onChange: (data: SolutionSectionInput['data']) => void
 }) {
+  const isFixedTaskSection = section.key === 'task-based-ppe'
+  const isTaskCards = section.type === 'taskCards' || isFixedTaskSection
+
+  if (isTaskCards) {
+    const isLegacyGroupData =
+      section.type === 'group' &&
+      !!section.data &&
+      typeof section.data === 'object' &&
+      Array.isArray((section.data as { groups?: unknown }).groups)
+
+    const normalized =
+      isLegacyGroupData
+        ? normalizeTaskCardsFromLegacyGroups(section.data, usageScenes)
+        : normalizeTaskCards(section.data, usageScenes)
+    return (
+      <TaskCardsEditor
+        data={normalized}
+        onChange={(next) => onChange(normalizeTaskCards(next, usageScenes))}
+      />
+    )
+  }
+
   switch (section.type) {
     case 'hero':
       return <HeroSectionEditor data={section.data as SectionHeroData} onChange={onChange} />
@@ -247,6 +301,13 @@ function SectionDataEditor({
       return <TableEditor data={section.data as SectionTableData} onChange={onChange} />
     case 'group':
       return <GroupEditor data={section.data as SectionGroupData} onChange={onChange} />
+    case 'taskCards':
+      return (
+        <TaskCardsEditor
+          data={normalizeTaskCards(section.data, usageScenes)}
+          onChange={(next) => onChange(normalizeTaskCards(next, usageScenes))}
+        />
+      )
     case 'callout':
       return <CalloutEditor data={section.data as SectionCalloutData} onChange={onChange} />
     case 'cta':
@@ -540,6 +601,185 @@ function GroupEditor({
         <Plus className="h-4 w-4 mr-2" />
         Add Group
       </Button>
+    </div>
+  )
+}
+
+function TaskCardsEditor({
+  data,
+  onChange,
+}: {
+  data: SectionTaskCardsData
+  onChange: (data: SectionTaskCardsData) => void
+}) {
+  const cards = useMemo(
+    () => (Array.isArray(data.cards) ? data.cards : []),
+    [data.cards]
+  )
+  const [selectedScene, setSelectedScene] = useState<string>(cards[0]?.scene || '')
+  const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState<'all' | 'checked' | 'incomplete'>('all')
+
+  const isIncomplete = (card: SectionTaskCardsData['cards'][number]) =>
+    card.checked && (!card.description.trim() || card.items.length === 0)
+
+  const filteredCards = useMemo(() => {
+    const keyword = search.trim().toLowerCase()
+    return cards.filter((card) => {
+      const preset = getTaskScenePreset(card.scene)
+      const matchesSearch =
+        !keyword ||
+        card.scene.includes(keyword) ||
+        preset.title.toLowerCase().includes(keyword) ||
+        (card.title || '').toLowerCase().includes(keyword)
+
+      if (!matchesSearch) return false
+      if (filter === 'checked') return card.checked
+      if (filter === 'incomplete') return isIncomplete(card)
+      return true
+    })
+  }, [cards, filter, search])
+
+  const updateCard = (scene: string, patch: Partial<SectionTaskCardsData['cards'][number]>) => {
+    onChange({
+      cards: cards.map((card) => (card.scene === scene ? { ...card, ...patch } : card)),
+    })
+  }
+
+  const activeScene = cards.some((card) => card.scene === selectedScene)
+    ? selectedScene
+    : (cards[0]?.scene || '')
+  const selectedCard = cards.find((card) => card.scene === activeScene)
+
+  return (
+    <div className="space-y-4">
+      <div className="grid gap-4 lg:grid-cols-[300px_minmax(0,1fr)]">
+        <aside className="space-y-3">
+          <Input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search scenes..."
+          />
+          <div className="grid grid-cols-3 gap-2">
+            <Button type="button" size="sm" variant={filter === 'all' ? 'default' : 'outline'} onClick={() => setFilter('all')}>
+              All
+            </Button>
+            <Button type="button" size="sm" variant={filter === 'checked' ? 'default' : 'outline'} onClick={() => setFilter('checked')}>
+              Checked
+            </Button>
+            <Button type="button" size="sm" variant={filter === 'incomplete' ? 'default' : 'outline'} onClick={() => setFilter('incomplete')}>
+              Incomplete
+            </Button>
+          </div>
+          <div className="max-h-[520px] overflow-y-auto rounded-lg border">
+            {filteredCards.length === 0 ? (
+              <p className="p-3 text-sm text-muted-foreground">No scenes matched.</p>
+            ) : (
+              <div className="divide-y">
+                {filteredCards.map((card) => {
+                  const preset = getTaskScenePreset(card.scene)
+                  const active = card.scene === activeScene
+                  return (
+                    <button
+                      key={card.scene}
+                      type="button"
+                      onClick={() => setSelectedScene(card.scene)}
+                      className={`w-full px-3 py-2 text-left transition-colors ${
+                        active ? 'bg-primary/10' : 'hover:bg-muted/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Checkbox
+                          checked={card.checked}
+                          onCheckedChange={(checked) =>
+                            updateCard(card.scene, { checked: checked === true })
+                          }
+                        />
+                        <span className="text-sm font-medium">{preset.title}</span>
+                      </div>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {card.items.length} items · {card.description.trim() ? 'desc' : 'no desc'}
+                      </p>
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        </aside>
+
+        {selectedCard ? (
+          <div className="rounded-lg border p-4 space-y-3">
+            {(() => {
+              const preset = getTaskScenePreset(selectedCard.scene)
+              return (
+                <>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Checkbox
+                        id={`task-card-detail-${selectedCard.scene}`}
+                        checked={selectedCard.checked}
+                        onCheckedChange={(checked) =>
+                          updateCard(selectedCard.scene, { checked: checked === true })
+                        }
+                      />
+                      <label
+                        htmlFor={`task-card-detail-${selectedCard.scene}`}
+                        className="text-sm font-medium cursor-pointer"
+                      >
+                        {preset.title}
+                      </label>
+                    </div>
+                    <span className="text-xs text-muted-foreground">scene: {selectedCard.scene}</span>
+                  </div>
+
+                  <div className="relative overflow-hidden rounded-md border bg-muted/20 aspect-video">
+                    <Image
+                      src={preset.image}
+                      alt={preset.title}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Task Title</Label>
+                    <Input
+                      value={selectedCard.title}
+                      onChange={(e) => updateCard(selectedCard.scene, { title: e.target.value })}
+                      placeholder="Task title"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label>Description</Label>
+                    <Textarea
+                      value={selectedCard.description}
+                      onChange={(e) =>
+                        updateCard(selectedCard.scene, { description: e.target.value })
+                      }
+                      placeholder="Short description sentence"
+                      rows={2}
+                    />
+                  </div>
+
+                  <StringListEditor
+                    label="Checklist Items"
+                    value={Array.isArray(selectedCard.items) ? selectedCard.items : []}
+                    onChange={(items) => updateCard(selectedCard.scene, { items })}
+                    placeholder="List item"
+                  />
+                </>
+              )
+            })()}
+          </div>
+        ) : (
+          <div className="rounded-lg border p-4 text-sm text-muted-foreground">
+            Select a scene from the left list.
+          </div>
+        )}
+      </div>
     </div>
   )
 }

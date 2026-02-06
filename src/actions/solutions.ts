@@ -21,6 +21,7 @@ const SECTION_TYPES = [
   'list',
   'table',
   'group',
+  'taskCards',
   'callout',
   'cta',
   'faq',

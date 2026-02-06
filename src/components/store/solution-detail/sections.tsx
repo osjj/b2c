@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { ProductImage, Category } from '@prisma/client'
 import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/store/product-card'
+import { getTaskScenePreset, normalizeTaskCards, normalizeTaskCardsFromLegacyGroups } from '@/lib/task-cards'
 import type {
   SolutionSectionItem,
   SectionHeroData,
@@ -10,6 +12,7 @@ import type {
   SectionListData,
   SectionTableData,
   SectionGroupData,
+  SectionTaskCardsData,
   SectionCalloutData,
   SectionCtaData,
   SectionFaqData,
@@ -65,6 +68,51 @@ function SectionProducts({ products }: { products: RecommendedProduct[] }) {
       {products.map((product, index) => (
         <ProductCard key={product.id} product={product} index={index} />
       ))}
+    </div>
+  )
+}
+
+function TaskCardsGrid({ data }: { data: SectionTaskCardsData }) {
+  const cards = (data.cards || [])
+    .map((card) => ({
+      ...card,
+      items: (card.items || []).map((item) => item.trim()).filter(Boolean),
+    }))
+    .filter((card) => card.checked && card.items.length > 0)
+  if (cards.length === 0) return null
+
+  return (
+    <div className="grid gap-4 md:grid-cols-2">
+      {cards.map((card) => {
+        const preset = getTaskScenePreset(card.scene)
+        return (
+          <article key={card.scene} className="overflow-hidden rounded-xl border bg-card">
+            <div className="relative aspect-video w-full">
+              <Image
+                src={preset.image}
+                alt={card.title || preset.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="space-y-3 p-4">
+              <h3 className="text-base font-semibold text-foreground">{card.title || preset.title}</h3>
+              {card.description && (
+                <p className="text-sm text-muted-foreground">{card.description}</p>
+              )}
+              <ul className="space-y-2 border-t pt-3 text-sm text-foreground">
+                {card.items.map((item, index) => (
+                  <li key={`${card.scene}-${index}`} className="flex items-start gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        )
+      })}
     </div>
   )
 }
@@ -173,6 +221,10 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       )
     }
     case 'group': {
+      if (section.key === 'task-based-ppe') {
+        const data = normalizeTaskCardsFromLegacyGroups(section.data)
+        return common(<TaskCardsGrid data={data} />)
+      }
       const data = section.data as SectionGroupData
       const groups = Array.isArray(data?.groups) ? data.groups : []
       return common(
@@ -194,6 +246,10 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
           )})}
         </div>
       )
+    }
+    case 'taskCards': {
+      const data = normalizeTaskCards(section.data as SectionTaskCardsData)
+      return common(<TaskCardsGrid data={data} />)
     }
     case 'callout': {
       const data = section.data as SectionCalloutData

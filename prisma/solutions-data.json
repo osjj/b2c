@@ -112,7 +112,8 @@
                 "Helmet with chin strap",
                 "Anti-slip safety boots"
               ],
-              "title": "Working at Height"
+              "title": "Working at Height",
+              "description": "Select fall-arrest PPE that stays secure during elevated movement and helps reduce drop risk at every anchor point."
             },
             {
               "items": [
@@ -120,7 +121,8 @@
                 "Reinforced safety boots",
                 "Eye protection from debris"
               ],
-              "title": "Handling Steel, Rebar, and Concrete"
+              "title": "Handling Steel, Rebar, and Concrete",
+              "description": "Prioritize cut, puncture, and impact protection for repetitive handling of sharp or abrasive construction materials."
             },
             {
               "items": [
@@ -128,7 +130,8 @@
                 "Respirators or dust masks",
                 "Hi-vis clothing for visibility"
               ],
-              "title": "Dusty and Demolition Environments"
+              "title": "Dusty and Demolition Environments",
+              "description": "Use sealed eye and respiratory protection to control airborne particles and maintain visibility in high-debris tasks."
             }
           ]
         }
@@ -372,7 +375,8 @@
                 "Safety goggles",
                 "Protective sleeves"
               ],
-              "title": "Machining and Cutting"
+              "title": "Machining and Cutting",
+              "description": "Focus on cut resistance, flying-debris eye protection, and dexterity for precise operations around rotating tools."
             },
             {
               "items": [
@@ -380,7 +384,8 @@
                 "Heat-resistant gloves",
                 "Flame-resistant workwear"
               ],
-              "title": "Welding and Thermal Work"
+              "title": "Welding and Thermal Work",
+              "description": "Use heat-resistant, flame-rated PPE designed for sparks, hot surfaces, and radiant energy exposure."
             },
             {
               "items": [
@@ -388,7 +393,8 @@
                 "Splash goggles",
                 "Protective aprons"
               ],
-              "title": "Chemical Handling and Cleaning"
+              "title": "Chemical Handling and Cleaning",
+              "description": "Choose splash-resistant gloves and eye protection compatible with the chemicals used in your cleaning workflow."
             },
             {
               "items": [
@@ -396,7 +402,8 @@
                 "Anti-slip safety shoes",
                 "Hearing protection if required"
               ],
-              "title": "Assembly and Packaging"
+              "title": "Assembly and Packaging",
+              "description": "Adopt lightweight PPE that balances hand protection, comfort, and grip for high-frequency assembly cycles."
             }
           ]
         }
@@ -687,7 +694,8 @@
                 "Steel toe safety shoes",
                 "Hard hat where overhead work exists"
               ],
-              "title": "Forklift and Loading Dock Operations"
+              "title": "Forklift and Loading Dock Operations",
+              "description": "Improve visibility and toe protection in mixed pedestrian-vehicle zones with heavy pallet movement."
             },
             {
               "items": [
@@ -695,7 +703,8 @@
                 "Safety shoes",
                 "Optional eye protection for dusty zones"
               ],
-              "title": "Picking and Packing"
+              "title": "Picking and Packing",
+              "description": "Use breathable hand and foot protection for repetitive handling while maintaining speed and accuracy."
             },
             {
               "items": [
@@ -703,7 +712,8 @@
                 "Safety helmet",
                 "Anti-slip footwear"
               ],
-              "title": "Palletizing and Racking"
+              "title": "Palletizing and Racking",
+              "description": "Protect against pinch points, dropped loads, and overhead risks during stacking, wrapping, and rack loading."
             },
             {
               "items": [
@@ -711,7 +721,8 @@
                 "Insulated workwear",
                 "Slip-resistant boots"
               ],
-              "title": "Cold Storage"
+              "title": "Cold Storage",
+              "description": "Layer thermal PPE to preserve dexterity and reduce slip risk in low-temperature and condensation-prone areas."
             }
           ]
         }

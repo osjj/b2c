@@ -27,6 +27,7 @@ import {
   RECOMMENDED_PPE_BLOCK_KEY,
   resolveRecommendationMode,
 } from '@/lib/solution-recommendations'
+import { normalizeTaskCards, normalizeTaskCardsFromLegacyGroups } from '@/lib/task-cards'
 import type { RecommendationMode } from '@/types/solution'
 
 interface SolutionSectionRecord {
@@ -168,16 +169,27 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
   }
 
   const sectionsPayload = sections.map((section, index) => {
-    const data =
-      section.key === RECOMMENDED_PPE_BLOCK_KEY
-        ? {
-            ...(section.data as unknown as Record<string, unknown>),
-            mode: recommendationMode,
-          }
-        : section.data
+    let type = section.type
+    let data: unknown = section.data
+
+    if (section.key === 'task-based-ppe') {
+      type = 'taskCards'
+      data =
+        section.type === 'group'
+          ? normalizeTaskCardsFromLegacyGroups(section.data, usageScenes)
+          : normalizeTaskCards(section.data, usageScenes)
+    }
+
+    if (section.key === RECOMMENDED_PPE_BLOCK_KEY) {
+      data = {
+        ...(data as Record<string, unknown>),
+        mode: recommendationMode,
+      }
+    }
 
     return {
       ...section,
+      type,
       data,
       key: section.key?.trim() || `section-${index + 1}`,
       sort: index,
@@ -299,7 +311,7 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <SolutionSectionsEditor value={sections} onChange={setSections} />
+              <SolutionSectionsEditor value={sections} usageScenes={usageScenes} onChange={setSections} />
               <input
                 type="hidden"
                 name="sections"

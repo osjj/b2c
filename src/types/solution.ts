@@ -21,6 +21,7 @@ export type SolutionSectionType =
   | 'list'
   | 'table'
   | 'group'
+  | 'taskCards'
   | 'callout'
   | 'cta'
   | 'faq'
@@ -50,6 +51,16 @@ export interface SectionGroupData {
   groups: { title: string; items: string[] }[]
 }
 
+export interface SectionTaskCardsData {
+  cards: {
+    scene: UsageScene
+    checked: boolean
+    title: string
+    description: string
+    items: string[]
+  }[]
+}
+
 export interface SectionCalloutData {
   text: string
 }
@@ -73,6 +84,7 @@ export type SolutionSectionData =
   | SectionListData
   | SectionTableData
   | SectionGroupData
+  | SectionTaskCardsData
   | SectionCalloutData
   | SectionCtaData
   | SectionFaqData
