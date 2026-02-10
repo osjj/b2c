@@ -36,14 +36,14 @@ function inferLegacyAnchorKey(anchor: BodyAnchorPoint): BodyAnchorKey | undefine
 }
 
 export function getBodyAnchorPointByKey(key: string | undefined): BodyAnchorPoint | undefined {
-  if (!key) return undefined
+  if (!isValidBodyAnchorKey(key)) return undefined
   const point = BODY_ANCHOR_MAP.get(key)
   if (!point) return undefined
   return clampBodyAnchor(point)
 }
 
 export function isValidBodyAnchorKey(key: string | undefined): key is BodyAnchorKey {
-  return !!key && BODY_ANCHOR_MAP.has(key)
+  return !!key && BODY_ANCHOR_POINTS.some((item) => item.key === key)
 }
 
 export function resolveListItemBodyAnchor(item: SectionListItem): BodyAnchorPoint | undefined {

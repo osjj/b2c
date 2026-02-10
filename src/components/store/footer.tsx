@@ -6,23 +6,30 @@ import { Button } from "@/components/ui/button"
 const footerLinks = {
   shop: [
     { href: "/products", label: "All Products" },
-    { href: "/new-arrivals", label: "New Arrivals" },
-    { href: "/categories", label: "Collections" },
-    { href: "/sale", label: "Sale" },
+    { href: "/products?sort=best-sellers", label: "Best Sellers" },
+    { href: "/categories", label: "Categories" },
+    { href: "/solutions", label: "Industry Solutions" },
   ],
   help: [
-    { href: "/shipping", label: "Shipping & Returns" },
+    { href: "/orders?tab=lookup", label: "Order Lookup" },
+    { href: "/orders", label: "My Orders" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact Us" },
-    { href: "/size-guide", label: "Size Guide" },
+    { href: "/account/orders", label: "Account Orders" },
   ],
   about: [
     { href: "/about", label: "Our Story" },
-    { href: "/sustainability", label: "Sustainability" },
-    { href: "/careers", label: "Careers" },
-    { href: "/press", label: "Press" },
+    { href: "/cases", label: "Case Studies" },
+    { href: "/news", label: "News" },
+    { href: "/contact?topic=partnership", label: "Partnership" },
   ],
 }
+
+const socialLinks = [
+  { href: "https://www.instagram.com/", label: "Instagram", icon: Instagram },
+  { href: "https://www.facebook.com/", label: "Facebook", icon: Facebook },
+  { href: "https://twitter.com/", label: "Twitter", icon: Twitter },
+]
 
 export function Footer() {
   return (
@@ -35,7 +42,7 @@ export function Footer() {
         <div className="text-center mb-16 max-w-xl mx-auto">
           <h3 className="font-serif text-3xl mb-3">Join Our World</h3>
           <p className="text-muted-foreground text-sm mb-6">
-            Subscribe for exclusive offers, early access to new arrivals, and curated stories.
+            Subscribe for exclusive offers, featured products, and curated industry stories.
           </p>
           <form className="flex gap-2 max-w-md mx-auto">
             <Input
@@ -99,28 +106,25 @@ export function Footer() {
           <div>
             <h4 className="font-serif text-lg mb-6 tracking-wide">Follow</h4>
             <div className="flex gap-4">
-              <Link
-                href="#"
-                className="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-              >
-                <Instagram className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#"
-                className="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-              >
-                <Facebook className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#"
-                className="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
-              >
-                <Twitter className="h-4 w-4" />
-              </Link>
+              {socialLinks.map((item) => {
+                const Icon = item.icon
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.label}
+                    className="h-10 w-10 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                )
+              })}
             </div>
             <p className="text-sm text-muted-foreground mt-6">
               Customer Service<br />
-              <a href="597167998qq01@gmail.com" className="hover:text-foreground transition-colors">
+              <a href="mailto:597167998qq01@gmail.com" className="hover:text-foreground transition-colors">
                 597167998qq01@gmail.com
               </a>
             </p>

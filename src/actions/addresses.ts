@@ -103,6 +103,15 @@ export async function createAddress(
   return { success: true }
 }
 
+// Wrapper for direct <form action={...}> usage in server components
+export async function createAddressFromForm(formData: FormData): Promise<AddressState> {
+  return createAddress({}, formData)
+}
+
+export async function createAddressAction(formData: FormData): Promise<void> {
+  await createAddress({}, formData)
+}
+
 // Update address
 export async function updateAddress(
   id: string,
@@ -181,6 +190,10 @@ export async function deleteAddress(id: string) {
   return { success: true }
 }
 
+export async function deleteAddressAction(id: string): Promise<void> {
+  await deleteAddress(id)
+}
+
 // Set default address
 export async function setDefaultAddress(id: string) {
   const session = await auth()
@@ -203,4 +216,8 @@ export async function setDefaultAddress(id: string) {
   revalidatePath('/checkout')
 
   return { success: true }
+}
+
+export async function setDefaultAddressAction(id: string): Promise<void> {
+  await setDefaultAddress(id)
 }

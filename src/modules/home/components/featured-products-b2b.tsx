@@ -24,8 +24,7 @@ export default async function FeaturedProductsB2B() {
             <h2 className="text-3xl md:text-4xl font-bold">Featured Products</h2>
           </div>
           <Link
-            // href={`/collections/${collection.slug}`}
-             href="/products"
+            href="/products"
             className="text-sm font-medium text-primary hover:underline mt-4 md:mt-0 flex items-center gap-1"
           >
             View All Products

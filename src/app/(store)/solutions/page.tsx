@@ -13,7 +13,6 @@ import {
   FileText,
   ChevronRight,
   CheckCircle2,
-  Building2,
   Award,
   Truck,
   Target,
@@ -27,6 +26,7 @@ import {
 import { getSolutions } from '@/actions/solutions'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { RequestQuoteButton } from '@/components/store/request-quote-button'
 import { USAGE_SCENES, formatUsageSceneLabel, PPE_CATEGORIES } from '@/types/solution'
 
 export const metadata: Metadata = {
@@ -125,12 +125,10 @@ export default async function SolutionsPage({
               </p>
 
               <div className="flex flex-wrap gap-3">
-                <Button size="lg" className="h-12 px-6 bg-accent hover:bg-accent/90" asChild>
-                  <Link href="/quote">
-                    <FileText className="mr-2 h-4 w-4" />
-                    Get Quote
-                  </Link>
-                </Button>
+                <RequestQuoteButton size="lg" className="h-12 px-6 bg-accent hover:bg-accent/90">
+                  <FileText className="mr-2 h-4 w-4" />
+                  Get Quote
+                </RequestQuoteButton>
                 <Button
                   variant="outline"
                   size="lg"
@@ -510,12 +508,10 @@ export default async function SolutionsPage({
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <Button variant="secondary" className="h-11 px-6" asChild>
-                <Link href="/quote">
-                  <FileText className="mr-2 h-4 w-4" />
-                  Get Quote
-                </Link>
-              </Button>
+              <RequestQuoteButton variant="secondary" className="h-11 px-6">
+                <FileText className="mr-2 h-4 w-4" />
+                Get Quote
+              </RequestQuoteButton>
               <Button
                 variant="outline"
                 className="h-11 px-6 bg-transparent border-white/30 text-white hover:bg-white hover:text-primary"
