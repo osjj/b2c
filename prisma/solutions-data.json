@@ -249,15 +249,6 @@
               "bodyAnchorKey": "left-hand"
             },
             {
-              "text": "Harnesses and lanyards for elevated work",
-              "title": "Fall Protection",
-              "bodyAnchor": {
-                "x": 50,
-                "y": 53
-              },
-              "bodyAnchorKey": "waist"
-            },
-            {
               "text": "Steel toe, puncture resistance, anti-slip outsole",
               "title": "Safety Boots",
               "bodyAnchor": {
@@ -517,27 +508,33 @@
           "items": [
             {
               "text": "Safety helmets for overhead or impact risk",
-              "title": "Head Protection"
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
             },
             {
               "text": "Cut, abrasion, and heat resistance",
-              "title": "Hand Protection"
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
             },
             {
               "text": "Goggles, face shields, welding helmets",
-              "title": "Eye and Face Protection"
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
             },
             {
               "text": "Steel toe and slip-resistant safety shoes",
-              "title": "Foot Protection"
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
             },
             {
               "text": "Earplugs or earmuffs for high-noise zones",
-              "title": "Hearing Protection"
+              "title": "Hearing Protection",
+              "bodyAnchorKey": "ears"
             },
             {
               "text": "Flame-resistant, chemical, or anti-static workwear",
-              "title": "Body Protection"
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
             }
           ]
         }
@@ -836,27 +833,33 @@
           "items": [
             {
               "text": "Improves visibility around forklifts and vehicles",
-              "title": "High Visibility Clothing"
+              "title": "High Visibility Clothing",
+              "bodyAnchorKey": "chest"
             },
             {
               "text": "Toe protection and slip-resistant outsoles",
-              "title": "Safety Footwear"
+              "title": "Safety Footwear",
+              "bodyAnchorKey": "feet"
             },
             {
               "text": "Cut and abrasion resistance for handling pallets",
-              "title": "Hand Protection"
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
             },
             {
               "text": "Required where overhead loads or racking risks exist",
-              "title": "Head Protection"
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
             },
             {
               "text": "Protection from dust, debris, and packaging materials",
-              "title": "Eye Protection"
+              "title": "Eye Protection",
+              "bodyAnchorKey": "eyes"
             },
             {
               "text": "Needed for elevated maintenance or dock edges",
-              "title": "Fall Protection"
+              "title": "Fall Protection",
+              "bodyAnchorKey": "waist"
             }
           ]
         }

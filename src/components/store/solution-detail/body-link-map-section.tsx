@@ -43,11 +43,18 @@ export function BodyLinkMapSection({
           if (!resolvedAnchor) return null
           return {
             ...item,
+            sourceIndex: index,
             itemKey: `${item.title || 'item'}-${index}`,
             bodyAnchor: resolvedAnchor,
           }
         })
-        .filter((item): item is NonNullable<typeof item> => item !== null),
+        .filter((item): item is NonNullable<typeof item> => item !== null)
+        // Keep right-side cards in stable top-to-bottom body order.
+        .sort((a, b) => {
+          if (a.bodyAnchor.y !== b.bodyAnchor.y) return a.bodyAnchor.y - b.bodyAnchor.y
+          if (a.bodyAnchor.x !== b.bodyAnchor.x) return a.bodyAnchor.x - b.bodyAnchor.x
+          return a.sourceIndex - b.sourceIndex
+        }),
     [items]
   )
 

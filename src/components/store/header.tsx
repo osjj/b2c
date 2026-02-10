@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { User, Menu, Search, Heart, LogOut, Package } from "lucide-react"
@@ -70,7 +71,7 @@ export function Header({ user }: HeaderProps) {
     >
       {/* Top announcement bar */}
       <div className="bg-primary text-primary-foreground text-center py-2 text-xs tracking-widest uppercase">
-        Free shipping on orders over $150
+        Bulk PPE Orders · Fast Quotation · Stable Supply
       </div>
 
       <div className="container mx-auto px-6 lg:px-8">
@@ -108,13 +109,26 @@ export function Header({ user }: HeaderProps) {
             </Sheet>
 
             {/* Logo */}
-            <Link href="/" className="group">
-              <h1 className="font-serif text-2xl md:text-3xl tracking-[0.2em] font-medium transition-colors group-hover:text-primary">
-                MAISON
-              </h1>
-              <p className="text-[10px] tracking-[0.3em] text-muted-foreground text-center -mt-1">
-                CURATED GOODS
-              </p>
+            <Link href="/" className="group flex items-center gap-3">
+              <Image
+                src="/favicon.ico"
+                alt="YUELAIFA icon"
+                width={52}
+                height={52}
+                className="h-11 w-11 md:h-[52px] md:w-[52px] rounded-sm transition-transform group-hover:scale-105"
+              />
+              <div className="leading-none text-center">
+                <p
+                  className="font-extrabold text-[20px] md:text-[26px] tracking-[0.04em] text-[#123d7a] transition-colors group-hover:text-primary"
+                >
+                  {'\u7ca4\u6765\u53d1\u52b3\u4fdd'}
+                </p>
+                <p
+                  className="mt-1 text-[12px] md:text-[14px] font-semibold tracking-[0.18em] uppercase text-[#6b7280] transition-colors group-hover:text-foreground"
+                >
+                  YUELAIFA PPE
+                </p>
+              </div>
             </Link>
 
             {/* Desktop Navigation */}
