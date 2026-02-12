@@ -55,7 +55,7 @@ export default function SettingsPage() {
                   <Input
                     id="contactEmail"
                     type="email"
-                    defaultValue="597167998qq01@gmail.com"
+                    defaultValue="info@laifappe.com"
                   />
                 </div>
                 <div className="space-y-2">

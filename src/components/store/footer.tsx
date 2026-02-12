@@ -124,8 +124,8 @@ export function Footer() {
             </div>
             <p className="text-sm text-muted-foreground mt-6">
               Customer Service<br />
-              <a href="mailto:597167998qq01@gmail.com" className="hover:text-foreground transition-colors">
-                597167998qq01@gmail.com
+              <a href="mailto:info@laifappe.com" className="hover:text-foreground transition-colors">
+                info@laifappe.com
               </a>
             </p>
           </div>
