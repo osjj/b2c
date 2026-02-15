@@ -46,7 +46,7 @@ const createId = () => {
 async function main() {
   console.log('Syncing solutions from JSON to database...')
 
-  const dataPath = path.join(__dirname, 'solutions-data.json')
+  const dataPath = path.join(__dirname, 'solutions-construction-engineering.json')
   const rawData = fs.readFileSync(dataPath, 'utf-8')
   const solutions: SolutionData[] = JSON.parse(rawData)
 

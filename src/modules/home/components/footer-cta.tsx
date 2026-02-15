@@ -47,7 +47,7 @@ export default function FooterCTA() {
             <div>
               <Mail className="h-6 w-6 mx-auto mb-2 opacity-80" />
               <p className="text-sm opacity-80">Email</p>
-              <p className="font-semibold">info@laifappe.com</p>
+              <p className="font-semibold">sales@laifappe.com</p>
             </div>
             <div>
               <MessageCircle className="h-6 w-6 mx-auto mb-2 opacity-80" />

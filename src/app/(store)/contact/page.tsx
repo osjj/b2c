@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 const contacts = [
   {
     title: 'Email',
-    value: 'info@laifappe.com',
-    href: 'mailto:info@laifappe.com',
+    value: 'sales@laifappe.com',
+    href: 'mailto:sales@laifappe.com',
     icon: Mail,
     note: 'For quotations and product catalogs',
   },
