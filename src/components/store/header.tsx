@@ -74,18 +74,18 @@ export function Header({ user }: HeaderProps) {
         Bulk PPE Orders · Fast Quotation · Stable Supply
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Left section - Logo & Navigation */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="hover:bg-accent">
+                <Button variant="ghost" size="icon" className="hover:bg-accent shrink-0">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-80 pt-12">
+              <SheetContent side="left" className="w-80 px-6 pt-12">
                 <SheetHeader>
                   <SheetTitle className="text-left font-serif text-2xl tracking-wide">
                     Menu
@@ -109,22 +109,22 @@ export function Header({ user }: HeaderProps) {
             </Sheet>
 
             {/* Logo */}
-            <Link href="/" className="group flex items-center gap-3">
+            <Link href="/" className="group flex items-center gap-2 sm:gap-3 min-w-0">
               <Image
                 src="/favicon.ico"
                 alt="YUELAIFA icon"
                 width={52}
                 height={52}
-                className="h-11 w-11 md:h-[52px] md:w-[52px] rounded-sm transition-transform group-hover:scale-105"
+                className="h-9 w-9 sm:h-11 sm:w-11 md:h-[52px] md:w-[52px] shrink-0 rounded-sm transition-transform group-hover:scale-105"
               />
-              <div className="leading-none text-center">
+              <div className="leading-none text-center min-w-0">
                 <p
-                  className="font-extrabold text-[20px] md:text-[26px] tracking-[0.04em] text-[#123d7a] transition-colors group-hover:text-primary"
+                  className="font-extrabold text-[16px] sm:text-[20px] md:text-[26px] tracking-[0.04em] text-[#123d7a] transition-colors group-hover:text-primary truncate"
                 >
                   {'\u7ca4\u6765\u53d1\u52b3\u4fdd'}
                 </p>
                 <p
-                  className="mt-1 text-[12px] md:text-[14px] font-semibold tracking-[0.18em] uppercase text-[#6b7280] transition-colors group-hover:text-foreground"
+                  className="mt-0.5 sm:mt-1 text-[10px] sm:text-[12px] md:text-[14px] font-semibold tracking-[0.18em] uppercase text-[#6b7280] transition-colors group-hover:text-foreground truncate"
                 >
                   YUELAIFA PPE
                 </p>

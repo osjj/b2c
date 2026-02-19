@@ -9,7 +9,7 @@ export const BODY_ANCHOR_POINTS = [
   { key: 'chest', label: 'Chest', point: { x: 30, y: 52 } },
   { key: 'left-hand', label: 'Left Hand', point: { x: 50, y: 42 } },
   { key: 'waist', label: 'Waist', point: { x: 60, y: 48 } },
-  { key: 'feet', label: 'Feet', point: { x: 40, y: 93 } },
+  { key: 'feet', label: 'Feet', point: { x: 40, y: 85 } },
 ] as const
 
 export type BodyAnchorKey = (typeof BODY_ANCHOR_POINTS)[number]['key']

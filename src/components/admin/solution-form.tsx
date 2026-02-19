@@ -216,6 +216,11 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
           {state.error}
         </div>
       )}
+      {state.errors && Object.keys(state.errors).length > 0 && (
+        <div className="bg-destructive/10 text-destructive px-4 py-3 rounded-lg">
+          Please fix the following errors: {Object.entries(state.errors).map(([field, msgs]) => `${field}: ${msgs[0]}`).join('; ')}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
@@ -460,7 +465,7 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
                 <Label htmlFor="seoTitle">
                   SEO Title
                   <span className="text-muted-foreground ml-2">
-                    ({seoTitle.length}/60)
+                    ({seoTitle.length}/120)
                   </span>
                 </Label>
                 <Input
@@ -469,8 +474,11 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
                   value={seoTitle}
                   onChange={(e) => setSeoTitle(e.target.value)}
                   placeholder="SEO title..."
-                  maxLength={60}
+                  maxLength={120}
                 />
+                {state.errors?.seoTitle && (
+                  <p className="text-sm text-destructive">{state.errors.seoTitle[0]}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -489,6 +497,9 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
                   maxLength={160}
                   rows={3}
                 />
+                {state.errors?.seoDescription && (
+                  <p className="text-sm text-destructive">{state.errors.seoDescription[0]}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -500,6 +511,9 @@ export function SolutionForm({ solution, productOptions }: SolutionFormProps) {
                   onChange={(e) => setSeoKeywords(e.target.value)}
                   placeholder="keyword1, keyword2, keyword3"
                 />
+                {state.errors?.seoKeywords && (
+                  <p className="text-sm text-destructive">{state.errors.seoKeywords[0]}</p>
+                )}
               </div>
             </CardContent>
           </Card>

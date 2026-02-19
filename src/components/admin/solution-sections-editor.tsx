@@ -761,11 +761,13 @@ function TaskCardsEditor({
                   const preset = getTaskScenePreset(card.scene)
                   const active = card.scene === activeScene
                   return (
-                    <button
+                    <div
                       key={card.scene}
-                      type="button"
+                      role="button"
+                      tabIndex={0}
                       onClick={() => setSelectedScene(card.scene)}
-                      className={`w-full px-3 py-2 text-left transition-colors ${
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedScene(card.scene) } }}
+                      className={`w-full px-3 py-2 text-left transition-colors cursor-pointer ${
                         active ? 'bg-primary/10' : 'hover:bg-muted/60'
                       }`}
                     >
@@ -781,7 +783,7 @@ function TaskCardsEditor({
                       <p className="mt-1 text-xs text-muted-foreground">
                         {card.items.length} items · {card.description.trim() ? 'desc' : 'no desc'}
                       </p>
-                    </button>
+                    </div>
                   )
                 })}
               </div>

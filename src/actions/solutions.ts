@@ -44,7 +44,7 @@ const solutionSchema = z.object({
   coverImage: z.string().optional().nullable(),
   isActive: z.boolean().default(true),
   sortOrder: z.coerce.number().int().default(0),
-  seoTitle: z.string().max(60).optional().nullable(),
+  seoTitle: z.string().max(120).optional().nullable(),
   seoDescription: z.string().max(160).optional().nullable(),
   seoKeywords: z.string().optional().nullable(),
   recommendationMode: z.enum(RECOMMENDATION_MODES).default('rule'),

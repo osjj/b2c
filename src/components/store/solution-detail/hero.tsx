@@ -31,7 +31,7 @@ export function SolutionHero({
       )}
 
       <div className="container mx-auto relative z-10 py-8 px-4 lg:px-6">
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] items-center">
           <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-xs uppercase tracking-[0.3em] text-white/60">
@@ -61,7 +61,7 @@ export function SolutionHero({
 
           <div className="relative">
             {coverImage ? (
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10">
                 <Image
                   src={coverImage}
                   alt={title}
@@ -70,7 +70,7 @@ export function SolutionHero({
                 />
               </div>
             ) : (
-              <div className="aspect-[4/3] w-full rounded-2xl border border-dashed border-white/20 bg-white/5 flex items-center justify-center text-xs text-white/50">
+              <div className="aspect-video w-full rounded-2xl border border-dashed border-white/20 bg-white/5 flex items-center justify-center text-xs text-white/50">
                 Cover image not set
               </div>
             )}
