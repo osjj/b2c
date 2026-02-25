@@ -46,14 +46,34 @@ const createId = () => {
 async function main() {
   console.log('Syncing solutions from JSON to database...')
 
-  const dataPath = path.join(__dirname, 'solutions-construction-engineering.json')
-  const rawData = fs.readFileSync(dataPath, 'utf-8')
-  const solutions: SolutionData[] = JSON.parse(rawData)
+  // Read all solutions-*.json files in prisma directory
+  const prismaDir = __dirname
+  const jsonFiles = fs.readdirSync(prismaDir).filter(
+    (f) => f.startsWith('solutions-') && f.endsWith('.json') && !f.includes('_temp'),
+  )
+
+  if (jsonFiles.length === 0) {
+    console.log('No solutions-*.json files found in prisma directory.')
+    return
+  }
+
+  const solutions: SolutionData[] = []
+  for (const file of jsonFiles) {
+    const filePath = path.join(prismaDir, file)
+    const rawData = fs.readFileSync(filePath, 'utf-8').replace(/^\uFEFF/, '')
+    const parsed: SolutionData[] = JSON.parse(rawData)
+    console.log(`  Loaded ${parsed.length} solutions from ${file}`)
+    solutions.push(...parsed)
+  }
+
+  console.log(`Total: ${solutions.length} solutions from ${jsonFiles.length} files`)
 
   let created = 0
   let updated = 0
 
-  for (const solution of solutions) {
+  for (let i = 0; i < solutions.length; i++) {
+    const solution = solutions[i]
+    console.log(`  [${i + 1}/${solutions.length}] ${solution.slug}...`)
     const normalizedSections = (solution.sections || []).map((section, index) => ({
       id: createId(),
       sort: typeof section.sort === 'number' ? section.sort : index,
@@ -106,49 +126,47 @@ async function main() {
       continue
     }
 
-    await prisma.$transaction(async (tx) => {
-      await tx.solution.update({
-        where: { id: existing.id },
-        data: {
-          slug: solution.slug,
-          title: solution.title,
-          excerpt: solution.excerpt,
-          usageScenes: solution.usageScenes,
-          coverImage: solution.coverImage,
-          isActive: solution.isActive,
-          sortOrder: solution.sortOrder,
-          seoTitle: solution.seoTitle,
-          seoDescription: solution.seoDescription,
-          seoKeywords: solution.seoKeywords,
-        },
-      })
-
-      await tx.solutionSection.deleteMany({
-        where: { solutionId: existing.id },
-      })
-
-      if (normalizedSections.length) {
-        await tx.solutionSection.createMany({
-          data: normalizedSections.map((section) => ({
-            ...section,
-            solutionId: existing.id,
-          })),
-        })
-      }
-
-      await tx.solutionProductLink.deleteMany({
-        where: { solutionId: existing.id },
-      })
-
-      if (normalizedProductLinks.length) {
-        await tx.solutionProductLink.createMany({
-          data: normalizedProductLinks.map((link) => ({
-            ...link,
-            solutionId: existing.id,
-          })),
-        })
-      }
+    await prisma.solution.update({
+      where: { id: existing.id },
+      data: {
+        slug: solution.slug,
+        title: solution.title,
+        excerpt: solution.excerpt,
+        usageScenes: solution.usageScenes,
+        coverImage: solution.coverImage,
+        isActive: solution.isActive,
+        sortOrder: solution.sortOrder,
+        seoTitle: solution.seoTitle,
+        seoDescription: solution.seoDescription,
+        seoKeywords: solution.seoKeywords,
+      },
     })
+
+    await prisma.solutionSection.deleteMany({
+      where: { solutionId: existing.id },
+    })
+
+    if (normalizedSections.length) {
+      await prisma.solutionSection.createMany({
+        data: normalizedSections.map((section) => ({
+          ...section,
+          solutionId: existing.id,
+        })),
+      })
+    }
+
+    await prisma.solutionProductLink.deleteMany({
+      where: { solutionId: existing.id },
+    })
+
+    if (normalizedProductLinks.length) {
+      await prisma.solutionProductLink.createMany({
+        data: normalizedProductLinks.map((link) => ({
+          ...link,
+          solutionId: existing.id,
+        })),
+      })
+    }
 
     updated++
   }

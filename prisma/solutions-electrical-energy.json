@@ -1,0 +1,1737 @@
+[
+  {
+    "slug": "ppe-for-electrical-maintenance-and-installation",
+    "title": "PPE for Electrical Maintenance and Installation",
+    "excerpt": "Electrical maintenance and installation work exposes technicians to arc flash, electric shock, burns, and falls. This guide covers essential PPE requirements, task-based gear selection, and safety standards for electrical workers.",
+    "usageScenes": [
+      "electrical-work",
+      "arc-flash",
+      "insulated-tools",
+      "shock-protection",
+      "flame-resistant",
+      "fall-protection",
+      "eye-protection",
+      "heavy-duty"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 1,
+    "seoTitle": "Electrical PPE Supplier | Maintenance & Installation Safety Equipment",
+    "seoDescription": "Complete guide to PPE for electrical maintenance and installation. Arc flash protection, insulated gloves, flame-resistant clothing, and compliance standards.",
+    "seoKeywords": "electrical PPE, arc flash protection, insulated gloves, flame resistant clothing, electrical safety, NFPA 70E, ASTM D120, voltage rated gloves",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Essential PPE for Electrical Maintenance and Installation Workers",
+        "enabled": true,
+        "data": {
+          "intro": "Electrical maintenance and installation environments expose workers to arc flash, electric shock, thermal burns, and elevated work hazards. Proper PPE is critical to prevent fatal injuries and comply with electrical safety regulations. The following protective equipment is commonly required:",
+          "bullets": [
+            "Insulated gloves rated to working voltage",
+            "Arc-rated face shields or hoods",
+            "Flame-resistant (FR) clothing",
+            "Dielectric safety boots",
+            "Safety helmets with electrical insulation rating",
+            "Voltage detectors and lockout/tagout devices"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains the hazards unique to electrical work, the PPE required for different voltage levels and tasks, and the key standards that govern electrical safety equipment selection."
+          ]
+        }
+      },
+      {
+        "key": "electrical-hazards",
+        "type": "table",
+        "title": "Common Electrical Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Arc flash",
+              "Severe burns, blindness",
+              "Arc-rated face shield, FR clothing"
+            ],
+            [
+              "Electric shock",
+              "Cardiac arrest, burns",
+              "Insulated gloves with leather protectors"
+            ],
+            [
+              "Live panel work",
+              "Electrocution",
+              "Voltage-rated gloves, dielectric boots"
+            ],
+            [
+              "Overhead cable installation",
+              "Falls, shock",
+              "Full body harness, insulated tools"
+            ],
+            [
+              "Conduit cutting and drilling",
+              "Eye injuries, cuts",
+              "Safety goggles, cut-resistant gloves"
+            ],
+            [
+              "Switchgear maintenance",
+              "Arc blast, debris",
+              "Arc flash suit, hearing protection"
+            ],
+            [
+              "Confined electrical rooms",
+              "Heat stress, limited escape",
+              "FR clothing, ventilation equipment"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Electrical Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Class 00 or Class 0 insulated gloves",
+                "Arc-rated face shield (minimum 8 cal/cm²)",
+                "FR long-sleeve shirt and pants",
+                "Dielectric safety boots"
+              ],
+              "title": "Low-Voltage Panel Work (up to 1,000V)",
+              "description": "Use voltage-rated insulated gloves with leather protectors and arc-rated face protection for routine panel inspections and circuit breaker maintenance."
+            },
+            {
+              "items": [
+                "Class 2 or Class 3 insulated gloves",
+                "Full arc flash suit (40 cal/cm² rated)",
+                "Arc-rated hood with face shield",
+                "Dielectric overshoes"
+              ],
+              "title": "Medium and High-Voltage Switchgear (above 1,000V)",
+              "description": "Deploy full arc flash suits with higher calorie ratings, voltage-matched insulated gloves, and dielectric footwear for high-energy switching and maintenance tasks."
+            },
+            {
+              "items": [
+                "Full body harness with shock-absorbing lanyard",
+                "Insulated hard hat with chin strap",
+                "FR clothing rated for outdoor conditions",
+                "Insulated gloves appropriate to line voltage"
+              ],
+              "title": "Overhead Line and Cable Installation",
+              "description": "Combine fall protection with electrical insulation for technicians working at height near energized conductors and utility infrastructure."
+            },
+            {
+              "items": [
+                "Safety goggles with anti-fog coating",
+                "Cut-resistant gloves (EN 388 Level C or above)",
+                "Steel toe safety boots",
+                "Hearing protection for power tools"
+              ],
+              "title": "Conduit Installation and Wiring",
+              "description": "Focus on mechanical protection for hands and eyes during conduit cutting, cable pulling, and general installation tasks away from energized sources."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Electrical Workers",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Electrically insulated helmets rated to ANSI Z89.1 Class E",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Arc-rated face shields, safety goggles, and flash hoods",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Voltage-rated insulated gloves with leather protectors",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Flame-resistant shirts, pants, and arc flash suits",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Dielectric safety boots and overshoes",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Full body harness for elevated electrical work",
+              "title": "Fall Protection",
+              "bodyAnchorKey": "waist"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Electrical Maintenance Teams",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Electrical contractors often purchase PPE in role-based kits to ensure every technician carries the correct protection for their assigned voltage level.",
+            "A standard electrical maintenance PPE set typically includes:",
+            "Below are examples of PPE commonly selected by electrical contractors and facility maintenance teams:"
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Standard for electrical safety in the workplace",
+              "title": "NFPA 70E"
+            },
+            {
+              "text": "Specification for rubber insulating gloves",
+              "title": "ASTM D120"
+            },
+            {
+              "text": "Arc-rated face protective products",
+              "title": "ASTM F2178"
+            },
+            {
+              "text": "Performance specification for FR textiles",
+              "title": "ASTM F1506"
+            },
+            {
+              "text": "Industrial head protection (Class E rated)",
+              "title": "ANSI Z89.1"
+            },
+            {
+              "text": "Electrical hazard footwear",
+              "title": "ASTM F2413 (EH rated)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All electrical PPE should carry valid test certifications and be inspected before each use. We provide test reports and compliance documentation with every order."
+        }
+      },
+      {
+        "key": "electrical-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What class of insulated gloves do I need?",
+              "a": "Glove class depends on the maximum voltage you work with. Class 00 covers up to 500V AC, Class 0 up to 1,000V AC, and Class 2 up to 17,000V AC. Always select gloves rated above your working voltage."
+            },
+            {
+              "q": "How often should insulated gloves be tested?",
+              "a": "OSHA and ASTM D120 require insulated gloves to be electrically tested every 6 months. Gloves must also be visually inspected before each use."
+            },
+            {
+              "q": "Is arc-rated clothing the same as flame-resistant clothing?",
+              "a": "All arc-rated clothing is flame-resistant, but not all FR clothing is arc-rated. Arc-rated garments have a specific cal/cm² rating tested per ASTM F1959 for arc flash protection."
+            },
+            {
+              "q": "Can you supply PPE kits for electrical contractor teams?",
+              "a": "Yes. We assemble voltage-specific PPE kits for electrical teams with insulated gloves, arc-rated face shields, FR clothing, and dielectric boots."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Electrical Team?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified electrical PPE with arc flash ratings, insulated gloves, and FR workwear for maintenance and installation teams. Bulk pricing and OEM options available.",
+          "title": "Need PPE for Your Electrical Team?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-power-plant-workers",
+    "title": "PPE for Power Plant Workers",
+    "excerpt": "Power plant environments combine high-voltage electrical systems, extreme heat, pressurized steam, chemical exposure, and confined spaces. This guide covers the PPE requirements for thermal, nuclear, and gas-fired power generation facilities.",
+    "usageScenes": [
+      "electrical-work",
+      "arc-flash",
+      "heat-resistant",
+      "chemical-resistant",
+      "confined-space",
+      "flame-resistant",
+      "heavy-duty",
+      "fall-protection"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 2,
+    "seoTitle": "Power Plant PPE Supplier | Safety Equipment for Energy Workers",
+    "seoDescription": "Complete PPE guide for power plant workers. Heat-resistant gear, arc flash suits, chemical protection, and respiratory equipment for energy generation facilities.",
+    "seoKeywords": "power plant PPE, energy worker safety, arc flash suit, heat resistant gloves, FR coveralls, NFPA 70E, confined space PPE, power generation safety",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Comprehensive PPE Protection for Power Plant Environments",
+        "enabled": true,
+        "data": {
+          "intro": "Power plants — whether coal-fired, gas turbine, nuclear, or combined-cycle — expose workers to high-voltage systems, superheated steam, rotating machinery, chemical reagents, and confined spaces. The following PPE is typically required across power generation facilities:",
+          "bullets": [
+            "Arc flash suits and FR coveralls",
+            "Heat-resistant and insulated gloves",
+            "Full-face respirators for chemical and particulate exposure",
+            "Safety helmets with face shields",
+            "Steel toe heat-resistant safety boots",
+            "Fall protection harnesses for boiler and turbine maintenance"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide outlines the specific hazards found in power generation facilities, the PPE needed for each operational area, and the standards that govern worker protection in the energy sector."
+          ]
+        }
+      },
+      {
+        "key": "power-plant-hazards",
+        "type": "table",
+        "title": "Common Power Plant Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "High-voltage switchgear",
+              "Arc flash burns, electrocution",
+              "Arc flash suit, insulated gloves, dielectric boots"
+            ],
+            [
+              "Superheated steam lines",
+              "Severe thermal burns",
+              "Heat-resistant gloves, FR coveralls, face shield"
+            ],
+            [
+              "Rotating turbines and generators",
+              "Entanglement, crush injuries",
+              "Fitted FR workwear, safety helmet, steel toe boots"
+            ],
+            [
+              "Chemical water treatment",
+              "Skin burns, eye damage",
+              "Chemical-resistant gloves, splash goggles, apron"
+            ],
+            [
+              "Coal dust and fly ash",
+              "Respiratory disease",
+              "P100 respirator, safety goggles"
+            ],
+            [
+              "Boiler and stack maintenance",
+              "Falls from height",
+              "Full body harness, shock-absorbing lanyard"
+            ],
+            [
+              "Confined vessels and tanks",
+              "Oxygen deficiency, toxic gas",
+              "SCBA or supplied-air respirator, gas monitor"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Power Plant Operations",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Arc flash suit rated to 40 cal/cm² or higher",
+                "Class 2 or Class 3 insulated gloves",
+                "Arc-rated hood with integrated face shield",
+                "Dielectric safety boots"
+              ],
+              "title": "Electrical Switching and Maintenance",
+              "description": "Use full arc flash ensembles with voltage-rated gloves and dielectric footwear for work on switchgear, transformers, and bus bars."
+            },
+            {
+              "items": [
+                "Heat-resistant gloves (up to 250°C)",
+                "FR coveralls with reflective striping",
+                "Full-face shield with heat guard",
+                "Heat-resistant safety boots"
+              ],
+              "title": "Boiler and Turbine Area Work",
+              "description": "Protect against radiant heat, steam leaks, and hot surface contact with heat-rated PPE designed for sustained high-temperature environments."
+            },
+            {
+              "items": [
+                "Chemical-resistant nitrile or neoprene gloves",
+                "Splash-proof safety goggles",
+                "Chemical-resistant apron or coveralls",
+                "Rubber safety boots"
+              ],
+              "title": "Chemical Handling and Water Treatment",
+              "description": "Select chemical-resistant PPE matched to the specific reagents used in water treatment, cooling systems, and fuel handling processes."
+            },
+            {
+              "items": [
+                "Full body harness with twin-leg lanyard",
+                "Safety helmet with chin strap",
+                "FR clothing for elevated hot work",
+                "Anti-slip safety boots"
+              ],
+              "title": "Stack and Elevated Structure Maintenance",
+              "description": "Combine fall arrest systems with heat and flame protection for maintenance on boiler stacks, cooling towers, and elevated pipe racks."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Power Plant Workers",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Electrically insulated, heat-resistant safety helmets",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Arc-rated face shields, splash goggles, and full-face respirators",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Insulated, heat-resistant, and chemical-resistant gloves",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "FR coveralls, arc flash suits, and chemical aprons",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Steel toe boots with heat resistance and dielectric rating",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "P100 respirators, SCBA for confined space entry",
+              "title": "Respiratory Protection",
+              "bodyAnchorKey": "head"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Power Plant Operations",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Power plant operators typically procure PPE by department and hazard zone, ensuring each team carries protection matched to their daily exposure.",
+            "A standard PPE set for power plant maintenance workers includes:",
+            "Below are examples of PPE commonly selected by power generation facility managers:"
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Electrical safety in the workplace",
+              "title": "NFPA 70E"
+            },
+            {
+              "text": "Standard for fire-resistant protective clothing",
+              "title": "NFPA 2112"
+            },
+            {
+              "text": "Rubber insulating gloves specification",
+              "title": "ASTM D120"
+            },
+            {
+              "text": "Respiratory protection standard",
+              "title": "OSHA 29 CFR 1910.134"
+            },
+            {
+              "text": "Protective clothing against heat and flame",
+              "title": "EN ISO 11612"
+            },
+            {
+              "text": "Protective gloves against thermal risks",
+              "title": "EN 407"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Power plant PPE must meet strict testing and certification requirements. We provide full traceability documentation, test reports, and certificates of conformity for every product."
+        }
+      },
+      {
+        "key": "power-plant-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What arc flash rating is needed for power plant switchgear?",
+              "a": "Arc flash PPE ratings depend on the incident energy calculated per NFPA 70E. Most power plant switchgear requires Category 3 or 4 protection (25–40+ cal/cm²)."
+            },
+            {
+              "q": "Do power plant workers need respiratory protection?",
+              "a": "Yes, for tasks involving coal dust, fly ash, chemical handling, or confined space entry. P100 particulate respirators or supplied-air systems are commonly required."
+            },
+            {
+              "q": "How do you select gloves for both heat and electrical hazards?",
+              "a": "For dual-hazard tasks, use voltage-rated insulated gloves with heat-resistant leather protectors. Never use a single glove to cover both ratings without verification."
+            },
+            {
+              "q": "Can you supply PPE kits for plant shutdown maintenance?",
+              "a": "Yes. We assemble shutdown-specific PPE kits including FR coveralls, insulated gloves, fall protection, and respiratory equipment based on your scope of work."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Power Plant?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified PPE for power generation facilities with arc flash protection, heat-resistant gear, and respiratory equipment. Bulk supply and custom kit assembly available.",
+          "title": "Need PPE for Your Power Plant?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-solar-panel-installation-teams",
+    "title": "PPE for Solar Panel Installation Teams",
+    "excerpt": "Solar panel installation involves rooftop and ground-mount work with electrical hazards, UV exposure, fall risks, and heavy lifting. This guide covers the PPE needed for residential, commercial, and utility-scale solar projects.",
+    "usageScenes": [
+      "electrical-work",
+      "height-work",
+      "fall-protection",
+      "uv-protection",
+      "cut-resistant",
+      "slip-resistant",
+      "eye-protection",
+      "construction"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 3,
+    "seoTitle": "Solar Installation PPE Supplier | Safety Equipment for Solar Teams",
+    "seoDescription": "PPE guide for solar panel installers. Fall protection, electrical safety gloves, UV protection, and rooftop safety gear for residential and commercial solar projects.",
+    "seoKeywords": "solar panel PPE, solar installation safety, rooftop fall protection, insulated gloves, UV protection, solar worker safety, OSHA fall protection, ANSI Z359",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Protect Your Solar Installation Crew from Rooftop to Ground Mount",
+        "enabled": true,
+        "data": {
+          "intro": "Solar panel installation combines rooftop work, DC electrical wiring, heavy panel handling, and prolonged sun exposure. Whether installing residential rooftop arrays or utility-scale ground-mount systems, the following PPE is essential:",
+          "bullets": [
+            "Full body harness and roof anchor systems",
+            "Insulated gloves for DC electrical connections",
+            "Safety helmets with UV-resistant shells",
+            "Anti-slip safety boots for roof surfaces",
+            "UV-blocking safety glasses",
+            "Cut-resistant gloves for panel and racking handling"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide covers the unique hazards of solar installation work, recommended PPE for rooftop and ground-mount projects, and the safety standards solar contractors should follow."
+          ]
+        }
+      },
+      {
+        "key": "solar-hazards",
+        "type": "table",
+        "title": "Common Solar Installation Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Rooftop edges and slopes",
+              "Fatal falls",
+              "Full body harness, roof anchors, guardrails"
+            ],
+            [
+              "DC electrical connections",
+              "Electric shock, burns",
+              "Insulated gloves, safety glasses"
+            ],
+            [
+              "Sharp panel edges and racking",
+              "Cuts and lacerations",
+              "Cut-resistant gloves"
+            ],
+            [
+              "Heavy panel lifting",
+              "Back strain, crush injuries",
+              "Steel toe boots, back support belt"
+            ],
+            [
+              "Prolonged sun exposure",
+              "Heat stroke, UV burns",
+              "UV safety glasses, sun-protective clothing"
+            ],
+            [
+              "Slippery roof tiles",
+              "Slips and falls",
+              "Anti-slip safety boots with soft soles"
+            ],
+            [
+              "Power tool use",
+              "Eye and hand injuries",
+              "Safety goggles, vibration-dampening gloves"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Solar Installation Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Full body harness with shock-absorbing lanyard",
+                "Roof anchor or horizontal lifeline",
+                "Safety helmet with chin strap",
+                "Anti-slip soft-sole safety boots"
+              ],
+              "title": "Rooftop Panel Mounting",
+              "description": "Prioritize fall arrest systems and non-marking, anti-slip footwear to protect workers on sloped and flat rooftop surfaces."
+            },
+            {
+              "items": [
+                "Class 0 insulated gloves for DC systems",
+                "Safety glasses with side shields",
+                "FR long-sleeve shirt",
+                "Insulated tools"
+              ],
+              "title": "Electrical Wiring and Inverter Connection",
+              "description": "Use voltage-rated insulated gloves and eye protection when making DC string connections, combiner box wiring, and inverter terminations."
+            },
+            {
+              "items": [
+                "Cut-resistant gloves (ANSI A4 or above)",
+                "Steel toe safety boots",
+                "Safety helmet",
+                "Knee pads for ground-level assembly"
+              ],
+              "title": "Racking Assembly and Panel Handling",
+              "description": "Protect hands from sharp aluminum edges and fastener cuts during racking assembly and panel positioning."
+            },
+            {
+              "items": [
+                "UV-blocking safety glasses (UV400)",
+                "Lightweight breathable FR clothing",
+                "Wide-brim hard hat attachment",
+                "Hydration pack or cooling vest"
+              ],
+              "title": "Outdoor Work in Extreme Heat",
+              "description": "Mitigate heat stress and UV exposure with lightweight, breathable PPE and cooling accessories for full-day outdoor installation shifts."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Solar Installers",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "UV-resistant, electrically rated safety helmets",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "UV-blocking safety glasses and side shields",
+              "title": "Eye Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Cut-resistant and insulated gloves for dual hazards",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Lightweight FR clothing with UV protection",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Anti-slip, soft-sole safety boots for rooftop work",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Full body harness, lanyards, and roof anchor systems",
+              "title": "Fall Protection",
+              "bodyAnchorKey": "waist"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Solar Installation Projects",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Solar contractors typically issue PPE kits by crew role — rooftop installers, electricians, and ground-mount teams each carry different equipment.",
+            "A standard solar installer PPE set includes:",
+            "Below are examples of PPE commonly selected by solar EPC companies and installation contractors:"
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Fall protection in construction",
+              "title": "OSHA 1926 Subpart M"
+            },
+            {
+              "text": "Full body harness standard",
+              "title": "ANSI Z359.11"
+            },
+            {
+              "text": "Electrical safety in the workplace",
+              "title": "NFPA 70E"
+            },
+            {
+              "text": "Eye and face protection",
+              "title": "ANSI Z87.1"
+            },
+            {
+              "text": "Industrial head protection (Class E)",
+              "title": "ANSI Z89.1"
+            },
+            {
+              "text": "Protective gloves against mechanical risks",
+              "title": "EN 388"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Solar installation PPE should meet both electrical insulation and fall protection standards. We provide compliance documents, test reports, and certification for all safety equipment."
+        }
+      },
+      {
+        "key": "solar-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is fall protection required for all rooftop solar installations?",
+              "a": "Yes. OSHA requires fall protection for work at heights of 6 feet or more in construction. Rooftop solar work requires harnesses, guardrails, or safety nets."
+            },
+            {
+              "q": "What gloves are needed for solar DC wiring?",
+              "a": "Class 0 insulated gloves rated to 1,000V AC are recommended for DC string wiring. For higher-voltage commercial systems, use Class 00 or higher as appropriate."
+            },
+            {
+              "q": "Do solar installers need FR clothing?",
+              "a": "FR clothing is recommended when working near energized inverters or combiner boxes where arc flash risk exists. Lightweight FR options are available for hot climates."
+            },
+            {
+              "q": "Can you supply PPE kits for solar installation crews?",
+              "a": "Yes. We assemble role-specific solar PPE kits including fall harnesses, insulated gloves, UV safety glasses, and cut-resistant gloves for rooftop and ground-mount teams."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Solar Installation Team?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified PPE for solar installers with fall protection, insulated gloves, and UV safety gear. Bulk kits available for residential and commercial solar contractors.",
+          "title": "Need PPE for Your Solar Installation Team?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-wind-turbine-maintenance-at-height",
+    "title": "PPE for Wind Turbine Maintenance at Height",
+    "excerpt": "Wind turbine maintenance requires working at extreme heights in confined nacelles with exposure to rotating components, electrical systems, and harsh weather. This guide covers specialized PPE for wind energy technicians.",
+    "usageScenes": [
+      "height-work",
+      "fall-protection",
+      "electrical-work",
+      "confined-space",
+      "cold-weather",
+      "heavy-duty",
+      "slip-resistant",
+      "impact-resistant"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 4,
+    "seoTitle": "Wind Turbine PPE Supplier | Safety Equipment for Wind Energy Technicians",
+    "seoDescription": "Specialized PPE for wind turbine maintenance at height. Fall protection, rescue equipment, cold-weather gear, and confined space PPE for wind energy technicians.",
+    "seoKeywords": "wind turbine PPE, wind energy safety, fall protection harness, height rescue equipment, turbine technician PPE, ANSI Z359, GWO training, nacelle safety",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Specialized PPE for Wind Turbine Technicians Working at Height",
+        "enabled": true,
+        "data": {
+          "intro": "Wind turbine technicians work at heights of 80–160 meters in confined nacelles, often exposed to extreme weather, rotating machinery, and high-voltage systems. The unique hazards of wind energy maintenance demand specialized PPE including:",
+          "bullets": [
+            "Full body harness with twin-leg lanyard and self-retracting lifeline",
+            "Rescue descent device for emergency evacuation",
+            "Climbing helmet with chin strap and headlamp mount",
+            "Cold-weather insulated work gloves",
+            "Anti-slip safety boots rated for tower climbing",
+            "Portable gas detector for confined nacelle entry"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains the unique hazards of wind turbine maintenance, the PPE required for tower climbing, nacelle work, and blade inspection, and the standards that govern working at height in the wind energy industry."
+          ]
+        }
+      },
+      {
+        "key": "wind-turbine-hazards",
+        "type": "table",
+        "title": "Common Wind Turbine Maintenance Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Tower climbing (80–160m)",
+              "Fatal falls",
+              "Full body harness, SRL, climbing helmet"
+            ],
+            [
+              "Confined nacelle space",
+              "Oxygen deficiency, heat stress",
+              "Gas detector, ventilation, rescue harness"
+            ],
+            [
+              "High-voltage generator systems",
+              "Electric shock, arc flash",
+              "Insulated gloves, arc-rated face shield"
+            ],
+            [
+              "Rotating gearbox and blades",
+              "Entanglement, crush injuries",
+              "Fitted workwear, lockout/tagout devices"
+            ],
+            [
+              "Extreme cold and wind",
+              "Hypothermia, reduced dexterity",
+              "Insulated FR clothing, thermal gloves"
+            ],
+            [
+              "Bolt torquing and heavy tools",
+              "Hand crush, dropped objects",
+              "Impact-resistant gloves, tool lanyards"
+            ],
+            [
+              "Emergency at height",
+              "Suspension trauma",
+              "Rescue descent device, trauma straps"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Wind Turbine Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Full body harness with front and rear D-rings",
+                "Self-retracting lifeline (SRL)",
+                "Climbing helmet with chin strap",
+                "Anti-slip climbing boots with ankle support"
+              ],
+              "title": "Tower Climbing and Access",
+              "description": "Use certified fall arrest systems with self-retracting lifelines and helmets designed for vertical climbing inside turbine towers."
+            },
+            {
+              "items": [
+                "Rescue-rated harness with suspension relief straps",
+                "Portable gas detector (O₂, H₂S, CO, LEL)",
+                "Headlamp for low-visibility work",
+                "Compact tool belt to avoid snagging"
+              ],
+              "title": "Nacelle and Hub Maintenance",
+              "description": "Equip technicians with gas monitoring, rescue-capable harnesses, and compact tool systems for safe work in confined nacelle spaces."
+            },
+            {
+              "items": [
+                "Class 0 insulated gloves",
+                "Arc-rated face shield",
+                "FR coveralls",
+                "Dielectric safety boots"
+              ],
+              "title": "Generator and Electrical System Work",
+              "description": "Apply full electrical PPE protocols when servicing generators, converters, and switchgear inside the nacelle or tower base."
+            },
+            {
+              "items": [
+                "Controlled descent device (rescue kit)",
+                "Rescue harness with sternal attachment",
+                "Trauma suspension straps",
+                "Emergency communication radio"
+              ],
+              "title": "Rescue and Emergency Evacuation",
+              "description": "Every turbine team must carry rescue descent equipment and be trained in self-rescue and partner-rescue evacuation per GWO standards."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Wind Turbine Technicians",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Climbing helmets with chin strap, headlamp mount, and ventilation",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Safety glasses, arc-rated face shields for electrical work",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Impact-resistant, insulated, and cold-weather work gloves",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "FR coveralls, thermal layers, and wind-resistant outerwear",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Anti-slip climbing boots with ankle support and EH rating",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Full body harness, SRL, rescue descent device, and tool lanyards",
+              "title": "Fall Protection and Rescue",
+              "bodyAnchorKey": "waist"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Wind Energy Maintenance Teams",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Wind energy operators typically issue comprehensive PPE kits to every technician, including both personal fall protection and team rescue equipment.",
+            "A standard wind turbine technician PPE set includes:",
+            "Below are examples of PPE commonly selected by wind farm operators and turbine OEM service teams:"
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Full body harness requirements",
+              "title": "ANSI Z359.11"
+            },
+            {
+              "text": "Self-retracting devices",
+              "title": "ANSI Z359.14"
+            },
+            {
+              "text": "Global Wind Organisation safety training standards",
+              "title": "GWO BST (Basic Safety Training)"
+            },
+            {
+              "text": "Personal fall protection systems",
+              "title": "EN 363"
+            },
+            {
+              "text": "Helmets for mountaineering and climbing",
+              "title": "EN 12492"
+            },
+            {
+              "text": "Rescue descent devices",
+              "title": "EN 341"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Wind turbine PPE must meet both fall protection and rescue standards. All equipment should be inspected per manufacturer guidelines and replaced after any fall event. We provide full certification documentation."
+        }
+      },
+      {
+        "key": "wind-turbine-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What harness is required for wind turbine climbing?",
+              "a": "A full body harness with front and rear D-rings, rated to ANSI Z359.11 or EN 361, with a compatible self-retracting lifeline for the tower's internal climb system."
+            },
+            {
+              "q": "Is rescue equipment mandatory for every turbine team?",
+              "a": "Yes. GWO and most wind farm operators require each team to carry a controlled descent rescue device and be trained in evacuation procedures before entering any turbine."
+            },
+            {
+              "q": "How often should fall protection equipment be inspected?",
+              "a": "Harnesses and SRLs require visual inspection before every use and formal inspection by a competent person at least annually. Equipment must be retired after any fall arrest event."
+            },
+            {
+              "q": "Can you supply complete PPE kits for wind technician teams?",
+              "a": "Yes. We assemble wind-specific PPE kits including climbing harnesses, SRLs, rescue devices, climbing helmets, insulated gloves, and cold-weather gear for offshore and onshore teams."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Wind Energy Team?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified fall protection, rescue equipment, and climbing PPE for wind turbine maintenance teams. Complete kits available for onshore and offshore wind operations.",
+          "title": "Need PPE for Your Wind Energy Team?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-oil-and-gas-field-operations",
+    "title": "PPE for Oil and Gas Field Operations",
+    "excerpt": "Oil and gas field operations expose workers to flammable atmospheres, H₂S gas, high-pressure systems, extreme temperatures, and heavy equipment. This guide covers essential PPE for upstream drilling, midstream pipeline, and downstream refinery operations.",
+    "usageScenes": [
+      "flame-resistant",
+      "chemical-resistant",
+      "gas-detection",
+      "heavy-duty",
+      "fall-protection",
+      "impact-resistant",
+      "heat-resistant",
+      "confined-space"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 5,
+    "seoTitle": "Oil and Gas PPE Supplier | Safety Equipment for Field Operations",
+    "seoDescription": "Complete PPE guide for oil and gas field workers. FR clothing, H₂S gas detection, chemical-resistant gear, and fall protection for drilling, pipeline, and refinery operations.",
+    "seoKeywords": "oil and gas PPE, FR clothing, H2S safety, drilling PPE, refinery safety equipment, NFPA 2112, API safety standards, oilfield worker protection",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Complete PPE Protection for Oil and Gas Field Workers",
+        "enabled": true,
+        "data": {
+          "intro": "Oil and gas operations — from upstream drilling to downstream refining — present some of the highest-risk work environments in industry. Workers face flammable atmospheres, toxic H₂S gas, high-pressure equipment, and extreme climates. The following PPE is essential:",
+          "bullets": [
+            "Flame-resistant (FR) coveralls and outerwear",
+            "H₂S-rated portable gas detectors",
+            "Chemical-resistant gloves and splash protection",
+            "Impact-resistant safety helmets with face shields",
+            "Steel toe, metatarsal-guard safety boots",
+            "Full body harness for derrick and platform work"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide covers the specific hazards across upstream, midstream, and downstream oil and gas operations, the PPE required for each work environment, and the industry standards that govern worker protection."
+          ]
+        }
+      },
+      {
+        "key": "oil-gas-hazards",
+        "type": "table",
+        "title": "Common Oil and Gas Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Flammable atmospheres",
+              "Flash fire burns",
+              "FR coveralls (NFPA 2112), FR underwear"
+            ],
+            [
+              "H₂S gas exposure",
+              "Respiratory failure, death",
+              "H₂S gas detector, SCBA or escape respirator"
+            ],
+            [
+              "High-pressure lines and wellheads",
+              "Impact injuries, lacerations",
+              "Impact-resistant gloves, face shield, hard hat"
+            ],
+            [
+              "Chemical exposure (drilling fluids, acids)",
+              "Skin burns, eye damage",
+              "Chemical-resistant gloves, splash goggles, apron"
+            ],
+            [
+              "Derrick and platform heights",
+              "Fatal falls",
+              "Full body harness, SRL, safety net"
+            ],
+            [
+              "Heavy pipe and equipment handling",
+              "Crush injuries, foot fractures",
+              "Metatarsal-guard boots, impact gloves"
+            ],
+            [
+              "Extreme heat or cold environments",
+              "Heat stroke, hypothermia",
+              "Cooling vests or insulated FR layers"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Oil and Gas Operations",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "FR coveralls rated to NFPA 2112",
+                "Impact-resistant hard hat with chin strap",
+                "Metatarsal-guard steel toe boots",
+                "Impact and cut-resistant gloves",
+                "H₂S gas monitor (personal clip-on)"
+              ],
+              "title": "Drilling Rig and Wellsite Operations",
+              "description": "Deploy full FR ensembles with impact protection and personal gas monitors for all rig floor and wellsite personnel."
+            },
+            {
+              "items": [
+                "FR coveralls with reflective striping",
+                "Chemical-resistant gloves (nitrile or neoprene)",
+                "Full-face SCBA or escape respirator",
+                "Steel toe safety boots with puncture-resistant sole"
+              ],
+              "title": "Pipeline Construction and Maintenance",
+              "description": "Combine FR clothing with chemical protection and respiratory readiness for pipeline welding, pigging, and integrity testing tasks."
+            },
+            {
+              "items": [
+                "FR coveralls and FR rain gear",
+                "Chemical splash goggles and face shield",
+                "Chemical-resistant gloves and boots",
+                "Supplied-air respirator for vessel entry"
+              ],
+              "title": "Refinery and Processing Plant Operations",
+              "description": "Layer chemical-resistant PPE with FR base clothing for refinery maintenance, turnaround work, and process unit operations."
+            },
+            {
+              "items": [
+                "Full body harness with twin-leg shock absorber",
+                "Self-retracting lifeline",
+                "Rescue descent device",
+                "FR clothing rated for elevated work"
+              ],
+              "title": "Elevated Work on Platforms and Derricks",
+              "description": "Use fall arrest systems designed for industrial environments with integrated FR protection for work on drilling derricks, pipe racks, and process towers."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Oil and Gas Workers",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Impact-resistant hard hats with face shields and chin straps",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Chemical splash goggles, safety glasses, and face shields",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Impact-resistant, chemical-resistant, and cut-resistant gloves",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "FR coveralls, chemical aprons, and insulated outerwear",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Metatarsal-guard steel toe boots with puncture-resistant soles",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "H₂S monitors, SCBA, escape respirators, and particulate masks",
+              "title": "Respiratory and Gas Protection",
+              "bodyAnchorKey": "head"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Oil and Gas Field Teams",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Oil and gas operators issue PPE based on job role and hazard zone classification. FR clothing is mandatory for all field personnel across most operations.",
+            "A standard oilfield worker PPE set includes:",
+            "Below are examples of PPE commonly procured by E&P companies and oilfield service providers:"
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Flame-resistant garments for flash fire protection",
+              "title": "NFPA 2112"
+            },
+            {
+              "text": "Electrical safety in the workplace",
+              "title": "NFPA 70E"
+            },
+            {
+              "text": "Recommended practice for occupational safety",
+              "title": "API RP 74"
+            },
+            {
+              "text": "Respiratory protection",
+              "title": "OSHA 29 CFR 1910.134"
+            },
+            {
+              "text": "Protective clothing against heat and flame",
+              "title": "EN ISO 11612"
+            },
+            {
+              "text": "Impact-resistant gloves standard",
+              "title": "ANSI/ISEA 138"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Oil and gas PPE must meet stringent FR, chemical, and impact standards. We provide full NFPA 2112 certification, test reports, and compliance documentation for all field equipment."
+        }
+      },
+      {
+        "key": "oil-gas-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is FR clothing mandatory for all oil and gas field workers?",
+              "a": "Yes. Most operators require all personnel on drilling rigs, well pads, and processing facilities to wear FR clothing rated to NFPA 2112 at all times."
+            },
+            {
+              "q": "What H₂S safety equipment is required?",
+              "a": "A personal H₂S gas monitor is mandatory in sour gas areas. SCBA or 5-minute escape respirators must be available where H₂S concentrations may exceed 10 ppm."
+            },
+            {
+              "q": "What type of boots are required on drilling rigs?",
+              "a": "Most operators require steel toe boots with metatarsal guards and puncture-resistant soles. Some sites require additional FR-rated boot materials."
+            },
+            {
+              "q": "Can you supply PPE kits for oilfield crews?",
+              "a": "Yes. We assemble operator-specific PPE kits including FR coveralls, impact gloves, metatarsal boots, hard hats, and safety glasses to meet individual company HSE requirements."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Oil and Gas Operations?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified FR clothing, impact protection, and gas safety equipment for oil and gas field operations. Bulk orders with custom branding and compliance documentation available.",
+          "title": "Need PPE for Your Oil and Gas Operations?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-battery-manufacturing-and-storage-facilities",
+    "title": "PPE for Battery Manufacturing and Storage Facilities",
+    "excerpt": "Battery manufacturing and energy storage facilities expose workers to corrosive electrolytes, thermal runaway risks, toxic fumes, high-voltage DC systems, and fire hazards. This guide covers the specialized PPE needed for lithium-ion, lead-acid, and solid-state battery production environments.",
+    "usageScenes": [
+      "chemical-resistant",
+      "flame-resistant",
+      "electrical-work",
+      "eye-protection",
+      "arc-flash",
+      "heavy-duty",
+      "cut-resistant",
+      "confined-space"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 6,
+    "seoTitle": "Battery Manufacturing PPE Supplier | Safety Equipment for Energy Storage Facilities",
+    "seoDescription": "PPE guide for battery manufacturing and storage. Chemical-resistant gear, FR clothing, respiratory protection, and electrical safety equipment for lithium-ion and lead-acid battery production.",
+    "seoKeywords": "battery manufacturing PPE, lithium-ion battery safety, energy storage PPE, electrolyte protection, thermal runaway safety, chemical resistant gloves, NFPA 70E, battery plant safety",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Specialized PPE for Battery Manufacturing and Energy Storage Workers",
+        "enabled": true,
+        "data": {
+          "intro": "Battery manufacturing facilities — producing lithium-ion, lead-acid, or next-generation solid-state cells — expose workers to corrosive electrolytes, toxic off-gases, thermal runaway events, and high-voltage DC systems. The following PPE is essential for safe battery production and storage operations:",
+          "bullets": [
+            "Chemical-resistant gloves for electrolyte handling",
+            "FR clothing for thermal runaway protection",
+            "Full-face respirators for toxic fume exposure",
+            "Arc-rated face shields for high-voltage DC systems",
+            "Chemical splash goggles and face shields",
+            "Anti-static (ESD) safety footwear and clothing"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide covers the unique chemical, electrical, and thermal hazards in battery manufacturing, the PPE required for each production stage, and the safety standards governing battery plant worker protection."
+          ]
+        }
+      },
+      {
+        "key": "battery-hazards",
+        "type": "table",
+        "title": "Common Battery Manufacturing Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Corrosive electrolytes (LiPF₆, H₂SO₄)",
+              "Chemical burns, eye damage",
+              "Chemical-resistant gloves, splash goggles, apron"
+            ],
+            [
+              "Thermal runaway and cell fires",
+              "Severe burns, toxic smoke",
+              "FR clothing, SCBA, fire-rated face shield"
+            ],
+            [
+              "Toxic off-gases (HF, CO, SO₂)",
+              "Respiratory damage, poisoning",
+              "Full-face respirator with multi-gas cartridge"
+            ],
+            [
+              "High-voltage DC battery packs",
+              "Electric shock, arc flash",
+              "Insulated gloves, arc-rated PPE, dielectric boots"
+            ],
+            [
+              "Lead dust (lead-acid production)",
+              "Lead poisoning, respiratory disease",
+              "P100 respirator, disposable coveralls, gloves"
+            ],
+            [
+              "NMP solvent exposure (electrode coating)",
+              "Skin absorption, organ damage",
+              "Chemical-resistant gloves, full coveralls, fume hood"
+            ],
+            [
+              "Static discharge near dry rooms",
+              "Cell ignition, fire",
+              "ESD-rated clothing, anti-static footwear"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Battery Manufacturing Stages",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Chemical-resistant nitrile gloves (double-glove method)",
+                "Chemical splash goggles",
+                "Disposable chemical-resistant coveralls",
+                "Rubber chemical boots"
+              ],
+              "title": "Electrolyte Filling and Cell Assembly",
+              "description": "Use double-layer chemical-resistant gloves and sealed eye protection when handling corrosive electrolytes during cell filling and sealing operations."
+            },
+            {
+              "items": [
+                "NMP-resistant gloves (butyl rubber or laminate)",
+                "Full-face respirator with organic vapor cartridge",
+                "Chemical-resistant apron",
+                "Anti-static ESD wrist strap and footwear"
+              ],
+              "title": "Electrode Coating and Drying",
+              "description": "Protect against NMP solvent absorption and organic vapor inhalation during slurry mixing, coating, and drying processes in battery electrode production."
+            },
+            {
+              "items": [
+                "Class 0 insulated gloves for DC systems",
+                "Arc-rated face shield (minimum 12 cal/cm²)",
+                "FR coveralls",
+                "Dielectric safety boots"
+              ],
+              "title": "Formation, Testing, and Pack Assembly",
+              "description": "Apply full electrical PPE when working with charged cells and high-voltage battery packs during formation cycling, EOL testing, and module assembly."
+            },
+            {
+              "items": [
+                "FR coveralls with high-visibility striping",
+                "Full-face SCBA for thermal runaway response",
+                "Heat-resistant gloves",
+                "Fire-rated face shield and helmet"
+              ],
+              "title": "Thermal Runaway Response and Emergency",
+              "description": "Equip emergency response teams with SCBA, FR suits, and heat-resistant PPE for handling thermal runaway events, cell fires, and toxic gas releases in storage areas."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Battery Facility Workers",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Safety helmets with chemical and electrical insulation rating",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Chemical splash goggles, arc-rated face shields",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Chemical-resistant, insulated, and ESD-rated gloves",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Chemical coveralls, FR clothing, and ESD-rated garments",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Chemical-resistant boots, dielectric boots, ESD footwear",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Multi-gas respirators, SCBA for emergency response",
+              "title": "Respiratory Protection",
+              "bodyAnchorKey": "head"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Battery Manufacturing Teams",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Battery manufacturers typically assign PPE by production zone — dry rooms, electrolyte areas, formation testing, and pack assembly each require different protection levels.",
+            "A standard battery production worker PPE set includes:",
+            "Below are examples of PPE commonly selected by gigafactory operators and battery module assemblers:"
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Electrical safety in the workplace",
+              "title": "NFPA 70E"
+            },
+            {
+              "text": "Chemical protective clothing performance",
+              "title": "ASTM F1001"
+            },
+            {
+              "text": "Respiratory protection",
+              "title": "OSHA 29 CFR 1910.134"
+            },
+            {
+              "text": "Protective gloves against chemicals and microorganisms",
+              "title": "EN 374"
+            },
+            {
+              "text": "Protective clothing against liquid chemicals",
+              "title": "EN 13034 (Type 6)"
+            },
+            {
+              "text": "Electrostatic properties of protective clothing",
+              "title": "EN 1149"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Battery manufacturing PPE must meet chemical, electrical, and anti-static standards simultaneously. We provide multi-standard compliance documentation, chemical permeation test reports, and ESD certification for all products."
+        }
+      },
+      {
+        "key": "battery-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What gloves are safe for handling lithium-ion electrolyte?",
+              "a": "Use nitrile or butyl rubber gloves rated for LiPF₆ and organic carbonate solvents. Double-gloving is recommended. Check chemical permeation data for your specific electrolyte formulation."
+            },
+            {
+              "q": "Is FR clothing needed in battery manufacturing?",
+              "a": "Yes. FR clothing is required in areas where thermal runaway, cell venting, or arc flash from high-voltage DC systems is possible. This includes formation testing, pack assembly, and storage areas."
+            },
+            {
+              "q": "What respiratory protection is needed for battery off-gas events?",
+              "a": "Multi-gas cartridge respirators protect against HF, CO, and SO₂ during minor venting events. SCBA is required for thermal runaway emergencies where gas concentrations are immediately dangerous."
+            },
+            {
+              "q": "Can you supply PPE kits for battery gigafactory operations?",
+              "a": "Yes. We assemble zone-specific PPE kits for battery production lines including chemical-resistant gloves, ESD clothing, respirators, and electrical PPE for each manufacturing stage."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Battery Manufacturing Facility?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified chemical-resistant, FR, and ESD-rated PPE for battery manufacturing and energy storage facilities. Bulk supply with zone-specific kit assembly and compliance documentation.",
+          "title": "Need PPE for Your Battery Manufacturing Facility?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  }
+]

@@ -1,0 +1,457 @@
+﻿[
+  {
+    "slug": "ppe-required-in-manufacturing-plants",
+    "title": "PPE Required in Manufacturing Plants",
+    "excerpt": "Manufacturing plants expose workers to machinery, sharp parts, noise, heat, and airborne contaminants. This guide explains role-based PPE selection for safer operations.",
+    "usageScenes": ["heavy-duty", "impact-resistant", "cut-resistant", "eye-protection", "slip-resistant"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 1,
+    "seoTitle": "PPE Required in Manufacturing Plants | Industrial Safety Guide",
+    "seoDescription": "A practical guide to plant PPE requirements, task-based kits, standards, and FAQs.",
+    "seoKeywords": "manufacturing PPE, factory safety gear, cut resistant gloves, safety glasses, OSHA 1910",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE is required in manufacturing plants?",
+        "enabled": true,
+        "data": {
+          "intro": "Most plants combine machine motion, material handling, and high-noise zones. Common baseline PPE includes:",
+          "bullets": ["Safety helmets in overhead-risk areas", "Task-based work gloves", "Safety glasses or goggles", "Hearing protection", "Steel toe slip-resistant footwear", "Respiratory protection where needed"]
+        }
+      },
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide maps common hazards to practical PPE choices for procurement and EHS teams."]}},
+      {
+        "key": "manufacturing-plant-hazards",
+        "type": "table",
+        "title": "Common Manufacturing Plant Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": ["Hazard", "Potential Injury", "Required PPE"],
+          "rows": [
+            ["Moving conveyors", "Pinch and crush injuries", "Fitted clothing and safety shoes"],
+            ["Sharp components", "Hand cuts", "Cut-resistant gloves"],
+            ["Flying chips", "Eye injuries", "Safety glasses or goggles"],
+            ["High noise", "Hearing loss", "Earplugs or earmuffs"],
+            ["Hot equipment", "Burn injuries", "Heat-resistant gloves"],
+            ["Wet or oily floors", "Slips and falls", "Slip-resistant safety footwear"]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Manufacturing Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {"title": "Assembly and Packaging", "description": "Prioritize comfort and dexterity for repetitive handling.", "items": ["General work gloves", "Safety glasses", "Slip-resistant shoes"]},
+            {"title": "Machining and Tool Use", "description": "Focus on eye, hand, and hearing protection.", "items": ["Cut-resistant gloves", "Safety goggles", "Hearing protection"]},
+            {"title": "Cleaning and Chemicals", "description": "Match glove and eye protection to SDS guidance.", "items": ["Chemical-resistant gloves", "Splash goggles", "Protective apron"]},
+            {"title": "Internal Logistics", "description": "Improve visibility and impact protection around forklifts.", "items": ["Hi-vis vest", "Safety helmet", "Steel toe footwear"]}
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Manufacturing Plants",
+        "enabled": true,
+        "data": {"items": [
+          {"title": "Head Protection", "text": "Hard hats for overhead impact risks", "bodyAnchorKey": "head"},
+          {"title": "Eye Protection", "text": "Safety glasses, goggles, or face shields", "bodyAnchorKey": "eyes"},
+          {"title": "Hand Protection", "text": "Task-based gloves for cut, heat, or chemical risk", "bodyAnchorKey": "left-hand"},
+          {"title": "Hearing Protection", "text": "Earplugs or earmuffs for high-noise zones", "bodyAnchorKey": "ears"},
+          {"title": "Foot Protection", "text": "Steel toe anti-slip footwear", "bodyAnchorKey": "feet"},
+          {"title": "Respiratory Protection", "text": "Respirators for dust, mist, or fume exposure", "bodyAnchorKey": "nose"}
+        ]}
+      },
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for Plant Operations", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Many plants issue PPE by role.", "A baseline kit usually combines eye, hand, and footwear protection.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic Manufacturing PPE Set", "enabled": true, "data": {"items": [{"text": "Safety glasses"}, {"text": "Task-based gloves"}, {"text": "Steel toe safety shoes"}, {"text": "Hearing protection"}, {"text": "Protective workwear"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Industrial Safety Helmet H230"}, {"title": "Cut Resistant Gloves G21"}, {"title": "Safety Glasses E16"}, {"title": "Steel Toe Shoes S82"}, {"title": "Reusable Earplugs EP32"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910 Subpart I", "text": "General industry PPE requirements"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}, {"title": "ANSI Z89.1", "text": "Industrial head protection"}, {"title": "OSHA 1910.95", "text": "Occupational noise exposure"}, {"title": "EN 388", "text": "Mechanical risk gloves"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "Use certified PPE and keep issue records aligned with hazard assessments."}},
+      {"key": "manufacturing-plants-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Do all workers need the same PPE?", "a": "No. PPE should be assigned by role and exposure."},
+        {"q": "How often should PPE be replaced?", "a": "Replace PPE when damaged, contaminated, or no longer protective."},
+        {"q": "Is hearing protection mandatory in factories?", "a": "Yes, when measured exposure exceeds action limits."},
+        {"q": "Can PPE be standardized for procurement?", "a": "Yes. Approved lists by department simplify buying and compliance."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for Your Manufacturing Plant?", "enabled": true, "data": {"title": "Need PPE for Your Manufacturing Plant?", "text": "We supply certified plant PPE kits with bulk pricing and compliance documentation.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-metal-fabrication-and-welding-workshops",
+    "title": "PPE for Metal Fabrication and Welding Workshops",
+    "excerpt": "Metal fabrication and welding workshops expose teams to sparks, UV radiation, hot surfaces, grinding debris, and fumes. This guide covers PPE needed for safer workshop operations.",
+    "usageScenes": ["steel-work", "heavy-duty", "impact-resistant", "cut-resistant", "eye-protection"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 2,
+    "seoTitle": "PPE for Metal Fabrication and Welding Workshops | Welding Safety Gear",
+    "seoDescription": "Welding and fabrication PPE guide with hazard mapping, role-based gear, standards, and FAQs.",
+    "seoKeywords": "metal fabrication PPE, welding workshop PPE, welding helmet, FR clothing, heat resistant gloves",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required in metal fabrication and welding workshops?", "enabled": true, "data": {"intro": "Fabrication and welding shops combine thermal work, sharp steel, grinding, and high noise. Typical PPE includes:", "bullets": ["Auto-darkening welding helmet", "Heat-resistant welding gloves", "Flame-resistant jacket or coveralls", "Safety goggles and grinding face shield", "Cut-resistant handling gloves", "Respiratory and hearing protection where required"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide maps welding and fabrication hazards to practical PPE choices for welders, fitters, and helpers."]}},
+      {
+        "key": "metal-fabrication-hazards",
+        "type": "table",
+        "title": "Common Metal Fabrication Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": ["Hazard", "Potential Injury", "Required PPE"],
+          "rows": [
+            ["Arc radiation and sparks", "Eye injury and burns", "Welding helmet and FR clothing"],
+            ["Hot metal and slag", "Contact burns", "Heat-resistant gloves and sleeves"],
+            ["Grinding debris", "Eye and face trauma", "Goggles and face shield"],
+            ["Metal fumes", "Respiratory irritation", "Appropriate respirator"],
+            ["Sharp steel edges", "Hand lacerations", "Cut-resistant gloves"],
+            ["Grinding and cutting noise", "Hearing loss", "Earplugs or earmuffs"]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Fabrication and Welding Tasks",
+        "enabled": true,
+        "data": {"groups": [
+          {"title": "Welding Stations", "description": "Prioritize arc and thermal protection for repetitive welding cycles.", "items": ["Welding helmet", "FR jacket", "Welding gloves", "Leather apron"]},
+          {"title": "Grinding and Prep", "description": "Control fragment, spark, and noise exposure.", "items": ["Safety goggles", "Face shield", "Cut-resistant gloves", "Hearing protection"]},
+          {"title": "Steel Fitting", "description": "Protect hands and lower limbs while handling stock and cut parts.", "items": ["Cut-resistant gloves", "Steel toe boots", "Sleeve protectors"]},
+          {"title": "Rigging and Transfer", "description": "Improve visibility and impact protection in crane zones.", "items": ["Hi-vis vest", "Safety helmet", "Impact-resistant gloves"]}
+        ]}
+      },
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for Welding Workshops", "enabled": true, "data": {"items": [
+        {"title": "Welding Eye and Face Protection", "text": "Helmet shade and arc-rated face protection", "bodyAnchorKey": "eyes"},
+        {"title": "Body Protection", "text": "Flame-resistant garments for sparks and spatter", "bodyAnchorKey": "chest"},
+        {"title": "Hand Protection", "text": "Heat and cut resistant gloves by task", "bodyAnchorKey": "left-hand"},
+        {"title": "Respiratory Protection", "text": "Respirators for fume-producing operations", "bodyAnchorKey": "nose"},
+        {"title": "Hearing Protection", "text": "Earplugs or earmuffs for grinding and cutting", "bodyAnchorKey": "ears"},
+        {"title": "Foot Protection", "text": "Heat and impact resistant safety boots", "bodyAnchorKey": "feet"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for Fabrication Teams", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Many workshops issue separate kits for welding and grinding.", "A core kit includes eye and face, hand, and FR body protection.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic Fabrication and Welding PPE Set", "enabled": true, "data": {"items": [{"text": "Auto-darkening welding helmet"}, {"text": "Heat-resistant gloves"}, {"text": "FR jacket or coveralls"}, {"text": "Goggles and face shield"}, {"text": "Steel toe safety boots"}, {"text": "Hearing protection"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Auto-Darkening Welding Helmet WH72"}, {"title": "Heat-Resistant Welding Gloves G45"}, {"title": "FR Welding Jacket C28"}, {"title": "Grinding Face Shield E33"}, {"title": "Steel Toe Heat-Resistant Boots S96"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910.252", "text": "Welding, cutting, and brazing safety"}, {"title": "ANSI Z49.1", "text": "Safe practices for welding and cutting"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}, {"title": "EN ISO 11611", "text": "Protective clothing for welding"}, {"title": "EN 12477", "text": "Protective gloves for welders"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "Select welding PPE as a system: helmet shade, glove thermal rating, and garment coverage must match the process."}},
+      {"key": "metal-fabrication-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Do welders and grinders need different eye protection?", "a": "Yes. Welding requires shade and arc protection, while grinding requires impact-rated eye and face protection."},
+        {"q": "Are cotton jackets enough for welding?", "a": "Not usually. Flame-resistant garments are preferred for routine welding work."},
+        {"q": "What gloves are best for fabrication shops?", "a": "Use heat-resistant gloves for welding and cut-resistant gloves for handling sharp steel."},
+        {"q": "Is respiratory protection always needed for welding?", "a": "It depends on ventilation, material, and process."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for Your Fabrication Workshop?", "enabled": true, "data": {"title": "Need PPE for Your Fabrication Workshop?", "text": "We supply certified welding and fabrication PPE kits with bulk supply and compliance documentation.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-cnc-machining-and-cutting-operations",
+    "title": "PPE for CNC Machining and Cutting Operations",
+    "excerpt": "CNC machining and cutting operations expose operators to rotating tools, flying chips, coolant mist, sharp edges, and high noise. This guide explains practical PPE selection for machine shops.",
+    "usageScenes": ["cut-resistant", "eye-protection", "impact-resistant", "heavy-duty", "slip-resistant"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 3,
+    "seoTitle": "PPE for CNC Machining and Cutting Operations | Machine Shop Safety Guide",
+    "seoDescription": "PPE recommendations for CNC operations, including hazards, task-based protection, standards, and FAQs.",
+    "seoKeywords": "CNC PPE, machining safety gear, cutting operation PPE, safety glasses, cut resistant gloves",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required for CNC machining and cutting operations?", "enabled": true, "data": {"intro": "CNC environments involve precision work around rotating tools and fast-moving chips. Typical PPE includes:", "bullets": ["Impact-rated safety glasses", "Face shield for high-chip tasks", "Cut-resistant gloves for part handling", "Hearing protection", "Slip-resistant safety shoes", "Respiratory protection where coolant mist is elevated"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide links common CNC hazards to practical PPE choices for operators and setup technicians."]}},
+      {"key": "cnc-hazards", "type": "table", "title": "Common CNC Machining Hazards and Required PPE", "enabled": true, "data": {"headers": ["Hazard", "Potential Injury", "Required PPE"], "rows": [
+        ["Flying chips", "Eye injuries", "Safety glasses and face shield"],
+        ["Sharp machined edges", "Hand cuts", "Cut-resistant gloves"],
+        ["Coolant mist", "Respiratory irritation", "Appropriate respirator"],
+        ["Machine noise", "Hearing damage", "Earplugs or earmuffs"],
+        ["Oil and coolant on floors", "Slip injuries", "Slip-resistant footwear"],
+        ["Tool changes", "Pinch or impact injuries", "Impact-resistant gloves and eye protection"]
+      ]}},
+      {"key": "task-based-ppe", "type": "group", "title": "PPE for Different CNC Tasks", "enabled": true, "data": {"groups": [
+        {"title": "Machine Operation", "description": "Maintain eye, hearing, and foot protection during production runs.", "items": ["Safety glasses", "Hearing protection", "Slip-resistant shoes"]},
+        {"title": "Setup and Tool Change", "description": "Protect against chip release and sharp tooling.", "items": ["Face shield", "Cut-resistant gloves", "Safety glasses"]},
+        {"title": "Deburring and Finishing", "description": "Control laceration risk while handling unfinished edges.", "items": ["Cut-resistant gloves", "Safety glasses", "Protective sleeves"]},
+        {"title": "Coolant Maintenance", "description": "Use splash and chemical protection during fluid replacement.", "items": ["Chemical-resistant gloves", "Splash goggles", "Slip-resistant footwear"]}
+      ]}},
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for CNC Shops", "enabled": true, "data": {"items": [
+        {"title": "Eye Protection", "text": "Primary defense against chips and fragments", "bodyAnchorKey": "eyes"},
+        {"title": "Hand Protection", "text": "Task-specific gloves for sharp part handling", "bodyAnchorKey": "left-hand"},
+        {"title": "Hearing Protection", "text": "Earplugs or earmuffs in machine clusters", "bodyAnchorKey": "ears"},
+        {"title": "Foot Protection", "text": "Slip-resistant shoes for coolant-prone floors", "bodyAnchorKey": "feet"},
+        {"title": "Respiratory Protection", "text": "Respirators where mist or dust exceeds limits", "bodyAnchorKey": "nose"},
+        {"title": "Body Protection", "text": "Fitted sleeves and garments to reduce snag risk", "bodyAnchorKey": "chest"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for CNC Operations", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Separate operator PPE from maintenance PPE.", "Baseline kits usually include eye, hearing, and footwear protection.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic CNC PPE Set", "enabled": true, "data": {"items": [{"text": "Impact-rated safety glasses"}, {"text": "Hearing protection"}, {"text": "Slip-resistant steel toe shoes"}, {"text": "Cut-resistant part-handling gloves"}, {"text": "Face shield"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Safety Glasses E21"}, {"title": "Face Shield E35"}, {"title": "Cut Resistant Gloves G19"}, {"title": "Industrial Earplugs EP36"}, {"title": "Slip-Resistant Safety Shoes S70"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910.212", "text": "Machine guarding requirements"}, {"title": "OSHA 1910 Subpart I", "text": "General PPE requirements"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}, {"title": "OSHA 1910.95", "text": "Occupational noise exposure"}, {"title": "EN 388", "text": "Mechanical protective gloves"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "Avoid loose gloves or sleeves near rotating spindles. Define clear wear rules by machine and operation mode."}},
+      {"key": "cnc-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Are gloves always allowed at CNC machines?", "a": "No. Glove use near rotating equipment must be controlled by procedure."},
+        {"q": "Do CNC operators need face shields?", "a": "Face shields are commonly used during setup, cleaning, and high-chip tasks."},
+        {"q": "How should coolant exposure be managed?", "a": "Use splash-resistant eye protection, suitable gloves, and respiratory controls where needed."},
+        {"q": "Can PPE kits be set by machine cell?", "a": "Yes. Cell-based kits improve consistency and onboarding speed."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for CNC Machining Operations?", "enabled": true, "data": {"title": "Need PPE for CNC Machining Operations?", "text": "We supply certified PPE for CNC shops, including eye, hand, hearing, and footwear protection.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-warehouse-and-logistics-workers",
+    "title": "PPE for Warehouse and Logistics Workers",
+    "excerpt": "Warehouse and logistics workers face forklift traffic, manual handling, dock hazards, and slip risks. This guide outlines PPE requirements across inbound, storage, and outbound workflows.",
+    "usageScenes": ["heavy-duty", "slip-resistant", "impact-resistant"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 4,
+    "seoTitle": "PPE for Warehouse and Logistics Workers | Distribution Safety Guide",
+    "seoDescription": "PPE guide for warehouse and logistics teams with hazards, role-based kits, standards, and FAQs.",
+    "seoKeywords": "warehouse PPE, logistics worker PPE, hi-vis vest, steel toe boots, loading dock safety",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required for warehouse and logistics workers?", "enabled": true, "data": {"intro": "Distribution environments combine people, pallets, and vehicles. Typical PPE includes:", "bullets": ["Hi-vis safety vest", "Steel toe slip-resistant footwear", "Work gloves", "Safety helmet where overhead hazards exist", "Safety glasses in dusty zones", "Hearing protection in high-noise areas"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide supports PPE selection for receiving, picking, loading docks, and internal transport routes."]}},
+      {"key": "warehouse-worker-hazards", "type": "table", "title": "Common Warehouse Hazards and Required PPE", "enabled": true, "data": {"headers": ["Hazard", "Potential Injury", "Required PPE"], "rows": [
+        ["Forklift traffic", "Struck-by incidents", "Hi-vis vest and safety shoes"],
+        ["Manual pallet handling", "Hand and foot injuries", "Work gloves and steel toe footwear"],
+        ["Dock edge and trailer gaps", "Falls", "Slip-resistant footwear and controls"],
+        ["Falling cartons", "Head trauma", "Safety helmet in overhead zones"],
+        ["Stretch wrap debris", "Eye irritation", "Safety glasses"],
+        ["Wet floors", "Slip injuries", "Anti-slip safety footwear"]
+      ]}},
+      {"key": "task-based-ppe", "type": "group", "title": "PPE for Different Warehouse Roles", "enabled": true, "data": {"groups": [
+        {"title": "Receiving and Putaway", "description": "Improve visibility and hand protection during unloading and scanning.", "items": ["Hi-vis vest", "Safety footwear", "Work gloves"]},
+        {"title": "Picking and Packing", "description": "Use breathable PPE for repetitive handling tasks.", "items": ["Light-duty gloves", "Safety shoes", "Safety glasses"]},
+        {"title": "Dock and Loading", "description": "Protect teams around trailers and active vehicle zones.", "items": ["Hi-vis outerwear", "Steel toe shoes", "Hard hat where required"]},
+        {"title": "Racking and Replenishment", "description": "Reduce dropped-object and cut risk in storage aisles.", "items": ["Cut-resistant gloves", "Helmet", "Anti-slip footwear"]}
+      ]}},
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for Logistics Sites", "enabled": true, "data": {"items": [
+        {"title": "Visibility Protection", "text": "High-visibility garments for mixed pedestrian-vehicle zones", "bodyAnchorKey": "chest"},
+        {"title": "Foot Protection", "text": "Toe and slip protection for pallets and wet floors", "bodyAnchorKey": "feet"},
+        {"title": "Hand Protection", "text": "General or cut-resistant gloves by task", "bodyAnchorKey": "left-hand"},
+        {"title": "Head Protection", "text": "Hard hats where overhead load risks exist", "bodyAnchorKey": "head"},
+        {"title": "Eye Protection", "text": "Safety glasses for debris and wrap fragments", "bodyAnchorKey": "eyes"},
+        {"title": "Hearing Protection", "text": "Ear protection for noisy process zones", "bodyAnchorKey": "ears"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for Warehouse Workers", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Most sites issue standard entry kits and add role-specific PPE.", "A basic kit should prioritize visibility, grip, and impact protection.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic Warehouse Worker PPE Set", "enabled": true, "data": {"items": [{"text": "Hi-vis reflective vest"}, {"text": "Steel toe anti-slip footwear"}, {"text": "Work gloves"}, {"text": "Safety glasses"}, {"text": "Hard hat where required"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Hi-Vis Vest HV12"}, {"title": "Warehouse Safety Shoes S65"}, {"title": "General Work Gloves G08"}, {"title": "Safety Glasses E11"}, {"title": "Lightweight Hard Hat H205"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910", "text": "General industry PPE"}, {"title": "ANSI/ISEA 107", "text": "High-visibility safety apparel"}, {"title": "ANSI Z89.1", "text": "Industrial head protection"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}, {"title": "EN ISO 20345", "text": "Safety footwear"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "PPE works best when paired with traffic segregation, clear routes, and speed control."}},
+      {"key": "warehouse-workers-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Do warehouse workers need hi-vis clothing?", "a": "In most mixed vehicle-pedestrian areas, yes."},
+        {"q": "What footwear is recommended?", "a": "Steel toe or composite toe shoes with slip-resistant outsoles."},
+        {"q": "Are hard hats mandatory in warehouses?", "a": "They are required where falling object hazards exist."},
+        {"q": "Can PPE be issued as onboarding kits?", "a": "Yes. Role-based starter kits improve consistency and speed."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for Warehouse and Logistics Teams?", "enabled": true, "data": {"title": "Need PPE for Warehouse and Logistics Teams?", "text": "We supply warehouse PPE kits for large teams with compliance documentation and bulk pricing.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-forklift-and-material-handling-operations",
+    "title": "PPE for Forklift and Material Handling Operations",
+    "excerpt": "Forklift and material handling operations involve load movement, blind spots, dock transitions, and pedestrian interaction. This guide provides PPE recommendations for high-traffic industrial zones.",
+    "usageScenes": ["impact-resistant", "heavy-duty", "slip-resistant"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 5,
+    "seoTitle": "PPE for Forklift and Material Handling Operations | Industrial Traffic Safety",
+    "seoDescription": "PPE guide for forklift and handling operations with role-based requirements, standards, and FAQs.",
+    "seoKeywords": "forklift PPE, material handling safety gear, hi-vis vest, loading dock PPE, OSHA 1910.178",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required for forklift and material handling operations?", "enabled": true, "data": {"intro": "Forklift areas require visibility and impact control. Typical PPE includes:", "bullets": ["High-visibility vest or jacket", "Steel toe anti-slip footwear", "Work gloves for pallet handling", "Safety helmet in overhead zones", "Eye protection for strapping tasks", "Hearing protection where noise is elevated"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide covers PPE choices for forklift operators, loaders, and dock support teams."]}},
+      {"key": "forklift-hazards", "type": "table", "title": "Common Forklift and Handling Hazards and Required PPE", "enabled": true, "data": {"headers": ["Hazard", "Potential Injury", "Required PPE"], "rows": [
+        ["Vehicle blind spots", "Struck-by incidents", "Hi-vis clothing"],
+        ["Load shift or dropped pallets", "Crush injuries", "Safety footwear and helmets where required"],
+        ["Uneven floors and ramps", "Slips and trips", "Slip-resistant footwear"],
+        ["Manual load adjustments", "Hand abrasions and cuts", "Work gloves"],
+        ["Strap rebound", "Eye injuries", "Safety glasses"],
+        ["Battery charging", "Splash irritation", "Chemical-resistant gloves and goggles"]
+      ]}},
+      {"key": "task-based-ppe", "type": "group", "title": "PPE for Different Handling Roles", "enabled": true, "data": {"groups": [
+        {"title": "Forklift Operators", "description": "Maintain visibility and stable footing in active traffic lanes.", "items": ["Hi-vis vest", "Safety footwear", "Comfortable fitted workwear"]},
+        {"title": "Loaders and Handlers", "description": "Protect hands and feet during pallet alignment and transfer.", "items": ["Impact-resistant gloves", "Steel toe shoes", "Hi-vis vest"]},
+        {"title": "Dock Teams", "description": "Control slip and rebound risk during loading and unloading.", "items": ["Safety glasses", "Work gloves", "Slip-resistant footwear"]},
+        {"title": "Battery Service", "description": "Use chemical splash controls during charging and maintenance.", "items": ["Chemical-resistant gloves", "Splash goggles", "Protective apron"]}
+      ]}},
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for Forklift Operations", "enabled": true, "data": {"items": [
+        {"title": "Visibility Protection", "text": "Hi-vis garments for all pedestrian-vehicle interaction zones", "bodyAnchorKey": "chest"},
+        {"title": "Foot Protection", "text": "Toe and slip protection for dock and warehouse floors", "bodyAnchorKey": "feet"},
+        {"title": "Hand Protection", "text": "General or impact gloves for load handling", "bodyAnchorKey": "left-hand"},
+        {"title": "Head Protection", "text": "Hard hats where overhead load risk exists", "bodyAnchorKey": "head"},
+        {"title": "Eye Protection", "text": "Safety glasses for strapping and debris", "bodyAnchorKey": "eyes"},
+        {"title": "Hearing Protection", "text": "Ear protection for high-traffic noise zones", "bodyAnchorKey": "ears"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for Forklift and Handling Teams", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Define minimum PPE for everyone entering active traffic zones.", "Add role-specific items for dock and battery service tasks.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic Forklift Zone PPE Set", "enabled": true, "data": {"items": [{"text": "Hi-vis vest"}, {"text": "Steel toe anti-slip shoes"}, {"text": "Work gloves"}, {"text": "Safety glasses"}, {"text": "Hard hat where required"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Hi-Visibility Vest HV10"}, {"title": "Material Handling Gloves G12"}, {"title": "Safety Shoes S68"}, {"title": "Safety Glasses E10"}, {"title": "Industrial Hard Hat H210"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910.178", "text": "Powered industrial truck requirements"}, {"title": "OSHA 1910 Subpart I", "text": "General PPE requirements"}, {"title": "ANSI/ISEA 107", "text": "High-visibility safety apparel"}, {"title": "ANSI Z89.1", "text": "Industrial head protection"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "PPE is one layer of control. Traffic rules, route segregation, and operator training remain essential."}},
+      {"key": "forklift-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Do forklift operators need high-visibility clothing?", "a": "Yes, in most shared traffic zones."},
+        {"q": "Are steel toe shoes mandatory?", "a": "Commonly yes, where load and wheel contact risks exist."},
+        {"q": "What PPE is needed for battery charging?", "a": "Splash goggles, chemical-resistant gloves, and protective aprons."},
+        {"q": "Can PPE be assigned by role?", "a": "Yes. Role-based assignment improves fit-to-task protection and compliance."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for Forklift and Handling Operations?", "enabled": true, "data": {"title": "Need PPE for Forklift and Handling Operations?", "text": "We supply certified forklift-zone PPE kits with bulk pricing and compliance documents.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-chemical-handling-in-factories",
+    "title": "PPE for Chemical Handling in Factories",
+    "excerpt": "Chemical handling in factories can involve corrosive liquids, solvent vapors, splash hazards, and contamination risk. This guide outlines PPE requirements for safer mixing, transfer, and cleaning.",
+    "usageScenes": ["eye-protection", "heavy-duty", "slip-resistant"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 6,
+    "seoTitle": "PPE for Chemical Handling in Factories | Chemical Safety Equipment Guide",
+    "seoDescription": "Factory chemical PPE guide covering gloves, goggles, respirators, standards, and FAQs.",
+    "seoKeywords": "chemical handling PPE, factory chemical safety, chemical resistant gloves, splash goggles, respirator",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required for chemical handling in factories?", "enabled": true, "data": {"intro": "Chemical workflows expose workers to splash, vapor, and skin contact hazards. Typical PPE includes:", "bullets": ["Chemical splash goggles and face shield", "Chemical-resistant gloves matched to SDS", "Chemical-resistant apron or suit", "Respiratory protection where vapors are present", "Chemical-resistant anti-slip footwear", "Emergency rinse readiness"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide supports PPE selection for batching, transfer, sanitation, and spill-response tasks."]}},
+      {"key": "chemical-handling-hazards", "type": "table", "title": "Common Chemical Handling Hazards and Required PPE", "enabled": true, "data": {"headers": ["Hazard", "Potential Injury", "Required PPE"], "rows": [
+        ["Liquid splash", "Eye and skin injury", "Splash goggles, face shield, chemical gloves"],
+        ["Solvent vapor", "Respiratory irritation", "Appropriate respirator"],
+        ["Corrosive contact", "Chemical burns", "Chemical-resistant gloves and clothing"],
+        ["Drum transfer", "Spill and contamination", "Apron, gloves, eye protection"],
+        ["Contaminated floors", "Slip and exposure", "Chemical-resistant anti-slip footwear"],
+        ["Concentrated cleaning agents", "Skin and inhalation hazards", "Chemical gloves, goggles, respirator where needed"]
+      ]}},
+      {"key": "task-based-ppe", "type": "group", "title": "PPE for Different Chemical Handling Tasks", "enabled": true, "data": {"groups": [
+        {"title": "Batching and Mixing", "description": "Use splash and contact protection during measurement and blending.", "items": ["Chemical splash goggles", "Face shield", "Chemical-resistant gloves", "Apron"]},
+        {"title": "Tank and Process Cleaning", "description": "Match PPE breakthrough resistance to cleaning agent and contact time.", "items": ["Chemical-resistant gloves", "Protective suit", "Respiratory protection where required"]},
+        {"title": "Drum Transfer", "description": "Control splash and contamination risk during decanting.", "items": ["Chemical-compatible gloves", "Splash goggles", "Chemical-resistant footwear"]},
+        {"title": "Spill Response", "description": "Escalate to higher protection based on spill class and substance.", "items": ["Full protective suit", "Double gloves", "Respirator", "Face shield"]}
+      ]}},
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for Chemical Handling", "enabled": true, "data": {"items": [
+        {"title": "Eye and Face Protection", "text": "Splash goggles and shields for liquid exposure", "bodyAnchorKey": "eyes"},
+        {"title": "Hand Protection", "text": "Chemical-compatible glove materials by SDS", "bodyAnchorKey": "left-hand"},
+        {"title": "Body Protection", "text": "Aprons, suits, and sleeves for splash control", "bodyAnchorKey": "chest"},
+        {"title": "Respiratory Protection", "text": "Respirators for vapor, mist, or particulate exposure", "bodyAnchorKey": "nose"},
+        {"title": "Foot Protection", "text": "Chemical-resistant anti-slip footwear", "bodyAnchorKey": "feet"},
+        {"title": "Emergency Readiness", "text": "Decontamination and rinse compatibility planning", "bodyAnchorKey": "head"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for Factory Chemical Work", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Select chemical PPE by compatibility, not only thickness.", "Keep approved glove charts linked to SDS data.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic Chemical Handling PPE Set", "enabled": true, "data": {"items": [{"text": "Chemical splash goggles"}, {"text": "Chemical-resistant gloves"}, {"text": "Face shield"}, {"text": "Chemical apron or suit"}, {"text": "Chemical-resistant boots"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Chemical Splash Goggles E40"}, {"title": "Nitrile Chemical Gloves G52"}, {"title": "Chemical Apron C41"}, {"title": "Half-Face Respirator R32"}, {"title": "Chemical-Resistant Boots S88"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910.132", "text": "General PPE requirements"}, {"title": "OSHA 1910.138", "text": "Hand protection"}, {"title": "OSHA 1910.134", "text": "Respiratory protection"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}, {"title": "EN ISO 374", "text": "Protective gloves against chemicals"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "Always verify glove breakthrough and permeation data for each chemical. One glove type does not fit all substances."}},
+      {"key": "chemical-handling-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Can one glove type be used for all chemicals?", "a": "No. Glove material must match each chemical and contact duration."},
+        {"q": "When is a face shield required?", "a": "When splash potential is significant, usually together with splash goggles."},
+        {"q": "Are respirators always required?", "a": "Not always. It depends on exposure and ventilation assessment."},
+        {"q": "How often should chemical PPE be replaced?", "a": "Immediately after contamination, damage, or breakthrough indicators."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for Factory Chemical Handling?", "enabled": true, "data": {"title": "Need PPE for Factory Chemical Handling?", "text": "We provide certified chemical handling PPE with compatibility-focused selection and compliance documentation.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-high-temperature-industrial-environments",
+    "title": "PPE for High-Temperature Industrial Environments",
+    "excerpt": "High-temperature industrial environments such as foundries, forging lines, and kilns expose workers to radiant heat, hot surfaces, and molten splash risk. This guide covers thermal PPE requirements.",
+    "usageScenes": ["heavy-duty", "impact-resistant", "cut-resistant", "slip-resistant"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 7,
+    "seoTitle": "PPE for High-Temperature Industrial Environments | Heat Hazard Safety Guide",
+    "seoDescription": "Industrial heat PPE guide for foundry and furnace operations with standards and FAQs.",
+    "seoKeywords": "high temperature PPE, foundry PPE, heat resistant gloves, aluminized clothing",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required in high-temperature industrial environments?", "enabled": true, "data": {"intro": "Heat-intensive operations expose workers to radiant energy, thermal contact, and splash hazards. Typical PPE includes:", "bullets": ["Heat-resistant gloves", "Aluminized or flame-resistant clothing", "Heat-rated eye and face protection", "Heat-resistant safety footwear", "Head and neck thermal protection", "Layered clothing strategy for long exposure"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide supports PPE selection for foundry, forging, kiln, and heat-treatment tasks."]}},
+      {"key": "high-temperature-hazards", "type": "table", "title": "Common High-Temperature Hazards and Required PPE", "enabled": true, "data": {"headers": ["Hazard", "Potential Injury", "Required PPE"], "rows": [
+        ["Radiant furnace heat", "Heat stress and burns", "Heat-resistant clothing and face protection"],
+        ["Contact with hot parts", "Hand burns", "Heat-resistant gloves"],
+        ["Molten splash", "Severe thermal injury", "Aluminized outerwear and face shield"],
+        ["Hot floor scale", "Foot burns and slips", "Heat-resistant anti-slip boots"],
+        ["Thermal glare", "Eye strain and injury", "Heat-rated eye protection"],
+        ["Steam release", "Scald burns", "Full coverage thermal protective clothing"]
+      ]}},
+      {"key": "task-based-ppe", "type": "group", "title": "PPE for Different High-Temperature Tasks", "enabled": true, "data": {"groups": [
+        {"title": "Foundry Pouring", "description": "Use full thermal splash protection near molten handling zones.", "items": ["Aluminized jacket and apron", "Heat-resistant gloves", "Thermal face shield", "Heat-resistant boots"]},
+        {"title": "Forging Operations", "description": "Balance thermal protection and movement during repetitive handling.", "items": ["FR coveralls", "Heat-resistant gloves", "Safety glasses and shield"]},
+        {"title": "Furnace Maintenance", "description": "Increase head, neck, and hand coverage for close-range heat exposure.", "items": ["Heat-resistant hood", "Face shield", "Insulated gloves", "Thermal footwear"]},
+        {"title": "Heat Treatment Transfer", "description": "Protect workers moving hot fixtures across transition zones.", "items": ["Cut and heat-resistant gloves", "FR sleeves", "Slip-resistant thermal shoes"]}
+      ]}},
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for Thermal Risk Areas", "enabled": true, "data": {"items": [
+        {"title": "Eye and Face Protection", "text": "Heat-rated shields and goggles for radiant and splash risk", "bodyAnchorKey": "eyes"},
+        {"title": "Body Protection", "text": "Flame-resistant and aluminized garments", "bodyAnchorKey": "chest"},
+        {"title": "Hand Protection", "text": "Thermal gloves with suitable contact-heat rating", "bodyAnchorKey": "left-hand"},
+        {"title": "Head Protection", "text": "Head and neck coverage against radiant exposure", "bodyAnchorKey": "head"},
+        {"title": "Foot Protection", "text": "Heat-resistant anti-slip footwear", "bodyAnchorKey": "feet"},
+        {"title": "Thermal Management", "text": "Layering strategy to control heat load", "bodyAnchorKey": "waist"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for High-Temperature Operations", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Map PPE by heat source distance and splash potential.", "Layered systems often perform better in long shifts.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic High-Temperature PPE Set", "enabled": true, "data": {"items": [{"text": "Heat-resistant gloves"}, {"text": "FR or aluminized jacket"}, {"text": "Thermal face shield"}, {"text": "Heat-resistant safety boots"}, {"text": "Head and neck thermal protection"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "Aluminized Heat Jacket C52"}, {"title": "Foundry Heat Gloves G70"}, {"title": "Thermal Face Shield E50"}, {"title": "Heat-Resistant Safety Boots S99"}, {"title": "FR Neck Protector C18"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910 Subpart I", "text": "PPE for general industry"}, {"title": "EN ISO 11612", "text": "PPE against heat and flame"}, {"title": "NFPA 2112", "text": "Flame-resistant garments"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}, {"title": "EN ISO 20345", "text": "Safety footwear"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "Thermal PPE performance drops when garments are damaged or contaminated. Routine inspection and replacement are critical."}},
+      {"key": "high-temperature-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "Is FR clothing enough for foundry work?", "a": "Often no. Molten processes may require aluminized layers and additional splash protection."},
+        {"q": "How should heat-resistant gloves be selected?", "a": "By contact temperature, exposure duration, dexterity needs, and splash risk."},
+        {"q": "Do workers need face protection in high-heat zones?", "a": "Yes. Heat-rated face shields and eye protection are commonly required."},
+        {"q": "Can PPE kits be tailored by heat process?", "a": "Yes. Many sites define separate kits for pouring, forging, and kiln maintenance."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for High-Temperature Industrial Work?", "enabled": true, "data": {"title": "Need PPE for High-Temperature Industrial Work?", "text": "We supply certified thermal PPE for foundries, forging lines, and furnace operations.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-noise-intensive-factory-areas",
+    "title": "PPE for Noise-Intensive Factory Areas",
+    "excerpt": "Noise-intensive factory areas such as stamping, grinding, compressor rooms, and process lines can cause long-term hearing damage. This guide focuses on PPE and hearing protection programs.",
+    "usageScenes": ["heavy-duty", "impact-resistant", "eye-protection"],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 8,
+    "seoTitle": "PPE for Noise-Intensive Factory Areas | Industrial Hearing Protection Guide",
+    "seoDescription": "Factory noise PPE guide with hearing protection selection, standards, and FAQs.",
+    "seoKeywords": "noise factory PPE, hearing protection factory, earplugs, earmuffs, OSHA 1910.95",
+    "sections": [
+      {"key": "hero-intro", "type": "hero", "title": "What PPE is required in noise-intensive factory areas?", "enabled": true, "data": {"intro": "High-noise zones require consistent hearing protection and fit control. Typical PPE includes:", "bullets": ["Hearing protection matched to measured noise levels", "Single or dual protection by exposure", "Impact-rated eye protection in noisy process zones", "Task-appropriate hand and foot protection", "Communication-compatible PPE planning", "Routine hearing PPE replacement"]}},
+      {"key": "guide-overview", "type": "paragraphs", "title": null, "enabled": true, "data": {"paragraphs": ["This guide outlines practical hearing PPE choices for continuous and intermittent high-noise factory areas."]}},
+      {"key": "noise-area-hazards", "type": "table", "title": "Common Noise-Area Hazards and Required PPE", "enabled": true, "data": {"headers": ["Hazard", "Potential Injury", "Required PPE"], "rows": [
+        ["Stamping and press noise", "Noise-induced hearing loss", "High-NRR earplugs or earmuffs"],
+        ["Grinding operations", "Hearing and eye injury", "Hearing protection plus safety glasses"],
+        ["Compressor rooms", "Long-duration noise exposure", "Comfortable long-wear hearing PPE"],
+        ["Impulse noise", "Acute auditory damage", "Dual hearing protection where required"],
+        ["High-noise communication gaps", "Missed warnings", "Communication-compatible hearing PPE"],
+        ["Worn hearing protectors", "Reduced attenuation", "Routine replacement and fit checks"]
+      ]}},
+      {"key": "task-based-ppe", "type": "group", "title": "PPE for Different High-Noise Factory Tasks", "enabled": true, "data": {"groups": [
+        {"title": "Stamping and Press Operations", "description": "Use robust hearing and eye protection for impact-heavy cycles.", "items": ["High-NRR earmuffs", "Safety glasses", "Impact gloves"]},
+        {"title": "Grinding and Finishing", "description": "Control both high-frequency noise and particle exposure.", "items": ["Formable earplugs", "Face and eye protection", "Cut-resistant gloves"]},
+        {"title": "Compressor and Utility Areas", "description": "Select hearing PPE suitable for long-duration use.", "items": ["Long-wear earmuffs", "Communication-compatible setup", "Safety footwear"]},
+        {"title": "Maintenance in Active Noise Zones", "description": "Combine hearing, eye, and visibility protection for mixed hazards.", "items": ["Dual hearing protection", "Eye protection", "Hi-vis clothing where needed"]}
+      ]}},
+      {"key": "essential-categories", "type": "list", "title": "Essential PPE Categories for Noise-Intensive Areas", "enabled": true, "data": {"items": [
+        {"title": "Hearing Protection", "text": "Earplugs or earmuffs selected by measured dBA exposure", "bodyAnchorKey": "ears"},
+        {"title": "Eye Protection", "text": "Safety glasses for debris-prone noisy operations", "bodyAnchorKey": "eyes"},
+        {"title": "Hand Protection", "text": "Task-based hand protection for tooling and handling", "bodyAnchorKey": "left-hand"},
+        {"title": "Foot Protection", "text": "Stable anti-slip footwear for production floors", "bodyAnchorKey": "feet"},
+        {"title": "Visibility Protection", "text": "Hi-vis clothing where noise and traffic overlap", "bodyAnchorKey": "chest"},
+        {"title": "Program Control", "text": "Fit verification and replacement schedule for hearing devices", "bodyAnchorKey": "head"}
+      ]}},
+      {"key": "recommended-ppe", "type": "paragraphs", "title": "Recommended PPE for High-Noise Factory Areas", "enabled": true, "data": {"mode": "rule", "paragraphs": ["Select hearing PPE from measured noise, not label values only.", "Assign hearing models by area to improve fit consistency.", "Below are common example items."]}},
+      {"key": "basic-ppe-set", "type": "list", "title": "Basic High-Noise Area PPE Set", "enabled": true, "data": {"items": [{"text": "Area-approved earplugs or earmuffs"}, {"text": "Safety glasses"}, {"text": "Task-based work gloves"}, {"text": "Slip-resistant safety shoes"}, {"text": "Hi-vis vest where needed"}]}},
+      {"key": "example-products", "type": "list", "title": "Example PPE Products", "enabled": true, "data": {"items": [{"title": "High-NRR Earmuffs HP40"}, {"title": "Formable Earplugs EP42"}, {"title": "Impact Safety Glasses E18"}, {"title": "General Work Gloves G09"}, {"title": "Anti-Slip Safety Shoes S63"}]}},
+      {"key": "safety-standards", "type": "list", "title": "Safety Standards to Consider", "enabled": true, "data": {"items": [{"title": "OSHA 1910.95", "text": "Occupational noise exposure"}, {"title": "OSHA 1910 Subpart I", "text": "General PPE requirements"}, {"title": "ANSI S3.19", "text": "Hearing protector attenuation methods"}, {"title": "EN 352", "text": "Hearing protector requirements and testing"}, {"title": "ANSI Z87.1", "text": "Eye and face protection"}]}},
+      {"key": "certified-products", "type": "callout", "title": null, "enabled": true, "data": {"text": "Fit is the largest factor in hearing PPE performance. Periodic fit checks and training are essential."}},
+      {"key": "noise-intensive-faq", "type": "faq", "title": "Frequently Asked Questions", "enabled": true, "data": {"items": [
+        {"q": "How do we choose between earplugs and earmuffs?", "a": "Selection depends on measured noise, comfort, communication needs, and compatibility with other PPE."},
+        {"q": "Is one hearing protector model enough for the whole factory?", "a": "Usually no. Different zones and tasks may need different attenuation levels."},
+        {"q": "How often should hearing PPE be replaced?", "a": "Replace disposable plugs daily and replace reusable devices when seal integrity degrades."},
+        {"q": "Do noisy areas also require eye protection?", "a": "Often yes, especially where grinding or stamping creates flying particles."}
+      ]}},
+      {"key": "cta", "type": "cta", "title": "Need PPE for Noise-Intensive Factory Areas?", "enabled": true, "data": {"title": "Need PPE for Noise-Intensive Factory Areas?", "text": "We supply certified hearing protection solutions and full PPE kits for high-noise factory environments.", "primaryHref": "/quote", "primaryLabel": "Request a Quote", "secondaryHref": "/contact", "secondaryLabel": "Contact Us"}}
+    ],
+    "productLinks": []
+  }
+]

@@ -87,11 +87,11 @@ export function AIImageDialog({
     currentAngle: string
   } | null>(null)
 
-  // 第三方接口配置
+  // 第三方接口配置（从环境变量读取默认值）
   const [thirdPartyConfig, setThirdPartyConfig] = useState<ThirdPartyImageConfig>({
-    url: 'https://grsai.dakka.com.cn/v1/draw/nano-banana',
-    apiKey: '',
-    model: 'nano-banana-fast',
+    url: process.env.NEXT_PUBLIC_THIRD_PARTY_IMAGE_URL || 'https://grsai.dakka.com.cn/v1/draw/nano-banana',
+    apiKey: process.env.NEXT_PUBLIC_THIRD_PARTY_IMAGE_API_KEY || '',
+    model: process.env.NEXT_PUBLIC_THIRD_PARTY_IMAGE_MODEL || 'nano-banana-fast',
   })
   const [settingsOpen, setSettingsOpen] = useState(false)
 

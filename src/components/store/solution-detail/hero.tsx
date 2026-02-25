@@ -61,7 +61,7 @@ export function SolutionHero({
 
           <div className="relative">
             {coverImage ? (
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10">
                 <Image
                   src={coverImage}
                   alt={title}
@@ -70,7 +70,7 @@ export function SolutionHero({
                 />
               </div>
             ) : (
-              <div className="aspect-video w-full rounded-2xl border border-dashed border-white/20 bg-white/5 flex items-center justify-center text-xs text-white/50">
+              <div className="aspect-[4/3] w-full rounded-2xl border border-dashed border-white/20 bg-white/5 flex items-center justify-center text-xs text-white/50">
                 Cover image not set
               </div>
             )}

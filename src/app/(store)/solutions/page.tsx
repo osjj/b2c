@@ -287,7 +287,7 @@ export default async function SolutionsPage({
                     <article className="relative bg-card rounded-2xl border border-border overflow-hidden shadow-sm hover:shadow-2xl hover:border-primary/20 transition-all duration-500">
                       <div className="grid md:grid-cols-2">
                         {/* Image Side */}
-                        <div className="relative aspect-[16/9] md:aspect-auto bg-secondary overflow-hidden">
+                        <div className="relative aspect-[4/3] md:aspect-auto bg-secondary overflow-hidden">
                           {featuredSolution.coverImage ? (
                             <Image
                               src={featuredSolution.coverImage}
@@ -370,7 +370,7 @@ export default async function SolutionsPage({
                     >
                       <article className="h-full bg-card rounded-xl border border-border overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 flex flex-col">
                         {/* Image section */}
-                        <div className="relative aspect-[16/9] bg-secondary overflow-hidden">
+                        <div className="relative aspect-[4/3] bg-secondary overflow-hidden">
                           {solution.coverImage ? (
                             <Image
                               src={solution.coverImage}

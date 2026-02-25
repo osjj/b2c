@@ -1,0 +1,2874 @@
+[
+  {
+    "slug": "ppe-for-steel-structure-installation-work",
+    "title": "PPE for Steel Structure Installation Work",
+    "excerpt": "Steel structure installation involves welding at height, handling heavy beams, rigging, and bolting connections. Workers face fall risks, burns, crush injuries, and flying sparks. This guide covers the PPE required to protect steel erectors throughout every phase of structural assembly.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "steel-work",
+      "fall-protection",
+      "heavy-duty",
+      "impact-resistant",
+      "cut-resistant"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 10,
+    "seoTitle": "PPE for Steel Structure Installation | Structural Steel Safety Equipment",
+    "seoDescription": "Complete guide to PPE required for steel structure installation work including fall protection, welding gear, cut-resistant gloves, and safety standards.",
+    "seoKeywords": "steel structure PPE, structural steel safety, steel erection PPE, fall protection harness, welding PPE, OSHA 1926 Subpart R, ANSI Z359, EN 361",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE do steel structure installation workers need?",
+        "enabled": true,
+        "data": {
+          "intro": "Steel structure installation is one of the highest-risk construction activities. Workers operate at significant heights while handling heavy beams, welding connections, and rigging loads with cranes. The combination of fall hazards, hot work, sharp edges, and crushing weight demands specialized PPE at every stage:",
+          "bullets": [
+            "Full body harness with shock-absorbing lanyard",
+            "Safety helmet with chin strap for height work",
+            "Heat-resistant and cut-resistant gloves",
+            "Steel toe safety boots with puncture-resistant midsole",
+            "Welding helmet or face shield for connection welding",
+            "High visibility vest for crane operation zones",
+            "Safety goggles for grinding and cutting tasks",
+            "Hearing protection for impact wrench and grinding noise"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide outlines the specific hazards encountered during steel structure erection, recommends task-based PPE selections, and references applicable safety standards to help project managers and procurement teams protect their crews."
+          ]
+        }
+      },
+      {
+        "key": "steel-structure-hazards",
+        "type": "table",
+        "title": "Steel Structure Installation Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Working at height on beams",
+              "Fatal falls",
+              "Full body harness and retractable lanyard"
+            ],
+            [
+              "Welding steel connections",
+              "Burns and arc eye",
+              "Welding helmet, heat-resistant gloves, FR clothing"
+            ],
+            [
+              "Handling steel beams and plates",
+              "Cuts and crush injuries",
+              "Cut-resistant gloves (EN 388 Level C+), steel toe boots"
+            ],
+            [
+              "Crane rigging and lifting",
+              "Struck-by injuries",
+              "Hard hat, hi-vis vest, safety boots"
+            ],
+            [
+              "Grinding and cutting metal",
+              "Eye injuries from sparks and fragments",
+              "Safety goggles, face shield, hearing protection"
+            ],
+            [
+              "Bolt tightening at height",
+              "Falls and hand injuries",
+              "Fall arrest system, impact-resistant gloves"
+            ],
+            [
+              "Noise from impact wrenches and grinders",
+              "Hearing damage",
+              "Earplugs (NRR 22+) or earmuffs"
+            ],
+            [
+              "Hot steel surfaces in summer",
+              "Contact burns",
+              "Heat-resistant gloves, long sleeves"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Steel Structure Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Full body harness with double lanyard for 100% tie-off",
+                "Helmet with chin strap (rated for height work)",
+                "Anti-slip safety boots with ankle support",
+                "Cut-resistant gloves with grip coating",
+                "Tool lanyard for spud wrenches and bolts"
+              ],
+              "title": "Beam Walking and Connection Assembly",
+              "description": "Prioritize fall arrest systems and secure head protection when moving across open steel frameworks and bolting connections at height. Double lanyards ensure 100% tie-off during transitions between anchor points."
+            },
+            {
+              "items": [
+                "Auto-darkening welding helmet (Shade 10–13)",
+                "Heat-resistant leather welding gloves",
+                "Flame-resistant jacket or welding sleeves",
+                "Safety boots with heat-resistant sole",
+                "Welding respirator for fume extraction"
+              ],
+              "title": "On-Site Structural Welding",
+              "description": "Use flame-rated PPE with arc-rated face protection for field welding of beam-to-column and beam-to-beam connections. Fume respirators are essential for prolonged welding in enclosed or semi-enclosed areas."
+            },
+            {
+              "items": [
+                "Heavy-duty cut-resistant gloves",
+                "Steel toe boots with puncture protection",
+                "Safety helmet with hi-vis color",
+                "Hi-vis vest for crane operator visibility",
+                "Signal whistle or radio for communication"
+              ],
+              "title": "Rigging and Crane Lifting",
+              "description": "Protect hands during sling attachment and maintain visibility to crane operators throughout the lifting sequence. Clear hand signals require unobstructed line of sight."
+            },
+            {
+              "items": [
+                "Safety goggles or full face shield",
+                "Cut-resistant gloves",
+                "Hearing protection (earmuffs NRR 25+)",
+                "Respiratory mask for metal dust",
+                "Flame-resistant clothing for spark exposure"
+              ],
+              "title": "Grinding, Cutting, and Surface Preparation",
+              "description": "Shield eyes from sparks and metal fragments while controlling noise and dust exposure during surface finishing, cutting, and weld preparation tasks."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Steel Structure Work",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Helmet with chin strap rated for work at height and heavy impact",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Goggles for grinding, welding helmet for arc work, face shield for cutting",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Flame-resistant jacket, welding sleeves, or full coveralls",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Full body harness with shock-absorbing lanyard or self-retracting lifeline (SRL)",
+              "title": "Fall Protection",
+              "bodyAnchorKey": "waist"
+            },
+            {
+              "text": "Cut-resistant, heat-resistant, or impact gloves selected by specific task",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Steel toe, puncture-resistant midsole, heat-resistant sole for welding areas",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Steel Erection Projects",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Steel erection contractors often procure PPE in role-based kits to ensure each crew member has the right protection from day one on site.",
+            "A standard steel erector kit typically includes fall protection, head and hand protection, and appropriate footwear for beam work.",
+            "Below are examples of PPE commonly selected by structural steel contractors:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Steel Erector PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Full body harness with shock-absorbing lanyard"
+            },
+            {
+              "text": "Safety helmet with 4-point chin strap"
+            },
+            {
+              "text": "Cut-resistant gloves (EN 388 Level C or above)"
+            },
+            {
+              "text": "Steel toe safety boots with puncture-resistant midsole"
+            },
+            {
+              "text": "Hi-vis vest (Class 2 minimum)"
+            },
+            {
+              "text": "Safety goggles for debris protection"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Full Body Fall Arrest Harness FH50"
+            },
+            {
+              "title": "Height-Work Safety Helmet H310 with Chin Strap"
+            },
+            {
+              "title": "Cut Resistant Gloves G18-CR (Level C)"
+            },
+            {
+              "title": "Puncture-Resistant Steel Toe Boots S95"
+            },
+            {
+              "title": "Auto-Darkening Welding Helmet WH60"
+            },
+            {
+              "title": "Heat-Resistant Welding Gloves G40-HT"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Steel erection safety requirements",
+              "title": "OSHA 1926 Subpart R"
+            },
+            {
+              "text": "Fall protection in construction",
+              "title": "OSHA 1926 Subpart M"
+            },
+            {
+              "text": "Full body harness standard",
+              "title": "ANSI Z359.11 / EN 361"
+            },
+            {
+              "text": "Industrial head protection",
+              "title": "ANSI Z89.1 / EN 397"
+            },
+            {
+              "text": "Mechanical protection for gloves",
+              "title": "EN 388"
+            },
+            {
+              "text": "Protective clothing for welding and allied processes",
+              "title": "EN ISO 11611"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All fall protection equipment must be inspected by a competent person before each use and removed from service after any fall arrest event. Certified test reports and declarations of conformity ensure compliance on structural steel projects."
+        }
+      },
+      {
+        "key": "steel-structure-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is fall protection mandatory for all steel erection work?",
+              "a": "Yes. OSHA 1926 Subpart R requires fall protection for steel erection workers at heights of 15 feet (4.6 m) or more. Connectors may work up to 30 feet with proper training and a connector positioning device."
+            },
+            {
+              "q": "What type of gloves are best for handling steel beams?",
+              "a": "Cut-resistant gloves rated EN 388 Level C or above with a nitrile or latex grip coating are recommended. For welding, switch to heat-resistant leather gloves rated to EN 407."
+            },
+            {
+              "q": "Do workers need different helmets for steel erection at height?",
+              "a": "Yes. Standard hard hats can fall off when workers look up or lean over. Helmets with 4-point chin straps or Y-strap retention systems are required for height work to protect both the wearer and workers below."
+            },
+            {
+              "q": "How often should fall arrest harnesses be inspected?",
+              "a": "Before each use by the wearer, and formally by a competent person at least every 12 months. Harnesses must be retired immediately after arresting a fall or if any damage is found."
+            },
+            {
+              "q": "Can you supply PPE kits for steel erection crews?",
+              "a": "Yes. We provide complete crew kits including fall harnesses, helmets with chin straps, cut-resistant gloves, steel toe boots, and hi-vis vests with bulk pricing and OEM branding options."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Steel Structure Projects?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified PPE for steel erection work including fall protection systems, welding gear, and crew kits with compliance documentation and test reports.",
+          "title": "Need PPE for Steel Structure Projects?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-scaffolding-and-elevated-platforms",
+    "title": "PPE for Scaffolding and Elevated Platforms",
+    "excerpt": "Scaffolding and elevated platform work exposes workers to fall hazards, falling tools, unstable footing, and overhead risks. This guide covers the PPE required for scaffold erectors, users, and inspectors to stay protected at every working level.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "fall-protection",
+      "slip-resistant",
+      "impact-resistant",
+      "falling-objects"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 11,
+    "seoTitle": "PPE for Scaffolding Work | Elevated Platform Safety Equipment",
+    "seoDescription": "Complete guide to PPE required for scaffolding and elevated platform work including fall arrest, helmets, non-slip boots, and relevant safety standards.",
+    "seoKeywords": "scaffolding PPE, elevated platform safety, scaffold fall protection, work at height PPE, OSHA 1926 Subpart L, EN 12811, scaffold safety gear, tool lanyard",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE is required for scaffolding and elevated platform work?",
+        "enabled": true,
+        "data": {
+          "intro": "Scaffolding work is consistently among the top causes of construction fatalities. Workers erecting, dismantling, or using scaffolds face falls, falling objects from upper levels, unstable planking, and weather-related hazards. Proper PPE is essential at every stage:",
+          "bullets": [
+            "Full body harness with positioning lanyard",
+            "Safety helmet with chin strap",
+            "Anti-slip safety boots with ankle support",
+            "Tool lanyards to prevent dropped objects",
+            "Heavy-duty work gloves for tube and coupler handling",
+            "High visibility clothing on active sites",
+            "Eye protection from wind-blown debris",
+            "Knee pads for platform-level work"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide covers specific hazards at different scaffolding stages, recommends PPE by task role, and references the safety standards scaffold contractors should follow for compliance."
+          ]
+        }
+      },
+      {
+        "key": "scaffolding-hazards",
+        "type": "table",
+        "title": "Scaffolding Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Falls from scaffold platforms",
+              "Fatal or serious injuries",
+              "Full body harness with fall arrest lanyard"
+            ],
+            [
+              "Dropped tools from upper levels",
+              "Head trauma on workers below",
+              "Safety helmet, tool lanyards, toe boards"
+            ],
+            [
+              "Unstable or wet planking",
+              "Slips, trips, and falls",
+              "Anti-slip safety boots with defined tread"
+            ],
+            [
+              "Handling scaffold tubes and couplers",
+              "Cuts, pinch injuries, crushed fingers",
+              "Heavy-duty work gloves with padding"
+            ],
+            [
+              "Wind-blown dust and debris",
+              "Eye injuries",
+              "Safety goggles or wrap-around glasses"
+            ],
+            [
+              "Working near traffic or machinery",
+              "Struck-by incidents",
+              "Hi-vis vest or jacket"
+            ],
+            [
+              "Cold or wet weather at height",
+              "Hypothermia, reduced grip and dexterity",
+              "Thermal gloves, weather-resistant workwear"
+            ],
+            [
+              "Overhead work from higher scaffold levels",
+              "Objects striking workers below",
+              "Safety helmet for all personnel at base level"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Scaffolding Roles",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Full body harness with positioning lanyard",
+                "Helmet with chin strap (4-point retention)",
+                "Heavy-duty gloves for tube handling",
+                "Anti-slip boots with ankle support",
+                "Tool lanyards for spanners, levels, and pins"
+              ],
+              "title": "Scaffold Erectors and Dismantlers",
+              "description": "Erectors work on incomplete structures without full guardrails. Fall arrest, secure headwear, and reliable grip are critical during assembly and teardown. Double lanyards allow 100% tie-off during climbing."
+            },
+            {
+              "items": [
+                "Safety helmet (chin strap if required by site policy)",
+                "Work gloves appropriate to the trade task",
+                "Anti-slip safety boots",
+                "Fall protection if guardrails are incomplete",
+                "Eye protection for overhead debris"
+              ],
+              "title": "Scaffold Users (Trade Workers)",
+              "description": "Trade workers using completed scaffolds still need head, hand, and foot protection. Fall protection is required wherever guardrails are missing, removed, or not yet installed."
+            },
+            {
+              "items": [
+                "Safety helmet with chin strap",
+                "Full body harness for inspection climbing",
+                "Anti-slip boots with good ankle support",
+                "Hi-vis vest for visibility to site crews",
+                "Clipboard or tablet lanyard to prevent drops"
+              ],
+              "title": "Scaffold Inspectors",
+              "description": "Inspectors climb and traverse scaffolds to verify compliance. They need the same fall and head protection as erectors while maintaining visibility to site crews."
+            },
+            {
+              "items": [
+                "Safety helmet (mandatory in drop zones)",
+                "Hi-vis vest for machinery visibility",
+                "Safety boots with steel or composite toe",
+                "Eye protection if debris is possible",
+                "Awareness of overhead drop zones and exclusion areas"
+              ],
+              "title": "Ground-Level Support Workers",
+              "description": "Workers at the base of scaffolds are exposed to dropped tools and materials from above. Head protection and adherence to drop-zone exclusion areas are essential."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Scaffolding Work",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Helmet with chin strap to prevent loss during climbing and leaning over",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Full body harness with energy absorber or self-retracting lifeline (SRL)",
+              "title": "Fall Arrest System",
+              "bodyAnchorKey": "waist"
+            },
+            {
+              "text": "Padded grip gloves for tube handling, thermal gloves in cold weather",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Anti-slip soles, ankle support, steel or composite toe cap",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Goggles or safety glasses for debris and wind exposure",
+              "title": "Eye Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Hi-vis clothing for visibility from ground level and upper levels",
+              "title": "Visibility",
+              "bodyAnchorKey": "chest"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Scaffolding Crews",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Scaffolding contractors typically issue PPE kits by role—erectors receive full fall arrest gear while trade users receive basic platform protection.",
+            "Standard scaffolding PPE kits should include head, hand, foot, and fall protection as a minimum for all personnel.",
+            "Below are examples of PPE commonly selected for scaffolding projects:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Scaffolding PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Full body harness with shock-absorbing lanyard"
+            },
+            {
+              "text": "Safety helmet with chin strap retention"
+            },
+            {
+              "text": "Heavy-duty work gloves with grip pads"
+            },
+            {
+              "text": "Anti-slip safety boots with ankle support"
+            },
+            {
+              "text": "Hi-vis vest (Class 2 minimum)"
+            },
+            {
+              "text": "Tool lanyards (rated for tool weight)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Scaffold Erector Harness FH55 with Positioning D-Rings"
+            },
+            {
+              "title": "Height-Work Safety Helmet H310 with Chin Strap"
+            },
+            {
+              "title": "Scaffold Grip Gloves G22-HD"
+            },
+            {
+              "title": "Anti-Slip Ankle Boots S80-AS"
+            },
+            {
+              "title": "Retractable Tool Lanyard TL15 (5 kg rated)"
+            },
+            {
+              "title": "Hi-Vis Class 2 Vest HV10"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Scaffolding safety requirements in construction",
+              "title": "OSHA 1926 Subpart L"
+            },
+            {
+              "text": "Fall protection requirements in construction",
+              "title": "OSHA 1926 Subpart M"
+            },
+            {
+              "text": "Temporary works equipment — scaffolds performance and design",
+              "title": "EN 12811"
+            },
+            {
+              "text": "Full body harness specification",
+              "title": "EN 361 / ANSI Z359.11"
+            },
+            {
+              "text": "Industrial safety helmets",
+              "title": "EN 397 / ANSI Z89.1"
+            },
+            {
+              "text": "Protective footwear",
+              "title": "EN ISO 20345"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Fall arrest equipment must be inspected by a competent person before each use and retired after a fall arrest event. Tool lanyards must be rated for the weight of the tools they secure. Maintain inspection logs for compliance audits."
+        }
+      },
+      {
+        "key": "scaffolding-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "When is a fall arrest harness required on scaffolding?",
+              "a": "A harness is required when guardrails are not yet installed, when working on incomplete scaffolds during erection or dismantling, or when site rules mandate 100% tie-off policies. OSHA requires fall protection at 10 feet on scaffolds."
+            },
+            {
+              "q": "Why do scaffold helmets need chin straps?",
+              "a": "Workers climb, lean, and look upward frequently on scaffolds. A chin strap prevents the helmet from falling off—protecting both the wearer and people working below from dropped-object hazards."
+            },
+            {
+              "q": "What footwear is best for scaffold work?",
+              "a": "Boots with anti-slip outsoles (SRC rated), steel or composite toe caps, and ankle support provide the best combination of grip and protection on scaffold platforms, ladders, and wet planking."
+            },
+            {
+              "q": "Are tool lanyards required on scaffolding?",
+              "a": "Many sites now require tool lanyards or tethering systems to prevent dropped objects—a leading cause of injuries on scaffold projects. Tools should be tethered with lanyards rated for their weight."
+            },
+            {
+              "q": "Do you supply complete scaffolding PPE kits?",
+              "a": "Yes. We provide role-based kits for erectors, users, and inspectors including fall harnesses, helmets with chin straps, anti-slip boots, tool lanyards, and gloves with bulk pricing."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Scaffolding Projects?",
+        "enabled": true,
+        "data": {
+          "text": "We supply complete scaffolding PPE kits including fall harnesses, helmets with chin straps, anti-slip boots, tool lanyards, and heavy-duty gloves with bulk pricing and certification documents.",
+          "title": "Need PPE for Scaffolding Projects?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-road-and-bridge-construction-projects",
+    "title": "PPE for Road and Bridge Construction Projects",
+    "excerpt": "Road and bridge construction exposes workers to live traffic, heavy machinery, heat, dust, noise, and fall risks near edges and waterways. This guide explains the PPE required for highway and bridge crews working in open, high-exposure environments.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "fall-protection",
+      "heavy-duty",
+      "slip-resistant",
+      "impact-resistant"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 12,
+    "seoTitle": "PPE for Road and Bridge Construction | Highway Safety Equipment",
+    "seoDescription": "Complete guide to PPE for road and bridge construction workers. Covers visibility, fall protection, dust control, and compliance standards for highway projects.",
+    "seoKeywords": "road construction PPE, bridge construction safety, highway worker PPE, hi-vis Class 3, fall protection bridge, OSHA 1926, ANSI ISEA 107, MUTCD, road crew safety",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE do road and bridge construction workers need?",
+        "enabled": true,
+        "data": {
+          "intro": "Road and bridge projects operate in open environments with live traffic, heavy equipment, elevation changes, and variable weather. Workers face unique visibility, fall, and environmental hazards that demand purpose-selected PPE:",
+          "bullets": [
+            "Class 2 or Class 3 high-visibility clothing",
+            "Safety helmet rated for construction use",
+            "Steel toe safety boots with puncture protection",
+            "Full body harness for bridge deck and overpass work",
+            "Dust masks or respirators for asphalt and concrete dust",
+            "Hearing protection near pavers, compactors, and pile drivers",
+            "UV-protective safety glasses or tinted goggles",
+            "Sun protection: neck shade, cooling vest, sunscreen"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide covers hazards unique to road and bridge projects, recommends PPE for common task roles, and references the visibility and safety standards that highway contractors must follow for OSHA and MUTCD compliance."
+          ]
+        }
+      },
+      {
+        "key": "road-bridge-hazards",
+        "type": "table",
+        "title": "Road and Bridge Construction Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Live traffic adjacent to work zone",
+              "Struck-by vehicles",
+              "Class 2/3 hi-vis clothing, reflective tape"
+            ],
+            [
+              "Bridge edges and overpasses",
+              "Falls from height into water or ground",
+              "Full body harness, guardrail systems"
+            ],
+            [
+              "Asphalt fumes and concrete dust",
+              "Respiratory illness, silicosis",
+              "Half-face respirator with OV/P100 cartridges"
+            ],
+            [
+              "Heavy equipment movement on site",
+              "Crush and struck-by injuries",
+              "Hi-vis clothing, safety boots, helmet"
+            ],
+            [
+              "Noise from pavers, compactors, and pile drivers",
+              "Permanent hearing damage",
+              "Earplugs or earmuffs (NRR 25+)"
+            ],
+            [
+              "Sun exposure and extreme heat",
+              "Heat stroke, UV skin and eye damage",
+              "UV safety glasses, neck shade, cooling vest"
+            ],
+            [
+              "Uneven terrain, rebar, and debris",
+              "Ankle injuries, foot punctures",
+              "Steel toe boots with puncture-resistant midsole"
+            ],
+            [
+              "Wet concrete contact",
+              "Chemical burns to skin",
+              "Alkaline-resistant gloves, waterproof boots"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Road and Bridge Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Class 3 hi-vis vest or jacket",
+                "Safety helmet",
+                "Steel toe boots with heat-resistant sole",
+                "Hearing protection (NRR 25+)",
+                "Respiratory mask for asphalt fumes"
+              ],
+              "title": "Paving and Compaction",
+              "description": "Maximize visibility and hearing protection around asphalt pavers, rollers, and dump trucks in active traffic zones. Heat-resistant soles protect against hot asphalt surfaces."
+            },
+            {
+              "items": [
+                "Full body harness with fall arrest tie-off",
+                "Helmet with chin strap",
+                "Anti-slip safety boots",
+                "Hi-vis clothing (Class 2 minimum)",
+                "Safety netting for overhead drop zones"
+              ],
+              "title": "Bridge Deck and Overpass Work",
+              "description": "Combine fall arrest with high visibility when working near bridge edges, on formwork, or above waterways. Safety netting provides secondary fall protection for the area below."
+            },
+            {
+              "items": [
+                "Half-face respirator or N95 dust mask",
+                "Safety goggles (sealed for dust)",
+                "Alkaline-resistant gloves for wet concrete",
+                "Waterproof safety boots",
+                "Long sleeves to prevent skin contact"
+              ],
+              "title": "Concrete Pouring and Finishing",
+              "description": "Protect skin and respiratory system from wet concrete alkalinity (pH 12–13) and respirable silica dust during mixing, pouring, and finishing operations."
+            },
+            {
+              "items": [
+                "Class 3 hi-vis clothing with 360° reflective bands",
+                "Safety helmet",
+                "LED personal safety lights for dawn/dusk work",
+                "Steel toe boots",
+                "Signal paddle and stop/slow sign"
+              ],
+              "title": "Traffic Control and Flagging",
+              "description": "Flaggers and traffic controllers need the highest ANSI visibility class. Class 3 garments with retroreflective tape on torso, sleeves, and legs are required for work near live traffic."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Road and Bridge Work",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Class 2 or Class 3 hi-vis garment with retroreflective tape on torso and limbs",
+              "title": "High Visibility Clothing",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Construction-rated helmet with ventilation for outdoor heat and UV exposure",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Full body harness for bridge deck edges and overpass work above 6 feet",
+              "title": "Fall Protection",
+              "bodyAnchorKey": "waist"
+            },
+            {
+              "text": "UV-rated safety glasses, tinted goggles, or sealed dust goggles by task",
+              "title": "Eye Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Steel toe, puncture-resistant midsole, anti-slip for rough terrain and rebar",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Cut-resistant for rebar work, alkaline-resistant for concrete, general-purpose for labor",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Highway and Bridge Crews",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Highway contractors often purchase PPE in bulk kits organized by task role—flaggers, equipment operators, bridge crew, and general laborers each receive different gear.",
+            "A basic road construction PPE set typically includes high-visibility clothing, head protection, safety glasses, and steel toe boots.",
+            "Below are examples of PPE commonly selected for road and bridge projects:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Road Construction PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Class 2 hi-vis vest (Class 3 for flaggers)"
+            },
+            {
+              "text": "Safety helmet with ventilation"
+            },
+            {
+              "text": "UV-protective safety glasses"
+            },
+            {
+              "text": "Steel toe boots with puncture-resistant midsole"
+            },
+            {
+              "text": "General-purpose work gloves"
+            },
+            {
+              "text": "Hearing protection (earplugs NRR 22+)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Class 3 Hi-Vis Safety Vest HV20-R with Reflective Tape"
+            },
+            {
+              "title": "Vented Construction Helmet H200-V"
+            },
+            {
+              "title": "UV400 Safety Glasses E15-UV (Smoke Lens)"
+            },
+            {
+              "title": "Puncture-Resistant Steel Toe Boots S95"
+            },
+            {
+              "title": "Alkaline-Resistant Concrete Gloves G30-CR"
+            },
+            {
+              "title": "Half-Face Respirator R40 with OV/P100 Cartridges"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Construction safety requirements",
+              "title": "OSHA 1926"
+            },
+            {
+              "text": "High-visibility safety apparel (Class 2 and 3 requirements)",
+              "title": "ANSI/ISEA 107"
+            },
+            {
+              "text": "Manual on Uniform Traffic Control Devices for work zones",
+              "title": "MUTCD Chapter 6"
+            },
+            {
+              "text": "Fall protection in construction",
+              "title": "OSHA 1926 Subpart M"
+            },
+            {
+              "text": "Respiratory protection program requirements",
+              "title": "OSHA 1910.134"
+            },
+            {
+              "text": "Protective footwear",
+              "title": "EN ISO 20345 / ASTM F2413"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Road construction sites must comply with MUTCD and ANSI/ISEA 107 visibility requirements. Class 2 hi-vis is the minimum for most road workers. Class 3 is mandatory for flaggers, night work, and work near traffic traveling above 50 mph."
+        }
+      },
+      {
+        "key": "road-bridge-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What hi-vis class is required for road construction?",
+              "a": "ANSI Class 2 is the minimum for most road workers. Class 3 is required for flaggers, night work, and highway work zones with speeds above 50 mph. Class 3 provides the maximum background material and retroreflective striping."
+            },
+            {
+              "q": "Is fall protection needed on bridge construction?",
+              "a": "Yes. OSHA requires fall protection for bridge work at heights of 6 feet or more, including work near deck edges, over water, and on temporary formwork structures."
+            },
+            {
+              "q": "What respiratory protection is needed for asphalt work?",
+              "a": "A half-face respirator with organic vapor (OV) and P100 particulate cartridges is commonly used for asphalt fume exposure. An N95 dust mask is sufficient for concrete dust only."
+            },
+            {
+              "q": "How do you protect workers from heat on road projects?",
+              "a": "Use vented helmets, cooling vests, UV-rated safety glasses, neck shades, and schedule regular hydration breaks. Light-colored hi-vis clothing reflects more heat than dark-colored options."
+            },
+            {
+              "q": "Can PPE be customized with DOT contractor branding?",
+              "a": "Yes. We provide custom-printed hi-vis vests, logo-branded helmets, and complete crew kits with contractor names and project identification at bulk pricing."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Road and Bridge Projects?",
+        "enabled": true,
+        "data": {
+          "text": "We supply ANSI-rated hi-vis clothing, fall protection, respiratory equipment, and complete crew kits for highway and bridge construction with bulk pricing and compliance documents.",
+          "title": "Need PPE for Road and Bridge Projects?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-electrical-installation-on-construction-sites",
+    "title": "PPE for Electrical Installation on Construction Sites",
+    "excerpt": "Electrical installation on construction sites combines shock hazards, arc flash risks, and standard construction dangers like falls and falling objects. This guide covers the specialized PPE electricians and cable installers need to work safely on active job sites.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "impact-resistant",
+      "eye-protection"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 13,
+    "seoTitle": "PPE for Electrical Installation on Construction Sites | Electrician Safety Gear",
+    "seoDescription": "Guide to PPE required for electrical installation on construction sites including insulated gloves, arc-rated clothing, dielectric boots, and safety standards.",
+    "seoKeywords": "electrical PPE, construction electrician safety, arc flash PPE, insulated gloves, dielectric boots, NFPA 70E, OSHA 1926 Subpart K, voltage rated gloves, arc rated clothing",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE do construction electricians need?",
+        "enabled": true,
+        "data": {
+          "intro": "Electricians working on construction sites face a dual set of hazards—electrical dangers such as shock and arc flash combined with general construction risks like falls and falling objects. Their PPE must address both categories simultaneously:",
+          "bullets": [
+            "Voltage-rated insulated gloves with leather protectors",
+            "Arc-rated (AR) clothing or flash suit",
+            "Dielectric safety boots (EH rated)",
+            "Non-conductive safety helmet (Class E)",
+            "Arc-rated face shield or balaclava",
+            "Safety glasses with side shields",
+            "Voltage detector and lockout/tagout devices",
+            "Full body harness for elevated panel and cable tray work"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains electrical and construction hazards faced by site electricians, recommends PPE based on voltage levels and task types, and references NFPA 70E and OSHA standards for electrical safety on construction sites."
+          ]
+        }
+      },
+      {
+        "key": "electrical-hazards",
+        "type": "table",
+        "title": "Electrical Installation Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Contact with live conductors",
+              "Electric shock, electrocution",
+              "Voltage-rated insulated gloves, dielectric boots"
+            ],
+            [
+              "Arc flash during panel switching",
+              "Severe thermal burns, blast injuries",
+              "Arc-rated clothing (cal/cm² matched), face shield"
+            ],
+            [
+              "Falling objects on active site",
+              "Head trauma",
+              "Class E non-conductive safety helmet"
+            ],
+            [
+              "Working at height (cable trays, panels)",
+              "Falls from ladders and platforms",
+              "Full body harness with fall arrest"
+            ],
+            [
+              "Sharp wire ends, conduit, and cable armor",
+              "Cuts and puncture wounds",
+              "Cut-resistant gloves (non-conductive options)"
+            ],
+            [
+              "Dust and debris during rough-in phase",
+              "Eye injuries",
+              "Safety glasses with side shields"
+            ],
+            [
+              "Confined electrical rooms",
+              "Limited escape routes, heat buildup",
+              "Arc-rated PPE, portable emergency lighting"
+            ],
+            [
+              "Underground cable routing",
+              "Contact with damaged cables, moisture",
+              "Insulated gloves, waterproof boots"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Electrical Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Voltage-rated insulated gloves (Class 00–4 matched to voltage)",
+                "Leather protector over-gloves",
+                "Arc-rated face shield (cal/cm² rated)",
+                "Arc-rated shirt and pants or coverall",
+                "Voltage-rated insulated tools"
+              ],
+              "title": "Live Panel and Switchgear Work",
+              "description": "Use voltage-rated rubber gloves matched to the system voltage and arc-rated PPE calculated from the incident energy analysis per NFPA 70E Table 130.7(C)(15)."
+            },
+            {
+              "items": [
+                "Cut-resistant gloves (non-conductive)",
+                "Safety glasses with side shields",
+                "Class E hard hat",
+                "Dielectric safety boots",
+                "Knee pads for conduit installation"
+              ],
+              "title": "Cable Pulling and Conduit Installation",
+              "description": "Protect hands from wire cuts and abrasion while maintaining electrical insulation through non-conductive head and foot protection against accidental contact."
+            },
+            {
+              "items": [
+                "Full body harness with non-conductive lanyard",
+                "Class E helmet with chin strap",
+                "Insulated gloves if energized circuits are nearby",
+                "Anti-slip safety boots (dielectric if near live circuits)",
+                "Tool lanyard for elevated work"
+              ],
+              "title": "Overhead Cable Tray and Lighting Installation",
+              "description": "Combine fall protection with electrical PPE when installing cable trays, conduit runs, or lighting fixtures at height. Non-conductive lanyards prevent ground fault paths."
+            },
+            {
+              "items": [
+                "Arc-rated flash suit (Category 2–4 matched to hazard)",
+                "Arc-rated balaclava and face shield with chin cup",
+                "Insulated gloves with leather protectors",
+                "Dielectric overshoes",
+                "Hearing protection for potential arc blast"
+              ],
+              "title": "Testing and Commissioning",
+              "description": "Commissioning energized systems requires the highest level of arc flash PPE matched to the calculated incident energy at the specific work point. Always verify de-energization before reducing PPE level."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Construction Electricians",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Class E non-conductive helmet rated for 20,000V electrical environments",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Arc-rated face shield or balaclava matched to incident energy level",
+              "title": "Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Arc-rated shirt, pants, or coverall matched to NFPA 70E hazard category",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Voltage-rated rubber insulating gloves with leather protectors over top",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "ASTM F2413 EH-rated dielectric safety boots or overshoes",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Full body harness with non-conductive lanyard for elevated work",
+              "title": "Fall Protection",
+              "bodyAnchorKey": "waist"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Site Electrical Teams",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Electrical contractors typically maintain PPE kits by voltage class and arc flash category so workers can select the correct protection level for each task.",
+            "A basic construction electrician kit includes insulated gloves, Class E helmet, safety glasses, dielectric boots, and cut-resistant work gloves.",
+            "Below are examples of PPE commonly selected for construction electrical work:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Electrician PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Voltage-rated insulated gloves with leather protectors"
+            },
+            {
+              "text": "Class E non-conductive safety helmet"
+            },
+            {
+              "text": "Safety glasses with side shields"
+            },
+            {
+              "text": "Dielectric safety boots (EH rated)"
+            },
+            {
+              "text": "Arc-rated daily wear shirt and pants (minimum 8 cal/cm²)"
+            },
+            {
+              "text": "Voltage detector pen for live/dead verification"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Class 0 Insulated Glove Kit GK10 (1,000V rated)"
+            },
+            {
+              "title": "Class E Non-Conductive Helmet H250-E"
+            },
+            {
+              "title": "Arc-Rated Coverall AR40 (12 cal/cm²)"
+            },
+            {
+              "title": "Dielectric Safety Boots S70-EH"
+            },
+            {
+              "title": "Arc-Rated Face Shield FS25 (12 cal/cm²)"
+            },
+            {
+              "title": "Cut-Resistant Electrician Gloves G15-EL"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Standard for electrical safety in the workplace (arc flash and shock)",
+              "title": "NFPA 70E"
+            },
+            {
+              "text": "Electrical safety requirements in construction",
+              "title": "OSHA 1926 Subpart K"
+            },
+            {
+              "text": "Specification for rubber insulating gloves",
+              "title": "ASTM D120"
+            },
+            {
+              "text": "Standard specification for arc-rated face protective products",
+              "title": "ASTM F2178"
+            },
+            {
+              "text": "Dielectric footwear with EH rating",
+              "title": "ASTM F2413"
+            },
+            {
+              "text": "Industrial head protection — Class E electrical",
+              "title": "ANSI Z89.1"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Insulated gloves must be electrically tested before first use and retested every 6 months per OSHA 1910.137. Always air-inflate and visually inspect for pinholes, cuts, or swelling before each use. Never use gloves past their test date."
+        }
+      },
+      {
+        "key": "electrical-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What class of insulated gloves do I need?",
+              "a": "Glove class depends on system voltage: Class 00 for up to 500V AC, Class 0 for up to 1,000V AC, Class 2 for up to 17,000V AC, and Class 4 for up to 36,000V AC. Always select one class above the working voltage."
+            },
+            {
+              "q": "Is arc-rated clothing mandatory on construction sites?",
+              "a": "Yes, when workers are exposed to arc flash hazards per NFPA 70E. An arc flash risk assessment must determine the incident energy level, and PPE must match or exceed that cal/cm² rating."
+            },
+            {
+              "q": "Can regular safety boots be used for electrical work?",
+              "a": "No. Electricians should wear ASTM F2413 EH-rated dielectric boots that provide electrical hazard protection up to 18,000V under dry conditions. Standard steel toe boots may conduct electricity."
+            },
+            {
+              "q": "How often must insulated gloves be retested?",
+              "a": "OSHA 1910.137 requires electrical retesting every 6 months for gloves in service. Unused gloves stored in proper conditions must be tested before being placed into service and every 12 months thereafter."
+            },
+            {
+              "q": "Do you supply voltage-rated insulated glove kits?",
+              "a": "Yes. We provide complete glove kits including rubber insulating gloves, leather protectors, cotton liners, and storage bags in Class 00 through Class 4 with test certificates."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Electrical Installation Projects?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified electrical PPE including voltage-rated gloves, arc-rated clothing, dielectric boots, and Class E helmets with compliance documentation and test certificates.",
+          "title": "Need PPE for Electrical Installation Projects?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-demolition-and-concrete-cutting-work",
+    "title": "PPE for Demolition and Concrete Cutting Work",
+    "excerpt": "Demolition and concrete cutting generate extreme dust, flying debris, noise, and structural collapse risks. Workers need heavy-duty PPE to protect against silica dust inhalation, impact injuries, and unpredictable material failures throughout the teardown process.",
+    "usageScenes": [
+      "construction",
+      "heavy-duty",
+      "impact-resistant",
+      "cut-resistant",
+      "eye-protection",
+      "falling-objects"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 14,
+    "seoTitle": "PPE for Demolition and Concrete Cutting | Demolition Safety Equipment",
+    "seoDescription": "Complete guide to PPE for demolition and concrete cutting work including respiratory protection, impact gear, vibration gloves, and dust control standards.",
+    "seoKeywords": "demolition PPE, concrete cutting safety, silica dust protection, demolition helmet, anti-vibration gloves, OSHA silica rule, respiratory protection demolition, OSHA 1926 Subpart T",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE is required for demolition and concrete cutting?",
+        "enabled": true,
+        "data": {
+          "intro": "Demolition and concrete cutting are among the most hazardous construction activities. Workers face flying concrete fragments, respirable crystalline silica dust, extreme noise levels, structural instability, and heavy falling debris. Comprehensive PPE coverage is non-negotiable:",
+          "bullets": [
+            "Safety helmet rated for heavy impact (Type II preferred)",
+            "Full-face respirator or powered air-purifying respirator (PAPR)",
+            "Impact-rated safety goggles or full face shield",
+            "Anti-vibration gloves for breaker and saw operation",
+            "Steel toe boots with metatarsal guard and puncture protection",
+            "Hearing protection (NRR 25+ earmuffs or dual protection)",
+            "Heavy-duty coveralls or padded body protection vest",
+            "Hi-vis clothing for visibility in dust-reduced conditions"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains demolition-specific hazards, recommends PPE for different teardown methods, and covers the critical OSHA silica dust exposure standards that demolition contractors must follow to protect their crews."
+          ]
+        }
+      },
+      {
+        "key": "demolition-hazards",
+        "type": "table",
+        "title": "Demolition and Concrete Cutting Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Flying concrete and masonry fragments",
+              "Impact injuries, deep lacerations",
+              "Impact goggles, face shield, Type II helmet"
+            ],
+            [
+              "Respirable crystalline silica (RCS) dust",
+              "Silicosis, lung cancer, COPD",
+              "Half-face or full-face respirator with P100 filters"
+            ],
+            [
+              "Extreme noise from breakers and saws",
+              "Permanent hearing loss (>110 dB exposure)",
+              "Earmuffs NRR 25+ or dual plug-and-muff protection"
+            ],
+            [
+              "Hand-arm vibration from power tools",
+              "HAVS / vibration white finger syndrome",
+              "Anti-vibration gloves (ISO 10819 certified)"
+            ],
+            [
+              "Structural collapse or sudden material failure",
+              "Crush injuries, burial, fatality",
+              "Heavy-duty helmet, exclusion zones, spotter"
+            ],
+            [
+              "Exposed rebar and sharp concrete edges",
+              "Deep cuts and foot punctures",
+              "Cut-resistant gloves, metatarsal boots"
+            ],
+            [
+              "Dust clouds reducing visibility",
+              "Trips, collisions with equipment",
+              "Hi-vis clothing, LED personal lights"
+            ],
+            [
+              "Asbestos or lead in older structures",
+              "Mesothelioma, lead poisoning",
+              "PAPR with HEPA filter, full containment suit"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Demolition Methods",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Anti-vibration gloves (ISO 10819 certified)",
+                "Earmuffs (NRR 25+) or dual protection",
+                "Full-face respirator with P100 cartridges",
+                "Impact goggles under face shield",
+                "Heavy-duty Type II helmet",
+                "Metatarsal safety boots"
+              ],
+              "title": "Hydraulic Breaker and Jackhammer Work",
+              "description": "Combine vibration dampening, hearing protection, and respiratory defense against the intense dust and noise generated by pneumatic and hydraulic breakers. Limit continuous vibration exposure per ISO 5349."
+            },
+            {
+              "items": [
+                "Powered air-purifying respirator (PAPR) with P100 filters",
+                "Impact-rated sealed safety goggles",
+                "Hearing protection (NRR 25+)",
+                "Cut-resistant gloves (EN 388 Level D+)",
+                "Steel toe boots with metatarsal guard",
+                "Waterproof apron for wet cutting"
+              ],
+              "title": "Concrete Sawing and Core Drilling",
+              "description": "Wet cutting reduces but does not eliminate silica exposure. PAPR systems maintain clean airflow during extended cutting operations in enclosed or semi-enclosed areas where dust concentrations build rapidly."
+            },
+            {
+              "items": [
+                "Heavy-duty safety helmet (Type II for lateral impact)",
+                "Hi-vis clothing for equipment visibility",
+                "Full body harness if near edges",
+                "Respirator for dust plumes (minimum N95)",
+                "Steel toe boots with ankle support"
+              ],
+              "title": "Mechanical Demolition (Excavator-Mounted)",
+              "description": "Operators inside cabs need HEPA-filtered ventilation while spotters and ground crews need full impact, respiratory, and visibility protection near the active demolition zone."
+            },
+            {
+              "items": [
+                "Cut-resistant gloves (Level D or E)",
+                "Puncture-resistant boots with metatarsal guard",
+                "Respirator for residual dust (minimum N95)",
+                "Safety glasses or goggles",
+                "Hi-vis vest for machinery visibility"
+              ],
+              "title": "Debris Sorting and Material Removal",
+              "description": "Handling broken concrete, exposed rebar, and mixed debris requires cut and puncture protection along with residual dust control and visibility to moving equipment."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Demolition Work",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Full-face or half-face respirator with P100 filters; PAPR for extended exposure",
+              "title": "Respiratory Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Impact-rated sealed goggles plus face shield for flying fragments and dust",
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "NRR 25+ earmuffs or dual plug-and-muff combination for >110 dB exposure",
+              "title": "Hearing Protection",
+              "bodyAnchorKey": "ears"
+            },
+            {
+              "text": "Anti-vibration (ISO 10819), cut-resistant, or heavy-duty impact gloves by task",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Heavy-duty coveralls, padded body vest, or blast-resistant apron",
+              "title": "Body Protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Steel toe with metatarsal guard, puncture-resistant midsole, ankle support",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Demolition Crews",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Demolition contractors purchase PPE in heavy-duty kits because standard construction gear is often insufficient for the intensity and hazard level of teardown work.",
+            "A demolition crew kit should include respiratory, hearing, eye, hand, and foot protection all rated for heavy impact and dust environments.",
+            "Below are examples of PPE commonly selected for demolition and concrete cutting projects:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Demolition PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Type II safety helmet with face shield mount"
+            },
+            {
+              "text": "Half-face respirator with P100 filters"
+            },
+            {
+              "text": "Impact-rated sealed safety goggles"
+            },
+            {
+              "text": "Anti-vibration gloves"
+            },
+            {
+              "text": "Earmuffs (NRR 25+)"
+            },
+            {
+              "text": "Steel toe boots with metatarsal guard"
+            },
+            {
+              "text": "Hi-vis vest (Class 2)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Type II Heavy Impact Helmet H350-II"
+            },
+            {
+              "title": "Half-Face Respirator R40 with P100 Cartridges"
+            },
+            {
+              "title": "Anti-Vibration Demolition Gloves G35-AV (ISO 10819)"
+            },
+            {
+              "title": "Sealed Impact Goggles E20-IM"
+            },
+            {
+              "title": "Metatarsal Guard Safety Boots S98-MT"
+            },
+            {
+              "title": "Dual-Protection Earmuffs HP30 (NRR 28)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Respirable crystalline silica exposure limit in construction (50 µg/m³ PEL)",
+              "title": "OSHA 1926.1153 (Silica Rule)"
+            },
+            {
+              "text": "Demolition safety requirements and engineering survey",
+              "title": "OSHA 1926 Subpart T"
+            },
+            {
+              "text": "Respiratory protection program and fit testing",
+              "title": "OSHA 1910.134"
+            },
+            {
+              "text": "Occupational noise exposure and hearing conservation",
+              "title": "OSHA 1910.95"
+            },
+            {
+              "text": "Protective gloves against mechanical risks (cut, impact, vibration)",
+              "title": "EN 388 / ISO 10819"
+            },
+            {
+              "text": "Filtering half masks for particulate protection",
+              "title": "EN 149 (FFP2/FFP3)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "OSHA's silica rule (1926.1153) requires employers to limit worker exposure to 50 µg/m³ over an 8-hour TWA. Engineering controls (wet cutting, vacuum extraction, ventilation) must be used alongside respiratory PPE—not as replacements for each other."
+        }
+      },
+      {
+        "key": "demolition-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What respirator is required for concrete cutting?",
+              "a": "A minimum of a half-face respirator with P100 or N95 filters for outdoor work. For enclosed or prolonged cutting, a PAPR system with P100 HEPA cartridges provides better comfort, seal reliability, and protection factor."
+            },
+            {
+              "q": "Do anti-vibration gloves really reduce HAVS risk?",
+              "a": "Yes. ISO 10819-certified anti-vibration gloves reduce high-frequency vibration transmission and help prevent Hand-Arm Vibration Syndrome (HAVS) during prolonged breaker and saw use. They must be combined with daily vibration exposure time limits."
+            },
+            {
+              "q": "Is metatarsal protection necessary for demolition boots?",
+              "a": "Strongly recommended. Falling concrete chunks and exposed rebar can impact the top of the foot above the toe cap. Metatarsal guards extend protection from the toe cap to the ankle."
+            },
+            {
+              "q": "What about asbestos in older buildings being demolished?",
+              "a": "Pre-demolition surveys must identify asbestos-containing materials. If present, asbestos removal must be done by licensed abatement crews with PAPR systems, full containment suits, and decontamination procedures per OSHA 1926.1101."
+            },
+            {
+              "q": "Can you supply PPE kits for demolition contractors?",
+              "a": "Yes. We provide heavy-duty demolition kits including respirators, anti-vibration gloves, impact goggles, NRR 25+ earmuffs, and metatarsal boots with bulk pricing and compliance documentation."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Demolition Projects?",
+        "enabled": true,
+        "data": {
+          "text": "We supply heavy-duty PPE for demolition and concrete cutting including PAPR systems, anti-vibration gloves, impact-rated protective gear, and metatarsal boots with compliance documentation.",
+          "title": "Need PPE for Demolition Projects?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-heavy-equipment-operators-on-construction-sites",
+    "title": "PPE for Heavy Equipment Operators on Construction Sites",
+    "excerpt": "Heavy equipment operators face whole-body vibration, noise, rollover risks, dust exposure, and struck-by hazards when mounting and dismounting machinery. This guide covers the PPE operators need both inside the cab and when working around excavators, loaders, and cranes.",
+    "usageScenes": [
+      "construction",
+      "heavy-duty",
+      "impact-resistant",
+      "slip-resistant"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 15,
+    "seoTitle": "PPE for Heavy Equipment Operators | Construction Machinery Safety Gear",
+    "seoDescription": "Guide to PPE for heavy equipment operators on construction sites including hearing protection, visibility gear, anti-slip boots, and OSHA machinery standards.",
+    "seoKeywords": "heavy equipment operator PPE, construction machinery safety, excavator operator gear, crane operator PPE, OSHA 1926 Subpart O, hearing protection NRR, operator safety boots, ROPS FOPS",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE do heavy equipment operators need?",
+        "enabled": true,
+        "data": {
+          "intro": "Heavy equipment operators on construction sites spend hours operating excavators, bulldozers, loaders, cranes, and compactors. While ROPS/FOPS-equipped cabs provide structural protection, operators face persistent noise, whole-body vibration, dust, and significant struck-by risks during mounting, dismounting, and ground-level tasks:",
+          "bullets": [
+            "Safety helmet when outside the cab",
+            "Hearing protection (earplugs or earmuffs, NRR 22+)",
+            "Anti-slip safety boots with steel toe and defined heel",
+            "High visibility vest or jacket (Class 2 minimum)",
+            "Safety glasses for dust and open-cab operation",
+            "Work gloves for daily inspection and maintenance",
+            "Seat belt and proper cab restraint system",
+            "Dust mask for open-cab or dusty ground conditions"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide covers hazards specific to heavy equipment operation, recommends PPE for both in-cab and ground-level tasks, and references the safety standards that protect operators on construction sites."
+          ]
+        }
+      },
+      {
+        "key": "operator-hazards",
+        "type": "table",
+        "title": "Heavy Equipment Operator Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Continuous engine and hydraulic noise (85–105 dB)",
+              "Noise-induced hearing loss",
+              "Earplugs (NRR 22+) or earmuffs"
+            ],
+            [
+              "Whole-body vibration from cab",
+              "Lower back injury, fatigue",
+              "Suspension seat, lumbar support"
+            ],
+            [
+              "Dust entering cab or during ground tasks",
+              "Eye and respiratory irritation",
+              "Safety glasses, N95 dust mask"
+            ],
+            [
+              "Mounting and dismounting machinery",
+              "Slips, falls, sprains (leading cause of operator injuries)",
+              "Anti-slip safety boots with ankle support and defined heel"
+            ],
+            [
+              "Struck-by other machines or swinging loads",
+              "Crush injuries when on foot",
+              "Hi-vis vest (Class 2+), safety helmet"
+            ],
+            [
+              "Machine rollover or tip-over",
+              "Fatal crush injury",
+              "Seat belt in ROPS-equipped cab (always fasten)"
+            ],
+            [
+              "Hot engine and hydraulic surfaces during inspection",
+              "Burns to hands and forearms",
+              "Heat-resistant gloves, long sleeves"
+            ],
+            [
+              "Sun and UV exposure through cab windows",
+              "Skin and eye damage over time",
+              "UV safety glasses, sunscreen, cab window tint"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Operator Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Hearing protection (earplugs or earmuffs, NRR 22+)",
+                "Seat belt properly fastened at all times",
+                "Safety glasses if cab windows are open or damaged",
+                "Dust mask in dusty conditions with open cab"
+              ],
+              "title": "In-Cab Operation",
+              "description": "Even inside enclosed cabs, noise levels typically exceed 85 dB. Hearing protection and seat belt use are mandatory during all equipment operation. Never unfasten the seat belt to reach for objects."
+            },
+            {
+              "items": [
+                "Safety helmet (immediately upon exiting cab)",
+                "Hi-vis vest or jacket (Class 2 minimum)",
+                "Anti-slip safety boots with defined heel block",
+                "Safety glasses for site debris",
+                "Always use 3-point contact on steps"
+              ],
+              "title": "Mounting, Dismounting, and Walking on Site",
+              "description": "Operators are most vulnerable when on foot near active equipment. Full visibility and head protection are essential. Use the 3-point contact method on machine steps—never jump down from the cab."
+            },
+            {
+              "items": [
+                "Heavy-duty work gloves for sharp edges",
+                "Heat-resistant gloves for engine and exhaust checks",
+                "Safety glasses for fluid spray risk",
+                "Safety helmet for overhead hazards",
+                "Anti-slip boots on oily surfaces"
+              ],
+              "title": "Pre-Operation Inspection and Maintenance",
+              "description": "Daily walk-around checks expose operators to sharp edges, hot surfaces, pressurized hydraulic lines, and overhead hazards. Hand, head, and eye protection are essential during every inspection."
+            },
+            {
+              "items": [
+                "Hi-vis Class 2 or Class 3 clothing",
+                "Safety helmet with hi-vis color",
+                "Communication radio with earpiece",
+                "Anti-slip boots",
+                "Hearing protection for proximity to other machines"
+              ],
+              "title": "Working Near Other Equipment and Crews",
+              "description": "When multiple machines operate in close proximity, maximum visibility and clear communication equipment help prevent struck-by incidents. Maintain eye contact with other operators before crossing paths."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Equipment Operators",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Earplugs or earmuffs rated NRR 22+ for continuous engine noise exposure",
+              "title": "Hearing Protection",
+              "bodyAnchorKey": "ears"
+            },
+            {
+              "text": "Required immediately when outside the cab on active construction sites",
+              "title": "Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Hi-vis vest or jacket (Class 2 minimum) for visibility to other operators",
+              "title": "Visibility",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Anti-slip soles, steel toe, ankle support, defined heel block for machine steps",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "Safety glasses for dust, debris, and open-cab operation",
+              "title": "Eye Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Work gloves for inspection; heat-resistant for engine and exhaust checks",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Equipment Operators",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Equipment operators should keep a personal PPE kit stored in or mounted near the cab so protection is always available for ground-level tasks and emergencies.",
+            "An operator PPE kit typically includes hearing protection, hi-vis clothing, helmet, gloves, safety glasses, and steel toe boots.",
+            "Below are examples of PPE commonly selected for heavy equipment operators:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Equipment Operator PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Hearing protection (earplugs with carrying case)"
+            },
+            {
+              "text": "Hi-vis vest (Class 2, stored in cab)"
+            },
+            {
+              "text": "Safety helmet (stored in cab or on hook)"
+            },
+            {
+              "text": "Safety glasses (clear lens)"
+            },
+            {
+              "text": "Anti-slip steel toe boots with defined heel"
+            },
+            {
+              "text": "Work gloves (general-purpose)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Corded Earplugs EP20 (NRR 25) with Storage Case"
+            },
+            {
+              "title": "Hi-Vis Class 2 Vest HV10 (Orange)"
+            },
+            {
+              "title": "Vented Construction Helmet H200-V"
+            },
+            {
+              "title": "Anti-Fog Safety Glasses E12-AF"
+            },
+            {
+              "title": "Operator Safety Boots S85-OP with Defined Heel"
+            },
+            {
+              "title": "General-Purpose Work Gloves G06"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Motor vehicles, mechanized equipment, and marine operations",
+              "title": "OSHA 1926 Subpart O"
+            },
+            {
+              "text": "Occupational noise exposure and hearing conservation program",
+              "title": "OSHA 1910.95"
+            },
+            {
+              "text": "Roll-over protective structures (ROPS)",
+              "title": "ISO 3471 / SAE J1040"
+            },
+            {
+              "text": "Falling-object protective structures (FOPS)",
+              "title": "ISO 3449 / SAE J231"
+            },
+            {
+              "text": "High-visibility safety apparel",
+              "title": "ANSI/ISEA 107"
+            },
+            {
+              "text": "Safety footwear with defined heel requirements",
+              "title": "EN ISO 20345 / ASTM F2413"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Always use the 3-point contact method when mounting and dismounting equipment—two hands and one foot, or two feet and one hand on the machine at all times. Anti-slip boots with defined heel blocks prevent foot slippage on machine steps and pedals."
+        }
+      },
+      {
+        "key": "operator-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Do operators need to wear a helmet inside the cab?",
+              "a": "Generally not required inside a ROPS/FOPS-equipped enclosed cab with intact windows. However, a helmet must be donned immediately when stepping outside onto an active construction site."
+            },
+            {
+              "q": "Is hearing protection required for all equipment operators?",
+              "a": "Yes, when noise levels exceed 85 dB TWA (8-hour time-weighted average). Most construction equipment—excavators, dozers, loaders—exceeds this threshold, making hearing protection standard practice."
+            },
+            {
+              "q": "What boots are best for equipment operators?",
+              "a": "Steel toe boots with anti-slip soles (SRC rated), ankle support, and a defined heel block that catches on machine steps and prevents foot slippage during 3-point mounting and dismounting."
+            },
+            {
+              "q": "Why is the seat belt critical in ROPS-equipped cabs?",
+              "a": "During a rollover, the ROPS maintains a survival space inside the cab—but only if the operator stays in the seat. An unfastened seat belt allows the operator to be thrown outside the protective zone."
+            },
+            {
+              "q": "Can you supply operator PPE kits?",
+              "a": "Yes. We provide compact operator kits including earplugs, safety glasses, hi-vis vest, gloves, and steel toe boots packaged in a durable bag designed for cab storage."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Equipment Operators?",
+        "enabled": true,
+        "data": {
+          "text": "We supply PPE kits for heavy equipment operators including hearing protection, hi-vis clothing, safety boots, inspection gloves, and cab storage bags with bulk pricing.",
+          "title": "Need PPE for Equipment Operators?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-night-construction-and-low-visibility-work",
+    "title": "PPE for Night Construction and Low Visibility Work",
+    "excerpt": "Night construction and low-visibility conditions dramatically increase the risk of struck-by incidents, trips, and falls. Workers need enhanced visibility PPE, proper lighting, and reflective gear to maintain safety when natural light is unavailable.",
+    "usageScenes": [
+      "construction",
+      "heavy-duty",
+      "slip-resistant",
+      "impact-resistant"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 16,
+    "seoTitle": "PPE for Night Construction | Low Visibility Safety Equipment",
+    "seoDescription": "Guide to PPE for night construction and low-visibility work including Class 3 hi-vis, LED safety lights, reflective helmets, and ANSI/ISEA 107 compliance.",
+    "seoKeywords": "night construction PPE, low visibility safety, Class 3 hi-vis, reflective safety gear, LED safety vest, night work safety, ANSI ISEA 107 Class 3, MUTCD night work, EN ISO 20471",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE is required for night construction and low-visibility work?",
+        "enabled": true,
+        "data": {
+          "intro": "Night shifts and low-visibility conditions—fog, rain, dusk, dawn, and underground areas—multiply the risks on construction sites. Equipment operators cannot see ground workers, trip hazards are hidden, and passing traffic may not react in time. Specialized visibility PPE is essential:",
+          "bullets": [
+            "ANSI Class 3 high-visibility vest or jacket with retroreflective tape",
+            "LED clip-on safety lights or illuminated vest panels",
+            "Safety helmet with reflective strips or reflective cover",
+            "Head-mounted lamp or rechargeable helmet light",
+            "Anti-slip safety boots with reflective accents",
+            "Safety glasses with clear or amber low-light lenses",
+            "Glow sticks or LED wrist bands for personnel tracking",
+            "Thermal hi-vis jacket for cold night conditions"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains the increased hazards during night construction, recommends visibility-focused PPE for different roles, and covers the ANSI/ISEA 107, EN ISO 20471, and MUTCD standards that govern night work safety requirements."
+          ]
+        }
+      },
+      {
+        "key": "night-hazards",
+        "type": "table",
+        "title": "Night Construction Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Reduced visibility of workers by operators",
+              "Struck-by vehicles or equipment",
+              "Class 3 hi-vis clothing with LED active lights"
+            ],
+            [
+              "Trip hazards hidden in darkness",
+              "Falls, sprains, fractures",
+              "Head lamp, anti-slip boots, clear pathway lighting"
+            ],
+            [
+              "Passing traffic near night work zone",
+              "Vehicle intrusion into work area",
+              "Class 3 hi-vis with 360° retroreflective tape"
+            ],
+            [
+              "Glare from construction and vehicle lighting",
+              "Temporary blindness, depth misjudgment",
+              "Anti-glare safety glasses (amber lens)"
+            ],
+            [
+              "Cold temperatures during night shifts",
+              "Hypothermia, reduced dexterity and reaction time",
+              "Thermal hi-vis jacket, insulated gloves"
+            ],
+            [
+              "Reduced communication and coordination",
+              "Miscoordination near equipment",
+              "LED role-color identification markers, radio"
+            ],
+            [
+              "Fatigue from night shift patterns",
+              "Slower reaction times, poor judgment",
+              "Rest protocols, bright PPE for mutual visibility"
+            ],
+            [
+              "Wet surfaces from dew and condensation",
+              "Slips on steel, scaffolds, and platforms",
+              "Anti-slip boots (SRC rated), non-slip gloves"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Night Work Roles",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Class 3 hi-vis vest with integrated LED modules",
+                "Helmet with reflective tape (all four sides)",
+                "Powered head lamp (300+ lumens)",
+                "Anti-slip boots with reflective trim",
+                "Signal paddle with LED illumination"
+              ],
+              "title": "Night Flaggers and Traffic Controllers",
+              "description": "Flaggers need maximum 360-degree visibility to approaching motorists. Active LED lighting combined with retroreflective material exceeds the strictest MUTCD and ANSI nighttime requirements."
+            },
+            {
+              "items": [
+                "Class 3 hi-vis jacket (thermal insulated for cold)",
+                "Helmet with reflective strips or cover",
+                "Safety glasses with clear lenses for max light",
+                "Steel toe boots with reflective accents",
+                "Personal LED clip light on front and back"
+              ],
+              "title": "General Laborers on Night Shift",
+              "description": "All ground workers on night sites need Class 3 hi-vis as minimum plus personal task lighting to safely navigate the work area and be visible to equipment operators."
+            },
+            {
+              "items": [
+                "Hi-vis vest or jacket (kept in cab for exit)",
+                "Head lamp for pre-shift ground inspections",
+                "Safety boots with reflective trim",
+                "Hearing protection",
+                "Cab interior light for instrument visibility"
+              ],
+              "title": "Equipment Operators (Night Shift)",
+              "description": "Operators need hi-vis and head lamps ready for ground-level tasks. Reflective PPE helps spotters and banksmen identify operators when they exit the cab in low-light conditions."
+            },
+            {
+              "items": [
+                "Class 3 hi-vis with retroreflective tape on torso, arms, and legs",
+                "Illuminated safety vest with battery-powered LED panels",
+                "Clear safety glasses with anti-fog coating",
+                "Reflective gloves or glove-mounted LED clips",
+                "LED wrist/ankle bands for body outline visibility"
+              ],
+              "title": "Road Work Near Live Traffic (Night)",
+              "description": "Workers adjacent to moving traffic at night require the highest visibility class with active illumination on all body sections to exceed MUTCD and ANSI nighttime visibility requirements."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Night Work",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Class 3 garment with minimum 1,280 sq in fluorescent background and 310 sq in retroreflective tape",
+              "title": "High Visibility Clothing",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "text": "Helmet with reflective tape on all four sides or luminescent cover",
+              "title": "Reflective Head Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Clear or amber lenses for max light transmission with anti-fog and anti-glare coatings",
+              "title": "Eye Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Reflective trim, patches, or LED clips for hand visibility to operators",
+              "title": "Hand Visibility",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Anti-slip soles (SRC rated), reflective accents, steel toe for night terrain",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            },
+            {
+              "text": "LED clip lights, battery-powered vest panels, glow bands, and head lamps",
+              "title": "Active Illumination",
+              "bodyAnchorKey": "waist"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Night Construction Crews",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Night work PPE kits should upgrade standard daytime gear with Class 3 hi-vis garments, active LED lights, and head-mounted illumination for every crew member.",
+            "All personnel on night sites should be visible from at least 1,000 feet (300 m) under vehicle headlight illumination.",
+            "Below are examples of PPE commonly selected for night construction projects:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Night Construction PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Class 3 hi-vis vest or jacket with retroreflective tape"
+            },
+            {
+              "text": "Safety helmet with reflective strips"
+            },
+            {
+              "text": "Rechargeable head lamp (300+ lumens)"
+            },
+            {
+              "text": "Clear safety glasses (anti-fog coated)"
+            },
+            {
+              "text": "Anti-slip steel toe boots with reflective accents"
+            },
+            {
+              "text": "LED clip light (front and back)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Class 3 Hi-Vis LED Safety Vest HV30-LED"
+            },
+            {
+              "title": "Reflective Helmet Cover HC10-R"
+            },
+            {
+              "title": "Rechargeable Head Lamp HL50 (400 Lumens)"
+            },
+            {
+              "title": "Clear Anti-Fog Safety Glasses E12-CL"
+            },
+            {
+              "title": "Reflective Steel Toe Boots S85-RF"
+            },
+            {
+              "title": "LED Clip Safety Light CL05 (Red/White Dual Mode)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "High-visibility safety apparel (Class 3 requirements for night work)",
+              "title": "ANSI/ISEA 107"
+            },
+            {
+              "text": "High-visibility clothing — test methods, requirements, and performance classes",
+              "title": "EN ISO 20471"
+            },
+            {
+              "text": "Manual on Uniform Traffic Control Devices — temporary traffic control for night work",
+              "title": "MUTCD Chapter 6G"
+            },
+            {
+              "text": "Construction safety requirements",
+              "title": "OSHA 1926"
+            },
+            {
+              "text": "Safety footwear",
+              "title": "EN ISO 20345"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Retroreflective tape degrades with washing, UV exposure, and abrasion. Inspect hi-vis garments regularly under direct light and replace when reflective strips no longer return light effectively. ANSI/ISEA 107 Class 3 is the minimum standard for all night construction work."
+        }
+      },
+      {
+        "key": "night-work-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What hi-vis class is required for night construction?",
+              "a": "ANSI/ISEA 107 Class 3 is required for night work and any work near traffic. Class 3 provides the maximum fluorescent background material (1,280 sq in) and retroreflective striping (310 sq in) for 360° visibility."
+            },
+            {
+              "q": "Are LED safety lights required or just recommended for night work?",
+              "a": "While not universally mandated by OSHA, many state DOTs and contractors require active LED lights on personnel working near traffic or heavy equipment at night. LED lights significantly supplement passive retroreflective tape."
+            },
+            {
+              "q": "What lens color is best for night safety glasses?",
+              "a": "Clear lenses provide maximum light transmission (90%+) and are the default for night work. Amber/yellow lenses can enhance contrast in foggy or misty conditions but slightly reduce overall light transmission."
+            },
+            {
+              "q": "How often should retroreflective hi-vis garments be replaced?",
+              "a": "When retroreflective tape no longer returns bright light when illuminated directly. Typical service life is 6–12 months with daily use. Inspect weekly by shining a flashlight at the garment in a dark area."
+            },
+            {
+              "q": "Can you supply night construction PPE kits?",
+              "a": "Yes. We provide night work kits including Class 3 hi-vis jackets, LED clip lights, reflective helmet covers, rechargeable head lamps, and clear safety glasses with bulk pricing."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Night Construction?",
+        "enabled": true,
+        "data": {
+          "text": "We supply ANSI Class 3 hi-vis gear, LED safety lights, reflective helmets, rechargeable head lamps, and complete night work PPE kits with bulk pricing and compliance documentation.",
+          "title": "Need PPE for Night Construction?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-for-underground-construction-and-tunnel-work",
+    "title": "PPE for Underground Construction and Tunnel Work",
+    "excerpt": "Underground construction and tunnel work expose crews to confined spaces, poor air quality, ground collapse risks, water ingress, and limited escape routes. This guide covers the specialized PPE required for tunneling, underground utilities, and subterranean construction environments.",
+    "usageScenes": [
+      "construction",
+      "heavy-duty",
+      "impact-resistant",
+      "slip-resistant",
+      "eye-protection",
+      "fall-protection"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 17,
+    "seoTitle": "PPE for Underground Construction and Tunnel Work | Tunneling Safety Equipment",
+    "seoDescription": "Complete guide to PPE for underground construction and tunnel work including self-rescuers, gas monitors, waterproof boots, and confined space safety standards.",
+    "seoKeywords": "underground construction PPE, tunnel work safety, confined space PPE, self-rescuer SCSR, gas detection monitor, waterproof safety boots, OSHA 1926 Subpart S, tunnel ventilation, TBM safety",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE is required for underground construction and tunnel work?",
+        "enabled": true,
+        "data": {
+          "intro": "Underground construction—tunneling, shaft sinking, underground utilities, and subway construction—presents a unique combination of confined spaces, hazardous atmospheres, water, darkness, and structural instability. Standard surface PPE is not sufficient. Workers need specialized underground protection:",
+          "bullets": [
+            "Safety helmet with integrated rechargeable head lamp",
+            "Self-contained self-rescuer (SCSR) for emergency escape",
+            "Personal 4-gas monitor (O₂, CO, H₂S, CH₄)",
+            "Waterproof safety boots with steel toe and puncture protection",
+            "Hi-vis clothing with reflective strips for dark environments",
+            "Hearing protection for TBM, drill, and ventilation noise",
+            "Chemical-resistant or waterproof gloves",
+            "Emergency locator beacon or personnel tracking tag"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide explains the unique hazards of underground construction, recommends PPE for different tunneling operations, and references the OSHA confined space and underground construction standards that contractors must follow for compliance."
+          ]
+        }
+      },
+      {
+        "key": "underground-hazards",
+        "type": "table",
+        "title": "Underground Construction Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Oxygen deficiency or toxic gas accumulation",
+              "Asphyxiation, poisoning, explosion",
+              "Personal 4-gas monitor, self-rescuer (SCSR)"
+            ],
+            [
+              "Ground collapse, rock fall, or crown failure",
+              "Crush injuries, burial, fatality",
+              "Heavy-duty safety helmet, proximity warning system"
+            ],
+            [
+              "Water ingress and sudden flooding",
+              "Drowning, hypothermia",
+              "Waterproof boots, life vest in high-risk zones"
+            ],
+            [
+              "Permanent darkness and confined spaces",
+              "Disorientation, collisions with equipment",
+              "Helmet-mounted rechargeable lamp, hi-vis clothing"
+            ],
+            [
+              "TBM, drill rig, and ventilation fan noise (100–120 dB)",
+              "Severe and permanent hearing damage",
+              "High-NRR earmuffs (NRR 28+) or dual protection"
+            ],
+            [
+              "Silica dust from drilling, blasting, and shotcrete",
+              "Silicosis, chronic lung disease",
+              "Half-face or full-face respirator with P100 filters"
+            ],
+            [
+              "Wet, muddy, and slippery surfaces",
+              "Slips, falls, ankle injuries",
+              "Waterproof anti-slip boots with ankle support"
+            ],
+            [
+              "Contact with contaminated groundwater",
+              "Skin infection, chemical irritation",
+              "Waterproof chemical-resistant gloves, barrier cream"
+            ]
+          ],
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "group",
+        "title": "PPE for Different Underground Tasks",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "items": [
+                "Heavy-duty helmet with integrated ATEX-rated lamp",
+                "Personal 4-gas monitor (O₂, CO, H₂S, CH₄)",
+                "Self-contained self-rescuer (SCSR) on belt",
+                "Waterproof safety boots with steel toe",
+                "Hearing protection (earmuffs NRR 28+)",
+                "Half-face respirator with P100 filters for dust"
+              ],
+              "title": "TBM Operation and Tunnel Face Advance",
+              "description": "Workers at the tunnel face need maximum protection against noise, dust, rock fall, and atmospheric hazards. Gas monitors and self-rescuers are mandatory for all personnel within the active tunnel heading."
+            },
+            {
+              "items": [
+                "Safety helmet with rechargeable lamp",
+                "Personal gas monitor",
+                "Hi-vis clothing with reflective strips",
+                "Cut-resistant waterproof gloves",
+                "Steel toe waterproof boots",
+                "Knee pads for confined pipe work"
+              ],
+              "title": "Underground Utilities Installation",
+              "description": "Pipe and cable installation in underground galleries requires waterproof protection, adequate personal lighting, and continuous atmospheric monitoring for changing gas and oxygen conditions."
+            },
+            {
+              "items": [
+                "Full-face respirator or self-contained breathing apparatus (SCBA)",
+                "Personal 4-gas monitor with audible and vibration alarms",
+                "Self-rescuer on belt for emergency escape",
+                "Safety helmet with ATEX-rated lamp",
+                "Waterproof full-body suit or waders",
+                "Emergency locator beacon and communication radio"
+              ],
+              "title": "Shaft Sinking and Deep Excavation",
+              "description": "Deep shaft work significantly increases gas accumulation, flooding, and limited escape risks. Full respiratory protection and emergency location equipment are critical for survival at depth."
+            },
+            {
+              "items": [
+                "Safety helmet with lamp and face shield attachment",
+                "Hi-vis clothing",
+                "Waterproof boots with ankle support",
+                "Hearing protection for rebound noise",
+                "Half-face respirator for shotcrete dust and accelerator fumes",
+                "Heavy-duty gloves for rock bolt handling"
+              ],
+              "title": "Shotcrete Application and Ground Support",
+              "description": "Applying shotcrete and installing rock bolts generates significant rebound dust, accelerator chemical fumes, and noise. Respiratory, hearing, and eye protection must be worn throughout these operations."
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Underground Work",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Personal 4-gas monitor (O₂, CO, H₂S, CH₄) and self-contained self-rescuer for emergency escape",
+              "title": "Atmospheric Protection",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "Half-face or full-face respirator with P100 filters for silica dust and chemical fumes",
+              "title": "Respiratory Protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "text": "Heavy-duty helmet with integrated rechargeable ATEX-rated head lamp",
+              "title": "Head Protection and Lighting",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "text": "High-NRR earmuffs (NRR 28+) or dual plug-and-muff for TBM and drill noise",
+              "title": "Hearing Protection",
+              "bodyAnchorKey": "ears"
+            },
+            {
+              "text": "Waterproof, chemical-resistant, or cut-resistant gloves selected by specific task",
+              "title": "Hand Protection",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "text": "Waterproof steel toe boots with puncture-resistant midsole and anti-slip sole",
+              "title": "Foot Protection",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE for Tunneling Crews",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Tunneling contractors issue specialized underground PPE kits that go well beyond standard surface construction gear due to atmospheric, water, and confined space hazards.",
+            "Every underground worker must carry a self-rescuer and personal gas monitor in addition to standard head, hand, foot, and respiratory PPE.",
+            "Below are examples of PPE commonly selected for underground construction and tunnel projects:"
+          ]
+        }
+      },
+      {
+        "key": "basic-ppe-set",
+        "type": "list",
+        "title": "Basic Underground Worker PPE Set",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Safety helmet with integrated rechargeable head lamp"
+            },
+            {
+              "text": "Personal 4-gas monitor (O₂, CO, H₂S, CH₄)"
+            },
+            {
+              "text": "Self-contained self-rescuer (SCSR) on belt"
+            },
+            {
+              "text": "Half-face respirator with P100 filters"
+            },
+            {
+              "text": "Waterproof steel toe safety boots"
+            },
+            {
+              "text": "Hi-vis clothing with reflective strips"
+            },
+            {
+              "text": "Hearing protection (earmuffs NRR 28+)"
+            },
+            {
+              "text": "Waterproof work gloves"
+            }
+          ]
+        }
+      },
+      {
+        "key": "example-products",
+        "type": "list",
+        "title": "Example PPE Products",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Underground Safety Helmet H400 with ATEX Lamp"
+            },
+            {
+              "title": "4-Gas Personal Monitor GM40 (O₂/CO/H₂S/LEL)"
+            },
+            {
+              "title": "Self-Contained Self-Rescuer SR60 (60 min rated)"
+            },
+            {
+              "title": "Waterproof Steel Toe Boots S90-WP"
+            },
+            {
+              "title": "Half-Face Respirator R40 with P100 Filters"
+            },
+            {
+              "title": "Underground Hi-Vis Jacket HV25-RF"
+            },
+            {
+              "title": "Dual-Protection Earmuffs HP35 (NRR 30)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Safety Standards to Consider",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "text": "Underground construction, caissons, cofferdams, and compressed air",
+              "title": "OSHA 1926 Subpart S"
+            },
+            {
+              "text": "Permit-required confined spaces (atmospheric monitoring and rescue)",
+              "title": "OSHA 1910.146"
+            },
+            {
+              "text": "Respiratory protection program and fit testing",
+              "title": "OSHA 1910.134"
+            },
+            {
+              "text": "Occupational noise exposure and hearing conservation",
+              "title": "OSHA 1910.95"
+            },
+            {
+              "text": "Self-contained self-rescuers — requirements and testing",
+              "title": "EN 13794 / NIOSH 42 CFR 84"
+            },
+            {
+              "text": "Safety footwear with waterproof rating",
+              "title": "EN ISO 20345 (WR rating)"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Self-rescuers must remain sealed in their protective case until emergency use and replaced before their expiration date. Gas monitors must be bump-tested before every shift and calibrated per manufacturer specifications (typically every 6 months). Never enter any underground space without a functioning gas monitor and self-rescuer."
+        }
+      },
+      {
+        "key": "underground-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is a personal gas monitor required for all underground workers?",
+              "a": "Yes. OSHA 1926 Subpart S requires continuous atmospheric monitoring in underground construction. Each worker should carry a personal 4-gas monitor that provides audible, visual, and vibration alarms for O₂ deficiency, CO, H₂S, and combustible gases (CH₄/LEL)."
+            },
+            {
+              "q": "What is a self-contained self-rescuer (SCSR)?",
+              "a": "An SCSR is a sealed portable breathing device that chemically converts exhaled CO₂ to breathable oxygen, providing 30–60 minutes of escape time in toxic or oxygen-depleted atmospheres. It is a last-resort device for emergency evacuation only."
+            },
+            {
+              "q": "Why are waterproof boots essential for underground work?",
+              "a": "Underground environments frequently encounter groundwater ingress, drilling water, and condensation. Waterproof boots prevent prolonged wet foot exposure, fungal infections, and trench foot while maintaining traction on wet and muddy tunnel floors."
+            },
+            {
+              "q": "What is an ATEX-rated head lamp?",
+              "a": "ATEX certification (EU Directive 2014/34/EU) ensures the lamp will not ignite explosive atmospheres containing methane or combustible dust. ATEX-rated lamps are mandatory in tunnels where combustible gas is possible."
+            },
+            {
+              "q": "Can you supply PPE kits for tunneling projects?",
+              "a": "Yes. We provide comprehensive underground construction PPE kits including helmets with ATEX lamps, waterproof boots, respirators, hearing protection, hi-vis clothing, and gas monitor accessories with bulk pricing."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Underground Construction?",
+        "enabled": true,
+        "data": {
+          "text": "We supply specialized PPE for underground and tunnel construction including waterproof safety boots, respirators, hearing protection, ATEX helmet lighting systems, and self-rescuer accessories with compliance documentation.",
+          "title": "Need PPE for Underground Construction?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  }
+]
