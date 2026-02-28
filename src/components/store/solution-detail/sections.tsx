@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/store/product-card'
 import { BodyLinkMapSection } from './body-link-map-section'
 import { isBodyLinkedList } from '@/lib/body-link-map'
-import { getTaskScenePreset, normalizeTaskCards, normalizeTaskCardsFromLegacyGroups } from '@/lib/task-cards'
+import { getTaskScenePreset, normalizeTaskCards } from '@/lib/task-cards'
 import type {
   SolutionSectionItem,
   SectionHeroData,
@@ -228,20 +228,20 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       )
     }
     case 'group': {
-      if (section.key === 'task-based-ppe') {
-        const data = normalizeTaskCardsFromLegacyGroups(section.data)
-        return common(<TaskCardsGrid data={data} />)
-      }
       const data = section.data as SectionGroupData
       const groups = Array.isArray(data?.groups) ? data.groups : []
       return common(
-        <div className="space-y-6">
+        <div className="grid gap-4 md:grid-cols-2">
           {groups.map((group, index) => {
             const items = Array.isArray(group.items) ? group.items : []
+            if (items.length === 0) return null
             return (
-            <div key={`${section.key}-g-${index}`} className="rounded-lg border bg-background p-4">
-              <h3 className="text-sm font-semibold text-foreground">{group.title}</h3>
-              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+            <div key={`${section.key}-g-${index}`} className="rounded-xl border bg-card p-4 space-y-3">
+              <h3 className="text-base font-semibold text-foreground">{group.title}</h3>
+              {group.description && (
+                <p className="text-sm text-muted-foreground">{group.description}</p>
+              )}
+              <ul className="space-y-2 border-t pt-3 text-sm text-foreground">
                 {items.map((item, itemIndex) => (
                   <li key={`${section.key}-g-${index}-${itemIndex}`} className="flex items-start gap-2">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
