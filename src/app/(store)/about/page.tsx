@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "About Us | MAISON",
+  title: "About Us | Laifappe",
   description: "Professional B2B Safety Equipment Supplier - Learn about our company, mission, and commitment to quality.",
 }
 

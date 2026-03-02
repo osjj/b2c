@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | MAISON',
-  description: 'Terms of service for MAISON B2B PPE store.',
+  title: 'Terms of Service | Laifappe',
+  description: 'Terms of service for Laifappe B2B PPE store.',
 }
 
 export default function TermsPage() {

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { RequestQuoteButton } from '@/components/store/request-quote-button'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | MAISON',
+  title: 'Contact Us | Laifappe',
   description: 'Contact our sales team for PPE product inquiries, quotations, and OEM/ODM cooperation.',
 }
 

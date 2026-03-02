@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | MAISON',
-  description: 'Privacy policy for MAISON B2B PPE store.',
+  title: 'Privacy Policy | Laifappe',
+  description: 'Privacy policy for Laifappe B2B PPE store.',
 }
 
 export default function PrivacyPage() {

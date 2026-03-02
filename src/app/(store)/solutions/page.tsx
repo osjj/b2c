@@ -30,7 +30,7 @@ import { RequestQuoteButton } from '@/components/store/request-quote-button'
 import { USAGE_SCENES, formatUsageSceneLabel, PPE_CATEGORIES } from '@/types/solution'
 
 export const metadata: Metadata = {
-  title: 'Industry Solutions | PPE Pro',
+  title: 'Industry Solutions | Laifappe',
   description: 'Discover comprehensive PPE solutions tailored for your industry. From construction to chemical processing, we have the safety equipment you need.',
   keywords: ['PPE', 'safety solutions', 'industry PPE', 'protective equipment', 'workplace safety'],
 }

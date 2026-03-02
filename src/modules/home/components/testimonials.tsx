@@ -10,7 +10,7 @@ const testimonials = [
     name: "Michael Chen",
     role: "Procurement Director",
     content:
-      "We've been sourcing PPE from PPE Pro for 5 years. Their quality consistency and on-time delivery have been exceptional. The custom branding service is a great bonus. Our workers trust the equipment completely.",
+      "We've been sourcing PPE from Laifappe for 5 years. Their quality consistency and on-time delivery have been exceptional. The custom branding service is a great bonus. Our workers trust the equipment completely.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop",
     orderVolume: "50,000+ units/year",
@@ -22,7 +22,7 @@ const testimonials = [
     name: "Sarah Williams",
     role: "CEO",
     content:
-      "As a distributor, we need reliable suppliers. PPE Pro's OEM service allows us to offer branded products to our customers. Their R&D team even helped us develop a custom glove line that became our bestseller.",
+      "As a distributor, we need reliable suppliers. Laifappe's OEM service allows us to offer branded products to our customers. Their R&D team even helped us develop a custom glove line that became our bestseller.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
     orderVolume: "100,000+ units/year",
@@ -34,7 +34,7 @@ const testimonials = [
     name: "Ahmed Hassan",
     role: "HSE Manager",
     content:
-      "The flame-resistant workwear meets all our strict safety requirements. Their technical support team helped us choose the right products for our offshore operations. Zero incidents since switching to PPE Pro.",
+      "The flame-resistant workwear meets all our strict safety requirements. Their technical support team helped us choose the right products for our offshore operations. Zero incidents since switching to Laifappe.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
     orderVolume: "30,000+ units/year",
@@ -58,7 +58,7 @@ const testimonials = [
     name: "Erik Lindqvist",
     role: "Operations Manager",
     content:
-      "Extreme durability is crucial in mining operations. PPE Pro's safety boots and gloves withstand the harshest conditions. Their team visited our site to understand our specific needs - that dedication is rare.",
+      "Extreme durability is crucial in mining operations. Laifappe's safety boots and gloves withstand the harshest conditions. Their team visited our site to understand our specific needs - that dedication is rare.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop",
     orderVolume: "40,000+ units/year",
@@ -70,7 +70,7 @@ const testimonials = [
     name: "Yuki Tanaka",
     role: "Plant Manager",
     content:
-      "Chemical resistance and comfort are both essential in our facilities. PPE Pro delivered on both fronts. The customized chemical suits they developed for us have become the gold standard in our industry.",
+      "Chemical resistance and comfort are both essential in our facilities. Laifappe delivered on both fronts. The customized chemical suits they developed for us have become the gold standard in our industry.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
     orderVolume: "25,000+ units/year",
@@ -82,7 +82,7 @@ const testimonials = [
     name: "Hans de Vries",
     role: "Warehouse Director",
     content:
-      "With 5,000+ warehouse workers, we need affordable yet reliable PPE. PPE Pro offers the perfect balance. Their hi-vis vests and safety shoes are comfortable for all-day wear with no complaints from staff.",
+      "With 5,000+ warehouse workers, we need affordable yet reliable PPE. Laifappe offers the perfect balance. Their hi-vis vests and safety shoes are comfortable for all-day wear with no complaints from staff.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=100&h=100&fit=crop",
     orderVolume: "80,000+ units/year",
@@ -94,7 +94,7 @@ const testimonials = [
     name: "Carlos Rodriguez",
     role: "EHS Director",
     content:
-      "Assembly line workers need protection without sacrificing dexterity. The cut-resistant gloves from PPE Pro are thin yet incredibly strong. Production efficiency improved after switching to their products.",
+      "Assembly line workers need protection without sacrificing dexterity. The cut-resistant gloves from Laifappe are thin yet incredibly strong. Production efficiency improved after switching to their products.",
     rating: 5,
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop",
     orderVolume: "60,000+ units/year",
@@ -163,7 +163,7 @@ export default function Testimonials() {
           </p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Industry Leaders</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Join 500+ companies worldwide who trust PPE Pro for their safety equipment needs
+            Join 500+ companies worldwide who trust Laifappe for their safety equipment needs
           </p>
         </div>
       </div>

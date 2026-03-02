@@ -10,7 +10,7 @@ import FooterCTA from "@/modules/home/components/footer-cta"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "PPE Pro | Professional PPE Manufacturer for Extreme Environments",
+  title: "Laifappe | Professional PPE Manufacturer for Extreme Environments",
   description:
     "Leading manufacturer of personal protective equipment. Safety gloves, shoes, workwear, and more. CE, ANSI, ISO9001 certified. OEM/ODM services available.",
 }

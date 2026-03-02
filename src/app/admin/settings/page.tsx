@@ -103,12 +103,12 @@ export default function SettingsPage() {
                 <Label htmlFor="defaultTitle">Default Page Title</Label>
                 <Input
                   id="defaultTitle"
-                  defaultValue="PPE Pro | Professional Safety Equipment"
+                  defaultValue="Laifappe | Professional Safety Equipment"
                 />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="titleTemplate">Title Template</Label>
-                <Input id="titleTemplate" defaultValue="%s | PPE Pro" />
+                <Input id="titleTemplate" defaultValue="%s | Laifappe" />
                 <p className="text-sm text-muted-foreground">
                   %s will be replaced with the page title
                 </p>

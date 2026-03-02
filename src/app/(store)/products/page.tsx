@@ -48,7 +48,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       title,
       description,
       url: `${baseUrl}/products`,
-      siteName: 'PPE Pro',
+      siteName: 'Laifappe',
       type: 'website',
     },
     robots: {
