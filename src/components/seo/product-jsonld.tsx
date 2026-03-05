@@ -28,7 +28,7 @@ export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
     mpn: product.sku,
     brand: {
       "@type": "Brand",
-      name: "PPE Pro",
+      name: "Laifappe",
     },
     category: product.category?.name,
     url: `${baseUrl}/products/${product.slug}`,
@@ -46,7 +46,7 @@ export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
           : "https://schema.org/OutOfStock",
       seller: {
         "@type": "Organization",
-        name: "PPE Pro",
+        name: "Laifappe",
       },
     },
   };

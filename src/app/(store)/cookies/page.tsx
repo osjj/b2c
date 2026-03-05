@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | MAISON',
-  description: 'Cookie policy for MAISON B2B PPE store.',
+  title: 'Cookie Policy | Laifappe',
+  description: 'Cookie policy for Laifappe B2B PPE store.',
 }
 
 export default function CookiesPage() {

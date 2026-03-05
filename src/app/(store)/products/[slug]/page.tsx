@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     (product as any).metaDescription ||
     product.description?.slice(0, 160) ||
-    `Shop ${product.name} at PPE Pro. High-quality protective equipment.`
+    `Shop ${product.name} at Laifappe. High-quality protective equipment.`
 
   // Parse keywords from database or generate defaults
   const keywordsFromDb = (product as any).metaKeywords
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: ogTitle,
       description: ogDescription,
       url: productUrl,
-      siteName: 'PPE Pro',
+      siteName: 'Laifappe',
       images: productImage
         ? [
             {

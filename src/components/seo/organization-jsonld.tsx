@@ -6,7 +6,7 @@ export function OrganizationJsonLd({ baseUrl }: OrganizationJsonLdProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "PPE Pro",
+    name: "Laifappe",
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     description:

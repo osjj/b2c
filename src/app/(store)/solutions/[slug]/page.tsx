@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: solutionUrl,
-      siteName: 'PPE Pro',
+      siteName: 'Laifappe',
       images: solution.coverImage
         ? [
             {

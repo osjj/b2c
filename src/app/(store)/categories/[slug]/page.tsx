@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description =
     (category as any).metaDescription ||
     category.description ||
-    `Browse our selection of ${category.name}. High-quality protective equipment from PPE Pro.`
+    `Browse our selection of ${category.name}. High-quality protective equipment from Laifappe.`
 
   return {
     title,
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       url: categoryUrl,
-      siteName: 'PPE Pro',
+      siteName: 'Laifappe',
       images: category.image
         ? [
             {
