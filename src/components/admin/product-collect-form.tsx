@@ -11,6 +11,7 @@ import {
   updateCollectedProduct,
 } from '@/actions/collect'
 import type { ScrapedProduct } from '@/lib/scraper/types'
+import { CollectImageAIDialog } from '@/components/admin/collect-image-ai-dialog'
 
 type CollectStatus = 'idle' | 'scraping' | 'previewing' | 'saving'
 
@@ -22,6 +23,16 @@ export function ProductCollectForm() {
   const [warnings, setWarnings] = useState<string[]>([])
   const [duration, setDuration] = useState(0)
   const [existingId, setExistingId] = useState<string | null>(null)
+
+  // Text optimization
+  const [optimizingText, setOptimizingText] = useState(false)
+
+  // Image AI dialog
+  const [imageAIDialog, setImageAIDialog] = useState<{
+    open: boolean
+    section: 'main' | 'detail'
+  }>({ open: false, section: 'main' })
+
   // 图片选择：存储已选中的 URL 集合，默认全选
   const [selectedMain, setSelectedMain] = useState<Set<string>>(new Set())
   const [selectedDetail, setSelectedDetail] = useState<Set<string>>(new Set())
@@ -114,6 +125,53 @@ export function ProductCollectForm() {
     }
   }
 
+  async function handleOptimizeText() {
+    if (!data) return
+    setOptimizingText(true)
+    try {
+      const res = await fetch('/api/ai/optimize-collect-text', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          description: data.description,
+          specifications: data.specifications,
+        }),
+      })
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        toast.error(json.error || 'AI 优化失败')
+        return
+      }
+      setData({
+        ...data,
+        name: json.name ?? data.name,
+        description: json.description ?? data.description,
+        specifications: json.specifications ?? data.specifications,
+      })
+      toast.success('文本 AI 优化完成')
+    } catch {
+      toast.error('网络错误，请重试')
+    } finally {
+      setOptimizingText(false)
+    }
+  }
+
+  function handleImagesUpdate(
+    section: 'main' | 'detail',
+    newImages: string[],
+    newSelected: Set<string>
+  ) {
+    if (!data) return
+    if (section === 'main') {
+      setData({ ...data, mainImages: newImages })
+      setSelectedMain(newSelected)
+    } else {
+      setData({ ...data, detailImages: newImages })
+      setSelectedDetail(newSelected)
+    }
+  }
+
   const isSaving = status === 'saving'
 
   return (
@@ -164,7 +222,17 @@ export function ProductCollectForm() {
 
           {/* 基本信息 */}
           <Card className="p-6 space-y-4">
-            <h2 className="text-lg font-semibold">基本信息</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold">基本信息</h2>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleOptimizeText}
+                disabled={optimizingText || isSaving}
+              >
+                {optimizingText ? 'AI 优化中...' : 'AI 优化文本'}
+              </Button>
+            </div>
             <div className="space-y-3">
               <div>
                 <label className="text-sm text-muted-foreground">商品标题</label>
@@ -288,13 +356,23 @@ export function ProductCollectForm() {
                 <h2 className="text-lg font-semibold">
                   主图（已选 {selectedMain.size}/{data.mainImages.length} 张）
                 </h2>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => toggleAll(data.mainImages, selectedMain, setSelectedMain)}
-                >
-                  {selectedMain.size === data.mainImages.length ? '取消全选' : '全选'}
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setImageAIDialog({ open: true, section: 'main' })}
+                    disabled={isSaving}
+                  >
+                    AI 生成
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => toggleAll(data.mainImages, selectedMain, setSelectedMain)}
+                  >
+                    {selectedMain.size === data.mainImages.length ? '取消全选' : '全选'}
+                  </Button>
+                </div>
               </div>
               <div className="grid grid-cols-4 gap-3">
                 {data.mainImages.map((imgUrl, i) => {
@@ -333,13 +411,23 @@ export function ProductCollectForm() {
                 <h2 className="text-lg font-semibold">
                   详情图（已选 {selectedDetail.size}/{data.detailImages.length} 张）
                 </h2>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => toggleAll(data.detailImages, selectedDetail, setSelectedDetail)}
-                >
-                  {selectedDetail.size === data.detailImages.length ? '取消全选' : '全选'}
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setImageAIDialog({ open: true, section: 'detail' })}
+                    disabled={isSaving}
+                  >
+                    AI 生成
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => toggleAll(data.detailImages, selectedDetail, setSelectedDetail)}
+                  >
+                    {selectedDetail.size === data.detailImages.length ? '取消全选' : '全选'}
+                  </Button>
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-3 max-h-[600px] overflow-y-auto">
                 {data.detailImages.map((imgUrl, i) => {
@@ -391,6 +479,18 @@ export function ProductCollectForm() {
             </Button>
           </div>
         </>
+      )}
+      {/* Image AI Dialog */}
+      {data && (
+        <CollectImageAIDialog
+          open={imageAIDialog.open}
+          onClose={() => setImageAIDialog((prev) => ({ ...prev, open: false }))}
+          images={imageAIDialog.section === 'main' ? data.mainImages : data.detailImages}
+          selectedImages={imageAIDialog.section === 'main' ? selectedMain : selectedDetail}
+          onImagesUpdate={(newImgs, newSel) =>
+            handleImagesUpdate(imageAIDialog.section, newImgs, newSel)
+          }
+        />
       )}
     </div>
   )
