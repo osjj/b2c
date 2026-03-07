@@ -123,9 +123,8 @@ export function CollectImageAIDialog({
     // Generate per reference image — replace in-place
     setGeneratingSet(new Set(refUrls))
 
-    const newImages = [...images]
+    const replacements = new Map<string, string>()
     const newSelected = new Set(selectedImages)
-    let successCount = 0
     let failCount = 0
 
     await Promise.all(
@@ -133,11 +132,9 @@ export function CollectImageAIDialog({
         try {
           const newUrl = await generateSingleImage(srcUrl)
           if (newUrl) {
-            const idx = newImages.indexOf(srcUrl)
-            if (idx !== -1) newImages[idx] = newUrl
+            replacements.set(srcUrl, newUrl)
             newSelected.delete(srcUrl)
             newSelected.add(newUrl)
-            successCount++
           }
         } catch (e) {
           console.error('Image generation failed for', srcUrl, e)
@@ -152,8 +149,13 @@ export function CollectImageAIDialog({
       })
     )
 
-    onImagesUpdate(newImages, newSelected)
+    const successCount = replacements.size
     setGenerating(false)
+
+    if (successCount > 0) {
+      const newImages = images.map((url) => replacements.get(url) ?? url)
+      onImagesUpdate(newImages, newSelected)
+    }
 
     if (failCount === 0) {
       toast.success(`${successCount} 张图片生成成功`)
@@ -185,7 +187,7 @@ export function CollectImageAIDialog({
                   const isGenerating = generatingSet.has(url)
                   return (
                     <div
-                      key={i}
+                      key={url}
                       className="relative cursor-pointer"
                       onClick={() => !generating && toggleRef(url)}
                     >
