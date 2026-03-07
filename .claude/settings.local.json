@@ -25,7 +25,9 @@
       "Bash(xargs:*)",
       "Bash(npx playwright:*)",
       "Bash(node:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)"
     ]
   }
 }

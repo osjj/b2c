@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateText, parseJSONResponse } from '@/lib/gemini'
+import { generateText, parseJSONResponse } from '@/lib/openai'
 import type {
   GenerateProductRequest,
   GenerateProductResponse,

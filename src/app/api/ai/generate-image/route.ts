@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateImages } from '@/lib/gemini'
+import { generateImages } from '@/lib/openai'
 import type {
   GenerateImageRequest,
   GenerateImageResponse,
