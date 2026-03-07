@@ -16,9 +16,15 @@ interface OptimizeResponse {
 }
 
 function buildOptimizePrompt(data: OptimizeRequest): string {
-  const specsText = Object.entries(data.specifications)
-    .map(([k, v]) => `  "${k}": "${v}"`)
-    .join('\n')
+  const inputJSON = JSON.stringify(
+    {
+      name: data.name,
+      description: data.description,
+      specifications: data.specifications,
+    },
+    null,
+    2
+  )
 
   return `You are a professional B2B e-commerce copywriter. Translate and rewrite the following product information into professional English suitable for an international B2B/B2C e-commerce platform.
 
@@ -31,13 +37,7 @@ Rules:
 6. Return ONLY valid JSON, no markdown
 
 Input:
-{
-  "name": "${data.name}",
-  "description": "${data.description}",
-  "specifications": {
-${specsText}
-  }
-}
+${inputJSON}
 
 Output format:
 {
@@ -58,6 +58,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    if (
+      !body.specifications ||
+      typeof body.specifications !== 'object' ||
+      Array.isArray(body.specifications)
+    ) {
+      return NextResponse.json<OptimizeResponse>(
+        { success: false, error: 'specifications must be an object' },
+        { status: 400 }
+      )
+    }
+
     const prompt = buildOptimizePrompt(body)
     const result = await generateText(prompt, undefined, {
       temperature: 0.4,
@@ -71,11 +82,20 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const parsed = parseJSONResponse<{ name: string; description: string; specifications: Record<string, string> }>(result.text)
+    const parsed = parseJSONResponse<{
+      name: string
+      description: string
+      specifications: Record<string, string>
+    }>(result.text)
 
-    if (!parsed) {
+    if (
+      !parsed ||
+      !parsed.name ||
+      typeof parsed.specifications !== 'object' ||
+      Array.isArray(parsed.specifications)
+    ) {
       return NextResponse.json<OptimizeResponse>(
-        { success: false, error: 'Failed to parse AI response' },
+        { success: false, error: 'AI response has unexpected shape' },
         { status: 500 }
       )
     }
@@ -87,6 +107,7 @@ export async function POST(request: NextRequest) {
       specifications: parsed.specifications,
     })
   } catch (error) {
+    console.error('Optimize collect text API error:', error)
     return NextResponse.json<OptimizeResponse>(
       { success: false, error: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
