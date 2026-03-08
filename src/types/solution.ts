@@ -62,7 +62,7 @@ export interface SectionTableData {
 }
 
 export interface SectionGroupData {
-  groups: { title: string; items: string[] }[]
+  groups: { title: string; description?: string; items: string[] }[]
 }
 
 export interface SectionTaskCardsData {
