@@ -118,6 +118,12 @@ export default async function ProductDetailPage({
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
+  const INTERNAL_SPEC_KEYS = new Set(['sourceUrl1688', 'offerId1688'])
+  const visibleSpecs = (product.specifications && Array.isArray(product.specifications))
+    ? (product.specifications as Array<{name: string, value: string}>)
+        .filter(spec => !INTERNAL_SPEC_KEYS.has(spec.name))
+    : []
+
   // Breadcrumb items for JSON-LD
   const breadcrumbItems = [
     { name: 'Home', url: baseUrl },
@@ -137,7 +143,7 @@ export default async function ProductDetailPage({
       <div>
       {/* Breadcrumb */}
       <div className="container mx-auto px-6 lg:px-8 py-4">
-        <nav className="flex items-center text-sm text-muted-foreground">
+        <nav aria-label="Breadcrumb" className="flex items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
           </Link>
@@ -157,7 +163,7 @@ export default async function ProductDetailPage({
             </>
           )}
           <ChevronRight className="h-4 w-4 mx-2" />
-          <span className="text-foreground">{product.name}</span>
+          <span className="text-foreground" aria-current="page">{product.name}</span>
         </nav>
       </div>
 
@@ -178,12 +184,7 @@ export default async function ProductDetailPage({
             {/* Sticky Tab Navigation */}
             <ProductSectionTabs
               hasDescription={!!product.description}
-              hasSpecifications={
-                !!(product.specifications &&
-                Array.isArray(product.specifications) &&
-                (product.specifications as Array<{name: string, value: string}>)
-                  .filter(s => !["sourceUrl1688", "offerId1688"].includes(s.name)).length > 0)
-              }
+              hasSpecifications={visibleSpecs.length > 0}
               hasDetails={!!product.content}
             />
 
@@ -197,26 +198,21 @@ export default async function ProductDetailPage({
               </section>
             )}
             {/* Specifications Section */}
-            {product.specifications && Array.isArray(product.specifications) && (() => {
-              const INTERNAL_KEYS = new Set(["sourceUrl1688", "offerId1688"])
-              const visibleSpecs = (product.specifications as Array<{name: string, value: string}>)
-                .filter(spec => !INTERNAL_KEYS.has(spec.name))
-              return visibleSpecs.length > 0 ? (
-                <section id="specifications" className="pt-8 border-t mt-8">
-                  <h2 className="font-serif text-2xl mb-4">Specifications</h2>
-                  <div className="bg-muted/30 rounded-lg overflow-hidden">
-                    <dl className="divide-y">
-                      {visibleSpecs.map((spec, index) => (
-                        <div key={index} className="flex py-3 px-4">
-                          <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
-                          <dd className="w-2/3 font-medium">{spec.value}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                </section>
-              ) : null
-            })()}
+            {visibleSpecs.length > 0 && (
+              <section id="specifications" className="pt-8 border-t mt-8">
+                <h2 className="font-serif text-2xl mb-4">Specifications</h2>
+                <div className="bg-muted/30 rounded-lg overflow-hidden">
+                  <dl className="divide-y">
+                    {visibleSpecs.map((spec, index) => (
+                      <div key={index} className="flex py-3 px-4">
+                        <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
+                        <dd className="w-2/3 font-medium">{spec.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </section>
+            )}
 
             {/* Product Details Section */}
             {product.content && (
@@ -227,7 +223,7 @@ export default async function ProductDetailPage({
             )}
           </div>
           {/* RIGHT COLUMN: Sticky Product Info */}
-          <div className="sticky top-28 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
+          <div className="sticky top-28 self-start z-[10] max-h-[calc(100vh-7rem)] overflow-y-auto">
             <div className="space-y-6">
               {product.category && (
                 <p className="text-sm tracking-[0.2em] uppercase text-primary">

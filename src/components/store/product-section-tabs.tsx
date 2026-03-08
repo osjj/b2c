@@ -77,7 +77,7 @@ export function ProductSectionTabs({
   }
 
   return (
-    <div className="sticky top-28 z-10 bg-background border-b -mx-1 px-1 mt-8">
+    <div className="sticky top-28 z-[5] bg-background border-b -mx-1 px-1 mt-8">
       <div className="flex gap-6">
         {tabs.map(({ id, label }) => (
           <button
