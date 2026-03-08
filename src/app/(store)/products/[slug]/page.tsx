@@ -5,7 +5,6 @@ import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
-import { AddToQuoteButton } from '@/components/store/add-to-quote-button'
 import { B2BProductActions } from '@/components/store/b2b-product-actions'
 import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
@@ -172,7 +171,7 @@ export default async function ProductDetailPage({
         <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
 
           {/* LEFT COLUMN: Images + Content Sections */}
-          <div>
+          <div className="order-2 lg:order-1">
             {/* Images */}
             <ProductImageGallery
               images={product.images}
@@ -223,7 +222,7 @@ export default async function ProductDetailPage({
             )}
           </div>
           {/* RIGHT COLUMN: Sticky Product Info */}
-          <div className="sticky top-28 self-start z-[10] max-h-[calc(100vh-7rem)] overflow-y-auto">
+          <div className="order-1 lg:order-2 lg:sticky lg:top-28 lg:self-start lg:z-[10] lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
             <div className="space-y-6">
               {product.category && (
                 <p className="text-sm tracking-[0.2em] uppercase text-primary">
