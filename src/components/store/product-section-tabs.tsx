@@ -27,6 +27,8 @@ export function ProductSectionTabs({
 
   const [activeId, setActiveId] = useState<string>(tabs[0]?.id ?? '')
 
+  const tabIds = tabs.map((t) => t.id).join(',')
+
   useEffect(() => {
     if (tabs.length === 0) return
 
@@ -52,7 +54,7 @@ export function ProductSectionTabs({
     })
 
     return () => observers.forEach((o) => o.disconnect())
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [tabIds]) // re-run when the set of visible sections changes
 
   if (tabs.length === 0) return null
 
