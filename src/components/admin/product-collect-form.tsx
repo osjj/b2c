@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { ZoomIn } from 'lucide-react'
 import { toast } from 'sonner'
 import {
   saveCollectedProduct,
@@ -32,6 +34,9 @@ export function ProductCollectForm() {
     open: boolean
     section: 'main' | 'detail'
   }>({ open: false, section: 'main' })
+
+  // Lightbox preview
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
   // 图片选择：存储已选中的 URL 集合，默认全选
   const [selectedMain, setSelectedMain] = useState<Set<string>>(new Set())
@@ -379,7 +384,7 @@ export function ProductCollectForm() {
                   return (
                     <div
                       key={i}
-                      className="relative cursor-pointer"
+                      className="relative cursor-pointer group"
                       onClick={() => toggleImage(selectedMain, imgUrl, setSelectedMain)}
                     >
                       <img
@@ -396,6 +401,12 @@ export function ProductCollectForm() {
                       }`}>
                         {selected && '✓'}
                       </div>
+                      <button
+                        className="absolute bottom-1.5 right-1.5 w-6 h-6 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                        onClick={(e) => { e.stopPropagation(); setPreviewUrl(imgUrl) }}
+                      >
+                        <ZoomIn className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   )
                 })}
@@ -434,7 +445,7 @@ export function ProductCollectForm() {
                   return (
                     <div
                       key={i}
-                      className="relative cursor-pointer"
+                      className="relative cursor-pointer group"
                       onClick={() => toggleImage(selectedDetail, imgUrl, setSelectedDetail)}
                     >
                       <img
@@ -451,6 +462,12 @@ export function ProductCollectForm() {
                       }`}>
                         {selected && '✓'}
                       </div>
+                      <button
+                        className="absolute bottom-1.5 right-1.5 w-6 h-6 rounded-full bg-black/50 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                        onClick={(e) => { e.stopPropagation(); setPreviewUrl(imgUrl) }}
+                      >
+                        <ZoomIn className="w-3.5 h-3.5" />
+                      </button>
                     </div>
                   )
                 })}
@@ -479,6 +496,19 @@ export function ProductCollectForm() {
           </div>
         </>
       )}
+      {/* Lightbox */}
+      <Dialog open={!!previewUrl} onOpenChange={(v) => !v && setPreviewUrl(null)}>
+        <DialogContent className="max-w-4xl p-2 border-none bg-black/90">
+          {previewUrl && (
+            <img
+              src={previewUrl}
+              alt="预览"
+              className="w-full h-auto max-h-[85vh] object-contain rounded"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+
       {/* Image AI Dialog */}
       {data && (
         <CollectImageAIDialog

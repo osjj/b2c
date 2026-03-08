@@ -341,18 +341,17 @@ async function extractSpecifications(page: Page): Promise<Record<string, string>
 }
 
 async function extractMainImages(page: Page): Promise<string[]> {
-  // 1688 新版主图：img.od-gallery-img，src 已经填充
-  // 过滤只保留产品图（cbu01.alicdn.com），去掉 UI 图标
-  // _b.jpg 是大图版本，去重 webp 副本
+  // 1688 主图缩略图：img.od-gallery-img，src 为 _b.jpg 缩略版（小图）
+  // 去掉 _b.jpg 后缀得到高清原图 URL
   const srcs = await page.evaluate(() => {
     return [...document.querySelectorAll('img.od-gallery-img')]
       .map(img => (img as HTMLImageElement).src)
       .filter(src => src && src.includes('alicdn.com') && src.includes('cib.jpg'))
   }).catch(() => [] as string[])
 
-  // 只保留 _b.jpg（去掉 _.webp 重复版本）
-  const filtered = srcs.filter(src => src.endsWith('_b.jpg') || !src.includes('_.'))
-  return [...new Set(filtered)].map(normalizeImageUrl)
+  // 去掉 _b.jpg 缩略图后缀，还原为高清原图
+  const fullSize = srcs.map(src => src.replace(/_b\.jpg$/, ''))
+  return [...new Set(fullSize)].map(normalizeImageUrl)
 }
 
 /**

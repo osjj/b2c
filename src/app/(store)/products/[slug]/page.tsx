@@ -306,21 +306,26 @@ export default async function ProductDetailPage({
         )}
 
         {/* Specifications Section */}
-        {product.specifications && Array.isArray(product.specifications) && product.specifications.length > 0 && (
-          <div className="mt-12 border-t pt-8">
-            <h2 className="font-serif text-2xl mb-4">Specifications</h2>
-            <div className="bg-muted/30 rounded-lg overflow-hidden">
-              <dl className="divide-y">
-                {(product.specifications as Array<{name: string, value: string}>).map((spec, index) => (
-                  <div key={index} className="flex py-3 px-4">
-                    <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
-                    <dd className="w-2/3 font-medium">{spec.value}</dd>
-                  </div>
-                ))}
-              </dl>
+        {product.specifications && Array.isArray(product.specifications) && (() => {
+          const INTERNAL_KEYS = new Set(['sourceUrl1688', 'offerId1688'])
+          const visibleSpecs = (product.specifications as Array<{name: string, value: string}>)
+            .filter(spec => !INTERNAL_KEYS.has(spec.name))
+          return visibleSpecs.length > 0 ? (
+            <div className="mt-12 border-t pt-8">
+              <h2 className="font-serif text-2xl mb-4">Specifications</h2>
+              <div className="bg-muted/30 rounded-lg overflow-hidden">
+                <dl className="divide-y">
+                  {visibleSpecs.map((spec, index) => (
+                    <div key={index} className="flex py-3 px-4">
+                      <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
+                      <dd className="w-2/3 font-medium">{spec.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
-          </div>
-        )}
+          ) : null
+        })()}
 
         {/* Product Details Section (Editor.js Content) */}
         {product.content && (

@@ -27,7 +27,14 @@
       "Bash(node:*)",
       "Bash(curl:*)",
       "Bash(ls:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "additionalDirectories": [
+      "d:\\project\\b2c-store\\docs\\plans",
+      "d:\\project\\b2c-store",
+      "\\tmp"
     ]
   }
 }
