@@ -11,6 +11,7 @@ import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
+import { ProductSectionTabs } from '@/components/store/product-section-tabs'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -160,180 +161,195 @@ export default async function ProductDetailPage({
         </nav>
       </div>
 
-      {/* Product Detail */}
+      {/* Product Detail - persistent two-column layout */}
       <div className="container mx-auto px-6 lg:px-8 py-8">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Images */}
-          <ProductImageGallery
-            images={product.images}
-            productName={product.name}
-            hasDiscount={!!hasDiscount}
-            discountPercentage={discountPercentage}
-          />
+        <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
 
-          {/* Info */}
-          <div className="space-y-6">
-            {product.category && (
-              <p className="text-sm tracking-[0.2em] uppercase text-primary">
-                {product.category.name}
-              </p>
+          {/* LEFT COLUMN: Images + Content Sections */}
+          <div>
+            {/* Images */}
+            <ProductImageGallery
+              images={product.images}
+              productName={product.name}
+              hasDiscount={!!hasDiscount}
+              discountPercentage={discountPercentage}
+            />
+
+            {/* Sticky Tab Navigation */}
+            <ProductSectionTabs
+              hasDescription={!!product.description}
+              hasSpecifications={
+                !!(product.specifications &&
+                Array.isArray(product.specifications) &&
+                (product.specifications as Array<{name: string, value: string}>)
+                  .filter(s => !["sourceUrl1688", "offerId1688"].includes(s.name)).length > 0)
+              }
+              hasDetails={!!product.content}
+            />
+
+            {/* Description Section */}
+            {product.description && (
+              <section id="description" className="pt-8 border-t mt-8">
+                <h2 className="font-serif text-2xl mb-4">Description</h2>
+                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                  {product.description}
+                </p>
+              </section>
             )}
+            {/* Specifications Section */}
+            {product.specifications && Array.isArray(product.specifications) && (() => {
+              const INTERNAL_KEYS = new Set(["sourceUrl1688", "offerId1688"])
+              const visibleSpecs = (product.specifications as Array<{name: string, value: string}>)
+                .filter(spec => !INTERNAL_KEYS.has(spec.name))
+              return visibleSpecs.length > 0 ? (
+                <section id="specifications" className="pt-8 border-t mt-8">
+                  <h2 className="font-serif text-2xl mb-4">Specifications</h2>
+                  <div className="bg-muted/30 rounded-lg overflow-hidden">
+                    <dl className="divide-y">
+                      {visibleSpecs.map((spec, index) => (
+                        <div key={index} className="flex py-3 px-4">
+                          <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
+                          <dd className="w-2/3 font-medium">{spec.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                </section>
+              ) : null
+            })()}
 
-            <h1 className="font-serif text-3xl md:text-4xl">{product.name}</h1>
+            {/* Product Details Section */}
+            {product.content && (
+              <section id="product-details" className="pt-8 border-t mt-8">
+                <h2 className="font-serif text-2xl mb-6">Product Details</h2>
+                <ContentRenderer content={product.content as any} />
+              </section>
+            )}
+          </div>
+          {/* RIGHT COLUMN: Sticky Product Info */}
+          <div className="sticky top-28 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
+            <div className="space-y-6">
+              {product.category && (
+                <p className="text-sm tracking-[0.2em] uppercase text-primary">
+                  {product.category.name}
+                </p>
+              )}
 
-            <div className="flex items-baseline gap-3">
-              <span className="text-2xl font-medium">
-                {formatPrice(Number(product.price))}
-              </span>
-              {hasDiscount && (
-                <span className="text-lg text-muted-foreground line-through">
-                  {formatPrice(Number(product.comparePrice))}
+              <h1 className="font-serif text-3xl md:text-4xl">{product.name}</h1>
+
+              <div className="flex items-baseline gap-3">
+                <span className="text-2xl font-medium">
+                  {formatPrice(Number(product.price))}
                 </span>
-              )}
-            </div>
-
-            {/* Product Attributes */}
-            {product.attributeValues && product.attributeValues.length > 0 && (
-              <div className="space-y-3">
-                {product.attributeValues
-                  .filter(av => av.attribute.isActive)
-                  .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
-                  .map((av) => {
-                    let displayValue = ''
-                    if (av.textValue) {
-                      displayValue = av.textValue
-                    } else if (av.option) {
-                      displayValue = av.option.value
-                    } else if (av.optionIds && av.optionIds.length > 0) {
-                      // For multiselect, find option values from attribute options
-                      const optionValues = av.optionIds
-                        .map(id => av.attribute.options?.find(opt => opt.id === id)?.value)
-                        .filter(Boolean)
-                      displayValue = optionValues.join(', ')
-                    } else if (av.boolValue !== null) {
-                      displayValue = av.boolValue ? 'Yes' : 'No'
-                    }
-
-                    if (!displayValue) return null
-
-                    return (
-                      <div key={av.id} className="space-y-1">
-                        <p className="text-xs text-muted-foreground uppercase tracking-wide">
-                          {av.attribute.name}
-                        </p>
-                        <p className="text-sm font-medium">{displayValue}</p>
-                      </div>
-                    )
-                  })}
-              </div>
-            )}
-
-            {/* SKU */}
-            {product.sku && (
-              <p className="text-sm text-muted-foreground">
-                SKU: {product.sku}
-              </p>
-            )}
-
-            {/* Stock Status */}
-            <div className="flex items-center gap-2">
-              {product.stock > 0 ? (
-                <>
-                  <span className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-sm text-muted-foreground">
-                    In Stock ({product.stock} available)
+                {hasDiscount && (
+                  <span className="text-lg text-muted-foreground line-through">
+                    {formatPrice(Number(product.comparePrice))}
                   </span>
-                </>
-              ) : (
-                <>
-                  <span className="w-2 h-2 rounded-full bg-red-500" />
-                  <span className="text-sm text-muted-foreground">Out of Stock</span>
-                </>
-              )}
-            </div>
-
-            {/* Add to Cart or Quote based on project type */}
-            {product.stock > 0 ? (
-              <div className="pt-4">
-                {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
-                  <B2BProductActions
-                    productId={product.id}
-                    productName={product.name}
-                    productImage={product.images[0]?.url}
-                    sku={product.sku || undefined}
-                    defaultPrice={Number(product.price)}
-                    priceTiers={product.priceTiers?.map(t => ({
-                      id: t.id,
-                      minQuantity: t.minQuantity,
-                      maxQuantity: t.maxQuantity,
-                      price: Number(t.price),
-                      sortOrder: t.sortOrder,
-                    })) || []}
-                    stock={product.stock}
-                  />
-                ) : (
-                  <AddToCartButton
-                    productId={product.id}
-                    productName={product.name}
-                    productPrice={Number(product.price)}
-                    productImage={product.images[0]?.url}
-                    stock={product.stock}
-                    size="lg"
-                    className="w-full"
-                  >
-                    Add to Cart
-                  </AddToCartButton>
                 )}
               </div>
-            ) : (
-              <div className="pt-4">
-                <p className="text-muted-foreground">
-                  This product is currently out of stock.
+
+              {/* Product Attributes */}
+              {product.attributeValues && product.attributeValues.length > 0 && (
+                <div className="space-y-3">
+                  {product.attributeValues
+                    .filter(av => av.attribute.isActive)
+                    .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
+                    .map((av) => {
+                      let displayValue = ''
+                      if (av.textValue) {
+                        displayValue = av.textValue
+                      } else if (av.option) {
+                        displayValue = av.option.value
+                      } else if (av.optionIds && av.optionIds.length > 0) {
+                        const optionValues = av.optionIds
+                          .map(id => av.attribute.options?.find(opt => opt.id === id)?.value)
+                          .filter(Boolean)
+                        displayValue = optionValues.join(', ')
+                      } else if (av.boolValue !== null) {
+                        displayValue = av.boolValue ? 'Yes' : 'No'
+                      }
+                      if (!displayValue) return null
+
+                      return (
+                        <div key={av.id} className="space-y-1">
+                          <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                            {av.attribute.name}
+                          </p>
+                          <p className="text-sm font-medium">{displayValue}</p>
+                        </div>
+                      )
+                    })}
+                </div>
+              )}
+
+              {/* SKU */}
+              {product.sku && (
+                <p className="text-sm text-muted-foreground">
+                  SKU: {product.sku}
                 </p>
-              </div>
-            )}
-          </div>
-        </div>
+              )}
 
-        {/* Description Section */}
-        {product.description && (
-          <div className="mt-12 border-t pt-8">
-            <h2 className="font-serif text-2xl mb-4">Description</h2>
-            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-              {product.description}
-            </p>
-          </div>
-        )}
-
-        {/* Specifications Section */}
-        {product.specifications && Array.isArray(product.specifications) && (() => {
-          const INTERNAL_KEYS = new Set(['sourceUrl1688', 'offerId1688'])
-          const visibleSpecs = (product.specifications as Array<{name: string, value: string}>)
-            .filter(spec => !INTERNAL_KEYS.has(spec.name))
-          return visibleSpecs.length > 0 ? (
-            <div className="mt-12 border-t pt-8">
-              <h2 className="font-serif text-2xl mb-4">Specifications</h2>
-              <div className="bg-muted/30 rounded-lg overflow-hidden">
-                <dl className="divide-y">
-                  {visibleSpecs.map((spec, index) => (
-                    <div key={index} className="flex py-3 px-4">
-                      <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
-                      <dd className="w-2/3 font-medium">{spec.value}</dd>
-                    </div>
-                  ))}
-                </dl>
+              {/* Stock Status */}
+              <div className="flex items-center gap-2">
+                {product.stock > 0 ? (
+                  <>
+                    <span className="w-2 h-2 rounded-full bg-green-500" />
+                    <span className="text-sm text-muted-foreground">
+                      In Stock ({product.stock} available)
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="w-2 h-2 rounded-full bg-red-500" />
+                    <span className="text-sm text-muted-foreground">Out of Stock</span>
+                  </>
+                )}
               </div>
+
+              {/* Add to Cart or Quote */}
+              {product.stock > 0 ? (
+                <div className="pt-4">
+                  {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
+                    <B2BProductActions
+                      productId={product.id}
+                      productName={product.name}
+                      productImage={product.images[0]?.url}
+                      sku={product.sku || undefined}
+                      defaultPrice={Number(product.price)}
+                      priceTiers={product.priceTiers?.map(t => ({
+                        id: t.id,
+                        minQuantity: t.minQuantity,
+                        maxQuantity: t.maxQuantity,
+                        price: Number(t.price),
+                        sortOrder: t.sortOrder,
+                      })) || []}
+                      stock={product.stock}
+                    />
+                  ) : (
+                    <AddToCartButton
+                      productId={product.id}
+                      productName={product.name}
+                      productPrice={Number(product.price)}
+                      productImage={product.images[0]?.url}
+                      stock={product.stock}
+                      size="lg"
+                      className="w-full"
+                    >
+                      Add to Cart
+                    </AddToCartButton>
+                  )}
+                </div>
+              ) : (
+                <div className="pt-4">
+                  <p className="text-muted-foreground">
+                    This product is currently out of stock.
+                  </p>
+                </div>
+              )}
             </div>
-          ) : null
-        })()}
-
-        {/* Product Details Section (Editor.js Content) */}
-        {product.content && (
-          <div className="mt-12 border-t pt-8">
-            <h2 className="font-serif text-2xl mb-6">Product Details</h2>
-            <ContentRenderer content={product.content as any} />
           </div>
-        )}
+
+        </div>
       </div>
 
       {/* Related Products */}
