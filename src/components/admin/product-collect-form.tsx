@@ -162,12 +162,11 @@ export function ProductCollectForm() {
     newImages: string[],
     newSelected: Set<string>
   ) {
-    if (!data) return
     if (section === 'main') {
-      setData({ ...data, mainImages: newImages })
+      setData((prev) => prev ? { ...prev, mainImages: newImages } : prev)
       setSelectedMain(newSelected)
     } else {
-      setData({ ...data, detailImages: newImages })
+      setData((prev) => prev ? { ...prev, detailImages: newImages } : prev)
       setSelectedDetail(newSelected)
     }
   }
