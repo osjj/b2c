@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { cn } from '@/lib/utils'
 
 interface Tab {
@@ -19,16 +19,26 @@ export function ProductSectionTabs({
   hasSpecifications,
   hasDetails,
 }: ProductSectionTabsProps) {
-  const tabs: Tab[] = [
-    hasDescription && { id: 'description', label: 'Description' },
-    hasSpecifications && { id: 'specifications', label: 'Specifications' },
-    hasDetails && { id: 'product-details', label: 'Product Details' },
-  ].filter(Boolean) as Tab[]
-
-  const [activeId, setActiveId] = useState<string>(tabs[0]?.id ?? '')
+  const tabs = useMemo<Tab[]>(
+    () =>
+      [
+        hasDescription && { id: 'description', label: 'Description' },
+        hasSpecifications && { id: 'specifications', label: 'Specifications' },
+        hasDetails && { id: 'product-details', label: 'Product Details' },
+      ].filter(Boolean) as Tab[],
+    [hasDescription, hasSpecifications, hasDetails]
+  )
 
   const tabIds = tabs.map((t) => t.id).join(',')
 
+  const [activeId, setActiveId] = useState<string>(tabs[0]?.id ?? '')
+
+  // Reset active tab when the set of visible sections changes
+  useEffect(() => {
+    setActiveId(tabs[0]?.id ?? '')
+  }, [tabIds]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Set up IntersectionObserver for scroll-spy
   useEffect(() => {
     if (tabs.length === 0) return
 
@@ -54,7 +64,7 @@ export function ProductSectionTabs({
     })
 
     return () => observers.forEach((o) => o.disconnect())
-  }, [tabIds]) // re-run when the set of visible sections changes
+  }, [tabs])
 
   if (tabs.length === 0) return null
 
@@ -72,6 +82,7 @@ export function ProductSectionTabs({
         {tabs.map(({ id, label }) => (
           <button
             key={id}
+            type="button"
             onClick={() => scrollTo(id)}
             className={cn(
               'py-3 text-sm font-medium border-b-2 transition-colors',
