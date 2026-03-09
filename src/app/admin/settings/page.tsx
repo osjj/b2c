@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
+import { ScraperSettingsCard } from "@/components/admin/scraper-settings-card"
 
 export default function SettingsPage() {
   return (
@@ -22,6 +23,7 @@ export default function SettingsPage() {
           <TabsTrigger value="payments">Payments</TabsTrigger>
           <TabsTrigger value="shipping">Shipping</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
+          <TabsTrigger value="scraper">数据采集</TabsTrigger>
         </TabsList>
 
         <TabsContent value="general" className="space-y-6">
@@ -365,6 +367,10 @@ Sitemap: https://your-domain.com/sitemap.xml`}
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="scraper" className="space-y-6">
+          <ScraperSettingsCard />
         </TabsContent>
       </Tabs>
     </div>
