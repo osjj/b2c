@@ -1041,5 +1041,2170 @@
       }
     ],
     "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-mining-quarrying",
+    "title": "What PPE Do Workers Need in Mining and Quarrying Operations?",
+    "excerpt": "Mining and quarrying operations expose workers to rockfalls, dust inhalation, heavy vibration, loud blasting, and confined-space hazards. This guide covers essential PPE selections, hazard-to-gear mapping, and procurement advice for mine-site safety.",
+    "usageScenes": [
+      "heavy-duty",
+      "impact-resistant",
+      "falling-objects",
+      "dusty-work",
+      "slip-resistant",
+      "eye-protection"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 4,
+    "seoTitle": "Mining PPE Supplier | Quarry Safety Equipment Guide",
+    "seoDescription": "Complete guide to PPE for mining and quarrying. Covers hazards, required gear, safety standards, and bulk procurement for mine operators.",
+    "seoKeywords": "mining PPE, quarrying safety equipment, mine safety helmet, dust respirator, impact resistant gloves, MSHA regulations, ANSI Z89.1, PPE supplier, wholesale, mining boots",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "Essential PPE for Mining and Quarrying: Protecting Workers Underground and at Surface",
+        "enabled": true,
+        "data": {
+          "intro": "Mining and quarrying operations present some of the most severe workplace hazards, including rockfalls, silica dust, explosive blasting, heavy machinery vibration, and extreme noise levels. To protect workers both underground and at surface operations, the following PPE is commonly mandated:",
+          "bullets": [
+            "Hard hats with chin straps rated for impact and penetration",
+            "Dust respirators and particulate filtering masks",
+            "Impact-resistant safety goggles",
+            "Heavy-duty cut and vibration-resistant gloves",
+            "Steel toe mining boots with metatarsal guards",
+            "High-visibility vests for surface haulage areas"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide helps mine operators, safety managers, and procurement teams identify the correct PPE for each mining task, understand applicable safety standards such as MSHA and ANSI, and source certified equipment in bulk for large-scale mining and quarrying projects."
+          ]
+        }
+      },
+      {
+        "key": "mining-hazards",
+        "type": "table",
+        "title": "Common Mining and Quarrying Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Rockfall and cave-in",
+              "Head trauma, crushing injuries",
+              "Safety helmet with chin strap"
+            ],
+            [
+              "Silica dust and airborne particles",
+              "Silicosis, chronic lung disease",
+              "P2/P3 particulate respirator"
+            ],
+            [
+              "Blasting noise and drilling vibration",
+              "Permanent hearing loss",
+              "Earmuffs rated NRR 25+"
+            ],
+            [
+              "Flying rock fragments",
+              "Eye lacerations, blindness",
+              "Impact-rated safety goggles"
+            ],
+            [
+              "Sharp ore and rough rock surfaces",
+              "Hand cuts and abrasions",
+              "Cut-resistant gloves (EN 388 Level 4+)"
+            ],
+            [
+              "Heavy equipment and falling tools",
+              "Foot crush and metatarsal fractures",
+              "Steel toe boots with metatarsal guard"
+            ],
+            [
+              "Low visibility in underground tunnels",
+              "Collision with vehicles or equipment",
+              "Reflective hi-vis vest and cap lamp"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Mining Tasks",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "heavy-duty",
+              "title": "Underground Drilling and Blasting",
+              "checked": true,
+              "description": "Select PPE that withstands extreme impact, noise, and dust generated during drilling and blasting cycles.",
+              "items": [
+                "Hard hat with chin strap and cap lamp bracket",
+                "P3 particulate respirator",
+                "NRR 25+ earmuffs",
+                "Anti-vibration gloves"
+              ]
+            },
+            {
+              "scene": "falling-objects",
+              "title": "Surface Quarry Extraction",
+              "checked": true,
+              "description": "Protect against flying debris, overhead rock, and heavy equipment movement in open-pit quarry environments.",
+              "items": [
+                "Impact-rated safety helmet",
+                "Safety goggles with side shields",
+                "Steel toe boots with ankle support",
+                "Hi-vis reflective vest"
+              ]
+            },
+            {
+              "scene": "dusty-work",
+              "title": "Ore Crushing and Material Processing",
+              "checked": true,
+              "description": "Control dust inhalation and eye exposure during crushing, screening, and conveyor operations.",
+              "items": [
+                "Dust respirator with replaceable filters",
+                "Sealed safety goggles",
+                "Hearing protection ear plugs"
+              ]
+            },
+            {
+              "scene": "slip-resistant",
+              "title": "Underground Transport and Haulage",
+              "checked": true,
+              "description": "Ensure visibility and slip protection for workers around underground rail, conveyors, and haul trucks.",
+              "items": [
+                "Slip-resistant mining boots",
+                "Reflective vest with retroreflective strips",
+                "Hard hat with integrated lamp",
+                "Impact-resistant gloves"
+              ]
+            },
+            {
+              "scene": "impact-resistant",
+              "title": "Rock Bolting and Ground Support",
+              "checked": true,
+              "description": "Protect hands and head during overhead rock bolting and mesh installation in unstable ground.",
+              "items": [
+                "Impact-resistant gloves with dorsal protection",
+                "Safety helmet with face shield attachment",
+                "Steel toe boots"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Mining Workers",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing mining PPE protection points",
+          "items": [
+            {
+              "title": "Mining Safety Helmets",
+              "text": "Impact and penetration resistant hard hats with chin strap and lamp bracket for underground use",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Safety Goggles",
+              "text": "Sealed, impact-rated goggles to protect against flying rock fragments and dust",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "Hearing Protection",
+              "text": "Earmuffs or earplugs rated NRR 25+ for blasting, drilling, and crushing operations",
+              "bodyAnchorKey": "ears"
+            },
+            {
+              "title": "Respirators and Dust Masks",
+              "text": "P2 or P3 particulate respirators to prevent silicosis and other respiratory diseases",
+              "bodyAnchorKey": "mouth"
+            },
+            {
+              "title": "Heavy-Duty Work Gloves",
+              "text": "Cut-resistant, anti-vibration gloves for handling ore, tools, and equipment",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Mining Safety Boots",
+              "text": "Steel toe with metatarsal guard, puncture-resistant sole, and slip-resistant outsole",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Mining PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Mining operations typically procure PPE in standardized kits for each role, including driller kits, surface operator kits, and underground transport kits, to ensure consistent compliance across shifts.",
+            "When sourcing mining PPE in bulk, verify that each item carries the appropriate certification marks such as ANSI Z89.1 for helmets, EN 388 for gloves, and NIOSH approval for respirators.",
+            "Consider establishing a scheduled replacement program based on manufacturer lifespan ratings and on-site wear assessments to maintain protection effectiveness over time."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Mining Safety Standards and Regulations",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "MSHA 30 CFR Part 56/57",
+              "text": "U.S. Mine Safety and Health Administration standards for surface and underground metal/non-metal mines"
+            },
+            {
+              "title": "ANSI Z89.1",
+              "text": "Industrial head protection — impact and penetration resistance requirements for hard hats"
+            },
+            {
+              "title": "ANSI Z87.1",
+              "text": "Eye and face protection — impact resistance ratings for safety goggles and face shields"
+            },
+            {
+              "title": "EN 388",
+              "text": "Protective gloves against mechanical risks — cut, abrasion, tear, and puncture ratings"
+            },
+            {
+              "title": "ISO 20345",
+              "text": "Safety footwear — requirements for toe protection, puncture resistance, and slip resistance"
+            },
+            {
+              "title": "NIOSH 42 CFR Part 84",
+              "text": "Approval standards for respiratory protective devices including particulate respirators"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All mining PPE should carry valid MSHA acceptance markings, ANSI certification, or equivalent EN/ISO approvals to meet mine-site audit requirements."
+        }
+      },
+      {
+        "key": "mining-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What PPE is required for underground mining operations?",
+              "a": "Underground miners typically need a hard hat with cap lamp, P2/P3 respirator, hearing protection, impact-rated goggles, cut-resistant gloves, and steel toe boots with metatarsal guards."
+            },
+            {
+              "q": "How often should mining safety helmets be replaced?",
+              "a": "Most manufacturers recommend replacing mining hard hats every 2 to 5 years, or immediately after any significant impact or visible damage."
+            },
+            {
+              "q": "What type of respirator is needed for silica dust in quarries?",
+              "a": "A NIOSH-approved N95 or P2/P3 particulate filtering respirator is required for silica dust exposure in quarrying operations."
+            },
+            {
+              "q": "Are anti-vibration gloves necessary for mining drill operators?",
+              "a": "Yes, anti-vibration gloves help reduce the risk of Hand-Arm Vibration Syndrome (HAVS) for workers who operate pneumatic drills, rock bolters, and similar vibrating equipment."
+            },
+            {
+              "q": "What safety standards apply to mining PPE equipment?",
+              "a": "Key standards include MSHA 30 CFR Parts 56 and 57, ANSI Z89.1 for helmets, ANSI Z87.1 for eye protection, EN 388 for gloves, and ISO 20345 for safety footwear."
+            },
+            {
+              "q": "Can mining PPE be purchased in bulk with custom branding?",
+              "a": "Yes, most PPE manufacturers offer bulk pricing and custom branding options including company logos on helmets, vests, and glove cuffs for mine-site identification."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Mining or Quarrying Operation?",
+        "enabled": true,
+        "data": {
+          "text": "We supply certified mining PPE in bulk with MSHA and ANSI compliance documentation. Get custom kits for underground, surface, and processing plant workers.",
+          "title": "Need PPE for Your Mining or Quarrying Operation?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-oil-gas-petrochemical",
+    "title": "How to Select PPE for Oil, Gas, and Petrochemical Workers?",
+    "excerpt": "Oil, gas, and petrochemical operations expose workers to flammable vapors, high-pressure systems, toxic chemicals, extreme heat, and explosive atmospheres. This guide covers flame-resistant PPE, gas detection, and procurement strategies for upstream and downstream facilities.",
+    "usageScenes": [
+      "heavy-duty",
+      "eye-protection",
+      "slip-resistant",
+      "dusty-work",
+      "construction",
+      "impact-resistant"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 5,
+    "seoTitle": "Oil & Gas PPE Supplier | Petrochemical Safety Gear",
+    "seoDescription": "PPE guide for oil, gas, and petrochemical workers. Flame-resistant gear, gas detection, safety standards, and wholesale supply.",
+    "seoKeywords": "oil and gas PPE, petrochemical safety equipment, flame resistant clothing, FR coveralls, gas detector, H2S protection, NFPA 2112, PPE supplier, wholesale, refinery PPE",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "PPE for Oil, Gas, and Petrochemical Industries: Fire, Chemical, and Explosion Protection",
+        "enabled": true,
+        "data": {
+          "intro": "Workers in the oil, gas, and petrochemical sectors face unique hazards including flammable hydrocarbon vapors, high-pressure fluid releases, hydrogen sulfide (H2S) exposure, and extreme temperatures. The following PPE is essential for upstream, midstream, and downstream operations:",
+          "bullets": [
+            "Flame-resistant (FR) coveralls and clothing",
+            "Hard hats rated for hydrocarbon environments",
+            "Chemical splash goggles and face shields",
+            "Gas detection monitors for H2S and LEL",
+            "Chemical-resistant gloves and gauntlets",
+            "Steel toe, static-dissipative safety boots"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide assists safety managers and procurement officers in selecting the correct PPE for drilling rigs, refineries, pipelines, and petrochemical processing plants, with reference to NFPA, API, and OSHA standards for hydrocarbon environments."
+          ]
+        }
+      },
+      {
+        "key": "oil-gas-hazards",
+        "type": "table",
+        "title": "Oil, Gas, and Petrochemical Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Flash fire and arc flash",
+              "Severe burns, fatality",
+              "FR coveralls (NFPA 2112 rated)"
+            ],
+            [
+              "Hydrogen sulfide (H2S) gas",
+              "Respiratory failure, death",
+              "Gas monitor and SCBA or escape respirator"
+            ],
+            [
+              "High-pressure fluid injection",
+              "Deep tissue injury, amputation",
+              "Pressure-rated gloves and face shield"
+            ],
+            [
+              "Chemical splashes and spills",
+              "Skin burns, eye damage",
+              "Chemical splash goggles and nitrile gloves"
+            ],
+            [
+              "Slippery platforms and grating",
+              "Slip and fall injuries",
+              "Anti-slip, static-dissipative boots"
+            ],
+            [
+              "Dropped tools and overhead loads",
+              "Head trauma, fractures",
+              "Hard hat with chin strap"
+            ],
+            [
+              "Loud compressors and turbines",
+              "Noise-induced hearing loss",
+              "Earplugs or earmuffs rated NRR 22+"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Oil and Gas Operations",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "heavy-duty",
+              "title": "Drilling Rig Floor Operations",
+              "checked": true,
+              "description": "Select PPE that protects against high-pressure fluids, rotating equipment, and flash fire exposure on the rig floor.",
+              "items": [
+                "FR coveralls with arc rating",
+                "Impact-resistant gloves with TPR dorsal guards",
+                "Hard hat with face shield",
+                "Steel toe boots with metatarsal protection"
+              ]
+            },
+            {
+              "scene": "eye-protection",
+              "title": "Refinery and Process Plant Maintenance",
+              "checked": true,
+              "description": "Protect workers from chemical splashes, vapor exposure, and confined-space hazards during turnaround maintenance.",
+              "items": [
+                "Chemical splash goggles",
+                "Nitrile chemical-resistant gloves",
+                "FR clothing",
+                "Supplied air respirator for confined spaces"
+              ]
+            },
+            {
+              "scene": "construction",
+              "title": "Pipeline Welding and Construction",
+              "checked": true,
+              "description": "Combine flame-resistant and impact protection for field welding, trenching, and pipeline tie-in operations.",
+              "items": [
+                "FR welding jacket and cap",
+                "Auto-darkening welding helmet",
+                "Heat-resistant gloves",
+                "Steel toe work boots"
+              ]
+            },
+            {
+              "scene": "slip-resistant",
+              "title": "Offshore Platform Operations",
+              "checked": true,
+              "description": "Address marine environment hazards including wet decks, helicopter transport, and remote emergency response needs.",
+              "items": [
+                "Anti-slip deck boots",
+                "Immersion suit and life jacket",
+                "Hi-vis FR coveralls",
+                "Portable H2S gas detector"
+              ]
+            },
+            {
+              "scene": "dusty-work",
+              "title": "Tank Cleaning and Confined Space Entry",
+              "checked": true,
+              "description": "Provide respiratory and skin protection for workers entering vessels, tanks, and other oxygen-deficient or toxic spaces.",
+              "items": [
+                "Supplied-air breathing apparatus (SABA)",
+                "Full-body chemical suit",
+                "Gas monitor with multi-gas capability"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Oil and Gas Workers",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing oil and gas PPE protection points",
+          "items": [
+            {
+              "title": "Hard Hats for Hydrocarbon Sites",
+              "text": "Non-vented, electrically rated hard hats suitable for flammable atmospheres and overhead hazards",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Chemical Splash Goggles",
+              "text": "Sealed goggles resistant to hydrocarbon splashes, acid mist, and vapor contact",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "FR Coveralls and Clothing",
+              "text": "Flame-resistant clothing rated to NFPA 2112 for flash fire protection on rigs and in refineries",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "title": "Chemical-Resistant Gloves",
+              "text": "Nitrile or neoprene gloves rated for contact with oils, solvents, and corrosive chemicals",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Static-Dissipative Safety Boots",
+              "text": "Steel toe boots with static-dissipative soles to prevent spark ignition in explosive atmospheres",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Oil and Gas PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Oil and gas operators typically establish approved PPE vendor lists and require all equipment to meet both local regulations and operator-specific standards such as those from major IOCs.",
+            "When procuring FR clothing in bulk, ensure each garment carries NFPA 2112 or IEC 61482 certification and has been tested for arc thermal performance value (ATPV) appropriate to the site hazard level.",
+            "Maintain a documented PPE inventory system that tracks issuance, inspection dates, and replacement schedules to meet OSHA recordkeeping and audit requirements."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Oil and Gas Safety Standards",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "NFPA 2112",
+              "text": "Standard on flame-resistant clothing for protection of industrial personnel against short-duration thermal exposure from fire"
+            },
+            {
+              "title": "OSHA 1910.119",
+              "text": "Process safety management of highly hazardous chemicals in refineries and chemical plants"
+            },
+            {
+              "title": "API RP 2220",
+              "text": "American Petroleum Institute recommended practice for fire and explosion protection in refineries"
+            },
+            {
+              "title": "ANSI Z89.1 Type I Class E",
+              "text": "Hard hats rated for electrical insulation and impact protection in petrochemical environments"
+            },
+            {
+              "title": "EN ISO 11612",
+              "text": "Protective clothing against heat and flame — performance requirements for industrial garments"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All oil and gas PPE must carry valid NFPA, ANSI, or EN certifications and be included on the site operator's approved equipment list before deployment."
+        }
+      },
+      {
+        "key": "oil-gas-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What PPE is required for oil rig workers?",
+              "a": "Oil rig workers typically need FR coveralls, a hard hat, impact-resistant gloves, safety goggles, hearing protection, steel toe boots, and a personal H2S gas monitor."
+            },
+            {
+              "q": "Why is flame-resistant clothing mandatory in petrochemical plants?",
+              "a": "FR clothing self-extinguishes after flash fire exposure, reducing burn severity and giving workers critical seconds to escape, which is why OSHA and NFPA standards require it in flammable atmospheres."
+            },
+            {
+              "q": "What is the difference between FRC and arc-rated clothing?",
+              "a": "All arc-rated clothing is flame-resistant, but not all FR clothing is arc-rated. Arc-rated garments have a tested ATPV value for electrical arc flash hazards, while FRC is rated for flash fire per NFPA 2112."
+            },
+            {
+              "q": "How do you choose the right gloves for handling chemicals in refineries?",
+              "a": "Select gloves based on the specific chemicals handled using the manufacturer's chemical resistance chart. Nitrile works for oils and fuels, while butyl rubber is better for ketones and esters."
+            },
+            {
+              "q": "What safety certifications should oil and gas PPE have?",
+              "a": "Key certifications include NFPA 2112 for FR clothing, ANSI Z89.1 for hard hats, ANSI Z87.1 for eye protection, and EN 388 for gloves. Site-specific operator approvals may also be required."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Sourcing PPE for Oil, Gas, or Petrochemical Operations?",
+        "enabled": true,
+        "data": {
+          "text": "We supply FR clothing, chemical-resistant PPE, and gas detection equipment in bulk for drilling, refinery, and pipeline operations. All products carry NFPA, ANSI, and EN certifications.",
+          "title": "Sourcing PPE for Oil, Gas, or Petrochemical Operations?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-electrical-utility-work",
+    "title": "What PPE Is Required for Electrical and Utility Workers?",
+    "excerpt": "Electrical and utility workers face arc flash, electrocution, falls from height, and contact with live conductors. This guide covers insulated PPE, arc-rated clothing, voltage-rated tools, and compliance standards for power generation, transmission, and distribution work.",
+    "usageScenes": [
+      "height-work",
+      "fall-protection",
+      "impact-resistant",
+      "eye-protection",
+      "heavy-duty",
+      "construction"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 6,
+    "seoTitle": "Electrical PPE Supplier | Utility Worker Safety Gear",
+    "seoDescription": "PPE guide for electrical and utility workers. Arc flash clothing, insulated gloves, voltage-rated gear, and wholesale supply.",
+    "seoKeywords": "electrical PPE, utility worker safety, arc flash clothing, insulated gloves, voltage rated, NFPA 70E, ASTM F1506, dielectric boots, PPE supplier, wholesale, lineman PPE",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "PPE for Electrical and Utility Work: Arc Flash, Shock, and Fall Protection",
+        "enabled": true,
+        "data": {
+          "intro": "Electrical workers and utility line crews face life-threatening hazards including arc flash explosions, electric shock, falls from poles and towers, and contact with energized conductors. The following PPE is critical for safe electrical operations:",
+          "bullets": [
+            "Arc-rated (AR) clothing and flash suits",
+            "Voltage-rated insulating rubber gloves with leather protectors",
+            "Dielectric safety boots",
+            "Class E or G hard hats rated for electrical exposure",
+            "Arc-rated face shields and safety goggles",
+            "Fall protection harnesses for pole and tower work"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide helps electrical contractors, utility companies, and safety managers select properly rated PPE for each voltage class and task type, with reference to NFPA 70E arc flash categories, OSHA electrical safety standards, and ASTM testing requirements."
+          ]
+        }
+      },
+      {
+        "key": "electrical-hazards",
+        "type": "table",
+        "title": "Electrical and Utility Work Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Arc flash explosion",
+              "Severe burns, blindness",
+              "Arc-rated clothing and face shield (NFPA 70E rated)"
+            ],
+            [
+              "Electric shock from live conductors",
+              "Cardiac arrest, electrocution",
+              "Voltage-rated insulating gloves (ASTM D120)"
+            ],
+            [
+              "Step and touch potential",
+              "Electric shock through ground",
+              "Dielectric safety boots"
+            ],
+            [
+              "Falls from utility poles and towers",
+              "Fractures, fatality",
+              "Full body harness with shock-absorbing lanyard"
+            ],
+            [
+              "Dropped tools at height",
+              "Head trauma to workers below",
+              "Class E hard hat with chin strap"
+            ],
+            [
+              "UV radiation from arc flash",
+              "Eye burns, arc eye",
+              "Arc-rated safety goggles or face shield"
+            ],
+            [
+              "Contact with energized switchgear",
+              "Severe burns, amputation",
+              "Arc flash suit rated to incident energy level"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Electrical Tasks",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "impact-resistant",
+              "title": "Switchgear and Panel Work",
+              "checked": true,
+              "description": "Select arc-rated PPE matched to the incident energy level calculated for each switchgear enclosure.",
+              "items": [
+                "Arc flash suit (Category 2 or 4 depending on energy level)",
+                "Arc-rated face shield with balaclava",
+                "Voltage-rated insulating gloves with protectors",
+                "Dielectric overshoes"
+              ]
+            },
+            {
+              "scene": "height-work",
+              "title": "Overhead Line Work and Pole Climbing",
+              "checked": true,
+              "description": "Combine fall protection with electrical insulation for linemen working on energized or de-energized overhead lines.",
+              "items": [
+                "Full body harness with positioning lanyard",
+                "Class E hard hat with chin strap",
+                "Insulating rubber gloves (Class 2 or 3)",
+                "Flame-resistant work clothing"
+              ]
+            },
+            {
+              "scene": "fall-protection",
+              "title": "Transmission Tower Climbing",
+              "checked": true,
+              "description": "Provide 100% tie-off fall arrest and arc protection for workers ascending steel lattice towers.",
+              "items": [
+                "Tower climbing harness with twin lanyard",
+                "Arc-rated coveralls",
+                "Dielectric safety boots"
+              ]
+            },
+            {
+              "scene": "construction",
+              "title": "Underground Cable Installation",
+              "checked": true,
+              "description": "Protect against accidental contact with live buried cables and provide cut resistance during cable pulling.",
+              "items": [
+                "Voltage-rated insulating gloves",
+                "Cut-resistant outer gloves",
+                "Hard hat with face shield",
+                "Steel toe safety boots"
+              ]
+            },
+            {
+              "scene": "heavy-duty",
+              "title": "Transformer and Substation Maintenance",
+              "checked": true,
+              "description": "Use full arc flash protection and insulated tools when working near energized transformers and bus bars.",
+              "items": [
+                "Arc flash suit rated to site incident energy",
+                "Insulated hand tools (IEC 60900)",
+                "Arc-rated face shield",
+                "Dielectric boots"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Electrical Workers",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing electrical worker PPE protection points",
+          "items": [
+            {
+              "title": "Class E Hard Hats",
+              "text": "Electrically rated hard hats tested to 20,000V to protect against overhead impact and electrical contact",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Arc-Rated Face Shields",
+              "text": "Face shields and goggles rated for arc flash thermal energy exposure to prevent facial and eye burns",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "Arc-Rated Clothing",
+              "text": "FR shirts, pants, coveralls, and flash suits rated in cal/cm² matching the NFPA 70E hazard category",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "title": "Voltage-Rated Insulating Gloves",
+              "text": "Rubber insulating gloves tested per ASTM D120 with leather protectors, available in Classes 00 through 4",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Dielectric Safety Boots",
+              "text": "Electrically insulating boots that prevent current flow through the body from step potential",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Electrical PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Electrical PPE must be matched to the specific voltage class and arc flash incident energy level for each task. Conduct an arc flash study per NFPA 70E before selecting PPE categories.",
+            "Insulating rubber gloves require periodic retesting per ASTM D120 at intervals not exceeding six months. Establish a tracked retesting program with your PPE supplier.",
+            "Maintain a PPE log that records issuance, test dates, and inspection results for every voltage-rated item to satisfy OSHA and utility company audit requirements."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Electrical Safety Standards and Regulations",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "NFPA 70E",
+              "text": "Standard for electrical safety in the workplace — defines arc flash hazard categories and required PPE"
+            },
+            {
+              "title": "OSHA 1910.269",
+              "text": "Electric power generation, transmission, and distribution safety requirements"
+            },
+            {
+              "title": "ASTM D120",
+              "text": "Standard specification for rubber insulating gloves — voltage class ratings and periodic retesting"
+            },
+            {
+              "title": "ASTM F1506",
+              "text": "Standard performance specification for flame-resistant and arc-rated textile materials for wearing apparel"
+            },
+            {
+              "title": "IEC 61482-2",
+              "text": "Live working — protective clothing against thermal hazards of an electric arc"
+            },
+            {
+              "title": "ANSI Z89.1 Class E",
+              "text": "Hard hats rated for electrical insulation up to 20,000 volts phase to ground"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All electrical PPE must carry valid ASTM, NFPA, or IEC certifications and be periodically retested per applicable standards before each use cycle."
+        }
+      },
+      {
+        "key": "electrical-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What PPE is required for arc flash protection?",
+              "a": "Arc flash PPE includes arc-rated clothing matched to the incident energy level, an arc-rated face shield, voltage-rated gloves, and hearing protection. The specific category (1 through 4) is determined by an NFPA 70E arc flash study."
+            },
+            {
+              "q": "How often must insulating rubber gloves be tested?",
+              "a": "ASTM D120 requires that rubber insulating gloves be electrically retested at intervals not exceeding six months, or immediately after any suspected damage or puncture."
+            },
+            {
+              "q": "What is the difference between Class E and Class G hard hats?",
+              "a": "Class E hard hats are tested to 20,000V and intended for electrical work, while Class G hard hats are tested to 2,200V and suitable for general industry where lower voltage exposure exists."
+            },
+            {
+              "q": "Do electricians need fall protection PPE?",
+              "a": "Yes. Electricians working on utility poles, transmission towers, or elevated platforms above 4 feet (OSHA general industry) or 6 feet (construction) must use fall protection equipment including a full body harness."
+            },
+            {
+              "q": "What NFPA 70E arc flash categories require a full flash suit?",
+              "a": "NFPA 70E Category 3 and Category 4 hazards require a multi-layer arc flash suit, with Category 4 requiring a minimum arc rating of 40 cal/cm²."
+            },
+            {
+              "q": "Can electrical PPE be purchased in bulk for utility crews?",
+              "a": "Yes, most suppliers offer bulk pricing for utility-grade PPE including insulating gloves, arc-rated clothing, and Class E hard hats with custom branding and size assortment options."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Electrical or Utility Operations?",
+        "enabled": true,
+        "data": {
+          "text": "We supply voltage-rated gloves, arc flash clothing, dielectric boots, and Class E hard hats in bulk for electrical contractors and utility companies. All products meet NFPA 70E, ASTM, and OSHA requirements.",
+          "title": "Need PPE for Electrical or Utility Operations?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-chemical-processing",
+    "title": "How to Choose PPE for Chemical Processing Plant Workers?",
+    "excerpt": "Chemical processing plants expose workers to corrosive liquids, toxic vapors, reactive substances, and thermal hazards from exothermic reactions. This guide covers chemical-resistant PPE, respiratory protection, and compliance requirements for chemical plant environments.",
+    "usageScenes": [
+      "eye-protection",
+      "heavy-duty",
+      "slip-resistant",
+      "dusty-work",
+      "construction",
+      "wet-ground"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 7,
+    "seoTitle": "Chemical Plant PPE | Processing Safety Equipment",
+    "seoDescription": "PPE guide for chemical processing workers. Chemical-resistant suits, respirators, splash goggles, and bulk supply for plant safety.",
+    "seoKeywords": "chemical processing PPE, chemical resistant gloves, chemical suit, acid resistant, splash goggles, SCBA, OSHA 1910.132, EN 14605, PPE supplier, wholesale, chemical plant safety",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "PPE for Chemical Processing: Protecting Against Corrosives, Toxins, and Reactive Hazards",
+        "enabled": true,
+        "data": {
+          "intro": "Chemical processing facilities handle corrosive acids, caustic bases, organic solvents, and reactive compounds that can cause severe injury from skin contact, inhalation, or splash exposure. The following PPE is essential for safe chemical plant operations:",
+          "bullets": [
+            "Chemical-resistant suits and aprons",
+            "Chemical splash goggles and full-face shields",
+            "Nitrile, neoprene, or butyl rubber gloves",
+            "Supplied-air or cartridge respirators rated for chemical vapors",
+            "Chemical-resistant safety boots",
+            "Emergency eyewash and shower-compatible clothing"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide helps chemical plant managers and procurement teams select the correct PPE based on the specific chemicals handled, exposure routes, and concentration levels, with reference to OSHA PELs, NIOSH RELs, and EN chemical resistance standards."
+          ]
+        }
+      },
+      {
+        "key": "chemical-hazards",
+        "type": "table",
+        "title": "Chemical Processing Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Corrosive acid splashes (HCl, H2SO4)",
+              "Chemical burns to skin and eyes",
+              "Chemical splash goggles, face shield, acid-resistant suit"
+            ],
+            [
+              "Toxic vapor inhalation (chlorine, ammonia)",
+              "Respiratory damage, poisoning",
+              "Full-face respirator with appropriate cartridge or SCBA"
+            ],
+            [
+              "Organic solvent contact (toluene, MEK)",
+              "Dermatitis, organ damage",
+              "Nitrile or butyl rubber gloves, chemical-resistant apron"
+            ],
+            [
+              "Caustic liquid spills (NaOH, KOH)",
+              "Alkali burns to skin",
+              "Chemical-resistant boots and leg protection"
+            ],
+            [
+              "Exothermic reaction thermal release",
+              "Burns from superheated liquids",
+              "Heat-resistant gloves and face shield"
+            ],
+            [
+              "Pressurized chemical line rupture",
+              "High-velocity liquid injection injury",
+              "Full chemical suit with sealed seams"
+            ],
+            [
+              "Slippery floors from chemical spills",
+              "Slip and fall injuries",
+              "Chemical-resistant boots with anti-slip soles"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Chemical Processing Tasks",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "eye-protection",
+              "title": "Reactor Charging and Batch Processing",
+              "checked": true,
+              "description": "Protect against splash-back and vapor release when adding raw chemicals to reactors and mixing vessels.",
+              "items": [
+                "Chemical splash goggles",
+                "Full-face respirator with organic vapor cartridge",
+                "Nitrile chemical gloves (gauntlet length)",
+                "Chemical-resistant apron"
+              ]
+            },
+            {
+              "scene": "heavy-duty",
+              "title": "Pipe Fitting and Valve Maintenance",
+              "checked": true,
+              "description": "Use PPE that protects against residual chemical exposure when breaking containment on pipes, flanges, and valves.",
+              "items": [
+                "Chemical-resistant gloves",
+                "Face shield over safety goggles",
+                "Chemical-resistant coverall",
+                "Safety boots with chemical-resistant soles"
+              ]
+            },
+            {
+              "scene": "dusty-work",
+              "title": "Powder Handling and Dry Chemical Mixing",
+              "checked": true,
+              "description": "Control inhalation of toxic or irritant powder during weighing, dispensing, and blending operations.",
+              "items": [
+                "P3 particulate respirator or powered air-purifying respirator",
+                "Sealed safety goggles",
+                "Disposable chemical suit"
+              ]
+            },
+            {
+              "scene": "wet-ground",
+              "title": "Spill Response and Cleanup",
+              "checked": true,
+              "description": "Provide maximum chemical barrier protection for workers responding to accidental spills and leaks.",
+              "items": [
+                "Level B or Level A chemical suit",
+                "SCBA or supplied-air respirator",
+                "Chemical-resistant boot covers",
+                "Inner and outer chemical gloves"
+              ]
+            },
+            {
+              "scene": "slip-resistant",
+              "title": "Laboratory Analysis and Quality Control",
+              "checked": true,
+              "description": "Protect lab workers from small-volume chemical splashes during sampling, testing, and analysis procedures.",
+              "items": [
+                "Chemical splash goggles",
+                "Nitrile disposable gloves",
+                "Lab coat with chemical-resistant front"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Chemical Workers",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing chemical processing PPE protection points",
+          "items": [
+            {
+              "title": "Chemical-Resistant Hard Hats",
+              "text": "Hard hats resistant to chemical splash and drip that protect against overhead hazards in plant environments",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Chemical Splash Goggles",
+              "text": "Sealed, indirect-vent goggles that prevent liquid chemical entry from any angle",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "Respirators for Chemical Vapors",
+              "text": "Half-face or full-face respirators with OV/AG cartridges, or SCBA for IDLH atmospheres",
+              "bodyAnchorKey": "mouth"
+            },
+            {
+              "title": "Chemical-Resistant Gloves",
+              "text": "Gloves matched to the specific chemicals handled — nitrile for oils, butyl for ketones, Viton for aromatics",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Chemical Body Protection",
+              "text": "Chemical-resistant suits, aprons, or coveralls with sealed seams for full-body splash protection",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "title": "Chemical-Resistant Boots",
+              "text": "Boots resistant to acids, bases, and solvents with anti-slip soles for wet chemical plant floors",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Chemical Plant PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Chemical plant PPE must be selected based on the specific chemicals in use. Always consult the manufacturer's chemical resistance guide and Safety Data Sheets (SDS) before ordering gloves, suits, or respirator cartridges.",
+            "Establish separate PPE kits for routine operations, maintenance activities, and emergency spill response, each containing gear rated for the maximum exposure level of that scenario.",
+            "Track glove and respirator cartridge breakthrough times and establish maximum use durations to ensure PPE is replaced before chemical permeation compromises worker protection."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Chemical Safety Standards and Regulations",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "OSHA 1910.132",
+              "text": "General requirements for personal protective equipment in the workplace including hazard assessment"
+            },
+            {
+              "title": "OSHA 1910.134",
+              "text": "Respiratory protection program requirements including fit testing and medical evaluation"
+            },
+            {
+              "title": "EN 14605",
+              "text": "Chemical protective clothing — performance requirements for liquid-tight (Type 3) and spray-tight (Type 4) suits"
+            },
+            {
+              "title": "EN 374",
+              "text": "Protective gloves against dangerous chemicals and micro-organisms — permeation and degradation testing"
+            },
+            {
+              "title": "ANSI Z87.1",
+              "text": "Eye and face protection — chemical splash resistance ratings for goggles and face shields"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Ensure all chemical PPE carries EN 374 (gloves), EN 14605 (suits), or NIOSH certification (respirators) and matches the specific chemicals listed on your facility's SDS library."
+        }
+      },
+      {
+        "key": "chemical-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What gloves are best for handling corrosive acids?",
+              "a": "For concentrated acids like sulfuric or hydrochloric acid, butyl rubber or heavyweight nitrile gloves with gauntlet cuffs provide the best permeation resistance. Always verify against the manufacturer's chemical resistance chart."
+            },
+            {
+              "q": "When is a supplied-air respirator required in a chemical plant?",
+              "a": "SCBA or supplied-air respirators are required in IDLH (immediately dangerous to life or health) atmospheres, oxygen-deficient environments, or when airborne chemical concentrations exceed the capacity of cartridge-type respirators."
+            },
+            {
+              "q": "How do you determine the correct chemical suit type?",
+              "a": "Match the suit type to the exposure: Type 3 (liquid-tight) for pressurized splashes, Type 4 (spray-tight) for spray exposure, Type 5 for dry particles, and Type 6 for light splashes."
+            },
+            {
+              "q": "How often should chemical-resistant gloves be replaced?",
+              "a": "Replacement depends on the breakthrough time for the specific chemical. Disposable gloves should be changed after each task, while reusable gloves should be inspected before each use and replaced per the manufacturer's recommendation."
+            },
+            {
+              "q": "What PPE is needed for chemical spill emergency response?",
+              "a": "Chemical spill response typically requires a Level A or Level B chemical suit, SCBA, inner and outer chemical gloves, and chemical-resistant boot covers. The level depends on the chemical's toxicity and volatility."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Chemical Processing Facility?",
+        "enabled": true,
+        "data": {
+          "text": "We supply chemical-resistant gloves, suits, goggles, and respirators in bulk for chemical processing plants. All products include chemical resistance documentation and compliance certificates.",
+          "title": "Need PPE for Your Chemical Processing Facility?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-food-processing-agriculture",
+    "title": "What PPE Do Food Processing and Agricultural Workers Need?",
+    "excerpt": "Food processing plants and agricultural operations expose workers to machinery entanglement, sharp blades, cold storage environments, pesticide chemicals, and biological hazards. This guide covers hygienic PPE, cut protection, and compliance requirements for food-safe environments.",
+    "usageScenes": [
+      "cut-resistant",
+      "slip-resistant",
+      "wet-ground",
+      "eye-protection",
+      "heavy-duty",
+      "dusty-work"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 8,
+    "seoTitle": "Food Processing PPE | Agriculture Safety Equipment",
+    "seoDescription": "PPE guide for food processing and agriculture. Cut-resistant gloves, hygienic gear, cold storage PPE, and wholesale supply.",
+    "seoKeywords": "food processing PPE, agriculture safety equipment, cut resistant gloves food grade, stainless steel mesh gloves, cold storage PPE, pesticide PPE, FDA compliant, PPE supplier, wholesale",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "PPE for Food Processing and Agriculture: Hygiene, Cut Protection, and Chemical Safety",
+        "enabled": true,
+        "data": {
+          "intro": "Food processing and agricultural workers face a unique combination of hazards including rotating machinery, sharp cutting tools, extreme cold or heat, pesticide exposure, and strict hygiene requirements. The following PPE is essential for safe, compliant food and agriculture operations:",
+          "bullets": [
+            "Food-grade cut-resistant gloves and stainless steel mesh gloves",
+            "Slip-resistant, waterproof safety boots",
+            "Bump caps or lightweight hard hats for processing lines",
+            "Chemical-resistant gloves and coveralls for pesticide handling",
+            "Cold storage insulated PPE for freezer workers",
+            "Safety goggles and face shields for liquid splash protection"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide assists food processing plant managers, agricultural operations, and procurement teams in selecting PPE that meets both worker safety requirements and food hygiene regulations including FDA, HACCP, and EU food contact material standards."
+          ]
+        }
+      },
+      {
+        "key": "food-agriculture-hazards",
+        "type": "table",
+        "title": "Food Processing and Agriculture Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Cutting blades and deboning knives",
+              "Severe lacerations, amputation",
+              "Cut-resistant gloves (Level 5) or stainless steel mesh gloves"
+            ],
+            [
+              "Wet, greasy processing floors",
+              "Slip and fall injuries",
+              "Slip-resistant waterproof safety boots"
+            ],
+            [
+              "Cold storage and freezer environments",
+              "Hypothermia, frostbite",
+              "Insulated gloves, thermal coveralls, cold storage boots"
+            ],
+            [
+              "Pesticide and herbicide application",
+              "Skin absorption, poisoning",
+              "Chemical-resistant suit, nitrile gloves, respirator"
+            ],
+            [
+              "Machinery entanglement (conveyors, mixers)",
+              "Crush injuries, amputation",
+              "Close-fitting clothing, hair nets, no loose accessories"
+            ],
+            [
+              "Airborne grain dust and flour particles",
+              "Respiratory irritation, dust explosion risk",
+              "Dust mask or P2 respirator"
+            ],
+            [
+              "Hot liquids and steam (blanching, cooking)",
+              "Scald burns",
+              "Heat-resistant gloves, face shield, rubber apron"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Food and Agriculture Tasks",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "cut-resistant",
+              "title": "Meat Processing and Butchering",
+              "checked": true,
+              "description": "Provide maximum cut and puncture protection for workers handling knives, bone saws, and deboning tools.",
+              "items": [
+                "Stainless steel mesh gloves or Level 5 cut-resistant gloves",
+                "Cut-resistant forearm sleeve",
+                "Waterproof apron",
+                "Slip-resistant boots"
+              ]
+            },
+            {
+              "scene": "wet-ground",
+              "title": "Produce Washing and Packaging",
+              "checked": true,
+              "description": "Protect against wet conditions, repetitive motion strain, and contact with sanitizing chemicals on wash lines.",
+              "items": [
+                "Waterproof rubber gloves",
+                "Slip-resistant waterproof boots",
+                "Splash-proof safety goggles"
+              ]
+            },
+            {
+              "scene": "dusty-work",
+              "title": "Grain Handling and Milling",
+              "checked": true,
+              "description": "Control dust inhalation and minimize ignition risk during grain elevator, silo, and milling operations.",
+              "items": [
+                "P2 dust respirator",
+                "Anti-static safety boots",
+                "Safety goggles with anti-fog coating",
+                "Close-fitting coveralls"
+              ]
+            },
+            {
+              "scene": "heavy-duty",
+              "title": "Pesticide and Herbicide Application",
+              "checked": true,
+              "description": "Provide full-body chemical barrier protection for workers mixing and applying crop protection chemicals.",
+              "items": [
+                "Chemical-resistant coverall",
+                "Nitrile chemical gloves",
+                "Full-face respirator with OV/P3 cartridge",
+                "Chemical-resistant boots"
+              ]
+            },
+            {
+              "scene": "slip-resistant",
+              "title": "Cold Storage and Freezer Work",
+              "checked": true,
+              "description": "Prevent hypothermia and frostbite for workers operating in sub-zero cold rooms and blast freezers.",
+              "items": [
+                "Insulated thermal gloves",
+                "Cold storage safety boots (rated to -40°C)",
+                "Thermal coveralls with hood"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Food and Agriculture Workers",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing food processing PPE protection points",
+          "items": [
+            {
+              "title": "Bump Caps and Hair Nets",
+              "text": "Lightweight head protection that meets food hygiene requirements while guarding against bumps on low overhead structures",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Safety Goggles and Face Shields",
+              "text": "Splash-proof eye and face protection for liquid processing, chemical sanitizing, and pesticide handling",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "Cut-Resistant and Food-Grade Gloves",
+              "text": "Stainless steel mesh or HPPE fiber gloves that are detectable, washable, and rated for food contact",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Hygienic Coveralls and Aprons",
+              "text": "Close-fitting, washable coveralls and waterproof aprons that prevent contamination and protect against splashes",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "title": "Slip-Resistant Safety Boots",
+              "text": "Waterproof boots with SRC-rated anti-slip soles for wet processing floors, rated for cold storage if needed",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Food Processing PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Food processing PPE must meet dual requirements: worker safety and food hygiene. Ensure gloves and garments are FDA-compliant, detectable (metal or visually detectable materials), and suitable for regular sanitization.",
+            "When sourcing cut-resistant gloves for meat processing, specify the EN 388 cut level, food contact compliance, and whether stainless steel mesh or HPPE fiber is preferred for the specific cutting task.",
+            "Establish size matrices for your workforce and order PPE in the correct size distribution to maximize comfort, compliance, and protection effectiveness across all shifts."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Food Processing and Agriculture Safety Standards",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "OSHA 1910.132",
+              "text": "General PPE requirements including hazard assessment for food processing environments"
+            },
+            {
+              "title": "EN 388",
+              "text": "Mechanical protection for gloves — cut, puncture, tear, and abrasion resistance levels"
+            },
+            {
+              "title": "EN 1082-1",
+              "text": "Protective clothing — chain mail gloves and arm guards for manual cutting in food processing"
+            },
+            {
+              "title": "FDA 21 CFR 174-179",
+              "text": "Food contact material regulations for gloves and clothing that directly contact food products"
+            },
+            {
+              "title": "EPA Worker Protection Standard (40 CFR 170)",
+              "text": "PPE requirements for agricultural workers handling pesticides and restricted-use chemicals"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "Food processing PPE must carry both safety certifications (EN 388, ISO 20345) and food contact compliance (FDA or EU Regulation 1935/2004) to be used on production lines."
+        }
+      },
+      {
+        "key": "food-agriculture-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What gloves are best for meat processing and butchering?",
+              "a": "Stainless steel mesh gloves provide the highest cut protection for butchering. For lighter cutting tasks, HPPE Level 5 cut-resistant gloves with food-grade coating offer better dexterity."
+            },
+            {
+              "q": "What PPE is required for pesticide application in agriculture?",
+              "a": "Pesticide applicators need a chemical-resistant coverall, nitrile gloves, a full-face respirator with OV/P3 cartridges, chemical-resistant boots, and a hat. Specific requirements are listed on each pesticide label."
+            },
+            {
+              "q": "Are food processing gloves required to be metal detectable?",
+              "a": "Many food processors require metal-detectable or visually detectable gloves as part of HACCP foreign body control plans. Blue-colored gloves with metal strips are commonly specified."
+            },
+            {
+              "q": "What boots are suitable for food processing wet floors?",
+              "a": "White or light-colored PU or rubber boots with SRC-rated anti-slip soles and steel or composite toe caps are standard for food processing environments where floors are regularly washed."
+            },
+            {
+              "q": "What PPE do cold storage freezer workers need?",
+              "a": "Freezer workers need insulated thermal gloves, cold-rated safety boots (typically rated to -30°C or -40°C), thermal coveralls or jackets, and a balaclava or thermal hat for extended exposure."
+            },
+            {
+              "q": "How do you sanitize reusable food processing PPE?",
+              "a": "Most food-grade PPE can be sanitized using approved food-contact sanitizers. Stainless steel mesh gloves are autoclavable, and HPPE gloves can typically be machine washed up to 50 cycles without losing cut resistance."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Food Processing or Agricultural Operations?",
+        "enabled": true,
+        "data": {
+          "text": "We supply food-grade cut-resistant gloves, hygienic boots, chemical-resistant coveralls, and cold storage PPE in bulk for food processors and agricultural operations. All products meet FDA and EN safety standards.",
+          "title": "Need PPE for Food Processing or Agricultural Operations?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-welding-metalworking",
+    "title": "What PPE Is Essential for Welding and Metalworking?",
+    "excerpt": "Welding and metalworking expose operators to intense UV/IR radiation, molten metal spatter, toxic fumes, extreme heat, and flying metal particles. This guide covers welding helmets, flame-resistant clothing, respiratory protection, and compliance standards for welding shops and field operations.",
+    "usageScenes": [
+      "heavy-duty",
+      "eye-protection",
+      "impact-resistant",
+      "cut-resistant",
+      "dusty-work",
+      "steel-work"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 9,
+    "seoTitle": "Welding PPE Supplier | Metalworking Safety Equipment",
+    "seoDescription": "PPE guide for welding and metalworking. Welding helmets, FR clothing, fume respirators, and wholesale supply for fabrication shops.",
+    "seoKeywords": "welding PPE, metalworking safety equipment, welding helmet auto darkening, FR welding jacket, welding respirator, ANSI Z87.1, ANSI Z49.1, EN 175, PPE supplier, wholesale",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "PPE for Welding and Metalworking: Heat, Radiation, and Fume Protection",
+        "enabled": true,
+        "data": {
+          "intro": "Welding and metalworking operations generate intense ultraviolet and infrared radiation, molten metal spatter, toxic welding fumes containing manganese and hexavalent chromium, and sharp metal edges. The following PPE is essential for welder and fabricator safety:",
+          "bullets": [
+            "Auto-darkening welding helmets with appropriate shade lenses",
+            "Flame-resistant welding jackets and leather aprons",
+            "Welding fume respirators (P100 or supplied air)",
+            "Heat-resistant welding gloves (MIG, TIG, or stick-specific)",
+            "Safety goggles for grinding and cutting operations",
+            "Steel toe boots with metatarsal guards and spatter protection"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide helps welding shop owners, fabrication managers, and procurement teams select process-specific PPE for MIG, TIG, stick, and plasma operations, with reference to ANSI Z49.1, OSHA welding safety standards, and EN welding protection requirements."
+          ]
+        }
+      },
+      {
+        "key": "welding-hazards",
+        "type": "table",
+        "title": "Welding and Metalworking Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "UV/IR radiation from arc",
+              "Arc eye (photokeratitis), retinal damage",
+              "Welding helmet with correct shade lens (shade 10-13)"
+            ],
+            [
+              "Molten metal spatter",
+              "Skin burns, clothing ignition",
+              "FR welding jacket and leather apron"
+            ],
+            [
+              "Welding fumes (Mn, Cr VI, Zn)",
+              "Metal fume fever, lung disease, cancer",
+              "P100 respirator or supplied-air respirator"
+            ],
+            [
+              "Flying grinding sparks and metal chips",
+              "Eye lacerations, embedded particles",
+              "Safety goggles with side shields (ANSI Z87.1)"
+            ],
+            [
+              "Sharp metal edges and burrs",
+              "Hand cuts and lacerations",
+              "Cut-resistant gloves for material handling"
+            ],
+            [
+              "Hot workpieces and slag",
+              "Contact burns to hands",
+              "Heat-resistant welding gloves (gauntlet style)"
+            ],
+            [
+              "Loud grinding and plasma cutting",
+              "Noise-induced hearing loss",
+              "Earplugs rated NRR 22+ under welding helmet"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Welding and Metalworking Tasks",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "steel-work",
+              "title": "MIG and Flux-Core Welding",
+              "checked": true,
+              "description": "Select PPE that protects against high spatter volume and continuous fume generation from MIG and FCAW processes.",
+              "items": [
+                "Auto-darkening helmet (shade 10-13)",
+                "Heavy-duty leather welding gloves",
+                "FR welding jacket with snap closures",
+                "P100 welding fume respirator"
+              ]
+            },
+            {
+              "scene": "eye-protection",
+              "title": "TIG Welding and Precision Fabrication",
+              "checked": true,
+              "description": "Use PPE that allows dexterity for precise torch control while maintaining UV and heat protection.",
+              "items": [
+                "Auto-darkening helmet (shade 8-13 adjustable)",
+                "Thin leather or deerskin TIG gloves",
+                "FR long-sleeve shirt",
+                "Safety glasses under helmet"
+              ]
+            },
+            {
+              "scene": "impact-resistant",
+              "title": "Grinding, Cutting, and Deburring",
+              "checked": true,
+              "description": "Protect against high-velocity metal chips, sparks, and disc fragments during angle grinding and cutting operations.",
+              "items": [
+                "Full-face grinding shield (ANSI Z87.1+)",
+                "Cut-resistant gloves with impact protection",
+                "Hearing protection earplugs",
+                "Leather apron"
+              ]
+            },
+            {
+              "scene": "heavy-duty",
+              "title": "Plasma and Oxy-Fuel Cutting",
+              "checked": true,
+              "description": "Address intense heat, UV radiation, and molten metal ejection from thermal cutting processes.",
+              "items": [
+                "Cutting goggles or shade 5 face shield",
+                "Heat-resistant gauntlet gloves",
+                "FR clothing with no synthetic content",
+                "Steel toe boots with spatter guards"
+              ]
+            },
+            {
+              "scene": "dusty-work",
+              "title": "Stainless Steel and Galvanized Welding",
+              "checked": true,
+              "description": "Prioritize respiratory protection against hexavalent chromium and zinc oxide fumes from these high-risk materials.",
+              "items": [
+                "Supplied-air respirator or powered air-purifying respirator",
+                "Auto-darkening welding helmet",
+                "FR coveralls"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Welders and Fabricators",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing welding PPE protection points",
+          "items": [
+            {
+              "title": "Welding Helmets",
+              "text": "Auto-darkening helmets with variable shade control, meeting ANSI Z87.1 and EN 175 for UV/IR filtering",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Safety Goggles for Grinding",
+              "text": "Impact-rated goggles and face shields for grinding, cutting, and chipping operations between welds",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "Welding Fume Respirators",
+              "text": "P100 particulate respirators or PAPRs rated for metal fumes including manganese and hexavalent chromium",
+              "bodyAnchorKey": "mouth"
+            },
+            {
+              "title": "Welding Gloves",
+              "text": "Process-specific gloves — heavy leather for MIG/stick, thin deerskin for TIG, heat-resistant gauntlets for cutting",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "FR Clothing and Leather Aprons",
+              "text": "Flame-resistant jackets, sleeves, and leather aprons that prevent clothing ignition from spatter and sparks",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "title": "Welding Safety Boots",
+              "text": "Steel toe boots with metatarsal guards and spatter-resistant leather uppers to prevent molten metal burns",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Welding PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Welding PPE should be procured based on the specific welding process (MIG, TIG, stick, plasma) since each process generates different levels of spatter, fume, and radiation requiring different protection grades.",
+            "When ordering welding helmets in bulk, verify the auto-darkening speed (1/25,000 second or faster), shade range, number of sensors (minimum 3 for field work), and battery type to match your welding applications.",
+            "Welding fume respirators must be selected based on the base material being welded. Stainless steel and galvanized work requires higher protection levels (PAPR or supplied air) due to hexavalent chromium and zinc oxide exposure."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Welding Safety Standards and Regulations",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "ANSI Z49.1",
+              "text": "Safety in welding, cutting, and allied processes — comprehensive safety requirements for welding operations"
+            },
+            {
+              "title": "OSHA 1910.252",
+              "text": "General requirements for welding, cutting, and brazing including fire prevention and ventilation"
+            },
+            {
+              "title": "ANSI Z87.1",
+              "text": "Eye and face protection — impact and radiation filter requirements for welding helmets and grinding shields"
+            },
+            {
+              "title": "EN 175",
+              "text": "Personal eye protection — welding and allied techniques, specifying filter shade and mechanical strength"
+            },
+            {
+              "title": "EN ISO 11611",
+              "text": "Protective clothing for welding and allied processes — material and design requirements for welding garments"
+            },
+            {
+              "title": "EN 388",
+              "text": "Protective gloves against mechanical risks — cut and abrasion ratings for metal handling gloves"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All welding PPE should carry ANSI Z87.1 certification for eye protection, EN ISO 11611 for welding clothing, and NIOSH approval for welding fume respirators."
+        }
+      },
+      {
+        "key": "welding-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What shade lens do I need for MIG welding?",
+              "a": "MIG welding at typical amperages (100-300A) requires a shade 10 to 13 lens. Higher amperages need darker shades. ANSI Z49.1 provides a shade selection chart based on welding process and current."
+            },
+            {
+              "q": "Do welders need a respirator when welding indoors?",
+              "a": "Yes, OSHA requires respiratory protection when welding fume concentrations exceed permissible exposure limits. Indoor welding without adequate ventilation almost always requires at minimum a P100 respirator."
+            },
+            {
+              "q": "What is the difference between MIG and TIG welding gloves?",
+              "a": "MIG gloves are thick, heavily insulated leather gauntlets for high spatter, while TIG gloves are thin deerskin or goatskin that allow precise torch and filler rod manipulation with less heat exposure."
+            },
+            {
+              "q": "Is auto-darkening welding helmet better than passive?",
+              "a": "Auto-darkening helmets improve productivity by eliminating the need to flip the helmet before each weld, reducing neck strain and allowing continuous viewing of the joint. They are preferred for production welding."
+            },
+            {
+              "q": "What PPE is needed for welding stainless steel?",
+              "a": "Stainless steel welding produces hexavalent chromium fumes, a known carcinogen. A PAPR or supplied-air respirator is recommended in addition to standard welding PPE including helmet, FR clothing, and gloves."
+            },
+            {
+              "q": "Can welding PPE be customized with company logos?",
+              "a": "Yes, welding helmets, FR jackets, and leather aprons can be customized with company logos and worker names through screen printing, embroidery, or decal application on bulk orders."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Your Welding Shop or Fabrication Facility?",
+        "enabled": true,
+        "data": {
+          "text": "We supply auto-darkening welding helmets, FR clothing, welding gloves, and fume respirators in bulk for fabrication shops and field welding crews. All products meet ANSI, EN, and OSHA requirements.",
+          "title": "Need PPE for Your Welding Shop or Fabrication Facility?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
+  },
+  {
+    "slug": "ppe-safety-equipment-for-road-construction-municipal-works",
+    "title": "What PPE Is Needed for Road Construction and Municipal Workers?",
+    "excerpt": "Road construction and municipal works expose crews to moving traffic, heavy paving equipment, asphalt fumes, UV sun exposure, and trench collapse hazards. This guide covers high-visibility PPE, heat protection, respiratory gear, and compliance standards for roadway and public works projects.",
+    "usageScenes": [
+      "construction",
+      "slip-resistant",
+      "heavy-duty",
+      "dusty-work",
+      "impact-resistant",
+      "eye-protection"
+    ],
+    "coverImage": "",
+    "isActive": true,
+    "sortOrder": 10,
+    "seoTitle": "Road Construction PPE | Municipal Works Safety Gear",
+    "seoDescription": "PPE guide for road construction and municipal workers. Hi-vis gear, heat protection, traffic safety PPE, and wholesale supply.",
+    "seoKeywords": "road construction PPE, municipal works safety, high visibility clothing, ANSI 107, traffic safety vest, asphalt PPE, trench safety, PPE supplier, wholesale, highway worker PPE",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "PPE for Road Construction and Municipal Works: Traffic Safety, Heat Protection, and Visibility",
+        "enabled": true,
+        "data": {
+          "intro": "Road construction and municipal workers operate in active traffic zones, near heavy paving and excavation equipment, and in all weather conditions. The primary hazards include vehicle strikes, asphalt burns, trench collapse, and prolonged UV exposure. The following PPE is essential:",
+          "bullets": [
+            "ANSI/ISEA 107 Class 2 or Class 3 high-visibility vests and clothing",
+            "Safety helmets with sun shields and reflective strips",
+            "Heat-resistant gloves for hot-mix asphalt handling",
+            "Steel toe safety boots with puncture-resistant soles",
+            "Safety goggles and dust respirators for milling and grinding",
+            "Sun protection including UV-blocking neck shades and sunscreen"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This guide helps road construction contractors, municipal public works departments, and procurement teams select the correct PPE for paving, milling, trenching, and traffic control operations, with reference to MUTCD, ANSI/ISEA 107, and OSHA roadway work zone safety requirements."
+          ]
+        }
+      },
+      {
+        "key": "road-construction-hazards",
+        "type": "table",
+        "title": "Road Construction and Municipal Works Hazards and Required PPE",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
+          "rows": [
+            [
+              "Moving traffic through work zones",
+              "Vehicle strike, fatality",
+              "ANSI 107 Class 3 hi-vis vest or clothing"
+            ],
+            [
+              "Hot-mix asphalt and tar",
+              "Severe contact burns",
+              "Heat-resistant gloves, long sleeves, face shield"
+            ],
+            [
+              "Milling machine dust and silica",
+              "Silicosis, respiratory disease",
+              "P2/N95 respirator or higher"
+            ],
+            [
+              "Trench collapse during utility work",
+              "Suffocation, crush injuries",
+              "Hard hat, safety boots, trench box (engineering control)"
+            ],
+            [
+              "Prolonged UV sun exposure",
+              "Heat stroke, skin cancer",
+              "Wide-brim hard hat shade, UV neck cover, sunscreen"
+            ],
+            [
+              "Jackhammer and compactor vibration",
+              "HAVS, musculoskeletal disorders",
+              "Anti-vibration gloves, hearing protection"
+            ],
+            [
+              "Sharp rebar and exposed utilities",
+              "Puncture wounds, lacerations",
+              "Puncture-resistant boots, cut-resistant gloves"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "taskCards",
+        "title": "PPE for Different Road and Municipal Tasks",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "construction",
+              "title": "Asphalt Paving and Hot-Mix Operations",
+              "checked": true,
+              "description": "Protect workers from burns, asphalt fumes, and radiant heat during paving, rolling, and compaction operations.",
+              "items": [
+                "Heat-resistant gloves rated for hot-mix contact",
+                "Safety boots with heat-resistant soles",
+                "ANSI 107 Class 3 hi-vis vest",
+                "Safety goggles with anti-fog coating"
+              ]
+            },
+            {
+              "scene": "dusty-work",
+              "title": "Road Milling and Concrete Cutting",
+              "checked": true,
+              "description": "Control silica dust and noise exposure during pavement milling, sawcutting, and concrete removal operations.",
+              "items": [
+                "N95 or P2 respirator for silica dust",
+                "Sealed safety goggles",
+                "NRR 25+ earmuffs",
+                "Hi-vis clothing"
+              ]
+            },
+            {
+              "scene": "heavy-duty",
+              "title": "Trenching and Utility Installation",
+              "checked": true,
+              "description": "Provide head, foot, and hand protection for workers in and around excavated trenches for utility pipe and cable installation.",
+              "items": [
+                "Hard hat with chin strap",
+                "Steel toe boots with puncture-resistant sole",
+                "Cut-resistant gloves",
+                "Hi-vis vest"
+              ]
+            },
+            {
+              "scene": "impact-resistant",
+              "title": "Traffic Control and Flagging",
+              "checked": true,
+              "description": "Maximize visibility and impact protection for flaggers and traffic control personnel working in active traffic lanes.",
+              "items": [
+                "ANSI 107 Class 3 hi-vis vest or jacket",
+                "Hard hat with reflective strips",
+                "Safety boots with reflective elements"
+              ]
+            },
+            {
+              "scene": "slip-resistant",
+              "title": "Sewer and Drainage Maintenance",
+              "checked": true,
+              "description": "Protect municipal workers from biological hazards, confined space atmosphere, and slippery conditions in sewer systems.",
+              "items": [
+                "Waterproof safety boots with anti-slip soles",
+                "Nitrile chemical gloves",
+                "Multi-gas detector",
+                "Hi-vis waterproof jacket"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "essential-categories",
+        "type": "list",
+        "title": "Essential PPE Categories for Road and Municipal Workers",
+        "enabled": true,
+        "data": {
+          "image": "/body.png",
+          "imageAlt": "Body map showing road construction PPE protection points",
+          "items": [
+            {
+              "title": "Safety Helmets with Visibility",
+              "text": "Hard hats with retroreflective strips, sun shades, and chin straps for work zone and traffic-adjacent operations",
+              "bodyAnchorKey": "head"
+            },
+            {
+              "title": "Safety Goggles and Face Shields",
+              "text": "Dust-sealed goggles for milling and cutting, and face shields for hot asphalt splash protection",
+              "bodyAnchorKey": "eyes"
+            },
+            {
+              "title": "High-Visibility Clothing",
+              "text": "ANSI/ISEA 107 Class 2 or 3 vests, jackets, and pants with fluorescent and retroreflective materials for traffic zones",
+              "bodyAnchorKey": "chest"
+            },
+            {
+              "title": "Heat and Cut-Resistant Gloves",
+              "text": "Heat-resistant gloves for asphalt handling and cut-resistant gloves for rebar and utility work",
+              "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Road Work Safety Boots",
+              "text": "Steel toe boots with puncture-resistant midsoles, heat-resistant soles, and hi-vis reflective elements",
+              "bodyAnchorKey": "feet"
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Procurement Guidance for Road Construction PPE",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Road construction PPE procurement should prioritize ANSI/ISEA 107 Class 3 high-visibility clothing as the baseline for all workers in traffic-adjacent work zones, as required by MUTCD and most state DOT specifications.",
+            "When sourcing PPE for paving crews, include heat-resistant gloves rated for sustained contact with hot-mix asphalt (typically 150°C+), boots with heat-resistant soles, and lightweight FR clothing for summer operations.",
+            "Municipal works departments should establish seasonal PPE kits: summer kits with UV protection, cooling vests, and lightweight hi-vis; winter kits with insulated hi-vis jackets, thermal gloves, and ice-grip boot attachments."
+          ]
+        }
+      },
+      {
+        "key": "safety-standards",
+        "type": "list",
+        "title": "Road Construction Safety Standards and Regulations",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "ANSI/ISEA 107",
+              "text": "High-visibility safety apparel and headwear — Class 1, 2, and 3 requirements for worker visibility in traffic zones"
+            },
+            {
+              "title": "MUTCD (FHWA)",
+              "text": "Manual on Uniform Traffic Control Devices — requires high-visibility clothing for all workers in highway work zones"
+            },
+            {
+              "title": "OSHA 1926 Subpart P",
+              "text": "Excavation and trenching safety requirements including protective systems and PPE for trench workers"
+            },
+            {
+              "title": "OSHA Silica Rule (1926.1153)",
+              "text": "Respirable crystalline silica standard requiring dust controls and respiratory protection for concrete and asphalt cutting"
+            },
+            {
+              "title": "EN ISO 20471",
+              "text": "High-visibility clothing — test methods and requirements equivalent to ANSI 107 for international projects"
+            }
+          ]
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "All road construction PPE must meet ANSI/ISEA 107 for high visibility and applicable OSHA construction standards. State DOT projects may have additional PPE specifications."
+        }
+      },
+      {
+        "key": "road-construction-faq",
+        "type": "faq",
+        "title": "Frequently Asked Questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "What class of high-visibility vest is required for road construction?",
+              "a": "MUTCD and most state DOTs require ANSI/ISEA 107 Class 2 minimum for daytime work and Class 3 for nighttime or high-speed traffic zones. Flaggers typically require Class 3 regardless of time of day."
+            },
+            {
+              "q": "What PPE protects against hot asphalt burns?",
+              "a": "Heat-resistant gloves rated for 150°C+ contact, long-sleeve shirts, full-length pants, and safety boots with heat-resistant soles protect against hot-mix asphalt contact burns."
+            },
+            {
+              "q": "Is a respirator required for road milling and concrete cutting?",
+              "a": "Yes, OSHA's silica rule (1926.1153) requires respiratory protection when respirable crystalline silica exposure exceeds the PEL of 50 µg/m³, which is common during milling and sawcutting operations."
+            },
+            {
+              "q": "What PPE do traffic flaggers need on highway projects?",
+              "a": "Flaggers need ANSI 107 Class 3 high-visibility clothing, a hard hat with reflective strips, safety boots, and a stop/slow paddle. Some jurisdictions also require safety glasses and hearing protection."
+            },
+            {
+              "q": "How do you protect road workers from heat stroke in summer?",
+              "a": "Use lightweight, breathable hi-vis clothing, cooling vests, wide-brim hard hat sun shades, UV-protective neck covers, and implement mandatory hydration and rest break schedules per OSHA heat illness guidance."
+            },
+            {
+              "q": "Can high-visibility PPE be purchased in bulk with custom logos?",
+              "a": "Yes, hi-vis vests, jackets, and shirts can be custom-printed or embroidered with company logos and worker names while maintaining ANSI 107 compliance, provided the print does not cover retroreflective tape."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Need PPE for Road Construction or Municipal Projects?",
+        "enabled": true,
+        "data": {
+          "text": "We supply ANSI 107 high-visibility clothing, heat-resistant gloves, safety boots, and dust respirators in bulk for road contractors and municipal departments. All products meet MUTCD, OSHA, and state DOT requirements.",
+          "title": "Need PPE for Road Construction or Municipal Projects?",
+          "primaryHref": "/quote",
+          "primaryLabel": "Request a Quote",
+          "secondaryHref": "/contact",
+          "secondaryLabel": "Contact Us"
+        }
+      }
+    ],
+    "productLinks": []
   }
 ]
