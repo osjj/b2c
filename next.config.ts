@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ['playwright', 'sharp'],
   images: {
     remotePatterns: [
       {
@@ -22,6 +23,18 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: '*.aitohumanize.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.1688.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.alicdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cbu01.alicdn.com',
       },
     ],
   },

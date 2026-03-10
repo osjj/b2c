@@ -5,6 +5,9 @@ import type {
   ThirdPartyImageResponse,
 } from '@/types/ai-generation'
 
+// Allow up to 5 minutes for the polling loop to complete
+export const maxDuration = 300
+
 interface RequestBody {
   url: string
   apiKey: string

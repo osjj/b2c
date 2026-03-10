@@ -19,7 +19,22 @@
       "Bash(node -e:*)",
       "Bash(cd D:/project/b2c-store && npx tsx -e \"\nimport { PrismaClient } from '@prisma/client';\nconst p = new PrismaClient\\(\\);\nasync function run\\(\\) {\n  const rows = await p.\\\\$queryRawUnsafe\\(\\\\\"SELECT cover_image, COUNT\\(*\\)::int as cnt FROM solutions GROUP BY cover_image ORDER BY cnt DESC LIMIT 10\\\\\"\\);\n  console.log\\(JSON.stringify\\(rows, null, 2\\)\\);\n  await p.\\\\$disconnect\\(\\);\n}\nrun\\(\\);\n\" 2>&1)",
       "Bash(cd D:/project/b2c-store && npx tsx -e \"\nimport { PrismaClient } from '@prisma/client'\nconst p = new PrismaClient\\(\\)\nasync function run\\(\\) {\n  const all = await p.solution.findMany\\({ select: { slug: true, coverImage: true } }\\)\n  const nullCount = all.filter\\(s => s.coverImage === null\\).length\n  const emptyCount = all.filter\\(s => s.coverImage === ''\\).length\n  const hasImage = all.filter\\(s => s.coverImage && s.coverImage.length > 0\\).length\n  console.log\\('total:', all.length, 'null:', nullCount, 'empty string:', emptyCount, 'has image:', hasImage\\)\n  if \\(emptyCount > 0\\) {\n    console.log\\('\\\\\\\\nSample empty:', all.filter\\(s => s.coverImage === ''\\).slice\\(0, 3\\).map\\(s => s.slug\\)\\)\n  }\n  await p.\\\\$disconnect\\(\\)\n}\nrun\\(\\)\n\" 2>&1)",
-      "Bash(cd D:/project/b2c-store && npx tsx prisma/check-covers.ts 2>&1)"
+      "Bash(cd D:/project/b2c-store && npx tsx prisma/check-covers.ts 2>&1)",
+      "Bash(grep:*)",
+      "Bash(npx tsx:*)",
+      "Bash(xargs:*)",
+      "Bash(npx playwright:*)",
+      "Bash(node:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "additionalDirectories": [
+      "d:\\project\\b2c-store\\docs\\plans",
+      "d:\\project\\b2c-store",
+      "\\tmp"
     ]
   }
 }

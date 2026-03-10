@@ -101,9 +101,19 @@ export function ProductForm({ product, categories, collections = [], productColl
   )
   const [slug, setSlug] = useState(product?.slug || '')
   const [selectedCollections, setSelectedCollections] = useState<string[]>(productCollectionIds)
-  const [specifications, setSpecifications] = useState<Specification[]>(
-    (product?.specifications as Specification[]) || []
-  )
+  const [specifications, setSpecifications] = useState<Specification[]>(() => {
+    const raw = product?.specifications
+    if (!raw) return []
+    // 数组格式（新商品正常保存的格式）
+    if (Array.isArray(raw)) return raw as Specification[]
+    // 对象格式（1688 采集商品保存的格式：{ key: value }）
+    if (typeof raw === 'object') {
+      return Object.entries(raw as Record<string, unknown>)
+        .filter(([, v]) => typeof v === 'string')
+        .map(([name, value]) => ({ name, value: String(value) }))
+    }
+    return []
+  })
   const [content, setContent] = useState<EditorJSData | null>(
     (product?.content as EditorJSData) || null
   )

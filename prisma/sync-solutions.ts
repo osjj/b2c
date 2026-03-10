@@ -126,20 +126,26 @@ async function main() {
       continue
     }
 
+    // Only overwrite coverImage if the JSON explicitly provides a non-null value,
+    // so that images set via admin UI are preserved during sync.
+    const updateData: Record<string, unknown> = {
+      slug: solution.slug,
+      title: solution.title,
+      excerpt: solution.excerpt,
+      usageScenes: solution.usageScenes,
+      isActive: solution.isActive,
+      sortOrder: solution.sortOrder,
+      seoTitle: solution.seoTitle,
+      seoDescription: solution.seoDescription,
+      seoKeywords: solution.seoKeywords,
+    }
+    if (solution.coverImage) {
+      updateData.coverImage = solution.coverImage
+    }
+
     await prisma.solution.update({
       where: { id: existing.id },
-      data: {
-        slug: solution.slug,
-        title: solution.title,
-        excerpt: solution.excerpt,
-        usageScenes: solution.usageScenes,
-        coverImage: solution.coverImage,
-        isActive: solution.isActive,
-        sortOrder: solution.sortOrder,
-        seoTitle: solution.seoTitle,
-        seoDescription: solution.seoDescription,
-        seoKeywords: solution.seoKeywords,
-      },
+      data: updateData,
     })
 
     await prisma.solutionSection.deleteMany({

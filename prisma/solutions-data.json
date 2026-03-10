@@ -106,11 +106,16 @@
         "data": {
           "cards": [
             {
-              "items": [],
+              "items": [
+                "Safety helmet with chin strap",
+                "Hi-vis reflective vest (Class 2+)",
+                "Steel-toe safety boots with puncture-resistant sole",
+                "Cut-resistant work gloves"
+              ],
               "scene": "construction",
               "title": "Construction",
               "checked": true,
-              "description": ""
+              "description": "Core PPE for general construction site entry and daily tasks — provides baseline head, foot, hand, and visibility protection across all trades."
             },
             {
               "items": [
@@ -136,53 +141,83 @@
               "description": "Prioritize cut, puncture, and impact protection for repetitive handling of sharp or abrasive construction materials."
             },
             {
-              "items": [],
+              "items": [
+                "Type I or Type II safety helmet",
+                "Safety glasses with side shields",
+                "Reinforced shoulder and back protection where required"
+              ],
               "scene": "falling-objects",
               "title": "Falling Objects",
               "checked": true,
-              "description": ""
+              "description": "Choose impact-rated head and eye protection designed for zones where tools, materials, or debris may fall from overhead work areas."
             },
             {
-              "items": [],
+              "items": [
+                "Full body harness (5-point adjustment)",
+                "Shock-absorbing lanyard or self-retracting lifeline",
+                "Anchor connector and rope grab",
+                "Helmet with chin strap rated for fall scenarios"
+              ],
               "scene": "fall-protection",
               "title": "Fall Protection",
               "checked": true,
-              "description": ""
+              "description": "Personal fall arrest systems for work above 1.8 m — ensure harness fit, proper anchorage, and clear fall distance before each use."
             },
             {
-              "items": [],
+              "items": [
+                "Heavy-duty impact-resistant gloves",
+                "Steel-toe boots with metatarsal guard",
+                "Safety helmet with face shield attachment",
+                "Hearing protection (earmuffs NRR 25+)"
+              ],
               "scene": "heavy-duty",
               "title": "Heavy Duty",
               "checked": true,
-              "description": ""
+              "description": "Reinforced PPE for tasks involving heavy machinery, power tools, and large material handling — prioritizes impact absorption and crush resistance."
             },
             {
-              "items": [],
+              "items": [
+                "Impact-resistant safety glasses (ANSI Z87.1+)",
+                "Safety helmet with impact liner",
+                "TPR back-of-hand impact gloves"
+              ],
               "scene": "impact-resistant",
               "title": "Impact Resistant",
               "checked": true,
-              "description": ""
+              "description": "PPE rated for high-energy impacts from tools, flying fragments, and material kickback — select based on specific impact energy levels of the task."
             },
             {
-              "items": [],
+              "items": [
+                "Anti-slip safety boots (SRC rated outsole)",
+                "Waterproof boot covers for wet conditions",
+                "Non-slip work gloves with textured grip"
+              ],
               "scene": "slip-resistant",
               "title": "Slip Resistant",
               "checked": true,
-              "description": ""
+              "description": "Traction-focused footwear and grip gear for wet, oily, or uneven surfaces — essential on scaffolding, ramps, and freshly poured concrete areas."
             },
             {
-              "items": [],
+              "items": [
+                "Cut-resistant gloves (ANSI A4 or higher)",
+                "Cut-resistant sleeves for forearm protection",
+                "Safety glasses with side shields"
+              ],
               "scene": "cut-resistant",
               "title": "Cut Resistant",
-              "checked": false,
-              "description": ""
+              "checked": true,
+              "description": "Blade and edge protection for handling sheet metal, rebar, glass, and sharp-edged materials — match cut level rating to the sharpness of materials handled."
             },
             {
-              "items": [],
+              "items": [
+                "Safety glasses with anti-fog coating",
+                "Safety goggles for chemical or dust exposure",
+                "Face shield for grinding and cutting tasks"
+              ],
               "scene": "eye-protection",
               "title": "Eye Protection",
-              "checked": false,
-              "description": ""
+              "checked": true,
+              "description": "Eye and face protection matched to specific hazards — use glasses for general debris, goggles for dust and splash, and face shields for sparks and grinding."
             },
             {
               "items": [
@@ -196,11 +231,15 @@
               "description": "Use sealed eye and respiratory protection to control airborne particles and maintain visibility in high-debris tasks."
             },
             {
-              "items": [],
+              "items": [
+                "Waterproof safety boots with anti-slip sole",
+                "Waterproof work gloves with grip texture",
+                "Hi-vis rain jacket for visibility in wet weather"
+              ],
               "scene": "wet-ground",
               "title": "Wet Ground",
-              "checked": false,
-              "description": ""
+              "checked": true,
+              "description": "Waterproof and high-traction PPE for rainy conditions, muddy ground, and water-exposed tasks — keeps workers dry, visible, and stable on slippery surfaces."
             }
           ]
         }

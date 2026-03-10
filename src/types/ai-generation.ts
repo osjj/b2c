@@ -1,32 +1,36 @@
 // AI 生成功能相关类型定义
 
-// 可用的 Gemini 模型列表
+// 可用的模型列表
 export interface GeminiModel {
   id: string
   name: string
 }
 
 export const GEMINI_MODELS: GeminiModel[] = [
-  { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash' },
-  { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash Lite' },
-  { id: 'gemini-2.5-flash-thinking', name: 'Gemini 2.5 Flash (Thinking)' },
-  { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro' },
-  { id: 'gemini-3-flash', name: 'Gemini 3 Flash' },
-  { id: 'gemini-3-pro-high', name: 'Gemini 3 Pro High' },
-  { id: 'gemini-3-pro-low', name: 'Gemini 3 Pro Low' },
-  { id: 'gemini-3-pro-image', name: 'Gemini 3 Pro (Image)' },
+  { id: 'gpt-5.4', name: 'GPT-5.4' },
+  { id: 'gpt-5.3-codex', name: 'GPT-5.3 Codex' },
+  { id: 'gpt-5.3-codex-spark', name: 'GPT-5.3 Codex Spark' },
+  { id: 'gpt-5.2', name: 'GPT-5.2' },
+  { id: 'gpt-5.2-codex', name: 'GPT-5.2 Codex' },
+  { id: 'gpt-5.1', name: 'GPT-5.1' },
+  { id: 'gpt-5.1-codex', name: 'GPT-5.1 Codex' },
+  { id: 'gpt-5.1-codex-max', name: 'GPT-5.1 Codex Max' },
+  { id: 'gpt-5.1-codex-mini', name: 'GPT-5.1 Codex Mini' },
+  { id: 'gpt-5', name: 'GPT-5' },
+  { id: 'gpt-5-codex', name: 'GPT-5 Codex' },
+  { id: 'gpt-5-codex-mini', name: 'GPT-5 Codex Mini' },
 ]
 
-export const DEFAULT_MODEL = 'gemini-3-flash'
+export const DEFAULT_MODEL = 'gpt-5.4'
 
-// 图片生成模型列表（基础模型，实际使用时会根据 aspectRatio 和 imageSize 动态构建）
+// 图片生成模型列表
 export const GEMINI_IMAGE_MODELS: GeminiModel[] = [
-  { id: 'gemini-3-pro-image', name: 'Gemini 3 Pro Image (1K)' },
-  { id: 'gemini-3-pro-image-2k', name: 'Gemini 3 Pro Image (2K)' },
-  { id: 'gemini-3-pro-image-4k', name: 'Gemini 3 Pro Image (4K)' },
+  { id: 'gpt-5.4', name: 'GPT-5.4' },
+  { id: 'gpt-5.3-codex', name: 'GPT-5.3 Codex' },
+  { id: 'gpt-5.2', name: 'GPT-5.2' },
 ]
 
-export const DEFAULT_IMAGE_MODEL = 'gemini-3-pro-image'
+export const DEFAULT_IMAGE_MODEL = 'gpt-5.4'
 
 export interface Specification {
   name: string
@@ -85,7 +89,7 @@ export interface GenerateProductRequest {
   presets: PresetOptions
   categoryName?: string
   collectionNames?: string[]
-  model?: string // Gemini model ID
+  model?: string // GPT model ID
   customPrompt?: string // 用户自定义提示词
 }
 

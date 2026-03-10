@@ -22,14 +22,21 @@ export async function uploadToR2(
 ): Promise<string> {
   const key = `products/${filename}`
 
-  await r2Client.send(
-    new PutObjectCommand({
-      Bucket: R2_BUCKET_NAME,
-      Key: key,
-      Body: file,
-      ContentType: contentType,
-    })
-  )
+  const ac = new AbortController()
+  const timer = setTimeout(() => ac.abort(), 30_000)
+  try {
+    await r2Client.send(
+      new PutObjectCommand({
+        Bucket: R2_BUCKET_NAME,
+        Key: key,
+        Body: file,
+        ContentType: contentType,
+      }),
+      { abortSignal: ac.signal }
+    )
+  } finally {
+    clearTimeout(timer)
+  }
 
   return `${R2_PUBLIC_URL}/${key}`
 }
