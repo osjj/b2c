@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -27,6 +28,13 @@ import { getSolutions } from '@/actions/solutions'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { RequestQuoteButton } from '@/components/store/request-quote-button'
+import { StorePagination } from '@/components/store/store-pagination'
+import {
+  getStoreSolutionsPageConfig,
+  getStoreSolutionsTotalPages,
+  normalizeSolutionsPage,
+  splitFeaturedSolution,
+} from '@/lib/store-solutions-pagination'
 import { USAGE_SCENES, formatUsageSceneLabel, PPE_CATEGORIES } from '@/types/solution'
 
 export const metadata: Metadata = {
@@ -49,23 +57,26 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 export default async function SolutionsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ scene?: string }>
+  searchParams: Promise<{ page?: string; scene?: string }>
 }) {
   const params = await searchParams
+  const page = normalizeSolutionsPage(params.page)
   const sceneFilter = params.scene
+  const pageConfig = getStoreSolutionsPageConfig(page)
 
-  const { solutions } = await getSolutions({
+  const { solutions, pagination } = await getSolutions({
+    page: pageConfig.page,
+    skip: pageConfig.skip,
     activeOnly: true,
     usageScene: sceneFilter,
-    limit: 50,
+    limit: pageConfig.take,
   })
 
   const allScenes = USAGE_SCENES.map((scene) => [scene, formatUsageSceneLabel(scene)] as const)
   const activeSceneLabel = sceneFilter ? formatUsageSceneLabel(sceneFilter as typeof USAGE_SCENES[number]) : 'All Solutions'
-
-  // Split solutions for featured display
-  const featuredSolution = solutions[0]
-  const regularSolutions = solutions.slice(1)
+  const totalPages = getStoreSolutionsTotalPages(pagination.total)
+  const { featuredSolution, regularSolutions } = splitFeaturedSolution(solutions, pageConfig.page)
+  const regularSolutionStartIndex = pageConfig.regularStartIndex
 
   return (
     <div className="min-h-screen bg-ppe-bg-page">
@@ -145,7 +156,7 @@ export default async function SolutionsPage({
               {/* Mini Stats */}
               <div className="flex items-center gap-6 mt-8 pt-6 border-t border-white/10">
                 <div>
-                  <div className="text-2xl font-bold text-accent">{solutions.length}+</div>
+                  <div className="text-2xl font-bold text-accent">{pagination.total}+</div>
                   <div className="text-xs text-primary-foreground/60">Solutions</div>
                 </div>
                 <div className="w-px h-8 bg-white/20" />
@@ -204,7 +215,13 @@ export default async function SolutionsPage({
               <span className="text-sm text-muted-foreground">
                 Showing: <span className="text-foreground font-medium">{activeSceneLabel}</span>
                 <span className="text-border mx-2">|</span>
-                <span>{solutions.length} solutions</span>
+                <span>{pagination.total} solutions</span>
+                {totalPages > 1 && (
+                  <>
+                    <span className="text-border mx-2">|</span>
+                    <span>Page {pageConfig.page} / {totalPages}</span>
+                  </>
+                )}
               </span>
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
@@ -396,7 +413,7 @@ export default async function SolutionsPage({
                           {/* Index number */}
                           <div className="absolute top-3 right-3">
                             <span className="text-[10px] font-mono text-white/60 bg-black/30 px-2 py-0.5 rounded">
-                              #{String(index + 2).padStart(2, '0')}
+                              #{String(regularSolutionStartIndex + index).padStart(2, '0')}
                             </span>
                           </div>
                         </div>
@@ -430,17 +447,24 @@ export default async function SolutionsPage({
                 </div>
               )}
 
-              {/* Load More / View All */}
-              {solutions.length >= 8 && (
-                <div className="mt-10 text-center">
-                  <Button variant="outline" size="lg" asChild>
-                    <Link href="/products">
-                      View All Products
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              )}
+              <div className="mt-10 flex flex-col items-center gap-6">
+                {totalPages > 1 && (
+                  <Suspense fallback={null}>
+                    <StorePagination
+                      currentPage={pageConfig.page}
+                      totalPages={totalPages}
+                      total={pagination.total}
+                    />
+                  </Suspense>
+                )}
+
+                <Button variant="outline" size="lg" asChild>
+                  <Link href="/products">
+                    View All Products
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </>
           )}
         </div>

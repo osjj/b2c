@@ -116,6 +116,7 @@ const normalizeSections = (sections: SolutionSectionInput[]) =>
 export async function getSolutions({
   page = 1,
   limit = 10,
+  skip,
   search = '',
   usageScene,
   isActive,
@@ -123,6 +124,7 @@ export async function getSolutions({
 }: {
   page?: number
   limit?: number
+  skip?: number
   search?: string
   usageScene?: string
   isActive?: boolean
@@ -151,7 +153,7 @@ export async function getSolutions({
     prisma.solution.findMany({
       where,
       orderBy: [{ sortOrder: 'asc' }, { createdAt: 'desc' }],
-      skip: (page - 1) * limit,
+      skip: typeof skip === 'number' ? skip : (page - 1) * limit,
       take: limit,
     }),
     prisma.solution.count({ where }),
