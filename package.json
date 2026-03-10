@@ -14,7 +14,9 @@
     "db:studio": "prisma studio",
     "db:seed": "prisma db seed",
     "db:export:solutions": "npx tsx prisma/export-solutions.ts",
-    "db:sync:solutions": "npx tsx prisma/sync-solutions.ts"
+    "db:sync:solutions": "npx tsx prisma/sync-solutions.ts",
+    "db:seed:solutions": "npx tsx prisma/seed-solutions.ts",
+    "db:gen:covers": "npx tsx prisma/generate-solution-covers.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.965.0",
