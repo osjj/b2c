@@ -151,6 +151,7 @@ model Product {
   variants        ProductVariant[]
   category        Category?               @relation(fields: [categoryId], references: [id])
   quoteItems      QuoteItem[]
+  embedding       Unsupported("vector(1024)")?
 
   @@index([categoryId])
   @@index([isActive, isFeatured])

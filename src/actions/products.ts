@@ -2,7 +2,9 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { after } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { buildProductEmbeddingText, generateEmbedding } from '@/lib/embeddings'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
 
@@ -331,6 +333,8 @@ export async function createProduct(
     return { error: 'Slug already exists' }
   }
 
+  let createdProductId = ''
+
   await prisma.$transaction(async (tx) => {
     const product = await tx.product.create({
       data: {
@@ -357,6 +361,8 @@ export async function createProduct(
           : undefined,
       },
     })
+
+    createdProductId = product.id
 
     // Create price tiers
     if (priceTiers && priceTiers.length > 0) {
@@ -421,6 +427,10 @@ export async function createProduct(
     timeout: 30000, // 30 seconds timeout for complex product creation
   }
   )
+
+  if (createdProductId) {
+    after(() => updateProductEmbedding(createdProductId))
+  }
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
@@ -646,6 +656,8 @@ export async function updateProduct(
   }
   )
 
+  after(() => updateProductEmbedding(id))
+
   revalidatePath('/admin/products')
   revalidatePath('/products')
   revalidatePath(`/products/${productData.slug}`)
@@ -751,4 +763,35 @@ export async function getFeaturedProducts(limit = 8) {
     cost: p.cost ? Number(p.cost) : null,
     weight: p.weight ? Number(p.weight) : null,
   }))
+}
+
+async function updateProductEmbedding(productId: string) {
+  try {
+    const product = await prisma.product.findUnique({
+      where: { id: productId },
+      include: { category: true },
+    })
+
+    if (!product) return
+
+    const embedding = await generateEmbedding(
+      buildProductEmbeddingText({
+        name: product.name,
+        description: product.description,
+        categoryName: product.category?.name,
+        usageScenes: product.usageScenes,
+        specifications: product.specifications,
+      })
+    )
+
+    if (!embedding) return
+
+    await prisma.$executeRawUnsafe(
+      'UPDATE products SET embedding = $1::vector WHERE id = $2',
+      `[${embedding.join(',')}]`,
+      productId
+    )
+  } catch (error) {
+    console.error('Failed to update product embedding:', error)
+  }
 }

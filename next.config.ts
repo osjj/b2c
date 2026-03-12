@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'shop.laifappe.com',
+        hostname: '*.laifappe.com',
       },
       {
         protocol: 'https',

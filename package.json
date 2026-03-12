@@ -16,7 +16,8 @@
     "db:export:solutions": "npx tsx prisma/export-solutions.ts",
     "db:sync:solutions": "npx tsx prisma/sync-solutions.ts",
     "db:seed:solutions": "npx tsx prisma/seed-solutions.ts",
-    "db:gen:covers": "npx tsx prisma/generate-solution-covers.ts"
+    "db:gen:covers": "npx tsx prisma/generate-solution-covers.ts",
+    "db:index:embeddings": "npx tsx scripts/index-product-embeddings.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.965.0",
@@ -47,6 +48,8 @@
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "jspdf": "^4.2.0",
+    "jspdf-autotable": "^5.0.7",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "next-auth": "^5.0.0-beta.30",
@@ -60,12 +63,15 @@
     "sharp": "^0.34.5",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0",
+    "undici": "^7.22.0",
+    "xlsx": "^0.18.5",
     "zod": "^4.3.5",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
+    "@types/jspdf": "^2.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

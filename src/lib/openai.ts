@@ -180,6 +180,16 @@ export function parseJSONResponse<T>(text: string): T | null {
       }
     }
 
+    // 尝试找到 JSON 数组
+    const arrayMatch = text.match(/\[[\s\S]*\]/)
+    if (arrayMatch) {
+      try {
+        return JSON.parse(arrayMatch[0])
+      } catch {
+        console.error('Failed to parse JSON array')
+      }
+    }
+
     // 尝试找到 JSON 对象
     const objectMatch = text.match(/\{[\s\S]*\}/)
     if (objectMatch) {
