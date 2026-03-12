@@ -1,11 +1,11 @@
-import { chromium, type Browser, type Page } from 'playwright'
+import { chromium, type Browser, type BrowserContext, type Page } from 'playwright'
 import {
   extractOfferId,
   normalizeUrl,
   normalizeImageUrl,
   deduplicateImages,
-  parsePrice,
 } from './utils'
+import { get1688Cookie } from './settings'
 import type {
   ScrapedProduct,
   ScrapedPriceTier,
@@ -15,6 +15,49 @@ import type {
 
 const PAGE_TIMEOUT = 20_000
 const TOTAL_TIMEOUT = 90_000
+const MAX_RETRIES = 2
+
+// 注入反自动化检测脚本（规避 webdriver / headless 指纹）
+const STEALTH_SCRIPT = `
+// 隐藏 webdriver 标记
+Object.defineProperty(navigator, 'webdriver', { get: () => undefined })
+
+// 模拟真实 Chrome 插件列表（headless 默认为空）
+Object.defineProperty(navigator, 'plugins', {
+  get: () => {
+    const arr = [
+      { name: 'Chrome PDF Plugin', filename: 'internal-pdf-viewer', description: 'Portable Document Format' },
+      { name: 'Chrome PDF Viewer', filename: 'mhjfbmdgcfjbbpaeojofohoefgiehjai', description: '' },
+      { name: 'Native Client', filename: 'internal-nacl-plugin', description: '' },
+    ]
+    Object.setPrototypeOf(arr, PluginArray.prototype)
+    return arr
+  },
+})
+
+// 模拟语言列表
+Object.defineProperty(navigator, 'languages', { get: () => ['zh-CN', 'zh', 'en-US', 'en'] })
+
+// 修复 Notification.permission（headless 下可能异常）
+try {
+  Object.defineProperty(Notification, 'permission', { get: () => 'default' })
+} catch {}
+
+// 修复 chrome 对象（headless 下可能缺失）
+if (!window.chrome) {
+  window.chrome = { runtime: {} }
+}
+
+// 隐藏 HeadlessChrome UA 特征（通过 navigator.userAgent 已在 context 层设置）
+// 修复 permissions.query 返回值
+const originalQuery = window.navigator.permissions?.query?.bind(window.navigator.permissions)
+if (originalQuery) {
+  window.navigator.permissions.query = (parameters) =>
+    parameters.name === 'notifications'
+      ? Promise.resolve({ state: Notification.permission, onchange: null } as PermissionStatus)
+      : originalQuery(parameters)
+}
+`
 
 export async function scrape1688Product(url: string): Promise<ScraperResult> {
   const startTime = Date.now()
@@ -28,75 +71,115 @@ export async function scrape1688Product(url: string): Promise<ScraperResult> {
     }
   }
 
+  // 从 DB 读取 Cookie（fallback 到 env）
+  const cookie = await get1688Cookie()
+  if (!cookie) {
+    return {
+      success: false,
+      error: { code: 'ACCESS_BLOCKED', message: '未配置 Cookie，请在设置页面更新 1688 Cookie' },
+      duration: Date.now() - startTime,
+    }
+  }
+
   const normalizedUrl = normalizeUrl(url)!
-  const cookie = process.env.SCRAPER_1688_COOKIE || ''
 
-  let browser: Browser | null = null
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    // 第 2、3 次尝试前等待，避免连续触发风控
+    if (attempt > 0) {
+      await new Promise(r => setTimeout(r, 2000 * attempt))
+      console.log(`[scraper] retry attempt ${attempt}/${MAX_RETRIES}`)
+    }
 
-  try {
-    browser = await chromium.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    })
+    let browser: Browser | null = null
 
-    const context = await browser.newContext({
-      userAgent:
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-      viewport: { width: 1920, height: 1080 },
-      locale: 'zh-CN',
-    })
+    try {
+      browser = await chromium.launch({
+        headless: true,
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-blink-features=AutomationControlled',
+          '--disable-dev-shm-usage',
+          '--disable-infobars',
+          '--window-size=1920,1080',
+        ],
+      })
 
-    // 注入 Cookie
-    if (cookie) {
+      const context: BrowserContext = await browser.newContext({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+        viewport: { width: 1920, height: 1080 },
+        locale: 'zh-CN',
+        timezoneId: 'Asia/Shanghai',
+        extraHTTPHeaders: {
+          'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        },
+      })
+
+      // 注入反检测脚本（在每个页面导航前执行）
+      await context.addInitScript(STEALTH_SCRIPT)
+
+      // 注入 Cookie
       const cookies = parseCookieString(cookie, '.1688.com')
       if (cookies.length > 0) {
         await context.addCookies(cookies)
       }
-    }
 
-    const page = await context.newPage()
+      const page = await context.newPage()
 
-    // 设置超时
-    const timeoutPromise = new Promise<never>((_, reject) =>
-      setTimeout(() => reject(new Error('TOTAL_TIMEOUT')), TOTAL_TIMEOUT)
-    )
+      // 设置超时
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('TOTAL_TIMEOUT')), TOTAL_TIMEOUT)
+      )
 
-    const scrapePromise = scrapePageContent(page, normalizedUrl, offerId)
+      const scrapePromise = scrapePageContent(page, normalizedUrl, offerId)
 
-    const result = await Promise.race([scrapePromise, timeoutPromise])
+      const result = await Promise.race([scrapePromise, timeoutPromise])
 
-    return {
-      success: true,
-      data: result,
-      warnings: collectWarnings(result),
-      duration: Date.now() - startTime,
-    }
-  } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : String(error)
-
-    if (message === 'TOTAL_TIMEOUT' || message.includes('Timeout')) {
       return {
-        success: false,
-        error: { code: 'PAGE_TIMEOUT', message: '页面加载超时，请重试' },
+        success: true,
+        data: result,
+        warnings: collectWarnings(result),
         duration: Date.now() - startTime,
       }
-    }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error)
 
-    if (message.includes('login') || message.includes('ACCESS_BLOCKED')) {
-      return {
-        success: false,
-        error: { code: 'ACCESS_BLOCKED', message: '访问被拦截，请更新 Cookie' },
-        duration: Date.now() - startTime,
+      // Cookie 失效 / 登录拦截：不重试，立即返回
+      if (message.includes('ACCESS_BLOCKED') || message.includes('login')) {
+        return {
+          success: false,
+          error: { code: 'ACCESS_BLOCKED', message: '访问被拦截，请更新 Cookie' },
+          duration: Date.now() - startTime,
+        }
       }
-    }
 
-    return {
-      success: false,
-      error: { code: 'PARSE_ERROR', message: `采集失败: ${message}` },
-      duration: Date.now() - startTime,
+      // 最后一次尝试仍失败，返回具体错误
+      if (attempt === MAX_RETRIES) {
+        if (message === 'TOTAL_TIMEOUT' || message.includes('Timeout')) {
+          return {
+            success: false,
+            error: { code: 'PAGE_TIMEOUT', message: '页面加载超时，请重试' },
+            duration: Date.now() - startTime,
+          }
+        }
+        return {
+          success: false,
+          error: { code: 'PARSE_ERROR', message: `采集失败: ${message}` },
+          duration: Date.now() - startTime,
+        }
+      }
+
+      console.log(`[scraper] attempt ${attempt + 1} failed: ${message}`)
+    } finally {
+      if (browser) await browser.close()
     }
-  } finally {
-    if (browser) await browser.close()
+  }
+
+  return {
+    success: false,
+    error: { code: 'PARSE_ERROR', message: '采集失败' },
+    duration: Date.now() - startTime,
   }
 }
 

@@ -25,6 +25,7 @@ import { SpecificationsEditor, type Specification } from './specifications-edito
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
+import { CollectImageAIDialog } from './collect-image-ai-dialog'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
@@ -129,6 +130,77 @@ export function ProductForm({ product, categories, collections = [], productColl
 
   // AI 图片生成弹框状态 (用于 Product Details)
   const [contentAiImageDialogOpen, setContentAiImageDialogOpen] = useState(false)
+
+  // AI 文本优化
+  const [optimizingText, setOptimizingText] = useState(false)
+
+  // AI 图片生成弹框状态 (用于主图)
+  const [imagesAIDialogOpen, setImagesAIDialogOpen] = useState(false)
+
+  // AI 图片生成弹框状态 (用于 Product Details 详情图)
+  const [contentDetailAIDialogOpen, setContentDetailAIDialogOpen] = useState(false)
+
+  function handleContentDetailImagesAIUpdate(newUrls: string[], _newSelected: Set<string>) {
+    setContent((prev) => {
+      if (!prev) return prev
+      let imgIndex = 0
+      // 替换现有图片块
+      const updatedBlocks = prev.blocks.map((block) => {
+        if ((block as { type: string }).type !== 'image') return block
+        const newUrl = newUrls[imgIndex++]
+        if (!newUrl) return block
+        return { ...block, data: { ...(block as { data: object }).data, file: { url: newUrl } } }
+      })
+      // 追加多出来的新图片
+      const extraBlocks = newUrls.slice(imgIndex).map((url) => ({
+        id: `img-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+        type: 'image',
+        data: { file: { url }, caption: '', withBorder: false, stretched: true, withBackground: false },
+      }))
+      return { ...prev, blocks: [...updatedBlocks, ...extraBlocks] }
+    })
+    setFormKey((k) => k + 1)
+  }
+
+  async function handleOptimizeText() {
+    setOptimizingText(true)
+    try {
+      const specsRecord = Object.fromEntries(specifications.map((s) => [s.name, s.value]))
+      const res = await fetch('/api/ai/optimize-collect-text', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, description, specifications: specsRecord }),
+      })
+      const json = await res.json()
+      if (!res.ok || !json.success) {
+        const { toast } = await import('sonner')
+        toast.error(json.error || 'AI 优化失败')
+        return
+      }
+      if (json.name) { setName(json.name); if (!product) setSlug(generateSlug(json.name)) }
+      if (json.description) setDescription(json.description)
+      if (json.specifications) {
+        setSpecifications(
+          Object.entries(json.specifications as Record<string, string>).map(([n, v]) => ({ name: n, value: v }))
+        )
+      }
+      const { toast } = await import('sonner')
+      toast.success('AI 文本优化完成')
+    } catch {
+      const { toast } = await import('sonner')
+      toast.error('网络错误，请重试')
+    } finally {
+      setOptimizingText(false)
+    }
+  }
+
+  function handleImagesAIUpdate(newUrls: string[], _newSelected: Set<string>) {
+    const altMap = new Map(images.map((img) => [img.url, img.alt]))
+    setImages(newUrls.map((url, i) => ({
+      url,
+      alt: altMap.get(url) || (i === 0 ? name : `${name} - Image ${i + 1}`),
+    })))
+  }
 
   // SEO Fields
   const [metaTitle, setMetaTitle] = useState(product?.metaTitle || '')
@@ -367,8 +439,17 @@ export function ProductForm({ product, categories, collections = [], productColl
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2 space-y-6">
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <CardTitle>Basic Information</CardTitle>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleOptimizeText}
+                disabled={optimizingText}
+              >
+                {optimizingText ? 'AI 优化中...' : 'AI 优化文本'}
+              </Button>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
@@ -410,8 +491,17 @@ export function ProductForm({ product, categories, collections = [], productColl
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <CardTitle>Images</CardTitle>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => setImagesAIDialogOpen(true)}
+                disabled={images.length === 0}
+              >
+                AI 生成
+              </Button>
             </CardHeader>
             <CardContent>
               <ImageUpload value={images} onChange={setImages} productName={name} />
@@ -538,21 +628,34 @@ export function ProductForm({ product, categories, collections = [], productColl
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0">
               <CardTitle>Product Details</CardTitle>
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => setContentAiImageDialogOpen(true)}
-                className="gap-2"
-              >
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" />
-                  <path d="M12 12L12 21" />
-                  <path d="M12 12L20 7.5" />
-                  <path d="M12 12L4 7.5" />
-                </svg>
-                AI 生成图片
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setContentDetailAIDialogOpen(true)}
+                  disabled={
+                    !(content?.blocks ?? []).some((b) => (b as { type: string }).type === 'image')
+                  }
+                >
+                  AI 生成
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setContentAiImageDialogOpen(true)}
+                  className="gap-2"
+                >
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z" />
+                    <path d="M12 12L12 21" />
+                    <path d="M12 12L20 7.5" />
+                    <path d="M12 12L4 7.5" />
+                  </svg>
+                  AI 生成图片
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <ContentEditor
@@ -573,6 +676,23 @@ export function ProductForm({ product, categories, collections = [], productColl
             productName={name}
             onImagesGenerated={handleContentAIImagesGenerated}
           />
+
+          {/* CollectImageAIDialog for Product Details 详情图 */}
+          {(() => {
+            const detailImgUrls = (content?.blocks ?? [])
+              .filter((b) => (b as { type: string }).type === 'image')
+              .map((b) => ((b as { data: { file: { url: string } } }).data?.file?.url))
+              .filter(Boolean) as string[]
+            return (
+              <CollectImageAIDialog
+                open={contentDetailAIDialogOpen}
+                onClose={() => setContentDetailAIDialogOpen(false)}
+                images={detailImgUrls}
+                selectedImages={new Set(detailImgUrls)}
+                onImagesUpdate={handleContentDetailImagesAIUpdate}
+              />
+            )
+          })()}
 
           {/* SEO Settings Card */}
           <Card>
@@ -815,6 +935,15 @@ export function ProductForm({ product, categories, collections = [], productColl
           Cancel
         </Button>
       </div>
+
+      {/* AI 图片生成 Dialog（主图） */}
+      <CollectImageAIDialog
+        open={imagesAIDialogOpen}
+        onClose={() => setImagesAIDialogOpen(false)}
+        images={images.map((img) => img.url)}
+        selectedImages={new Set(images.map((img) => img.url))}
+        onImagesUpdate={handleImagesAIUpdate}
+      />
     </form>
   )
 }
