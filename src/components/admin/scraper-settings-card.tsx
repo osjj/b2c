@@ -166,30 +166,55 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return variants.flatMap(v => v.options.map(o => o.imageUrl).filter(Boolean));
   }
 
-  // 从 performance 记录中找到 ICOSS 脚本 URL，获取详情图
-  function getDetailImages() {
-    return new Promise(resolve => {
-      const resources = performance.getEntriesByType('resource');
-      const icossEntry = resources.find(r =>
-        (r.name.includes('itemcdn.tmall.com') || r.name.includes('itemcdn.tbcdn.cn')) &&
-        r.name.includes('1688offer')
-      );
-      if (!icossEntry) { resolve([]); return; }
-      fetch(icossEntry.name)
+  // 页面加载时立即监听 ICOSS 详情模板脚本（buffered:true 可捕获已加载的资源）
+  let _icossResolve;
+  const _icossPromise = new Promise(resolve => { _icossResolve = resolve; });
+  (function () {
+    function fetchIcoss(url) {
+      fetch(url)
         .then(r => r.text())
-        .then(text => {
-          const match = text.match(/var\\s+offer_details\\s*=\\s*(\\{[\\s\\S]*\\})/);
-          if (!match) { resolve([]); return; }
-          try {
-            const data = JSON.parse(match[1]);
-            const content = data.content || '';
-            const imgPattern = /src="(https?:\\/\\/[^"]+\\.(jpg|jpeg|png|webp|gif)[^"]*)"/gi;
-            const imgs = [...content.matchAll(imgPattern)].map(m => m[1].split('?')[0]);
-            resolve([...new Set(imgs)]);
-          } catch { resolve([]); }
-        })
-        .catch(() => resolve([]));
-    });
+        .then(text => _icossResolve(text))
+        .catch(() => _icossResolve(null));
+    }
+    function isIcossUrl(url) {
+      return (url.includes('itemcdn.tmall.com') || url.includes('itemcdn.tbcdn.cn'))
+        && url.includes('1688offer');
+    }
+    try {
+      const obs = new PerformanceObserver(list => {
+        for (const entry of list.getEntries()) {
+          if (isIcossUrl(entry.name)) {
+            obs.disconnect();
+            fetchIcoss(entry.name);
+            return;
+          }
+        }
+      });
+      obs.observe({ type: 'resource', buffered: true });
+    } catch (e) {
+      // PerformanceObserver 不可用时降级为快照查询
+      const entry = performance.getEntriesByType('resource').find(r => isIcossUrl(r.name));
+      if (entry) fetchIcoss(entry.name);
+      else _icossResolve(null);
+    }
+    // 15s 兜底，避免永远等待
+    setTimeout(() => _icossResolve(null), 15000);
+  })();
+
+  function parseIcossImages(text) {
+    const match = text.match(/var\\s+offer_details\\s*=\\s*(\\{[\\s\\S]*\\})/);
+    if (!match) return [];
+    try {
+      const data = JSON.parse(match[1]);
+      const content = data.content || '';
+      const imgPattern = /src="(https?:\\/\\/[^"]+\\.(jpg|jpeg|png|webp|gif)[^"]*)"/gi;
+      const imgs = [...content.matchAll(imgPattern)].map(m => m[1].split('?')[0]);
+      return [...new Set(imgs)];
+    } catch { return []; }
+  }
+
+  function getDetailImages() {
+    return _icossPromise.then(text => text ? parseIcossImages(text) : []);
   }
 
   // ─── 采集主流程 ──────────────────────────────────────────────────────────────
