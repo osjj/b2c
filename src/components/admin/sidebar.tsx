@@ -19,6 +19,7 @@ import {
   Store,
   MessageSquare,
   Lightbulb,
+  Mail,
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -33,6 +34,7 @@ const menuItems = [
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/quotes", label: "Quotes", icon: FileText },
   { href: "/admin/chat", label: "Chat", icon: MessageSquare },
+  { href: "/admin/email", label: "Email", icon: Mail },
   { href: "/admin/customers", label: "Customers", icon: Users },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ]
