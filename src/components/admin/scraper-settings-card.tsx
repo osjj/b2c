@@ -17,13 +17,14 @@ type ScraperStatus = {
 
 function buildUserscript(apiKey: string, appUrl: string): string {
   return `// ==UserScript==
-// @name         1688 商品采集到店铺
+// @name         店铺商品采集（1688 / Alibaba）
 // @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  在 1688 商品页一键采集数据到店铺后台
+// @version      2.0
+// @description  在 1688 或 Alibaba 商品页一键采集数据到店铺后台
 // @author       store-admin
 // @match        https://detail.1688.com/offer/*.html
 // @match        https://detail.1688.com/offer/*
+// @match        https://www.alibaba.com/product-detail/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_addStyle
 // @connect      ${new URL(appUrl).hostname}
@@ -34,6 +35,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
 
   const STORE_URL = '${appUrl}';
   const API_KEY = '${apiKey}';
+  const SITE = location.hostname.includes('alibaba.com') ? 'alibaba' : '1688';
 
   // ─── UI ─────────────────────────────────────────────────────────────────────
   GM_addStyle(\`
@@ -44,7 +46,11 @@ function buildUserscript(apiKey: string, appUrl: string): string {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 13px; line-height: 1.5;
     }
-    #__scraper_panel__ h4 { margin: 0 0 12px; font-size: 14px; font-weight: 600; }
+    #__scraper_panel__ h4 { margin: 0 0 4px; font-size: 14px; font-weight: 600; }
+    #__scraper_panel__ .site-badge {
+      display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px;
+      background: #f3f4f6; color: #6b7280; margin-bottom: 10px;
+    }
     #__scraper_btn__ {
       width: 100%; padding: 8px; background: #1a1a1a; color: #fff;
       border: none; border-radius: 8px; cursor: pointer; font-size: 13px;
@@ -60,6 +66,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   panel.id = '__scraper_panel__';
   panel.innerHTML = \`
     <h4>🛍 店铺采集</h4>
+    <span class="site-badge">\${SITE === 'alibaba' ? 'Alibaba.com' : '1688.com'}</span>
     <button id="__scraper_btn__">采集当前商品</button>
     <div id="__scraper_status__">就绪</div>
   \`;
@@ -73,26 +80,28 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     statusEl.className = cls || '';
   }
 
-  // ─── 数据提取 ────────────────────────────────────────────────────────────────
+  // ═══════════════════════════════════════════════════════════════════════════
+  // 1688.com 提取函数
+  // ═══════════════════════════════════════════════════════════════════════════
 
-  function getOfferId() {
+  function _1688_getOfferId() {
     const m = location.href.match(/\\/offer\\/(\\d+)/);
     return m ? m[1] : '';
   }
 
-  function getName() {
+  function _1688_getName() {
     const el = document.querySelector('.module-od-title');
     if (el && el.textContent.trim()) return el.textContent.trim();
     const meta = document.querySelector('meta[property="og:title"]');
     return meta ? meta.getAttribute('content').trim() : '';
   }
 
-  function getDescription() {
+  function _1688_getDescription() {
     const meta = document.querySelector('meta[name="description"]');
     return meta ? meta.getAttribute('content').trim() : '';
   }
 
-  function getPriceData() {
+  function _1688_getPriceData() {
     const priceTiers = [];
     const priceText = document.querySelector('.module-od-main-price')?.innerText || '';
     const lines = priceText.split('\\n').map(l => l.trim()).filter(Boolean);
@@ -112,7 +121,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return { price, priceTiers };
   }
 
-  function getVariants() {
+  function _1688_getVariants() {
     const variants = [];
     const groups = document.querySelectorAll('.module-od-sku-selection .feature-item');
     for (const group of groups) {
@@ -130,7 +139,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return variants;
   }
 
-  function getSpecifications() {
+  function _1688_getSpecifications() {
     const specs = {};
     const rows = document.querySelectorAll('.module-od-product-attributes tr');
     for (const row of rows) {
@@ -154,42 +163,268 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return specs;
   }
 
-  function getMainImages() {
+  function _1688_getMainImages() {
     const srcs = [...document.querySelectorAll('img.od-gallery-img')]
       .map(img => img.src)
       .filter(src => src && src.includes('alicdn.com') && src.includes('cib.jpg'));
-    // 去掉 _b.jpg 缩略图后缀，还原高清原图
     return [...new Set(srcs.map(src => src.replace(/_b\\.jpg$/, '')))];
   }
 
-  function getSkuImages(variants) {
-    return variants.flatMap(v => v.options.map(o => o.imageUrl).filter(Boolean));
+  // 1688 ICOSS 详情图：页面加载时立即监听
+  let _icossResolve;
+  const _icossPromise = new Promise(resolve => { _icossResolve = resolve; });
+  if (SITE === '1688') {
+    (function () {
+      function fetchIcoss(url) {
+        fetch(url).then(r => r.text()).then(text => _icossResolve(text)).catch(() => _icossResolve(null));
+      }
+      function isIcossUrl(url) {
+        return (url.includes('itemcdn.tmall.com') || url.includes('itemcdn.tbcdn.cn')) && url.includes('1688offer');
+      }
+      try {
+        const obs = new PerformanceObserver(list => {
+          for (const entry of list.getEntries()) {
+            if (isIcossUrl(entry.name)) { obs.disconnect(); fetchIcoss(entry.name); return; }
+          }
+        });
+        obs.observe({ type: 'resource', buffered: true });
+      } catch (e) {
+        const entry = performance.getEntriesByType('resource').find(r => isIcossUrl(r.name));
+        if (entry) fetchIcoss(entry.name); else _icossResolve(null);
+      }
+      setTimeout(() => _icossResolve(null), 15000);
+    })();
+  } else {
+    _icossResolve(null);
   }
 
-  // 从 performance 记录中找到 ICOSS 脚本 URL，获取详情图
-  function getDetailImages() {
-    return new Promise(resolve => {
-      const resources = performance.getEntriesByType('resource');
-      const icossEntry = resources.find(r =>
-        (r.name.includes('itemcdn.tmall.com') || r.name.includes('itemcdn.tbcdn.cn')) &&
-        r.name.includes('1688offer')
-      );
-      if (!icossEntry) { resolve([]); return; }
-      fetch(icossEntry.name)
-        .then(r => r.text())
-        .then(text => {
-          const match = text.match(/var\\s+offer_details\\s*=\\s*(\\{[\\s\\S]*\\})/);
-          if (!match) { resolve([]); return; }
-          try {
-            const data = JSON.parse(match[1]);
-            const content = data.content || '';
-            const imgPattern = /src="(https?:\\/\\/[^"]+\\.(jpg|jpeg|png|webp|gif)[^"]*)"/gi;
-            const imgs = [...content.matchAll(imgPattern)].map(m => m[1].split('?')[0]);
-            resolve([...new Set(imgs)]);
-          } catch { resolve([]); }
-        })
-        .catch(() => resolve([]));
+  function _1688_getDetailImages() {
+    return _icossPromise.then(text => {
+      if (!text) return [];
+      const match = text.match(/var\\s+offer_details\\s*=\\s*(\\{[\\s\\S]*\\})/);
+      if (!match) return [];
+      try {
+        const data = JSON.parse(match[1]);
+        const content = data.content || '';
+        const imgPattern = /src="(https?:\\/\\/[^"]+\\.(jpg|jpeg|png|webp|gif)[^"]*)"/gi;
+        return [...new Set([...content.matchAll(imgPattern)].map(m => m[1].split('?')[0]))];
+      } catch { return []; }
     });
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // Alibaba.com 提取函数
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // 从 schema.org JSON-LD 获取结构化数据（最可靠，Alibaba 页面标准注入）
+  function _alibaba_getSchemaData() {
+    try {
+      for (const s of document.querySelectorAll('script[type="application/ld+json"]')) {
+        const items = [].concat(JSON.parse(s.textContent || '{}'));
+        const product = items.find(i => i['@type'] === 'Product');
+        if (product) return product;
+      }
+    } catch {}
+    return null;
+  }
+
+  // 从 window.detailData.globalData 获取 variants/specs 等扩展数据
+  function _alibaba_getGlobalData() {
+    try {
+      return window.detailData?.globalData || null;
+    } catch {}
+    return null;
+  }
+
+  function _alibaba_getOfferId() {
+    const m = location.href.match(/_([0-9]+)\\.html/);
+    return m ? m[1] : '';
+  }
+
+  function _alibaba_getName(schema, gd) {
+    // schema.org 最可靠
+    if (schema?.name) return String(schema.name).trim();
+    // detailData.globalData.product.subject
+    const subject = gd?.product?.subject || gd?.subject;
+    if (subject) return String(subject).trim();
+    // DOM 降级
+    return document.querySelector('h1')?.textContent?.trim()
+      || document.querySelector('meta[property="og:title"]')?.getAttribute('content')?.trim()
+      || '';
+  }
+
+  function _alibaba_getDescription(schema, gd) {
+    if (schema?.description) return String(schema.description).trim();
+    const desc = gd?.description || gd?.pdp?.description;
+    if (desc) return String(desc).replace(/<[^>]+>/g, '').trim();
+    return document.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
+  }
+
+  function _alibaba_getPriceData(schema, gd) {
+    const priceTiers = [];
+    // detailData.globalData.product.price 里找阶梯价
+    const priceList = gd?.product?.price?.priceList || gd?.product?.price || [];
+    for (const tier of priceList) {
+      const minQty = parseInt(tier.beginAmount || tier.startAmount || tier.minQuantity || 1);
+      const maxQty = tier.endAmount ? parseInt(tier.endAmount) : undefined;
+      const price = parseFloat(tier.price || tier.unitPrice || 0);
+      if (price > 0) priceTiers.push({ minQuantity: minQty, maxQuantity: maxQty, price });
+    }
+    if (priceTiers.length > 0) {
+      return { price: Math.min(...priceTiers.map(t => t.price)), priceTiers };
+    }
+    // schema.org 单价（USD）
+    if (schema?.offers?.price) {
+      return { price: parseFloat(schema.offers.price), priceTiers: [] };
+    }
+    // DOM 降级
+    const priceEl = document.querySelector('[class*="price-range"], [class*="price"] [class*="value"]');
+    const text = priceEl?.innerText || '';
+    const nums = [...text.matchAll(/([\\d,]+\\.?\\d*)/g)]
+      .map(m => parseFloat(m[1].replace(/,/g, ''))).filter(n => n > 0);
+    return { price: nums.length > 0 ? Math.min(...nums) : 0, priceTiers: [] };
+  }
+
+  function _alibaba_getVariants(gd) {
+    const variants = [];
+    // detailData.globalData.product.sku.skuAttrs（已确认路径）
+    const skuAttrs = gd?.product?.sku?.skuAttrs || [];
+    for (const attr of skuAttrs) {
+      const name = attr.name || attr.skuPropertyName;
+      if (!name) continue;
+      const options = (attr.values || []).map(v => ({
+        value: v.name || String(v.id || ''),
+        imageUrl: v.originImage || v.largeImage || undefined,
+      })).filter(o => o.value);
+      if (options.length > 0) variants.push({ name, options });
+    }
+    // DOM 降级
+    if (variants.length === 0) {
+      const groups = document.querySelectorAll('[class*="sku-attr-item"], [class*="attribute-item"]');
+      for (const g of groups) {
+        const label = g.querySelector('[class*="label"], [class*="name"]')?.textContent?.trim();
+        if (!label) continue;
+        const options = [...g.querySelectorAll('[class*="value"], [class*="option"]')]
+          .map(el => ({ value: el.innerText?.trim().split('\\n')[0] || '', imageUrl: el.querySelector('img')?.src }))
+          .filter(o => o.value);
+        if (options.length > 0) variants.push({ name: label, options });
+      }
+    }
+    return variants;
+  }
+
+  function _alibaba_getSpecifications(gd) {
+    const specs = {};
+    // 合并三个属性数组：基础属性 + 行业关键属性 + 其他属性
+    const attrs = [
+      ...(gd?.product?.productBasicProperties || []),
+      ...(gd?.product?.productKeyIndustryProperties || []),
+      ...(gd?.product?.productOtherProperties || []),
+    ];
+    for (const attr of attrs) {
+      const key = attr.attrName || attr.name;
+      const val = attr.attrValue || attr.value;
+      if (key && val) specs[key] = Array.isArray(val) ? val.join(', ') : String(val);
+    }
+    if (Object.keys(specs).length === 0) {
+      const rows = document.querySelectorAll('[class*="attribute"] tr, [class*="spec"] tr');
+      for (const row of rows) {
+        const cells = row.querySelectorAll('td, th');
+        if (cells.length >= 2) {
+          const key = cells[0].innerText?.trim();
+          const val = cells[1].innerText?.trim();
+          if (key && val) specs[key] = val;
+        }
+      }
+    }
+    return specs;
+  }
+
+  function _alibaba_getMainImages(schema, gd) {
+    // schema.org image 数组（已确认可用）
+    if (schema?.image?.length > 0) {
+      return [].concat(schema.image).map(img => {
+        const s = typeof img === 'string' ? img : (img.url || img.contentUrl || '');
+        return s ? (s.startsWith('http') ? s.split('?')[0] : 'https:' + s.split('?')[0]) : '';
+      }).filter(Boolean);
+    }
+    // detailData.globalData 降级
+    const imgList = gd?.imagePathList || gd?.pdp?.imagePathList || [];
+    if (imgList.length > 0) {
+      return imgList.map(img => {
+        const s = typeof img === 'string' ? img : (img.url || '');
+        return s ? (s.startsWith('http') ? s.split('?')[0] : 'https:' + s.split('?')[0]) : '';
+      }).filter(Boolean);
+    }
+    // DOM 降级
+    const srcs = new Set();
+    for (const sel of ['[class*="gallery"] img', '[class*="slider"] img', '[class*="main-image"] img']) {
+      for (const img of document.querySelectorAll(sel)) {
+        const src = (img.src || img.getAttribute('data-src') || '').split('?')[0];
+        if (src && src.includes('alicdn.com')) srcs.add(src);
+      }
+    }
+    return [...srcs];
+  }
+
+  // Alibaba 详情图：拦截 XHR 响应 + DOM 兜底
+  let _alibabaDetailResolve;
+  const _alibabaDetailPromise = new Promise(resolve => { _alibabaDetailResolve = resolve; });
+  if (SITE === 'alibaba') {
+    (function () {
+      let resolved = false;
+      function resolveOnce(imgs) {
+        if (resolved) return;
+        resolved = true;
+        _alibabaDetailResolve([...new Set(imgs)]);
+      }
+      function extractImgs(html) {
+        const pat = /(?:src|data-src)="(https?:[^"]+\\.(?:jpg|jpeg|png|webp|gif)[^"]*)"/gi;
+        return [...html.matchAll(pat)].map(m => m[1].split('?')[0])
+          .filter(s => s.includes('alicdn.com') || s.includes('alibaba.com'));
+      }
+      // 拦截 XHR（alibaba 详情 HTML 通常通过 XHR 异步加载）
+      const origOpen = XMLHttpRequest.prototype.open;
+      const origSend = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.open = function (method, url) {
+        this.__scraperUrl = String(url);
+        return origOpen.apply(this, arguments);
+      };
+      XMLHttpRequest.prototype.send = function () {
+        this.addEventListener('load', function () {
+          const url = this.__scraperUrl || '';
+          const text = this.responseText || '';
+          if (!resolved && text.length > 200 && text.includes('<img') &&
+              (url.includes('detail') || url.includes('desc') || url.includes('template') || url.includes('offer'))) {
+            const imgs = extractImgs(text);
+            if (imgs.length > 0) resolveOnce(imgs);
+          }
+        });
+        return origSend.apply(this, arguments);
+      };
+      // 8s 兜底：从页面 description 区域直接取图
+      setTimeout(() => {
+        const selectors = ['[class*="description"]', '[class*="product-detail"]',
+          '[class*="detail-desc"]', '#product-description', '#description', '[class*="overview"]'];
+        for (const sel of selectors) {
+          const el = document.querySelector(sel);
+          if (!el) continue;
+          const imgs = [...el.querySelectorAll('img')]
+            .map(img => (img.src || img.getAttribute('data-src') || '').split('?')[0])
+            .filter(s => s && (s.includes('alicdn.com') || s.includes('alibaba.com')));
+          if (imgs.length > 0) { resolveOnce(imgs); return; }
+        }
+        resolveOnce([]);
+      }, 8000);
+    })();
+  } else {
+    _alibabaDetailResolve([]);
+  }
+
+  // ─── 通用工具 ────────────────────────────────────────────────────────────────
+
+  function getSkuImages(variants) {
+    return variants.flatMap(v => v.options.map(o => o.imageUrl).filter(Boolean));
   }
 
   // ─── 采集主流程 ──────────────────────────────────────────────────────────────
@@ -199,26 +434,43 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     setStatus('采集中...');
 
     try {
-      const offerId = getOfferId();
-      if (!offerId) throw new Error('无法识别商品 ID，请检查页面 URL');
+      let offerId, name, description, priceData, variants, specifications, mainImages, detailImages;
 
-      setStatus('提取商品数据...');
-      const name = getName();
-      const description = getDescription();
-      const { price, priceTiers } = getPriceData();
-      const variants = getVariants();
-      const specifications = getSpecifications();
-      const mainImages = getMainImages();
+      if (SITE === 'alibaba') {
+        offerId = _alibaba_getOfferId();
+        if (!offerId) throw new Error('无法识别商品 ID，请检查页面 URL');
+        setStatus('提取商品数据...');
+        const schema = _alibaba_getSchemaData();
+        const gd     = _alibaba_getGlobalData();
+        name          = _alibaba_getName(schema, gd);
+        description   = _alibaba_getDescription(schema, gd);
+        priceData     = _alibaba_getPriceData(schema, gd);
+        variants      = _alibaba_getVariants(gd);
+        specifications = _alibaba_getSpecifications(gd);
+        mainImages    = _alibaba_getMainImages(schema, gd);
+        setStatus('提取详情图（最多等待 8 秒）...');
+        detailImages  = await _alibabaDetailPromise;
+      } else {
+        offerId = _1688_getOfferId();
+        if (!offerId) throw new Error('无法识别商品 ID，请检查页面 URL');
+        setStatus('提取商品数据...');
+        name          = _1688_getName();
+        description   = _1688_getDescription();
+        priceData     = _1688_getPriceData();
+        variants      = _1688_getVariants();
+        specifications = _1688_getSpecifications();
+        mainImages    = _1688_getMainImages();
+        setStatus('提取详情图...');
+        detailImages  = await _1688_getDetailImages();
+      }
+
       const skuImages = getSkuImages(variants);
-
-      setStatus('提取详情图...');
-      const detailImages = await getDetailImages();
-
       setStatus(\`上传中（\${mainImages.length} 主图 / \${detailImages.length} 详情图）...\`);
 
       const payload = {
-        name, description, price, priceTiers, variants,
-        specifications, mainImages, skuImages, detailImages,
+        name, description,
+        price: priceData.price, priceTiers: priceData.priceTiers,
+        variants, specifications, mainImages, skuImages, detailImages,
         sourceUrl: location.href, offerId,
       };
 
@@ -233,8 +485,6 @@ function buildUserscript(apiKey: string, appUrl: string): string {
         onload(res) {
           if (res.status === 200) {
             const result = JSON.parse(res.responseText);
-            setStatus('✓ 采集成功！点击查看商品', 'ok');
-            // 在状态区加可点击链接
             statusEl.innerHTML = \`✓ 采集成功！<a href="\${STORE_URL}/admin/products/\${result.productId}" target="_blank" style="color:#2563eb;text-decoration:underline">查看商品</a>\`;
             statusEl.className = 'ok';
           } else {
@@ -396,7 +646,7 @@ export function ScraperSettingsCard() {
               <li>安装浏览器扩展 <strong>Tampermonkey</strong>（Chrome / Edge）</li>
               <li>点击下方"复制脚本"按钮</li>
               <li>打开 Tampermonkey → 新建脚本 → 粘贴并保存</li>
-              <li>浏览 1688 商品页，点击右下角"采集当前商品"即可</li>
+              <li>浏览 <strong>1688</strong> 或 <strong>Alibaba.com</strong> 商品页，点击右下角"采集当前商品"即可</li>
             </ol>
           </div>
 
