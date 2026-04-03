@@ -277,7 +277,7 @@ function normalizeEmailHistory(value: unknown): AdminEmailHistoryItem[] {
         ? item.recipients.map((recipient) => String(recipient))
         : [],
       subject: String(item.subject || ''),
-      messageMode: item.messageMode === 'html' ? 'html' : 'editorjs',
+      messageMode: (item.messageMode === 'html' ? 'html' : 'editorjs') as 'html' | 'editorjs',
       previewText: String(item.previewText || ''),
       htmlBody: item.htmlBody ? String(item.htmlBody) : undefined,
       textBody: String(item.textBody || ''),
