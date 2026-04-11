@@ -110,20 +110,6 @@ export async function createOrder(
   const discount = 0
   const total = subtotal + shippingFee - discount
 
-  // Verify stock availability
-  for (const item of cartItems) {
-    const product = await prisma.product.findUnique({
-      where: { id: item.productId },
-      select: { stock: true, name: true },
-    })
-
-    if (!product || product.stock < item.quantity) {
-      return {
-        error: `Insufficient stock for ${item.name}. Available: ${product?.stock || 0}`,
-      }
-    }
-  }
-
   let orderId: string
 
   try {

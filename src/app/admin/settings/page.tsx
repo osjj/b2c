@@ -348,16 +348,6 @@ Sitemap: https://your-domain.com/sitemap.xml`}
               <Separator />
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Low Stock Alerts</p>
-                  <p className="text-sm text-muted-foreground">
-                    Get notified when product stock is low
-                  </p>
-                </div>
-                <input type="checkbox" defaultChecked className="rounded" />
-              </div>
-              <Separator />
-              <div className="flex items-center justify-between">
-                <div>
                   <p className="font-medium">Customer Reviews</p>
                   <p className="text-sm text-muted-foreground">
                     Get notified when customers leave reviews

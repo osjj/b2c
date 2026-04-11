@@ -17,14 +17,8 @@ import { formatPrice, formatDate } from '@/lib/utils'
 import { prisma } from '@/lib/prisma'
 
 async function getProductStats() {
-  const [total, lowStock, outOfStock] = await Promise.all([
-    prisma.product.count({ where: { isActive: true } }),
-    prisma.product.count({
-      where: { isActive: true, stock: { lte: 5, gt: 0 } },
-    }),
-    prisma.product.count({ where: { isActive: true, stock: 0 } }),
-  ])
-  return { total, lowStock, outOfStock }
+  const total = await prisma.product.count({ where: { isActive: true } })
+  return { total }
 }
 
 async function getCustomerStats() {
@@ -126,19 +120,6 @@ export default async function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{productStats.total}</div>
-            <div className="text-xs text-muted-foreground mt-1">
-              {productStats.lowStock > 0 && (
-                <span className="text-yellow-600">
-                  {productStats.lowStock} low stock
-                </span>
-              )}
-              {productStats.lowStock > 0 && productStats.outOfStock > 0 && ' · '}
-              {productStats.outOfStock > 0 && (
-                <span className="text-red-500">
-                  {productStats.outOfStock} out of stock
-                </span>
-              )}
-            </div>
           </CardContent>
         </Card>
 

@@ -83,7 +83,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     other: {
       'product:price:amount': String(product.price),
       'product:price:currency': 'USD',
-      'product:availability': product.stock > 0 ? 'in stock' : 'out of stock',
     },
   }
 }
@@ -117,10 +116,21 @@ export default async function ProductDetailPage({
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
-  const INTERNAL_SPEC_KEYS = new Set(['sourceUrl1688', 'offerId1688'])
+  // 过滤内部来源字段。既要匹配原始 key（sourceUrl1688 / offerId1688），
+  // 也要匹配被 AI 规范化后的人类可读标签（"1688 Source URL" / "1688 Offer ID"）
+  const INTERNAL_SPEC_KEYS_NORMALIZED = new Set([
+    'sourceurl1688',
+    'offerid1688',
+    '1688sourceurl',
+    '1688offerid',
+  ])
+  const isInternalSpec = (name: string) => {
+    const n = (name || '').toLowerCase().replace(/[\s_\-]+/g, '')
+    return INTERNAL_SPEC_KEYS_NORMALIZED.has(n)
+  }
   const visibleSpecs = (product.specifications && Array.isArray(product.specifications))
     ? (product.specifications as Array<{name: string, value: string}>)
-        .filter(spec => !INTERNAL_SPEC_KEYS.has(spec.name))
+        .filter(spec => !isInternalSpec(spec.name))
     : []
 
   // Breadcrumb items for JSON-LD
@@ -284,63 +294,36 @@ export default async function ProductDetailPage({
                 </p>
               )}
 
-              {/* Stock Status */}
-              <div className="flex items-center gap-2">
-                {product.stock > 0 ? (
-                  <>
-                    <span className="w-2 h-2 rounded-full bg-green-500" />
-                    <span className="text-sm text-muted-foreground">
-                      In Stock ({product.stock} available)
-                    </span>
-                  </>
+              {/* Add to Cart or Quote */}
+              <div className="pt-4">
+                {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
+                  <B2BProductActions
+                    productId={product.id}
+                    productName={product.name}
+                    productImage={product.images[0]?.url}
+                    sku={product.sku || undefined}
+                    defaultPrice={Number(product.price)}
+                    priceTiers={product.priceTiers?.map(t => ({
+                      id: t.id,
+                      minQuantity: t.minQuantity,
+                      maxQuantity: t.maxQuantity,
+                      price: Number(t.price),
+                      sortOrder: t.sortOrder,
+                    })) || []}
+                  />
                 ) : (
-                  <>
-                    <span className="w-2 h-2 rounded-full bg-red-500" />
-                    <span className="text-sm text-muted-foreground">Out of Stock</span>
-                  </>
+                  <AddToCartButton
+                    productId={product.id}
+                    productName={product.name}
+                    productPrice={Number(product.price)}
+                    productImage={product.images[0]?.url}
+                    size="lg"
+                    className="w-full"
+                  >
+                    Add to Cart
+                  </AddToCartButton>
                 )}
               </div>
-
-              {/* Add to Cart or Quote */}
-              {product.stock > 0 ? (
-                <div className="pt-4">
-                  {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
-                    <B2BProductActions
-                      productId={product.id}
-                      productName={product.name}
-                      productImage={product.images[0]?.url}
-                      sku={product.sku || undefined}
-                      defaultPrice={Number(product.price)}
-                      priceTiers={product.priceTiers?.map(t => ({
-                        id: t.id,
-                        minQuantity: t.minQuantity,
-                        maxQuantity: t.maxQuantity,
-                        price: Number(t.price),
-                        sortOrder: t.sortOrder,
-                      })) || []}
-                      stock={product.stock}
-                    />
-                  ) : (
-                    <AddToCartButton
-                      productId={product.id}
-                      productName={product.name}
-                      productPrice={Number(product.price)}
-                      productImage={product.images[0]?.url}
-                      stock={product.stock}
-                      size="lg"
-                      className="w-full"
-                    >
-                      Add to Cart
-                    </AddToCartButton>
-                  )}
-                </div>
-              ) : (
-                <div className="pt-4">
-                  <p className="text-muted-foreground">
-                    This product is currently out of stock.
-                  </p>
-                </div>
-              )}
             </div>
           </div>
 

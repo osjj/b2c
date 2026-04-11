@@ -15,7 +15,6 @@ interface B2BProductActionsProps {
   sku?: string
   defaultPrice: number
   priceTiers: PriceTier[]
-  stock: number
 }
 
 export function B2BProductActions({
@@ -25,7 +24,6 @@ export function B2BProductActions({
   sku,
   defaultPrice,
   priceTiers,
-  stock,
 }: B2BProductActionsProps) {
   const [quantity, setQuantity] = useState(1)
 
@@ -67,7 +65,6 @@ export function B2BProductActions({
           value={quantity}
           onChange={setQuantity}
           min={1}
-          max={stock}
         />
       </div>
 

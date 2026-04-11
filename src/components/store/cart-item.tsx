@@ -21,9 +21,7 @@ export function CartItem({ item }: CartItemProps) {
   }
 
   const handleIncrease = () => {
-    if (!item.stock || item.quantity < item.stock) {
-      updateQuantity(item.productId, item.quantity + 1, item.variantId)
-    }
+    updateQuantity(item.productId, item.quantity + 1, item.variantId)
   }
 
   const handleRemove = () => {
@@ -75,7 +73,6 @@ export function CartItem({ item }: CartItemProps) {
               size="icon"
               className="h-8 w-8"
               onClick={handleIncrease}
-              disabled={item.stock !== undefined && item.quantity >= item.stock}
             >
               <Plus className="h-4 w-4" />
             </Button>

@@ -92,18 +92,6 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               )}
             </div>
 
-            {/* Stock Status */}
-            {product.stock === 0 && (
-              <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
-                <span className="text-sm font-semibold text-muted-foreground">Out of Stock</span>
-              </div>
-            )}
-
-            {product.stock > 0 && product.stock <= 10 && (
-              <span className="absolute bottom-3 right-3 bg-amber-500 text-white text-[10px] font-medium px-2 py-0.5 rounded">
-                Only {product.stock} left
-              </span>
-            )}
           </div>
         </Link>
 
@@ -138,28 +126,26 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           </div>
 
           {/* Actions */}
-          {product.stock > 0 && (
-            <div className="flex gap-2">
-              {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
-                <AddToQuoteButton
-                  productId={product.id}
-                  productName={product.name}
-                  productPrice={Number(product.price)}
-                  productImage={imageUrl}
-                  variant="default"
-                  size="sm"
-                  className="flex-1 text-xs h-8"
-                />
-              ) : (
-                <AddToCartButton
-                  productId={product.id}
-                  variant="default"
-                  size="sm"
-                  className="flex-1 text-xs h-8"
-                />
-              )}
-            </div>
-          )}
+          <div className="flex gap-2">
+            {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
+              <AddToQuoteButton
+                productId={product.id}
+                productName={product.name}
+                productPrice={Number(product.price)}
+                productImage={imageUrl}
+                variant="default"
+                size="sm"
+                className="flex-1 text-xs h-8"
+              />
+            ) : (
+              <AddToCartButton
+                productId={product.id}
+                variant="default"
+                size="sm"
+                className="flex-1 text-xs h-8"
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
