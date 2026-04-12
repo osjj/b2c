@@ -88,6 +88,23 @@ export function getLowestTierPrice(
 }
 
 /**
+ * Get the full tier price range for detail-page display.
+ */
+export function getTierPriceRange(
+  priceTiers: PriceTier[]
+): { min: number; max: number } | null {
+  if (!priceTiers || priceTiers.length === 0) {
+    return null
+  }
+
+  const prices = priceTiers.map((tier) => tier.price)
+  return {
+    min: Math.min(...prices),
+    max: Math.max(...prices),
+  }
+}
+
+/**
  * 验证阶梯价格配置是否有效
  */
 export function validatePriceTiers(

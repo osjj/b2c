@@ -19,7 +19,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   return `// ==UserScript==
 // @name         店铺商品采集（1688 / Alibaba）
 // @namespace    http://tampermonkey.net/
-// @version      2.2
+// @version      2.3
 // @description  在 1688 或 Alibaba 商品页一键采集数据到店铺后台
 // @author       store-admin
 // @match        https://detail.1688.com/offer/*.html
@@ -379,7 +379,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return [...srcs];
   }
 
-  // Alibaba 详情图：从 .module_description iframe 读取（同源可访问）
+  // Alibaba 详情图：优先从 DOM 直接读取，降级到 iframe
   let _alibabaDetailResolve;
   const _alibabaDetailPromise = new Promise(resolve => { _alibabaDetailResolve = resolve; });
   if (SITE === 'alibaba') {
@@ -393,13 +393,27 @@ function buildUserscript(apiKey: string, appUrl: string): string {
       function isDetailImg(url) {
         if (!url) return false;
         if (!url.includes('alicdn.com')) return false;
-        if (url.match(/_\\d+x\\d+\\./i)) return false; // 排除缩略图
+        if (url.match(/_\\d+x\\d+\\./i)) return false;
         if (url.includes('/assets/') || url.includes('/icon')) return false;
         return /\\.(jpe?g|png)$/i.test(url);
       }
-      // 等待 iframe 加载后读取详情图
+      // 方案 A：直接从 DOM 读取（部分商品详情图直接渲染，不走 iframe）
+      function tryReadDOM() {
+        const container = document.querySelector(
+          '.module_structure_description, .module_description, .description-layout'
+        );
+        if (!container) return false;
+        const imgs = [...container.querySelectorAll('img')]
+          .map(img => (img.src || img.getAttribute('data-src') || '').split('?')[0])
+          .filter(isDetailImg);
+        if (imgs.length > 0) { resolveOnce(imgs); return true; }
+        return false;
+      }
+      // 方案 B：从 iframe 读取（旧版商品页详情在同源 iframe 中）
       function tryReadIframe() {
-        const iframe = document.querySelector('.module_description iframe, .description-layout iframe');
+        const iframe = document.querySelector(
+          '.module_description iframe, .module_structure_description iframe, .description-layout iframe'
+        );
         if (!iframe) return false;
         try {
           const doc = iframe.contentDocument || iframe.contentWindow?.document;
@@ -411,16 +425,15 @@ function buildUserscript(apiKey: string, appUrl: string): string {
         } catch {}
         return false;
       }
-      // 轮询等待 iframe 加载（最多 10 秒）
+      // 轮询：先尝试 DOM，再尝试 iframe（最多 10 秒）
       let attempts = 0;
       const timer = setInterval(() => {
         attempts++;
-        if (tryReadIframe() || attempts >= 20) {
+        if (tryReadDOM() || tryReadIframe() || attempts >= 20) {
           clearInterval(timer);
           if (!resolved) resolveOnce([]);
         }
       }, 500);
-      // 兜底
       setTimeout(() => { clearInterval(timer); if (!resolved) resolveOnce([]); }, 12000);
     })();
   } else {

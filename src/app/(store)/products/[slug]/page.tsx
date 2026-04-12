@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
+import { getTierPriceRange, type PriceTier } from '@/lib/pricing'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
 import { B2BProductActions } from '@/components/store/b2b-product-actions'
@@ -113,6 +114,19 @@ export default async function ProductDetailPage({
   const discountPercentage = hasDiscount
     ? Math.round((1 - Number(product.price) / Number(product.comparePrice)) * 100)
     : 0
+  const normalizedPriceTiers: PriceTier[] = product.priceTiers?.map((tier) => ({
+    id: tier.id,
+    minQuantity: tier.minQuantity,
+    maxQuantity: tier.maxQuantity,
+    price: Number(tier.price),
+    sortOrder: tier.sortOrder,
+  })) || []
+  const tierPriceRange = getTierPriceRange(normalizedPriceTiers)
+  const displayPrice = tierPriceRange
+    ? tierPriceRange.min === tierPriceRange.max
+      ? formatPrice(tierPriceRange.min)
+      : `${formatPrice(tierPriceRange.min)}~${formatPrice(tierPriceRange.max).replace(/^\$/, '')}`
+    : formatPrice(Number(product.price))
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
@@ -243,8 +257,8 @@ export default async function ProductDetailPage({
               <h1 className="font-serif text-3xl md:text-4xl">{product.name}</h1>
 
               <div className="flex items-baseline gap-3">
-                <span className="text-2xl font-medium">
-                  {formatPrice(Number(product.price))}
+                <span className="text-2xl font-bold">
+                  {displayPrice}
                 </span>
                 {hasDiscount && (
                   <span className="text-lg text-muted-foreground line-through">
@@ -303,13 +317,7 @@ export default async function ProductDetailPage({
                     productImage={product.images[0]?.url}
                     sku={product.sku || undefined}
                     defaultPrice={Number(product.price)}
-                    priceTiers={product.priceTiers?.map(t => ({
-                      id: t.id,
-                      minQuantity: t.minQuantity,
-                      maxQuantity: t.maxQuantity,
-                      price: Number(t.price),
-                      sortOrder: t.sortOrder,
-                    })) || []}
+                    priceTiers={normalizedPriceTiers}
                   />
                 ) : (
                   <AddToCartButton
