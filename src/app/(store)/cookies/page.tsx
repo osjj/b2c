@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Cookie Policy | Laifappe',
   description: 'Cookie policy for Laifappe B2B PPE store.',
+  robots: { index: false, follow: false },
 }
 
 export default function CookiesPage() {

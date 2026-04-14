@@ -7,7 +7,6 @@ interface ProductForJsonLd {
   sku: string | null;
   price: number;
   comparePrice: number | null;
-  stock: number;
   images: ProductImage[];
   category: Category | null;
 }
@@ -40,10 +39,6 @@ export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
       priceValidUntil: new Date(
         Date.now() + 30 * 24 * 60 * 60 * 1000
       ).toISOString().split("T")[0],
-      availability:
-        product.stock > 0
-          ? "https://schema.org/InStock"
-          : "https://schema.org/OutOfStock",
       seller: {
         "@type": "Organization",
         name: "Laifappe",

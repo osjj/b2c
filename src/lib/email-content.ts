@@ -105,7 +105,7 @@ function renderBlockText(block: EditorBlock) {
   }
 }
 
-function renderListHtml(items: unknown) {
+function renderListHtml(items: unknown): string {
   if (!Array.isArray(items)) return ''
 
   return items

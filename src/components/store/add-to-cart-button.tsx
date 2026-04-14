@@ -12,7 +12,6 @@ interface AddToCartButtonProps extends Omit<React.ComponentProps<typeof Button>,
   productName?: string
   productPrice?: number
   productImage?: string
-  stock?: number
   variantId?: string
 }
 
@@ -22,7 +21,6 @@ export function AddToCartButton({
   productName,
   productPrice,
   productImage,
-  stock,
   variantId,
   children,
   ...props
@@ -44,7 +42,6 @@ export function AddToCartButton({
           price: productPrice,
           image: productImage || '',
           quantity,
-          stock,
         })
         openCart()
       }

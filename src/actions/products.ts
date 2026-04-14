@@ -186,7 +186,7 @@ export async function getProductBySlug(slug: string) {
     include: {
       category: true,
       images: { orderBy: { sortOrder: 'asc' } },
-      variants: { where: { stock: { gt: 0 } } },
+      variants: true,
       attributeValues: {
         include: {
           attribute: {

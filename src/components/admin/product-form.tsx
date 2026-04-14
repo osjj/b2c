@@ -92,7 +92,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [price, setPrice] = useState(product?.price ? Number(product.price) : '')
   const [comparePrice, setComparePrice] = useState(product?.comparePrice ? Number(product.comparePrice) : '')
   const [sku, setSku] = useState(product?.sku || '')
-  const [stock, setStock] = useState(product?.stock ?? 0)
+  const [stock, setStock] = useState(product?.stock ?? 999999)
   const [categoryId, setCategoryId] = useState(product?.categoryId || 'none')
   const [isActive, setIsActive] = useState(product?.isActive ?? true)
   const [isFeatured, setIsFeatured] = useState(product?.isFeatured ?? false)
@@ -569,32 +569,19 @@ export function ProductForm({ product, categories, collections = [], productColl
 
           <Card>
             <CardHeader>
-              <CardTitle>Inventory</CardTitle>
+              <CardTitle>SKU</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <Label htmlFor="sku">SKU</Label>
-                  <Input
-                    id="sku"
-                    name="sku"
-                    value={sku}
-                    onChange={(e) => setSku(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="stock">Stock *</Label>
-                  <Input
-                    id="stock"
-                    name="stock"
-                    type="number"
-                    min="0"
-                    value={stock}
-                    onChange={(e) => setStock(Number(e.target.value) || 0)}
-                    required
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="sku">SKU</Label>
+                <Input
+                  id="sku"
+                  name="sku"
+                  value={sku}
+                  onChange={(e) => setSku(e.target.value)}
+                />
               </div>
+              <input type="hidden" name="stock" value={stock} />
             </CardContent>
           </Card>
 

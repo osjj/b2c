@@ -97,7 +97,6 @@ export async function getCartItems() {
     price: Number(item.variant?.price || item.product.price),
     image: item.product.images[0]?.url || '',
     quantity: item.quantity,
-    stock: item.variant?.stock ?? item.product.stock,
   }))
 }
 
@@ -116,19 +115,12 @@ export async function addToCart(productId: string, quantity: number = 1, variant
     throw new Error('Product is not available')
   }
 
-  if (product.stock < quantity) {
-    throw new Error('Not enough stock')
-  }
-
   const existingItem = cart.items.find(
     (item) => item.productId === productId && item.variantId === (variantId || null)
   )
 
   if (existingItem) {
     const newQuantity = existingItem.quantity + quantity
-    if (newQuantity > product.stock) {
-      throw new Error('Not enough stock')
-    }
 
     await prisma.cartItem.update({
       where: { id: existingItem.id },
@@ -165,14 +157,6 @@ export async function updateCartItem(productId: string, quantity: number, varian
       where: { id: item.id },
     })
   } else {
-    const product = await prisma.product.findUnique({
-      where: { id: item.productId },
-    })
-
-    if (product && quantity > product.stock) {
-      throw new Error('Not enough stock')
-    }
-
     await prisma.cartItem.update({
       where: { id: item.id },
       data: { quantity },

@@ -132,7 +132,6 @@ export function SortableProductTable({ products: initialProducts }: SortableProd
             <TableHead>Name</TableHead>
             <TableHead>SKU</TableHead>
             <TableHead>Price</TableHead>
-            <TableHead>Stock</TableHead>
             <TableHead>Status</TableHead>
             <TableHead className="w-24">Actions</TableHead>
           </TableRow>
@@ -204,11 +203,6 @@ export function SortableProductTable({ products: initialProducts }: SortableProd
                 {product.sku || '-'}
               </TableCell>
               <TableCell>{formatPrice(product.price)}</TableCell>
-              <TableCell>
-                <Badge variant={product.stock > 0 ? 'default' : 'destructive'}>
-                  {product.stock}
-                </Badge>
-              </TableCell>
               <TableCell>
                 <Badge variant={product.isActive ? 'default' : 'secondary'}>
                   {product.isActive ? 'Active' : 'Draft'}

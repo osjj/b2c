@@ -19,7 +19,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   return `// ==UserScript==
 // @name         店铺商品采集（1688 / Alibaba）
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.2
 // @description  在 1688 或 Alibaba 商品页一键采集数据到店铺后台
 // @author       store-admin
 // @match        https://detail.1688.com/offer/*.html
@@ -27,6 +27,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
 // @match        https://www.alibaba.com/product-detail/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_addStyle
+// @grant        unsafeWindow
 // @connect      ${new URL(appUrl).hostname}
 // ==/UserScript==
 
@@ -36,6 +37,8 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   const STORE_URL = '${appUrl}';
   const API_KEY = '${apiKey}';
   const SITE = location.hostname.includes('alibaba.com') ? 'alibaba' : '1688';
+  // 油猴沙箱中 window 是封装过的，页面全局（detailData 等）只在 unsafeWindow 上
+  const PAGE = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
 
   // ─── UI ─────────────────────────────────────────────────────────────────────
   GM_addStyle(\`
@@ -51,12 +54,14 @@ function buildUserscript(apiKey: string, appUrl: string): string {
       display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px;
       background: #f3f4f6; color: #6b7280; margin-bottom: 10px;
     }
-    #__scraper_btn__ {
-      width: 100%; padding: 8px; background: #1a1a1a; color: #fff;
+    #__scraper_btn__, #__scraper_attr_btn__ {
+      width: 100%; padding: 8px; color: #fff;
       border: none; border-radius: 8px; cursor: pointer; font-size: 13px;
       font-weight: 500; transition: opacity .15s;
     }
-    #__scraper_btn__:disabled { opacity: .5; cursor: not-allowed; }
+    #__scraper_btn__ { background: #1a1a1a; }
+    #__scraper_attr_btn__ { background: #2563eb; margin-top: 8px; }
+    #__scraper_btn__:disabled, #__scraper_attr_btn__:disabled { opacity: .5; cursor: not-allowed; }
     #__scraper_status__ { margin-top: 10px; min-height: 20px; color: #6b7280; }
     #__scraper_status__.ok { color: #16a34a; }
     #__scraper_status__.err { color: #dc2626; }
@@ -68,11 +73,13 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     <h4>🛍 店铺采集</h4>
     <span class="site-badge">\${SITE === 'alibaba' ? 'Alibaba.com' : '1688.com'}</span>
     <button id="__scraper_btn__">采集当前商品</button>
+    <button id="__scraper_attr_btn__">添加 Attributes</button>
     <div id="__scraper_status__">就绪</div>
   \`;
   document.body.appendChild(panel);
 
   const btn = document.getElementById('__scraper_btn__');
+  const attrBtn = document.getElementById('__scraper_attr_btn__');
   const statusEl = document.getElementById('__scraper_status__');
 
   function setStatus(msg, cls) {
@@ -228,10 +235,11 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return null;
   }
 
-  // 从 window.detailData.globalData 获取 variants/specs 等扩展数据
+  // 从 detailData.globalData 获取 variants/specs 等扩展数据
+  // 注意：必须读 PAGE（= unsafeWindow），沙箱中的 window 看不到页面脚本挂载的全局
   function _alibaba_getGlobalData() {
     try {
-      return window.detailData?.globalData || null;
+      return PAGE.detailData?.globalData || null;
     } catch {}
     return null;
   }
@@ -262,12 +270,12 @@ function buildUserscript(apiKey: string, appUrl: string): string {
 
   function _alibaba_getPriceData(schema, gd) {
     const priceTiers = [];
-    // detailData.globalData.product.price 里找阶梯价
-    const priceList = gd?.product?.price?.priceList || gd?.product?.price || [];
-    for (const tier of priceList) {
-      const minQty = parseInt(tier.beginAmount || tier.startAmount || tier.minQuantity || 1);
-      const maxQty = tier.endAmount ? parseInt(tier.endAmount) : undefined;
-      const price = parseFloat(tier.price || tier.unitPrice || 0);
+    // detailData.globalData.product.price.productLadderPrices 阶梯价
+    const ladderPrices = gd?.product?.price?.productLadderPrices || [];
+    for (const tier of ladderPrices) {
+      const minQty = parseInt(tier.min || tier.localMin || 1);
+      const maxQty = (tier.max && tier.max > 0) ? parseInt(tier.max) : undefined;
+      const price = parseFloat(tier.dollarPrice || tier.price || 0);
       if (price > 0) priceTiers.push({ minQuantity: minQty, maxQuantity: maxQty, price });
     }
     if (priceTiers.length > 0) {
@@ -341,33 +349,37 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   }
 
   function _alibaba_getMainImages(schema, gd) {
-    // schema.org image 数组（已确认可用）
+    // mediaItems（最可靠，包含完整 big 图 URL）
+    const mediaItems = gd?.product?.mediaItems || [];
+    if (mediaItems.length > 0) {
+      const urls = mediaItems
+        .filter(m => m.type === 'image' && m.imageUrl)
+        .map(m => {
+          const s = m.imageUrl.big || m.imageUrl.small || '';
+          return s ? s.split('?')[0] : '';
+        })
+        .filter(Boolean);
+      if (urls.length > 0) return [...new Set(urls)];
+    }
+    // schema.org image 数组
     if (schema?.image?.length > 0) {
       return [].concat(schema.image).map(img => {
         const s = typeof img === 'string' ? img : (img.url || img.contentUrl || '');
         return s ? (s.startsWith('http') ? s.split('?')[0] : 'https:' + s.split('?')[0]) : '';
       }).filter(Boolean);
     }
-    // detailData.globalData 降级
-    const imgList = gd?.imagePathList || gd?.pdp?.imagePathList || [];
-    if (imgList.length > 0) {
-      return imgList.map(img => {
-        const s = typeof img === 'string' ? img : (img.url || '');
-        return s ? (s.startsWith('http') ? s.split('?')[0] : 'https:' + s.split('?')[0]) : '';
-      }).filter(Boolean);
-    }
     // DOM 降级
     const srcs = new Set();
-    for (const sel of ['[class*="gallery"] img', '[class*="slider"] img', '[class*="main-image"] img']) {
+    for (const sel of ['.module_productImage img', '[class*="gallery"] img', '[class*="slider"] img']) {
       for (const img of document.querySelectorAll(sel)) {
         const src = (img.src || img.getAttribute('data-src') || '').split('?')[0];
-        if (src && src.includes('alicdn.com')) srcs.add(src);
+        if (src && src.includes('alicdn.com') && !src.includes('_50x50') && !src.includes('_120x120')) srcs.add(src);
       }
     }
     return [...srcs];
   }
 
-  // Alibaba 详情图：拦截 XHR 响应 + DOM 兜底
+  // Alibaba 详情图：从 .module_description iframe 读取（同源可访问）
   let _alibabaDetailResolve;
   const _alibabaDetailPromise = new Promise(resolve => { _alibabaDetailResolve = resolve; });
   if (SITE === 'alibaba') {
@@ -378,44 +390,38 @@ function buildUserscript(apiKey: string, appUrl: string): string {
         resolved = true;
         _alibabaDetailResolve([...new Set(imgs)]);
       }
-      function extractImgs(html) {
-        const pat = /(?:src|data-src)="(https?:[^"]+\\.(?:jpg|jpeg|png|webp|gif)[^"]*)"/gi;
-        return [...html.matchAll(pat)].map(m => m[1].split('?')[0])
-          .filter(s => s.includes('alicdn.com') || s.includes('alibaba.com'));
+      function isDetailImg(url) {
+        if (!url) return false;
+        if (!url.includes('alicdn.com')) return false;
+        if (url.match(/_\\d+x\\d+\\./i)) return false; // 排除缩略图
+        if (url.includes('/assets/') || url.includes('/icon')) return false;
+        return /\\.(jpe?g|png)$/i.test(url);
       }
-      // 拦截 XHR（alibaba 详情 HTML 通常通过 XHR 异步加载）
-      const origOpen = XMLHttpRequest.prototype.open;
-      const origSend = XMLHttpRequest.prototype.send;
-      XMLHttpRequest.prototype.open = function (method, url) {
-        this.__scraperUrl = String(url);
-        return origOpen.apply(this, arguments);
-      };
-      XMLHttpRequest.prototype.send = function () {
-        this.addEventListener('load', function () {
-          const url = this.__scraperUrl || '';
-          const text = this.responseText || '';
-          if (!resolved && text.length > 200 && text.includes('<img') &&
-              (url.includes('detail') || url.includes('desc') || url.includes('template') || url.includes('offer'))) {
-            const imgs = extractImgs(text);
-            if (imgs.length > 0) resolveOnce(imgs);
-          }
-        });
-        return origSend.apply(this, arguments);
-      };
-      // 8s 兜底：从页面 description 区域直接取图
-      setTimeout(() => {
-        const selectors = ['[class*="description"]', '[class*="product-detail"]',
-          '[class*="detail-desc"]', '#product-description', '#description', '[class*="overview"]'];
-        for (const sel of selectors) {
-          const el = document.querySelector(sel);
-          if (!el) continue;
-          const imgs = [...el.querySelectorAll('img')]
+      // 等待 iframe 加载后读取详情图
+      function tryReadIframe() {
+        const iframe = document.querySelector('.module_description iframe, .description-layout iframe');
+        if (!iframe) return false;
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (!doc || !doc.body || doc.body.children.length === 0) return false;
+          const imgs = [...doc.querySelectorAll('img')]
             .map(img => (img.src || img.getAttribute('data-src') || '').split('?')[0])
-            .filter(s => s && (s.includes('alicdn.com') || s.includes('alibaba.com')));
-          if (imgs.length > 0) { resolveOnce(imgs); return; }
+            .filter(isDetailImg);
+          if (imgs.length > 0) { resolveOnce(imgs); return true; }
+        } catch {}
+        return false;
+      }
+      // 轮询等待 iframe 加载（最多 10 秒）
+      let attempts = 0;
+      const timer = setInterval(() => {
+        attempts++;
+        if (tryReadIframe() || attempts >= 20) {
+          clearInterval(timer);
+          if (!resolved) resolveOnce([]);
         }
-        resolveOnce([]);
-      }, 8000);
+      }, 500);
+      // 兜底
+      setTimeout(() => { clearInterval(timer); if (!resolved) resolveOnce([]); }, 12000);
     })();
   } else {
     _alibabaDetailResolve([]);
@@ -426,6 +432,80 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   function getSkuImages(variants) {
     return variants.flatMap(v => v.options.map(o => o.imageUrl).filter(Boolean));
   }
+
+  // ─── 添加 Attributes 流程 ────────────────────────────────────────────────────
+
+  function extractVariantsOnly() {
+    if (SITE === 'alibaba') {
+      const gd = _alibaba_getGlobalData();
+      return _alibaba_getVariants(gd);
+    }
+    return _1688_getVariants();
+  }
+
+  attrBtn.addEventListener('click', () => {
+    attrBtn.disabled = true;
+    btn.disabled = true;
+    setStatus('提取 Variations...');
+
+    try {
+      const variants = extractVariantsOnly();
+      if (!variants || variants.length === 0) {
+        setStatus('✗ 未找到 Variations', 'err');
+        attrBtn.disabled = false;
+        btn.disabled = false;
+        return;
+      }
+
+      const payload = {
+        variants: variants.map(v => ({
+          name: v.name,
+          options: v.options.map(o => ({ value: o.value })),
+        })),
+      };
+
+      setStatus(\`上传 \${variants.length} 组属性...\`);
+
+      GM_xmlhttpRequest({
+        method: 'POST',
+        url: STORE_URL + '/api/admin/attributes/bulk-from-variants',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Scraper-Key': API_KEY,
+        },
+        data: JSON.stringify(payload),
+        onload(res) {
+          attrBtn.disabled = false;
+          btn.disabled = false;
+          if (res.status === 200) {
+            try {
+              const result = JSON.parse(res.responseText);
+              const parts = result.results.map(r =>
+                \`\${r.name}(\${r.created ? '新建' : '已存在'}，+\${r.optionsAdded}选项)\`
+              );
+              statusEl.innerHTML = \`✓ Attributes 处理完成：\${parts.join('、')}。<br/><a href="\${STORE_URL}/admin/attributes" target="_blank" style="color:#2563eb;text-decoration:underline">查看属性列表</a>\`;
+              statusEl.className = 'ok';
+            } catch {
+              setStatus('✓ 完成（解析响应失败）', 'ok');
+            }
+          } else {
+            let errMsg = '保存失败';
+            try { errMsg = JSON.parse(res.responseText).error || errMsg; } catch {}
+            setStatus('✗ ' + errMsg, 'err');
+          }
+        },
+        onerror() {
+          attrBtn.disabled = false;
+          btn.disabled = false;
+          setStatus('✗ 网络错误，请检查店铺服务是否运行', 'err');
+        },
+      });
+    } catch (e) {
+      attrBtn.disabled = false;
+      btn.disabled = false;
+      setStatus('✗ ' + e.message, 'err');
+    }
+  });
 
   // ─── 采集主流程 ──────────────────────────────────────────────────────────────
 
