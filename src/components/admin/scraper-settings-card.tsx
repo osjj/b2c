@@ -19,7 +19,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
   return `// ==UserScript==
 // @name         店铺商品采集（1688 / Alibaba）
 // @namespace    http://tampermonkey.net/
-// @version      2.3
+// @version      2.4
 // @description  在 1688 或 Alibaba 商品页一键采集数据到店铺后台
 // @author       store-admin
 // @match        https://detail.1688.com/offer/*.html
@@ -244,6 +244,20 @@ function buildUserscript(apiKey: string, appUrl: string): string {
     return null;
   }
 
+  // 等待 detailData 可用（Next.js 水合后才注入，可能延迟）
+  function _alibaba_waitForGlobalData(timeout) {
+    return new Promise(resolve => {
+      const gd = _alibaba_getGlobalData();
+      if (gd) { resolve(gd); return; }
+      let elapsed = 0;
+      const iv = setInterval(() => {
+        elapsed += 200;
+        const gd = _alibaba_getGlobalData();
+        if (gd || elapsed >= (timeout || 5000)) { clearInterval(iv); resolve(gd); }
+      }, 200);
+    });
+  }
+
   function _alibaba_getOfferId() {
     const m = location.href.match(/_([0-9]+)\\.html/);
     return m ? m[1] : '';
@@ -295,7 +309,7 @@ function buildUserscript(apiKey: string, appUrl: string): string {
 
   function _alibaba_getVariants(gd) {
     const variants = [];
-    // detailData.globalData.product.sku.skuAttrs（已确认路径）
+    // 1) detailData.globalData.product.sku.skuAttrs（主路径）
     const skuAttrs = gd?.product?.sku?.skuAttrs || [];
     for (const attr of skuAttrs) {
       const name = attr.name || attr.skuPropertyName;
@@ -306,16 +320,62 @@ function buildUserscript(apiKey: string, appUrl: string): string {
       })).filter(o => o.value);
       if (options.length > 0) variants.push({ name, options });
     }
-    // DOM 降级
+    // 2) 补充：skuSummaryAttrs 可能有 skuAttrs 缺失的属性
     if (variants.length === 0) {
-      const groups = document.querySelectorAll('[class*="sku-attr-item"], [class*="attribute-item"]');
-      for (const g of groups) {
-        const label = g.querySelector('[class*="label"], [class*="name"]')?.textContent?.trim();
-        if (!label) continue;
-        const options = [...g.querySelectorAll('[class*="value"], [class*="option"]')]
-          .map(el => ({ value: el.innerText?.trim().split('\\n')[0] || '', imageUrl: el.querySelector('img')?.src }))
-          .filter(o => o.value);
-        if (options.length > 0) variants.push({ name: label, options });
+      const summaryAttrs = gd?.product?.sku?.skuSummaryAttrs || [];
+      for (const attr of summaryAttrs) {
+        const name = attr.name || attr.skuPropertyName;
+        if (!name) continue;
+        const options = (attr.values || []).map(v => ({
+          value: v.name || String(v.id || ''),
+          imageUrl: v.originImage || v.largeImage || undefined,
+        })).filter(o => o.value);
+        if (options.length > 0) variants.push({ name, options });
+      }
+    }
+    // 3) DOM 降级：新版 Alibaba 页面使用 .module_sku > h4 + span 结构
+    if (variants.length === 0) {
+      const skuModule = document.querySelector('.module_sku');
+      if (skuModule) {
+        const h4s = skuModule.querySelectorAll('h4');
+        for (const h4 of h4s) {
+          const rawName = h4.innerText?.trim() || '';
+          const name = rawName.replace(/\\s*[:：].*/, '');
+          if (!name) continue;
+          const section = h4.parentElement;
+          if (!section) continue;
+          const optionSpans = section.querySelectorAll('span[class*="id-rounded-lg"][class*="id-bg-"]');
+          const options = [];
+          const seen = new Set();
+          for (const sp of optionSpans) {
+            const val = sp.innerText?.trim();
+            if (val && !seen.has(val)) { seen.add(val); options.push({ value: val }); }
+          }
+          // 如果 span 选择器没命中，尝试读取所有非标题叶子文本
+          if (options.length === 0) {
+            const leaves = section.querySelectorAll('span, li');
+            for (const leaf of leaves) {
+              if (leaf.children.length > 0) continue;
+              const val = leaf.innerText?.trim();
+              if (val && val !== name && val.length < 50 && !seen.has(val)) {
+                seen.add(val); options.push({ value: val });
+              }
+            }
+          }
+          if (options.length > 0) variants.push({ name, options });
+        }
+      }
+      // 旧版选择器兜底
+      if (variants.length === 0) {
+        const groups = document.querySelectorAll('[class*="sku-attr-item"], [class*="attribute-item"]');
+        for (const g of groups) {
+          const label = g.querySelector('[class*="label"], [class*="name"]')?.textContent?.trim();
+          if (!label) continue;
+          const options = [...g.querySelectorAll('[class*="value"], [class*="option"]')]
+            .map(el => ({ value: el.innerText?.trim().split('\\n')[0] || '', imageUrl: el.querySelector('img')?.src }))
+            .filter(o => o.value);
+          if (options.length > 0) variants.push({ name: label, options });
+        }
       }
     }
     return variants;
@@ -448,21 +508,21 @@ function buildUserscript(apiKey: string, appUrl: string): string {
 
   // ─── 添加 Attributes 流程 ────────────────────────────────────────────────────
 
-  function extractVariantsOnly() {
+  async function extractVariantsOnly() {
     if (SITE === 'alibaba') {
-      const gd = _alibaba_getGlobalData();
+      const gd = await _alibaba_waitForGlobalData(5000);
       return _alibaba_getVariants(gd);
     }
     return _1688_getVariants();
   }
 
-  attrBtn.addEventListener('click', () => {
+  attrBtn.addEventListener('click', async () => {
     attrBtn.disabled = true;
     btn.disabled = true;
     setStatus('提取 Variations...');
 
     try {
-      const variants = extractVariantsOnly();
+      const variants = await extractVariantsOnly();
       if (!variants || variants.length === 0) {
         setStatus('✗ 未找到 Variations', 'err');
         attrBtn.disabled = false;
@@ -532,9 +592,10 @@ function buildUserscript(apiKey: string, appUrl: string): string {
       if (SITE === 'alibaba') {
         offerId = _alibaba_getOfferId();
         if (!offerId) throw new Error('无法识别商品 ID，请检查页面 URL');
-        setStatus('提取商品数据...');
+        setStatus('等待页面数据加载...');
         const schema = _alibaba_getSchemaData();
-        const gd     = _alibaba_getGlobalData();
+        const gd     = await _alibaba_waitForGlobalData(5000);
+        setStatus('提取商品数据...');
         name          = _alibaba_getName(schema, gd);
         description   = _alibaba_getDescription(schema, gd);
         priceData     = _alibaba_getPriceData(schema, gd);

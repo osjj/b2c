@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { transferImages } from './image-transfer'
 import { revalidatePath } from 'next/cache'
-import type { ScrapedProduct } from './types'
+import type { ScrapedProduct, ScrapedVariant } from './types'
 
 function generateSlug(name: string): string {
   return (
@@ -11,6 +11,89 @@ function generateSlug(name: string): string {
       .replace(/^-|-$/g, '')
       .slice(0, 80) || `product-${Date.now()}`
   )
+}
+
+function slugifyCode(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')
+}
+
+/**
+ * 将采集到的 variants 写入 Attribute / AttributeOption，
+ * 并为产品创建 ProductAttributeValue 关联（MULTISELECT：全选所有选项）
+ */
+async function linkVariantsToProduct(productId: string, variants: ScrapedVariant[]) {
+  if (!variants || variants.length === 0) return
+
+  for (const v of variants) {
+    const name = v.name?.trim()
+    if (!name) continue
+    const values = v.options
+      .map((o) => o.value?.trim())
+      .filter((val): val is string => !!val)
+    if (values.length === 0) continue
+
+    // 1) 查找或创建 Attribute
+    let attribute = await prisma.attribute.findFirst({
+      where: { name: { equals: name, mode: 'insensitive' } },
+    })
+
+    if (!attribute) {
+      let baseCode = slugifyCode(name)
+      if (!baseCode) baseCode = `attr_${Date.now().toString(36)}`
+      let code = baseCode
+      let suffix = 1
+      while (await prisma.attribute.findUnique({ where: { code } })) {
+        suffix += 1
+        code = `${baseCode}_${suffix}`
+      }
+      const maxOrder = await prisma.attribute.aggregate({ _max: { sortOrder: true } })
+      attribute = await prisma.attribute.create({
+        data: {
+          name,
+          code,
+          type: 'MULTISELECT',
+          isRequired: false,
+          isFilterable: true,
+          isActive: true,
+          sortOrder: (maxOrder._max.sortOrder ?? 0) + 1,
+        },
+      })
+    }
+
+    // 2) 确保所有选项值存在
+    const existingOptions = await prisma.attributeOption.findMany({
+      where: { attributeId: attribute.id },
+    })
+    const existingLower = new Map(existingOptions.map((o) => [o.value.toLowerCase(), o.id]))
+    let nextSort = existingOptions.length
+
+    const optionIds: string[] = []
+    for (const val of values) {
+      const key = val.toLowerCase()
+      if (existingLower.has(key)) {
+        optionIds.push(existingLower.get(key)!)
+      } else {
+        const created = await prisma.attributeOption.create({
+          data: { attributeId: attribute.id, value: val, sortOrder: nextSort++ },
+        })
+        existingLower.set(key, created.id)
+        optionIds.push(created.id)
+      }
+    }
+
+    // 3) 为产品创建 ProductAttributeValue（全选所有选项）
+    await prisma.productAttributeValue.upsert({
+      where: { productId_attributeId: { productId, attributeId: attribute.id } },
+      create: {
+        productId,
+        attributeId: attribute.id,
+        optionIds,
+      },
+      update: {
+        optionIds,
+      },
+    })
+  }
 }
 
 /**
@@ -70,6 +153,10 @@ export async function saveProductCore(
     }),
   ])
 
+  // 采集的 variants 自动关联为产品属性（创建 Attribute + Options + ProductAttributeValue）
+  await linkVariantsToProduct(product.id, scrapedData.variants)
+
   revalidatePath('/admin/products')
+  revalidatePath('/admin/attributes')
   return { success: true, productId: product.id, slug: product.slug }
 }
