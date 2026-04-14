@@ -13,6 +13,7 @@ import {
   resolveRecommendationMode,
 } from '@/lib/solution-recommendations'
 import type { ProductImage, Category } from '@prisma/client'
+import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
   const solutionUrl = `${baseUrl}/solutions/${slug}`
 
   const usageScenesLabel = solution.usageScenes
