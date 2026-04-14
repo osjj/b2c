@@ -8,6 +8,7 @@ import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
 import { StorePagination } from '@/components/store/store-pagination'
 import { CategoryJsonLd, BreadcrumbJsonLd } from '@/components/seo'
+import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
@@ -37,7 +38,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     `Browse our selection of ${category.name}. High-quality protective equipment from Laifappe.`
 
   return {
-    title,
+    title: {
+      absolute: buildPageTitle(title),
+    },
     description,
     openGraph: {
       title,

@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ShieldCheck, Filter, Package, ChevronRight } from 'lucide-react'
+import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
@@ -43,7 +44,9 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const baseUrl = getSiteUrl()
 
   return {
-    title,
+    title: {
+      absolute: buildPageTitle(title),
+    },
     description,
     openGraph: {
       title,

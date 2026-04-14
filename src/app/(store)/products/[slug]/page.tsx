@@ -12,6 +12,7 @@ import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 import { ProductSectionTabs } from '@/components/store/product-section-tabs'
+import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
@@ -52,7 +53,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogDescription = (product as any).ogDescription || description
 
   return {
-    title,
+    title: {
+      absolute: buildPageTitle(title),
+    },
     description,
     keywords: keywords as string[],
     openGraph: {

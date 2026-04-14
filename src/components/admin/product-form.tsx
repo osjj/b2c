@@ -28,6 +28,7 @@ import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import { CollectImageAIDialog } from './collect-image-ai-dialog'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
+import { buildPageTitle } from '@/lib/seo-title'
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 type AttributeWithOptions = Attribute & {
@@ -209,6 +210,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [ogTitle, setOgTitle] = useState(product?.ogTitle || '')
   const [ogDescription, setOgDescription] = useState(product?.ogDescription || '')
   const [ogImage, setOgImage] = useState(product?.ogImage || '')
+  const previewTitle = buildPageTitle(metaTitle || name || 'Product Title')
 
   // Usage Scenes for Solution association
   const [usageScenes, setUsageScenes] = useState<string[]>(product?.usageScenes || [])
@@ -787,13 +789,16 @@ export function ProductForm({ product, categories, collections = [], productColl
                 <h4 className="text-sm font-medium mb-2">Search Preview</h4>
                 <div className="space-y-1">
                   <p className="text-blue-600 text-lg truncate">
-                    {metaTitle || name || 'Product Title'}
+                    {previewTitle}
                   </p>
                   <p className="text-green-700 text-sm">
                     {process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'}/products/{slug || 'product-slug'}
                   </p>
                   <p className="text-sm text-muted-foreground line-clamp-2">
                     {metaDescription || description?.slice(0, 160) || 'Product description...'}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Final title length: {previewTitle.length}/60
                   </p>
                 </div>
               </div>

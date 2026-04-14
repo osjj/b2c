@@ -8,9 +8,12 @@ import AboutCompany from "@/modules/home/components/about-company"
 import Testimonials from "@/modules/home/components/testimonials"
 import FooterCTA from "@/modules/home/components/footer-cta"
 import { Metadata } from "next"
+import { buildPageTitle } from "@/lib/seo-title"
 
 export const metadata: Metadata = {
-  title: "Laifappe | Professional PPE Manufacturer for Extreme Environments",
+  title: {
+    absolute: buildPageTitle("Professional PPE Manufacturer for Extreme Environments"),
+  },
   description:
     "Leading manufacturer of personal protective equipment. Safety gloves, shoes, workwear, and more. CE, ANSI, ISO9001 certified. OEM/ODM services available.",
 }

@@ -17,7 +17,8 @@
     "db:sync:solutions": "npx tsx prisma/sync-solutions.ts",
     "db:seed:solutions": "npx tsx prisma/seed-solutions.ts",
     "db:gen:covers": "npx tsx prisma/generate-solution-covers.ts",
-    "db:index:embeddings": "npx tsx scripts/index-product-embeddings.ts"
+    "db:index:embeddings": "npx tsx scripts/index-product-embeddings.ts",
+    "db:gen:product-meta-titles": "npx tsx scripts/generate-product-meta-title-candidates.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.965.0",

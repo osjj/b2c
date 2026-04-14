@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
+import { buildPageTitle } from '@/lib/seo-title'
 
 export const metadata: Metadata = {
-  title: 'AI Quote Generator | PPE & Safety Equipment Procurement Tool',
+  title: {
+    absolute: buildPageTitle('AI Quote Generator | PPE & Safety Equipment Procurement Tool'),
+  },
   description:
     'Describe your workforce, job site, and hazards — our AI instantly generates a customized PPE procurement quote matched to your real product catalog. Export to PDF or Excel in seconds.',
   keywords: [
