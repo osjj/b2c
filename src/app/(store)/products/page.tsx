@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ShieldCheck, Filter, Package, ChevronRight } from 'lucide-react'
+import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
   searchParams: Promise<{
@@ -25,7 +26,7 @@ type Props = {
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams
-  const { category, search, page } = params
+  const { search, page } = params
 
   let title = 'All Products'
   let description = 'Browse our complete selection of professional protective equipment. Safety gloves, shoes, workwear and more.'
@@ -39,7 +40,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     title += ` - Page ${page}`
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
 
   return {
     title,

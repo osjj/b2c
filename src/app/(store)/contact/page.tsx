@@ -13,7 +13,7 @@ const contacts = [
   {
     title: 'Email',
     value: 'sales@laifappe.com',
-    href: 'mailto:sales@laifappe.com',
+    href: '',
     icon: Mail,
     note: 'For quotations and product catalogs',
   },

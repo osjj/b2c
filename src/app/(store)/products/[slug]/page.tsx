@@ -12,6 +12,7 @@ import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 import { ProductSectionTabs } from '@/components/store/product-section-tabs'
+import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
   const productUrl = `${baseUrl}/products/${slug}`
   const productImage = (product as any).ogImage || product.images[0]?.url
   const productImageAlt = product.images[0]?.alt || product.name
@@ -128,7 +129,7 @@ export default async function ProductDetailPage({
       : `${formatPrice(tierPriceRange.min)}~${formatPrice(tierPriceRange.max).replace(/^\$/, '')}`
     : formatPrice(Number(product.price))
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
 
   // 过滤内部来源字段。既要匹配原始 key（sourceUrl1688 / offerId1688），
   // 也要匹配被 AI 规范化后的人类可读标签（"1688 Source URL" / "1688 Offer ID"）

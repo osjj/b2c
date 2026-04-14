@@ -7,6 +7,7 @@ import { ProductCard } from '@/components/store/product-card'
 import { BodyLinkMapSection } from './body-link-map-section'
 import { isBodyLinkedList } from '@/lib/body-link-map'
 import { getTaskScenePreset, normalizeTaskCards } from '@/lib/task-cards'
+import { normalizePublicCtaHref } from '@/lib/store-solution-categories'
 import type {
   SolutionSectionItem,
   SectionHeroData,
@@ -277,12 +278,12 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
           <div className="mt-4 flex flex-wrap gap-3">
             {data?.primaryLabel && data?.primaryHref && (
               <Button asChild>
-                <Link href={data.primaryHref}>{data.primaryLabel}</Link>
+                <Link href={normalizePublicCtaHref(data.primaryHref)}>{data.primaryLabel}</Link>
               </Button>
             )}
             {data?.secondaryLabel && data?.secondaryHref && (
               <Button variant="secondary" asChild>
-                <Link href={data.secondaryHref}>{data.secondaryLabel}</Link>
+                <Link href={normalizePublicCtaHref(data.secondaryHref)}>{data.secondaryLabel}</Link>
               </Button>
             )}
           </div>

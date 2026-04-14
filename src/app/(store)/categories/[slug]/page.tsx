@@ -8,6 +8,7 @@ import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
 import { StorePagination } from '@/components/store/store-pagination'
 import { CategoryJsonLd, BreadcrumbJsonLd } from '@/components/seo'
+import { getSiteUrl } from '@/lib/site-url'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
   const categoryUrl = `${baseUrl}/categories/${slug}`
 
   // Use SEO fields from database if available, otherwise fallback to defaults
@@ -92,7 +93,7 @@ export default async function CategoryPage({
     activeOnly: true,
   })
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
 
   // Breadcrumb items for JSON-LD
   const breadcrumbItems = [

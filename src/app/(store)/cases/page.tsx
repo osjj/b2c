@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Success Cases | Laifappe",
@@ -219,12 +220,12 @@ export default function CasesPage() {
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">
             Let&apos;s create the next success story together
           </p>
-          <a
-            href="mailto:sales@example.com"
+          <Link
+            href="/contact"
             className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3 rounded-full transition-colors"
           >
             Get in Touch
-          </a>
+          </Link>
         </div>
       </section>
     </div>

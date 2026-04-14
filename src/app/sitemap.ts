@@ -1,10 +1,11 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const revalidate = 3600; // revalidate every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl = getSiteUrl();
 
   // 获取所有活跃产品
   const products = await prisma.product.findMany({
@@ -14,12 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 获取所有活跃分类
   const categories = await prisma.category.findMany({
-    where: { isActive: true },
-    select: { slug: true, updatedAt: true },
-  });
-
-  // 获取所有活跃集合
-  const collections = await prisma.collection.findMany({
     where: { isActive: true },
     select: { slug: true, updatedAt: true },
   });
@@ -92,14 +87,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // 集合页面
-  const collectionPages: MetadataRoute.Sitemap = collections.map((collection) => ({
-    url: `${baseUrl}/collections/${collection.slug}`,
-    lastModified: collection.updatedAt,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
-
   // Solutions 页面
   const solutionPages: MetadataRoute.Sitemap = solutions.map((solution) => ({
     url: `${baseUrl}/solutions/${solution.slug}`,
@@ -108,5 +95,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...productPages, ...categoryPages, ...collectionPages, ...solutionPages];
+  return [...staticPages, ...productPages, ...categoryPages, ...solutionPages];
 }

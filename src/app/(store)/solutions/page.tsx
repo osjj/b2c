@@ -35,7 +35,9 @@ import {
   normalizeSolutionsPage,
   splitFeaturedSolution,
 } from '@/lib/store-solutions-pagination'
-import { USAGE_SCENES, formatUsageSceneLabel, PPE_CATEGORIES } from '@/types/solution'
+import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
+import { getCategories } from '@/actions/categories'
+import { buildStoreSolutionCategories } from '@/lib/store-solution-categories'
 
 export const metadata: Metadata = {
   title: 'Industry Solutions | Laifappe',
@@ -71,6 +73,8 @@ export default async function SolutionsPage({
     usageScene: sceneFilter,
     limit: pageConfig.take,
   })
+  const categories = await getCategories()
+  const solutionCategories = buildStoreSolutionCategories(categories)
 
   const allScenes = USAGE_SCENES.map((scene) => [scene, formatUsageSceneLabel(scene)] as const)
   const activeSceneLabel = sceneFilter ? formatUsageSceneLabel(sceneFilter as typeof USAGE_SCENES[number]) : 'All Solutions'
@@ -492,7 +496,7 @@ export default async function SolutionsPage({
 
           {/* Horizontal scrollable categories */}
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-            {PPE_CATEGORIES.map((category) => {
+            {solutionCategories.map((category) => {
               const IconComponent = iconMap[category.icon] || Shield
               return (
                 <Link

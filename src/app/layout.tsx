@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,10 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 定义基础 URL，确保生产环境绝对路径正确
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL 
-  ? `https://${process.env.NEXT_PUBLIC_SITE_URL}` 
-  : "http://localhost:3000"
+const baseUrl = getSiteUrl()
 
 export const metadata: Metadata = {
   // 1. 这里的 Base 很重要，它让下面的 canonical 和 og:image 自动生成完整链接

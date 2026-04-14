@@ -3,6 +3,7 @@ import { Header } from "@/components/store/header"
 import { Footer } from "@/components/store/footer"
 import { ChatWidget } from "@/components/store/chat"
 import { OrganizationJsonLd } from "@/components/seo"
+import { getSiteUrl } from "@/lib/site-url"
 
 export default async function StoreLayout({
   children,
@@ -10,7 +11,7 @@ export default async function StoreLayout({
   children: React.ReactNode
 }) {
   const session = await auth()
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  const baseUrl = getSiteUrl()
 
   return (
     <>
