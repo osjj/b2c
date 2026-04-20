@@ -29,7 +29,9 @@
       "Bash(ls:*)",
       "Bash(find:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm run *)",
+      "Bash(npx eslint *)"
     ],
     "additionalDirectories": [
       "d:\\project\\b2c-store\\docs\\plans",

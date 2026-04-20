@@ -20,6 +20,7 @@ import {
   MessageSquare,
   Lightbulb,
   Mail,
+  Newspaper,
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -28,6 +29,7 @@ const menuItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/solutions", label: "Solutions", icon: Lightbulb },
+  { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
   { href: "/admin/collections", label: "Collections", icon: Layers },
   { href: "/admin/attributes", label: "Attributes", icon: Tags },
