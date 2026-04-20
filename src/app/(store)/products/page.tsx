@@ -83,18 +83,26 @@ export default async function ProductsPage({
   const sort = params.sort || 'newest'
   const search = params.search || ''
 
-  // SEO: any `?category=` link (legacy cuid or slug) is a 301 to
-  // the canonical `/categories/{slug}` URL.
+  // SEO: any `?category=` link (legacy cuid or slug) is a 301 to the canonical
+  // `/categories/{slug}` URL. For child categories we go straight to the nested
+  // URL so there's only one hop instead of two.
   if (category) {
     const match = await prisma.category.findFirst({
       where: {
         OR: [{ id: category }, { slug: category }],
         isActive: true,
       },
-      select: { slug: true },
+      select: {
+        slug: true,
+        parent: { select: { slug: true, isActive: true } },
+      },
     })
     if (match) {
-      permanentRedirect(`/categories/${match.slug}`)
+      const target =
+        match.parent && match.parent.isActive
+          ? `/categories/${match.parent.slug}/${match.slug}`
+          : `/categories/${match.slug}`
+      permanentRedirect(target)
     }
   }
 
@@ -157,7 +165,7 @@ export default async function ProductsPage({
               </div>
               <div className="w-px h-12 bg-primary-foreground/20" />
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent">{categories.length}</div>
+                <div className="text-3xl font-bold text-accent">{categories.filter((c) => c.parentId === null).length}</div>
                 <div className="text-sm text-primary-foreground/60">Categories</div>
               </div>
             </div>
@@ -176,15 +184,17 @@ export default async function ProductsPage({
               <Package className="w-4 h-4" />
               All
             </Link>
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/categories/${cat.slug}`}
-                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all bg-secondary hover:bg-secondary/80 text-secondary-foreground"
-              >
-                {cat.name}
-              </Link>
-            ))}
+            {categories
+              .filter((cat) => cat.parentId === null)
+              .map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/categories/${cat.slug}`}
+                  className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all bg-secondary hover:bg-secondary/80 text-secondary-foreground"
+                >
+                  {cat.name}
+                </Link>
+              ))}
           </div>
         </div>
       </section>

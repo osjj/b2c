@@ -75,6 +75,7 @@ export default async function CategoriesPage() {
                       <span
                         key={child.id}
                         className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded"
+                        title={`${category.name} / ${child.name}`}
                       >
                         {child.name}
                       </span>

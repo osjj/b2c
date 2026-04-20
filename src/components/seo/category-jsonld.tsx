@@ -10,15 +10,19 @@ interface CategoryJsonLdProps {
   category: Category;
   products: ProductForJsonLd[];
   baseUrl: string;
+  // Optional canonical path override — nested subcategory pages pass
+  // `/categories/{parent}/{slug}` so JSON-LD matches the actual canonical
+  // URL instead of the flat path that would 301-redirect.
+  url?: string;
 }
 
-export function CategoryJsonLd({ category, products, baseUrl }: CategoryJsonLdProps) {
+export function CategoryJsonLd({ category, products, baseUrl, url }: CategoryJsonLdProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: category.name,
     description: category.description,
-    url: `${baseUrl}/categories/${category.slug}`,
+    url: url ?? `${baseUrl}/categories/${category.slug}`,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: products.length,

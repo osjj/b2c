@@ -1,15 +1,17 @@
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
-import { getCategoryBySlug } from '@/actions/categories'
+import { getCategoryBySlug, getCategorySubtreeIds } from '@/actions/categories'
 import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
+import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { StorePagination } from '@/components/store/store-pagination'
-import { CategoryJsonLd, BreadcrumbJsonLd } from '@/components/seo'
+import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
+import { getCategorySeoContent } from '@/lib/category-seo-content'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -29,13 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = getSiteUrl()
   const categoryUrl = `${baseUrl}/categories/${slug}`
+  const seoContent = getCategorySeoContent(category)
 
   // Use SEO fields from database if available, otherwise fallback to defaults
-  const title = (category as any).metaTitle || `${category.name} Products`
+  const title = category.metaTitle || seoContent.metaTitle
   const description =
-    (category as any).metaDescription ||
-    category.description ||
-    `Browse our selection of ${category.name}. High-quality protective equipment from Laifappe.`
+    category.metaDescription ||
+    seoContent.metaDescription
 
   return {
     title: {
@@ -89,14 +91,32 @@ export default async function CategoryPage({
     notFound()
   }
 
+  // A child category always canonicalizes to /categories/{parent}/{slug} to keep
+  // the hierarchy signal in the URL. Preserve any external link equity via 301.
+  if (category.parent) {
+    permanentRedirect(`/categories/${category.parent.slug}/${category.slug}`)
+  }
+
+  // Roll up the whole subtree so the parent page keeps its listing after products
+  // are moved into more-specific child categories.
+  const subtreeIds = await getCategorySubtreeIds(category.id)
   const { products, pagination } = await getProducts({
     page,
-    categoryId: category.id,
+    categoryIds: subtreeIds,
     limit: 12,
     activeOnly: true,
   })
 
   const baseUrl = getSiteUrl()
+  const seoContent = getCategorySeoContent(category)
+  const relatedLinks = category.children.map((child) => ({
+    name: child.name,
+    href: `/categories/${category.slug}/${child.slug}`,
+  }))
+  const popularProductLinks = products.slice(0, 4).map((product) => ({
+    name: product.name,
+    href: `/products/${product.slug}`,
+  }))
 
   // Breadcrumb items for JSON-LD
   const breadcrumbItems = [
@@ -110,6 +130,7 @@ export default async function CategoryPage({
       {/* SEO: Structured Data */}
       <CategoryJsonLd category={category} products={products} baseUrl={baseUrl} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
+      <FaqJsonLd items={seoContent.faqs} />
 
       <div>
       {/* Breadcrumb */}
@@ -131,6 +152,9 @@ export default async function CategoryPage({
       <section className="relative py-16 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
+            <p className="mb-2 text-sm uppercase tracking-[0.2em] text-primary">
+              {seoContent.eyebrow}
+            </p>
             <h1 className="font-serif text-4xl md:text-5xl mb-4">
               {category.name}
             </h1>
@@ -152,7 +176,7 @@ export default async function CategoryPage({
               {category.children.map((child) => (
                 <Link
                   key={child.id}
-                  href={`/categories/${child.slug}`}
+                  href={`/categories/${category.slug}/${child.slug}`}
                   className="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-full text-sm transition-colors"
                 >
                   {child.name}
@@ -191,6 +215,17 @@ export default async function CategoryPage({
               total={pagination.total}
             />
           </Suspense>
+        </div>
+
+        <div className="mt-16">
+          <CategorySeoContent
+            category={category}
+            productCount={pagination.total}
+            childCount={category.children.length}
+            relatedLinks={relatedLinks}
+            popularProductLinks={popularProductLinks}
+            productNames={products.map((product) => product.name)}
+          />
         </div>
       </div>
       </div>

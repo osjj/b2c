@@ -18,10 +18,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     select: { slug: true, updatedAt: true },
   });
 
-  // 获取所有活跃分类
+  // 获取所有活跃分类（带父级 slug，用于生成嵌套 URL）
   const categories = await prisma.category.findMany({
     where: { isActive: true },
-    select: { slug: true, updatedAt: true },
+    select: {
+      slug: true,
+      updatedAt: true,
+      parent: { select: { slug: true, isActive: true } },
+    },
   });
 
   // 获取所有活跃 Solutions
@@ -126,13 +130,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // 分类页面
-  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: `${baseUrl}/categories/${category.slug}`,
-    lastModified: category.updatedAt,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  // 分类页面 —— 子分类用嵌套 URL（/categories/{parent}/{child}），
+  // 与 /categories/[slug]/page.tsx 的 301 重定向保持一致，避免给 Google 重复内容信号
+  const categoryPages: MetadataRoute.Sitemap = categories
+    .filter((category) => !category.parent || category.parent.isActive)
+    .map((category) => ({
+      url: category.parent
+        ? `${baseUrl}/categories/${category.parent.slug}/${category.slug}`
+        : `${baseUrl}/categories/${category.slug}`,
+      lastModified: category.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: category.parent ? 0.6 : 0.7,
+    }));
 
   // Solutions 页面
   const solutionPages: MetadataRoute.Sitemap = solutions.map((solution) => ({

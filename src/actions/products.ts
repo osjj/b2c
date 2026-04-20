@@ -184,7 +184,10 @@ export async function getProductBySlug(slug: string) {
   const product = await prisma.product.findUnique({
     where: { slug, isActive: true },
     include: {
-      category: true,
+      // Include parent so the product-detail breadcrumb can link to the nested
+      // category URL (/categories/{parent}/{child}) when the product belongs
+      // to a child category, avoiding a 301 hop on every breadcrumb click.
+      category: { include: { parent: true } },
       images: { orderBy: { sortOrder: 'asc' } },
       variants: true,
       attributeValues: {

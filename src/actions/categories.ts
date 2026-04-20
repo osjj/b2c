@@ -31,7 +31,7 @@ export async function getCategories({
   includeInactive?: boolean
   parentId?: string | null
 } = {}) {
-  const where: any = {}
+  const where: Prisma.CategoryWhereInput = {}
 
   if (!includeInactive) {
     where.isActive = true
@@ -94,12 +94,49 @@ export async function getCategoryBySlug(slug: string) {
   return prisma.category.findUnique({
     where: { slug, isActive: true },
     include: {
+      parent: {
+        include: {
+          children: {
+            where: { isActive: true },
+            orderBy: { sortOrder: 'asc' },
+          },
+        },
+      },
       children: {
         where: { isActive: true },
         orderBy: { sortOrder: 'asc' },
       },
     },
   })
+}
+
+// Collect the category and all active descendants (2 levels: children + grandchildren).
+// Used by listing pages so that a parent category rolls up products from its whole subtree,
+// instead of showing an empty page once products are re-assigned to more-specific subcategories.
+export async function getCategorySubtreeIds(rootId: string): Promise<string[]> {
+  const root = await prisma.category.findUnique({
+    where: { id: rootId },
+    include: {
+      children: {
+        where: { isActive: true },
+        include: {
+          children: {
+            where: { isActive: true },
+            select: { id: true },
+          },
+        },
+      },
+    },
+  })
+  if (!root) return [rootId]
+  const ids: string[] = [root.id]
+  for (const child of root.children) {
+    ids.push(child.id)
+    for (const grand of child.children) {
+      ids.push(grand.id)
+    }
+  }
+  return ids
 }
 
 // Get categories by slug list

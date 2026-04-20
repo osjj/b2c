@@ -151,12 +151,26 @@ export default async function ProductDetailPage({
         .filter(spec => !isInternalSpec(spec.name))
     : []
 
-  // Breadcrumb items for JSON-LD
+  // Breadcrumb items for JSON-LD. Child categories resolve to their nested URL
+  // so the breadcrumb matches the page's canonical location.
+  const categoryPath = product.category
+    ? product.category.parent && product.category.parent.isActive
+      ? `/categories/${product.category.parent.slug}/${product.category.slug}`
+      : `/categories/${product.category.slug}`
+    : null
   const breadcrumbItems = [
     { name: 'Home', url: baseUrl },
     { name: 'Products', url: `${baseUrl}/products` },
-    ...(product.category
-      ? [{ name: product.category.name, url: `${baseUrl}/categories/${product.category.slug}` }]
+    ...(product.category && categoryPath
+      ? product.category.parent && product.category.parent.isActive
+        ? [
+            {
+              name: product.category.parent.name,
+              url: `${baseUrl}/categories/${product.category.parent.slug}`,
+            },
+            { name: product.category.name, url: `${baseUrl}${categoryPath}` },
+          ]
+        : [{ name: product.category.name, url: `${baseUrl}${categoryPath}` }]
       : []),
     { name: product.name, url: `${baseUrl}/products/${product.slug}` },
   ]
@@ -178,11 +192,22 @@ export default async function ProductDetailPage({
           <Link href="/products" className="hover:text-foreground transition-colors">
             Products
           </Link>
-          {product.category && (
+          {product.category && categoryPath && (
             <>
+              {product.category.parent && product.category.parent.isActive && (
+                <>
+                  <ChevronRight className="h-4 w-4 mx-2" />
+                  <Link
+                    href={`/categories/${product.category.parent.slug}`}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {product.category.parent.name}
+                  </Link>
+                </>
+              )}
               <ChevronRight className="h-4 w-4 mx-2" />
               <Link
-                href={`/categories/${product.category.slug}`}
+                href={categoryPath}
                 className="hover:text-foreground transition-colors"
               >
                 {product.category.name}

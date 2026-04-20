@@ -31,7 +31,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(npm run *)",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "Bash(mkdir -p \"src/app/\\(store\\)/categories/[slug]/[child]\")",
+      "Bash(mv \"src/app/\\(store\\)/categories/[parent]/[slug]/page.tsx\" \"src/app/\\(store\\)/categories/[slug]/[child]/page.tsx\")",
+      "Bash(rmdir \"src/app/\\(store\\)/categories/[parent]/[slug]\")",
+      "Bash(rmdir \"src/app/\\(store\\)/categories/[parent]\")"
     ],
     "additionalDirectories": [
       "d:\\project\\b2c-store\\docs\\plans",
