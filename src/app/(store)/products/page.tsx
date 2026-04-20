@@ -1,8 +1,10 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { permanentRedirect } from 'next/navigation'
 import { getProducts } from '@/actions/products'
 import { getCategories } from '@/actions/categories'
+import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/store/product-card'
 import { StorePagination } from '@/components/store/store-pagination'
 import {
@@ -81,18 +83,30 @@ export default async function ProductsPage({
   const sort = params.sort || 'newest'
   const search = params.search || ''
 
+  // SEO: any `?category=` link (legacy cuid or slug) is a 301 to
+  // the canonical `/categories/{slug}` URL.
+  if (category) {
+    const match = await prisma.category.findFirst({
+      where: {
+        OR: [{ id: category }, { slug: category }],
+        isActive: true,
+      },
+      select: { slug: true },
+    })
+    if (match) {
+      permanentRedirect(`/categories/${match.slug}`)
+    }
+  }
+
   const [{ products, pagination }, categories] = await Promise.all([
     getProducts({
       page,
-      categoryId: category || undefined,
       search: search || undefined,
       limit: 12,
       activeOnly: true,
     }),
     getCategories(),
   ])
-
-  const currentCategory = categories.find(c => c.id === category)
 
   return (
     <div className="min-h-screen">
@@ -119,12 +133,6 @@ export default async function ProductsPage({
             <Link href="/" className="hover:text-primary-foreground transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />
             <span className="text-primary-foreground">Products</span>
-            {currentCategory && (
-              <>
-                <ChevronRight className="w-4 h-4" />
-                <span className="text-accent">{currentCategory.name}</span>
-              </>
-            )}
           </nav>
 
           <div className="flex items-start justify-between">
@@ -134,10 +142,10 @@ export default async function ProductsPage({
                 Professional Protective Equipment
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-up stagger-1">
-                {currentCategory ? currentCategory.name : 'All Products'}
+                All Products
               </h1>
               <p className="text-primary-foreground/70 text-lg animate-fade-up stagger-2">
-                {currentCategory?.description || 'We provide high-quality industrial safety equipment that meets international standards and protects every worker.'}
+                We provide high-quality industrial safety equipment that meets international standards and protects every worker.
               </p>
             </div>
 
@@ -163,11 +171,7 @@ export default async function ProductsPage({
           <div className="flex items-center gap-2 py-4 overflow-x-auto scrollbar-hide">
             <Link
               href="/products"
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                !category
-                  ? 'bg-primary text-primary-foreground shadow-md'
-                  : 'bg-secondary hover:bg-secondary/80 text-secondary-foreground'
-              }`}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all bg-primary text-primary-foreground shadow-md"
             >
               <Package className="w-4 h-4" />
               All
@@ -175,12 +179,8 @@ export default async function ProductsPage({
             {categories.map((cat) => (
               <Link
                 key={cat.id}
-                href={`/products?category=${cat.id}`}
-                className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                  category === cat.id
-                    ? 'bg-primary text-primary-foreground shadow-md'
-                    : 'bg-secondary hover:bg-secondary/80 text-secondary-foreground'
-                }`}
+                href={`/categories/${cat.slug}`}
+                className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all bg-secondary hover:bg-secondary/80 text-secondary-foreground"
               >
                 {cat.name}
               </Link>
@@ -207,7 +207,6 @@ export default async function ProductsPage({
           <div className="flex items-center gap-3">
             <Filter className="w-4 h-4 text-muted-foreground" />
             <form>
-              <input type="hidden" name="category" value={category} />
               {search && <input type="hidden" name="search" value={search} />}
               <Select name="sort" defaultValue={sort}>
                 <SelectTrigger className="w-36 h-9 text-sm">

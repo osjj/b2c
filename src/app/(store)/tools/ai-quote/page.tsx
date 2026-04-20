@@ -147,7 +147,9 @@ export default function AiQuotePage() {
               Home
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span>Tools</span>
+            <Link href="/tools" className="transition-colors hover:text-primary-foreground">
+              Tools
+            </Link>
             <ChevronRight className="h-4 w-4" />
             <span className="text-accent">AI Quote</span>
           </nav>

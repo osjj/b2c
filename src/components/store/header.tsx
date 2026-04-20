@@ -29,7 +29,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/tools/ai-quote", label: "AI Quote" },
+  { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
 ]

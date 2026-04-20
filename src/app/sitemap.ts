@@ -4,6 +4,11 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export const revalidate = 3600; // revalidate every hour
 
+// Static-content pages don't change on every build — using a fixed date tells
+// search engines the resource is genuinely stable, which strengthens update
+// signals when these pages *do* change.
+const TOOLS_CONTENT_LASTMOD = new Date("2026-04-20");
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
 
@@ -80,6 +85,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/tools`,
+      lastModified: TOOLS_CONTENT_LASTMOD,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/ai-quote`,
+      lastModified: TOOLS_CONTENT_LASTMOD,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/ppe-calculator`,
+      lastModified: TOOLS_CONTENT_LASTMOD,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/size-guide`,
+      lastModified: TOOLS_CONTENT_LASTMOD,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/compliance-checker`,
+      lastModified: TOOLS_CONTENT_LASTMOD,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 

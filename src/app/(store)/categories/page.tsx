@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { getCategoryTree } from '@/actions/categories'
 
@@ -41,13 +42,22 @@ export default async function CategoriesPage() {
               <Link
                 key={category.id}
                 href={`/categories/${category.slug}`}
-                className="group opacity-0 animate-fade-up"
-                style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+                className="group block"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted mb-4">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted mb-4 rounded-lg">
+                  {category.image ? (
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      priority={index < 3}
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h2 className="font-serif text-2xl mb-2 group-hover:text-primary transition-colors">
+                    <h2 className="font-serif text-2xl mb-2 group-hover:text-primary-foreground/90 transition-colors">
                       {category.name}
                     </h2>
                     {category.description && (

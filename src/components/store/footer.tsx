@@ -11,6 +11,7 @@ const footerLinks = {
     { href: "/solutions", label: "Industry Solutions" },
   ],
   help: [
+    { href: "/tools", label: "Tools" },
     { href: "/tools/ai-quote", label: "AI Quote Tool" },
     { href: "/orders?tab=lookup", label: "Order Lookup" },
     { href: "/orders", label: "My Orders" },
