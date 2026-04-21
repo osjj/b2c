@@ -3,6 +3,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = getSiteUrl();
+  const host = new URL(baseUrl).host;
 
   return {
     rules: [
@@ -26,6 +27,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    host,
   };
 }

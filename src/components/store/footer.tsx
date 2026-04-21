@@ -136,7 +136,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
-            <span>&copy; {new Date().getFullYear()} Maison. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} Laifappe. All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
             <Link href="/privacy" className="hover:text-foreground transition-colors">

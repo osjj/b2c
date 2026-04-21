@@ -37,18 +37,18 @@ export default function SettingsPage() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="storeName">Store Name</Label>
-                  <Input id="storeName" defaultValue="Maison" />
+                  <Input id="storeName" defaultValue="Laifappe" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="storeUrl">Store URL</Label>
-                  <Input id="storeUrl" defaultValue="maison.com" />
+                  <Input id="storeUrl" defaultValue="https://www.laifappe.com" />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="storeDescription">Store Description</Label>
                 <Input
                   id="storeDescription"
-                  defaultValue="Curated goods for modern living"
+                  defaultValue="Professional personal protective equipment for industrial buyers and distributors"
                 />
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
