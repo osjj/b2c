@@ -1,6 +1,8 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth'
+import { buildPageTitle } from '@/lib/seo-title'
 import { User, Package, MapPin, Settings } from 'lucide-react'
 
 const accountLinks = [
@@ -9,6 +11,18 @@ const accountLinks = [
   { href: '/account/addresses', label: 'Addresses', icon: MapPin },
   { href: '/account/settings', label: 'Settings', icon: Settings },
 ]
+
+export const metadata: Metadata = {
+  title: {
+    default: buildPageTitle('My Account'),
+    template: '%s | Account | Laifappe',
+  },
+  description: 'Manage your Laifappe profile, saved addresses, and account order history.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export default async function AccountLayout({
   children,

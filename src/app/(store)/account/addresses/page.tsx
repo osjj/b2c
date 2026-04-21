@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,6 +9,10 @@ import {
   setDefaultAddressAction,
 } from '@/actions/addresses'
 import { formatDate } from '@/lib/utils'
+
+export const metadata: Metadata = {
+  title: 'Addresses',
+}
 
 export default async function AccountAddressesPage() {
   const addresses = await getUserAddresses()

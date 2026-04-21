@@ -1,3 +1,18 @@
+import type { Metadata } from 'next'
+import { buildPageTitle } from '@/lib/seo-title'
+
+export const metadata: Metadata = {
+  title: {
+    default: buildPageTitle('Account Access'),
+    template: '%s | Laifappe',
+  },
+  description: 'Sign in or create a Laifappe account to manage quotes, orders, and account settings.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
+
 export default function AuthLayout({
   children,
 }: {

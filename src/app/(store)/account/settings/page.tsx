@@ -1,8 +1,13 @@
+import type { Metadata } from 'next'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AccountSettingsForm } from '@/components/store/account/account-settings-form'
+
+export const metadata: Metadata = {
+  title: 'Settings',
+}
 
 export default async function AccountSettingsPage() {
   const session = await auth()

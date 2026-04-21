@@ -1,9 +1,9 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Package, Truck, CheckCircle, XCircle } from 'lucide-react'
 import { getOrder } from '@/actions/orders'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -12,6 +12,10 @@ import { CancelOrderButton } from '@/components/store/cancel-order-button'
 
 interface OrderDetailPageProps {
   params: Promise<{ id: string }>
+}
+
+export const metadata: Metadata = {
+  title: 'Order Details',
 }
 
 const statusSteps = [

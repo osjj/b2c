@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Package, ChevronRight } from 'lucide-react'
@@ -17,6 +18,10 @@ const statusColors: Record<string, 'default' | 'secondary' | 'destructive' | 'ou
   REFUNDED: 'outline',
 }
 
+export const metadata: Metadata = {
+  title: 'Orders',
+}
+
 interface OrdersPageProps {
   searchParams: Promise<{ page?: string }>
 }
@@ -32,7 +37,7 @@ export default async function OrdersPage({ searchParams }: OrdersPageProps) {
         <h1 className="text-2xl font-bold mb-8">My Orders</h1>
         <div className="text-center py-12">
           <Package className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-          <p className="text-muted-foreground mb-4">You haven't placed any orders yet.</p>
+          <p className="text-muted-foreground mb-4">You haven&apos;t placed any orders yet.</p>
           <Button asChild>
             <Link href="/products">Start Shopping</Link>
           </Button>
