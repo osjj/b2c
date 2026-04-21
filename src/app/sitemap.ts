@@ -8,6 +8,7 @@ export const revalidate = 3600; // revalidate every hour
 // search engines the resource is genuinely stable, which strengthens update
 // signals when these pages *do* change.
 const TOOLS_CONTENT_LASTMOD = new Date("2026-04-20");
+const EXCLUDED_SOLUTION_SLUGS = new Set(['ppe-safety-equipment-for-construction-sites'])
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
@@ -149,7 +150,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: solution.updatedAt,
     changeFrequency: "weekly" as const,
     priority: 0.8,
-  }));
+  })).filter((solution) => {
+    const slug = solution.url.split('/').pop()
+    return slug ? !EXCLUDED_SOLUTION_SLUGS.has(slug) : true
+  });
 
   // Blog 文章页面
   const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({

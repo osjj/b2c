@@ -1,0 +1,529 @@
+[
+  {
+    "slug": "construction-site-ppe-solution",
+    "title": "Complete PPE Solution for Construction Sites",
+    "excerpt": "A complete construction PPE guide for site managers, safety officers, and procurement teams covering OSHA requirements, CE and EN standards, core hazard controls, and bulk sourcing decisions.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "falling-objects",
+      "fall-protection",
+      "heavy-duty",
+      "impact-resistant",
+      "slip-resistant",
+      "dusty-work",
+      "cut-resistant",
+      "eye-protection",
+      "wet-ground"
+    ],
+    "coverImage": "https://shop.laifappe.com/products/1770285316377-hz4oib.webp",
+    "isActive": true,
+    "sortOrder": 0,
+    "seoTitle": "Complete PPE Solution for Construction Sites | OSHA and CE Certified Safety Equipment",
+    "seoDescription": "Construction site PPE guide covering fall protection, hard hats, respiratory gear, safety footwear, OSHA rules, EN standards, and bulk supply planning.",
+    "seoKeywords": "construction site PPE, construction safety equipment, PPE for construction workers, construction PPE supplier, OSHA construction PPE, CE certified construction PPE, EN standard construction PPE, bulk construction PPE",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What PPE does a modern construction site need?",
+        "enabled": true,
+        "data": {
+          "intro": "Construction remains one of the highest-risk private industries in the United States. The right PPE does not remove every hazard on site, but it is the last critical barrier between a worker and a life-changing injury when engineering controls, planning, and supervision are not enough. This pillar guide gives site managers, safety officers, and procurement teams one reference point for hazard mapping, OSHA compliance, EN and CE alignment, and category-by-category PPE selection.",
+          "bullets": [
+            "Fall arrest systems for work at height",
+            "Hard hats selected by impact and electrical class",
+            "High-visibility garments for vehicle and plant traffic",
+            "Eye, face, hearing, and respiratory protection matched to the task",
+            "Gloves and footwear selected by cut, puncture, crush, and slip risk",
+            "Bulk procurement planning with fit, certification, and replacement cycles built in"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "The Fatal Four hazards - falls, struck-by incidents, caught-in or between incidents, and electrocution - still dominate construction injuries and deaths. Respiratory dust, long-term noise exposure, chemical contact, and weather-driven slip hazards add another layer of daily risk that PPE programs have to address.",
+            "Use this page as the top-level construction PPE reference, then branch into the related sub-trade solution pages and category pages linked below when a project needs more trade-specific detail."
+          ]
+        }
+      },
+      {
+        "key": "construction-hazards",
+        "type": "table",
+        "title": "Construction hazard landscape and PPE focus",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Hazard",
+            "Why it matters",
+            "Primary PPE response"
+          ],
+          "rows": [
+            [
+              "Falls from roofs, edges, ladders, and scaffolds",
+              "Falls remain the leading cause of construction fatalities and serious injuries.",
+              "Full body harness, lanyard or SRL, helmet with chin strap, anti-slip footwear"
+            ],
+            [
+              "Struck-by tools, loads, vehicles, and moving plant",
+              "Flying or falling objects and site traffic create constant impact exposure.",
+              "Hard hats, high-visibility garments, safety glasses, protective footwear"
+            ],
+            [
+              "Caught-in or between hazards",
+              "Workers can be pinned by machinery, walls, trenches, or shifting materials.",
+              "Close-fitting workwear, gloves matched to the task, reinforced footwear"
+            ],
+            [
+              "Electrocution and arc exposure",
+              "Overhead lines, temporary wiring, and energized equipment create lethal contact risk.",
+              "Class E helmets, insulating gloves, dielectric boots, arc-rated clothing"
+            ],
+            [
+              "Silica dust, demolition dust, fumes, and vapors",
+              "Concrete cutting, drilling, welding, and coatings expose workers to harmful airborne contaminants.",
+              "FFP2 or N95 for light dust, FFP3 or P100 systems for heavy exposure, sealed eye protection"
+            ],
+            [
+              "High noise from jackhammers, saws, drills, and grinders",
+              "Chronic exposure above safe thresholds leads to permanent hearing loss.",
+              "Earplugs, earmuffs, or dual hearing protection"
+            ],
+            [
+              "Wet ground, mud, and uneven terrain",
+              "Slip risk increases around rain, fresh concrete, ramps, and unfinished surfaces.",
+              "Slip-resistant footwear, waterproof boots, grip gloves, weather-ready workwear"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "osha-requirements",
+        "type": "paragraphs",
+        "title": "OSHA construction PPE requirements and the 2025 fit rule",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Construction PPE obligations sit mainly under 29 CFR 1926 Subpart E, with 29 CFR 1926.95 requiring employers to assess hazards, provide the right PPE, keep it in reliable condition, and train workers on fit, use, limits, and care.",
+            "The January 13, 2025 update to 29 CFR 1926.95(c) makes proper fit explicit. That matters operationally: oversized harnesses do not arrest falls correctly, loose goggles leak dust and debris, gloves that are too long can snag in equipment, and one-size bulk buying is no longer a defensible default.",
+            "For multi-site contractors, the fit rule changes procurement behavior. Size ranges, wearer records, and replacement planning need to be part of the PPE program, not an afterthought after site delivery."
+          ]
+        }
+      },
+      {
+        "key": "standards-comparison",
+        "type": "table",
+        "title": "Construction PPE standards: OSHA, ANSI, and EN at a glance",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "PPE category",
+            "US standard",
+            "EU and EN equivalent"
+          ],
+          "rows": [
+            [
+              "Head protection",
+              "29 CFR 1926.100 with ANSI Z89.1",
+              "EN 397 and EN 12492 depending on the helmet design"
+            ],
+            [
+              "Eye and face protection",
+              "29 CFR 1926.102 with ANSI Z87.1",
+              "EN 166 and EN 175 for welding applications"
+            ],
+            [
+              "Hearing protection",
+              "29 CFR 1926.101 with ANSI noise ratings",
+              "EN 352 series with SNR values"
+            ],
+            [
+              "Respiratory protection",
+              "29 CFR 1926.103 and 1910.134 with NIOSH approval",
+              "EN 149, EN 140, and EN 136"
+            ],
+            [
+              "Hand protection",
+              "29 CFR 1926.28 with ANSI ISEA 105 references",
+              "EN 388, EN 374, and EN 407"
+            ],
+            [
+              "Safety footwear",
+              "29 CFR 1926.96 with ASTM F2413",
+              "EN ISO 20345"
+            ],
+            [
+              "Fall protection equipment",
+              "29 CFR 1926 Subpart M with ANSI Z359 family",
+              "EN 361, EN 354, EN 355, EN 360, and EN 795"
+            ],
+            [
+              "High-visibility clothing",
+              "ANSI ISEA 107",
+              "EN ISO 20471"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "construction-ppe-categories-core",
+        "type": "group",
+        "title": "Core PPE categories every construction program should define",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Fall protection",
+              "description": "Required whenever workers operate at exposed edges, on scaffolds, roofs, platforms, ladders, or any location where a fall can occur.",
+              "items": [
+                "Full body harness sized to the wearer",
+                "Shock-absorbing lanyard or self-retracting lifeline",
+                "Anchor devices and connectors matched to the system",
+                "Pre-use inspection and immediate removal after any fall arrest"
+              ]
+            },
+            {
+              "title": "Head protection",
+              "description": "Hard hats remain mandatory wherever overhead impact, side impact, or electrical contact risk exists.",
+              "items": [
+                "Choose Type I or Type II by impact exposure",
+                "Use Class E where electrical contact is possible",
+                "Check shell age, suspension condition, and visible damage before reuse",
+                "Use chin straps where climbing or high-wind movement makes retention critical"
+              ]
+            },
+            {
+              "title": "High-visibility clothing",
+              "description": "Visibility control matters on mixed-traffic sites with trucks, cranes, telehandlers, rollers, loaders, and reversing plant.",
+              "items": [
+                "Class 2 garments suit most general site traffic exposure",
+                "Class 3 visibility is preferred for roadwork and high-speed vehicle zones",
+                "Flame-resistant hi-vis garments are needed around hot work and ignition sources",
+                "Wet-weather hi-vis outerwear should preserve visibility, not cover it"
+              ]
+            },
+            {
+              "title": "Eye and face protection",
+              "description": "Construction eye protection has to match debris, splash, dust, grinding, cutting, and welding exposure.",
+              "items": [
+                "Safety glasses for routine debris and impact risk",
+                "Goggles for dust, splash, and sealed protection",
+                "Face shields over glasses for grinding and heavy chipping",
+                "Welding helmets and shaded filters for hot work"
+              ]
+            },
+            {
+              "title": "Hearing protection",
+              "description": "Noise exposure is routine on most active sites, even when hearing loss prevention is under-managed.",
+              "items": [
+                "Foam earplugs for high attenuation at low cost",
+                "Helmet-mounted earmuffs for workers already wearing hard hats",
+                "Dual protection where noise levels stay extreme",
+                "Consistent fit and wear discipline matter more than nominal lab ratings"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "construction-ppe-categories-specialist",
+        "type": "group",
+        "title": "Specialist construction PPE categories that drive procurement errors",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Respiratory protection",
+              "description": "Dust and vapor control is where many sites under-spec PPE, especially around silica, demolition, and coatings.",
+              "items": [
+                "Use FFP2 or N95 for lower dust tasks where exposure remains controlled",
+                "Step up to FFP3 or P100 systems for silica-heavy cutting, drilling, and demolition",
+                "Use cartridge respirators for solvent vapors, coatings, and mixed airborne hazards",
+                "Fit testing and filter change routines are part of the program, not optional extras"
+              ]
+            },
+            {
+              "title": "Hand protection",
+              "description": "Construction gloves should be chosen by the real hazard, not by habit or lowest cost.",
+              "items": [
+                "Cut-rated gloves for steel, rebar, sheet material, and sharp edges",
+                "Coated gloves for wet handling and masonry work",
+                "Impact gloves where hand crush or back-of-hand strikes are likely",
+                "Chemical-resistant gloves for cement, coatings, and site chemicals"
+              ]
+            },
+            {
+              "title": "Safety footwear",
+              "description": "Boot selection needs to reflect puncture, crush, terrain, ladder use, and weather, not just toe cap presence.",
+              "items": [
+                "Toe cap and puncture-resistant sole for general site entry",
+                "Slip-resistant outsole for wet concrete, ramps, and muddy access paths",
+                "Water-resistant or waterproof styles for rain and ground water exposure",
+                "Electrical hazard or dielectric footwear for electrical teams"
+              ]
+            },
+            {
+              "title": "Electrical PPE",
+              "description": "Standard site PPE is not enough for energized work or work near live conductors.",
+              "items": [
+                "Voltage-rated insulating gloves with protector gloves",
+                "Arc-rated clothing matched to the incident energy",
+                "Class E helmets and dielectric footwear",
+                "Face and eye protection selected for electrical arc exposure"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "hazard-to-ppe-reference",
+        "type": "table",
+        "title": "Hazard-to-PPE quick reference for site setup",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Body area",
+            "Baseline PPE",
+            "Typical construction benchmark"
+          ],
+          "rows": [
+            [
+              "Head",
+              "Hard hat sized to the wearer",
+              "ANSI Z89.1 or EN 397"
+            ],
+            [
+              "Eyes",
+              "Safety glasses with side protection",
+              "ANSI Z87.1 or EN 166"
+            ],
+            [
+              "Hearing",
+              "Earplugs or earmuffs near powered equipment",
+              "ANSI noise ratings or EN 352"
+            ],
+            [
+              "Hands",
+              "Task-matched gloves",
+              "ANSI ISEA 105 or EN 388 and EN 374"
+            ],
+            [
+              "Feet",
+              "Toe-protective boots with puncture and slip resistance",
+              "ASTM F2413 or EN ISO 20345 S3-type selection"
+            ],
+            [
+              "Body and visibility",
+              "High-visibility vest or outerwear near traffic and plant",
+              "ANSI 107 Class 2 or EN ISO 20471 Class 2"
+            ],
+            [
+              "Fall",
+              "Harness plus lanyard or SRL where exposure exists",
+              "ANSI Z359 family or EN 361 and related EN standards"
+            ],
+            [
+              "Respiratory",
+              "Dust or respirator protection matched to the airborne hazard",
+              "NIOSH approvals or EN 149 and related standards"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE products for construction projects",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "Most contractors do better when they stop buying construction PPE as isolated items and start buying by role-based kit. General laborers, roof teams, steel crews, demolition teams, and electrical installers need different combinations even when they share the same site gate.",
+            "Use the related products below as a starting set for general construction purchasing, then tighten the specification by trade, hazard assessment, and local compliance standard."
+          ]
+        }
+      },
+      {
+        "key": "procurement-guidance",
+        "type": "group",
+        "title": "PPE procurement guidance for contractors and distributors",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Certification verification",
+              "description": "Every item should be traceable to the relevant standard and documentation set.",
+              "items": [
+                "Verify ANSI, ASTM, NIOSH, NFPA, or CE and EN marks by product category",
+                "Request declarations of conformity and test reports for imported PPE",
+                "Treat fall protection, respiratory, and electrical PPE as high-scrutiny categories"
+              ]
+            },
+            {
+              "title": "Sizing and proper fit",
+              "description": "The 2025 OSHA fit rule turns a common weak spot into a compliance requirement.",
+              "items": [
+                "Order across the full size curve instead of relying on standard sizing",
+                "Record fit-critical items such as harnesses, gloves, eyewear, and footwear by wearer",
+                "Check fit again when crews, clothing layers, or work conditions change"
+              ]
+            },
+            {
+              "title": "Replacement planning",
+              "description": "Bulk buying without replacement logic creates hidden gaps later in the project.",
+              "items": [
+                "Track service life for hard hats, suspensions, harnesses, and respirators",
+                "Replace scratched eyewear, worn gloves, damaged boot soles, and compressed ear cushions early",
+                "Remove any fall-arrest component from service after a real arrest event"
+              ]
+            },
+            {
+              "title": "Training and compliance",
+              "description": "Supplying PPE is only half of the control system.",
+              "items": [
+                "Train workers on what to wear, when to wear it, and what the limits are",
+                "Use site induction and toolbox talks to reinforce wear discipline",
+                "Document issue, fit confirmation, and refresher training for audit readiness"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "sub-trade-solutions",
+        "type": "list",
+        "title": "Construction sub-trade solution pages",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "[PPE for Steel Structure Installation Work](/solutions/ppe-for-steel-structure-installation-work)",
+              "text": "Focused on height work, rigging, welding exposure, sharp edges, and heavy structural loads."
+            },
+            {
+              "title": "[PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)",
+              "text": "Focused on scaffold erection, work positioning, dropped tools, and access stability."
+            },
+            {
+              "title": "[PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects)",
+              "text": "Focused on traffic visibility, asphalt and outdoor exposure, edge work, and heavy equipment."
+            },
+            {
+              "title": "[PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites)",
+              "text": "Focused on shock protection, arc-rated clothing, dielectric footwear, and mixed site hazards."
+            },
+            {
+              "title": "[PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work)",
+              "text": "Focused on silica dust, debris impact, high noise, and unpredictable material failure."
+            },
+            {
+              "title": "[PPE for Heavy Equipment Operators on Construction Sites](/solutions/ppe-for-heavy-equipment-operators-on-construction-sites)",
+              "text": "Focused on visibility, cab-to-ground transitions, vibration, dust, and struck-by risk."
+            },
+            {
+              "title": "[PPE for Night Construction and Low Visibility Work](/solutions/ppe-for-night-construction-and-low-visibility-work)",
+              "text": "Focused on Class 3 visibility, lighting support, and low-light hazard control."
+            },
+            {
+              "title": "[PPE for Underground Construction and Tunnel Work](/solutions/ppe-for-underground-construction-and-tunnel-work)",
+              "text": "Focused on confined space conditions, poor air quality, water ingress, and escape constraints."
+            }
+          ]
+        }
+      },
+      {
+        "key": "browse-categories",
+        "type": "list",
+        "title": "Browse construction PPE by category",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "[Head Protection](/categories/head-protection)",
+              "text": "Safety helmets, bump caps, face shields, and hearing protection for active sites."
+            },
+            {
+              "title": "[Hand Protection](/categories/hand-protection)",
+              "text": "Cut-resistant, coated, leather, and task-specific gloves for material handling and tool use."
+            },
+            {
+              "title": "[Foot Protection](/categories/foot-protection)",
+              "text": "Safety shoes, boots, and site-ready footwear for slip, puncture, and crush resistance."
+            },
+            {
+              "title": "[Body Protection](/categories/body-protection)",
+              "text": "High-visibility workwear, coveralls, FR garments, and outerwear for site conditions."
+            },
+            {
+              "title": "[Eye Protection](/categories/eye-protection)",
+              "text": "Safety glasses and goggles for debris, dust, splash, and grinding exposure."
+            },
+            {
+              "title": "[Respiratory Protection](/categories/respiratory-protection)",
+              "text": "Disposable respirators and reusable systems for dust, fumes, and vapor control."
+            }
+          ]
+        }
+      },
+      {
+        "key": "construction-faq",
+        "type": "faq",
+        "title": "Frequently asked questions",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Who is responsible for PPE on a construction site?",
+              "a": "Under OSHA construction rules, the employer is generally responsible for hazard assessment, supplying required PPE, and ensuring workers are trained and properly equipped for the task."
+            },
+            {
+              "q": "Does construction PPE have to fit each worker?",
+              "a": "Yes. Since January 13, 2025, OSHA construction rules explicitly require PPE to be selected so it properly fits each affected employee."
+            },
+            {
+              "q": "What is the biggest PPE failure on construction sites?",
+              "a": "A common failure is treating PPE as a box-ticking purchase instead of a hazard-matched system. Sites often under-specify fit, respiratory protection, or replacement cycles even when head and footwear basics are in place."
+            },
+            {
+              "q": "When should a contractor step up from disposable dust masks to reusable respirators?",
+              "a": "Once tasks involve sustained silica dust, demolition contaminants, welding fumes, or mixed dust and vapor exposure, reusable respirators with the correct filters usually become the safer and more controllable option."
+            },
+            {
+              "q": "What should procurement teams ask for before approving a PPE supplier?",
+              "a": "Ask for certification documents, test reports where relevant, size availability, replacement guidance, and proof that the supplier can support repeat bulk supply instead of one-off shipments."
+            }
+          ]
+        }
+      },
+      {
+        "key": "sources-note",
+        "type": "callout",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "text": "This pillar page is built around the OSHA construction PPE framework, EN and CE product standards, and current construction fatality and hazard patterns used by site safety teams when they build practical PPE programs."
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Source certified construction PPE at project scale",
+        "enabled": true,
+        "data": {
+          "title": "Source certified construction PPE at project scale",
+          "text": "We support contractors, distributors, and procurement teams with full size ranges, cross-category supply, and documentation-ready PPE programs for construction crews.",
+          "primaryLabel": "Request a Quote",
+          "primaryHref": "/quote",
+          "secondaryLabel": "Contact Us",
+          "secondaryHref": "/contact"
+        }
+      }
+    ],
+    "productLinks": []
+  }
+]

@@ -36,6 +36,13 @@ interface SolutionData {
   productLinks?: SolutionProductLinkData[]
 }
 
+const LEGACY_SOLUTION_REPLACEMENTS = [
+  {
+    legacySlug: 'ppe-safety-equipment-for-construction-sites',
+    replacementSlug: 'construction-site-ppe-solution',
+  },
+] as const
+
 const createId = () => {
   if (typeof randomUUID === 'function') {
     return randomUUID()
@@ -175,6 +182,25 @@ async function main() {
     }
 
     updated++
+  }
+
+  for (const replacement of LEGACY_SOLUTION_REPLACEMENTS) {
+    const replacementExists = await prisma.solution.findUnique({
+      where: { slug: replacement.replacementSlug },
+      select: { id: true },
+    })
+
+    if (!replacementExists) continue
+
+    await prisma.solution.updateMany({
+      where: {
+        slug: replacement.legacySlug,
+        isActive: true,
+      },
+      data: {
+        isActive: false,
+      },
+    })
   }
 
   console.log(`Sync complete: created=${created}, updated=${updated}`)

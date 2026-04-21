@@ -45,6 +45,8 @@ export const metadata: Metadata = {
   keywords: ['PPE', 'safety solutions', 'industry PPE', 'protective equipment', 'workplace safety'],
 }
 
+const STORE_EXCLUDED_SOLUTION_SLUGS = ['ppe-safety-equipment-for-construction-sites']
+
 // Icon mapping for PPE categories
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   HardHat,
@@ -72,6 +74,7 @@ export default async function SolutionsPage({
     activeOnly: true,
     usageScene: sceneFilter,
     limit: pageConfig.take,
+    excludeSlugs: STORE_EXCLUDED_SOLUTION_SLUGS,
   })
   const categories = await getCategories()
   const solutionCategories = buildStoreSolutionCategories(categories)

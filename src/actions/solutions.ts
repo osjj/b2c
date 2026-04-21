@@ -121,6 +121,7 @@ export async function getSolutions({
   usageScene,
   isActive,
   activeOnly = false,
+  excludeSlugs = [],
 }: {
   page?: number
   limit?: number
@@ -129,6 +130,7 @@ export async function getSolutions({
   usageScene?: string
   isActive?: boolean
   activeOnly?: boolean
+  excludeSlugs?: string[]
 } = {}) {
   const where: Prisma.SolutionWhereInput = {}
 
@@ -147,6 +149,10 @@ export async function getSolutions({
     where.isActive = isActive
   } else if (activeOnly) {
     where.isActive = true
+  }
+
+  if (excludeSlugs.length > 0) {
+    where.slug = { notIn: excludeSlugs }
   }
 
   const [solutions, total] = await Promise.all([

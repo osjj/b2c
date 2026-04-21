@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['playwright', 'sharp'],
+  async redirects() {
+    return [
+      {
+        source: '/solutions/ppe-safety-equipment-for-construction-sites',
+        destination: '/solutions/construction-site-ppe-solution',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

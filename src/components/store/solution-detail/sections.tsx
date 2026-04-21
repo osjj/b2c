@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ProductImage, Category } from '@prisma/client'
@@ -45,6 +45,50 @@ type RecommendedProduct = {
     price: number
     sortOrder: number
   }>
+}
+
+function renderRichText(text: string, keyPrefix: string) {
+  const pattern = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g
+  const parts = text.split(pattern).filter(Boolean)
+
+  return parts.map((part, index) => {
+    const key = `${keyPrefix}-${index}`
+    const linkMatch = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part)
+    if (linkMatch) {
+      const [, label, href] = linkMatch
+      const isInternal = href.startsWith('/')
+      if (isInternal) {
+        return (
+          <Link key={key} href={href} className="font-medium text-primary hover:underline">
+            {label}
+          </Link>
+        )
+      }
+
+      return (
+        <a
+          key={key}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium text-primary hover:underline"
+        >
+          {label}
+        </a>
+      )
+    }
+
+    const boldMatch = /^\*\*([^*]+)\*\*$/.exec(part)
+    if (boldMatch) {
+      return (
+        <strong key={key} className="font-semibold text-foreground">
+          {boldMatch[1]}
+        </strong>
+      )
+    }
+
+    return <Fragment key={key}>{part}</Fragment>
+  })
 }
 
 export function SolutionSections({ sections, productsBySectionKey = {} }: SolutionSectionsProps) {
@@ -125,7 +169,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
     <section id={section.key} className="scroll-mt-24 space-y-4">
       {section.title && (
         <h2 className="text-xl md:text-2xl font-semibold text-foreground">
-          {section.title}
+          {renderRichText(section.title, `${section.key}-title`)}
         </h2>
       )}
       {children}
@@ -140,7 +184,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
         <div className="space-y-3">
           {data?.intro && (
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              {data.intro}
+              {renderRichText(data.intro, `${section.key}-intro`)}
             </p>
           )}
           {bullets.length > 0 && (
@@ -148,7 +192,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
               {bullets.map((bullet, index) => (
                 <li key={`${bullet}-${index}`} className="flex items-start gap-2">
                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span>{bullet}</span>
+                  <span>{renderRichText(bullet, `${section.key}-bullet-${index}`)}</span>
                 </li>
               ))}
             </ul>
@@ -163,7 +207,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
         <div className="space-y-3">
           {paragraphs.map((paragraph, index) => (
             <p key={`${section.key}-p-${index}`} className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              {paragraph}
+              {renderRichText(paragraph, `${section.key}-p-${index}`)}
             </p>
           ))}
         </div>
@@ -184,10 +228,14 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
               <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
               <div className="space-y-1">
                 {item.title && (
-                  <p className="text-sm font-medium text-foreground">{item.title}</p>
+                  <p className="text-sm font-medium text-foreground">
+                    {renderRichText(item.title, `${section.key}-title-${index}`)}
+                  </p>
                 )}
                 {item.text && (
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {renderRichText(item.text, `${section.key}-text-${index}`)}
+                  </p>
                 )}
               </div>
             </li>
@@ -218,7 +266,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
                 <tr key={`${section.key}-r-${rowIndex}`} className="border-t">
                   {row.map((cell, cellIndex) => (
                     <td key={`${section.key}-c-${rowIndex}-${cellIndex}`} className="px-4 py-2 text-muted-foreground">
-                      {cell}
+                      {renderRichText(cell, `${section.key}-c-${rowIndex}-${cellIndex}`)}
                     </td>
                   ))}
                 </tr>
@@ -238,15 +286,19 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
             if (items.length === 0) return null
             return (
             <div key={`${section.key}-g-${index}`} className="rounded-xl border bg-card p-4 space-y-3">
-              <h3 className="text-base font-semibold text-foreground">{group.title}</h3>
+              <h3 className="text-base font-semibold text-foreground">
+                {renderRichText(group.title, `${section.key}-g-title-${index}`)}
+              </h3>
               {group.description && (
-                <p className="text-sm text-muted-foreground">{group.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  {renderRichText(group.description, `${section.key}-g-description-${index}`)}
+                </p>
               )}
               <ul className="space-y-2 border-t pt-3 text-sm text-foreground">
                 {items.map((item, itemIndex) => (
                   <li key={`${section.key}-g-${index}-${itemIndex}`} className="flex items-start gap-2">
                     <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-                    <span>{item}</span>
+                    <span>{renderRichText(item, `${section.key}-g-item-${index}-${itemIndex}`)}</span>
                   </li>
                 ))}
               </ul>
@@ -263,7 +315,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const data = section.data as SectionCalloutData
       return common(
         <div className="rounded-lg border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-foreground">
-          {data?.text}
+          {data?.text ? renderRichText(data.text, `${section.key}-callout`) : null}
         </div>
       )
     }
@@ -271,9 +323,13 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const data = section.data as SectionCtaData
       return common(
         <div className="rounded-2xl border bg-foreground text-background px-6 py-6">
-          <h3 className="text-lg font-semibold">{data?.title}</h3>
+          <h3 className="text-lg font-semibold">
+            {data?.title ? renderRichText(data.title, `${section.key}-cta-title`) : null}
+          </h3>
           {data?.text && (
-            <p className="mt-2 text-sm text-background/80">{data.text}</p>
+            <p className="mt-2 text-sm text-background/80">
+              {renderRichText(data.text, `${section.key}-cta-text`)}
+            </p>
           )}
           <div className="mt-4 flex flex-wrap gap-3">
             {data?.primaryLabel && data?.primaryHref && (
@@ -297,8 +353,12 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
         <div className="space-y-4">
           {items.map((item, index) => (
             <div key={`${section.key}-f-${index}`} className="rounded-lg border bg-background p-4">
-              <h3 className="text-sm font-semibold text-foreground">{item.q}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.a}</p>
+              <h3 className="text-sm font-semibold text-foreground">
+                {renderRichText(item.q, `${section.key}-q-${index}`)}
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                {renderRichText(item.a, `${section.key}-a-${index}`)}
+              </p>
             </div>
           ))}
         </div>
