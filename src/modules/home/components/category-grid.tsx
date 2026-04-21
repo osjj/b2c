@@ -4,7 +4,10 @@ import { ArrowRight } from "lucide-react"
 import { getCategories } from "@/actions/categories"
 
 export default async function CategoryGrid() {
-  const categories = await getCategories({ parentId: null })
+  const categories = await getCategories({
+    parentId: null,
+    includeProductRollupCount: true,
+  })
 
   if (categories.length === 0) {
     return null
@@ -46,7 +49,7 @@ export default async function CategoryGrid() {
                       <p className="text-sm text-white/80">{category.description}</p>
                     )}
                     <p className="text-xs text-white/60 mt-1">
-                      {category._count.products} Products
+                      {category.productRollupCount ?? category._count.products} Products
                     </p>
                   </div>
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-primary transition-colors">

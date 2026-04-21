@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Privacy Policy | Laifappe',
   description: 'Privacy policy for Laifappe B2B PPE store.',
+  robots: { index: false, follow: true },
 }
 
 export default function PrivacyPage() {

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Sign in or create a Laifappe account to manage quotes, orders, and account settings.',
   robots: {
     index: false,
-    follow: false,
+    follow: true,
   },
 }
 

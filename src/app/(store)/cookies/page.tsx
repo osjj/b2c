@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: pageTitle,
     description: pageDescription,
   },
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 }
 
 export default function CookiesPage() {

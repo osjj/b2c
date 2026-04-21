@@ -27,9 +27,11 @@ export type CategoryState = {
 export async function getCategories({
   includeInactive = false,
   parentId,
+  includeProductRollupCount = false,
 }: {
   includeInactive?: boolean
   parentId?: string | null
+  includeProductRollupCount?: boolean
 } = {}) {
   const where: Prisma.CategoryWhereInput = {}
 
@@ -41,7 +43,7 @@ export async function getCategories({
     where.parentId = parentId
   }
 
-  return prisma.category.findMany({
+  const categories = await prisma.category.findMany({
     where,
     include: {
       parent: true,
@@ -53,6 +55,29 @@ export async function getCategories({
     },
     orderBy: { sortOrder: 'asc' },
   })
+
+  if (!includeProductRollupCount) {
+    return categories
+  }
+
+  const categoriesWithCounts = await Promise.all(
+    categories.map(async (category) => {
+      const subtreeIds = await getCategorySubtreeIds(category.id)
+      const productRollupCount = await prisma.product.count({
+        where: {
+          isActive: true,
+          categoryId: { in: subtreeIds },
+        },
+      })
+
+      return {
+        ...category,
+        productRollupCount,
+      }
+    })
+  )
+
+  return categoriesWithCounts
 }
 
 // Get category tree (hierarchical)

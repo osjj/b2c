@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Terms of Service | Laifappe',
   description: 'Terms of service for Laifappe B2B PPE store.',
+  robots: { index: false, follow: true },
 }
 
 export default function TermsPage() {

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: 'Manage your Laifappe profile, saved addresses, and account order history.',
   robots: {
     index: false,
-    follow: false,
+    follow: true,
   },
 }
 
