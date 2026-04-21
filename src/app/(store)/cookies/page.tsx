@@ -1,9 +1,29 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getSiteUrl } from '@/lib/site-url'
+
+const baseUrl = getSiteUrl()
+const pageUrl = `${baseUrl}/cookies`
+const pageTitle = 'Cookie Policy | Laifappe'
+const pageDescription = 'Cookie policy for Laifappe B2B PPE store.'
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Laifappe',
-  description: 'Cookie policy for Laifappe B2B PPE store.',
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: pageDescription,
+  },
   robots: { index: false, follow: false },
 }
 

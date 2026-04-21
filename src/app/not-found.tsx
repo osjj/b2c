@@ -3,12 +3,28 @@ import Link from 'next/link'
 import { ArrowRight, Home, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { buildPageTitle } from '@/lib/seo-title'
+import { getSiteUrl } from '@/lib/site-url'
+
+const baseUrl = getSiteUrl()
+const pageTitle = buildPageTitle('Page Not Found')
+const pageDescription = 'The requested Laifappe page could not be found.'
 
 export const metadata: Metadata = {
   title: {
-    absolute: buildPageTitle('Page Not Found'),
+    absolute: pageTitle,
   },
-  description: 'The requested Laifappe page could not be found.',
+  description: pageDescription,
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: baseUrl,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: pageDescription,
+  },
   robots: {
     index: false,
     follow: false,

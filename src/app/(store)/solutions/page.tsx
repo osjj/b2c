@@ -38,10 +38,31 @@ import {
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 import { getCategories } from '@/actions/categories'
 import { buildStoreSolutionCategories } from '@/lib/store-solution-categories'
+import { getSiteUrl } from '@/lib/site-url'
+
+const baseUrl = getSiteUrl()
+const pageUrl = `${baseUrl}/solutions`
+const pageTitle = 'Industry Solutions | Laifappe'
+const pageDescription =
+  'Discover comprehensive PPE solutions tailored for your industry. From construction to chemical processing, we have the safety equipment you need.'
 
 export const metadata: Metadata = {
-  title: 'Industry Solutions | Laifappe',
-  description: 'Discover comprehensive PPE solutions tailored for your industry. From construction to chemical processing, we have the safety equipment you need.',
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: pageDescription,
+  },
   keywords: ['PPE', 'safety solutions', 'industry PPE', 'protective equipment', 'workplace safety'],
 }
 
