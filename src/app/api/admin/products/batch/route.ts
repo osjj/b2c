@@ -68,7 +68,11 @@ export async function POST(request: NextRequest) {
             where: { sku: data.sku },
           })
           if (existingSku) {
-            results.push({ success: false, slug: data.slug, error: 'SKU already exists' })
+            results.push({
+              success: false,
+              slug: data.slug || data.name,
+              error: 'SKU already exists',
+            })
             continue
           }
         }
