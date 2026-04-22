@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import {
+  generateUniqueProductSlug,
+  resolveProductIdBySlug,
+  saveLegacyProductSlug,
+} from '@/lib/product-slug.server'
 import { z } from 'zod'
 
 // API Key for batch operations (set in environment variables)
@@ -7,6 +12,7 @@ const BATCH_API_KEY = process.env.BATCH_API_KEY
 
 const productUpdateSchema = z.object({
   slug: z.string().min(1), // Required for identifying the product
+  newSlug: z.string().optional().nullable(),
   name: z.string().min(1).optional(),
   description: z.string().optional().nullable(),
   content: z.any().optional().nullable(),
@@ -55,11 +61,16 @@ export async function POST(request: NextRequest) {
 
     for (const productData of products) {
       try {
-        const { slug, images, ...updateData } = productData
+        const { slug, newSlug, images, ...updateData } = productData
+        const productId = await resolveProductIdBySlug(prisma, slug)
 
-        // Find existing product by slug
+        if (!productId) {
+          results.push({ success: false, slug, error: 'Product not found' })
+          continue
+        }
+
         const existing = await prisma.product.findUnique({
-          where: { slug },
+          where: { id: productId },
           include: { images: true },
         })
 
@@ -80,7 +91,14 @@ export async function POST(request: NextRequest) {
         }
 
         // Prepare update data
-        const dataToUpdate: any = { ...updateData }
+        const dataToUpdate: Record<string, unknown> = { ...updateData }
+        const nextSlug = newSlug
+          ? await generateUniqueProductSlug(prisma, {
+              name: updateData.name || existing.name,
+              preferredSlug: newSlug,
+              excludeProductId: existing.id,
+            })
+          : existing.slug
 
         // Handle images update
         if (images !== undefined) {
@@ -100,12 +118,24 @@ export async function POST(request: NextRequest) {
           }
         }
 
-        const product = await prisma.product.update({
-          where: { slug },
-          data: dataToUpdate,
+        const product = await prisma.$transaction(async (tx) => {
+          if (nextSlug !== existing.slug) {
+            await saveLegacyProductSlug(tx, {
+              productId: existing.id,
+              previousSlug: existing.slug,
+            })
+          }
+
+          return tx.product.update({
+            where: { id: existing.id },
+            data: {
+              ...dataToUpdate,
+              slug: nextSlug,
+            },
+          })
         })
 
-        results.push({ success: true, slug, id: product.id })
+        results.push({ success: true, slug: product.slug, id: product.id })
       } catch (error) {
         results.push({
           success: false,

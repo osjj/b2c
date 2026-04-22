@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { generateUniqueProductSlug } from '@/lib/product-slug.server'
 import { z } from 'zod'
 
 // API Key for batch operations (set in environment variables)
@@ -7,7 +8,7 @@ const BATCH_API_KEY = process.env.BATCH_API_KEY
 
 const productSchema = z.object({
   name: z.string().min(1),
-  slug: z.string().min(1),
+  slug: z.string().optional().nullable(),
   description: z.string().optional().nullable(),
   content: z.any().optional().nullable(),
   specifications: z.array(z.object({
@@ -56,16 +57,10 @@ export async function POST(request: NextRequest) {
     for (const productData of products) {
       try {
         const { images, ...data } = productData
-
-        // Check slug uniqueness
-        const existing = await prisma.product.findUnique({
-          where: { slug: data.slug },
+        const normalizedSlug = await generateUniqueProductSlug(prisma, {
+          name: data.name,
+          preferredSlug: data.slug,
         })
-
-        if (existing) {
-          results.push({ success: false, slug: data.slug, error: 'Slug already exists' })
-          continue
-        }
 
         // Check SKU uniqueness if provided
         if (data.sku) {
@@ -81,7 +76,7 @@ export async function POST(request: NextRequest) {
         const product = await prisma.product.create({
           data: {
             name: data.name,
-            slug: data.slug,
+            slug: normalizedSlug,
             description: data.description,
             content: data.content,
             specifications: data.specifications || undefined,
@@ -104,11 +99,11 @@ export async function POST(request: NextRequest) {
           },
         })
 
-        results.push({ success: true, slug: data.slug, id: product.id })
+        results.push({ success: true, slug: product.slug, id: product.id })
       } catch (error) {
         results.push({
           success: false,
-          slug: productData.slug,
+          slug: productData.slug || productData.name,
           error: error instanceof Error ? error.message : 'Unknown error',
         })
       }

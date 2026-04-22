@@ -5,12 +5,13 @@ import { redirect } from 'next/navigation'
 import { after } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { buildProductEmbeddingText, generateEmbedding } from '@/lib/embeddings'
+import { generateUniqueProductSlug, saveLegacyProductSlug } from '@/lib/product-slug.server'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
 
 const productSchema = z.object({
   name: z.string().min(1, 'Name is required'),
-  slug: z.string().min(1, 'Slug is required'),
+  slug: z.string().optional().nullable(),
   description: z.string().optional(),
   content: z.any().optional().nullable(),
   specifications: z.array(z.object({
@@ -50,6 +51,23 @@ export type ProductState = {
   errors?: Record<string, string[]>
   success?: boolean
 }
+
+const productDetailInclude = {
+  category: { include: { parent: true } },
+  images: { orderBy: { sortOrder: 'asc' as const } },
+  variants: true,
+  attributeValues: {
+    include: {
+      attribute: {
+        include: {
+          options: true,
+        },
+      },
+      option: true,
+    },
+  },
+  priceTiers: { orderBy: { sortOrder: 'asc' as const } },
+} satisfies Parameters<typeof prisma.product.findUnique>[0]['include']
 
 // Get all products with pagination and filters
 export async function getProducts({
@@ -181,28 +199,24 @@ export async function getProduct(id: string) {
 
 // Get product by slug (for store)
 export async function getProductBySlug(slug: string) {
-  const product = await prisma.product.findUnique({
+  let product = await prisma.product.findUnique({
     where: { slug, isActive: true },
-    include: {
-      // Include parent so the product-detail breadcrumb can link to the nested
-      // category URL (/categories/{parent}/{child}) when the product belongs
-      // to a child category, avoiding a 301 hop on every breadcrumb click.
-      category: { include: { parent: true } },
-      images: { orderBy: { sortOrder: 'asc' } },
-      variants: true,
-      attributeValues: {
-        include: {
-          attribute: {
-            include: {
-              options: true,
-            },
-          },
-          option: true,
-        },
-      },
-      priceTiers: { orderBy: { sortOrder: 'asc' } },
-    },
+    include: productDetailInclude,
   })
+
+  if (!product) {
+    const redirect = await prisma.productSlugRedirect.findUnique({
+      where: { slug },
+      select: { productId: true },
+    })
+
+    if (redirect) {
+      product = await prisma.product.findUnique({
+        where: { id: redirect.productId, isActive: true },
+        include: productDetailInclude,
+      })
+    }
+  }
 
   if (!product) return null
 
@@ -327,14 +341,10 @@ export async function createProduct(
   }
 
   const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
-
-  // Check slug uniqueness
-  const existing = await prisma.product.findUnique({
-    where: { slug: productData.slug },
+  const normalizedSlug = await generateUniqueProductSlug(prisma, {
+    name: productData.name,
+    preferredSlug: productData.slug,
   })
-  if (existing) {
-    return { error: 'Slug already exists' }
-  }
 
   let createdProductId = ''
 
@@ -342,6 +352,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
+        slug: normalizedSlug,
         category: categoryId ? { connect: { id: categoryId } } : undefined,
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
@@ -544,14 +555,20 @@ export async function updateProduct(
   }
 
   const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
-
-  // Check slug uniqueness (exclude current product)
-  const existing = await prisma.product.findFirst({
-    where: { slug: productData.slug, NOT: { id } },
+  const currentProduct = await prisma.product.findUnique({
+    where: { id },
+    select: { slug: true },
   })
-  if (existing) {
-    return { error: 'Slug already exists' }
+
+  if (!currentProduct) {
+    return { error: 'Product not found' }
   }
+
+  const normalizedSlug = await generateUniqueProductSlug(prisma, {
+    name: productData.name,
+    preferredSlug: productData.slug,
+    excludeProductId: id,
+  })
 
   await prisma.$transaction(
     async (tx) => {
@@ -572,6 +589,7 @@ export async function updateProduct(
       where: { id },
       data: {
         ...productData,
+        slug: normalizedSlug,
         category: categoryId ? { connect: { id: categoryId } } : { disconnect: true },
         content: validatedContent ?? undefined,
         specifications: validatedSpecs ?? undefined,
@@ -653,6 +671,13 @@ export async function updateProduct(
         await tx.productAttributeValue.create({ data })
       }
     }
+
+    if (currentProduct.slug !== normalizedSlug) {
+      await saveLegacyProductSlug(tx, {
+        productId: id,
+        previousSlug: currentProduct.slug,
+      })
+    }
   },
   {
     timeout: 30000, // 30 seconds timeout for complex product updates
@@ -663,7 +688,8 @@ export async function updateProduct(
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
-  revalidatePath(`/products/${productData.slug}`)
+  revalidatePath(`/products/${currentProduct.slug}`)
+  revalidatePath(`/products/${normalizedSlug}`)
   redirect('/admin/products')
 }
 

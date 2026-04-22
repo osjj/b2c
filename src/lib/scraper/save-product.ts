@@ -1,17 +1,8 @@
 import { prisma } from '@/lib/prisma'
+import { generateUniqueProductSlug } from '@/lib/product-slug.server'
 import { transferImages } from './image-transfer'
 import { revalidatePath } from 'next/cache'
 import type { ScrapedProduct, ScrapedVariant } from './types'
-
-function generateSlug(name: string): string {
-  return (
-    name
-      .toLowerCase()
-      .replace(/[^\w\u4e00-\u9fa5]+/g, '-')
-      .replace(/^-|-$/g, '')
-      .slice(0, 80) || `product-${Date.now()}`
-  )
-}
 
 function slugifyCode(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')
@@ -108,9 +99,9 @@ export async function saveProductCore(
   const mainImages = scrapedData.mainImages.map((url) => urlMap.get(url) || url)
   const detailImages = scrapedData.detailImages.map((url) => urlMap.get(url) || url)
 
-  let slug = generateSlug(scrapedData.name)
-  const slugExists = await prisma.product.findUnique({ where: { slug } })
-  if (slugExists) slug = `${slug}-${Date.now().toString(36)}`
+  const slug = await generateUniqueProductSlug(prisma, {
+    name: scrapedData.name,
+  })
 
   const specifications = {
     ...scrapedData.specifications,

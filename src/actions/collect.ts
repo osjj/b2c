@@ -2,19 +2,10 @@
 
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/auth-utils'
+import { generateUniqueProductSlug } from '@/lib/product-slug.server'
 import { transferImages } from '@/lib/scraper/image-transfer'
 import type { ScrapedProduct } from '@/lib/scraper/types'
 import { revalidatePath } from 'next/cache'
-
-function generateSlug(name: string): string {
-  return (
-    name
-      .toLowerCase()
-      .replace(/[^\w\u4e00-\u9fa5]+/g, '-')
-      .replace(/^-|-$/g, '')
-      .slice(0, 80) || `product-${Date.now()}`
-  )
-}
 
 export async function saveCollectedProduct(scrapedData: ScrapedProduct) {
   await requireAdmin()
@@ -33,11 +24,9 @@ export async function saveCollectedProduct(scrapedData: ScrapedProduct) {
   const detailImages = scrapedData.detailImages.map((url) => urlMap.get(url) || url)
 
   // 生成唯一 slug
-  let slug = generateSlug(scrapedData.name)
-  const slugExists = await prisma.product.findUnique({ where: { slug } })
-  if (slugExists) {
-    slug = `${slug}-${Date.now().toString(36)}`
-  }
+  const slug = await generateUniqueProductSlug(prisma, {
+    name: scrapedData.name,
+  })
 
   // 构建规格参数（包含 1688 来源信息）
   const specifications = {

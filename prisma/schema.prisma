@@ -149,6 +149,7 @@ model Product {
   attributeValues ProductAttributeValue[]
   collections     ProductCollection[]
   images          ProductImage[]
+  slugRedirects   ProductSlugRedirect[]
   variants        ProductVariant[]
   category        Category?               @relation(fields: [categoryId], references: [id])
   quoteItems      QuoteItem[]
@@ -157,6 +158,17 @@ model Product {
   @@index([categoryId])
   @@index([isActive, isFeatured])
   @@map("products")
+}
+
+model ProductSlugRedirect {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  productId String   @map("product_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_slug_redirects")
 }
 
 model PriceTier {

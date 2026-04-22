@@ -583,10 +583,41 @@ async function main() {
       name: true,
     },
   })
+  const missingDirectSlugs = getMissingSlugs(
+    targetProductSlugs,
+    existingProducts.map((product) => product.slug),
+  )
+  const legacyRedirects =
+    missingDirectSlugs.length > 0
+      ? await prisma.productSlugRedirect.findMany({
+          where: {
+            slug: {
+              in: missingDirectSlugs,
+            },
+          },
+          select: {
+            slug: true,
+            product: {
+              select: {
+                id: true,
+                slug: true,
+                name: true,
+              },
+            },
+          },
+        })
+      : []
+  const resolvedProducts = [
+    ...existingProducts,
+    ...legacyRedirects.map((redirect) => redirect.product),
+  ]
 
   const missingProducts = getMissingSlugs(
     targetProductSlugs,
-    existingProducts.map((product) => product.slug),
+    [
+      ...existingProducts.map((product) => product.slug),
+      ...legacyRedirects.map((redirect) => redirect.slug),
+    ],
   )
 
   if (missingProducts.length > 0) {
@@ -596,8 +627,15 @@ async function main() {
   }
 
   const existingProductSlugSet = new Set(
-    existingProducts.map((product) => product.slug),
+    targetProductSlugs.filter((slug) =>
+      resolvedProducts.some((product) => product.slug === slug) ||
+      legacyRedirects.some((redirect) => redirect.slug === slug),
+    ),
   )
+  const resolvedProductIdByRequestedSlug = new Map([
+    ...existingProducts.map((product) => [product.slug, product.id] as const),
+    ...legacyRedirects.map((redirect) => [redirect.slug, redirect.product.id] as const),
+  ])
   const assignmentsToApply = productAssignments.filter((item) =>
     existingProductSlugSet.has(item.productSlug),
   )
@@ -606,7 +644,7 @@ async function main() {
     assignmentsToApply.map((item) =>
       prisma.product.update({
         where: {
-          slug: item.productSlug,
+          id: resolvedProductIdByRequestedSlug.get(item.productSlug),
         },
         data: {
           categoryId: categoryIdBySlug.get(item.categorySlug),

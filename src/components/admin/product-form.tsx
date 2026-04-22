@@ -3,7 +3,7 @@
 import { useActionState, useState, useRef, useTransition, useCallback } from 'react'
 import { Product, Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
-import { generateSlug } from '@/lib/utils'
+import { buildProductSlugBase } from '@/lib/product-slug'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -178,7 +178,7 @@ export function ProductForm({ product, categories, collections = [], productColl
         toast.error(json.error || 'AI 优化失败')
         return
       }
-      if (json.name) { setName(json.name); if (!product) setSlug(generateSlug(json.name)) }
+      if (json.name) { setName(json.name); if (!product) setSlug(buildProductSlugBase(json.name)) }
       if (json.description) setDescription(json.description)
       if (json.specifications) {
         setSpecifications(
@@ -246,7 +246,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   const handleNameChange = (newName: string) => {
     setName(newName)
     if (!product) {
-      setSlug(generateSlug(newName))
+      setSlug(buildProductSlugBase(newName))
     }
   }
 

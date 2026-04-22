@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
@@ -20,8 +20,8 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const product = await getProductBySlug(slug)
+  const { slug: requestedSlug } = await params
+  const product = await getProductBySlug(requestedSlug)
 
   if (!product) {
     return {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const baseUrl = getSiteUrl()
-  const productUrl = `${baseUrl}/products/${slug}`
+  const productUrl = `${baseUrl}/products/${product.slug}`
   const productImage = (product as any).ogImage || product.images[0]?.url
   const productImageAlt = product.images[0]?.alt || product.name
 
@@ -102,6 +102,10 @@ export default async function ProductDetailPage({
 
   if (!product) {
     notFound()
+  }
+
+  if (product.slug !== slug) {
+    permanentRedirect(`/products/${product.slug}`)
   }
 
   // Get related products from same category
