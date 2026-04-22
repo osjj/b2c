@@ -1,0 +1,261 @@
+<style>
+.wrap{padding:16px 0}
+.phase{margin-bottom:24px}
+.phase-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.phase-pill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px}
+.p1{background:#E6F1FB;color:#0C447C}
+.p2{background:#EAF3DE;color:#27500A}
+.p3{background:#FAEEDA;color:#633806}
+.p4{background:#F1EFE8;color:#444441}
+.phase-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.phase-sub{font-size:12px;color:var(--color-text-secondary)}
+.weeks{display:flex;flex-direction:column;gap:8px}
+.week-row{display:grid;grid-template-columns:64px 1fr 1fr;gap:8px;align-items:start}
+.week-label{font-size:12px;font-weight:500;color:var(--color-text-secondary);padding-top:10px}
+.item{border-radius:8px;border:0.5px solid var(--color-border-tertiary);padding:10px 12px;background:var(--color-background-primary);cursor:pointer;transition:border-color .15s}
+.item:hover{border-color:var(--color-border-secondary)}
+.item-type{font-size:10px;font-weight:500;padding:2px 6px;border-radius:3px;display:inline-block;margin-bottom:5px}
+.sol{background:#E6F1FB;color:#0C447C}
+.blg{background:#EAF3DE;color:#27500A}
+.item-title{font-size:12px;font-weight:500;color:var(--color-text-primary);line-height:1.4;margin-bottom:4px}
+.item-url{font-size:11px;color:var(--color-text-tertiary);font-family:var(--font-mono)}
+.item-note{font-size:11px;color:var(--color-text-secondary);margin-top:4px;padding-top:4px;border-top:0.5px solid var(--color-border-tertiary)}
+.empty{border-radius:8px;border:0.5px dashed var(--color-border-tertiary);padding:10px 12px;display:flex;align-items:center;justify-content:center}
+.empty-txt{font-size:11px;color:var(--color-text-tertiary)}
+.link-note{background:var(--color-background-secondary);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--color-text-secondary);margin-top:8px;display:flex;gap:8px;align-items:flex-start}
+.link-icon{width:16px;height:16px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.retro{background:var(--color-background-secondary);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--color-text-secondary);margin-bottom:8px}
+.retro-title{font-size:11px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:20px 0}
+</style>
+<div class="wrap">
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-pill p1">第一阶段</span>
+    <div>
+      <div class="phase-title">第1–2周 · 打地基</div>
+      <div class="phase-sub">先建锚点，后续所有页面都可以内链指向这两篇</div>
+    </div>
+  </div>
+  <div class="weeks">
+    <div class="week-row">
+      <div class="week-label">第1周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: Complete PPE Solution for Construction Sites (pillar page)')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">Complete PPE solution for construction sites</div>
+        <div class="item-url">/solutions/construction-site-ppe-solution</div>
+        <div class="item-note">支柱页 · 先发 · 其他所有页面的内链终点</div>
+      </div>
+      <div class="empty"><span class="empty-txt">休息 · 等收录</span></div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第2周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: OSHA PPE Requirements for Construction: Complete Compliance Guide')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">OSHA PPE requirements for construction</div>
+        <div class="item-url">/blog/osha-ppe-requirements-construction</div>
+        <div class="item-note">内链 → 支柱页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Construction PPE Checklist: What Every Worker Needs on Site')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Construction PPE checklist</div>
+        <div class="item-url">/blog/construction-ppe-checklist</div>
+        <div class="item-note">内链 → 支柱页（已有）· 易获外链</div>
+      </div>
+    </div>
+  </div>
+  <div class="link-note">
+    <div class="link-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="#185FA5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span>第2周发布后，回头给支柱页补上指向这两篇的内链</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-pill p2">第二阶段</span>
+    <div>
+      <div class="phase-title">第3–6周 · 核心危害页</div>
+      <div class="phase-sub">Fatal Four危害 + 高搜索量身体部位防护，每周2篇</div>
+    </div>
+  </div>
+  <div class="weeks">
+    <div class="week-row">
+      <div class="week-label">第3周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: Fall Protection PPE for Construction Sites')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">Fall protection PPE for construction sites</div>
+        <div class="item-url">/solutions/fall-protection-construction</div>
+        <div class="item-note">内链 → 支柱页 · 搜索量最大</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Safety Footwear Guide for Construction Workers')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Safety footwear guide for construction</div>
+        <div class="item-url">/blog/construction-safety-footwear-guide</div>
+        <div class="item-note">内链 → 支柱页 · 独立主题不依赖其他页</div>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第4周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: Head Protection and Hard Hats for Construction')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">Head protection and hard hats for construction</div>
+        <div class="item-url">/solutions/construction-head-protection</div>
+        <div class="item-note">内链 → 支柱页 + fall protection页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Construction Gloves: How to Choose the Right Hand Protection')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Construction gloves: how to choose</div>
+        <div class="item-url">/blog/construction-gloves-selection-guide</div>
+        <div class="item-note">内链 → 支柱页 · 独立主题</div>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第5周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: High Visibility Clothing for Construction Workers')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">High-visibility clothing for construction</div>
+        <div class="item-url">/solutions/high-visibility-clothing-construction</div>
+        <div class="item-note">内链 → 支柱页 + OSHA合规页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Eye and Face Protection for Construction Sites')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Eye and face protection for construction</div>
+        <div class="item-url">/blog/construction-eye-face-protection</div>
+        <div class="item-note">内链 → 支柱页 · 独立主题</div>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第6周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: Electrical Safety PPE for Construction')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">Electrical safety PPE for construction</div>
+        <div class="item-url">/solutions/electrical-safety-ppe-construction</div>
+        <div class="item-note">内链 → 支柱页 + OSHA合规页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Hearing Protection for Construction Workers')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Hearing protection for construction workers</div>
+        <div class="item-url">/blog/construction-hearing-protection</div>
+        <div class="item-note">内链 → 支柱页 · 独立主题</div>
+      </div>
+    </div>
+  </div>
+  <div class="link-note">
+    <div class="link-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5h6M5 2l3 3-3 3" stroke="#185FA5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <span>每发一篇新页面，回头给支柱页和checklist页补一条指向新页面的内链</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-pill p3">第三阶段</span>
+    <div>
+      <div class="phase-title">第7–10周 · 子工种方案页</div>
+      <div class="phase-sub">B2B买家最精准的页面，每周2篇</div>
+    </div>
+  </div>
+  <div class="weeks">
+    <div class="week-row">
+      <div class="week-label">第7周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Respiratory Protection for Construction Dust and Fumes')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Respiratory protection for construction dust</div>
+        <div class="item-url">/blog/construction-respiratory-protection</div>
+        <div class="item-note">内链 → 支柱页 + 粉尘呼吸防护支柱页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: PPE Solution for Concrete and Masonry Workers')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">PPE solution for concrete and masonry workers</div>
+        <div class="item-url">/solutions/concrete-masonry-worker-ppe</div>
+        <div class="item-note">内链 → 支柱页 + 呼吸防护页（已有）</div>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第8周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: PPE Solution for Scaffolding and Steel Erection')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">PPE solution for scaffolding and steel erection</div>
+        <div class="item-url">/solutions/scaffolding-steel-erection-ppe</div>
+        <div class="item-note">内链 → 支柱页 + fall protection页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: Knee Protection for Construction Workers')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">Knee protection for construction workers</div>
+        <div class="item-url">/blog/construction-knee-protection</div>
+        <div class="item-note">内链 → 支柱页 · 低竞争长尾</div>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第9周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: PPE Solution for Road Construction and Highway Work')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">PPE solution for road and highway construction</div>
+        <div class="item-url">/solutions/road-highway-construction-ppe</div>
+        <div class="item-note">内链 → 支柱页 + hi-vis页（已有）</div>
+      </div>
+      <div class="item" onclick="sendPrompt('Write the full SEO article: How to Buy Construction PPE in Bulk: Procurement Guide')">
+        <span class="item-type blg">Blog</span>
+        <div class="item-title">How to buy construction PPE in bulk</div>
+        <div class="item-url">/blog/bulk-construction-ppe-procurement</div>
+        <div class="item-note">内链 → 支柱页 + 所有Solutions页（已有）</div>
+      </div>
+    </div>
+    <div class="week-row">
+      <div class="week-label">第10周</div>
+      <div class="item" onclick="sendPrompt('Write the full SEO solution page: PPE Solution for Demolition and Renovation Work')">
+        <span class="item-type sol">Solutions</span>
+        <div class="item-title">PPE solution for demolition and renovation</div>
+        <div class="item-url">/solutions/demolition-renovation-ppe</div>
+        <div class="item-note">内链 → 支柱页 + 呼吸防护 + hi-vis（已有）</div>
+      </div>
+      <div class="empty"><span class="empty-txt">内链补充日 · 不发新内容</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-pill p4">第四阶段</span>
+    <div>
+      <div class="phase-title">第11–12周 · 回顾优化</div>
+      <div class="phase-sub">不发新内容，专注内链补全和旧页面更新</div>
+    </div>
+  </div>
+  <div class="retro">
+    <div class="retro-title">内链补全清单</div>
+    支柱页 → 补充所有新发页面的内链 · Checklist页 → 补充所有相关页面链接 · OSHA合规页 → 补充Fall protection / Electrical / Hi-vis内链 · Bulk采购页 → 确认所有Solutions页都有链接
+  </div>
+  <div class="retro">
+    <div class="retro-title">待补链接提醒</div>
+    等以下页面真正上线后，回到 OSHA 合规页和 Construction pillar 页补 Related guides / 正文内链：
+    /solutions/fall-protection-construction · /blog/bulk-construction-ppe-procurement · /solutions/electrical-safety-ppe-construction
+  </div>
+  <div class="retro">
+    <div class="retro-title">数据复盘</div>
+    用Google Search Console查看哪些页面已收录 · 哪些关键词开始有排名 · 哪些页面点击率低需要优化标题/描述
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
+  <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px 12px;text-align:center">
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">10周</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">完成全部18篇</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px 12px;text-align:center">
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">每周2篇</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">可持续的发布节奏</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:8px;padding:10px 12px;text-align:center">
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">0个</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">空内链问题</div>
+  </div>
+</div>
+<div style="font-size:11px;color:var(--color-text-tertiary);margin-top:12px">点击任意页面卡片可直接生成该页面正文</div>
+</div>

@@ -11,7 +11,7 @@ Construction is the most dangerous private industry in the United States. In 202
 
 The right PPE, properly selected, properly fitted, and consistently worn, cannot eliminate every hazard on a construction site. But it is the final, critical barrier between a worker and serious injury when everything else — engineering controls, administrative procedures, training — has not been enough.
 
-This guide covers everything construction site managers, safety officers, and procurement teams need to know about equipping a workforce with the correct personal protective equipment: which hazards demand which gear, what the current OSHA standards require, how European EN/CE standards align and differ, how to select certified equipment for each risk category, and how to manage PPE at scale across a construction operation.
+This guide covers everything construction site managers, safety officers, and procurement teams need to know about equipping a workforce with the correct personal protective equipment: which hazards demand which gear, how OSHA and EN/CE requirements affect selection, how to select certified equipment for each risk category, and how to manage PPE at scale across a construction operation.
 
 Whether your sites operate under OSHA (US), EU Regulation 2016/425 (Europe), or you source globally and need dual-certified equipment, this guide provides the complete reference.
 
@@ -68,7 +68,7 @@ Effective **January 13, 2025**, OSHA finalized an important revision to 29 CFR 1
 
 This change aligns construction with OSHA's long-standing general industry standard and has direct operational implications. PPE that does not fit properly can fail to protect — a harness that is too large may not arrest a fall correctly; goggles that gap at the face leave eyes exposed; gloves that are too long can get caught in moving machinery and cause the injuries they are supposed to prevent. The rule also covers workers who provide their own PPE: employers must verify that employee-supplied equipment both meets safety standards and fits correctly.
 
-OSHA penalties for serious violations range from $1,190 to $16,131 per violation. Willful or repeated violations carry penalties of up to $161,323 per violation.
+As of the federal adjustment effective **January 15, 2025**, OSHA penalties can reach **$16,550** for serious violations and **$165,514** for willful or repeated violations. If you need the regulation-first version of this topic, read [OSHA PPE requirements for construction: compliance guide](/blog/osha-ppe-requirements-construction).
 
 ### Key construction-specific PPE standards: OSHA vs European EN at a glance
 
@@ -451,7 +451,7 @@ Different trades on a construction site face different combinations of hazards a
 Under 29 CFR 1926.95, the employer is responsible for providing PPE at no cost to employees in most circumstances. Exceptions include non-specialty safety-toe footwear and non-specialty prescription safety eyewear when the employer permits these items to be worn off the job site. General contractors are also responsible for ensuring subcontractor workers on their sites are equipped with appropriate PPE.
 
 **What is the most frequently cited OSHA violation in construction?**  
-Fall protection (29 CFR 1926.501) has been OSHA's most cited construction standard for 14 consecutive years. In fiscal year 2024, OSHA recorded 6,307 violations of this standard alone.
+Fall protection (29 CFR 1926.501) has remained OSHA's most frequently cited standard across all industries, including construction exposure, and continues to dominate enforcement attention on active jobsites.
 
 **Does PPE have to fit properly under OSHA rules?**  
 Yes. Effective January 13, 2025, 29 CFR 1926.95(c) explicitly requires that all construction PPE be "selected to ensure that it properly fits each affected employee." Employers must provide PPE in appropriate sizes and cannot simply adjust oversized equipment to fit.
@@ -463,7 +463,7 @@ Yes, if the employer permits it. However, the employer must verify that the empl
 Inspection frequency depends on the PPE type. Fall protection equipment must be inspected before each use. Hard hats should be inspected daily for cracks, dents, and penetration marks. Electrical insulating gloves require periodic electrical testing. Respiratory protection requires inspection before each use and regular filter replacement. All PPE should be formally inspected at least annually by a competent person.
 
 **What are the penalties for PPE violations in construction?**  
-OSHA penalties for serious violations range from $1,190 to $16,131 per violation. Willful or repeated violations can reach $161,323 per violation. Beyond financial penalties, OSHA may issue stop-work orders for sites with immediate danger conditions.
+As of the federal adjustment effective January 15, 2025, OSHA penalties can reach $16,550 for serious violations and $165,514 for willful or repeated violations. Beyond financial penalties, OSHA may issue stop-work orders for sites with immediate danger conditions.
 
 ---
 
