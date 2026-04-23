@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { notFound, permanentRedirect } from 'next/navigation'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
@@ -18,22 +18,43 @@ type Props = {
   searchParams: Promise<{ page?: string }>
 }
 
-// Validate that `slug` is a child of `parent` and return both if so.
-// Returning null triggers a 404 — this protects against URL manipulation that
-// would otherwise generate duplicate content under arbitrary parent slugs.
-async function resolveNestedCategory(parentSlug: string, childSlug: string) {
+type NestedCategoryContext = {
+  category: NonNullable<Awaited<ReturnType<typeof getCategoryBySlug>>>
+  matchesParentSlug: boolean
+}
+
+// Resolve the child category once, then validate whether the requested parent
+// slug still matches the active taxonomy. This lets us 301 old nested paths to
+// the new canonical URL after category moves.
+async function resolveNestedCategory(
+  parentSlug: string,
+  childSlug: string,
+): Promise<NestedCategoryContext | null> {
   const child = await getCategoryBySlug(childSlug)
   if (!child || !child.parent) return null
-  if (child.parent.slug !== parentSlug) return null
   if (!child.parent.isActive) return null
-  return child
+
+  return {
+    category: child,
+    matchesParentSlug: child.parent.slug === parentSlug,
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug: parentSlug, child: childSlug } = await params
-  const category = await resolveNestedCategory(parentSlug, childSlug)
+  const { child: childSlug, slug: parentSlug } = await params
+  const resolved = await resolveNestedCategory(parentSlug, childSlug)
 
-  if (!category || !category.parent) {
+  if (!resolved) {
+    return {
+      title: 'Category Not Found',
+      description: 'The requested category could not be found.',
+    }
+  }
+
+  const { category } = resolved
+  const parent = category.parent
+
+  if (!parent) {
     return {
       title: 'Category Not Found',
       description: 'The requested category could not be found.',
@@ -41,13 +62,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const baseUrl = getSiteUrl()
-  const categoryUrl = `${baseUrl}/categories/${parentSlug}/${childSlug}`
-  const seoContent = getCategorySeoContent(category, category.parent)
+  const categoryUrl = `${baseUrl}/categories/${parent.slug}/${childSlug}`
+  const seoContent = getCategorySeoContent(category, parent)
 
   const title = category.metaTitle || seoContent.metaTitle
-  const description =
-    category.metaDescription ||
-    seoContent.metaDescription
+  const description = category.metaDescription || seoContent.metaDescription
 
   return {
     title: {
@@ -91,17 +110,27 @@ export default async function NestedCategoryPage({
   params: Promise<{ slug: string; child: string }>
   searchParams: Promise<{ page?: string }>
 }) {
-  const { slug: parentSlug, child: childSlug } = await params
+  const { child: childSlug, slug: parentSlug } = await params
   const { page: pageParam } = await searchParams
   const page = Number(pageParam) || 1
 
-  const category = await resolveNestedCategory(parentSlug, childSlug)
+  const resolved = await resolveNestedCategory(parentSlug, childSlug)
 
-  if (!category || !category.parent) {
+  if (!resolved) {
     notFound()
   }
 
+  const { category, matchesParentSlug } = resolved
   const parent = category.parent
+
+  if (!parent) {
+    notFound()
+  }
+
+  if (!matchesParentSlug) {
+    permanentRedirect(`/categories/${parent.slug}/${category.slug}`)
+  }
+
   const subtreeIds = await getCategorySubtreeIds(category.id)
   const { products, pagination } = await getProducts({
     page,
@@ -145,36 +174,34 @@ export default async function NestedCategoryPage({
       <FaqJsonLd items={seoContent.faqs} />
 
       <div>
-        {/* Breadcrumb */}
-        <div className="container mx-auto px-6 lg:px-8 py-4">
-          <nav className="flex items-center text-sm text-muted-foreground flex-wrap">
+        <div className="container mx-auto px-6 py-4 lg:px-8">
+          <nav className="flex flex-wrap items-center text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">
               Home
             </Link>
-            <ChevronRight className="h-4 w-4 mx-2" />
+            <ChevronRight className="mx-2 h-4 w-4" />
             <Link href="/categories" className="hover:text-foreground transition-colors">
               Categories
             </Link>
-            <ChevronRight className="h-4 w-4 mx-2" />
+            <ChevronRight className="mx-2 h-4 w-4" />
             <Link
               href={`/categories/${parent.slug}`}
               className="hover:text-foreground transition-colors"
             >
               {parent.name}
             </Link>
-            <ChevronRight className="h-4 w-4 mx-2" />
+            <ChevronRight className="mx-2 h-4 w-4" />
             <span className="text-foreground">{category.name}</span>
           </nav>
         </div>
 
-        {/* Hero Banner */}
-        <section className="relative py-16 bg-secondary/30">
+        <section className="relative bg-secondary/30 py-16">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-2xl">
-              <p className="text-sm tracking-[0.2em] uppercase text-primary mb-2">
+              <p className="mb-2 text-sm uppercase tracking-[0.2em] text-primary">
                 {seoContent.eyebrow}
               </p>
-              <h1 className="font-serif text-4xl md:text-5xl mb-4">{category.name}</h1>
+              <h1 className="mb-4 font-serif text-4xl md:text-5xl">{category.name}</h1>
               {category.description && (
                 <p className="text-muted-foreground">{category.description}</p>
               )}
@@ -182,17 +209,16 @@ export default async function NestedCategoryPage({
           </div>
         </section>
 
-        <div className="container mx-auto px-6 lg:px-8 py-12">
-          {/* Grandchildren subcategories, if any */}
+        <div className="container mx-auto px-6 py-12 lg:px-8">
           {category.children && category.children.length > 0 && (
             <div className="mb-8">
-              <h2 className="font-serif text-xl mb-4">Subcategories</h2>
+              <h2 className="mb-4 font-serif text-xl">Subcategories</h2>
               <div className="flex flex-wrap gap-3">
                 {category.children.map((child) => (
                   <Link
                     key={child.id}
                     href={`/categories/${category.slug}/${child.slug}`}
-                    className="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-full text-sm transition-colors"
+                    className="rounded-full bg-secondary px-4 py-2 text-sm transition-colors hover:bg-secondary/80"
                   >
                     {child.name}
                   </Link>
@@ -203,19 +229,19 @@ export default async function NestedCategoryPage({
 
           <div className="mb-6">
             <p className="text-sm text-muted-foreground">
-              Showing <span className="text-foreground font-medium">{products.length}</span> of{' '}
-              <span className="text-foreground font-medium">{pagination.total}</span> products
+              Showing <span className="font-medium text-foreground">{products.length}</span> of{' '}
+              <span className="font-medium text-foreground">{pagination.total}</span> products
             </p>
           </div>
 
           {products.length > 0 ? (
-            <div className="grid gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-6 lg:grid-cols-4 lg:gap-8">
               {products.map((product, index) => (
                 <ProductCard key={product.id} product={product} index={index} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-16">
+            <div className="py-16 text-center">
               <p className="text-muted-foreground">No products found in this category.</p>
             </div>
           )}

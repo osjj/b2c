@@ -94,7 +94,7 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
       'Compare palm coating, shell material, cuff length, and comfort for long-shift wear.',
       'Standardize glove families by job type so replenishment and training stay simple across crews.',
     ],
-    applicationsTitle: 'Common hand protection buying intents',
+    applicationsTitle: 'Common hand protection use cases',
     applications: [
       'Welding and fabrication',
       'Material handling',
@@ -133,7 +133,7 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Explore industrial head protection including safety helmets, bump caps, face shields, and related PPE for construction and manufacturing environments.',
     eyebrow: 'Impact and overhead protection',
-    leadTitle: 'Head protection pages need clearer intent paths',
+    leadTitle: 'How buyers sort head protection by job and hazard',
     intro: [
       'Head protection covers several very different purchasing jobs, from safety helmets and bump caps to face shields and hearing protection.',
       'The main comparison points are protection type, comfort, accessory compatibility, and whether the item is meant for overhead impact, low-clearance work, splash coverage, or noise control.',
@@ -235,7 +235,7 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Shop protective workwear, coveralls, reflective safety clothing, and rainwear for industrial, construction, and maintenance environments.',
     eyebrow: 'Coverage for weather, visibility, and hazards',
-    leadTitle: 'Protective workwear pages should separate apparel intent',
+    leadTitle: 'How buyers sort protective workwear by garment type',
     intro: [
       'Body protection spans reflective workwear, disposable coveralls, FR coveralls, rainwear, and general protective clothing used in industrial, utility, maintenance, and construction environments.',
       'In practice, buyers usually narrow the shortlist by garment family first: disposable coveralls for hygiene workflows, FR apparel for hazard-specific work, reflective gear for visibility, and rainwear for weather exposure.',
@@ -281,6 +281,57 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
       },
     ],
   },
+  'fall-protection': {
+    metaTitle: 'Fall Protection Equipment for Elevated Work',
+    metaDescription:
+      'Browse fall protection equipment for roofing, scaffolding, steel work, maintenance, and other elevated tasks, including harness-focused product families.',
+    eyebrow: 'Protection for work at height',
+    leadTitle: 'How buyers compare fall protection for elevated work',
+    intro: [
+      'Fall protection is usually purchased around a specific exposure: roofing, scaffolding, tower work, steel erection, maintenance at height, or controlled access on a temporary structure.',
+      'Most teams here are trying to match the gear to the work at height itself: how the setup will be worn, how it moves with the worker, and how it fits the rest of the system used on site.',
+    ],
+    guideTitle: 'How to choose fall protection',
+    guideSteps: [
+      'Start with the elevated-work task, clearance conditions, and the type of fall exposure the team has to control.',
+      'Separate body-worn equipment from the rest of the PPE catalog so buyers can compare fall-arrest products without unrelated apparel noise.',
+      'Check how the harness, connection point, and surrounding PPE will work together during real movement on site.',
+      'Standardize fall protection by use case so training, inspection, and replacement stay consistent across crews.',
+    ],
+    applicationsTitle: 'Common fall protection use cases',
+    applications: [
+      'Roofing and cladding work',
+      'Scaffolding and access towers',
+      'Steel erection and structural work',
+      'Maintenance platforms and plant shutdowns',
+      'Utilities and elevated inspection routes',
+    ],
+    differentiatorsTitle: 'What buyers usually compare',
+    differentiators: [
+      'Task-specific fall-arrest setup',
+      'Worker mobility and comfort',
+      'Compatibility with helmets and other PPE',
+      'Inspection and replacement workflow',
+    ],
+    faqTitle: 'Fall protection FAQ',
+    faqs: [
+      {
+        question: 'Why should fall protection sit outside body protection workwear categories?',
+        answer:
+          'Because the buying job is different. Fall protection is driven by elevated-work risk, connection logic, and inspection workflow rather than garment selection.',
+      },
+      {
+        question: 'What should a fall protection category page help buyers compare?',
+        answer:
+          'It should help buyers sort gear by the job at height, worker movement, body-worn equipment, and how the setup fits the rest of the PPE kit.',
+      },
+      {
+        question: 'Can a fall protection page still support broader construction PPE journeys?',
+        answer:
+          'Yes. It should stay focused on elevated-work control while linking back to the wider construction PPE structure when buyers need the full kit.',
+      },
+    ],
+  },
   'eye-protection': {
     metaTitle: 'Safety Glasses and Goggles',
     metaDescription:
@@ -296,7 +347,7 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
       'Decide whether the user needs open safety glasses or a more sealed goggle style for dust, splash, or higher exposure environments.',
       'Check anti-fog and anti-scratch characteristics for the real work environment rather than relying on a basic image comparison.',
       'Evaluate comfort around the nose, temples, and straps when the product will be worn with helmets or respirators.',
-      'Use category structure to separate glasses and goggles so intent-specific searches can land on more relevant pages.',
+      'Keep glasses and goggles on their own paths so buyers can reach the right format faster.',
     ],
     applicationsTitle: 'Common eye protection use cases',
     applications: [
@@ -371,7 +422,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'What should buyers compare on a welding gloves page?',
         answer:
-          'The most useful comparison points are hot-work tasks, leather construction, cuff coverage, and fabrication use cases rather than general glove features alone.',
+          'Hot-work tasks, leather construction, cuff coverage, and fabrication use cases are usually the details that matter most here.',
       },
     ],
   },
@@ -380,10 +431,10 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Explore cut resistant gloves for sharp material handling, fabrication, glass work, and industrial tasks that require dexterity with stronger cut protection.',
     eyebrow: 'Sharp-edge handling control',
-    leadTitle: 'Cut resistant glove intent is sharper than general glove traffic',
+    leadTitle: 'How buyers compare cut resistant gloves for sharp-part handling',
     intro: [
       'Cut resistant gloves are usually considered when the work involves blades, sheet material, glass, metal edges, or other sharp-part handling.',
-      'The useful comparison points here are cut level, grip coating, dexterity, and how the glove feels during repetitive handling tasks.',
+      'Most buyers here focus on cut level, grip coating, dexterity, and how the glove feels during repetitive handling tasks.',
     ],
     guideTitle: 'How to choose cut resistant gloves',
     guideSteps: [
@@ -460,7 +511,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Browse latex coated gloves for construction, material handling, and site work where grip, comfort, and cost-effective coated protection matter.',
     eyebrow: 'Dry-grip site work focus',
-    leadTitle: 'Latex coated gloves target a different buyer than nitrile gloves',
+    leadTitle: 'How buyers compare latex coated gloves for everyday grip work',
     intro: [
       'Latex coated gloves are often searched by buyers who want dependable grip and economical coated-glove coverage for construction, warehousing, and general site work.',
       'That means the page needs its own language around coating texture, handling comfort, and day-to-day labor conditions rather than borrowing the same copy as nitrile-coated or leather gloves.',
@@ -500,7 +551,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Find leather work gloves for abrasive handling, construction labor, outdoor jobs, and heavy-duty industrial tasks requiring durable hand protection.',
     eyebrow: 'Cowhide and split leather durability',
-    leadTitle: 'Leather glove pages should speak to rougher handling jobs',
+    leadTitle: 'How buyers compare leather work gloves for rough handling',
     intro: [
       'Leather work gloves are usually sought for harder-wearing tasks where abrasion resistance and tougher construction matter more than a thin coated-palm feel.',
       'They are easier to evaluate when lined up against heavier construction and industrial handling jobs instead of lighter coated-glove tasks.',
@@ -524,9 +575,9 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
           'They are often chosen when the task involves rougher surfaces, heavier abrasion, and a preference for more traditional heavy-duty glove construction.',
       },
       {
-        question: 'Do leather work gloves usually target the same keywords as welding gloves?',
+        question: 'Are leather work gloves usually chosen for the same jobs as welding gloves?',
         answer:
-          'No. Welding gloves focus on hot-work and spark exposure, while leather work gloves typically target broader heavy-duty handling needs.',
+          'No. Welding gloves focus on hot-work and spark exposure, while leather work gloves are more often used for broader heavy-duty handling tasks.',
       },
       {
         question: 'Why compare leather work gloves separately?',
@@ -579,7 +630,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaTitle: 'Safety Helmets for Construction and Industry',
     metaDescription:
       'Shop safety helmets and hard hats for construction, utilities, factories, and industrial workplaces with adjustable suspension and accessory compatibility.',
-    eyebrow: 'Hard hat and helmet intent',
+    eyebrow: 'Hard hats and helmets',
     leadTitle: 'Safety helmets are the core product family inside head protection',
     intro: [
       'Safety helmets usually dominate head protection demand because buyers often know they need hard hats or industrial helmets before they evaluate the rest of the PPE kit.',
@@ -601,7 +652,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'Why should safety helmets have a dedicated subcategory page?',
         answer:
-          'Because helmet intent is strong enough on its own and is materially different from bump caps, face shields, or hearing protection.',
+          'Because helmet use, protection level, and job-site expectations are different from bump caps, face shields, or hearing protection.',
       },
       {
         question: 'What product features usually matter most on safety helmet pages?',
@@ -623,14 +674,14 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     leadTitle: 'Bump cap traffic is smaller but highly specific',
     intro: [
       'Bump cap buyers are typically not shopping for the same thing as safety helmet buyers. They are usually looking for lighter protection in lower-risk environments where overhead impact from falling objects is not the main concern.',
-      'That narrower intent is worth capturing with a dedicated page instead of hiding bump caps under a broad head protection archive.',
+      'That narrower use case is easier to understand when bump caps are not buried inside a broad head protection page.',
     ],
     guideTitle: 'How to choose bump caps',
     guideSteps: [
       'Confirm the work area involves low-clearance contact rather than higher-impact helmet hazards.',
       'Compare cap comfort, fit, and ventilation for indoor daily wear.',
       'Look at appearance and worker adoption if the cap will be used in logistics or maintenance settings.',
-      'Keep bump caps separate from safety helmets in both navigation and content.',
+      'Keep bump caps separate from safety helmets so buyers can compare lighter options without confusion.',
     ],
     applicationsTitle: 'Typical bump cap applications',
     applications: ['Warehouses', 'Maintenance zones', 'Facilities work', 'Low-clearance areas'],
@@ -646,7 +697,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'Why can bump caps not just live under a generic head protection page?',
         answer:
-          'Because the buyer language and use case are different enough that a dedicated page performs better for both discovery and navigation.',
+          'Because the language, protection level, and use case are different enough to deserve a separate page.',
       },
       {
         question: 'What should bump cap content talk about?',
@@ -662,7 +713,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     eyebrow: 'Full-face splash and impact coverage',
     leadTitle: 'Face shield searches are use-case driven and visually specific',
     intro: [
-      'Face shield traffic often comes from buyers searching by task, such as splash protection, grinding, or general full-face coverage. That intent differs from both helmet traffic and eye-protection-only searches.',
+      'Face shield searches often start with the task itself, such as splash protection, grinding, or general full-face coverage.',
       'The range stays easier to browse when face shields remain visible within head protection while still focusing on the hazards that usually drive demand.',
     ],
     guideTitle: 'How to choose face shields',
@@ -670,7 +721,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       'Start with the exposure type, including splash, debris, or full-face coverage needs.',
       'Check compatibility with helmets or mounting systems if the shield is part of a broader PPE setup.',
       'Compare visor clarity and coverage for the exact work task.',
-      'Keep face shields separated from basic eye protection in both content and navigation.',
+      'Keep face shields separate from basic eye protection so full-face coverage stays easy to find.',
     ],
     applicationsTitle: 'Typical face shield applications',
     applications: ['Grinding tasks', 'Splash protection', 'Workshop operations', 'Industrial maintenance'],
@@ -681,7 +732,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'Why should face shields not be merged into a generic goggles page?',
         answer:
-          'Because the intent, product format, and hazard coverage are materially different, and buyers typically search for face shields directly.',
+          'Because the product format and hazard coverage are different, and many buyers look for face shields directly.',
       },
       {
         question: 'Are face shields usually selected on their own or with helmets?',
@@ -740,7 +791,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Browse hearing protection earmuffs for industrial noise reduction, construction sites, workshops, and loud production environments.',
     eyebrow: 'Industrial noise reduction',
-    leadTitle: 'Hearing protection deserves its own intent path',
+    leadTitle: 'How buyers compare hearing protection for noisy work areas',
     intro: [
       'Hearing protection sits close to head protection in procurement logic, but the search behavior is distinct. Buyers usually search for earmuffs or hearing protection by noise exposure rather than by helmet type.',
       'Keeping hearing protection separate makes it easier to compare noise-control products within the broader head protection range.',
@@ -750,12 +801,12 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       'Start with the noise environment and how long users will wear the protection.',
       'Check compatibility if earmuffs need to work alongside helmets or other headgear.',
       'Compare comfort and fit because adoption can drop quickly when hearing protection is cumbersome.',
-      'Keep hearing protection content separate from impact-oriented head protection topics.',
+      'Keep hearing protection separate from impact-oriented head protection topics.',
     ],
     applicationsTitle: 'Typical hearing protection applications',
     applications: ['Workshops', 'Construction sites', 'Factories', 'High-noise maintenance'],
     differentiatorsTitle: 'What buyers compare in hearing protection',
-    differentiators: ['Noise reduction intent', 'Helmet compatibility', 'Comfort', 'Daily wearability'],
+    differentiators: ['Noise reduction level', 'Helmet compatibility', 'Comfort', 'Daily wearability'],
     faqTitle: 'Hearing protection FAQ',
     faqs: [
       {
@@ -780,17 +831,17 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Find safety shoes for construction, warehouse, and industrial work with lighter low-cut designs, toe protection, and everyday comfort.',
     eyebrow: 'Low-cut industrial footwear',
-    leadTitle: 'Safety shoe intent is lighter and faster-moving than boot intent',
+    leadTitle: 'How buyers compare safety shoes for lighter daily work',
     intro: [
       'Safety shoes usually appeal to buyers looking for lighter, lower-cut industrial footwear rather than the heavier coverage associated with boots. That makes the page relevant for warehouse, assembly, and general site movement queries.',
-      'The content here is intentionally different from safety boots and rain boots so the page can target its own comfort-versus-protection tradeoff.',
+      'Most buyers here are balancing lighter comfort against the amount of protection the job still requires.',
     ],
     guideTitle: 'How to choose safety shoes',
     guideSteps: [
       'Confirm the work environment suits a lower-cut safety footwear style.',
       'Compare toe protection, underfoot feel, and upper design for daily wear.',
       'Balance lightness and comfort against the protection needed for the job.',
-      'Use a dedicated safety shoes page so lighter footwear queries have a precise landing point.',
+      'Keep safety shoes separate from boots so lighter footwear options stay easy to compare.',
     ],
     applicationsTitle: 'Typical safety shoe applications',
     applications: ['Warehouse work', 'Assembly lines', 'General construction', 'Daily industrial wear'],
@@ -801,7 +852,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'Why do safety shoes need their own page separate from safety boots?',
         answer:
-          'Because buyers searching for safety shoes are usually prioritizing lighter everyday wear and lower-cut mobility, which is a different intent from boot buyers.',
+          'Because buyers searching for safety shoes are usually prioritizing lighter everyday wear and lower-cut mobility, which is different from what boot buyers usually need.',
       },
       {
         question: 'Are safety shoes only for light-duty work?',
@@ -811,7 +862,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'What should buyers compare on a safety shoes page?',
         answer:
-          'The most useful comparisons are lighter industrial footwear, warehouse and everyday site use, and how safety shoes differ from boots.',
+          'Lighter industrial footwear, warehouse and everyday site use, and the differences from boots are usually the most helpful comparisons.',
       },
     ],
   },
@@ -820,7 +871,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Browse safety boots for construction, industrial sites, and heavy-duty work where higher coverage, support, and durability matter.',
     eyebrow: 'Higher coverage industrial boots',
-    leadTitle: 'Safety boot pages should lean into durability and support',
+    leadTitle: 'How buyers compare safety boots for tougher site conditions',
     intro: [
       'Safety boots attract buyers who want more coverage and a tougher footwear platform than low-cut safety shoes, especially for more demanding site conditions and longer outdoor wear.',
       'They are usually compared on support, durability, and how well they hold up in rougher site conditions.',
@@ -859,18 +910,18 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaTitle: 'Safety Rain Boots for Wet and Muddy Job Sites',
     metaDescription:
       'Shop safety rain boots and waterproof industrial boots for wet-site construction, mining, outdoor work, and muddy environments.',
-    eyebrow: 'Waterproof site footwear intent',
+    eyebrow: 'Waterproof site footwear',
     leadTitle: 'Rain boot traffic is driven by waterproof, wet-site search terms',
     intro: [
-      'Safety rain boots serve a distinct buying intent centered on waterproofing, wet-site durability, and easy-clean industrial footwear. Searchers often come here because standard safety shoes or boots do not fit muddy or flooded work conditions.',
-      'This makes the page far more than a duplicate footwear category. It targets a different job environment, different product materials, and a different replacement logic.',
+      'Safety rain boots are usually chosen for waterproofing, wet-site durability, and easy-clean industrial footwear. Buyers often come here because standard safety shoes or boots do not fit muddy or flooded work conditions.',
+      'The job environment, product materials, and replacement cycle are usually different from general safety footwear.',
     ],
     guideTitle: 'How to choose safety rain boots',
     guideSteps: [
       'Start with the wetness and contamination level of the work environment.',
       'Compare waterproof materials, cleaning ease, and durability for outdoor or industrial use.',
       'Check whether the user needs full rain boot coverage rather than a standard safety boot.',
-      'Keep safety rain boots separate in navigation so waterproof job-site needs are easier to compare at a glance.',
+      'Keep safety rain boots separate so waterproof job-site needs are easier to compare at a glance.',
     ],
     applicationsTitle: 'Typical safety rain boot applications',
     applications: ['Wet construction sites', 'Mining support', 'Outdoor maintenance', 'Muddy industrial work'],
@@ -899,8 +950,8 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaTitle: 'Flame Resistant Coveralls for Industrial Work',
     metaDescription:
       'Browse flame resistant coveralls for welding, utilities, mining, and industrial environments requiring FR or anti-static protective clothing.',
-    eyebrow: 'FR and anti-static apparel intent',
-    leadTitle: 'FR coveralls should speak to hazard-specific apparel traffic',
+    eyebrow: 'FR and anti-static apparel',
+    leadTitle: 'How buyers compare FR coveralls for hazard-specific work',
     intro: [
       'Flame resistant coveralls are typically searched by buyers with a known hazard environment, such as hot work, utilities, or industrial sites with FR and anti-static requirements.',
       'That makes the range much more specific than a general workwear collection and easier to compare for narrower industrial clothing needs.',
@@ -950,7 +1001,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       'Start with the hygiene or contamination-control requirement driving the purchase.',
       'Compare ease of use and replacement workflow rather than long-term garment life.',
       'Check fit and comfort for the shift duration and environment.',
-      'Keep disposable coveralls distinct from reusable workwear to maintain cleaner search intent.',
+      'Keep disposable coveralls distinct from reusable workwear so single-use and reusable options stay easy to sort.',
     ],
     applicationsTitle: 'Typical disposable coverall applications',
     applications: ['Food processing', 'Hygiene control', 'Contamination management', 'Light protective tasks'],
@@ -980,17 +1031,17 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Browse work coveralls for general industrial wear, maintenance teams, daily site clothing, and practical full-body protective apparel.',
     eyebrow: 'General industrial coverall traffic',
-    leadTitle: 'Work coveralls target daily-use industrial apparel queries',
+    leadTitle: 'How buyers compare work coveralls for daily industrial wear',
     intro: [
       'Work coveralls sit between specialized FR garments and disposable coveralls. Buyers usually land here looking for everyday industrial clothing that offers practical coverage and durability without a narrow hazard-specific focus.',
-      'The range is most useful when everyday industrial coveralls are compared on comfort, durability, and practicality rather than folded into FR or disposable apparel.',
+      'Most buyers here focus on comfort, durability, and practicality rather than FR-specific or disposable-garment requirements.',
     ],
     guideTitle: 'How to choose work coveralls',
     guideSteps: [
       'Start with the day-to-day work environment and coverage needed.',
       'Compare fabric comfort, mobility, and durability for repeated daily use.',
       'Check closures, fit, and practicality for maintenance or site teams.',
-      'Use a dedicated work coveralls page so buyers can distinguish general-purpose apparel from FR or disposable garments.',
+      'Keep work coveralls separate so buyers can distinguish general-purpose apparel from FR or disposable garments.',
     ],
     applicationsTitle: 'Typical work coverall applications',
     applications: ['Daily industrial wear', 'Maintenance teams', 'General site clothing', 'Workshop operations'],
@@ -1001,7 +1052,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'How are work coveralls different from FR coveralls?',
         answer:
-          'Work coveralls typically target everyday industrial wear, while FR coveralls are associated with more hazard-specific protective requirements.',
+          'Work coveralls are typically chosen for everyday industrial wear, while FR coveralls are associated with more hazard-specific protective requirements.',
       },
       {
         question: 'Why should general work coveralls have their own page?',
@@ -1015,22 +1066,73 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       },
     ],
   },
+  'safety-harness': {
+    metaTitle: 'Safety Harness for Construction and Elevated Work',
+    metaDescription:
+      'Find safety harness options for roofing, scaffolding, steel work, tower access, and other elevated tasks where a secure body-worn fall protection setup is required.',
+    eyebrow: 'Body-worn fall protection',
+    leadTitle: 'How buyers compare safety harnesses for work at height',
+    intro: [
+      'Teams looking here usually need a body-worn fall protection product for elevated work, shutdown access, scaffold movement, or roof-edge exposure.',
+      'The main questions are usually straightforward: how the harness adjusts, where it connects, how comfortable it stays during movement, and whether it works with the rest of the setup already used on site.',
+    ],
+    guideTitle: 'How to choose a safety harness',
+    guideSteps: [
+      'Start with the task at height, worker movement pattern, and how often the harness will be worn during the shift.',
+      'Check adjustment points, dorsal or chest connection layout, and overall fit so the harness can be worn correctly by the actual crew.',
+      'Review compatibility with lanyards, anchor arrangements, helmets, and other PPE used in the same elevated-work system.',
+      'Plan inspection, replacement, and training routines before standardizing one harness style across the team.',
+    ],
+    applicationsTitle: 'Typical safety harness applications',
+    applications: [
+      'Roofing and edge work',
+      'Scaffolding access',
+      'Steel erection',
+      'Tower and utility maintenance',
+      'Plant shutdown work at height',
+    ],
+    differentiatorsTitle: 'What buyers compare in safety harnesses',
+    differentiators: [
+      'Adjustment and body fit',
+      'Connection-point layout',
+      'Comfort during climbing and movement',
+      'Compatibility with the existing fall-arrest setup',
+    ],
+    faqTitle: 'Safety harness FAQ',
+    faqs: [
+      {
+        question: 'Why should safety harnesses have their own category page?',
+        answer:
+          'Because buyers searching for harnesses are usually solving an elevated-work control problem and want to compare body-worn fall protection directly.',
+      },
+      {
+        question: 'What should buyers compare on a safety harness page?',
+        answer:
+          'Buyers usually compare fit, connection layout, movement comfort, and how the harness works with the wider fall-protection system.',
+      },
+      {
+        question: 'Should a safety harness page mention inspection and training?',
+        answer:
+          'Yes. Harness decisions are closely tied to inspection routines, worker fit, and how consistently crews can use the equipment correctly on site.',
+      },
+    ],
+  },
   'safety-vests': {
     metaTitle: 'Safety Vests for High Visibility Work',
     metaDescription:
       'Find safety vests for construction, logistics, roadside work, and high-visibility applications where lightweight reflective coverage is needed.',
-    eyebrow: 'Lightweight visibility intent',
-    leadTitle: 'Safety vest pages should lean into visibility-first searches',
+    eyebrow: 'Lightweight visibility gear',
+    leadTitle: 'How buyers compare safety vests for quick visibility coverage',
     intro: [
       'Safety vest queries are usually visibility-driven. Buyers are often looking for a simpler reflective garment than a full hi-vis workwear set, especially for traffic, logistics, and contractor visibility needs.',
-      'That keeps vest-focused comparisons separate from heavier jackets, pants, and full workwear combinations.',
+      'That usually makes the choice simpler than heavier jackets, pants, or full workwear combinations.',
     ],
     guideTitle: 'How to choose safety vests',
     guideSteps: [
       'Start with how much visibility coverage the task needs.',
       'Check whether a lightweight vest is sufficient or if a fuller workwear set is more appropriate.',
       'Compare comfort and ease of wear for quick daily use.',
-      'Keep vest-specific traffic separate from broader hi-vis apparel queries.',
+      'Keep safety vests separate from broader hi-vis apparel so the lighter option stays easy to find.',
     ],
     applicationsTitle: 'Typical safety vest applications',
     applications: ['Roadside work', 'Logistics visibility', 'Construction sites', 'Contractor identification'],
@@ -1060,17 +1162,17 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Shop hi-vis workwear including reflective jackets, pants, and coordinated apparel sets for industrial, logistics, and roadside visibility.',
     eyebrow: 'Full reflective apparel systems',
-    leadTitle: 'Hi-vis workwear pages should address apparel-set intent',
+    leadTitle: 'How buyers compare hi-vis workwear for fuller body coverage',
     intro: [
-      'Hi-vis workwear buyers are usually looking for more than a single reflective vest. The intent often includes jackets, pants, and coordinated garment sets suitable for regular field use.',
-      'This gives the page a different commercial role than the safety vest page and justifies more apparel-system-specific content.',
+      'Hi-vis workwear buyers are usually looking for more than a single reflective vest. They often need jackets, pants, and coordinated garment sets suitable for regular field use.',
+      'That usually puts the decision closer to full-body visibility coverage than to a simple vest-only choice.',
     ],
     guideTitle: 'How to choose hi-vis workwear',
     guideSteps: [
       'Start with the visibility requirement and the amount of body coverage needed.',
       'Compare garment sets versus lighter single-piece options.',
       'Review comfort, weather suitability, and movement for field teams.',
-      'Keep hi-vis workwear separate from safety vests so broader apparel-set searches have a dedicated target.',
+      'Keep hi-vis workwear separate from safety vests so broader apparel-set searches remain easy to browse.',
     ],
     applicationsTitle: 'Typical hi-vis workwear applications',
     applications: ['Roadside crews', 'Logistics yards', 'Construction teams', 'Outdoor industrial work'],
@@ -1110,7 +1212,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       'Start with the weather exposure and site conditions involved.',
       'Compare waterproofing and garment practicality for the expected shift.',
       'Check whether the rainwear needs to support other protective clothing layers.',
-      'Keep rainwear separate so weather-driven apparel searches land on the right page.',
+      'Keep rainwear separate so weather-driven apparel needs are easy to find.',
     ],
     applicationsTitle: 'Typical rainwear applications',
     applications: ['Outdoor construction', 'Wet-site maintenance', 'Industrial yards', 'Weather-exposed teams'],
@@ -1140,7 +1242,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Explore safety goggles for dustproof, anti-fog, and splash-prone work where sealed eye coverage is more important than open-frame eyewear.',
     eyebrow: 'Sealed eye coverage',
-    leadTitle: 'Safety goggles serve enclosed eye-protection intent',
+    leadTitle: 'How buyers compare safety goggles for enclosed eye coverage',
     intro: [
       'Safety goggles typically attract buyers who need more enclosed eye coverage than standard safety glasses can provide, especially in dusty, splash-prone, or higher-exposure work environments.',
       'The strongest comparison points are enclosed coverage, anti-fog behavior, and how the goggles sit with nearby PPE.',
@@ -1150,7 +1252,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       'Start with whether the task needs a sealed or more enclosed eye-protection format.',
       'Check anti-fog behavior for active work environments.',
       'Review fit and comfort if the goggles will be worn with helmets or respirators.',
-      'Keep goggles separated from safety glasses so buyers can narrow their search intent quickly.',
+      'Keep goggles separated from safety glasses so buyers can narrow down the right format quickly.',
     ],
     applicationsTitle: 'Typical safety goggle applications',
     applications: ['Dusty worksites', 'Splash-prone tasks', 'Construction work', 'Industrial repair'],
@@ -1161,7 +1263,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'Why do safety goggles need a page separate from safety glasses?',
         answer:
-          'Because buyers usually search for goggles when they need more enclosed coverage, and that intent differs from open-frame eyewear searches.',
+          'Because buyers usually search for goggles when they need more enclosed coverage, which is different from open-frame eyewear.',
       },
       {
         question: 'What should safety goggle content talk about?',
@@ -1180,17 +1282,17 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaDescription:
       'Browse safety glasses for everyday industrial eye protection, impact resistance, and lighter-weight eyewear across construction and workshop tasks.',
     eyebrow: 'Open-frame eye protection',
-    leadTitle: 'Safety glasses pages should capture lighter eyewear intent',
+    leadTitle: 'How buyers compare safety glasses for everyday eye protection',
     intro: [
-      'Safety glasses usually appeal to buyers who want lighter, everyday eyewear rather than a fully enclosed goggle format. The intent is often practical and high-frequency across workshops, inspections, and general site work.',
-      'That makes the page commercially distinct from the safety goggles page and important for capturing broader but still precise eye-protection searches.',
+      'Safety glasses usually appeal to buyers who want lighter, everyday eyewear rather than a fully enclosed goggle format.',
+      'They are common across workshops, inspections, and general site work where comfort and visibility matter alongside protection.',
     ],
     guideTitle: 'How to choose safety glasses',
     guideSteps: [
       'Decide whether open-frame eyewear is sufficient for the hazard environment.',
       'Compare comfort, visibility, and anti-fog or anti-scratch features.',
       'Check how the glasses fit into the rest of the PPE kit.',
-      'Use a dedicated safety glasses page so open-frame eyewear intent does not get lost inside broader eye protection content.',
+      'Keep safety glasses separate so open-frame eyewear does not get lost inside broader eye protection content.',
     ],
     applicationsTitle: 'Typical safety glasses applications',
     applications: ['General site work', 'Workshops', 'Inspection tasks', 'Light industrial jobs'],
@@ -1206,12 +1308,12 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'What should buyers compare on a safety glasses page?',
         answer:
-          'Everyday industrial wear, open-frame protection, lighter eyewear comfort, and fit with nearby PPE are usually the most useful comparison points.',
+          'Everyday industrial wear, open-frame protection, lighter eyewear comfort, and fit with nearby PPE are usually the most helpful things to compare.',
       },
       {
         question: 'Can safety glasses pages still mention adjacent PPE?',
         answer:
-          'Yes. Fit with helmets, respirators, and other PPE still matters, but the core page should stay anchored to safety-glasses intent.',
+          'Yes. Fit with helmets, respirators, and other PPE still matters, but the page should stay focused on safety-glasses use.',
       },
     ],
   },
@@ -1219,7 +1321,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     metaTitle: 'Half Face Respirators for Dust and Chemical Work',
     metaDescription:
       'Shop half face respirators for dust, spray, fumes, and chemical tasks where reusable industrial respiratory protection is required.',
-    eyebrow: 'Reusable respirator intent',
+    eyebrow: 'Reusable respirator format',
     leadTitle: 'Half face respirators suit reusable daily protection',
     intro: [
       'Half face respirators are often chosen when buyers already know they want a reusable respirator format rather than a broader respiratory protection overview.',
@@ -1230,7 +1332,7 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       'Start with the airborne hazard and the need for a reusable respirator format.',
       'Check seal comfort and practical fit for real-world wear time.',
       'Compare filter or cartridge workflows before standardizing the product.',
-      'Keep half face respirators distinct from the parent category so reusable respirator searches have a dedicated destination.',
+      'Keep half face respirators distinct from the parent category so reusable respirator options stay easy to compare.',
     ],
     applicationsTitle: 'Typical half face respirator applications',
     applications: ['Dust control', 'Chemical handling', 'Paint and spray work', 'Industrial maintenance'],
@@ -1241,12 +1343,12 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
       {
         question: 'Why should half face respirators have their own child page?',
         answer:
-          'Because buyers often search directly for reusable half face respirators, which is a more specific commercial intent than the parent respiratory protection category.',
+          'Because buyers often search directly for reusable half face respirators, which is more specific than the broader respiratory protection category.',
       },
       {
         question: 'What should buyers compare on a half face respirator page?',
         answer:
-          'Reusable respirator workflow, fit, filter setup, and real airborne-exposure use cases are usually the most useful comparison points.',
+          'Reusable respirator workflow, fit, filter setup, and real airborne-exposure use cases are usually the most useful things to compare.',
       },
       {
         question: 'How do half face respirators fit into the broader respiratory range?',

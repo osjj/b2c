@@ -80,19 +80,19 @@ export function CategorySeoContent({
   const topicClusterGroups = [
     {
       key: 'subcategories',
-      title: parent ? 'Related category paths' : 'Subcategory intent paths',
+      title: parent ? 'Related categories' : 'Subcategories',
       icon: FolderTree,
       items: subcategoryClusterItems,
     },
     {
       key: 'products',
-      title: 'Product detail paths',
+      title: 'Popular products',
       icon: Sparkles,
       items: productClusterItems,
     },
     {
       key: 'architecture',
-      title: 'Hierarchy paths',
+      title: 'Parent category',
       icon: Layers3,
       items: architectureClusterItems,
     },
@@ -225,9 +225,9 @@ export function CategorySeoContent({
           <div className="mb-6 flex items-start gap-3">
             <FolderTree className="mt-1 h-5 w-5 text-primary" />
             <div>
-              <h2 className="font-serif text-2xl">Internal topic cluster</h2>
+              <h2 className="font-serif text-2xl">Useful next paths</h2>
               <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
-                These links group the next most useful paths together, including narrower categories, relevant product pages, and the broader parent range when it helps with comparison.
+                Use these links to move into the most relevant nearby categories, product pages, or the broader parent range when you need a wider comparison.
               </p>
             </div>
           </div>

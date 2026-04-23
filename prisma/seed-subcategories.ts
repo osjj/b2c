@@ -7,6 +7,7 @@ type ParentCategorySlug =
   | 'head-protection'
   | 'foot-protection'
   | 'body-protection'
+  | 'fall-protection'
   | 'eye-protection'
   | 'respiratory-protection'
 
@@ -28,12 +29,20 @@ type CategorySlug =
   | 'flame-resistant-coveralls'
   | 'disposable-coveralls'
   | 'work-coveralls'
+  | 'safety-harness'
   | 'safety-vests'
   | 'hi-vis-workwear'
   | 'rainwear'
   | 'safety-goggles'
   | 'safety-glasses'
   | 'half-face-respirators'
+
+interface ParentCategorySeed {
+  name: string
+  slug: ParentCategorySlug
+  sortOrder: number
+  description: string
+}
 
 interface SubcategorySeed {
   name: string
@@ -47,6 +56,51 @@ interface ProductCategoryAssignment {
   productSlug: string
   categorySlug: CategorySlug
 }
+
+const parentCategories: ParentCategorySeed[] = [
+  {
+    name: 'Hand Protection',
+    slug: 'hand-protection',
+    sortOrder: 0,
+    description: 'Protective gloves for industrial handling, welding, and cut-risk tasks',
+  },
+  {
+    name: 'Foot Protection',
+    slug: 'foot-protection',
+    sortOrder: 0,
+    description: 'Safety footwear for construction, industrial work, and wet-site conditions',
+  },
+  {
+    name: 'Body Protection',
+    slug: 'body-protection',
+    sortOrder: 0,
+    description: 'Protective workwear, coveralls, rainwear, and visibility apparel',
+  },
+  {
+    name: 'Fall Protection',
+    slug: 'fall-protection',
+    sortOrder: 0,
+    description: 'Fall protection equipment for elevated work, roof access, and scaffold tasks',
+  },
+  {
+    name: 'Eye Protection',
+    slug: 'eye-protection',
+    sortOrder: 0,
+    description: 'Safety glasses and goggles for dust, impact, and splash protection',
+  },
+  {
+    name: 'Respiratory Protection',
+    slug: 'respiratory-protection',
+    sortOrder: 0,
+    description: 'Respirators and airborne hazard control for dust, fumes, and chemical exposure',
+  },
+  {
+    name: 'Head Protection',
+    slug: 'head-protection',
+    sortOrder: 1,
+    description: 'Head protection for impact, face coverage, and noisy industrial environments',
+  },
+]
 
 const subcategories: SubcategorySeed[] = [
   {
@@ -167,6 +221,13 @@ const subcategories: SubcategorySeed[] = [
     parentSlug: 'body-protection',
     sortOrder: 3,
     description: 'General work coveralls for daily industrial protection',
+  },
+  {
+    name: 'Safety Harness',
+    slug: 'safety-harness',
+    parentSlug: 'fall-protection',
+    sortOrder: 1,
+    description: 'Body-worn fall protection harnesses for roofing, scaffolding, and elevated work',
   },
   {
     name: 'Safety Vests',
@@ -487,8 +548,31 @@ function getMissingSlugs(
 async function main() {
   console.log('Seeding PPE subcategories and product assignments...')
 
+  await prisma.$transaction(
+    parentCategories.map((category) =>
+      prisma.category.upsert({
+        where: { slug: category.slug },
+        update: {
+          name: category.name,
+          description: category.description,
+          parentId: null,
+          sortOrder: category.sortOrder,
+          isActive: true,
+        },
+        create: {
+          name: category.name,
+          slug: category.slug,
+          description: category.description,
+          parentId: null,
+          sortOrder: category.sortOrder,
+          isActive: true,
+        },
+      }),
+    ),
+  )
+
   const parentSlugs = [...new Set(subcategories.map((item) => item.parentSlug))]
-  const parentCategories = await prisma.category.findMany({
+  const parentCategoriesFromDb = await prisma.category.findMany({
     where: {
       slug: {
         in: parentSlugs,
@@ -501,19 +585,8 @@ async function main() {
     },
   })
 
-  const missingParents = getMissingSlugs(
-    parentSlugs,
-    parentCategories.map((category) => category.slug),
-  )
-
-  if (missingParents.length > 0) {
-    throw new Error(
-      `Missing parent categories: ${missingParents.join(', ')}`,
-    )
-  }
-
   const parentIdBySlug = new Map(
-    parentCategories.map((category) => [category.slug, category.id]),
+    parentCategoriesFromDb.map((category) => [category.slug, category.id]),
   )
 
   await prisma.$transaction(
