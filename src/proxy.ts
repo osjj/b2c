@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 const PRIMARY_HOST = 'www.laifappe.com'
 const LEGACY_HOSTS = new Set(['laifappe.com'])
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const hostname = request.nextUrl.hostname
 
   if (LEGACY_HOSTS.has(hostname)) {
