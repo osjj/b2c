@@ -140,15 +140,18 @@ export default async function ProductDetailPage({
 
   // 过滤内部来源字段。既要匹配原始 key（sourceUrl1688 / offerId1688），
   // 也要匹配被 AI 规范化后的人类可读标签（"1688 Source URL" / "1688 Offer ID"）
-  const INTERNAL_SPEC_KEYS_NORMALIZED = new Set([
-    'sourceurl1688',
-    'offerid1688',
+  const HIDDEN_FRONTEND_SPEC_KEYS_NORMALIZED = new Set([
+    'sourceurl',
+    'sourcelink',
+    'sourcepageurl',
+    'originalsourceurl',
+    'alibabasourceurl',
     '1688sourceurl',
-    '1688offerid',
+    'sourceurl1688',
   ])
   const isInternalSpec = (name: string) => {
     const n = (name || '').toLowerCase().replace(/[\s_\-]+/g, '')
-    return INTERNAL_SPEC_KEYS_NORMALIZED.has(n)
+    return HIDDEN_FRONTEND_SPEC_KEYS_NORMALIZED.has(n)
   }
   const visibleSpecs = (product.specifications && Array.isArray(product.specifications))
     ? (product.specifications as Array<{name: string, value: string}>)
