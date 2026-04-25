@@ -5,7 +5,11 @@ import { getSiteUrl } from '@/lib/site-url'
 export const revalidate = 3600
 export const dynamic = 'force-dynamic'
 
-const TOOLS_CONTENT_LASTMOD = new Date('2026-04-20')
+const TOOLS_HUB_LASTMOD = new Date('2026-04-20')
+const AI_QUOTE_TOOL_LASTMOD = new Date('2026-04-20')
+const PPE_CALCULATOR_TOOL_LASTMOD = new Date('2026-04-20')
+const SIZE_GUIDE_TOOL_LASTMOD = new Date('2026-04-25')
+const COMPLIANCE_TOOL_LASTMOD = new Date('2026-04-25')
 const EXCLUDED_SOLUTION_SLUGS = new Set(['ppe-safety-equipment-for-construction-sites'])
 
 type SitemapProduct = {
@@ -84,31 +88,31 @@ function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/tools`,
-      lastModified: TOOLS_CONTENT_LASTMOD,
+      lastModified: TOOLS_HUB_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/tools/ai-quote`,
-      lastModified: TOOLS_CONTENT_LASTMOD,
+      lastModified: AI_QUOTE_TOOL_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/tools/ppe-calculator`,
-      lastModified: TOOLS_CONTENT_LASTMOD,
+      lastModified: PPE_CALCULATOR_TOOL_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/tools/size-guide`,
-      lastModified: TOOLS_CONTENT_LASTMOD,
+      lastModified: SIZE_GUIDE_TOOL_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/tools/compliance-checker`,
-      lastModified: TOOLS_CONTENT_LASTMOD,
+      lastModified: COMPLIANCE_TOOL_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.8,
     },

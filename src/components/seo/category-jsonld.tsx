@@ -3,7 +3,6 @@ import { Category } from "@prisma/client";
 interface ProductForJsonLd {
   name: string;
   slug: string;
-  price: number;
 }
 
 interface CategoryJsonLdProps {
@@ -29,16 +28,8 @@ export function CategoryJsonLd({ category, products, baseUrl, url }: CategoryJso
       itemListElement: products.slice(0, 10).map((product, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        item: {
-          "@type": "Product",
-          name: product.name,
-          url: `${baseUrl}/products/${product.slug}`,
-          offers: {
-            "@type": "Offer",
-            price: product.price,
-            priceCurrency: "USD",
-          },
-        },
+        name: product.name,
+        url: `${baseUrl}/products/${product.slug}`,
       })),
     },
   };

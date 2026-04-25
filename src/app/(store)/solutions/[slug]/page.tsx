@@ -6,12 +6,14 @@ import { getSolutionBySlug } from '@/actions/solutions'
 import { formatUsageSceneLabel, type UsageScene } from '@/lib/usage-scenes'
 import { SolutionHero, SolutionSections } from '@/components/store/solution-detail'
 import { TableOfContents } from '@/components/store/solution-detail/table-of-contents'
+import { ToolRecommendationsSection } from '@/components/store/tool-recommendations-section'
 import type { SolutionSectionItem } from '@/types/solution'
 import { prisma } from '@/lib/prisma'
 import {
   RECOMMENDED_PPE_BLOCK_KEY,
   resolveRecommendationMode,
 } from '@/lib/solution-recommendations'
+import { getToolRecommendationsForSolution } from '@/lib/tool-recommendations'
 import type { ProductImage, Category } from '@prisma/client'
 import { getSiteUrl } from '@/lib/site-url'
 
@@ -189,6 +191,12 @@ export default async function SolutionDetailPage({ params }: Props) {
     .filter((section) => section.title)
     .map((section) => ({ id: section.key, title: section.title as string }))
   const hasToc = tocItems.length > 0
+  const relatedTools = getToolRecommendationsForSolution({
+    slug,
+    title: solution.title,
+    excerpt: solution.excerpt,
+    usageScenes: solution.usageScenes,
+  })
 
   return (
     <div className="bg-ppe-bg-page min-h-screen pb-16">
@@ -225,11 +233,21 @@ export default async function SolutionDetailPage({ params }: Props) {
             </aside>
             <div className="max-w-4xl space-y-6">
               <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
+              <ToolRecommendationsSection
+                tools={relatedTools}
+                title="Move from PPE guidance to order planning"
+                description="These tools help buyers convert the solution into sizing checks, compliance review, quantity planning, and a faster quote request."
+              />
             </div>
           </div>
         ) : (
           <div className="max-w-4xl space-y-6">
             <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
+            <ToolRecommendationsSection
+              tools={relatedTools}
+              title="Move from PPE guidance to order planning"
+              description="These tools help buyers convert the solution into sizing checks, compliance review, quantity planning, and a faster quote request."
+            />
           </div>
         )}
       </div>

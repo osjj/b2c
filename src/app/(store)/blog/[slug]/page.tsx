@@ -6,7 +6,9 @@ import { ArrowLeft, ChevronRight, Clock, Home } from 'lucide-react'
 import { getBlogPostBySlug } from '@/actions/blog'
 import { BlogContentRenderer } from '@/components/store/blog/blog-content-renderer'
 import { TableOfContents } from '@/components/store/solution-detail/table-of-contents'
+import { ToolRecommendationsSection } from '@/components/store/tool-recommendations-section'
 import { extractTocFromContent, stripHtml } from '@/lib/blog-toc'
+import { getToolRecommendationsForBlog } from '@/lib/tool-recommendations'
 import { formatDate } from '@/lib/utils'
 import { getSiteUrl } from '@/lib/site-url'
 
@@ -93,6 +95,11 @@ export default async function BlogDetailPage({ params }: Props) {
   const content = post.content as EditorContent
   const tocItems = extractTocFromContent(content)
   const readingMinutes = estimateReadingTime(content)
+  const relatedTools = getToolRecommendationsForBlog({
+    slug,
+    title: post.title,
+    excerpt: post.excerpt,
+  })
 
   return (
     <div className="bg-ppe-bg-page min-h-screen pb-24">
@@ -162,12 +169,22 @@ export default async function BlogDetailPage({ params }: Props) {
             </aside>
             <article className="max-w-3xl mx-auto w-full">
               <BlogContentRenderer content={content} />
+              <ToolRecommendationsSection
+                tools={relatedTools}
+                title="Turn this guide into a faster PPE shortlist"
+                description="Use the matching tools to check footwear sizing, decode certification labels, or estimate order quantities before you move from research to purchasing."
+              />
               <BlogFooter />
             </article>
           </div>
         ) : (
           <article className="max-w-3xl mx-auto w-full">
             <BlogContentRenderer content={content} />
+            <ToolRecommendationsSection
+              tools={relatedTools}
+              title="Turn this guide into a faster PPE shortlist"
+              description="Use the matching tools to check footwear sizing, decode certification labels, or estimate order quantities before you move from research to purchasing."
+            />
             <BlogFooter />
           </article>
         )}

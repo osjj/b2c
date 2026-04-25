@@ -21,11 +21,13 @@ import {
 const TITLE = 'Safety Footwear Compliance Label Decoder — ASTM F2413 & EN ISO 20345'
 const DESCRIPTION =
   'Free decoder for safety boot labels. Instantly explain S1, S2, S3, S4, S5, SRC, HRO, ASTM F2413-18, I/75, C/75, EH, PR and every EN ISO 20345 and ASTM safety-footwear code.'
+const SEO_TITLE = 'What Does S3 SRC HRO Mean? Safety Footwear Label Decoder'
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: SEO_TITLE,
   description: DESCRIPTION,
   keywords: [
+    TITLE,
     'ASTM F2413 decoder',
     'EN ISO 20345 label meaning',
     'S1 S2 S3 S4 S5 meaning',
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${getSiteUrl()}/tools/compliance-checker` },
   openGraph: {
-    title: TITLE,
+    title: SEO_TITLE,
     description: DESCRIPTION,
     url: `${getSiteUrl()}/tools/compliance-checker`,
     type: 'website',
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: TITLE,
+    title: SEO_TITLE,
     description: DESCRIPTION,
     images: ['/og-image-main.webp'],
   },

@@ -8,11 +8,13 @@ import { SIZE_CHART, WIDTH_CHART } from './data'
 const TITLE = 'Safety Boot Size Guide — US, EU, UK, CN & JP Conversion Chart'
 const DESCRIPTION =
   'Free safety boot size converter and fitting guide. Convert between US men\'s, US women\'s, UK, EU, China and Japan sizing, plus ASTM and EN width fittings. Includes how-to-measure instructions.'
+const SEO_TITLE = 'Safety Boot Size Conversion Chart - US, EU, UK, CN & JP Guide'
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: SEO_TITLE,
   description: DESCRIPTION,
   keywords: [
+    TITLE,
     'safety boot size chart',
     'work boot size conversion',
     'US to EU shoe size',
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${getSiteUrl()}/tools/size-guide` },
   openGraph: {
-    title: TITLE,
+    title: SEO_TITLE,
     description: DESCRIPTION,
     url: `${getSiteUrl()}/tools/size-guide`,
     type: 'website',
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: TITLE,
+    title: SEO_TITLE,
     description: DESCRIPTION,
     images: ['/og-image-main.webp'],
   },
@@ -228,7 +230,7 @@ export default function SizeGuidePage() {
       {/* Full conversion chart */}
       <section className="container mx-auto px-4 lg:px-6 max-w-6xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
-          Full size conversion chart
+          US to EU safety boot size conversion chart
         </h2>
         <p className="text-muted-foreground text-base leading-relaxed mb-6">
           Cross-reference table for safety-footwear sizing across the major systems.
