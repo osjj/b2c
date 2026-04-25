@@ -136,7 +136,7 @@ function TaskCardsGrid({ data }: { data: SectionTaskCardsData }) {
           <article key={card.scene} className="overflow-hidden rounded-xl border bg-card">
             <div className="relative aspect-video w-full">
               <Image
-                src={preset.image}
+                src={card.image || preset.image}
                 alt={card.title || preset.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

@@ -6,6 +6,7 @@ export type TaskCardItem = {
   title: string
   description: string
   items: string[]
+  image?: string
 }
 
 export type SectionTaskCardsData = {
@@ -91,6 +92,7 @@ function defaultTaskCard(scene: UsageScene, checked: boolean): TaskCardItem {
     title: preset.title,
     description: preset.description,
     items: [],
+    image: preset.image,
   }
 }
 
@@ -122,6 +124,9 @@ export function normalizeTaskCards(
         ? (card as { description: string }).description.trim()
         : '',
       items: toStringList((card as { items?: unknown }).items),
+      image: typeof (card as { image?: unknown }).image === 'string'
+        ? (card as { image: string }).image.trim()
+        : preset.image,
     })
   }
 

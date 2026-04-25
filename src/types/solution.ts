@@ -72,6 +72,7 @@ export interface SectionTaskCardsData {
     title: string
     description: string
     items: string[]
+    image?: string
   }[]
 }
 

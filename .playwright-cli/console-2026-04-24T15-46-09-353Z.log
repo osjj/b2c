@@ -1,0 +1,2 @@
+[   82570ms] [ERROR] Access to fetch at 'https://laifappe.com/login?callbackUrl=/account/orders' (redirected from 'https://www.laifappe.com/account/orders?_rsc=kbff2') from origin 'https://www.laifappe.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: Redirect is not allowed for a preflight request. @ https://www.laifappe.com/blog/construction-gloves-selection-guide:0
+[   82570ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://laifappe.com/login?callbackUrl=/account/orders:0

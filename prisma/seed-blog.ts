@@ -214,6 +214,61 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       },
     },
   },
+  {
+    slug: 'construction-gloves-selection-guide',
+    markdownPath: join(process.cwd(), 'construction-gloves-selection-guide.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.construction-gloves-selection-guide.generated.json',
+    ),
+    title: 'Construction Gloves: How to Choose the Right Hand Protection',
+    excerpt:
+      'A practical guide to choosing construction gloves by hazard, task, grip, dexterity, cut risk, impact exposure, chemical contact, hot work, and electrical PPE requirements.',
+    seoTitle: 'Construction Gloves: How to Choose the Right Hand Protection',
+    seoDescription:
+      'Learn how to choose construction gloves by hazard, task, coating, cut resistance, impact protection, chemical exposure, heat, and electrical work. Practical guide for contractors, supervisors, and PPE buyers.',
+    seoKeywords:
+      'construction gloves how to choose, construction hand protection, construction work gloves, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction',
+    heroFallback:
+      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
+    sectionImages: {
+      'What OSHA Requires for Construction Gloves': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Construction glove compliance starts with hazard matching, fit, and task-specific PPE selection rather than a generic issue policy.',
+      },
+      'The Main Glove Hazards on Construction Sites': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Construction hand hazards often overlap, which is why glove choice has to balance cut, abrasion, impact, wet work, and dexterity together.',
+      },
+      'The Main Types of Construction Gloves': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'General handling gloves, cut gloves, impact gloves, chemical gloves, welding gloves, and insulating gloves all serve different construction tasks.',
+      },
+      'How To Read Construction Glove Labels and Standards': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Standards only help when the buyer knows which test result actually maps to the hand hazard on site.',
+      },
+      'Glove Materials and Coatings: What They Usually Do Well': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Material and coating choices often decide whether a glove performs well in wet, oily, abrasive, or sharp construction conditions.',
+      },
+      'How To Choose Gloves by Construction Task': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'A stronger glove program starts by matching the glove family to the real task instead of forcing one glove across the whole site.',
+      },
+      'Common Glove Buying Mistakes on Construction Sites': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Most glove failures come from oversimplified buying decisions, not from a lack of PPE on paper.',
+      },
+    },
+  },
 ]
 
 function loadGeneratedImages(filePath: string): Record<string, string> {
@@ -601,7 +656,21 @@ async function seedPost(config: BlogSeedConfig) {
 }
 
 async function main() {
-  for (const post of BLOG_POSTS) {
+  const slugArg = process.argv
+    .slice(2)
+    .find((arg) => arg.startsWith('--slug='))
+    ?.slice('--slug='.length)
+    .trim()
+
+  const postsToSeed = slugArg
+    ? BLOG_POSTS.filter((post) => post.slug === slugArg)
+    : BLOG_POSTS
+
+  if (slugArg && postsToSeed.length === 0) {
+    throw new Error(`Unknown blog slug: ${slugArg}`)
+  }
+
+  for (const post of postsToSeed) {
     await seedPost(post)
   }
 }

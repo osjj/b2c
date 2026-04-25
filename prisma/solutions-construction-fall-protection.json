@@ -1,0 +1,353 @@
+[
+  {
+    "slug": "fall-protection-construction",
+    "title": "Fall Protection PPE for Construction Sites",
+    "excerpt": "A solution-focused guide for contractors, safety teams, and procurement buyers selecting fall protection PPE for roofing, scaffolding, steel work, shutdowns, and mixed elevated construction tasks.",
+    "usageScenes": [
+      "construction",
+      "height-work",
+      "fall-protection",
+      "falling-objects",
+      "heavy-duty",
+      "impact-resistant",
+      "slip-resistant"
+    ],
+    "coverImage": "https://shop.laifappe.com/solutions/fall-protection-construction/cover-1776957196630.webp",
+    "isActive": true,
+    "sortOrder": 3,
+    "seoTitle": "Fall Protection PPE for Construction Sites | Harness, SRL, and Anchor Solutions",
+    "seoDescription": "Compare fall protection PPE for roofing, scaffolding, steel work, and elevated maintenance. Learn what to buy, how to build a complete system, and what procurement teams should check before ordering in bulk.",
+    "seoKeywords": "fall protection construction, fall protection PPE construction, construction safety harness supplier, construction fall arrest system, roofing fall protection equipment, scaffolding fall protection PPE, bulk fall protection equipment",
+    "sections": [
+      {
+        "key": "hero-intro",
+        "type": "hero",
+        "title": "What should a construction fall protection system include?",
+        "enabled": true,
+        "data": {
+          "intro": "Construction fall protection is not a one-item purchase. Most sites need a complete system built around task exposure, worker movement, anchor conditions, fit, inspection workflow, and replacement planning.",
+          "bullets": [
+            "Full-body harnesses selected by task and wearer fit",
+            "Shock-absorbing lanyards or SRLs matched to movement and clearance",
+            "Anchors, connectors, and connection logic reviewed as a system",
+            "Compatible helmets, gloves, footwear, and weather-ready outerwear",
+            "Inspection, training, rescue planning, and spare-stock decisions built into procurement"
+          ]
+        }
+      },
+      {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "This page is built for contractors, site managers, distributors, and procurement teams who need to choose the right fall protection package for real construction work rather than read a regulation summary in isolation.",
+            "Use it alongside the broader [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution), the regulation-first [OSHA PPE requirements for construction guide](/blog/osha-ppe-requirements-construction), and the field-focused [construction PPE checklist](/blog/construction-ppe-checklist)."
+          ]
+        }
+      },
+      {
+        "key": "fall-protection-why-dedicated",
+        "type": "paragraphs",
+        "title": "Why fall protection needs its own construction buying path",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Fall protection should sit in its own solution path because the buying logic is different from normal workwear or general body protection. Buyers need to compare the whole system: harness, connecting device, anchor strategy, worker movement, clearance, and rescue planning.",
+            "That makes this page especially useful for teams standardizing PPE across roofing crews, scaffold access teams, steel work, shutdown projects, and mixed elevated maintenance work."
+          ]
+        }
+      },
+      {
+        "key": "osha-trigger-snapshot",
+        "type": "table",
+        "title": "OSHA trigger points construction teams usually need to remember",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Situation",
+            "Typical OSHA reference point",
+            "What buyers should actually decide"
+          ],
+          "rows": [
+            [
+              "Unprotected sides and edges on construction walking-working surfaces",
+              "29 CFR 1926.501 commonly uses 6 feet",
+              "Whether the site will rely on guardrails, safety nets, personal fall arrest, or a mixed system"
+            ],
+            [
+              "Scaffold work",
+              "29 CFR 1926.451 generally requires protection over 10 feet",
+              "How the crew will move, connect, climb, and inspect gear during repetitive scaffold tasks"
+            ],
+            [
+              "Construction PPE fit",
+              "29 CFR 1926.95 fit language became explicit on January 13, 2025",
+              "Whether the harness range and adjacent PPE actually fit the workforce rather than loosely adjusting across everyone"
+            ],
+            [
+              "Training and deployment",
+              "29 CFR 1926.503 covers fall protection training",
+              "Whether the chosen system is simple enough to train, inspect, and re-issue across projects"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "task-scenarios",
+        "type": "taskCards",
+        "title": "Common construction scenarios that drive fall protection selection",
+        "enabled": true,
+        "data": {
+          "cards": [
+            {
+              "scene": "height-work",
+              "checked": true,
+              "title": "Roofing and exposed edge work",
+              "description": "Roofing crews need mobility, clear connection management, and stable traction under changing weather and surface conditions.",
+              "items": [
+                "Harness sizing that supervisors can verify quickly",
+                "Anchorage strategy suitable for the roof structure",
+                "Footwear and outerwear that do not compromise movement or dorsal access",
+                "Fast pre-use inspection routine for repeat daily work"
+              ],
+              "image": "https://shop.laifappe.com/solutions/fall-protection-construction/roofing-height-work-1776957310616.webp"
+            },
+            {
+              "scene": "fall-protection",
+              "checked": true,
+              "title": "Scaffolding, access towers, and repeated climbing",
+              "description": "Scaffold work needs a package that manages climbing, repositioning, and connector behavior without creating loose-line problems.",
+              "items": [
+                "Harness and connector compatibility with the scaffold setup",
+                "Hardware that crews can operate with gloves on",
+                "Helmet retention during vertical movement",
+                "Daily issue and inspection flow that works at pace"
+              ],
+              "image": "https://shop.laifappe.com/solutions/fall-protection-construction/scaffold-fall-protection-1776957442301.webp"
+            },
+            {
+              "scene": "steel-work",
+              "checked": true,
+              "title": "Steel erection and structural work",
+              "description": "Steel crews usually compare mobility, attachment transitions, durability, and compatibility with glove-heavy work.",
+              "items": [
+                "Twin-leg or transition-friendly connection logic where needed",
+                "Connector size and geometry suited to structural attachment conditions",
+                "Harness comfort under long wear and rough handling",
+                "Durability under abrasion, dust, and repeated transport"
+              ],
+              "image": "https://shop.laifappe.com/solutions/fall-protection-construction/steel-erection-1776957491682.webp"
+            },
+            {
+              "scene": "construction",
+              "checked": true,
+              "title": "Shutdowns, maintenance, and mixed elevated access",
+              "description": "Mixed projects often need a simpler, repeatable system that can be issued to multiple roles instead of one highly specialized kit.",
+              "items": [
+                "Broader size coverage and spare-stock planning",
+                "Simple training and visible inspection controls",
+                "A mix of lanyards and SRLs where access methods vary",
+                "Stable repeat ordering across projects"
+              ],
+              "image": "https://shop.laifappe.com/solutions/fall-protection-construction/maintenance-access-1776957550226.webp"
+            }
+          ]
+        }
+      },
+      {
+        "key": "system-components",
+        "type": "group",
+        "title": "What belongs in a complete construction fall protection package",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Full-body harness",
+              "description": "The harness is the core body-worn item in the system, but buyers should compare more than the label.",
+              "items": [
+                "Size range and real fit across the workforce",
+                "Adjustment points and ease of supervisor fit checks",
+                "Attachment-point layout suited to the task",
+                "Comfort during long shifts in heat, dust, or rough movement"
+              ]
+            },
+            {
+              "title": "Lanyard or SRL",
+              "description": "This is usually the most practical decision point because it affects movement, clearance, and user acceptance.",
+              "items": [
+                "Shock-absorbing lanyards for simpler, lower-cost setups where clearance allows",
+                "SRLs where better movement control and shorter arrest distance make more sense",
+                "Connector style matched to anchor and harness geometry",
+                "Task suitability reviewed before the site standardizes one model"
+              ]
+            },
+            {
+              "title": "Anchors and connectors",
+              "description": "The harness is not the system unless the connection strategy is solved as well.",
+              "items": [
+                "Fixed or temporary anchor strategy by structure type",
+                "Horizontal lifeline needs where movement spans a work zone",
+                "Hardware compatibility across the full connection chain",
+                "Installation and inspection practicality on site"
+              ]
+            },
+            {
+              "title": "Compatible supporting PPE",
+              "description": "Fall protection performance is affected by the rest of the worker kit.",
+              "items": [
+                "Helmets or hard hats suited to work at height",
+                "Gloves that still allow secure connector handling",
+                "Footwear that supports grip and ladder movement",
+                "Outerwear that does not obstruct adjustment or attachment points"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "bulk-buying-checklist",
+        "type": "list",
+        "title": "What procurement teams should compare before ordering in bulk",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Fit coverage",
+              "text": "Confirm the range covers real worker body sizes instead of relying on one loosely adjustable model for everyone."
+            },
+            {
+              "title": "System compatibility",
+              "text": "Check that harness, lanyard or SRL, anchors, hooks, and adjacent PPE work together as a system."
+            },
+            {
+              "title": "Mobility and worker acceptance",
+              "text": "If the setup is awkward, heavy, or disruptive, workers are more likely to misuse it or work around it."
+            },
+            {
+              "title": "Durability and replacement cycle",
+              "text": "Construction environments punish webbing, labels, and hardware. Compare expected field life, not just unit price."
+            },
+            {
+              "title": "Inspection workflow",
+              "text": "Prioritize systems that make pre-use checks, documented inspection, and removal-from-service decisions easier."
+            },
+            {
+              "title": "Supply consistency",
+              "text": "Ask about size availability, lead times, batch consistency, certification documents, and repeat-order stability."
+            }
+          ]
+        }
+      },
+      {
+        "key": "recommended-ppe",
+        "type": "paragraphs",
+        "title": "Recommended PPE products for construction fall protection",
+        "enabled": true,
+        "data": {
+          "mode": "rule",
+          "paragraphs": [
+            "For many contractors, a workable starter package includes a full-body harness, a compatible lanyard or SRL, an anchor connector matched to the work area, a helmet or hard hat suitable for work at height, and footwear with stable traction for the surface and weather.",
+            "Below are examples of products commonly surfaced for construction, height-work, and fall protection usage scenes:"
+          ]
+        }
+      },
+      {
+        "key": "common-buying-mistakes",
+        "type": "group",
+        "title": "Common buying mistakes that create site problems later",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Buying one harness model for every crew",
+              "description": "This often looks efficient at purchase time and inefficient once the gear reaches real crews.",
+              "items": [
+                "Different tasks place different demands on mobility and connection style",
+                "Improper fit becomes more likely across mixed crews",
+                "User acceptance drops when the system does not match the task"
+              ]
+            },
+            {
+              "title": "Treating anchors as an afterthought",
+              "description": "The anchor strategy often determines whether the selected lanyard or SRL will actually work on site.",
+              "items": [
+                "Anchor constraints may block the preferred connection method",
+                "Improvised anchor decisions create field inconsistency",
+                "Late anchor planning weakens training and inspection"
+              ]
+            },
+            {
+              "title": "Ignoring the rest of the PPE stack",
+              "description": "A technically compliant fall system can still fail operationally when it fights with other PPE.",
+              "items": [
+                "Bulky outerwear can hide key connection points",
+                "Gloves can make hardware hard to use",
+                "Wrong footwear can undermine ladder and roof traction"
+              ]
+            },
+            {
+              "title": "Underbuying replacement stock",
+              "description": "Construction sites move too fast to rely on one usable unit per worker with no buffer.",
+              "items": [
+                "Out-of-service gear needs immediate replacement",
+                "Size gaps push crews toward unsafe improvisation",
+                "Slow replenishment turns a sourcing problem into a site problem"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "related-pages-callout",
+        "type": "callout",
+        "title": "Use this page with the rest of your construction PPE resources",
+        "enabled": true,
+        "data": {
+          "text": "Use the [construction site PPE solution](/solutions/construction-site-ppe-solution) for the full site-wide framework, the [OSHA PPE requirements guide](/blog/osha-ppe-requirements-construction) for regulation details, the [construction PPE checklist](/blog/construction-ppe-checklist) for field execution, and the [construction safety footwear guide](/blog/construction-safety-footwear-guide) when traction and foot protection affect elevated work."
+        }
+      },
+      {
+        "key": "faq",
+        "type": "faq",
+        "title": "Fall protection for construction FAQ",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Is a harness alone enough for construction fall protection?",
+              "a": "Usually no. Most sites need the full system: harness, connecting device, anchor strategy, fit, clearance, inspection process, and rescue planning."
+            },
+            {
+              "q": "When is an SRL better than a shock-absorbing lanyard?",
+              "a": "Often when the task needs better mobility, less loose line, and a more controlled connection method. The right choice still depends on clearance, anchorage, and site conditions."
+            },
+            {
+              "q": "Why should fall protection sit outside general body protection or workwear?",
+              "a": "Because the buying logic is driven by elevated-work risk, connection method, compatibility, and inspection workflow rather than garment selection."
+            },
+            {
+              "q": "What should buyers ask a fall protection supplier before placing a bulk order?",
+              "a": "Ask about certification, size coverage, component compatibility, inspection support, lead times, replacement availability, and how the supplier supports stable repeat ordering across projects."
+            }
+          ]
+        }
+      },
+      {
+        "key": "cta",
+        "type": "cta",
+        "title": "Build a safer fall protection program before the next project starts",
+        "enabled": true,
+        "data": {
+          "title": "Build a safer fall protection program before the next project starts",
+          "text": "Define the work scenario, connection method, size range, replacement stock, and compatibility requirements first. Then source a system crews can actually wear, inspect, and use every day.",
+          "primaryLabel": "Browse Fall Protection",
+          "primaryHref": "/categories/fall-protection",
+          "secondaryLabel": "Request A Quote",
+          "secondaryHref": "/contact"
+        }
+      }
+    ]
+  }
+]
