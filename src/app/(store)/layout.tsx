@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth"
 import { Header } from "@/components/store/header"
 import { Footer } from "@/components/store/footer"
-import { ChatWidget } from "@/components/store/chat"
+import { DeferredChatWidget } from "@/components/store/deferred-chat-widget"
 import { OrganizationJsonLd } from "@/components/seo"
 import { getSiteUrl } from "@/lib/site-url"
 
@@ -22,7 +22,7 @@ export default async function StoreLayout({
         <Header user={session?.user} />
         <main className="flex-1">{children}</main>
         <Footer />
-        <ChatWidget />
+        <DeferredChatWidget />
       </div>
     </>
   )

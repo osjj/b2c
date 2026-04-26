@@ -1,25 +1,26 @@
-"use client"
-
+import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Award, Factory } from "lucide-react"
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative flex min-h-[72vh] items-center overflow-hidden md:min-h-[82vh]">
       {/* Background with overlay */}
       <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop')",
-          }}
+        <Image
+          src="/company/hero-manufacturing.webp"
+          alt="Laifappe PPE manufacturing workshop"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/82 to-background/45" />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
+      <div className="container relative z-10 mx-auto px-6 py-16 lg:px-8 lg:py-24">
         <div className="max-w-3xl">
           {/* Trust badges */}
           <div className="flex flex-wrap gap-4 mb-6">
@@ -37,41 +38,46 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
             Professional PPE
             <br />
             <span className="text-primary">Manufacturing Solutions</span>
           </h1>
 
-          <p className="text-lg text-muted-foreground max-w-xl mb-8">
+          <p className="mb-8 max-w-xl text-base text-muted-foreground sm:text-lg">
             Leading manufacturer of personal protective equipment for extreme environments.
             Safety gloves, footwear, workwear and more with global certifications.
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" className="h-14 px-8 text-base" asChild>
+            <Button size="lg" className="h-12 px-6 text-base sm:h-14 sm:px-8" asChild>
               <Link href="/products">
                 View Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="h-14 px-8 text-base" asChild>
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-12 border-border/60 bg-background/70 px-6 text-base backdrop-blur sm:h-14 sm:px-8"
+              asChild
+            >
               <Link href="/contact">Request Quote</Link>
             </Button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-border/50">
+          <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border/50 pt-6 sm:mt-12 sm:gap-8 sm:pt-8">
             <div>
-              <div className="text-3xl font-bold text-primary">20+</div>
+              <div className="text-2xl font-bold text-primary sm:text-3xl">20+</div>
               <div className="text-sm text-muted-foreground">Years Experience</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">50+</div>
+              <div className="text-2xl font-bold text-primary sm:text-3xl">50+</div>
               <div className="text-sm text-muted-foreground">Countries Served</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary">1M+</div>
+              <div className="text-2xl font-bold text-primary sm:text-3xl">1M+</div>
               <div className="text-sm text-muted-foreground">Products Annually</div>
             </div>
           </div>
