@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
+import { Suspense, useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Package, ArrowRight, Trash2, Search } from 'lucide-react'
@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { formatPrice } from '@/lib/utils'
 
-export default function GuestOrdersPage() {
+function GuestOrdersContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const defaultTab = searchParams.get('tab') === 'lookup' ? 'lookup' : 'history'
@@ -205,5 +205,24 @@ export default function GuestOrdersPage() {
         </TabsContent>
       </Tabs>
     </div>
+  )
+}
+
+function GuestOrdersFallback() {
+  return (
+    <div className="container py-12 max-w-3xl">
+      <h1 className="text-2xl font-bold mb-8">My Orders</h1>
+      <div className="text-center py-12 text-muted-foreground">
+        Loading...
+      </div>
+    </div>
+  )
+}
+
+export default function GuestOrdersPage() {
+  return (
+    <Suspense fallback={<GuestOrdersFallback />}>
+      <GuestOrdersContent />
+    </Suspense>
   )
 }

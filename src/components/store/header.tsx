@@ -45,6 +45,7 @@ interface HeaderProps {
 
 export function Header({ user }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
+  const [authUser, setAuthUser] = useState<HeaderProps["user"]>(user)
   const pathname = usePathname()
 
   const isActive = (href: string) => {
@@ -59,6 +60,44 @@ export function Header({ user }: HeaderProps) {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (user !== undefined || authUser !== undefined) {
+      return
+    }
+
+    let active = true
+
+    const loadSession = async () => {
+      try {
+        const response = await fetch("/api/auth/session", {
+          credentials: "same-origin",
+        })
+
+        if (!response.ok) {
+          return
+        }
+
+        const session = (await response.json()) as {
+          user?: HeaderProps["user"]
+        } | null
+
+        if (active) {
+          setAuthUser(session?.user ?? null)
+        }
+      } catch {
+        if (active) {
+          setAuthUser(null)
+        }
+      }
+    }
+
+    void loadSession()
+
+    return () => {
+      active = false
+    }
+  }, [authUser, user])
 
   return (
     <header
@@ -164,7 +203,7 @@ export function Header({ user }: HeaderProps) {
               <Heart className="h-6 w-6" />
             </Button>
 
-            {user ? (
+            {authUser ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="hover:bg-accent">
@@ -173,7 +212,7 @@ export function Header({ user }: HeaderProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <div className="px-2 py-1.5 text-sm font-medium">
-                    {user.name || user.email}
+                    {authUser.name || authUser.email}
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
@@ -182,7 +221,7 @@ export function Header({ user }: HeaderProps) {
                   <DropdownMenuItem asChild>
                     <Link href="/account/orders">My Orders</Link>
                   </DropdownMenuItem>
-                  {user.role === 'ADMIN' && (
+                  {authUser.role === 'ADMIN' && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
