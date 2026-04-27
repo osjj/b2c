@@ -122,6 +122,8 @@ Fall protection remains OSHA's most frequently cited standard across all industr
 
 The compliance question is usually not whether a harness exists somewhere on site. It is whether exposed workers at the relevant location and height are actually protected under **29 CFR 1926 Subpart M**.
 
+If your next step is to compare harness, lanyard, SRL, and anchor system choices for roofing, scaffold, steel, or elevated maintenance work, use the [fall protection PPE for construction sites guide](/solutions/fall-protection-construction).
+
 ### Respiratory protection
 
 Respiratory protection is where many construction sites underestimate their obligations. Once respirators are required, employers are usually no longer dealing with a simple issue-and-go product decision. They are dealing with program requirements under **29 CFR 1910.134**, including medical evaluation, fit testing, training, and maintenance.
@@ -282,6 +284,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
+- [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 
 ---

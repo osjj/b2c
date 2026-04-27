@@ -269,6 +269,57 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       },
     },
   },
+  {
+    slug: 'construction-eye-face-protection',
+    markdownPath: join(process.cwd(), 'construction-eye-face-protection.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.construction-eye-face-protection.generated.json',
+    ),
+    title: 'Eye and Face Protection for Construction Sites',
+    excerpt:
+      'A practical guide to choosing eye and face protection for construction by task, hazard, side protection, splash exposure, dust, grinding, welding, and face shield use.',
+    seoTitle:
+      'Eye and Face Protection for Construction Sites: How to Choose the Right PPE',
+    seoDescription:
+      'Learn how to choose eye and face protection for construction by task, hazard, side protection, splash exposure, dust, grinding, welding, and face shield use. Practical guide for contractors, supervisors, and PPE buyers.',
+    seoKeywords:
+      'eye and face protection construction, construction safety glasses, construction goggles, face shield construction, welding eye protection construction, eye PPE for construction sites, construction eye protection requirements',
+    heroFallback:
+      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
+    sectionImages: {
+      'What OSHA Requires for Construction Eye and Face Protection': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Construction eye and face PPE selection starts with matching the protector to the actual task hazard, fit, and surrounding equipment.',
+      },
+      'The Main Eye and Face Hazards on Construction Sites': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Flying chips, dust, splash, sparks, and face-level debris often overlap on construction sites, which is why one default eyewear choice is rarely enough.',
+      },
+      'Safety Glasses, Goggles, Face Shields, and Welding Helmets: What Each One Actually Does': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Safety glasses, goggles, face shields, and welding helmets solve different problems and should not be treated as interchangeable.',
+      },
+      'What To Choose by Construction Task': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'A better construction eye PPE program starts by matching the protector to the task rather than forcing one product across the whole site.',
+      },
+      'Face Shield Use: The Point Many Sites Get Wrong': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'A face shield can add important coverage, but it often belongs over primary eye protection rather than replacing it.',
+      },
+      'Common Buying Mistakes in Construction Eye and Face Protection': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Most eye and face PPE failures come from oversimplified buying decisions, fit problems, and using the wrong device category for the task.',
+      },
+    },
+  },
 ]
 
 function loadGeneratedImages(filePath: string): Record<string, string> {
