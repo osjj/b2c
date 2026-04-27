@@ -47,9 +47,14 @@ function getArg(name: string) {
   return process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3)
 }
 
+function hasFlag(name: string) {
+  return process.argv.includes(`--${name}`) || process.argv.includes(`--${name}=true`)
+}
+
 async function main() {
   const relativeFile = getArg('file')
   const targetSlug = getArg('slug')
+  const shouldSyncActive = hasFlag('sync-active')
 
   if (!relativeFile) {
     throw new Error('Missing --file=prisma/<file>.json')
@@ -116,12 +121,14 @@ async function main() {
     title: solution.title,
     excerpt: solution.excerpt,
     usageScenes: solution.usageScenes,
-    isActive: solution.isActive,
     sortOrder: solution.sortOrder,
     seoTitle: solution.seoTitle,
     seoDescription: solution.seoDescription,
     seoKeywords: solution.seoKeywords,
     coverImage: solution.coverImage,
+  }
+  if (shouldSyncActive) {
+    updateData.isActive = solution.isActive
   }
 
   await prisma.solution.update({

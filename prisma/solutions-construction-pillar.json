@@ -397,41 +397,33 @@
       {
         "key": "sub-trade-solutions",
         "type": "list",
-        "title": "Construction sub-trade solution pages",
+        "title": "Construction PPE resources",
         "enabled": true,
         "data": {
           "items": [
             {
-              "title": "[PPE for Steel Structure Installation Work](/solutions/ppe-for-steel-structure-installation-work)",
-              "text": "Focused on height work, rigging, welding exposure, sharp edges, and heavy structural loads."
+              "title": "[Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)",
+              "text": "Focused on harness selection, anchors, lifelines, rescue planning, and inspection logic for height work."
             },
             {
               "title": "[PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)",
               "text": "Focused on scaffold erection, work positioning, dropped tools, and access stability."
             },
             {
-              "title": "[PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects)",
-              "text": "Focused on traffic visibility, asphalt and outdoor exposure, edge work, and heavy equipment."
+              "title": "[OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)",
+              "text": "Focused on fit, certification, employer obligations, and the construction standards auditors check first."
             },
             {
-              "title": "[PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites)",
-              "text": "Focused on shock protection, arc-rated clothing, dielectric footwear, and mixed site hazards."
+              "title": "[Construction PPE Checklist](/blog/construction-ppe-checklist)",
+              "text": "Focused on daily pre-start checks by crew, task, and changing hazard conditions across active jobsites."
             },
             {
-              "title": "[PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work)",
-              "text": "Focused on silica dust, debris impact, high noise, and unpredictable material failure."
+              "title": "[Construction Safety Footwear Guide](/blog/construction-safety-footwear-guide)",
+              "text": "Focused on safety shoes and boots by trade, hazard profile, ASTM and EN requirements, and bulk fit planning."
             },
             {
-              "title": "[PPE for Heavy Equipment Operators on Construction Sites](/solutions/ppe-for-heavy-equipment-operators-on-construction-sites)",
-              "text": "Focused on visibility, cab-to-ground transitions, vibration, dust, and struck-by risk."
-            },
-            {
-              "title": "[PPE for Night Construction and Low Visibility Work](/solutions/ppe-for-night-construction-and-low-visibility-work)",
-              "text": "Focused on Class 3 visibility, lighting support, and low-light hazard control."
-            },
-            {
-              "title": "[PPE for Underground Construction and Tunnel Work](/solutions/ppe-for-underground-construction-and-tunnel-work)",
-              "text": "Focused on confined space conditions, poor air quality, water ingress, and escape constraints."
+              "title": "[Need Electrical Safety PPE for Construction Crews? Contact Our Team](/contact)",
+              "text": "Focused on voltage-rated gloves, arc-rated clothing, dielectric footwear, and mixed construction site hazards."
             }
           ]
         }

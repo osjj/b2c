@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 const contacts = [
   {
     title: 'Email',
-    value: 'sales@laifappe.com',
+    value: 'sales [at] laifappe.com',
     href: '',
     icon: Mail,
-    note: 'For quotations and product catalogs',
+    note: 'For quotations and product catalogs. Replace [at] with @ when emailing directly.',
   },
   {
     title: 'WhatsApp / WeChat',

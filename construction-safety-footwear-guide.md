@@ -338,7 +338,7 @@ Selecting the right safety footwear for a construction workforce requires matchi
 
 We supply ASTM F2413 and EN ISO 20345 certified safety footwear for construction across all trades — from general site operatives to specialist electricians and scaffolders — with full size ranges to meet OSHA's 2025 proper-fit requirements.
 
-[Browse our construction safety footwear range →](/products/safety-footwear)  
+[Browse our construction safety footwear range →](/categories/foot-protection/safety-shoes)  
 [View the complete PPE solution for construction sites →](/solutions/construction-site-ppe-solution)
 
 ---

@@ -50,8 +50,17 @@ const createId = () => {
   return `id_${Date.now()}_${Math.random().toString(16).slice(2)}`
 }
 
+function hasFlag(name: string) {
+  return process.argv.includes(`--${name}`) || process.argv.includes(`--${name}=true`)
+}
+
 async function main() {
+  const shouldSyncActive = hasFlag('sync-active')
+
   console.log('Syncing solutions from JSON to database...')
+  if (!shouldSyncActive) {
+    console.log('Preserving existing isActive values for updated solutions. Pass --sync-active to overwrite them.')
+  }
 
   // Read all solutions-*.json files in prisma directory
   const prismaDir = __dirname
@@ -140,11 +149,13 @@ async function main() {
       title: solution.title,
       excerpt: solution.excerpt,
       usageScenes: solution.usageScenes,
-      isActive: solution.isActive,
       sortOrder: solution.sortOrder,
       seoTitle: solution.seoTitle,
       seoDescription: solution.seoDescription,
       seoKeywords: solution.seoKeywords,
+    }
+    if (shouldSyncActive) {
+      updateData.isActive = solution.isActive
     }
     if (solution.coverImage) {
       updateData.coverImage = solution.coverImage

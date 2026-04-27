@@ -153,7 +153,7 @@ EN 397 also includes a set of **optional tested properties** that may be marked 
 
 **Replacement and inspection:** Hard hats must be replaced if they show cracks, dents, or penetration marks, after any significant impact, and according to manufacturer service life recommendations (typically 5 years for the shell, 1–2 years for the suspension). Under EN 397, helmets must be marked with their date of manufacture — check this when receiving bulk orders.
 
-[→ Head protection guide for construction](/solutions/construction-head-protection)
+[→ Browse head protection for construction](/categories/head-protection)
 
 ---
 
@@ -181,7 +181,7 @@ EN ISO 20471 is the primary European standard for high-visibility clothing, stru
 
 **Material considerations:** Fluorescent yellow-green offers the highest daytime visibility under both standards. Orange provides good contrast in some environments. Both colors must meet minimum retroreflective requirements for nighttime and low-light conditions. Where work involves welding or open flame, flame-resistant hi-vis clothing certified to both **EN ISO 20471** and **EN ISO 11612** (flame protection) is required.
 
-[→ High-visibility clothing solution for construction](/solutions/high-visibility-clothing-construction)
+[→ Browse high-visibility workwear for construction](/categories/body-protection/hi-vis-workwear)
 
 ---
 
@@ -370,7 +370,7 @@ For workers performing electrical work or working near live conductors, standard
 - **Class E hard hat** — for work near overhead power lines or electrical installations.
 - **Face shield** — arc-rated face shield for protection against arc flash; minimum arc rating matched to the hazard analysis.
 
-[→ Electrical safety PPE solution for construction](/solutions/electrical-safety-ppe-construction)
+[→ Need an electrical PPE plan for construction? Contact our team](/contact)
 
 ---
 
@@ -434,14 +434,15 @@ Workers who are not trained — or who are trained but choose not to wear their 
 
 ---
 
-## Sub-Trade PPE Solutions
+## Related Construction PPE Resources
 
-Different trades on a construction site face different combinations of hazards and require tailored PPE configurations. The following specialized solution pages address the specific needs of each sub-trade:
+Different trades on a construction site face different combinations of hazards and require tailored PPE configurations. Use these live resources for the most relevant category guidance, compliance references, and trade-specific planning:
 
-- [PPE solution for concrete and masonry workers](/solutions/concrete-masonry-worker-ppe) — silica dust, cement skin hazards, struck-by, hand protection
-- [PPE solution for scaffolding and steel erection](/solutions/scaffolding-steel-erection-ppe) — fall protection at height, struck-by, rigging hazards
-- [PPE solution for road and highway construction](/solutions/road-highway-construction-ppe) — Class 3 hi-vis, silica dust, struck-by from vehicles
-- [PPE solution for demolition and renovation](/solutions/demolition-renovation-ppe) — asbestos, silica, lead, full-body dust protection
+- [Fall protection PPE for construction sites](/solutions/fall-protection-construction) — harnesses, anchors, lifelines, and inspection logic for height work
+- [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms) — scaffold erection, work positioning, dropped tools, and access stability
+- [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction) — regulation-first guidance for site compliance and audit readiness
+- [Construction PPE checklist](/blog/construction-ppe-checklist) — field-ready pre-start checks for crews and supervisors
+- [Construction safety footwear guide](/blog/construction-safety-footwear-guide) — boot and shoe selection by trade, hazard, and certification
 
 ---
 
@@ -477,15 +478,15 @@ Whether you are equipping a crew of 10 or a workforce of 1,000, we can help you 
 
 **Browse certified construction PPE by category:**
 
-- [Fall protection harnesses and lanyards](/products/fall-protection)
-- [Hard hats and head protection](/products/head-protection)
-- [High-visibility clothing](/products/high-visibility)
-- [Safety footwear](/products/safety-footwear)
-- [Respiratory protection](/products/respirators)
-- [Hand protection and work gloves](/products/gloves)
-- [Eye and face protection](/products/eye-protection)
-- [Hearing protection](/products/hearing-protection)
-- [Electrical safety PPE](/products/electrical-ppe)
+- [Fall protection harnesses and lanyards](/categories/fall-protection)
+- [Hard hats and head protection](/categories/head-protection)
+- [High-visibility clothing](/categories/body-protection/hi-vis-workwear)
+- [Safety footwear](/categories/foot-protection/safety-shoes)
+- [Respiratory protection](/categories/respiratory-protection)
+- [Hand protection and work gloves](/categories/hand-protection)
+- [Eye and face protection](/categories/eye-protection)
+- [Hearing protection](/categories/head-protection/hearing-protection)
+- [Need electrical safety PPE for construction crews? Contact our team](/contact)
 
 ---
 
@@ -495,7 +496,7 @@ Whether you are equipping a crew of 10 or a workforce of 1,000, we can help you 
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
-- [Electrical safety PPE for construction workers](/solutions/electrical-safety-ppe-construction)
+- [Need electrical safety PPE for construction workers? Contact our team](/contact)
 
 ---
 

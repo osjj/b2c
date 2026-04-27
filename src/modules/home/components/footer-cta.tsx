@@ -14,7 +14,7 @@ export default function FooterCTA() {
           </h2>
           <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
             Get in touch with our team for product inquiries, custom orders, or to request a
-            detailed quotation. We're here to help you find the right protection solutions.
+            detailed quotation. We&apos;re here to help you find the right protection solutions.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -47,7 +47,7 @@ export default function FooterCTA() {
             <div>
               <Mail className="h-6 w-6 mx-auto mb-2 opacity-80" />
               <p className="text-sm opacity-80">Email</p>
-              <p className="font-semibold">sales@laifappe.com</p>
+              <p className="font-semibold">sales [at] laifappe.com</p>
             </div>
             <div>
               <MessageCircle className="h-6 w-6 mx-auto mb-2 opacity-80" />
