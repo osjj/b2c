@@ -354,6 +354,9 @@
         "title": "PPE procurement guidance for contractors and distributors",
         "enabled": true,
         "data": {
+          "paragraphs": [
+            "For a procurement-focused workflow covering RFQs, sizing, replacement stock, supplier comparison, and bulk packaging, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
+          ],
           "groups": [
             {
               "title": "Certification verification",
@@ -416,6 +419,10 @@
             {
               "title": "[Construction PPE Checklist](/blog/construction-ppe-checklist)",
               "text": "Focused on daily pre-start checks by crew, task, and changing hazard conditions across active jobsites."
+            },
+            {
+              "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",
+              "text": "Focused on RFQs, supplier comparison, sizing, replacement stock, packaging, and repeat ordering for construction PPE buyers."
             },
             {
               "title": "[Construction Safety Footwear Guide](/blog/construction-safety-footwear-guide)",

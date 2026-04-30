@@ -4,6 +4,7 @@
  * Current supported posts:
  *   - construction-safety-footwear-guide
  *   - osha-ppe-requirements-construction
+ *   - bulk-construction-ppe-procurement
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -317,6 +318,66 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
         caption:
           'Most eye and face PPE failures come from oversimplified buying decisions, fit problems, and using the wrong device category for the task.',
+      },
+    },
+  },
+  {
+    slug: 'bulk-construction-ppe-procurement',
+    markdownPath: join(process.cwd(), 'bulk-construction-ppe-procurement.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.bulk-construction-ppe-procurement.generated.json',
+    ),
+    title: 'How to Buy Construction PPE in Bulk: Procurement Guide',
+    excerpt:
+      'A practical guide for buying construction PPE in bulk: crew packages, standards, sizing, supplier evaluation, replacement stock, RFQ fields, and site issue controls.',
+    seoTitle: 'How to Buy Construction PPE in Bulk: Procurement Guide',
+    seoDescription:
+      'Learn how to buy construction PPE in bulk with a practical procurement guide covering crew packages, standards, sizing, suppliers, replacement stock, RFQs, and site issue controls.',
+    seoKeywords:
+      'bulk construction PPE, buy construction PPE in bulk, construction PPE procurement, construction safety equipment supplier, bulk PPE supplier construction, PPE purchasing guide, construction PPE ordering checklist',
+    heroFallback:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
+    sectionImages: {
+      'Start With A Site PPE Scope, Not A Product List': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'Bulk construction PPE procurement starts with the site scope, trade mix, and hazard profile before any product list is finalized.',
+      },
+      'Build The Baseline Construction PPE Package': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'A baseline PPE package gives every worker a consistent entry layer before task-specific hazards are added.',
+      },
+      'Add Task-Specific PPE By Trade And Exposure': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Role-based PPE buying reduces waste while keeping protection matched to the actual construction task.',
+      },
+      'Verify Standards Before You Compare Prices': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Certification documents, product markings, and test reports should be checked before price comparison starts.',
+      },
+      'Account For The 2025 Proper-Fit Requirement': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Bulk orders need real size planning because fit-sensitive PPE has to work for every affected employee.',
+      },
+      'Compare Suppliers On More Than Unit Price': {
+        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+        caption:
+          'Supplier reliability, documentation, packaging, sizing, and repeat order support matter as much as unit price.',
+      },
+      'A Practical Bulk PPE Request-For-Quote Template': {
+        url: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+        caption:
+          'A clear RFQ helps suppliers quote the same requirements and reduces costly substitutions later.',
+      },
+      'Bulk Construction PPE Purchasing Checklist': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'A procurement checklist connects site hazards, standards, sizing, packaging, replacement stock, and issue control.',
       },
     },
   },

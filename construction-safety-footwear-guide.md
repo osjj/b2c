@@ -341,6 +341,8 @@ We supply ASTM F2413 and EN ISO 20345 certified safety footwear for construction
 [Browse our construction safety footwear range →](/categories/foot-protection/safety-shoes)  
 [View the complete PPE solution for construction sites →](/solutions/construction-site-ppe-solution)
 
+[Read the bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)
+
 ---
 
 *Sources: OSHA 29 CFR 1926.95 and 1926.96, ASTM F2413-24, EN ISO 20345:2022+A1:2024, National Safety Council Injury Facts, Bureau of Labor Statistics foot injury data, EU Regulation 2016/425, OSHA Final Rule 29 CFR 1926.95(c) effective January 13 2025, TRADESAFE OSHA foot protection analysis, HexArmor ASTM footwear standards guide, RefrigiWear ASTM F2413-24 guide*

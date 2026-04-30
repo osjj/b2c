@@ -276,6 +276,7 @@ Ask about certification, size range, component compatibility, anchor options, in
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
+- [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 
 ---

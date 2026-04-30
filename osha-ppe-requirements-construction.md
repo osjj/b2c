@@ -264,7 +264,7 @@ Construction does not use the same explicit written certification language as ge
 In practice, fall exposure remains the biggest and most visible risk. But respiratory protection, training gaps, poor fit, and failure to enforce use can also create serious citations.
 
 **Where should a contractor start if the site needs both compliance and procurement planning?**  
-Start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) to map the system by role and category, then use this OSHA article to confirm the compliance obligations behind that system.
+Start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) to map the system by role and category, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) to turn that system into a purchasing workflow, then use this OSHA article to confirm the compliance obligations behind that system.
 
 ---
 
@@ -284,6 +284,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
+- [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 

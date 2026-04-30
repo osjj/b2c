@@ -528,6 +528,7 @@ Most buyers and supervisors do not stop at gloves alone. The next useful page de
 - Use [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction) when you need the compliance and documentation side.
 - Use [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide) when grip, puncture risk, or footing are part of the same hand-intensive task.
 - Use [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction) when glove choice is part of an elevated-work system rather than a stand-alone decision.
+- Use [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement) when glove selection needs to become a repeatable purchasing and replenishment plan.
 
 ## FAQ
 
@@ -560,3 +561,4 @@ Compare them by hazard, dexterity, fit, durability, compatibility with the task,
 - [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)
 - [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide)
 - [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)
+- [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)

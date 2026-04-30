@@ -395,6 +395,8 @@ The following minimum PPE applies to virtually every construction site, regardle
 
 For construction contractors, safety managers, and procurement professionals purchasing PPE for large workforces or multiple sites, the following considerations apply.
 
+For a procurement-focused workflow covering RFQs, sizing, replacement stock, supplier comparison, and bulk packaging, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement).
+
 ### Certification verification
 
 Every item of PPE supplied to construction workers must carry the appropriate certification mark for its category. In the US: ANSI/ISEA, ASTM, NIOSH, or NFPA as applicable. In Europe: **CE marking** under **EU Regulation 2016/425**, with the relevant EN standard number.

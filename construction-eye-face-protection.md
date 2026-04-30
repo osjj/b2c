@@ -460,6 +460,7 @@ Most site teams do not stop at eye protection alone. The next useful page depend
 - Use [Construction PPE Checklist](/blog/construction-ppe-checklist) when you need a faster field routine before work starts.
 - Use [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide) when the same task combines eye hazards with sharp handling, wet materials, or hot work.
 - Use [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide) when footing, debris, and struck-by hazards are part of the same work zone.
+- Use [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement) when eyewear needs to be planned with sizing, replacement stock, and repeat ordering.
 
 ## FAQ
 
@@ -492,3 +493,4 @@ Start with the actual welding, cutting, or brazing operation and use OSHA's filt
 - [Construction PPE Checklist](/blog/construction-ppe-checklist)
 - [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)
 - [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide)
+- [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)
