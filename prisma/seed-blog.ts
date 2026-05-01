@@ -5,6 +5,7 @@
  *   - construction-safety-footwear-guide
  *   - osha-ppe-requirements-construction
  *   - bulk-construction-ppe-procurement
+ *   - construction-hearing-protection
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -378,6 +379,67 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
         caption:
           'A procurement checklist connects site hazards, standards, sizing, packaging, replacement stock, and issue control.',
+      },
+    },
+  },
+  {
+    slug: 'construction-hearing-protection',
+    markdownPath: join(process.cwd(), 'construction-hearing-protection.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.construction-hearing-protection.generated.json',
+    ),
+    title: 'Hearing Protection for Construction Workers: How to Choose the Right PPE',
+    excerpt:
+      'A practical guide to choosing construction hearing protection by task, OSHA noise rules, NRR/SNR, fit, comfort, compatibility, communication needs, and bulk purchasing.',
+    seoTitle:
+      'Hearing Protection for Construction Workers: Earplugs, Earmuffs, NRR and SNR',
+    seoDescription:
+      'Learn how to choose hearing protection for construction workers by task, noise level, OSHA requirements, NRR/SNR rating, fit, compatibility, communication needs, and bulk purchasing.',
+    seoKeywords:
+      'hearing protection construction, construction ear protection, earplugs for construction workers, earmuffs construction PPE, NRR hearing protection construction, construction noise PPE, OSHA hearing protection construction, construction hearing conservation',
+    heroFallback:
+      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80',
+    sectionImages: {
+      'What OSHA Requires For Construction Noise And Hearing Protection': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Construction noise compliance starts with knowing the applicable OSHA construction noise table and where hearing protection must be used.',
+      },
+      'Common Construction Noise Sources': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Construction noise exposure changes by tool, distance, duration, enclosure, and crew movement across the site.',
+      },
+      'Earplugs, Earmuffs, Canal Caps, And Communication Headsets': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Earplugs, earmuffs, canal caps, and communication headsets solve different noise and jobsite communication problems.',
+      },
+      'How To Choose The Right NRR Or SNR': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Hearing protector ratings only help when they are matched to real exposure, fit, comfort, and communication needs.',
+      },
+      'Fit Matters More Than The Package Rating': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Correct fit often determines whether construction hearing protection performs anywhere near its package rating.',
+      },
+      'Compatibility With Other Construction PPE': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Hearing protection has to work with hard hats, safety glasses, respirators, face shields, and other site PPE.',
+      },
+      'Hearing Protection By Construction Task': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Task-based selection helps crews use hearing protection that fits the actual noise pattern and surrounding PPE.',
+      },
+      'Bulk Purchasing And Replacement Planning': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Bulk hearing protection buying should account for disposable use, reusable assignment, earmuff cushions, and replacement stock.',
       },
     },
   },

@@ -136,6 +136,8 @@ These categories create frequent citations because the expectations are visible 
 
 For construction, **29 CFR 1926.52** uses the permissible noise exposure table, with **90 dBA over 8 hours** as the baseline limit in Table D-2. The safest practical approach is not to argue over thresholds on the live site. If crews are working around consistently loud tools or equipment, employers should monitor exposure, issue protection, and document their control decisions early.
 
+For the product-selection side of this topic, including earplugs, earmuffs, NRR/SNR, fit, and compatibility, use the [construction hearing protection guide](/blog/construction-hearing-protection).
+
 ### High-visibility and traffic exposure
 
 Whenever workers are exposed to public traffic, internal site traffic, or moving equipment, employers should expect scrutiny of visibility controls, especially for flagging and roadway work.
@@ -285,6 +287,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 

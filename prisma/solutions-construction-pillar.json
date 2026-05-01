@@ -224,7 +224,8 @@
                 "Foam earplugs for high attenuation at low cost",
                 "Helmet-mounted earmuffs for workers already wearing hard hats",
                 "Dual protection where noise levels stay extreme",
-                "Consistent fit and wear discipline matter more than nominal lab ratings"
+                "Consistent fit and wear discipline matter more than nominal lab ratings",
+                "Use the [construction hearing protection guide](/blog/construction-hearing-protection) for task-level NRR, SNR, fit, and compatibility decisions"
               ]
             }
           ]
@@ -419,6 +420,10 @@
             {
               "title": "[Construction PPE Checklist](/blog/construction-ppe-checklist)",
               "text": "Focused on daily pre-start checks by crew, task, and changing hazard conditions across active jobsites."
+            },
+            {
+              "title": "[Hearing Protection for Construction Workers](/blog/construction-hearing-protection)",
+              "text": "Focused on earplugs, earmuffs, NRR/SNR, fit, communication needs, and replacement planning for noisy construction tasks."
             },
             {
               "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",

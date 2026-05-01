@@ -324,6 +324,7 @@ Use this guide when the main need is field execution and pre-start checking:
 
 - Use this article for pre-start checks, field execution, and task-based PPE confirmation.
 - Use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction) for the regulation, training, inspection, and citation side.
+- Use [Hearing protection for construction workers](/blog/construction-hearing-protection) when noisy tools, equipment, or work zones need task-specific earplug, earmuff, or communication headset planning.
 - Use [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide) when the main question is boot selection, ratings, and fit.
 - Use [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement) when the field checklist needs to become a repeatable purchasing and replacement plan.
 - Use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) when you need the full purchasing and category plan across crews and roles.
@@ -390,6 +391,7 @@ If you need the full role-based program behind this checklist, start with our [C
 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [OSHA PPE requirements for construction: compliance guide](/blog/osha-ppe-requirements-construction)
+- [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 

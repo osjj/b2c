@@ -526,6 +526,7 @@ Most buyers and supervisors do not stop at gloves alone. The next useful page de
 - Use [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution) when you need the full site-wide PPE structure.
 - Use [Construction PPE Checklist](/blog/construction-ppe-checklist) when you need a faster field routine before work starts.
 - Use [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction) when you need the compliance and documentation side.
+- Use [Hearing Protection for Construction Workers](/blog/construction-hearing-protection) when glove dexterity, dirty hands, or other PPE affects earplug insertion and noisy-task protection.
 - Use [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide) when grip, puncture risk, or footing are part of the same hand-intensive task.
 - Use [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction) when glove choice is part of an elevated-work system rather than a stand-alone decision.
 - Use [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement) when glove selection needs to become a repeatable purchasing and replenishment plan.
@@ -559,6 +560,7 @@ Compare them by hazard, dexterity, fit, durability, compatibility with the task,
 - [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution)
 - [Construction PPE Checklist](/blog/construction-ppe-checklist)
 - [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)
+- [Hearing Protection for Construction Workers](/blog/construction-hearing-protection)
 - [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide)
 - [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)
 - [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)

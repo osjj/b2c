@@ -218,6 +218,8 @@ Frame code markings on EN 166 equipment:
 
 Construction workers are exposed to some of the highest sustained noise levels of any industry. Jackhammers operate at around 130 dB; power saws at 110 dB; pneumatic drills at 100 dB. OSHA requires hearing protection when noise exposure reaches or exceeds 90 dBA as an 8-hour time-weighted average (29 CFR 1926.52). In Europe, the EU Physical Agents (Noise) Directive 2003/10/EC requires hearing protection at 85 dB(A) as an 8-hour daily exposure, and mandates it at 87 dB(A).
 
+For task-level selection, NRR/SNR comparison, fit, compatibility, and replacement planning, use the [construction hearing protection guide](/blog/construction-hearing-protection).
+
 **US standard — Noise Reduction Rating (NRR):** All US hearing protectors carry an NRR label under ANSI S3.19. When calculating real-world protection, divide the NRR by 2 and subtract from the ambient noise level. For example, an NRR 30 protector provides approximately 15 dB of real-world attenuation.
 
 **European standard — EN 352 series and SNR rating:** European hearing protection is governed by the **EN 352** standard series:
@@ -497,6 +499,7 @@ Whether you are equipping a crew of 10 or a workforce of 1,000, we can help you 
 - [OSHA PPE requirements for construction: compliance guide](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Need electrical safety PPE for construction workers? Contact our team](/contact)
 
