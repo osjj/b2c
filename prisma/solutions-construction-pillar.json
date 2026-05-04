@@ -245,7 +245,8 @@
                 "Use FFP2 or N95 for lower dust tasks where exposure remains controlled",
                 "Step up to FFP3 or P100 systems for silica-heavy cutting, drilling, and demolition",
                 "Use cartridge respirators for solvent vapors, coatings, and mixed airborne hazards",
-                "Fit testing and filter change routines are part of the program, not optional extras"
+                "Fit testing and filter change routines are part of the program, not optional extras",
+                "Use the [construction respiratory protection guide](/blog/construction-respiratory-protection) for N95, P100, half-face, cartridge, fit-test, and silica dust decisions"
               ]
             },
             {
@@ -424,6 +425,10 @@
             {
               "title": "[Hearing Protection for Construction Workers](/blog/construction-hearing-protection)",
               "text": "Focused on earplugs, earmuffs, NRR/SNR, fit, communication needs, and replacement planning for noisy construction tasks."
+            },
+            {
+              "title": "[Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)",
+              "text": "Focused on silica dust, N95/P100 selection, half-face respirators, cartridges, fit testing, and replacement planning."
             },
             {
               "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",

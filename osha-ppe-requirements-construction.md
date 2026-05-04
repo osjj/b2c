@@ -128,6 +128,8 @@ If your next step is to compare harness, lanyard, SRL, and anchor system choices
 
 Respiratory protection is where many construction sites underestimate their obligations. Once respirators are required, employers are usually no longer dealing with a simple issue-and-go product decision. They are dealing with program requirements under **29 CFR 1910.134**, including medical evaluation, fit testing, training, and maintenance.
 
+For the product-selection side of this topic, including N95, P100, half-face respirators, cartridges, silica dust, and fit testing, use the [construction respiratory protection guide](/blog/construction-respiratory-protection).
+
 ### Eye, face, and head protection
 
 These categories create frequent citations because the expectations are visible and immediate during inspection. Broken eyewear, missing side protection, worn hard hats, or obvious non-use are easy for OSHA to document.
@@ -288,6 +290,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
+- [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 

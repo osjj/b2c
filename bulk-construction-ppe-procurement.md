@@ -468,6 +468,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
+- [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Construction safety footwear guide](/blog/construction-safety-footwear-guide)
 - [Construction gloves selection guide](/blog/construction-gloves-selection-guide)

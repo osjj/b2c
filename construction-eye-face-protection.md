@@ -460,6 +460,7 @@ Most site teams do not stop at eye protection alone. The next useful page depend
 - Use [Construction PPE Checklist](/blog/construction-ppe-checklist) when you need a faster field routine before work starts.
 - Use [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide) when the same task combines eye hazards with sharp handling, wet materials, or hot work.
 - Use [Hearing Protection for Construction Workers](/blog/construction-hearing-protection) when eye PPE has to work with earmuffs, earplugs, communication headsets, or noisy grinding and cutting work.
+- Use [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection) when goggles, face shields, or welding PPE need to work with respirators.
 - Use [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide) when footing, debris, and struck-by hazards are part of the same work zone.
 - Use [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement) when eyewear needs to be planned with sizing, replacement stock, and repeat ordering.
 
@@ -493,6 +494,7 @@ Start with the actual welding, cutting, or brazing operation and use OSHA's filt
 - [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE Checklist](/blog/construction-ppe-checklist)
 - [Hearing Protection for Construction Workers](/blog/construction-hearing-protection)
+- [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)
 - [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)
 - [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide)
 - [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)

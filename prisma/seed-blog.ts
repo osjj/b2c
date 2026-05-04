@@ -6,6 +6,7 @@
  *   - osha-ppe-requirements-construction
  *   - bulk-construction-ppe-procurement
  *   - construction-hearing-protection
+ *   - construction-respiratory-protection
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -440,6 +441,67 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
         caption:
           'Bulk hearing protection buying should account for disposable use, reusable assignment, earmuff cushions, and replacement stock.',
+      },
+    },
+  },
+  {
+    slug: 'construction-respiratory-protection',
+    markdownPath: join(process.cwd(), 'construction-respiratory-protection.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.construction-respiratory-protection.generated.json',
+    ),
+    title: 'Respiratory Protection for Construction Dust and Fumes',
+    excerpt:
+      'A practical guide to choosing construction respiratory protection for silica dust, demolition, grinding, concrete cutting, welding fumes, coatings, fit testing, and bulk buying.',
+    seoTitle:
+      'Respiratory Protection for Construction Dust and Fumes | N95, P100, Half-Face Respirators',
+    seoDescription:
+      'Learn how to choose respiratory protection for construction dust, silica, demolition, grinding, concrete cutting, welding fumes, and coatings. Covers OSHA rules, N95/P100, fit testing, cartridges, and bulk buying.',
+    seoKeywords:
+      'respiratory protection construction, construction dust respirator, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respirator for concrete dust, construction respiratory PPE',
+    heroFallback:
+      'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1600&q=80',
+    sectionImages: {
+      'What OSHA Requires For Construction Respirators': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Construction respiratory protection becomes a program decision when respirators are required by OSHA or by the employer.',
+      },
+      'The Main Airborne Hazards On Construction Sites': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Construction airborne hazards can include silica dust, general dust, welding fumes, vapors, asbestos, lead, and demolition debris.',
+      },
+      'N95, P100, Half-Face, Full-Face, And PAPR: What Each One Does': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Respirator type, filter class, facepiece design, and powered airflow all solve different construction exposure problems.',
+      },
+      'OSHA Silica Table 1 And Respirator Selection': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'OSHA silica Table 1 connects task, control method, duration, and when respiratory protection is required.',
+      },
+      'Respirator Selection By Construction Task': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Task-based respirator selection helps avoid treating every dust, fume, and vapor exposure as the same hazard.',
+      },
+      'Fit Testing, Medical Evaluation, And Training': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Required respirator use typically brings medical evaluation, fit testing, training, and written program procedures.',
+      },
+      'Compatibility With Other Construction PPE': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Respirators must work with eye protection, hard hats, face shields, hearing protection, gloves, and fall protection.',
+      },
+      'Filter And Cartridge Replacement Planning': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Respirator purchasing has to include filter, cartridge, cleaning, storage, fit-test, and replacement planning.',
       },
     },
   },

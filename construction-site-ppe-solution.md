@@ -500,6 +500,7 @@ Whether you are equipping a crew of 10 or a workforce of 1,000, we can help you 
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
+- [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [Need electrical safety PPE for construction workers? Contact our team](/contact)
 

@@ -4,9 +4,15 @@ import { ArrowRight } from "lucide-react"
 import { getCategories } from "@/actions/categories"
 
 export default async function CategoryGrid() {
-  const categories = await getCategories({
-    parentId: null,
-    includeProductRollupCount: true,
+  const categories = await Promise.race([
+    getCategories({
+      parentId: null,
+      includeProductRollupCount: true,
+    }),
+    new Promise<[]>(resolve => setTimeout(() => resolve([]), 3000)),
+  ]).catch((error) => {
+    console.error("Failed to load homepage categories", error)
+    return []
   })
 
   if (categories.length === 0) {

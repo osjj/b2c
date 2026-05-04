@@ -5,7 +5,13 @@ import { ArrowRight } from "lucide-react"
 import { getCollectionProducts } from "@/actions/collections"
 
 export default async function FeaturedProductsB2B() {
-  const data = await getCollectionProducts("best-sellers", 8)
+  const data = await Promise.race([
+    getCollectionProducts("best-sellers", 8),
+    new Promise<null>(resolve => setTimeout(() => resolve(null), 3000)),
+  ]).catch((error) => {
+    console.error("Failed to load homepage featured products", error)
+    return null
+  })
 
   if (!data || data.products.length === 0) {
     return null
