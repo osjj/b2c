@@ -153,6 +153,8 @@ EN 397 also includes a set of **optional tested properties** that may be marked 
 
 **Replacement and inspection:** Hard hats must be replaced if they show cracks, dents, or penetration marks, after any significant impact, and according to manufacturer service life recommendations (typically 5 years for the shell, 1–2 years for the suspension). Under EN 397, helmets must be marked with their date of manufacture — check this when receiving bulk orders.
 
+[→ Types of hard hats for construction: Class G, E, C and Type I vs Type II](/blog/construction-hard-hat-types)
+
 [→ Browse head protection for construction](/categories/head-protection)
 
 ---
@@ -446,6 +448,7 @@ Different trades on a construction site face different combinations of hazards a
 - [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms) — scaffold erection, work positioning, dropped tools, and access stability
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction) — regulation-first guidance for site compliance and audit readiness
 - [Construction PPE checklist](/blog/construction-ppe-checklist) — field-ready pre-start checks for crews and supervisors
+- [Types of hard hats for construction](/blog/construction-hard-hat-types) — Type I vs Type II, Class G/E/C, shell style, fit, and accessory compatibility
 - [Construction safety footwear guide](/blog/construction-safety-footwear-guide) — boot and shoe selection by trade, hazard, and certification
 
 ---
@@ -499,6 +502,7 @@ Whether you are equipping a crew of 10 or a workforce of 1,000, we can help you 
 - [OSHA PPE requirements for construction: compliance guide](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)

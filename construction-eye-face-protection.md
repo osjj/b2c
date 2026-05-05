@@ -388,6 +388,8 @@ For site managers and buyers, this means:
 - include prescription-wearer fit in trials and procurement
 - treat worker complaints about fogging or shifting as selection data, not just behavior problems
 
+If the eye or face protector mounts to the helmet, check the helmet type first. The [types of hard hats for construction guide](/blog/construction-hard-hat-types) explains Type I vs Type II, Class G/E/C, full-brim and cap-style shells, and accessory compatibility.
+
 ## Common Buying Mistakes in Construction Eye and Face Protection
 
 ### Buying one pair of glasses for every task
@@ -493,6 +495,7 @@ Start with the actual welding, cutting, or brazing operation and use OSHA's filt
 - [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution)
 - [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE Checklist](/blog/construction-ppe-checklist)
+- [Types of Hard Hats for Construction](/blog/construction-hard-hat-types)
 - [Hearing Protection for Construction Workers](/blog/construction-hearing-protection)
 - [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)
 - [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)

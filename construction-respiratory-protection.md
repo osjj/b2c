@@ -268,6 +268,8 @@ Respirators can conflict with the rest of the PPE system.
 
 Respirator choice should be tested as part of the full worker kit, not by itself on a clean desk.
 
+When the respirator straps, hard hat suspension, earmuffs, and goggles all meet at the same worker's head, head protection selection becomes part of respiratory PPE performance. Use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) to check helmet class, shell style, and accessory compatibility before issuing the full kit.
+
 ---
 
 ## Filter And Cartridge Replacement Planning
@@ -389,6 +391,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Eye and face protection for construction sites](/blog/construction-eye-face-protection)
 - [Construction gloves selection guide](/blog/construction-gloves-selection-guide)

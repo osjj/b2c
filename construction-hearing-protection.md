@@ -239,7 +239,7 @@ Check these combinations before buying in bulk:
 | Hearing PPE + face shield | Shield headgear blocks earmuff position | Compatible headgear or earplugs |
 | Hearing PPE + radio communication | Workers remove protection to hear | Communication headset or flat-attenuation option |
 
-If eye and face PPE is part of the same task, use the [eye and face protection for construction guide](/blog/construction-eye-face-protection). If glove dexterity affects earplug insertion, use the [construction gloves selection guide](/blog/construction-gloves-selection-guide).
+If hard-hat-mounted earmuffs are part of the system, confirm the helmet type and accessory slot before buying. Use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for Type I vs Type II, Class G/E/C, brim style, and helmet accessory decisions. If eye and face PPE is part of the same task, use the [eye and face protection for construction guide](/blog/construction-eye-face-protection). If glove dexterity affects earplug insertion, use the [construction gloves selection guide](/blog/construction-gloves-selection-guide).
 
 ---
 
@@ -408,6 +408,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Eye and face protection for construction sites](/blog/construction-eye-face-protection)
 - [Construction gloves selection guide](/blog/construction-gloves-selection-guide)

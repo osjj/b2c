@@ -7,6 +7,7 @@
  *   - bulk-construction-ppe-procurement
  *   - construction-hearing-protection
  *   - construction-respiratory-protection
+ *   - construction-hard-hat-types
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -502,6 +503,67 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
         caption:
           'Respirator purchasing has to include filter, cartridge, cleaning, storage, fit-test, and replacement planning.',
+      },
+    },
+  },
+  {
+    slug: 'construction-hard-hat-types',
+    markdownPath: join(process.cwd(), 'construction-hard-hat-types.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.construction-hard-hat-types.generated.json',
+    ),
+    title: 'Types of Hard Hats for Construction: Class G, E, C and Helmet Selection',
+    excerpt:
+      'A practical guide to choosing construction hard hats by OSHA requirements, ANSI/ISEA Z89.1 Type I and Type II impact protection, Class G/E/C electrical ratings, shell style, accessories, fit, inspection, and bulk buying.',
+    seoTitle:
+      'Types of Hard Hats for Construction | Class G, E, C and Type I vs Type II',
+    seoDescription:
+      'Learn how to choose construction hard hats by OSHA requirements, ANSI/ISEA Z89.1 Type I and Type II impact protection, Class G/E/C electrical ratings, brim style, ventilation, chin straps, accessories, inspection, and bulk buying.',
+    seoKeywords:
+      'types of hard hats construction, construction hard hat types, Class E hard hat, Class G hard hat, Type I vs Type II hard hat, hard hat classes, ANSI Z89.1 hard hat, construction helmet selection',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Why Hard Hat Type Selection Matters': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Hard hat selection starts with the actual construction head hazards, not with one default shell style.',
+      },
+      'What OSHA Requires For Construction Head Protection': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'OSHA construction head protection requirements connect impact, flying-object, and electrical hazards to the selected helmet.',
+      },
+      'Hard Hat Types: Type I Vs Type II': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Type I focuses on top impact, while Type II adds lateral impact protection for more complex construction tasks.',
+      },
+      'Hard Hat Electrical Classes: Class G, E, And C': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Class G, Class E, and Class C hard hats solve different electrical exposure problems and should not be treated as interchangeable.',
+      },
+      'Vented, Non-Vented, Full-Brim, Cap-Style, And Climbing-Style Helmets': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Shell style affects comfort, retention, accessory fit, electrical class, and worker acceptance on construction sites.',
+      },
+      'How To Choose Hard Hats By Construction Task': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Different construction tasks call for different head protection priorities, from general access to electrical and scaffold work.',
+      },
+      'Compatibility With Other Construction PPE': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Hard hats must work with eye protection, hearing protection, respirators, face shields, lights, and fall protection gear.',
+      },
+      'Fit, Inspection, Replacement, And Bulk Purchasing': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A strong hard hat program includes fit, daily inspection, shell replacement, spare suspensions, and bulk inventory planning.',
       },
     },
   },

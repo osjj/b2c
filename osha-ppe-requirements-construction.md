@@ -134,6 +134,8 @@ For the product-selection side of this topic, including N95, P100, half-face res
 
 These categories create frequent citations because the expectations are visible and immediate during inspection. Broken eyewear, missing side protection, worn hard hats, or obvious non-use are easy for OSHA to document.
 
+For the product-selection side of head protection, including ANSI/ISEA Z89.1 Type I vs Type II, Class G/E/C, electrical exposure, venting, brim style, accessories, and replacement planning, use the [construction hard hat types guide](/blog/construction-hard-hat-types).
+
 ### Hearing protection
 
 For construction, **29 CFR 1926.52** uses the permissible noise exposure table, with **90 dBA over 8 hours** as the baseline limit in Table D-2. The safest practical approach is not to argue over thresholds on the live site. If crews are working around consistently loud tools or equipment, employers should monitor exposure, issue protection, and document their control decisions early.
@@ -289,6 +291,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)

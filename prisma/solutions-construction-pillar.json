@@ -194,7 +194,8 @@
                 "Choose Type I or Type II by impact exposure",
                 "Use Class E where electrical contact is possible",
                 "Check shell age, suspension condition, and visible damage before reuse",
-                "Use chin straps where climbing or high-wind movement makes retention critical"
+                "Use chin straps where climbing or high-wind movement makes retention critical",
+                "Use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for Type I vs Type II, Class G/E/C, shell style, fit, and accessory decisions"
               ]
             },
             {
@@ -421,6 +422,10 @@
             {
               "title": "[Construction PPE Checklist](/blog/construction-ppe-checklist)",
               "text": "Focused on daily pre-start checks by crew, task, and changing hazard conditions across active jobsites."
+            },
+            {
+              "title": "[Types of Hard Hats for Construction](/blog/construction-hard-hat-types)",
+              "text": "Focused on ANSI Type I vs Type II, Class G/E/C electrical ratings, shell style, accessory compatibility, inspection, and bulk buying."
             },
             {
               "title": "[Hearing Protection for Construction Workers](/blog/construction-hearing-protection)",
