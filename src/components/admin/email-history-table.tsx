@@ -1,7 +1,7 @@
  'use client'
 
 import { useState } from 'react'
-import { Eye } from 'lucide-react'
+import { Eye, Paperclip } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -46,6 +46,7 @@ export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
                 <TableHead>Time</TableHead>
                 <TableHead>Subject</TableHead>
                 <TableHead>Recipients</TableHead>
+                <TableHead>Attachments</TableHead>
                 <TableHead>Mode</TableHead>
                 <TableHead>Operator</TableHead>
                 <TableHead>Preview</TableHead>
@@ -55,7 +56,7 @@ export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
             <TableBody>
               {items.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
+                  <TableCell colSpan={8} className="py-10 text-center text-muted-foreground">
                     No emails have been sent yet.
                   </TableCell>
                 </TableRow>
@@ -82,6 +83,16 @@ export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
                           </p>
                         ))}
                       </div>
+                    </TableCell>
+                    <TableCell>
+                      {item.attachments.length > 0 ? (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Paperclip className="h-4 w-4" />
+                          <span>{item.attachments.length}</span>
+                        </div>
+                      ) : (
+                        <span className="text-sm text-muted-foreground">-</span>
+                      )}
                     </TableCell>
                     <TableCell>
                       <Badge variant={item.messageMode === 'html' ? 'default' : 'secondary'}>
@@ -131,6 +142,21 @@ export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
                     <p className="mt-1 text-sm">{selectedItem.messageMode === 'html' ? 'HTML' : 'EditorJS'}</p>
                   </div>
                 </div>
+
+                {selectedItem.attachments.length > 0 && (
+                  <div className="rounded-lg border bg-muted/10 p-4">
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Attachments</p>
+                    <div className="mt-3 space-y-2">
+                      {selectedItem.attachments.map((attachment) => (
+                        <div key={`${attachment.filename}-${attachment.size}`} className="flex items-center gap-2 text-sm">
+                          <Paperclip className="h-4 w-4 text-muted-foreground" />
+                          <span className="min-w-0 truncate">{attachment.filename}</span>
+                          <span className="shrink-0 text-muted-foreground">{formatFileSize(attachment.size)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <Tabs defaultValue={selectedItem.htmlBody ? 'preview' : 'text'} className="space-y-4">
                   <TabsList>
@@ -187,4 +213,12 @@ function formatDateTime(value: string) {
     hour: '2-digit',
     minute: '2-digit',
   }).format(new Date(value))
+}
+
+function formatFileSize(bytes: number) {
+  if (bytes < 1024 * 1024) {
+    return `${Math.round((bytes / 1024) * 10) / 10}KB`
+  }
+
+  return `${Math.round((bytes / 1024 / 1024) * 10) / 10}MB`
 }

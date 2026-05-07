@@ -111,6 +111,8 @@ If footwear selection is the main issue, go deeper in the [Safety footwear guide
 
 **Common site mistake:** Issuing hi-vis vests and then covering them with dark rainwear or harness gear that defeats the point.
 
+For a deeper choice between Class 2 and Class 3, color, reflective tape layout, weather layers, FR options, and replacement timing, use the [high-visibility clothing for construction workers guide](/blog/high-visibility-clothing-construction).
+
 ### 6. Hearing protection
 
 **When to check it:** Around sustained powered equipment, demolition tools, grinders, saws, compactors, and other high-noise work.
@@ -395,6 +397,7 @@ If you need the full role-based program behind this checklist, start with our [C
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [OSHA PPE requirements for construction: compliance guide](/blog/osha-ppe-requirements-construction)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)

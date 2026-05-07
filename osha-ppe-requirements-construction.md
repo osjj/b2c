@@ -146,6 +146,8 @@ For the product-selection side of this topic, including earplugs, earmuffs, NRR/
 
 Whenever workers are exposed to public traffic, internal site traffic, or moving equipment, employers should expect scrutiny of visibility controls, especially for flagging and roadway work.
 
+For the product-selection side of this topic, including ANSI/ISEA 107 class selection, EN ISO 20471, garment color, reflective layout, weather layers, and replacement rules, use the [high-visibility clothing for construction workers guide](/blog/high-visibility-clothing-construction).
+
 For a broader role-based view of what crews typically need on site, go to the [construction PPE solution page](/solutions/construction-site-ppe-solution).
 
 ---
@@ -292,6 +294,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)

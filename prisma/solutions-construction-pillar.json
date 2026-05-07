@@ -205,7 +205,8 @@
                 "Class 2 garments suit most general site traffic exposure",
                 "Class 3 visibility is preferred for roadwork and high-speed vehicle zones",
                 "Flame-resistant hi-vis garments are needed around hot work and ignition sources",
-                "Wet-weather hi-vis outerwear should preserve visibility, not cover it"
+                "Wet-weather hi-vis outerwear should preserve visibility, not cover it",
+                "Use the [high-visibility clothing for construction workers guide](/blog/high-visibility-clothing-construction) for Class 2 vs Class 3, color, reflective layout, weather, FR, and replacement decisions"
               ]
             },
             {
@@ -426,6 +427,10 @@
             {
               "title": "[Types of Hard Hats for Construction](/blog/construction-hard-hat-types)",
               "text": "Focused on ANSI Type I vs Type II, Class G/E/C electrical ratings, shell style, accessory compatibility, inspection, and bulk buying."
+            },
+            {
+              "title": "[High-Visibility Clothing for Construction Workers](/blog/high-visibility-clothing-construction)",
+              "text": "Focused on ANSI/ISEA 107, EN ISO 20471, Class 2 vs Class 3, color, reflective layout, weather layers, FR needs, and bulk replacement planning."
             },
             {
               "title": "[Hearing Protection for Construction Workers](/blog/construction-hearing-protection)",

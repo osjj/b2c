@@ -1,8 +1,7 @@
 'use client'
 
-import { useActionState, useEffect, useRef, useState, useTransition } from 'react'
-import { Code2, FileText, Mail, Send } from 'lucide-react'
-import { sendAdminEmail, type SendAdminEmailState } from '@/actions/admin/email'
+import { useRef, useState, useTransition } from 'react'
+import { Code2, FileText, Mail, Paperclip, Send, X } from 'lucide-react'
 import { ContentEditor, type ContentEditorRef, type EditorJSData } from '@/components/admin/content-editor'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -13,53 +12,130 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
 
+type SendAdminEmailState = {
+  success?: boolean
+  message?: string
+  requestId?: string
+  error?: string
+  errors?: Record<string, string[]>
+}
+
 interface EmailSendFormProps {
   defaultSender: string
   smtpConfigured: boolean
 }
 
 const initialState: SendAdminEmailState = {}
+const MAX_ATTACHMENT_COUNT = 5
+const MAX_ATTACHMENT_TOTAL_BYTES = 25 * 1024 * 1024
 
 export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormProps) {
   const [messageMode, setMessageMode] = useState<'editorjs' | 'html'>('editorjs')
   const [editorContent, setEditorContent] = useState<EditorJSData | null>(null)
   const [htmlContent, setHtmlContent] = useState('')
+  const [attachments, setAttachments] = useState<File[]>([])
   const editorRef = useRef<ContentEditorRef>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
-  const [state, formAction] = useActionState(sendAdminEmail, initialState)
+  const [state, setState] = useState<SendAdminEmailState>(initialState)
   const [pending, startTransition] = useTransition()
 
-  useEffect(() => {
-    if (state.success) {
-      toast.success(state.message || 'Email sent successfully.')
-      router.refresh()
+  const handleAttachmentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(event.target.files ?? [])
+    if (selectedFiles.length === 0) {
       return
     }
 
-    if (state.error) {
-      toast.error(state.error)
-    }
-  }, [router, state])
+    setAttachments((currentAttachments) => {
+      const nextAttachments = [...currentAttachments, ...selectedFiles].slice(0, MAX_ATTACHMENT_COUNT)
+      const totalSize = nextAttachments.reduce((sum, file) => sum + file.size, 0)
+
+      if (currentAttachments.length + selectedFiles.length > MAX_ATTACHMENT_COUNT) {
+        toast.error(`Attach up to ${MAX_ATTACHMENT_COUNT} files per email.`)
+      }
+
+      if (totalSize > MAX_ATTACHMENT_TOTAL_BYTES) {
+        toast.error(`Attachments must be ${formatAttachmentSize(MAX_ATTACHMENT_TOTAL_BYTES)} or less before encoding.`)
+        return currentAttachments
+      }
+
+      return nextAttachments
+    })
+
+    event.target.value = ''
+  }
+
+  const removeAttachment = (index: number) => {
+    setAttachments((currentAttachments) => currentAttachments.filter((_, attachmentIndex) => attachmentIndex !== index))
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
+    const currentForm = formRef.current
+    if (!currentForm) {
+      return
+    }
+
+    let savedEditorContent: EditorJSData | null = null
     if (messageMode === 'editorjs' && editorRef.current) {
       const saved = await editorRef.current.save()
       if (saved) {
+        savedEditorContent = saved
         setEditorContent(saved)
-        const contentInput = formRef.current?.querySelector('input[name="editorContent"]') as HTMLInputElement | null
-        if (contentInput) {
-          contentInput.value = JSON.stringify(saved)
-        }
       }
     }
 
-    const formData = new FormData(formRef.current!)
-    startTransition(() => {
-      formAction(formData)
+    const formData = new FormData(currentForm)
+    if (messageMode === 'editorjs') {
+      formData.set('editorContent', savedEditorContent ? JSON.stringify(savedEditorContent) : '')
+    }
+    attachments.forEach((attachment) => {
+      formData.append('attachments', attachment)
     })
+
+    startTransition(() => {
+      void submitEmail(formData)
+    })
+  }
+
+  const submitEmail = async (formData: FormData) => {
+    try {
+      const response = await fetch('/api/admin/email/send', {
+        method: 'POST',
+        body: formData,
+      })
+      const result = (await response.json().catch(() => null)) as SendAdminEmailState | null
+      const nextState = result || {
+        error: `Email request failed with status ${response.status}.`,
+      }
+
+      setState(nextState)
+
+      if (nextState.success) {
+        toast.success(nextState.message || 'Email sent successfully.')
+        setAttachments([])
+        router.refresh()
+        return
+      }
+
+      if (nextState.error) {
+        toast.error(nextState.error)
+        return
+      }
+
+      const fieldError = getFirstFieldError(nextState.errors)
+      if (fieldError) {
+        toast.error(fieldError)
+      }
+    } catch (error) {
+      const nextState = {
+        error: error instanceof Error ? error.message : 'An unexpected error occurred while sending the email.',
+      }
+      setState(nextState)
+      toast.error(nextState.error)
+    }
   }
 
   return (
@@ -128,6 +204,59 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
               <Input id="subject" name="subject" placeholder="SMTP2GO test" required />
               {state.errors?.subject && (
                 <p className="text-sm text-destructive">{state.errors.subject[0]}</p>
+              )}
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <Label htmlFor="attachments">Attachments</Label>
+                  <p className="text-sm text-muted-foreground">
+                    PDF, Word, Excel, or image files. Total size before encoding: up to 25MB.
+                  </p>
+                </div>
+                <Input
+                  ref={fileInputRef}
+                  id="attachments"
+                  type="file"
+                  multiple
+                  accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/jpeg,image/png,image/gif,image/webp,.pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif,.webp"
+                  onChange={handleAttachmentChange}
+                  className="hidden"
+                />
+                <Button type="button" variant="outline" onClick={() => fileInputRef.current?.click()}>
+                  <Paperclip className="mr-2 h-4 w-4" />
+                  Add Files
+                </Button>
+              </div>
+
+              {attachments.length > 0 && (
+                <div className="space-y-2 rounded-lg border bg-muted/20 p-3">
+                  {attachments.map((attachment, index) => (
+                    <div
+                      key={`${attachment.name}-${attachment.size}-${attachment.lastModified}-${index}`}
+                      className="flex items-center justify-between gap-3 rounded-md bg-background px-3 py-2 text-sm"
+                    >
+                      <div className="min-w-0">
+                        <p className="truncate font-medium">{attachment.name}</p>
+                        <p className="text-xs text-muted-foreground">{formatAttachmentSize(attachment.size)}</p>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => removeAttachment(index)}
+                        aria-label={`Remove ${attachment.name}`}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {state.errors?.attachments && (
+                <p className="text-sm text-destructive">{state.errors.attachments[0]}</p>
               )}
             </div>
 
@@ -259,4 +388,27 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
       </Card>
     </div>
   )
+}
+
+function formatAttachmentSize(bytes: number) {
+  if (bytes < 1024 * 1024) {
+    return `${Math.round((bytes / 1024) * 10) / 10}KB`
+  }
+
+  return `${Math.round((bytes / 1024 / 1024) * 10) / 10}MB`
+}
+
+function getFirstFieldError(errors?: Record<string, string[]>) {
+  if (!errors) {
+    return null
+  }
+
+  for (const messages of Object.values(errors)) {
+    const message = messages[0]
+    if (message) {
+      return message
+    }
+  }
+
+  return null
 }

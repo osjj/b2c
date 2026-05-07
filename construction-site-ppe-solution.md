@@ -183,6 +183,8 @@ EN ISO 20471 is the primary European standard for high-visibility clothing, stru
 
 **Material considerations:** Fluorescent yellow-green offers the highest daytime visibility under both standards. Orange provides good contrast in some environments. Both colors must meet minimum retroreflective requirements for nighttime and low-light conditions. Where work involves welding or open flame, flame-resistant hi-vis clothing certified to both **EN ISO 20471** and **EN ISO 11612** (flame protection) is required.
 
+For the deeper selection logic behind Class 2 vs Class 3, garment color, reflective layout, weather layers, FR needs, and bulk buying, use the [high-visibility clothing for construction workers guide](/blog/high-visibility-clothing-construction).
+
 [→ Browse high-visibility workwear for construction](/categories/body-protection/hi-vis-workwear)
 
 ---
@@ -503,6 +505,7 @@ Whether you are equipping a crew of 10 or a workforce of 1,000, we can help you 
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)

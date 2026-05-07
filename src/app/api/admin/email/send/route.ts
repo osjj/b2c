@@ -1,11 +1,11 @@
-'use server'
+import type { OutputData } from '@editorjs/editorjs'
+import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
+import { z } from 'zod'
 
 import { requireAdmin } from '@/lib/auth-utils'
 import { editorJsToEmailContent, htmlToText } from '@/lib/email-content'
 import { prisma } from '@/lib/prisma'
-import { revalidatePath } from 'next/cache'
-import type { OutputData } from '@editorjs/editorjs'
-import { z } from 'zod'
 
 const recipientListSchema = z
   .string()
@@ -37,35 +37,6 @@ const sendEmailSchema = z.object({
   htmlContent: optionalFormStringSchema,
 })
 
-export type SendAdminEmailState = {
-  success?: boolean
-  message?: string
-  requestId?: string
-  error?: string
-  errors?: Record<string, string[]>
-}
-
-export type AdminEmailAttachmentItem = {
-  filename: string
-  mimetype: string
-  size: number
-}
-
-export type AdminEmailHistoryItem = {
-  id: string
-  sender: string
-  recipients: string[]
-  subject: string
-  messageMode: 'editorjs' | 'html'
-  previewText: string
-  htmlBody?: string
-  textBody: string
-  attachments: AdminEmailAttachmentItem[]
-  sentBy: string
-  requestId?: string
-  createdAt: string
-}
-
 const EMAIL_HISTORY_KEY = 'admin_email_history'
 const MAX_ATTACHMENT_COUNT = 5
 const MAX_ATTACHMENT_TOTAL_BYTES = 25 * 1024 * 1024
@@ -83,26 +54,45 @@ const MIME_BY_EXTENSION: Record<string, string> = {
   webp: 'image/webp',
 }
 
+type AdminEmailAttachmentItem = {
+  filename: string
+  mimetype: string
+  size: number
+}
+
+type AdminEmailHistoryItem = {
+  id: string
+  sender: string
+  recipients: string[]
+  subject: string
+  messageMode: 'editorjs' | 'html'
+  previewText: string
+  htmlBody?: string
+  textBody: string
+  attachments: AdminEmailAttachmentItem[]
+  sentBy: string
+  requestId?: string
+  createdAt: string
+}
+
 type Smtp2GoAttachment = {
   filename: string
   fileblob: string
   mimetype: string
 }
 
-export async function sendAdminEmail(
-  prevState: SendAdminEmailState,
-  formData: FormData
-): Promise<SendAdminEmailState> {
+export async function POST(request: NextRequest) {
   const admin = await requireAdmin()
-
   const apiKey = process.env.SMTP2GO_API_KEY
 
   if (!apiKey) {
-    return {
-      error: 'SMTP2GO_API_KEY is not configured in the server environment.',
-    }
+    return NextResponse.json(
+      { error: 'SMTP2GO_API_KEY is not configured in the server environment.' },
+      { status: 500 }
+    )
   }
 
+  const formData = await request.formData()
   const parsed = sendEmailSchema.safeParse({
     sender: formData.get('sender'),
     to: formData.get('to'),
@@ -113,19 +103,17 @@ export async function sendAdminEmail(
   })
 
   if (!parsed.success) {
-    return {
-      errors: parsed.error.flatten().fieldErrors,
-    }
+    return NextResponse.json({ errors: parsed.error.flatten().fieldErrors }, { status: 400 })
   }
 
   const emailContent = buildEmailContent(parsed.data.messageMode, parsed.data.editorContent, parsed.data.htmlContent)
   if ('errors' in emailContent) {
-    return emailContent
+    return NextResponse.json(emailContent, { status: 400 })
   }
 
   const attachmentsResult = await buildEmailAttachments(formData.getAll('attachments'))
   if ('errors' in attachmentsResult) {
-    return attachmentsResult
+    return NextResponse.json(attachmentsResult, { status: 400 })
   }
 
   try {
@@ -152,24 +140,26 @@ export async function sendAdminEmail(
           request_id?: string
           error?: string
           data?: {
-            succeeded?: number
-            failures?: number
+            email_id?: string
+          }
+          email_response?: {
             email_id?: string
           }
         }
       | null
 
     if (!response.ok) {
-      return {
-        error: payload?.error || `SMTP2GO request failed with status ${response.status}.`,
-      }
+      return NextResponse.json(
+        { error: payload?.error || `SMTP2GO request failed with status ${response.status}.` },
+        { status: response.status }
+      )
     }
 
     if (payload?.error) {
-      return {
-        error: payload.error,
-      }
+      return NextResponse.json({ error: payload.error }, { status: 400 })
     }
+
+    const requestId = payload?.request_id || payload?.data?.email_id || payload?.email_response?.email_id
 
     await appendAdminEmailHistory({
       sender: parsed.data.sender,
@@ -181,25 +171,96 @@ export async function sendAdminEmail(
       textBody: emailContent.textBody,
       attachments: attachmentsResult.historyAttachments,
       sentBy: admin.email || admin.name || 'Admin',
-      requestId: payload?.request_id || payload?.data?.email_id || undefined,
+      requestId,
     })
 
-    return {
+    return NextResponse.json({
       success: true,
       message: `Email sent to ${parsed.data.to.length} recipient${parsed.data.to.length > 1 ? 's' : ''}${
         attachmentsResult.historyAttachments.length > 0
           ? ` with ${attachmentsResult.historyAttachments.length} attachment${attachmentsResult.historyAttachments.length > 1 ? 's' : ''}`
           : ''
       }.`,
-      requestId: payload?.request_id || payload?.data?.email_id,
-    }
+      requestId,
+    })
   } catch (error) {
-    return {
-      error:
-        error instanceof Error
-          ? error.message
-          : 'An unexpected error occurred while sending the email.',
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : 'An unexpected error occurred while sending the email.',
+      },
+      { status: 500 }
+    )
+  }
+}
+
+function buildEmailContent(
+  messageMode: 'editorjs' | 'html',
+  editorContentRaw?: string,
+  htmlContentRaw?: string
+):
+  | { textBody: string; htmlBody?: string }
+  | { errors: Record<string, string[]> } {
+  if (messageMode === 'html') {
+    const htmlContent = (htmlContentRaw || '').trim()
+
+    if (!htmlContent) {
+      return {
+        errors: {
+          htmlContent: ['HTML message is required'],
+        },
+      }
     }
+
+    return {
+      htmlBody: htmlContent,
+      textBody: htmlToText(htmlContent) || ' ',
+    }
+  }
+
+  if (!editorContentRaw) {
+    return {
+      errors: {
+        editorContent: ['Message body is required'],
+      },
+    }
+  }
+
+  let parsedContent: OutputData
+
+  try {
+    parsedContent = JSON.parse(editorContentRaw) as OutputData
+  } catch {
+    return {
+      errors: {
+        editorContent: ['Editor content is invalid'],
+      },
+    }
+  }
+
+  if (!Array.isArray(parsedContent.blocks) || parsedContent.blocks.length === 0) {
+    return {
+      errors: {
+        editorContent: ['Message body is required'],
+      },
+    }
+  }
+
+  const { htmlBody, textBody } = editorJsToEmailContent(parsedContent)
+
+  if (!textBody && !htmlBody) {
+    return {
+      errors: {
+        editorContent: ['Message body is required'],
+      },
+    }
+  }
+
+  return {
+    htmlBody: htmlBody || undefined,
+    textBody: textBody || ' ',
   }
 }
 
@@ -274,106 +335,6 @@ async function buildEmailAttachments(
   }
 }
 
-function isAllowedAttachment(file: File) {
-  return ALLOWED_ATTACHMENT_EXTENSIONS.has(getFileExtension(file.name))
-}
-
-function getAttachmentMimeType(file: File) {
-  const extension = getFileExtension(file.name)
-  return file.type || MIME_BY_EXTENSION[extension] || 'application/octet-stream'
-}
-
-function getFileExtension(filename: string) {
-  return filename.split('.').pop()?.toLowerCase() || ''
-}
-
-function sanitizeAttachmentFileName(filename: string) {
-  const cleaned = filename.replace(/[\\/\r\n]/g, '_').trim()
-  return cleaned || 'attachment'
-}
-
-function formatFileSize(bytes: number) {
-  return `${Math.round((bytes / 1024 / 1024) * 10) / 10}MB`
-}
-
-export async function getAdminEmailHistory(limit = 20) {
-  await requireAdmin()
-
-  const setting = await prisma.setting.findUnique({
-    where: { key: EMAIL_HISTORY_KEY },
-  })
-
-  return normalizeEmailHistory(setting?.value).slice(0, limit)
-}
-
-function buildEmailContent(
-  messageMode: 'editorjs' | 'html',
-  editorContentRaw?: string,
-  htmlContentRaw?: string
-):
-  | { textBody: string; htmlBody?: string }
-  | { errors: Record<string, string[]> } {
-  if (messageMode === 'html') {
-    const htmlContent = (htmlContentRaw || '').trim()
-
-    if (!htmlContent) {
-      return {
-        errors: {
-          htmlContent: ['HTML message is required'],
-        },
-      }
-    }
-
-    return {
-      htmlBody: htmlContent,
-      textBody: htmlToText(htmlContent) || ' ',
-    }
-  }
-
-  if (!editorContentRaw) {
-    return {
-      errors: {
-        editorContent: ['Message body is required'],
-      },
-    }
-  }
-
-  let parsedContent: OutputData
-
-  try {
-    parsedContent = JSON.parse(editorContentRaw) as OutputData
-  } catch {
-    return {
-      errors: {
-        editorContent: ['Editor content is invalid'],
-      },
-    }
-  }
-
-  if (!Array.isArray(parsedContent.blocks) || parsedContent.blocks.length === 0) {
-    return {
-      errors: {
-        editorContent: ['Message body is required'],
-      },
-    }
-  }
-
-  const { htmlBody, textBody } = editorJsToEmailContent(parsedContent)
-
-  if (!textBody && !htmlBody) {
-    return {
-      errors: {
-        editorContent: ['Message body is required'],
-      },
-    }
-  }
-
-  return {
-    htmlBody: htmlBody || undefined,
-    textBody: textBody || ' ',
-  }
-}
-
 async function appendAdminEmailHistory(
   entry: Omit<AdminEmailHistoryItem, 'id' | 'createdAt'>
 ) {
@@ -439,6 +400,28 @@ function normalizeEmailHistoryAttachments(value: unknown): AdminEmailAttachmentI
       size: Number(item.size || 0),
     }))
     .filter((item) => item.filename && Number.isFinite(item.size))
+}
+
+function isAllowedAttachment(file: File) {
+  return ALLOWED_ATTACHMENT_EXTENSIONS.has(getFileExtension(file.name))
+}
+
+function getAttachmentMimeType(file: File) {
+  const extension = getFileExtension(file.name)
+  return file.type || MIME_BY_EXTENSION[extension] || 'application/octet-stream'
+}
+
+function getFileExtension(filename: string) {
+  return filename.split('.').pop()?.toLowerCase() || ''
+}
+
+function sanitizeAttachmentFileName(filename: string) {
+  const cleaned = filename.replace(/[\\/\r\n]/g, '_').trim()
+  return cleaned || 'attachment'
+}
+
+function formatFileSize(bytes: number) {
+  return `${Math.round((bytes / 1024 / 1024) * 10) / 10}MB`
 }
 
 function createPreviewText(textBody: string) {

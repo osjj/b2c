@@ -344,6 +344,8 @@ Respirators are not ordinary consumables when they are required for hazardous ex
 
 Visibility buying depends on traffic exposure, light conditions, garment class, garment color, and whether workers need flame-resistant or weatherproof layers. For roadwork and night work, basic vests may not be enough.
 
+Use the [high-visibility clothing for construction workers guide](/blog/high-visibility-clothing-construction) before finalizing ANSI/ISEA 107 Class 2 vs Class 3, EN ISO 20471 requirements, color strategy, reflective layout, rainwear, FR needs, or replacement stock.
+
 ---
 
 ## A Practical Bulk PPE Request-For-Quote Template
@@ -470,6 +472,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)

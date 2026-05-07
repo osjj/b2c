@@ -8,6 +8,7 @@
  *   - construction-hearing-protection
  *   - construction-respiratory-protection
  *   - construction-hard-hat-types
+ *   - high-visibility-clothing-construction
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -564,6 +565,77 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
         caption:
           'A strong hard hat program includes fit, daily inspection, shell replacement, spare suspensions, and bulk inventory planning.',
+      },
+    },
+  },
+  {
+    slug: 'high-visibility-clothing-construction',
+    markdownPath: join(process.cwd(), 'high-visibility-clothing-construction.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.high-visibility-clothing-construction.generated.json',
+    ),
+    title: 'High-Visibility Clothing for Construction Workers: Class 2, Class 3 and Buying Guide',
+    excerpt:
+      'A practical guide to choosing construction high-visibility clothing by OSHA exposure, ANSI/ISEA 107 Type O/R/P, Class 2 vs Class 3, EN ISO 20471, garment design, color, weather, FR needs, durability, and bulk buying.',
+    seoTitle:
+      'High-Visibility Clothing for Construction Workers | Class 2 vs Class 3 Guide',
+    seoDescription:
+      'Learn how to choose high-visibility clothing for construction workers by OSHA exposure, ANSI/ISEA 107 Type O/R/P, Class 2 vs Class 3, EN ISO 20471, color, reflective tape, weather, FR needs, and bulk buying.',
+    seoKeywords:
+      'high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Why High-Visibility Clothing Matters On Construction Sites': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'High-visibility clothing helps construction workers stand out around vehicles, equipment, low light, and busy jobsite backgrounds.',
+      },
+      'What OSHA And ANSI Require For Construction Hi-Vis': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Construction hi-vis buying should connect OSHA traffic exposure, ANSI/ISEA 107 class, and the actual work zone.',
+      },
+      'ANSI/ISEA 107 Types And Classes Explained': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'ANSI/ISEA 107 type and performance class determine whether a garment fits the construction visibility exposure.',
+      },
+      'EN ISO 20471 Classes For International Projects': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'International construction projects often need EN ISO 20471 documentation in addition to ANSI-style performance expectations.',
+      },
+      'Class 1, Class 2, Or Class 3: Which One Fits The Job?': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Hi-vis class selection should follow the construction task, traffic exposure, light level, and equipment movement pattern.',
+      },
+      'Color, Reflective Tape, And Day/Night Visibility': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Fluorescent background material supports daytime visibility while retroreflective tape supports low-light recognition.',
+      },
+      'High-Visibility Clothing By Construction Task': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Different construction roles need different hi-vis garment systems, from visitor vests to Class 3 roadwork clothing.',
+      },
+      'Compatibility With Other Construction PPE': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'High-visibility clothing must remain visible when workers wear hard hats, harnesses, tool belts, respirators, and rainwear.',
+      },
+      'Weather, Flame, And Wash Durability Considerations': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Rain, cold, heat, flame exposure, washing, dirt, and wear all change how long high-visibility clothing remains effective.',
+      },
+      'Bulk Buying Checklist For Construction Hi-Vis': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Bulk hi-vis procurement should specify class, standard, size range, garment type, climate needs, documentation, and replacement stock.',
       },
     },
   },
