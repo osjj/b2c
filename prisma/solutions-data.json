@@ -8344,7 +8344,7 @@
   {
     "slug": "ppe-for-road-and-bridge-construction-projects",
     "title": "PPE for Road and Bridge Construction Projects",
-    "excerpt": "Road and bridge construction exposes workers to live traffic, heavy machinery, heat, dust, noise, and fall risks near edges and waterways. This guide explains the PPE required for highway and bridge crews working in open, high-exposure environments.",
+    "excerpt": "A procurement-focused PPE solution for road and bridge construction crews working around live traffic, dump trucks, rollers, pavers, bridge edges, concrete dust, asphalt heat, noise, and weather exposure. Covers hi-vis class selection, fall protection, head/eye/foot/hand protection, respiratory and hearing PPE, and bulk crew kits.",
     "usageScenes": [
       "construction",
       "height-work",
@@ -8356,9 +8356,9 @@
     "coverImage": "https://shop.laifappe.com/solutions/ppe-for-road-and-bridge-construction-projects-cover-1772011120216.webp",
     "isActive": true,
     "sortOrder": 12,
-    "seoTitle": "PPE for Road and Bridge Construction | Highway Safety Equipment",
-    "seoDescription": "Complete guide to PPE for road and bridge construction workers. Covers visibility, fall protection, dust control, and compliance standards for highway projects.",
-    "seoKeywords": "road construction PPE, bridge construction safety, highway worker PPE, hi-vis Class 3, fall protection bridge, OSHA 1926, ANSI ISEA 107, MUTCD, road crew safety",
+    "seoTitle": "PPE for Road and Bridge Construction | Hi-Vis, Fall, Dust and Crew Kits",
+    "seoDescription": "Choose PPE for road and bridge construction crews: ANSI/ISEA 107 hi-vis, fall protection, helmets, boots, gloves, eye protection, hearing protection, respiratory PPE, heat controls, and bulk crew kits.",
+    "seoKeywords": "road construction PPE, bridge construction PPE, highway worker PPE, road crew PPE kit, Class 3 hi vis road construction, bridge fall protection, asphalt PPE, traffic control PPE, highway construction safety equipment",
     "sections": [
       {
         "key": "hero-intro",
@@ -8366,16 +8366,16 @@
         "title": "What PPE do road and bridge construction workers need?",
         "enabled": true,
         "data": {
-          "intro": "Road and bridge projects operate in open environments with live traffic, heavy equipment, elevation changes, and variable weather. Workers face unique visibility, fall, and environmental hazards that demand purpose-selected PPE:",
+          "intro": "Road and bridge construction crews work in one of the most exposed construction environments: live traffic, internal equipment movement, bridge edges, changing light, asphalt heat, concrete dust, high noise, and long outdoor shifts. The PPE package has to make workers visible, stable, protected from impact, and ready for task-specific hazards:",
           "bullets": [
-            "Class 2 or Class 3 high-visibility clothing",
-            "Safety helmet rated for construction use",
-            "Steel toe safety boots with puncture protection",
-            "Full body harness for bridge deck and overpass work",
-            "Dust masks or respirators for asphalt and concrete dust",
-            "Hearing protection near pavers, compactors, and pile drivers",
-            "UV-protective safety glasses or tinted goggles",
-            "Sun protection: neck shade, cooling vest, sunscreen"
+            "ANSI/ISEA 107 or EN ISO 20471 high-visibility clothing matched to traffic exposure",
+            "Safety helmet or hard hat selected for impact, electrical, and retention needs",
+            "Safety boots with toe protection, puncture resistance, slip resistance, and heat or ladder-grip features where needed",
+            "Fall protection for bridge decks, overpasses, formwork, and exposed edges",
+            "Respiratory protection for concrete cutting, milling, sweeping, asphalt fumes, and dusty demolition work",
+            "Hearing protection near pavers, rollers, saws, breakers, compactors, and pile-driving operations",
+            "Eye and face protection for dust, UV, flying debris, grinding, and concrete splash",
+            "Heat, rain, cold, and night-work layers that do not reduce visibility or PPE fit"
           ]
         }
       },
@@ -8386,7 +8386,9 @@
         "enabled": true,
         "data": {
           "paragraphs": [
-            "This guide covers hazards unique to road and bridge projects, recommends PPE for common task roles, and references the visibility and safety standards that highway contractors must follow for OSHA and MUTCD compliance."
+            "Use this page as the roadwork and bridgework branch of the complete construction PPE system. For the wider category map, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution).",
+            "Road and bridge jobs should not be managed as a generic PPE order. Flaggers, paving crews, bridge deck crews, concrete cutting teams, equipment operators, inspectors, and ground laborers face different combinations of traffic, struck-by, fall, heat, dust, noise, and footwear hazards.",
+            "For related decisions, use the [high-visibility clothing guide](/blog/high-visibility-clothing-construction), [fall protection solution](/solutions/fall-protection-construction), [construction safety footwear guide](/blog/construction-safety-footwear-guide), [respiratory protection guide](/blog/construction-respiratory-protection), [hearing protection guide](/blog/construction-hearing-protection), and [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
           ]
         }
       },
@@ -8396,52 +8398,62 @@
         "title": "Road and Bridge Construction Hazards and Required PPE",
         "enabled": true,
         "data": {
-          "rows": [
-            [
-              "Live traffic adjacent to work zone",
-              "Struck-by vehicles",
-              "Class 2/3 hi-vis clothing, reflective tape"
-            ],
-            [
-              "Bridge edges and overpasses",
-              "Falls from height into water or ground",
-              "Full body harness, guardrail systems"
-            ],
-            [
-              "Asphalt fumes and concrete dust",
-              "Respiratory illness, silicosis",
-              "Half-face respirator with OV/P100 cartridges"
-            ],
-            [
-              "Heavy equipment movement on site",
-              "Crush and struck-by injuries",
-              "Hi-vis clothing, safety boots, helmet"
-            ],
-            [
-              "Noise from pavers, compactors, and pile drivers",
-              "Permanent hearing damage",
-              "Earplugs or earmuffs (NRR 25+)"
-            ],
-            [
-              "Sun exposure and extreme heat",
-              "Heat stroke, UV skin and eye damage",
-              "UV safety glasses, neck shade, cooling vest"
-            ],
-            [
-              "Uneven terrain, rebar, and debris",
-              "Ankle injuries, foot punctures",
-              "Steel toe boots with puncture-resistant midsole"
-            ],
-            [
-              "Wet concrete contact",
-              "Chemical burns to skin",
-              "Alkaline-resistant gloves, waterproof boots"
-            ]
-          ],
           "headers": [
             "Hazard",
             "Potential Injury",
             "Required PPE"
+          ],
+          "rows": [
+            [
+              "Public traffic and internal work-zone vehicles",
+              "Fatal or serious struck-by injury",
+              "Class 2 or Class 3 hi-vis, hard hat, safety boots, traffic-zone discipline"
+            ],
+            [
+              "Flagging and traffic-control exposure",
+              "Worker struck by passing vehicles",
+              "High-visibility garment matched to MUTCD/ANSI requirements, helmet, boots, eye protection, weather layers"
+            ],
+            [
+              "Dump trucks, rollers, pavers, loaders, and backing equipment",
+              "Crush, run-over, and caught-between injuries",
+              "Hi-vis garment, safety boots, helmet, clear communication, spotter PPE"
+            ],
+            [
+              "Bridge edges, overpasses, formwork, and work over water",
+              "Falls to lower level, water, or traffic below",
+              "Guardrails or fall arrest system, rescue planning, helmet retention, anti-slip footwear"
+            ],
+            [
+              "Concrete cutting, milling, sweeping, and drilling",
+              "Silica dust exposure, eye injury, hearing damage",
+              "Respirator where required, sealed eyewear, face protection, hearing protection, gloves"
+            ],
+            [
+              "Asphalt paving and hot surfaces",
+              "Burns, heat stress, fume exposure, outsole damage",
+              "Heat-resistant gloves where needed, suitable footwear, respiratory review, cooling controls"
+            ],
+            [
+              "High-noise equipment and pile-driving",
+              "Permanent hearing loss",
+              "Earplugs or earmuffs matched to exposure and communication needs"
+            ],
+            [
+              "Wet concrete, cement slurry, sealants, and coatings",
+              "Chemical burns and skin irritation",
+              "Chemical-resistant gloves, waterproof boots, eye protection, task-specific coveralls"
+            ],
+            [
+              "Night work, rain, fog, and low sun angle",
+              "Reduced visibility and higher struck-by risk",
+              "Class 3 or enhanced hi-vis system, reflective outerwear, anti-fog eyewear, task lighting"
+            ],
+            [
+              "Rebar, debris, uneven aggregate, and temporary access",
+              "Punctures, slips, ankle injuries, foot crush",
+              "Puncture-resistant safety footwear with stable traction and toe protection"
+            ]
           ]
         }
       },
@@ -8453,48 +8465,59 @@
         "data": {
           "groups": [
             {
+              "title": "Traffic Control and Flagging Crews",
+              "description": "Flaggers and traffic-control workers face direct exposure to passing traffic and internal work-zone vehicles. Their PPE must prioritize visibility, weather exposure, footwear stability, and clear role recognition.",
               "items": [
-                "Class 3 hi-vis vest or jacket",
-                "Safety helmet",
-                "Steel toe boots with heat-resistant sole",
-                "Hearing protection (NRR 25+)",
-                "Respiratory mask for asphalt fumes"
-              ],
-              "title": "Paving and Compaction",
-              "description": "Maximize visibility and hearing protection around asphalt pavers, rollers, and dump trucks in active traffic zones. Heat-resistant soles protect against hot asphalt surfaces."
+                "Class 3 or required high-visibility garment system for high-risk exposure",
+                "Safety helmet or hard hat with suitable visibility accessories",
+                "Safety footwear with slip resistance and toe protection",
+                "Eye protection for dust, sun, wind, and flying debris",
+                "Weather outerwear that remains high-visibility"
+              ]
             },
             {
+              "title": "Paving, Milling, and Compaction Crews",
+              "description": "Paving crews work around hot material, moving trucks, rollers, pavers, dust, fumes, and high noise. PPE should manage visibility, heat, burns, footwear durability, and hearing exposure.",
               "items": [
-                "Full body harness with fall arrest tie-off",
-                "Helmet with chin strap",
-                "Anti-slip safety boots",
-                "Hi-vis clothing (Class 2 minimum)",
-                "Safety netting for overhead drop zones"
-              ],
-              "title": "Bridge Deck and Overpass Work",
-              "description": "Combine fall arrest with high visibility when working near bridge edges, on formwork, or above waterways. Safety netting provides secondary fall protection for the area below."
+                "High-visibility shirt, vest, or jacket matched to work-zone exposure",
+                "Heat-resistant or task-specific gloves where asphalt contact is possible",
+                "Safety boots with durable outsole and puncture protection",
+                "Hearing protection near rollers, milling machines, and compactors",
+                "Respiratory review for fumes, dust, and enclosed or low-airflow work"
+              ]
             },
             {
+              "title": "Bridge Deck, Overpass, and Edge Work",
+              "description": "Bridge crews combine roadwork visibility with elevated-work controls. The PPE system should connect fall protection, helmet retention, footwear grip, and dropped-object management.",
               "items": [
-                "Half-face respirator or N95 dust mask",
-                "Safety goggles (sealed for dust)",
-                "Alkaline-resistant gloves for wet concrete",
-                "Waterproof safety boots",
-                "Long sleeves to prevent skin contact"
-              ],
-              "title": "Concrete Pouring and Finishing",
-              "description": "Protect skin and respiratory system from wet concrete alkalinity (pH 12–13) and respirable silica dust during mixing, pouring, and finishing operations."
+                "Full body harness and suitable connector where guardrails or other controls are not enough",
+                "Helmet with chin strap where wind, climbing, or leaning can dislodge head protection",
+                "Anti-slip safety boots with stable platform and ladder grip",
+                "Tool lanyards and dropped-object controls where work occurs over people, water, or traffic",
+                "Hi-vis outer layer visible over harness and weatherwear"
+              ]
             },
             {
+              "title": "Concrete Cutting, Sawing, and Barrier Work",
+              "description": "Concrete road and bridge work often adds silica, splash, flying particles, hand injury, and noise to the traffic exposure.",
               "items": [
-                "Class 3 hi-vis clothing with 360° reflective bands",
-                "Safety helmet",
-                "LED personal safety lights for dawn/dusk work",
-                "Steel toe boots",
-                "Signal paddle and stop/slow sign"
-              ],
-              "title": "Traffic Control and Flagging",
-              "description": "Flaggers and traffic controllers need the highest ANSI visibility class. Class 3 garments with retroreflective tape on torso, sleeves, and legs are required for work near live traffic."
+                "Respiratory protection matched to silica or dust exposure",
+                "Sealed goggles or safety glasses plus face shield where needed",
+                "Hearing protection for saws, breakers, and grinders",
+                "Cut-resistant or wet-cement-resistant gloves by task",
+                "Puncture-resistant safety footwear"
+              ]
+            },
+            {
+              "title": "Inspectors, Surveyors, and Supervisors",
+              "description": "Non-production roles still enter traffic zones, bridge decks, equipment routes, and active work areas. Their PPE should not be treated as optional because they are not operating tools.",
+              "items": [
+                "High-visibility garment suitable for the exposure zone",
+                "Helmet or hard hat where overhead or struck-by risk exists",
+                "Safety footwear suitable for uneven ground and rebar/debris",
+                "Eye protection for wind, dust, and UV exposure",
+                "Task-specific fall protection when entering exposed bridge or edge areas"
+              ]
             }
           ]
         }
@@ -8507,34 +8530,39 @@
         "data": {
           "items": [
             {
-              "text": "Class 2 or Class 3 hi-vis garment with retroreflective tape on torso and limbs",
-              "title": "High Visibility Clothing",
+              "title": "High-Visibility Clothing",
+              "text": "Class 2 or Class 3 hi-vis garment with retroreflective material selected by traffic speed, worker role, light level, and weather. Use the [high-visibility clothing guide](/blog/high-visibility-clothing-construction) for class and garment selection.",
               "bodyAnchorKey": "chest"
             },
             {
-              "text": "Construction-rated helmet with ventilation for outdoor heat and UV exposure",
               "title": "Head Protection",
+              "text": "Construction-rated hard hat or helmet selected for falling-object, lateral impact, electrical, wind, and retention needs. Use the [hard hat types guide](/blog/construction-hard-hat-types) for Class G/E/C and Type I/II decisions.",
               "bodyAnchorKey": "head"
             },
             {
-              "text": "Full body harness for bridge deck edges and overpass work above 6 feet",
               "title": "Fall Protection",
+              "text": "Guardrails or personal fall arrest systems for bridge deck edges, overpasses, temporary platforms, formwork, and work above lower levels. Use the [fall protection solution](/solutions/fall-protection-construction) for system selection.",
               "bodyAnchorKey": "waist"
             },
             {
-              "text": "UV-rated safety glasses, tinted goggles, or sealed dust goggles by task",
-              "title": "Eye Protection",
+              "title": "Eye and Face Protection",
+              "text": "UV-rated glasses, sealed dust goggles, or face shields for sun, wind, dust, cutting, grinding, and concrete splash.",
               "bodyAnchorKey": "eyes"
             },
             {
-              "text": "Steel toe, puncture-resistant midsole, anti-slip for rough terrain and rebar",
               "title": "Foot Protection",
+              "text": "Toe protection, puncture-resistant midsoles, slip resistance, outsole durability, and suitable grip for aggregate, asphalt, mud, ladders, and bridge access. Use the [footwear guide](/blog/construction-safety-footwear-guide) for specification details.",
               "bodyAnchorKey": "feet"
             },
             {
-              "text": "Cut-resistant for rebar work, alkaline-resistant for concrete, general-purpose for labor",
               "title": "Hand Protection",
+              "text": "Cut-resistant gloves for rebar and sharp materials, wet-cement-resistant gloves for concrete, heat-resistant gloves for asphalt exposure, and grip gloves for general handling.",
               "bodyAnchorKey": "left-hand"
+            },
+            {
+              "title": "Hearing and Respiratory Protection",
+              "text": "Hearing protection near high-noise equipment and respiratory protection where silica, asphalt fumes, dust, coatings, or poor ventilation require a program-level review.",
+              "bodyAnchorKey": "mouth"
             }
           ]
         }
@@ -8547,36 +8575,42 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
-            "Highway contractors often purchase PPE in bulk kits organized by task role—flaggers, equipment operators, bridge crew, and general laborers each receive different gear.",
-            "A basic road construction PPE set typically includes high-visibility clothing, head protection, safety glasses, and steel toe boots.",
-            "Below are examples of PPE commonly selected for road and bridge projects:"
+            "Road and bridge contractors should buy PPE by role and exposure zone, not as one generic highway vest package.",
+            "A traffic-control worker, bridge deck crew member, paving crew, concrete cutting team, and inspector may all need high visibility, but their fall, footwear, hand, eye, hearing, and respiratory needs differ.",
+            "Below are practical package examples for road and bridge projects:"
           ]
         }
       },
       {
         "key": "basic-ppe-set",
         "type": "list",
-        "title": "Basic Road Construction PPE Set",
+        "title": "Baseline Road and Bridge PPE Set",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Class 2 hi-vis vest (Class 3 for flaggers)"
+              "text": "Class 2 or Class 3 high-visibility garment matched to work-zone exposure"
             },
             {
-              "text": "Safety helmet with ventilation"
+              "text": "Construction hard hat or helmet selected by impact, electrical, and retention needs"
             },
             {
-              "text": "UV-protective safety glasses"
+              "text": "UV-rated safety glasses; sealed goggles or face shield where dust, splash, or cutting is present"
             },
             {
-              "text": "Steel toe boots with puncture-resistant midsole"
+              "text": "Safety boots with toe protection, puncture resistance, and slip-resistant outsole"
             },
             {
-              "text": "General-purpose work gloves"
+              "text": "Task-matched gloves for rebar, asphalt, wet concrete, tools, or general handling"
             },
             {
-              "text": "Hearing protection (earplugs NRR 22+)"
+              "text": "Hearing protection for pavers, rollers, breakers, saws, compactors, and pile-driving"
+            },
+            {
+              "text": "Respiratory protection where silica dust, asphalt fumes, coatings, or enclosed work create exposure"
+            },
+            {
+              "text": "Fall protection for bridge, overpass, formwork, and exposed-edge work where guardrails or other controls are not enough"
             }
           ]
         }
@@ -8584,27 +8618,27 @@
       {
         "key": "example-products",
         "type": "list",
-        "title": "Example PPE Products",
+        "title": "Role-Based Road and Bridge PPE Kit Examples",
         "enabled": true,
         "data": {
           "items": [
             {
-              "title": "Class 3 Hi-Vis Safety Vest HV20-R with Reflective Tape"
+              "title": "Flagger kit: Class 3 hi-vis garment, hard hat, safety boots, eye protection, weather-ready outerwear"
             },
             {
-              "title": "Vented Construction Helmet H200-V"
+              "title": "Paving kit: hi-vis shirt or vest, heat/task gloves, durable safety boots, hearing protection, eye protection, respiratory review"
             },
             {
-              "title": "UV400 Safety Glasses E15-UV (Smoke Lens)"
+              "title": "Bridge deck kit: harness and connector, helmet with chin strap, anti-slip boots, hi-vis outer layer, tool lanyards"
             },
             {
-              "title": "Puncture-Resistant Steel Toe Boots S95"
+              "title": "Concrete cutting kit: respirator where required, sealed goggles, face shield, hearing protection, cut/wet-cement gloves, puncture-resistant boots"
             },
             {
-              "title": "Alkaline-Resistant Concrete Gloves G30-CR"
+              "title": "Inspector kit: hi-vis garment, hard hat, safety boots, UV eye protection, fall protection for exposed edge access"
             },
             {
-              "title": "Half-Face Respirator R40 with OV/P100 Cartridges"
+              "title": "Night work kit: Class 3 or enhanced hi-vis system, reflective rainwear, anti-fog eyewear, task lighting, hearing protection"
             }
           ]
         }
@@ -8617,28 +8651,36 @@
         "data": {
           "items": [
             {
-              "text": "Construction safety requirements",
-              "title": "OSHA 1926"
+              "title": "OSHA Highway Work Zones",
+              "text": "Road, bridge, tunnel, utility, and highway infrastructure workers face hazards from public traffic and construction vehicles inside work zones"
             },
             {
-              "text": "High-visibility safety apparel (Class 2 and 3 requirements)",
-              "title": "ANSI/ISEA 107"
+              "title": "OSHA 29 CFR 1926.201",
+              "text": "Flagger signaling and warning garments must conform to MUTCD Part 6 requirements incorporated by reference"
             },
             {
-              "text": "Manual on Uniform Traffic Control Devices for work zones",
-              "title": "MUTCD Chapter 6"
+              "title": "OSHA High-Visibility Interpretation",
+              "text": "Workers exposed to public and construction traffic in highway or road work zones need high-visibility garments under OSHA enforcement guidance"
             },
             {
-              "text": "Fall protection in construction",
-              "title": "OSHA 1926 Subpart M"
+              "title": "MUTCD Part 6 / FHWA Work Zone Guidance",
+              "text": "Temporary traffic-control worker visibility and work-zone planning requirements for highway rights-of-way"
             },
             {
-              "text": "Respiratory protection program requirements",
-              "title": "OSHA 1910.134"
+              "title": "ANSI/ISEA 107 / EN ISO 20471",
+              "text": "High-visibility safety apparel and international high-visibility clothing performance classes"
             },
             {
-              "text": "Protective footwear",
-              "title": "EN ISO 20345 / ASTM F2413"
+              "title": "OSHA 1926 Subpart M",
+              "text": "Construction fall protection requirements for bridge, overpass, edge, and elevated work"
+            },
+            {
+              "title": "OSHA 1926.1153 / OSHA 1910.134",
+              "text": "Silica exposure and respiratory protection program requirements where dust or respirators are involved"
+            },
+            {
+              "title": "ASTM F2413 / EN ISO 20345",
+              "text": "Protective footwear specifications for toe impact, puncture resistance, slip resistance, and related jobsite hazards"
             }
           ]
         }
@@ -8649,7 +8691,79 @@
         "title": null,
         "enabled": true,
         "data": {
-          "text": "Road construction sites must comply with MUTCD and ANSI/ISEA 107 visibility requirements. Class 2 hi-vis is the minimum for most road workers. Class 3 is mandatory for flaggers, night work, and work near traffic traveling above 50 mph."
+          "text": "Do not specify road and bridge PPE only as ?vest, hard hat, boots.? The RFQ should state hi-vis class and standard, helmet type and electrical class where needed, footwear toe/puncture/slip requirements, fall protection components, hearing and respiratory assumptions, weather layer requirements, size range, replacement stock, labeling, and documentation. For highway and road work zones, use OSHA, MUTCD/FHWA, ANSI/ISEA 107, and applicable state DOT requirements as the baseline."
+        }
+      },
+      {
+        "key": "road-bridge-procurement-checklist",
+        "type": "list",
+        "title": "Road and Bridge PPE Procurement Checklist",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Separate workers by exposure zone",
+              "text": "Do not issue the same kit to flaggers, paving crews, bridge crews, concrete cutters, operators, and inspectors."
+            },
+            {
+              "title": "Specify hi-vis class and garment type",
+              "text": "Define Class 2 vs Class 3, shirt vs vest vs jacket, rainwear, winter layers, and whether sleeves or pants are required."
+            },
+            {
+              "title": "Confirm fall exposure before ordering",
+              "text": "Bridge edges, overpasses, formwork, temporary platforms, and work over water may need a complete fall protection package and rescue plan."
+            },
+            {
+              "title": "Plan respiratory and hearing protection early",
+              "text": "Concrete dust, milling, asphalt fumes, saws, breakers, rollers, compactors, and pile-driving may require PPE plus program controls."
+            },
+            {
+              "title": "Build a footwear matrix",
+              "text": "Road and bridge crews may need toe caps, puncture resistance, slip resistance, heat-resistant soles, waterproofing, or ladder/platform grip."
+            },
+            {
+              "title": "Package by crew and replacement cycle",
+              "text": "Cartons should be labeled by role, size, project phase, night/day shift, and replacement stock so supervisors can issue PPE quickly."
+            }
+          ]
+        }
+      },
+      {
+        "key": "related-guides",
+        "type": "list",
+        "title": "Related Construction PPE Guides",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "[Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)",
+              "text": "Use this as the site-wide PPE pillar for baseline categories, compliance structure, and procurement logic."
+            },
+            {
+              "title": "[High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)",
+              "text": "Use this for Class 2 vs Class 3, ANSI/ISEA 107, EN ISO 20471, reflective layout, outerwear, and replacement rules."
+            },
+            {
+              "title": "[Fall protection PPE for construction sites](/solutions/fall-protection-construction)",
+              "text": "Use this for bridge deck, overpass, edge, harness, SRL, anchor, and rescue planning decisions."
+            },
+            {
+              "title": "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
+              "text": "Use this for toe cap, puncture resistance, slip resistance, heat, water, and ladder-grip decisions."
+            },
+            {
+              "title": "[Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)",
+              "text": "Use this for silica dust, asphalt fumes, concrete cutting, fit testing, cartridges, and replacement planning."
+            },
+            {
+              "title": "[Hearing protection for construction workers](/blog/construction-hearing-protection)",
+              "text": "Use this for earplug, earmuff, NRR/SNR, communication, and replacement planning near equipment."
+            },
+            {
+              "title": "[How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)",
+              "text": "Use this to turn road and bridge PPE requirements into an RFQ, supplier comparison, size plan, and reorder system."
+            }
+          ]
         }
       },
       {
@@ -8660,24 +8774,28 @@
         "data": {
           "items": [
             {
-              "a": "ANSI Class 2 is the minimum for most road workers. Class 3 is required for flaggers, night work, and highway work zones with speeds above 50 mph. Class 3 provides the maximum background material and retroreflective striping.",
-              "q": "What hi-vis class is required for road construction?"
+              "q": "What hi-vis class is required for road construction?",
+              "a": "The required high-visibility class depends on the work zone, traffic exposure, speed, light level, role, and applicable MUTCD/FHWA, OSHA, state DOT, or project requirements. Class 2 is common for many roadway workers, while Class 3 is typically used for higher-risk exposure such as flagging, night work, high-speed traffic, and complex mobile-equipment zones."
             },
             {
-              "a": "Yes. OSHA requires fall protection for bridge work at heights of 6 feet or more, including work near deck edges, over water, and on temporary formwork structures.",
-              "q": "Is fall protection needed on bridge construction?"
+              "q": "Is fall protection needed on bridge construction?",
+              "a": "Yes, bridge construction often creates fall exposure at deck edges, overpasses, temporary platforms, formwork, and work over water or traffic. Guardrails may control some exposures, but personal fall arrest systems are often needed where guardrails or other controls are not enough."
             },
             {
-              "a": "A half-face respirator with organic vapor (OV) and P100 particulate cartridges is commonly used for asphalt fume exposure. An N95 dust mask is sufficient for concrete dust only.",
-              "q": "What respiratory protection is needed for asphalt work?"
+              "q": "What respiratory protection is needed for road and bridge work?",
+              "a": "It depends on the exposure. Concrete cutting, drilling, milling, sweeping, demolition, coatings, and some asphalt or enclosed work may require respiratory protection and a compliant respiratory protection program. Do not choose a respirator until the airborne hazard and work controls are understood."
             },
             {
-              "a": "Use vented helmets, cooling vests, UV-rated safety glasses, neck shades, and schedule regular hydration breaks. Light-colored hi-vis clothing reflects more heat than dark-colored options.",
-              "q": "How do you protect workers from heat on road projects?"
+              "q": "What footwear is best for road and bridge crews?",
+              "a": "Most road and bridge crews need protective footwear with toe protection, puncture resistance, slip resistance, and durable outsoles. Bridge, ladder, wet, asphalt, or concrete work may require additional features such as ankle support, waterproofing, heat resistance, or ladder grip."
             },
             {
-              "a": "Yes. We provide custom-printed hi-vis vests, logo-branded helmets, and complete crew kits with contractor names and project identification at bulk pricing.",
-              "q": "Can PPE be customized with DOT contractor branding?"
+              "q": "How do you protect workers from heat and sun on road projects?",
+              "a": "Use breathable or weather-appropriate high-visibility clothing, vented head protection where the task allows, UV-rated eye protection, cooling or hydration procedures, and replacement garments that remain visible after sweat, dirt, rain, and repeated washing."
+            },
+            {
+              "q": "Can road and bridge PPE be ordered as crew kits?",
+              "a": "Yes. We can package PPE by role, size, shift, and project phase, including flagger kits, paving kits, bridge deck kits, concrete cutting kits, inspector kits, and night-work kits with documentation for bulk purchasing."
             }
           ]
         }
@@ -8688,7 +8806,7 @@
         "title": "Need PPE for Road and Bridge Projects?",
         "enabled": true,
         "data": {
-          "text": "We supply ANSI-rated hi-vis clothing, fall protection, respiratory equipment, and complete crew kits for highway and bridge construction with bulk pricing and compliance documents.",
+          "text": "We supply road and bridge construction PPE kits including ANSI/ISEA 107 high-visibility clothing, helmets, safety footwear, gloves, hearing protection, respiratory PPE, fall protection, weather layers, and replacement stock with bulk pricing and compliance documents.",
           "title": "Need PPE for Road and Bridge Projects?",
           "primaryHref": "/quote",
           "primaryLabel": "Request a Quote",

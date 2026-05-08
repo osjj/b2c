@@ -134,6 +134,8 @@ Use this practical selection table:
 
 If the site has uncertainty, move one level higher. The cost difference between an under-specified vest and a better garment is small compared with the cost of a serious struck-by incident or a failed inspection.
 
+For the complete PPE package behind roadwork and bridgework, use the [PPE for road and bridge construction projects solution](/solutions/ppe-for-road-and-bridge-construction-projects).
+
 ---
 
 ## Color, Reflective Tape, And Day/Night Visibility
@@ -307,6 +309,7 @@ For a broader PPE package, pair this article with:
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
+- [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)
 - [Construction hard hat types](/blog/construction-hard-hat-types)
 - [Construction safety footwear guide](/blog/construction-safety-footwear-guide)
 

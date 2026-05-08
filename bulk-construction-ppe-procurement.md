@@ -112,6 +112,8 @@ Construction PPE becomes expensive when every worker receives every item. It bec
 
 This is where the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) becomes useful. It gives the wider category structure. This procurement guide turns that structure into a buying process.
 
+For roadwork, highway, paving, traffic-control, and bridge deck packages, use the [PPE for road and bridge construction projects solution](/solutions/ppe-for-road-and-bridge-construction-projects) before finalizing crew kits.
+
 ---
 
 ## Verify Standards Before You Compare Prices
@@ -476,6 +478,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
+- [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)
 - [Construction safety footwear guide](/blog/construction-safety-footwear-guide)
 - [Construction gloves selection guide](/blog/construction-gloves-selection-guide)
 - [Eye and face protection for construction sites](/blog/construction-eye-face-protection)
