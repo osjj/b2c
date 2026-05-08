@@ -361,7 +361,7 @@
   {
     "slug": "ppe-for-scaffolding-and-elevated-platforms",
     "title": "PPE for Scaffolding and Elevated Platforms",
-    "excerpt": "Scaffolding and elevated platform work exposes workers to fall hazards, falling tools, unstable footing, and overhead risks. This guide covers the PPE required for scaffold erectors, users, and inspectors to stay protected at every working level.",
+    "excerpt": "A procurement-focused PPE solution for scaffold erectors, scaffold users, inspectors, and elevated platform crews. Covers fall arrest, helmet retention, anti-slip footwear, gloves, tool tethering, hi-vis clothing, OSHA Subpart L checks, and role-based PPE kits.",
     "usageScenes": [
       "construction",
       "height-work",
@@ -373,9 +373,9 @@
     "coverImage": "https://shop.laifappe.com/solutions/ppe-for-scaffolding-and-elevated-platforms-cover-1772011572968.webp",
     "isActive": true,
     "sortOrder": 11,
-    "seoTitle": "PPE for Scaffolding Work | Elevated Platform Safety Equipment",
-    "seoDescription": "Complete guide to PPE required for scaffolding and elevated platform work including fall arrest, helmets, non-slip boots, and relevant safety standards.",
-    "seoKeywords": "scaffolding PPE, elevated platform safety, scaffold fall protection, work at height PPE, OSHA 1926 Subpart L, EN 12811, scaffold safety gear, tool lanyard",
+    "seoTitle": "PPE for Scaffolding Work | Harness, Helmet, Boots and Tool Tethering",
+    "seoDescription": "Choose PPE for scaffolding and elevated platform work: harnesses, SRLs, helmets with chin straps, anti-slip boots, gloves, tool lanyards, hi-vis, OSHA Subpart L checks, and role-based bulk kits.",
+    "seoKeywords": "scaffolding PPE, scaffold PPE kit, elevated platform safety equipment, scaffold fall protection, scaffold helmet chin strap, scaffold safety harness, anti slip scaffold boots, tool lanyard scaffolding, OSHA 1926 Subpart L",
     "sections": [
       {
         "key": "hero-intro",
@@ -383,16 +383,16 @@
         "title": "What PPE is required for scaffolding and elevated platform work?",
         "enabled": true,
         "data": {
-          "intro": "Scaffolding work is consistently among the top causes of construction fatalities. Workers erecting, dismantling, or using scaffolds face falls, falling objects from upper levels, unstable planking, and weather-related hazards. Proper PPE is essential at every stage:",
+          "intro": "Scaffolding and elevated platform work combines height exposure, climbing, tool handling, changing guardrail conditions, dropped-object risk, weather, and congested access. A basic hard-hat-and-vest package is not enough for scaffold crews. The PPE system should match the worker's role, the scaffold status, and the surrounding site hazards:",
           "bullets": [
-            "Full body harness with positioning lanyard",
+            "Full body harness with suitable lanyard, SRL, or positioning system",
             "Safety helmet with chin strap",
             "Anti-slip safety boots with ankle support",
             "Tool lanyards to prevent dropped objects",
-            "Heavy-duty work gloves for tube and coupler handling",
-            "High visibility clothing on active sites",
+            "Cut, grip, or impact gloves for tube, plank, and coupler handling",
+            "High-visibility clothing where vehicles, cranes, or mixed crews operate nearby",
             "Eye protection from wind-blown debris",
-            "Knee pads for platform-level work"
+            "Weather-appropriate outerwear that does not cover harnesses or reflective material"
           ]
         }
       },
@@ -403,7 +403,9 @@
         "enabled": true,
         "data": {
           "paragraphs": [
-            "This guide covers specific hazards at different scaffolding stages, recommends PPE by task role, and references the safety standards scaffold contractors should follow for compliance."
+            "Use this page as the scaffolding-specific branch of the complete construction PPE system. For the full site-wide structure, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For the fall-arrest system behind scaffold work, use [fall protection PPE for construction sites](/solutions/fall-protection-construction).",
+            "This page focuses on what procurement teams and site supervisors need to specify for scaffold erectors, scaffold users, inspectors, and ground support workers: PPE categories, role-based issue kits, compatibility checks, standards, and replacement controls.",
+            "For related category decisions, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types), [construction safety footwear guide](/blog/construction-safety-footwear-guide), [high-visibility clothing guide](/blog/high-visibility-clothing-construction), and [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
           ]
         }
       },
@@ -413,26 +415,36 @@
         "title": "Scaffolding Hazards and Required PPE",
         "enabled": true,
         "data": {
+          "headers": [
+            "Hazard",
+            "Potential Injury",
+            "Required PPE"
+          ],
           "rows": [
             [
-              "Falls from scaffold platforms",
-              "Fatal or serious injuries",
-              "Full body harness with fall arrest lanyard"
+              "Incomplete guardrails during erection, alteration, or dismantling",
+              "Falls to lower levels",
+              "Full body harness, suitable connector, anchor plan, and competent-person control"
+            ],
+            [
+              "Working on completed platforms more than 10 ft above lower levels",
+              "Falls from unprotected sides or gaps",
+              "Guardrail system or personal fall arrest system according to scaffold condition"
             ],
             [
               "Dropped tools from upper levels",
               "Head trauma on workers below",
-              "Safety helmet, tool lanyards, toe boards"
+              "Safety helmets, tool lanyards, toe boards, exclusion zones, and debris controls"
             ],
             [
               "Unstable or wet planking",
               "Slips, trips, and falls",
-              "Anti-slip safety boots with defined tread"
+              "Anti-slip safety boots with defined tread and ankle support"
             ],
             [
               "Handling scaffold tubes and couplers",
               "Cuts, pinch injuries, crushed fingers",
-              "Heavy-duty work gloves with padding"
+              "Cut-resistant or impact gloves with strong grip and dexterity"
             ],
             [
               "Wind-blown dust and debris",
@@ -442,23 +454,23 @@
             [
               "Working near traffic or machinery",
               "Struck-by incidents",
-              "Hi-vis vest or jacket"
+              "ANSI/ISEA 107 or EN ISO 20471 hi-vis garment matched to site exposure"
             ],
             [
               "Cold or wet weather at height",
               "Hypothermia, reduced grip and dexterity",
-              "Thermal gloves, weather-resistant workwear"
+              "Thermal gloves, weather-resistant workwear, and outer layers that do not hide PPE"
             ],
             [
               "Overhead work from higher scaffold levels",
               "Objects striking workers below",
               "Safety helmet for all personnel at base level"
+            ],
+            [
+              "Nearby power lines or temporary electrical systems",
+              "Electric shock, burns, or arc exposure",
+              "Electrical hazard review, Class E head protection where needed, and task-specific electrical PPE"
             ]
-          ],
-          "headers": [
-            "Hazard",
-            "Potential Injury",
-            "Required PPE"
           ]
         }
       },
@@ -470,48 +482,48 @@
         "data": {
           "groups": [
             {
-              "items": [
-                "Full body harness with positioning lanyard",
-                "Helmet with chin strap (4-point retention)",
-                "Heavy-duty gloves for tube handling",
-                "Anti-slip boots with ankle support",
-                "Tool lanyards for spanners, levels, and pins"
-              ],
               "title": "Scaffold Erectors and Dismantlers",
-              "description": "Erectors work on incomplete structures without full guardrails. Fall arrest, secure headwear, and reliable grip are critical during assembly and teardown. Double lanyards allow 100% tie-off during climbing."
+              "description": "Erectors and dismantlers work around changing guardrail conditions, moving components, climbing access, and exposed edges. Fall arrest, secure headwear, reliable grip, and tool control are critical during assembly, alteration, and teardown.",
+              "items": [
+                "Full body harness with positioning lanyard or SRL",
+                "Helmet with chin strap retention",
+                "Grip or cut-resistant gloves for tube handling",
+                "Anti-slip boots with ankle support",
+                "Tool lanyards for spanners, levels, pins, and small tools"
+              ]
             },
             {
+              "title": "Scaffold Users and Trade Workers",
+              "description": "Trade workers using completed scaffolds still need head, hand, eye, and foot protection. Fall protection becomes necessary wherever guardrails are missing, removed, incomplete, or not suitable for the work being performed.",
               "items": [
-                "Safety helmet (chin strap if required by site policy)",
+                "Safety helmet, with chin strap where required",
                 "Work gloves appropriate to the trade task",
                 "Anti-slip safety boots",
                 "Fall protection if guardrails are incomplete",
-                "Eye protection for overhead debris"
-              ],
-              "title": "Scaffold Users (Trade Workers)",
-              "description": "Trade workers using completed scaffolds still need head, hand, and foot protection. Fall protection is required wherever guardrails are missing, removed, or not yet installed."
+                "Eye protection for overhead debris, cutting, drilling, or wind exposure"
+              ]
             },
             {
+              "title": "Scaffold Inspectors",
+              "description": "Inspectors climb and traverse scaffolds to verify compliance. They need the same fall and head protection as erectors while maintaining visibility to site crews and preventing dropped tablets, clipboards, or tools.",
               "items": [
                 "Safety helmet with chin strap",
                 "Full body harness for inspection climbing",
                 "Anti-slip boots with good ankle support",
-                "Hi-vis vest for visibility to site crews",
+                "Hi-vis clothing for visibility to site crews",
                 "Clipboard or tablet lanyard to prevent drops"
-              ],
-              "title": "Scaffold Inspectors",
-              "description": "Inspectors climb and traverse scaffolds to verify compliance. They need the same fall and head protection as erectors while maintaining visibility to site crews."
+              ]
             },
             {
+              "title": "Ground-Level Support Workers",
+              "description": "Workers at the base of scaffolds are exposed to dropped tools, falling materials, reversing equipment, and access congestion. Head protection, hi-vis clothing, safety footwear, and respect for exclusion zones are essential.",
               "items": [
-                "Safety helmet (mandatory in drop zones)",
-                "Hi-vis vest for machinery visibility",
+                "Safety helmet mandatory in drop zones",
+                "Hi-vis garment for machinery and crane visibility",
                 "Safety boots with steel or composite toe",
                 "Eye protection if debris is possible",
                 "Awareness of overhead drop zones and exclusion areas"
-              ],
-              "title": "Ground-Level Support Workers",
-              "description": "Workers at the base of scaffolds are exposed to dropped tools and materials from above. Head protection and adherence to drop-zone exclusion areas are essential."
+              ]
             }
           ]
         }
@@ -524,33 +536,33 @@
         "data": {
           "items": [
             {
-              "text": "Helmet with chin strap to prevent loss during climbing and leaning over",
               "title": "Head Protection",
+              "text": "Helmet with chin strap to prevent loss during climbing, leaning, wind, and overhead movement. Use the [hard hat types guide](/blog/construction-hard-hat-types) for Type I vs Type II and Class G/E/C decisions.",
               "bodyAnchorKey": "head"
             },
             {
-              "text": "Full body harness with energy absorber or self-retracting lifeline (SRL)",
               "title": "Fall Arrest System",
+              "text": "Full body harness with energy absorber, SRL, positioning connector, and anchor compatibility. Use the [fall protection solution](/solutions/fall-protection-construction) for full system selection.",
               "bodyAnchorKey": "waist"
             },
             {
-              "text": "Padded grip gloves for tube handling, thermal gloves in cold weather",
               "title": "Hand Protection",
+              "text": "Padded grip gloves for tube handling, cut-resistant gloves for sharp edges, impact gloves where crush risk exists, and thermal gloves in cold weather.",
               "bodyAnchorKey": "left-hand"
             },
             {
-              "text": "Anti-slip soles, ankle support, steel or composite toe cap",
               "title": "Foot Protection",
+              "text": "Anti-slip soles, ankle support, steel or composite toe cap, and stable ladder/platform grip. Use the [construction safety footwear guide](/blog/construction-safety-footwear-guide) for toe cap, puncture, and slip-resistance choices.",
               "bodyAnchorKey": "feet"
             },
             {
-              "text": "Goggles or safety glasses for debris and wind exposure",
               "title": "Eye Protection",
+              "text": "Goggles or wrap-around safety glasses for wind-blown debris, drilling dust, overhead work, and cutting tasks.",
               "bodyAnchorKey": "eyes"
             },
             {
-              "text": "Hi-vis clothing for visibility from ground level and upper levels",
               "title": "Visibility",
+              "text": "Hi-vis clothing for visibility from ground level, crane areas, vehicle routes, and upper levels. Use the [construction high-visibility clothing guide](/blog/high-visibility-clothing-construction) for Class 2 vs Class 3 decisions.",
               "bodyAnchorKey": "chest"
             }
           ]
@@ -564,9 +576,9 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
-            "Scaffolding contractors typically issue PPE kits by role—erectors receive full fall arrest gear while trade users receive basic platform protection.",
-            "Standard scaffolding PPE kits should include head, hand, foot, and fall protection as a minimum for all personnel.",
-            "Below are examples of PPE commonly selected for scaffolding projects:"
+            "Scaffolding contractors should issue PPE kits by role. Erectors and dismantlers usually need a full height-work package, while scaffold users may need a lighter but still controlled platform-use kit.",
+            "Do not treat scaffold PPE as a single generic bundle. The kit should change by scaffold status, height exposure, guardrail condition, access method, weather, surrounding traffic, and dropped-object risk.",
+            "Below are practical PPE package examples for scaffold projects:"
           ]
         }
       },
@@ -578,22 +590,28 @@
         "data": {
           "items": [
             {
-              "text": "Full body harness with shock-absorbing lanyard"
+              "text": "Full body harness with shock-absorbing lanyard or SRL matched to the scaffold and anchor plan"
             },
             {
               "text": "Safety helmet with chin strap retention"
             },
             {
-              "text": "Heavy-duty work gloves with grip pads"
+              "text": "Heavy-duty work gloves with grip pads or cut/impact protection"
             },
             {
               "text": "Anti-slip safety boots with ankle support"
             },
             {
-              "text": "Hi-vis vest (Class 2 minimum)"
+              "text": "Hi-vis vest, shirt, or jacket matched to vehicle and crane exposure"
             },
             {
-              "text": "Tool lanyards (rated for tool weight)"
+              "text": "Tool lanyards rated for tool weight"
+            },
+            {
+              "text": "Safety glasses or goggles for wind-blown debris, cutting, drilling, and overhead dust"
+            },
+            {
+              "text": "Weather layer that preserves harness fit and does not cover reflective material"
             }
           ]
         }
@@ -601,27 +619,27 @@
       {
         "key": "example-products",
         "type": "list",
-        "title": "Example PPE Products",
+        "title": "Role-Based Scaffolding PPE Kit Examples",
         "enabled": true,
         "data": {
           "items": [
             {
-              "title": "Scaffold Erector Harness FH55 with Positioning D-Rings"
+              "title": "Erector kit: full body harness, double lanyard or SRL, helmet with chin strap, grip gloves, anti-slip boots, tool lanyards"
             },
             {
-              "title": "Height-Work Safety Helmet H310 with Chin Strap"
+              "title": "User kit: safety helmet, safety glasses, work gloves, safety boots, hi-vis garment, task-specific fall protection where guardrails are incomplete"
             },
             {
-              "title": "Scaffold Grip Gloves G22-HD"
+              "title": "Inspector kit: helmet with chin strap, harness, anti-slip boots, hi-vis garment, tablet or clipboard tether, inspection checklist"
             },
             {
-              "title": "Anti-Slip Ankle Boots S80-AS"
+              "title": "Ground support kit: hard hat, hi-vis garment, safety boots, eye protection, gloves, and clear drop-zone awareness"
             },
             {
-              "title": "Retractable Tool Lanyard TL15 (5 kg rated)"
+              "title": "Weather kit: waterproof hi-vis outerwear, thermal grip gloves, anti-fog eyewear, and footwear suitable for wet platforms"
             },
             {
-              "title": "Hi-Vis Class 2 Vest HV10"
+              "title": "Hot-work scaffold kit: FR clothing, welding or cutting eye/face protection, heat-resistant gloves, and task-specific respiratory review"
             }
           ]
         }
@@ -634,28 +652,36 @@
         "data": {
           "items": [
             {
-              "text": "Scaffolding safety requirements in construction",
-              "title": "OSHA 1926 Subpart L"
+              "title": "OSHA 1926 Subpart L",
+              "text": "Scaffolding safety requirements in construction"
             },
             {
-              "text": "Fall protection requirements in construction",
-              "title": "OSHA 1926 Subpart M"
+              "title": "OSHA 29 CFR 1926.451",
+              "text": "General scaffold requirements: capacity, access, inspection, use, fall protection, and falling-object protection"
             },
             {
-              "text": "Temporary works equipment — scaffolds performance and design",
-              "title": "EN 12811"
+              "title": "OSHA 1926 Subpart M / 1926.502",
+              "text": "Construction fall protection criteria for personal fall arrest systems"
             },
             {
-              "text": "Full body harness specification",
-              "title": "EN 361 / ANSI Z359.11"
+              "title": "EN 12811",
+              "text": "Temporary works equipment - scaffolds performance and design"
             },
             {
-              "text": "Industrial safety helmets",
-              "title": "EN 397 / ANSI Z89.1"
+              "title": "EN 361 / ANSI Z359.11",
+              "text": "Full body harness specification"
             },
             {
-              "text": "Protective footwear",
-              "title": "EN ISO 20345"
+              "title": "EN 397 / ANSI Z89.1",
+              "text": "Industrial safety helmets and construction head protection"
+            },
+            {
+              "title": "EN ISO 20345 / ASTM F2413",
+              "text": "Protective footwear for construction access and platform work"
+            },
+            {
+              "title": "ANSI/ISEA 107 / EN ISO 20471",
+              "text": "High-visibility clothing for construction traffic and equipment exposure"
             }
           ]
         }
@@ -666,7 +692,75 @@
         "title": null,
         "enabled": true,
         "data": {
-          "text": "Fall arrest equipment must be inspected by a competent person before each use and retired after a fall arrest event. Tool lanyards must be rated for the weight of the tools they secure. Maintain inspection logs for compliance audits."
+          "text": "Scaffolds and scaffold components must be inspected for visible defects by a competent person before each work shift and after events that could affect structural integrity. Fall arrest equipment should be inspected before use and removed after a fall arrest event. Tool lanyards must be rated for the weight of the tools they secure. Keep inspection logs, issue records, and replacement records together so supervisors can prove the PPE system is being controlled."
+        }
+      },
+      {
+        "key": "scaffold-procurement-checklist",
+        "type": "list",
+        "title": "Scaffold PPE Procurement Checklist",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Define roles before buying",
+              "text": "Separate erectors, users, inspectors, ground support, road-adjacent crews, hot-work crews, and visitors."
+            },
+            {
+              "title": "Confirm the fall-arrest system",
+              "text": "Specify harness sizes, connector type, SRL or lanyard choice, anchor compatibility, rescue planning, and inspection rules."
+            },
+            {
+              "title": "Control helmet retention",
+              "text": "Use chin straps where climbing, leaning, wind, or dropped-object exposure can dislodge ordinary head protection."
+            },
+            {
+              "title": "Check footwear for access routes",
+              "text": "Boots should support climbing, ladder access, wet planking, mud, aggregate, and repeated movement on narrow work platforms."
+            },
+            {
+              "title": "Include dropped-object prevention",
+              "text": "Add tool lanyards, tool belts, rated tethers, toe-board awareness, and exclusion-zone controls for workers below."
+            },
+            {
+              "title": "Package for issue control",
+              "text": "Cartons should be labeled by crew, role, size, site, and replacement stock so supervisors can issue the correct kit quickly."
+            }
+          ]
+        }
+      },
+      {
+        "key": "related-guides",
+        "type": "list",
+        "title": "Related Construction PPE Guides",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "[Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)",
+              "text": "Use this as the site-wide PPE pillar for baseline categories, compliance structure, and procurement logic."
+            },
+            {
+              "title": "[Fall protection PPE for construction sites](/solutions/fall-protection-construction)",
+              "text": "Use this for harnesses, SRLs, lanyards, anchors, rescue planning, and inspection requirements."
+            },
+            {
+              "title": "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
+              "text": "Use this for Type I vs Type II, Class G/E/C, chin straps, shell style, and accessory compatibility."
+            },
+            {
+              "title": "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
+              "text": "Use this for toe cap, puncture resistance, slip resistance, ankle support, and fit decisions."
+            },
+            {
+              "title": "[High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)",
+              "text": "Use this for Class 2 vs Class 3, EN ISO 20471, reflective layout, outerwear, and replacement rules."
+            },
+            {
+              "title": "[How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)",
+              "text": "Use this to turn scaffold PPE requirements into an RFQ, supplier comparison, size plan, and reorder system."
+            }
+          ]
         }
       },
       {
@@ -678,23 +772,27 @@
           "items": [
             {
               "q": "When is a fall arrest harness required on scaffolding?",
-              "a": "A harness is required when guardrails are not yet installed, when working on incomplete scaffolds during erection or dismantling, or when site rules mandate 100% tie-off policies. OSHA requires fall protection at 10 feet on scaffolds."
+              "a": "OSHA's scaffold rules generally require fall protection for employees on scaffolds more than 10 feet above a lower level. On completed scaffolds, guardrails may provide the fall protection. During erection, dismantling, alteration, missing guardrail conditions, or site 100% tie-off policies, a personal fall arrest system may be required."
             },
             {
               "q": "Why do scaffold helmets need chin straps?",
-              "a": "Workers climb, lean, and look upward frequently on scaffolds. A chin strap prevents the helmet from falling off—protecting both the wearer and people working below from dropped-object hazards."
+              "a": "Workers climb, lean, look upward, and work in wind on scaffolds. A chin strap helps prevent the helmet from falling off and protects both the wearer and people working below from dropped-object hazards."
             },
             {
               "q": "What footwear is best for scaffold work?",
-              "a": "Boots with anti-slip outsoles (SRC rated), steel or composite toe caps, and ankle support provide the best combination of grip and protection on scaffold platforms, ladders, and wet planking."
+              "a": "Boots with anti-slip outsoles, toe protection, stable ladder grip, and ankle support provide the best combination of grip and protection on scaffold platforms, ladders, and wet planking."
             },
             {
               "q": "Are tool lanyards required on scaffolding?",
-              "a": "Many sites now require tool lanyards or tethering systems to prevent dropped objects—a leading cause of injuries on scaffold projects. Tools should be tethered with lanyards rated for their weight."
+              "a": "OSHA requires protection from falling objects on scaffolds, and many sites use tool lanyards or tethering systems as part of that control. Tools should be tethered with lanyards rated for their weight and used with toe boards, debris controls, or exclusion zones where needed."
+            },
+            {
+              "q": "What PPE should be included in a scaffold erector kit?",
+              "a": "A scaffold erector kit usually includes a full body harness, suitable lanyard or SRL, helmet with chin strap, anti-slip safety boots, grip or cut-resistant gloves, eye protection, hi-vis clothing, and tool lanyards. The final kit should match the scaffold type, anchor plan, weather, and site traffic exposure."
             },
             {
               "q": "Do you supply complete scaffolding PPE kits?",
-              "a": "Yes. We provide role-based kits for erectors, users, and inspectors including fall harnesses, helmets with chin straps, anti-slip boots, tool lanyards, and gloves with bulk pricing."
+              "a": "Yes. We provide role-based kits for erectors, scaffold users, inspectors, and ground support teams including harnesses, helmets with chin straps, anti-slip boots, tool lanyards, gloves, hi-vis garments, and bulk purchasing documentation."
             }
           ]
         }
@@ -705,7 +803,7 @@
         "title": "Need PPE for Scaffolding Projects?",
         "enabled": true,
         "data": {
-          "text": "We supply complete scaffolding PPE kits including fall harnesses, helmets with chin straps, anti-slip boots, tool lanyards, and heavy-duty gloves with bulk pricing and certification documents.",
+          "text": "We supply role-based scaffolding PPE kits including fall harnesses, helmets with chin straps, anti-slip boots, tool lanyards, gloves, hi-vis garments, eye protection, and replacement stock with bulk pricing and certification documents.",
           "title": "Need PPE for Scaffolding Projects?",
           "primaryHref": "/quote",
           "primaryLabel": "Request a Quote",
