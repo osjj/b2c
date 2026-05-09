@@ -14,10 +14,10 @@ export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: {
-    absolute: buildPageTitle("Professional PPE Manufacturer for Extreme Environments"),
+    absolute: buildPageTitle("Professional PPE Manufacturer & OEM Supplier"),
   },
   description:
-    "Leading manufacturer of personal protective equipment. Safety gloves, shoes, workwear, and more. CE, ANSI, ISO9001 certified. OEM/ODM services available.",
+    "Laifappe manufactures professional PPE for bulk buyers, including safety gloves, footwear, workwear, helmets, and respiratory protection with OEM/ODM service.",
 }
 
 export default function HomePage() {

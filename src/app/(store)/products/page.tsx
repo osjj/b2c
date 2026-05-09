@@ -31,8 +31,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const params = await searchParams
   const { search, page } = params
 
-  let title = 'All Products'
-  let description = 'Browse our complete selection of professional protective equipment. Safety gloves, shoes, workwear and more.'
+  let title = 'Wholesale PPE Products & Safety Equipment'
+  let description = 'Browse PPE products from Laifappe for bulk sourcing: safety gloves, steel toe footwear, workwear, helmets, eye protection, and respiratory equipment.'
 
   if (search) {
     title = `Search results for "${search}"`
