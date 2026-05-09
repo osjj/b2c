@@ -7,18 +7,19 @@ export function OrganizationJsonLd({ baseUrl }: OrganizationJsonLdProps) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Laifappe',
+    alternateName: 'YUELAIFA PPE',
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     description:
-      'Leading manufacturer of personal protective equipment. Safety gloves, shoes, workwear, and more.',
+      'PPE manufacturer and supplier for safety gloves, safety footwear, workwear, head protection, eye protection, respiratory protection, and fall protection equipment.',
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'US',
+      addressCountry: 'CN',
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+1-555-123-4567',
-      contactType: 'customer service',
+      email: 'sales@laifappe.com',
+      contactType: 'sales',
       availableLanguage: ['English'],
     },
     sameAs: [],

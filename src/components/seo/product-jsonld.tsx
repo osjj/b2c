@@ -14,9 +14,16 @@ interface ProductForJsonLd {
 interface ProductJsonLdProps {
   product: ProductForJsonLd;
   baseUrl: string;
+  priceValidUntil?: string;
 }
 
-export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
+const DEFAULT_PRICE_VALID_UNTIL = "2027-12-31";
+
+export function ProductJsonLd({
+  product,
+  baseUrl,
+  priceValidUntil = DEFAULT_PRICE_VALID_UNTIL,
+}: ProductJsonLdProps) {
   const jsonLd: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -36,9 +43,7 @@ export function ProductJsonLd({ product, baseUrl }: ProductJsonLdProps) {
       url: `${baseUrl}/products/${product.slug}`,
       priceCurrency: "USD",
       price: product.price,
-      priceValidUntil: new Date(
-        Date.now() + 30 * 24 * 60 * 60 * 1000
-      ).toISOString().split("T")[0],
+      priceValidUntil,
       seller: {
         "@type": "Organization",
         name: "Laifappe",

@@ -8,6 +8,7 @@ import { SolutionHero, SolutionSections } from '@/components/store/solution-deta
 import { TableOfContents } from '@/components/store/solution-detail/table-of-contents'
 import { ToolRecommendationsSection } from '@/components/store/tool-recommendations-section'
 import type { SolutionSectionItem } from '@/types/solution'
+import type { SectionFaqData } from '@/types/solution'
 import { prisma } from '@/lib/prisma'
 import {
   RECOMMENDED_PPE_BLOCK_KEY,
@@ -16,6 +17,7 @@ import {
 import { getToolRecommendationsForSolution } from '@/lib/tool-recommendations'
 import type { ProductImage, Category } from '@prisma/client'
 import { getSiteUrl } from '@/lib/site-url'
+import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -197,9 +199,44 @@ export default async function SolutionDetailPage({ params }: Props) {
     excerpt: solution.excerpt,
     usageScenes: solution.usageScenes,
   })
+  const baseUrl = getSiteUrl()
+  const solutionUrl = `${baseUrl}/solutions/${solution.slug}`
+  const description =
+    solution.seoDescription ||
+    solution.excerpt ||
+    `PPE solution guide for ${solution.title}.`
+  const breadcrumbItems = [
+    { name: 'Home', url: baseUrl },
+    { name: 'Solutions', url: `${baseUrl}/solutions` },
+    { name: solution.title, url: solutionUrl },
+  ]
+  const faqItems = sections.flatMap((section) => {
+    if (section.type !== 'faq') {
+      return []
+    }
+
+    const data = section.data as SectionFaqData
+    return Array.isArray(data.items)
+      ? data.items
+          .filter((item) => item.q && item.a)
+          .map((item) => ({ question: item.q, answer: item.a }))
+      : []
+  })
 
   return (
     <div className="bg-ppe-bg-page min-h-screen pb-16">
+      <ArticleJsonLd
+        type="TechArticle"
+        headline={solution.title}
+        description={description}
+        url={solutionUrl}
+        image={solution.coverImage}
+        datePublished={solution.createdAt}
+        dateModified={solution.updatedAt}
+        publisherLogoUrl={`${baseUrl}/logo.png`}
+      />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+      <FaqJsonLd items={faqItems} />
       <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
         <ol className="flex items-center gap-1.5 text-muted-foreground">
           <li>

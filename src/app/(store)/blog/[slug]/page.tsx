@@ -11,6 +11,7 @@ import { extractTocFromContent, stripHtml } from '@/lib/blog-toc'
 import { getToolRecommendationsForBlog } from '@/lib/tool-recommendations'
 import { formatDate } from '@/lib/utils'
 import { getSiteUrl } from '@/lib/site-url'
+import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -100,9 +101,29 @@ export default async function BlogDetailPage({ params }: Props) {
     title: post.title,
     excerpt: post.excerpt,
   })
+  const baseUrl = getSiteUrl()
+  const postUrl = `${baseUrl}/blog/${post.slug}`
+  const description =
+    post.seoDescription || post.excerpt || `Read ${post.title} on the Laifappe blog.`
+  const breadcrumbItems = [
+    { name: 'Home', url: baseUrl },
+    { name: 'Blog', url: `${baseUrl}/blog` },
+    { name: post.title, url: postUrl },
+  ]
 
   return (
     <div className="bg-ppe-bg-page min-h-screen pb-24">
+      <ArticleJsonLd
+        type="BlogPosting"
+        headline={post.title}
+        description={description}
+        url={postUrl}
+        image={post.coverImage}
+        datePublished={post.publishedAt ?? post.createdAt}
+        dateModified={post.updatedAt}
+        publisherLogoUrl={`${baseUrl}/logo.png`}
+      />
+      <BreadcrumbJsonLd items={breadcrumbItems} />
       <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
         <ol className="flex items-center gap-1.5 text-muted-foreground">
           <li>

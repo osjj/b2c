@@ -10,6 +10,14 @@ const AI_QUOTE_TOOL_LASTMOD = new Date('2026-04-20')
 const PPE_CALCULATOR_TOOL_LASTMOD = new Date('2026-04-20')
 const SIZE_GUIDE_TOOL_LASTMOD = new Date('2026-04-25')
 const COMPLIANCE_TOOL_LASTMOD = new Date('2026-04-25')
+const HOME_LASTMOD = new Date('2026-05-09')
+const PRODUCTS_HUB_LASTMOD = new Date('2026-04-23')
+const CATEGORIES_HUB_LASTMOD = new Date('2026-04-23')
+const ABOUT_LASTMOD = new Date('2026-04-20')
+const CASES_LASTMOD = new Date('2026-04-20')
+const NEWS_LASTMOD = new Date('2026-04-20')
+const SOLUTIONS_HUB_LASTMOD = new Date('2026-05-09')
+const BLOG_HUB_LASTMOD = new Date('2026-05-09')
 const EXCLUDED_SOLUTION_SLUGS = new Set(['ppe-safety-equipment-for-construction-sites'])
 
 type SitemapProduct = {
@@ -40,49 +48,49 @@ function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: HOME_LASTMOD,
       changeFrequency: 'daily',
       priority: 1,
     },
     {
       url: `${baseUrl}/products`,
-      lastModified: new Date(),
+      lastModified: PRODUCTS_HUB_LASTMOD,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/categories`,
-      lastModified: new Date(),
+      lastModified: CATEGORIES_HUB_LASTMOD,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: ABOUT_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${baseUrl}/cases`,
-      lastModified: new Date(),
+      lastModified: CASES_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
       url: `${baseUrl}/news`,
-      lastModified: new Date(),
+      lastModified: NEWS_LASTMOD,
       changeFrequency: 'weekly',
       priority: 0.6,
     },
     {
       url: `${baseUrl}/solutions`,
-      lastModified: new Date(),
+      lastModified: SOLUTIONS_HUB_LASTMOD,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: BLOG_HUB_LASTMOD,
       changeFrequency: 'weekly',
       priority: 0.7,
     },

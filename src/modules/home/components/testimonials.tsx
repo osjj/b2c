@@ -1,5 +1,4 @@
-"use client"
-
+import Image from "next/image"
 import { Star, Quote, MapPin, Building2 } from "lucide-react"
 
 const testimonials = [
@@ -101,43 +100,41 @@ const testimonials = [
   },
 ]
 
-function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0] }) {
+function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[number] }) {
   return (
-    <div className="flex-shrink-0 w-[400px] bg-card rounded-xl p-6 border shadow-sm mx-3">
+    <div className="bg-card rounded-xl p-6 border shadow-sm">
       <Quote className="h-8 w-8 text-primary/20 mb-4" />
 
-      {/* Rating */}
-      <div className="flex gap-1 mb-3">
-        {[...Array(testimonial.rating)].map((_, i) => (
-          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+      <div className="flex gap-1 mb-3" aria-label={`${testimonial.rating} star rating`}>
+        {Array.from({ length: testimonial.rating }).map((_, index) => (
+          <Star key={index} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
         ))}
       </div>
 
-      {/* Content */}
       <p className="text-sm text-muted-foreground mb-5 leading-relaxed line-clamp-4">
-        "{testimonial.content}"
+        &quot;{testimonial.content}&quot;
       </p>
 
-      {/* Meta Info */}
-      <div className="flex items-center gap-2 mb-4 text-xs text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-2 mb-4 text-xs text-muted-foreground">
         <div className="flex items-center gap-1">
           <MapPin className="h-3 w-3" />
           <span>{testimonial.country}</span>
         </div>
-        <span>•</span>
+        <span>/</span>
         <div className="flex items-center gap-1">
           <Building2 className="h-3 w-3" />
           <span>{testimonial.industry}</span>
         </div>
-        <span>•</span>
+        <span>/</span>
         <span className="text-primary font-medium">{testimonial.orderVolume}</span>
       </div>
 
-      {/* Author */}
       <div className="flex items-center gap-3 pt-4 border-t">
-        <img
+        <Image
           src={testimonial.image}
           alt={testimonial.name}
+          width={48}
+          height={48}
           className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/10"
         />
         <div>
@@ -151,11 +148,8 @@ function TestimonialCard({ testimonial }: { testimonial: (typeof testimonials)[0
 }
 
 export default function Testimonials() {
-  // 复制一份用于无缝循环
-  const duplicatedTestimonials = [...testimonials, ...testimonials]
-
   return (
-    <section className="py-20 overflow-hidden">
+    <section className="py-20">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-sm tracking-wide uppercase text-primary mb-2 font-medium">
@@ -166,27 +160,17 @@ export default function Testimonials() {
             Join 500+ companies worldwide who trust Laifappe for their safety equipment needs
           </p>
         </div>
-      </div>
 
-      {/* 第一行 - 向左滚动 */}
-      <div className="relative mb-6">
-        <div className="flex animate-scroll-left">
-          {duplicatedTestimonials.map((testimonial, index) => (
-            <TestimonialCard key={`row1-${index}`} testimonial={testimonial} />
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {testimonials.map((testimonial) => (
+            <TestimonialCard
+              key={`${testimonial.company}-${testimonial.name}`}
+              testimonial={testimonial}
+            />
           ))}
         </div>
       </div>
 
-      {/* 第二行 - 向右滚动 */}
-      <div className="relative">
-        <div className="flex animate-scroll-right">
-          {duplicatedTestimonials.reverse().map((testimonial, index) => (
-            <TestimonialCard key={`row2-${index}`} testimonial={testimonial} />
-          ))}
-        </div>
-      </div>
-
-      {/* 统计数据 */}
       <div className="container mx-auto px-6 lg:px-8 mt-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
@@ -207,40 +191,6 @@ export default function Testimonials() {
           </div>
         </div>
       </div>
-
-      {/* CSS 动画样式 */}
-      <style jsx>{`
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes scroll-right {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-
-        .animate-scroll-left {
-          animation: scroll-left 40s linear infinite;
-        }
-
-        .animate-scroll-right {
-          animation: scroll-right 40s linear infinite;
-        }
-
-        .animate-scroll-left:hover,
-        .animate-scroll-right:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   )
 }

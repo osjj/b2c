@@ -22,7 +22,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Googlebot",
         allow: "/",
-        disallow: ["/admin/", "/api/", "/checkout/", "/account/"],
+        disallow: [
+          "/admin/",
+          "/api/",
+          "/checkout/",
+          "/account/",
+          "/cart/",
+          "/orders/",
+        ],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
