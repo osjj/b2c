@@ -9,6 +9,7 @@
  *   - construction-respiratory-protection
  *   - construction-hard-hat-types
  *   - high-visibility-clothing-construction
+ *   - construction-safety-helmet-vs-hard-hat
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -636,6 +637,72 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
         caption:
           'Bulk hi-vis procurement should specify class, standard, size range, garment type, climate needs, documentation, and replacement stock.',
+      },
+    },
+  },
+  {
+    slug: 'construction-safety-helmet-vs-hard-hat',
+    markdownPath: join(process.cwd(), 'construction-safety-helmet-vs-hard-hat.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.construction-safety-helmet-vs-hard-hat.generated.json',
+    ),
+    title: 'Safety Helmet vs Hard Hat for Construction: When Should You Upgrade?',
+    excerpt:
+      'A practical comparison of construction safety helmets and traditional hard hats: when to upgrade, Type I vs Type II, chin straps, side-impact protection, electrical classes, accessory compatibility, and bulk purchasing.',
+    seoTitle:
+      'Safety Helmet vs Hard Hat for Construction | When to Upgrade',
+    seoDescription:
+      'Compare construction safety helmets and traditional hard hats. Learn when Type II helmets, chin straps, side-impact protection, Class E/G/C ratings, and helmet accessories make sense for scaffolding, roadwork, demolition, electrical, and height work.',
+    seoKeywords:
+      'safety helmet vs hard hat construction, construction safety helmet, hard hat vs safety helmet, Type II safety helmet construction, chin strap hard hat construction, construction helmet vs hard hat, safety helmet for scaffolding, hard hat upgrade',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: Safety Helmet Or Hard Hat?': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'The right construction head protection depends on impact direction, retention needs, electrical exposure, and task movement.',
+      },
+      'What OSHA Actually Requires': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'OSHA construction head protection decisions should start with the actual head injury hazard and recognized consensus standards.',
+      },
+      'Safety Helmet vs Hard Hat: Practical Differences': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Hard hats and safety helmets differ by shell style, retention, side-impact options, and accessory integration.',
+      },
+      'Type I vs Type II Matters More Than The Name': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Type I and Type II impact protection matter more than whether a product is marketed as a hard hat or safety helmet.',
+      },
+      'Chin Straps: When Retention Becomes A Safety Feature': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Chin straps help head protection stay in place during climbing, height work, wind, leaning, and fall exposure.',
+      },
+      'Electrical Class Still Matters': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Safety helmet upgrades still have to account for Class G, Class E, or Class C electrical protection.',
+      },
+      'Which Construction Tasks Should Consider Safety Helmets?': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Scaffolding, steel work, bridge work, demolition, roofing, and congested structures often make retention and side impact more important.',
+      },
+      'Compatibility With The Rest Of The PPE System': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Head protection must work with eyewear, hearing protection, respirators, face shields, lamps, fall protection, and weather layers.',
+      },
+      'Buying Specification: Better Than "Safety Helmet"': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A strong helmet RFQ specifies type, class, retention, accessories, fit range, replacement parts, labels, and documentation.',
       },
     },
   },

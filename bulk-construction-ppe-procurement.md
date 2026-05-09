@@ -91,7 +91,7 @@ Do not use the baseline package as a shortcut for high-risk tasks. It should be 
 
 For example, a general laborer moving materials may need baseline PPE plus task-specific gloves. A roofer may need the same baseline layer plus a fall protection system and more suitable footwear. A worker cutting concrete may need the baseline layer plus respiratory protection, face protection, and hearing protection. An electrician may need a different head protection class, insulating gloves, and arc-related PPE.
 
-For head protection specifications in particular, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) before finalizing Type I vs Type II, Class G/E/C, venting, brim style, chin straps, or accessory requirements.
+For head protection specifications in particular, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) before finalizing Type I vs Type II, Class G/E/C, venting, brim style, chin straps, or accessory requirements. If the buying decision is whether to keep traditional hard hats or upgrade to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
 
 ---
 
@@ -474,6 +474,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)

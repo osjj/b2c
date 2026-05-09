@@ -49,7 +49,7 @@ The first layer is the baseline PPE that applies to most workers on most active 
 
 **Common site mistake:** Treating any helmet-shaped object as compliant head protection, even when it is damaged, badly fitted, or mismatched to the task.
 
-For a deeper selection guide covering Type I vs Type II, Class G/E/C, vented and non-vented shells, chin straps, and accessories, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types).
+For a deeper selection guide covering Type I vs Type II, Class G/E/C, vented and non-vented shells, chin straps, and accessories, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types). If the site is deciding whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
 
 ### 2. Eye and face protection
 
@@ -397,6 +397,7 @@ If you need the full role-based program behind this checklist, start with our [C
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [OSHA PPE requirements for construction: compliance guide](/blog/osha-ppe-requirements-construction)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)

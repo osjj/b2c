@@ -11,7 +11,7 @@ Hard hats look simple until a buyer has to choose the right model for a real con
 
 This guide explains the main types of hard hats for construction workers and how to choose them by task, impact risk, electrical exposure, fit, compatibility, and bulk purchasing needs. It is written for safety managers, site supervisors, contractors, and PPE buyers who need a practical selection framework rather than a product catalog.
 
-Use this article for head protection selection. For the full construction PPE system, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For compliance across all categories, use the [OSHA PPE requirements for construction guide](/blog/osha-ppe-requirements-construction). For daily field checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflows, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement).
+Use this article for head protection selection. If the buyer's question is whether to keep traditional hard hats or upgrade to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat). For the full construction PPE system, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For compliance across all categories, use the [OSHA PPE requirements for construction guide](/blog/osha-ppe-requirements-construction). For daily field checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflows, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement).
 
 ---
 
@@ -366,6 +366,7 @@ Only use liners, caps, or cold-weather accessories that are compatible with the 
 ## Related Guides On Laifappe.com
 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
+- [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)

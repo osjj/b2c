@@ -134,7 +134,7 @@ For the product-selection side of this topic, including N95, P100, half-face res
 
 These categories create frequent citations because the expectations are visible and immediate during inspection. Broken eyewear, missing side protection, worn hard hats, or obvious non-use are easy for OSHA to document.
 
-For the product-selection side of head protection, including ANSI/ISEA Z89.1 Type I vs Type II, Class G/E/C, electrical exposure, venting, brim style, accessories, and replacement planning, use the [construction hard hat types guide](/blog/construction-hard-hat-types).
+For the product-selection side of head protection, including ANSI/ISEA Z89.1 Type I vs Type II, Class G/E/C, electrical exposure, venting, brim style, accessories, and replacement planning, use the [construction hard hat types guide](/blog/construction-hard-hat-types). If the compliance discussion has turned into a hard hat versus safety helmet upgrade decision, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
 
 ### Hearing protection
 
@@ -294,6 +294,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 - [Construction PPE checklist: what every worker needs on site](/blog/construction-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
+- [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
