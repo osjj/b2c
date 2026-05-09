@@ -1301,9 +1301,10 @@
   {
     "slug": "ppe-for-electrical-installation-on-construction-sites",
     "title": "PPE for Electrical Installation on Construction Sites",
-    "excerpt": "Electrical installation on construction sites combines shock hazards, arc flash risks, and standard construction dangers like falls and falling objects. This guide covers the specialized PPE electricians and cable installers need to work safely on active job sites.",
+    "excerpt": "Electrical installation on construction sites combines shock, arc flash, temporary power, work-at-height, falling-object, dust, and tool hazards. This procurement guide helps contractors specify electrical PPE without losing the rest of the construction PPE system.",
     "usageScenes": [
       "construction",
+      "electrical-work",
       "height-work",
       "impact-resistant",
       "eye-protection"
@@ -1312,8 +1313,8 @@
     "isActive": true,
     "sortOrder": 13,
     "seoTitle": "PPE for Electrical Installation on Construction Sites | Electrician Safety Gear",
-    "seoDescription": "Guide to PPE required for electrical installation on construction sites including insulated gloves, arc-rated clothing, dielectric boots, and safety standards.",
-    "seoKeywords": "electrical PPE, construction electrician safety, arc flash PPE, insulated gloves, dielectric boots, NFPA 70E, OSHA 1926 Subpart K, voltage rated gloves, arc rated clothing",
+    "seoDescription": "Construction electrical PPE guide for contractors: insulated gloves, arc-rated clothing, Class E helmets, dielectric footwear, fall protection, fit, and bulk sourcing.",
+    "seoKeywords": "construction electrical PPE, electrician safety gear, arc flash PPE, insulated gloves, Class E helmet, dielectric boots, OSHA 1926 Subpart K, OSHA 1926.97, NFPA 70E, electrical contractor PPE",
     "sections": [
       {
         "key": "hero-intro",
@@ -1321,16 +1322,16 @@
         "title": "What PPE do construction electricians need?",
         "enabled": true,
         "data": {
-          "intro": "Electricians working on construction sites face a dual set of hazards—electrical dangers such as shock and arc flash combined with general construction risks like falls and falling objects. Their PPE must address both categories simultaneously:",
+          "intro": "Electricians and electrical installers on construction sites face a dual hazard profile: shock and arc flash risks from temporary or permanent electrical systems, plus ordinary construction risks such as falls, falling objects, sharp materials, dust, noise, and vehicle movement. Their PPE package has to cover both sides at the same time:",
           "bullets": [
-            "Voltage-rated insulated gloves with leather protectors",
-            "Arc-rated (AR) clothing or flash suit",
-            "Dielectric safety boots (EH rated)",
-            "Non-conductive safety helmet (Class E)",
-            "Arc-rated face shield or balaclava",
-            "Safety glasses with side shields",
-            "Voltage detector and lockout/tagout devices",
-            "Full body harness for elevated panel and cable tray work"
+            "Voltage-rated rubber insulating gloves with protectors where energized exposure exists",
+            "Arc-rated clothing and face protection matched to the assessed arc-flash exposure",
+            "Class E hard hat or safety helmet where electrical contact is possible",
+            "Safety glasses, goggles, or arc-rated face protection by task",
+            "EH-rated or otherwise suitable safety footwear matched to the work environment",
+            "Cut-resistant electrician gloves for de-energized pulling, conduit, and cable handling",
+            "Fall protection for elevated panel, tray, conduit, or lighting work",
+            "Inspection, test-date, storage, and issue records for high-risk electrical PPE"
           ]
         }
       },
@@ -1341,7 +1342,8 @@
         "enabled": true,
         "data": {
           "paragraphs": [
-            "This guide explains electrical and construction hazards faced by site electricians, recommends PPE based on voltage levels and task types, and references NFPA 70E and OSHA standards for electrical safety on construction sites."
+            "This page is the electrical-installation branch of the [complete construction PPE solution](/solutions/construction-site-ppe-solution). It is written for contractors, safety managers, distributors, and procurement teams who need to specify electrical PPE together with ordinary construction PPE.",
+            "Use it with the [OSHA PPE requirements for construction guide](/blog/osha-ppe-requirements-construction), the [construction PPE checklist](/blog/construction-ppe-checklist), the [hard hat types guide](/blog/construction-hard-hat-types), and the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
           ]
         }
       },
@@ -1351,105 +1353,105 @@
         "title": "Electrical Installation Hazards and Required PPE",
         "enabled": true,
         "data": {
-          "rows": [
-            [
-              "Contact with live conductors",
-              "Electric shock, electrocution",
-              "Voltage-rated insulated gloves, dielectric boots"
-            ],
-            [
-              "Arc flash during panel switching",
-              "Severe thermal burns, blast injuries",
-              "Arc-rated clothing (cal/cm² matched), face shield"
-            ],
-            [
-              "Falling objects on active site",
-              "Head trauma",
-              "Class E non-conductive safety helmet"
-            ],
-            [
-              "Working at height (cable trays, panels)",
-              "Falls from ladders and platforms",
-              "Full body harness with fall arrest"
-            ],
-            [
-              "Sharp wire ends, conduit, and cable armor",
-              "Cuts and puncture wounds",
-              "Cut-resistant gloves (non-conductive options)"
-            ],
-            [
-              "Dust and debris during rough-in phase",
-              "Eye injuries",
-              "Safety glasses with side shields"
-            ],
-            [
-              "Confined electrical rooms",
-              "Limited escape routes, heat buildup",
-              "Arc-rated PPE, portable emergency lighting"
-            ],
-            [
-              "Underground cable routing",
-              "Contact with damaged cables, moisture",
-              "Insulated gloves, waterproof boots"
-            ]
-          ],
           "headers": [
             "Hazard",
-            "Potential Injury",
-            "Required PPE"
+            "Potential injury",
+            "PPE response"
+          ],
+          "rows": [
+            [
+              "Contact with energized conductors or parts",
+              "Shock, burns, electrocution",
+              "Voltage-rated rubber insulating gloves, protectors, insulating equipment, and verified work controls"
+            ],
+            [
+              "Arc flash during testing, switching, or fault conditions",
+              "Thermal burns, blast injury, eye and face injury",
+              "Arc-rated clothing, face shield or hood, balaclava, gloves, hearing protection, and task-specific boundaries"
+            ],
+            [
+              "Temporary power, cords, panels, and wet work areas",
+              "Shock, trip hazards, damaged insulation exposure",
+              "Electrical review, EH-rated or suitable footwear, dry storage, gloves where required, and damaged-equipment removal"
+            ],
+            [
+              "Cable tray, lighting, conduit, and overhead installation",
+              "Falls, dropped tools, head impact",
+              "Fall protection, helmet retention, tool lanyards, Class E head protection where electrical exposure exists"
+            ],
+            [
+              "Cable pulling, conduit, tray, and metal edge handling",
+              "Cuts, punctures, abrasion, pinch injuries",
+              "Cut-resistant electrician gloves for de-energized handling; voltage-rated gloves only when the electrical exposure requires them"
+            ],
+            [
+              "Drilling, anchoring, cutting, and rough-in work",
+              "Flying debris, dust, noise",
+              "Safety glasses or goggles, hearing protection, respiratory review, and task-matched gloves"
+            ],
+            [
+              "Electrical rooms, switchgear areas, and commissioning zones",
+              "Restricted escape, arc-flash exposure, heat buildup",
+              "Arc-rated PPE where required, controlled access, lighting, communication, and emergency planning"
+            ],
+            [
+              "Work near public traffic, plant, or exterior utility interfaces",
+              "Struck-by hazards and visibility failures",
+              "High-visibility clothing, hard hat or helmet, safety footwear, and site traffic controls"
+            ]
           ]
         }
       },
       {
         "key": "task-based-ppe",
         "type": "group",
-        "title": "PPE for Different Electrical Tasks",
+        "title": "PPE for Different Electrical Construction Tasks",
         "enabled": true,
         "data": {
           "groups": [
             {
+              "title": "De-energized Rough-In, Conduit, and Cable Pulling",
+              "description": "Most early-stage construction electrical work is dominated by sharp edges, overhead debris, dust, kneeling, pulling force, and tool handling. Ordinary work gloves are not a substitute for voltage-rated gloves when energized contact is possible.",
               "items": [
-                "Voltage-rated insulated gloves (Class 00–4 matched to voltage)",
-                "Leather protector over-gloves",
-                "Arc-rated face shield (cal/cm² rated)",
-                "Arc-rated shirt and pants or coverall",
-                "Voltage-rated insulated tools"
-              ],
-              "title": "Live Panel and Switchgear Work",
-              "description": "Use voltage-rated rubber gloves matched to the system voltage and arc-rated PPE calculated from the incident energy analysis per NFPA 70E Table 130.7(C)(15)."
+                "Cut-resistant electrician gloves for de-energized material handling",
+                "Safety glasses or goggles for drilling, anchoring, and debris",
+                "Class E head protection where electrical exposure may exist",
+                "Toe, puncture, and slip-resistant safety footwear",
+                "Hearing and respiratory review when drilling, cutting, or anchoring into concrete"
+              ]
             },
             {
+              "title": "Temporary Power, Panels, and Switchgear Work",
+              "description": "Live or potentially energized work should be avoided unless justified and controlled. When it is performed, PPE should follow the employer electrical safety program, equipment labels, incident-energy analysis, or applicable NFPA 70E task method.",
               "items": [
-                "Cut-resistant gloves (non-conductive)",
-                "Safety glasses with side shields",
-                "Class E hard hat",
-                "Dielectric safety boots",
-                "Knee pads for conduit installation"
-              ],
-              "title": "Cable Pulling and Conduit Installation",
-              "description": "Protect hands from wire cuts and abrasion while maintaining electrical insulation through non-conductive head and foot protection against accidental contact."
+                "Voltage-rated rubber insulating gloves matched to the task and system",
+                "Leather protectors, liners, storage bags, and test-date records",
+                "Arc-rated clothing and face protection matched to the assessed exposure",
+                "Safety glasses, hearing protection, and Class E head protection",
+                "Insulated tools and lockout/tagout equipment where required"
+              ]
             },
             {
+              "title": "Overhead Cable Tray, Lighting, and Platform Work",
+              "description": "Elevated electrical installation needs fall protection that remains compatible with electrical PPE, tool carrying, helmet retention, and rescue planning.",
               "items": [
-                "Full body harness with non-conductive lanyard",
-                "Class E helmet with chin strap",
-                "Insulated gloves if energized circuits are nearby",
-                "Anti-slip safety boots (dielectric if near live circuits)",
-                "Tool lanyard for elevated work"
-              ],
-              "title": "Overhead Cable Tray and Lighting Installation",
-              "description": "Combine fall protection with electrical PPE when installing cable trays, conduit runs, or lighting fixtures at height. Non-conductive lanyards prevent ground fault paths."
+                "Full body harness and connector selected for the access method",
+                "Helmet or hard hat with retention where climbing or wind exposure exists",
+                "Tool lanyards for elevated work",
+                "Gloves that allow connector and tool control",
+                "Footwear suitable for ladders, platforms, and unfinished walking surfaces"
+              ]
             },
             {
+              "title": "Testing, Commissioning, and Troubleshooting",
+              "description": "Testing and commissioning often create the highest electrical exposure because panels may be open and systems may be energized. PPE should match the equipment label, work method, and documented risk assessment.",
               "items": [
-                "Arc-rated flash suit (Category 2–4 matched to hazard)",
-                "Arc-rated balaclava and face shield with chin cup",
-                "Insulated gloves with leather protectors",
-                "Dielectric overshoes",
-                "Hearing protection for potential arc blast"
-              ],
-              "title": "Testing and Commissioning",
-              "description": "Commissioning energized systems requires the highest level of arc flash PPE matched to the calculated incident energy at the specific work point. Always verify de-energization before reducing PPE level."
+                "Arc-rated garments, hood, face shield, or balaclava as required",
+                "Voltage-rated gloves with protectors and current test status",
+                "Class E head protection and compatible eye protection",
+                "Hearing protection where arc blast or loud equipment exposure is possible",
+                "Clear issue control so the correct kit reaches the correct worker"
+              ]
             }
           ]
         }
@@ -1462,34 +1464,34 @@
         "data": {
           "items": [
             {
-              "text": "Class E non-conductive helmet rated for 20,000V electrical environments",
               "title": "Head Protection",
-              "bodyAnchorKey": "head"
+              "bodyAnchorKey": "head",
+              "text": "Class E head protection for electrical exposure, with chin strap or Type II selection where work-at-height or side-impact exposure exists. Use the [hard hat types guide](/blog/construction-hard-hat-types) and [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat) for selection details."
             },
             {
-              "text": "Arc-rated face shield or balaclava matched to incident energy level",
-              "title": "Face Protection",
-              "bodyAnchorKey": "eyes"
+              "title": "Eye and Face Protection",
+              "bodyAnchorKey": "eyes",
+              "text": "Safety glasses for baseline impact exposure; arc-rated face shield, hood, or balaclava where the electrical risk assessment requires it. Use the [construction eye and face protection guide](/blog/construction-eye-face-protection) for compatibility details."
             },
             {
-              "text": "Arc-rated shirt, pants, or coverall matched to NFPA 70E hazard category",
               "title": "Body Protection",
-              "bodyAnchorKey": "chest"
+              "bodyAnchorKey": "chest",
+              "text": "Arc-rated shirt, pants, coverall, or flash suit matched to the assessed arc exposure; avoid meltable layers where arc exposure is possible."
             },
             {
-              "text": "Voltage-rated rubber insulating gloves with leather protectors over top",
               "title": "Hand Protection",
-              "bodyAnchorKey": "left-hand"
+              "bodyAnchorKey": "left-hand",
+              "text": "Voltage-rated rubber insulating gloves with protectors where required, plus cut-resistant electrician gloves for de-energized handling. Use the [construction gloves guide](/blog/construction-gloves-selection-guide) for non-electrical hand hazards."
             },
             {
-              "text": "ASTM F2413 EH-rated dielectric safety boots or overshoes",
               "title": "Foot Protection",
-              "bodyAnchorKey": "feet"
+              "bodyAnchorKey": "feet",
+              "text": "Safety footwear selected for toe, puncture, slip, ladder, wet-ground, and electrical-hazard needs. Use the [construction safety footwear guide](/blog/construction-safety-footwear-guide) for bulk fit and standard decisions."
             },
             {
-              "text": "Full body harness with non-conductive lanyard for elevated work",
               "title": "Fall Protection",
-              "bodyAnchorKey": "waist"
+              "bodyAnchorKey": "waist",
+              "text": "Fall protection for cable tray, lighting, platform, scaffold, or roof-adjacent electrical work. Use the [fall protection construction solution](/solutions/fall-protection-construction) for system selection."
             }
           ]
         }
@@ -1502,64 +1504,73 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
-            "Electrical contractors typically maintain PPE kits by voltage class and arc flash category so workers can select the correct protection level for each task.",
-            "A basic construction electrician kit includes insulated gloves, Class E helmet, safety glasses, dielectric boots, and cut-resistant work gloves.",
-            "Below are examples of PPE commonly selected for construction electrical work:"
+            "Electrical contractors should not buy one generic electrician kit for every construction task. Separate de-energized rough-in work, energized troubleshooting, temporary power work, commissioning, elevated cable tray work, and road or exterior utility interfaces.",
+            "The safest procurement pattern is to build a baseline construction electrician kit, then add voltage-rated, arc-rated, fall, respiratory, hearing, or weather components only when the task requires them.",
+            "Below are the PPE categories procurement teams usually need to define before requesting a quote:"
           ]
         }
       },
       {
         "key": "basic-ppe-set",
         "type": "list",
-        "title": "Basic Electrician PPE Set",
+        "title": "Baseline Construction Electrician PPE Set",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Voltage-rated insulated gloves with leather protectors"
+              "text": "Class E hard hat or safety helmet where electrical exposure is possible"
             },
             {
-              "text": "Class E non-conductive safety helmet"
+              "text": "Safety glasses with side shields, with goggles or face protection where the task requires it"
             },
             {
-              "text": "Safety glasses with side shields"
+              "text": "Cut-resistant electrician gloves for de-energized material handling"
             },
             {
-              "text": "Dielectric safety boots (EH rated)"
+              "text": "Voltage-rated rubber insulating gloves and protectors where energized exposure exists"
             },
             {
-              "text": "Arc-rated daily wear shirt and pants (minimum 8 cal/cm²)"
+              "text": "Safety footwear matched to toe, puncture, slip, ladder, wet-ground, and electrical-hazard needs"
             },
             {
-              "text": "Voltage detector pen for live/dead verification"
+              "text": "Arc-rated clothing where the task assessment requires it"
+            },
+            {
+              "text": "Fall protection, tool lanyards, hearing protection, or respiratory protection added by task"
             }
           ]
         }
       },
       {
-        "key": "example-products",
+        "key": "procurement-checklist",
         "type": "list",
-        "title": "Example PPE Products",
+        "title": "Electrical PPE Procurement Checklist",
         "enabled": true,
         "data": {
           "items": [
             {
-              "title": "Class 0 Insulated Glove Kit GK10 (1,000V rated)"
+              "title": "Define the work state",
+              "text": "Separate de-energized rough-in, temporary power, energized troubleshooting, switching, commissioning, and elevated installation."
             },
             {
-              "title": "Class E Non-Conductive Helmet H250-E"
+              "title": "Control glove specification",
+              "text": "Specify voltage-rated glove class, protectors, liners, storage bags, inspection routine, test-date records, and replacement handling."
             },
             {
-              "title": "Arc-Rated Coverall AR40 (12 cal/cm²)"
+              "title": "Match arc-rated PPE to the assessment",
+              "text": "Use the employer electrical safety program, equipment labels, incident-energy analysis, or task-category method instead of guessing from job title."
             },
             {
-              "title": "Dielectric Safety Boots S70-EH"
+              "title": "Check construction compatibility",
+              "text": "Confirm head, eye, hand, foot, fall, hearing, respiratory, and hi-vis items work together on the actual jobsite."
             },
             {
-              "title": "Arc-Rated Face Shield FS25 (12 cal/cm²)"
+              "title": "Package by role",
+              "text": "Create separate issue kits for rough-in crews, panel teams, commissioning teams, elevated installers, and supervisors."
             },
             {
-              "title": "Cut-Resistant Electrician Gloves G15-EL"
+              "title": "Document issue and replacement",
+              "text": "Track size range, certification documents, test intervals, inspection records, damaged-item removal, and spare stock before site delivery."
             }
           ]
         }
@@ -1572,28 +1583,36 @@
         "data": {
           "items": [
             {
-              "text": "Standard for electrical safety in the workplace (arc flash and shock)",
-              "title": "NFPA 70E"
+              "title": "OSHA 1926 Subpart K",
+              "text": "Electrical safety requirements in construction, including work near energized systems and temporary power conditions."
             },
             {
-              "text": "Electrical safety requirements in construction",
-              "title": "OSHA 1926 Subpart K"
+              "title": "OSHA 1926.97",
+              "text": "Construction electrical protective equipment design, inspection, care, use, and test intervals."
             },
             {
-              "text": "Specification for rubber insulating gloves",
-              "title": "ASTM D120"
+              "title": "OSHA 1926.95",
+              "text": "Construction PPE criteria, including the requirement that PPE properly fits each affected employee."
             },
             {
-              "text": "Standard specification for arc-rated face protective products",
-              "title": "ASTM F2178"
+              "title": "NFPA 70E",
+              "text": "Consensus electrical safety framework commonly used for shock and arc-flash risk assessment and PPE selection."
             },
             {
-              "text": "Dielectric footwear with EH rating",
-              "title": "ASTM F2413"
+              "title": "ASTM D120",
+              "text": "Specification for rubber insulating gloves."
             },
             {
-              "text": "Industrial head protection — Class E electrical",
-              "title": "ANSI Z89.1"
+              "title": "ASTM F2178",
+              "text": "Specification for arc-rated face protective products."
+            },
+            {
+              "title": "ASTM F2413",
+              "text": "Protective footwear marking and electrical-hazard footwear considerations."
+            },
+            {
+              "title": "ANSI Z89.1",
+              "text": "Industrial head protection, including Class E electrical head protection."
             }
           ]
         }
@@ -1604,7 +1623,41 @@
         "title": null,
         "enabled": true,
         "data": {
-          "text": "Insulated gloves must be electrically tested before first use and retested every 6 months per OSHA 1910.137. Always air-inflate and visually inspect for pinholes, cuts, or swelling before each use. Never use gloves past their test date."
+          "text": "For construction electrical protective equipment, OSHA 1926.97 requires insulating equipment to be maintained in a safe, reliable condition, inspected before each day's use, and air-tested when rubber insulating gloves are used. Rubber insulating gloves must be tested before first issue and at the required interval while in service."
+        }
+      },
+      {
+        "key": "related-guides",
+        "type": "list",
+        "title": "Related Construction PPE Guides",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "[Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution)",
+              "text": "Use the pillar page to map the full construction PPE system around electrical work."
+            },
+            {
+              "title": "[OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)",
+              "text": "Use this for employer duties, fit, training, and compliance context."
+            },
+            {
+              "title": "[Construction PPE Checklist](/blog/construction-ppe-checklist)",
+              "text": "Use this for daily pre-start and supervisor field checks."
+            },
+            {
+              "title": "[Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)",
+              "text": "Use this when electrical crews work on platforms, cable trays, roofs, or exposed edges."
+            },
+            {
+              "title": "[Safety Helmet vs Hard Hat for Construction](/blog/construction-safety-helmet-vs-hard-hat)",
+              "text": "Use this for Class E, chin strap, Type I/II, and work-at-height head protection decisions."
+            },
+            {
+              "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",
+              "text": "Use this for RFQs, sizing, replacement stock, and supplier comparison."
+            }
+          ]
         }
       },
       {
@@ -1615,24 +1668,24 @@
         "data": {
           "items": [
             {
-              "q": "What class of insulated gloves do I need?",
-              "a": "Glove class depends on system voltage: Class 00 for up to 500V AC, Class 0 for up to 1,000V AC, Class 2 for up to 17,000V AC, and Class 4 for up to 36,000V AC. Always select one class above the working voltage."
+              "q": "What class of insulated gloves do construction electricians need?",
+              "a": "Glove class depends on the maximum use voltage and the employer's electrical safety program. The class marking, protector glove use, inspection status, and test date should all be checked before issue. Do not choose by job title alone."
             },
             {
-              "q": "Is arc-rated clothing mandatory on construction sites?",
-              "a": "Yes, when workers are exposed to arc flash hazards per NFPA 70E. An arc flash risk assessment must determine the incident energy level, and PPE must match or exceed that cal/cm² rating."
+              "q": "Is arc-rated clothing always required for electrical installation?",
+              "a": "Arc-rated clothing is required when the electrical risk assessment identifies an arc-flash exposure. The rating or category should come from the employer's electrical safety program, equipment label, incident-energy analysis, or applicable task method."
             },
             {
-              "q": "Can regular safety boots be used for electrical work?",
-              "a": "No. Electricians should wear ASTM F2413 EH-rated dielectric boots that provide electrical hazard protection up to 18,000V under dry conditions. Standard steel toe boots may conduct electricity."
+              "q": "Can regular construction boots be used for electrical work?",
+              "a": "Not automatically. Footwear must match both electrical and construction hazards: toe impact, puncture, slip, ladder work, wet ground, and any electrical-hazard requirement. Do not assume a heavy work boot is electrical PPE unless the marking and use conditions support it."
             },
             {
-              "q": "How often must insulated gloves be retested?",
-              "a": "OSHA 1910.137 requires electrical retesting every 6 months for gloves in service. Unused gloves stored in proper conditions must be tested before being placed into service and every 12 months thereafter."
+              "q": "How often must rubber insulating gloves be tested?",
+              "a": "OSHA electrical protective equipment rules require rubber insulating gloves to be tested before first issue and at the required interval while in service, with additional testing when insulating value is suspect, after repair, or after use without protectors."
             },
             {
-              "q": "Do you supply voltage-rated insulated glove kits?",
-              "a": "Yes. We provide complete glove kits including rubber insulating gloves, leather protectors, cotton liners, and storage bags in Class 00 through Class 4 with test certificates."
+              "q": "Should electrical PPE be bought separately from the normal construction PPE kit?",
+              "a": "The high-risk electrical items should be specified separately, but they must still work with the normal construction kit. Helmet, eye protection, gloves, footwear, hi-vis, fall protection, and weather layers all affect whether the electrical PPE can actually be worn correctly."
             }
           ]
         }
@@ -1643,12 +1696,12 @@
         "title": "Need PPE for Electrical Installation Projects?",
         "enabled": true,
         "data": {
-          "text": "We supply certified electrical PPE including voltage-rated gloves, arc-rated clothing, dielectric boots, and Class E helmets with compliance documentation and test certificates.",
           "title": "Need PPE for Electrical Installation Projects?",
-          "primaryHref": "/quote",
+          "text": "We help contractors and distributors source construction-ready electrical PPE packages including Class E head protection, insulated gloves, arc-rated protection, safety footwear, fall protection, and documentation-ready bulk supply.",
           "primaryLabel": "Request a Quote",
-          "secondaryHref": "/contact",
-          "secondaryLabel": "Contact Us"
+          "primaryHref": "/quote",
+          "secondaryLabel": "Contact Us",
+          "secondaryHref": "/contact"
         }
       }
     ],
