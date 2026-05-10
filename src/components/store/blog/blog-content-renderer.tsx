@@ -25,6 +25,8 @@ interface BlogContentRendererProps {
   content: EditorJSContent | null | undefined
 }
 
+const BLOG_LINK_SCOPE_CLASS = 'blog-prose content-link-scope'
+
 export function BlogContentRenderer({ content }: BlogContentRendererProps) {
   if (!content?.blocks?.length) {
     return null
@@ -33,7 +35,7 @@ export function BlogContentRenderer({ content }: BlogContentRendererProps) {
   const usedHeadingIds = new Set<string>()
 
   return (
-    <div className="blog-prose">
+    <div className={BLOG_LINK_SCOPE_CLASS}>
       {content.blocks.map((block, index) => {
         switch (block.type) {
           case 'header':

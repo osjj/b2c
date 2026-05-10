@@ -133,3 +133,37 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .content-inline-link,
+  .blog-prose a,
+  .prose a {
+    color: #7c2d12;
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: #f97316;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    border-radius: 0.18rem;
+    background-image: linear-gradient(to top, rgb(249 115 22 / 0.22) 0 42%, transparent 42%);
+    transition:
+      color 150ms ease,
+      background-color 150ms ease,
+      text-decoration-color 150ms ease,
+      background-image 150ms ease;
+  }
+
+  .content-inline-link:hover,
+  .blog-prose a:hover,
+  .prose a:hover {
+    color: #431407;
+    text-decoration-color: #c2410c;
+    background-image: linear-gradient(to top, rgb(249 115 22 / 0.34) 0 58%, transparent 58%);
+  }
+
+  .content-inline-link:focus-visible,
+  .blog-prose a:focus-visible,
+  .prose a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}

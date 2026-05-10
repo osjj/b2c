@@ -47,6 +47,9 @@ type RecommendedProduct = {
   }>
 }
 
+const INLINE_CONTENT_LINK_CLASS =
+  'content-inline-link'
+
 function renderRichText(text: string, keyPrefix: string) {
   const pattern = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g
   const parts = text.split(pattern).filter(Boolean)
@@ -59,7 +62,7 @@ function renderRichText(text: string, keyPrefix: string) {
       const isInternal = href.startsWith('/')
       if (isInternal) {
         return (
-          <Link key={key} href={href} className="font-medium text-primary hover:underline">
+          <Link key={key} href={href} className={INLINE_CONTENT_LINK_CLASS}>
             {label}
           </Link>
         )
@@ -71,7 +74,7 @@ function renderRichText(text: string, keyPrefix: string) {
           href={href}
           target="_blank"
           rel="noreferrer"
-          className="font-medium text-primary hover:underline"
+          className={INLINE_CONTENT_LINK_CLASS}
         >
           {label}
         </a>
