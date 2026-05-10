@@ -8103,8 +8103,9 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
+            "Scaffolding product modules should start with the elevated-work system: harness, connector, anchor assumption, helmet retention, footwear traction, glove grip, tool tethering, and eye protection for overhead dust or cutting. Generic gloves or boots are not enough unless they fit that scaffold role.",
             "Scaffolding contractors should issue PPE kits by role. Erectors and dismantlers usually need a full height-work package, while scaffold users may need a lighter but still controlled platform-use kit.",
-            "Do not treat scaffold PPE as a single generic bundle. The kit should change by scaffold status, height exposure, guardrail condition, access method, weather, surrounding traffic, and dropped-object risk.",
+            "Do not treat scaffold PPE as a single generic bundle. The kit should change by scaffold status, height exposure, guardrail condition, access method, weather, surrounding traffic, dropped-object risk, and whether workers need to operate couplers, planks, tools, or inspection devices with gloves on.",
             "Below are practical PPE package examples for scaffold projects:"
           ]
         }
@@ -8282,6 +8283,14 @@
             {
               "title": "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
               "text": "Use this for toe cap, puncture resistance, slip resistance, ankle support, and fit decisions."
+            },
+            {
+              "title": "[Construction gloves selection guide](/blog/construction-gloves-selection-guide)",
+              "text": "Use this for grip, cut resistance, impact protection, dexterity, connector handling, and wet-platform glove choices."
+            },
+            {
+              "title": "[Eye and face protection for construction sites](/blog/construction-eye-face-protection)",
+              "text": "Use this for overhead dust, drilling, cutting, wind-blown debris, goggles, face shields, and helmet compatibility."
             },
             {
               "title": "[High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)",
@@ -8579,6 +8588,7 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
+            "Road and bridge product modules should not be a row of generic hi-vis vests. The recommendation should start with exposure zone, traffic speed, night work, bridge edge exposure, asphalt heat, concrete dust, noise, weather, and the exact task crew.",
             "Road and bridge contractors should buy PPE by role and exposure zone, not as one generic highway vest package.",
             "A traffic-control worker, bridge deck crew member, paving crew, concrete cutting team, and inspector may all need high visibility, but their fall, footwear, hand, eye, hearing, and respiratory needs differ.",
             "Below are practical package examples for road and bridge projects:"
@@ -8758,6 +8768,14 @@
             {
               "title": "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
               "text": "Use this for toe cap, puncture resistance, slip resistance, heat, water, and ladder-grip decisions."
+            },
+            {
+              "title": "[Construction gloves selection guide](/blog/construction-gloves-selection-guide)",
+              "text": "Use this for asphalt heat, rebar handling, wet concrete, vibration, grip, cut, and chemical glove choices."
+            },
+            {
+              "title": "[Eye and face protection for construction sites](/blog/construction-eye-face-protection)",
+              "text": "Use this for concrete cutting, grinding, dust, splash, UV, face shields, sealed goggles, and eyewear replacement planning."
             },
             {
               "title": "[Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)",
@@ -9031,6 +9049,7 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
+            "Electrical product modules should separate ordinary construction handling PPE from true electrical protective equipment. A cut-resistant electrician glove, a rubber insulating glove system, an arc-rated face shield, and a Class E helmet solve different problems and should not be merged into one generic recommendation.",
             "Electrical contractors should not buy one generic electrician kit for every construction task. Separate de-energized rough-in work, energized troubleshooting, temporary power work, commissioning, elevated cable tray work, and road or exterior utility interfaces.",
             "The safest procurement pattern is to build a baseline construction electrician kit, then add voltage-rated, arc-rated, fall, respiratory, hearing, or weather components only when the task requires them.",
             "Below are the PPE categories procurement teams usually need to define before requesting a quote:"
@@ -9181,6 +9200,18 @@
               "text": "Use this for Class E, chin strap, Type I/II, and work-at-height head protection decisions."
             },
             {
+              "title": "[Construction gloves selection guide](/blog/construction-gloves-selection-guide)",
+              "text": "Use this to separate ordinary cut/grip gloves from voltage-rated insulating glove systems and protector gloves."
+            },
+            {
+              "title": "[Eye and face protection for construction sites](/blog/construction-eye-face-protection)",
+              "text": "Use this when safety glasses, goggles, arc-rated face protection, or helmet-mounted eye PPE must work together."
+            },
+            {
+              "title": "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
+              "text": "Use this for EH footwear, slip, puncture, ladder, wet-ground, and fit decisions for electrical crews."
+            },
+            {
               "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",
               "text": "Use this for RFQs, sizing, replacement stock, and supplier comparison."
             }
@@ -9237,159 +9268,176 @@
   {
     "slug": "ppe-for-demolition-and-concrete-cutting-work",
     "title": "PPE for Demolition and Concrete Cutting Work",
-    "excerpt": "Demolition and concrete cutting generate extreme dust, flying debris, noise, and structural collapse risks. Workers need heavy-duty PPE to protect against silica dust inhalation, impact injuries, and unpredictable material failures throughout the teardown process.",
+    "excerpt": "Demolition and concrete cutting combine silica dust, flying fragments, high noise, vibration, sharp debris, struck-by hazards, and changing structural conditions. This solution helps contractors specify PPE by demolition method, concrete-cutting task, and crew role.",
     "usageScenes": [
       "construction",
-      "heavy-duty",
-      "impact-resistant",
-      "cut-resistant",
+      "demolition",
+      "concrete-cutting",
+      "respiratory-protection",
       "eye-protection",
-      "falling-objects"
+      "hearing-protection",
+      "cut-resistant",
+      "impact-resistant"
     ],
     "coverImage": "https://shop.laifappe.com/solutions/ppe-for-demolition-and-concrete-cutting-work-cover-1772011595052.webp",
     "isActive": true,
     "sortOrder": 14,
-    "seoTitle": "PPE for Demolition and Concrete Cutting | Demolition Safety Equipment",
-    "seoDescription": "Complete guide to PPE for demolition and concrete cutting work including respiratory protection, impact gear, vibration gloves, and dust control standards.",
-    "seoKeywords": "demolition PPE, concrete cutting safety, silica dust protection, demolition helmet, anti-vibration gloves, OSHA silica rule, respiratory protection demolition, OSHA 1926 Subpart T",
+    "seoTitle": "PPE for Demolition and Concrete Cutting | Silica, Impact and Noise Protection",
+    "seoDescription": "Deep PPE guide for demolition and concrete cutting: silica respirators, eye/face protection, hearing PPE, gloves, boots, hi-vis, role kits and OSHA links.",
+    "seoKeywords": "demolition PPE, concrete cutting PPE, silica dust respirator construction, demolition safety equipment, concrete saw PPE, jackhammer PPE, demolition gloves, impact goggles, hearing protection demolition, OSHA 1926.1153, OSHA demolition Subpart T",
     "sections": [
       {
         "key": "hero-intro",
         "type": "hero",
-        "title": "What PPE is required for demolition and concrete cutting?",
+        "title": "What PPE do demolition and concrete cutting crews need?",
         "enabled": true,
         "data": {
-          "intro": "Demolition and concrete cutting are among the most hazardous construction activities. Workers face flying concrete fragments, respirable crystalline silica dust, extreme noise levels, structural instability, and heavy falling debris. Comprehensive PPE coverage is non-negotiable:",
+          "intro": "Demolition and concrete cutting are not ordinary general-labor tasks. The PPE package has to account for respirable crystalline silica, flying fragments, high noise, hand-arm vibration, sharp debris, falling objects, changing structural conditions, traffic from equipment, and reduced visibility from dust or water spray.",
           "bullets": [
-            "Safety helmet rated for heavy impact (Type II preferred)",
-            "Full-face respirator or powered air-purifying respirator (PAPR)",
-            "Impact-rated safety goggles or full face shield",
-            "Anti-vibration gloves for breaker and saw operation",
-            "Steel toe boots with metatarsal guard and puncture protection",
-            "Hearing protection (NRR 25+ earmuffs or dual protection)",
-            "Heavy-duty coveralls or padded body protection vest",
-            "Hi-vis clothing for visibility in dust-reduced conditions"
+            "Respiratory protection selected around silica exposure, Table 1 controls, fit testing, and filter replacement",
+            "Sealed goggles, impact-rated safety glasses, and face shields for cutting, chipping, grinding, and debris removal",
+            "Hearing protection for saws, breakers, hammer drills, compactors, and demolition equipment",
+            "Cut, impact, wet-grip, anti-vibration, or chemical-resistant gloves by task",
+            "Safety helmets or hard hats selected for overhead impact, side impact, retention, and accessory compatibility",
+            "Safety boots with toe, puncture, slip, ankle, and metatarsal protection where debris impact is likely",
+            "High-visibility clothing for machine interface, haul routes, night work, and dusty work zones",
+            "Fall protection, tool tethering, and rescue planning where demolition creates edges, openings, or elevated access"
           ]
         }
       },
       {
-        "key": "guide-overview",
+        "key": "cluster-overview",
         "type": "paragraphs",
         "title": null,
         "enabled": true,
         "data": {
           "paragraphs": [
-            "This guide explains demolition-specific hazards, recommends PPE for different teardown methods, and covers the critical OSHA silica dust exposure standards that demolition contractors must follow to protect their crews."
+            "Use this page as the demolition and concrete-cutting branch of the [complete construction PPE solution](/solutions/construction-site-ppe-solution). It is written for contractors, demolition supervisors, safety managers, distributors, and procurement teams who need to translate a demolition method statement into practical PPE kits.",
+            "For supporting decisions, connect this page to the [construction respiratory protection guide](/blog/construction-respiratory-protection), [eye and face protection guide](/blog/construction-eye-face-protection), [construction gloves guide](/blog/construction-gloves-selection-guide), [hearing protection guide](/blog/construction-hearing-protection), [construction safety footwear guide](/blog/construction-safety-footwear-guide), and [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
           ]
         }
       },
       {
-        "key": "demolition-hazards",
+        "key": "hazard-map",
         "type": "table",
-        "title": "Demolition and Concrete Cutting Hazards and Required PPE",
+        "title": "Demolition and Concrete Cutting Hazards and PPE Response",
         "enabled": true,
         "data": {
-          "rows": [
-            [
-              "Flying concrete and masonry fragments",
-              "Impact injuries, deep lacerations",
-              "Impact goggles, face shield, Type II helmet"
-            ],
-            [
-              "Respirable crystalline silica (RCS) dust",
-              "Silicosis, lung cancer, COPD",
-              "Half-face or full-face respirator with P100 filters"
-            ],
-            [
-              "Extreme noise from breakers and saws",
-              "Permanent hearing loss (>110 dB exposure)",
-              "Earmuffs NRR 25+ or dual plug-and-muff protection"
-            ],
-            [
-              "Hand-arm vibration from power tools",
-              "HAVS / vibration white finger syndrome",
-              "Anti-vibration gloves (ISO 10819 certified)"
-            ],
-            [
-              "Structural collapse or sudden material failure",
-              "Crush injuries, burial, fatality",
-              "Heavy-duty helmet, exclusion zones, spotter"
-            ],
-            [
-              "Exposed rebar and sharp concrete edges",
-              "Deep cuts and foot punctures",
-              "Cut-resistant gloves, metatarsal boots"
-            ],
-            [
-              "Dust clouds reducing visibility",
-              "Trips, collisions with equipment",
-              "Hi-vis clothing, LED personal lights"
-            ],
-            [
-              "Asbestos or lead in older structures",
-              "Mesothelioma, lead poisoning",
-              "PAPR with HEPA filter, full containment suit"
-            ]
-          ],
           "headers": [
             "Hazard",
-            "Potential Injury",
-            "Required PPE"
+            "Where it appears",
+            "PPE response"
+          ],
+          "rows": [
+            [
+              "Respirable crystalline silica",
+              "Concrete cutting, grinding, drilling, chipping, jackhammering, sweeping debris",
+              "Respirator selected under OSHA silica controls, P100 or other approved filters where required, fit testing, eye compatibility, filter change routine"
+            ],
+            [
+              "Flying fragments and dust",
+              "Sawing, chipping, breaking, grinding, drilling, debris loading",
+              "Impact-rated safety glasses, sealed goggles, face shield over eye protection, replacement plan for scratched lenses"
+            ],
+            [
+              "High noise",
+              "Cut-off saws, breakers, hammer drills, excavator-mounted tools, loaders, crushers",
+              "Earplugs, earmuffs, or dual protection selected around noise level, communication, helmet compatibility, and replacement stock"
+            ],
+            [
+              "Hand-arm vibration and tool handling",
+              "Jackhammers, breakers, saws, grinders, compactors",
+              "Anti-vibration gloves where appropriate, grip gloves, task rotation, tool maintenance, and exposure control"
+            ],
+            [
+              "Sharp edges, rebar, wire, and mixed debris",
+              "Sorting rubble, pulling reinforcing steel, loading skips, cleanup",
+              "Cut-resistant gloves, puncture-resistant footwear, metatarsal protection, durable workwear"
+            ],
+            [
+              "Falling objects and struck-by hazards",
+              "Overhead demolition, mechanical demolition, loading, exclusion zones",
+              "Helmet or hard hat selected for impact and retention, hi-vis clothing, controlled access, equipment visibility"
+            ],
+            [
+              "Wet cutting, slurry, and unstable footing",
+              "Wet saws, coring, floor cutting, washdown, outdoor work",
+              "Slip-resistant waterproof footwear, wet-grip gloves, waterproof outer layer that does not block visibility or harness access"
+            ],
+            [
+              "Legacy hazards",
+              "Renovation and older structures with possible asbestos, lead paint, coatings, or contamination",
+              "Do not treat as ordinary demolition PPE; require survey, abatement method, containment, task-specific respirators, suits, and decontamination process"
+            ]
           ]
         }
       },
       {
-        "key": "task-based-ppe",
+        "key": "method-based-ppe",
         "type": "group",
-        "title": "PPE for Different Demolition Methods",
+        "title": "PPE by Demolition and Concrete Cutting Method",
         "enabled": true,
         "data": {
           "groups": [
             {
+              "title": "Handheld Concrete Sawing and Floor Cutting",
+              "description": "This is a silica, eye/face, hearing, wet footing, and hand-control problem before it is a simple saw-operator PPE problem. Wet cutting or dust collection must be treated as a control system, not as a substitute for PPE planning.",
               "items": [
-                "Anti-vibration gloves (ISO 10819 certified)",
-                "Earmuffs (NRR 25+) or dual protection",
-                "Full-face respirator with P100 cartridges",
-                "Impact goggles under face shield",
-                "Heavy-duty Type II helmet",
-                "Metatarsal safety boots"
-              ],
-              "title": "Hydraulic Breaker and Jackhammer Work",
-              "description": "Combine vibration dampening, hearing protection, and respiratory defense against the intense dust and noise generated by pneumatic and hydraulic breakers. Limit continuous vibration exposure per ISO 5349."
+                "Respiratory protection selected from the silica control method and exposure assessment",
+                "Sealed goggles or safety glasses plus face shield where fragments and slurry are present",
+                "Hearing protection compatible with helmet, goggles, and respirator straps",
+                "Wet-grip cut-resistant gloves that still allow saw control",
+                "Slip-resistant safety boots with toe and puncture protection",
+                "Waterproof or high-visibility outer layer where slurry, traffic, or outdoor work is present"
+              ]
             },
             {
+              "title": "Jackhammering, Chipping, and Breaking",
+              "description": "Breaker work concentrates vibration, noise, flying chips, silica dust, and foot impact. The PPE package must protect the operator and nearby helpers, not only the person holding the tool.",
               "items": [
-                "Powered air-purifying respirator (PAPR) with P100 filters",
-                "Impact-rated sealed safety goggles",
-                "Hearing protection (NRR 25+)",
-                "Cut-resistant gloves (EN 388 Level D+)",
-                "Steel toe boots with metatarsal guard",
-                "Waterproof apron for wet cutting"
-              ],
-              "title": "Concrete Sawing and Core Drilling",
-              "description": "Wet cutting reduces but does not eliminate silica exposure. PAPR systems maintain clean airflow during extended cutting operations in enclosed or semi-enclosed areas where dust concentrations build rapidly."
+                "Respirator selected for silica dust and work duration",
+                "Impact-rated goggles and face shield for chips and fragments",
+                "Earmuffs or dual hearing protection where noise exposure is high",
+                "Anti-vibration or grip gloves selected for tool control and hand protection",
+                "Metatarsal or heavy-duty safety boots where chunks can drop onto the foot",
+                "Helmet or hard hat selected for overhead and side-impact risk"
+              ]
             },
             {
+              "title": "Interior Strip-Out and Renovation Demolition",
+              "description": "Interior demolition often mixes dust, sharp materials, confined access, legacy coatings, glass, nails, and poor lighting. Before PPE is specified, survey for asbestos, lead, and other regulated materials.",
               "items": [
-                "Heavy-duty safety helmet (Type II for lateral impact)",
-                "Hi-vis clothing for equipment visibility",
-                "Full body harness if near edges",
-                "Respirator for dust plumes (minimum N95)",
-                "Steel toe boots with ankle support"
-              ],
-              "title": "Mechanical Demolition (Excavator-Mounted)",
-              "description": "Operators inside cabs need HEPA-filtered ventilation while spotters and ground crews need full impact, respiratory, and visibility protection near the active demolition zone."
+                "Respiratory protection based on dust type and any regulated-material survey",
+                "Safety glasses or goggles for overhead dust, plaster, glass, and chips",
+                "Cut-resistant gloves for metal studs, glass, tile, and sharp fasteners",
+                "Puncture-resistant footwear for nails, screws, and debris",
+                "Head protection, task lighting, and hi-vis where equipment or mixed crews operate",
+                "Disposable or washable protective clothing where dust transfer is a concern"
+              ]
             },
             {
+              "title": "Mechanical Demolition and Debris Handling",
+              "description": "Ground crews, spotters, and cleanup teams are often exposed to dust clouds, moving machinery, unstable debris, sharp metal, and changing exclusion zones.",
               "items": [
-                "Cut-resistant gloves (Level D or E)",
-                "Puncture-resistant boots with metatarsal guard",
-                "Respirator for residual dust (minimum N95)",
-                "Safety glasses or goggles",
-                "Hi-vis vest for machinery visibility"
-              ],
-              "title": "Debris Sorting and Material Removal",
-              "description": "Handling broken concrete, exposed rebar, and mixed debris requires cut and puncture protection along with residual dust control and visibility to moving equipment."
+                "High-visibility clothing matched to equipment routes and visibility conditions",
+                "Respirator or dust mask only where it fits the exposure assessment and program requirements",
+                "Helmet or hard hat for falling-object and struck-by exposure",
+                "Cut and puncture-resistant gloves for rebar, cable, sheet metal, and broken materials",
+                "Safety boots with puncture, toe, slip, and metatarsal protection where needed",
+                "Eye protection that stays usable in dust, wind, and reduced visibility"
+              ]
+            },
+            {
+              "title": "Elevated, Edge, and Partial-Structure Demolition",
+              "description": "When demolition creates openings, exposed edges, scaffold interfaces, or unstable access, PPE must connect to fall protection and rescue planning.",
+              "items": [
+                "Full body harness, connector, and anchor strategy where fall exposure exists",
+                "Helmet or hard hat with retention for climbing, wind, and falling-object exposure",
+                "Tool tethering where dropped tools can injure workers below",
+                "Footwear suitable for ladders, platforms, rebar, and broken surfaces",
+                "Gloves that allow secure connector handling and debris control",
+                "Visibility and communication PPE where equipment and spotters are involved"
+              ]
             }
           ]
         }
@@ -9397,39 +9445,39 @@
       {
         "key": "essential-categories",
         "type": "list",
-        "title": "Essential PPE Categories for Demolition Work",
+        "title": "Essential PPE Categories for Demolition Crews",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Full-face or half-face respirator with P100 filters; PAPR for extended exposure",
               "title": "Respiratory Protection",
-              "bodyAnchorKey": "head"
+              "bodyAnchorKey": "head",
+              "text": "Respirators must be selected around silica controls, exposure assessment, assigned protection factor, fit, filter selection, cleaning, storage, and replacement. Use the [construction respiratory protection guide](/blog/construction-respiratory-protection) for N95, P100, half-face, full-face, PAPR, fit testing, and cartridge planning."
             },
             {
-              "text": "Impact-rated sealed goggles plus face shield for flying fragments and dust",
               "title": "Eye and Face Protection",
-              "bodyAnchorKey": "eyes"
+              "bodyAnchorKey": "eyes",
+              "text": "Concrete chips, dust, slurry, grinding sparks, and wire fragments require more than ordinary safety glasses. Use the [eye and face protection guide](/blog/construction-eye-face-protection) for goggles, face shields, welding/cutting protection, anti-fog issues, and helmet compatibility."
             },
             {
-              "text": "NRR 25+ earmuffs or dual plug-and-muff combination for >110 dB exposure",
               "title": "Hearing Protection",
-              "bodyAnchorKey": "ears"
+              "bodyAnchorKey": "ears",
+              "text": "Sawing, breaking, drilling, and mechanical demolition can make communication and overprotection difficult. Use the [hearing protection guide](/blog/construction-hearing-protection) for earplugs, earmuffs, dual protection, NRR/SNR, and compatibility with helmets and respirators."
             },
             {
-              "text": "Anti-vibration (ISO 10819), cut-resistant, or heavy-duty impact gloves by task",
               "title": "Hand Protection",
-              "bodyAnchorKey": "left-hand"
+              "bodyAnchorKey": "left-hand",
+              "text": "Gloves may need cut resistance, wet grip, vibration damping, impact protection, chemical resistance, or heat protection. Use the [construction gloves guide](/blog/construction-gloves-selection-guide) before standardizing one glove for all demolition tasks."
             },
             {
-              "text": "Heavy-duty coveralls, padded body vest, or blast-resistant apron",
-              "title": "Body Protection",
-              "bodyAnchorKey": "chest"
-            },
-            {
-              "text": "Steel toe with metatarsal guard, puncture-resistant midsole, ankle support",
               "title": "Foot Protection",
-              "bodyAnchorKey": "feet"
+              "bodyAnchorKey": "feet",
+              "text": "Demolition footwear should be selected for toe impact, puncture, slip, ankle stability, metatarsal exposure, wet slurry, and debris cleanup. Use the [construction safety footwear guide](/blog/construction-safety-footwear-guide) for ASTM/EN markings and fit decisions."
+            },
+            {
+              "title": "Head, Hi-Vis, and Fall Protection",
+              "bodyAnchorKey": "head",
+              "text": "Head protection, high-visibility clothing, and fall protection are driven by overhead work, equipment routes, edge exposure, scaffold access, and reduced visibility. Use the [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat), [hi-vis clothing guide](/blog/high-visibility-clothing-construction), and [fall protection construction solution](/solutions/fall-protection-construction) where these exposures apply."
             }
           ]
         }
@@ -9437,72 +9485,85 @@
       {
         "key": "recommended-ppe",
         "type": "paragraphs",
-        "title": "Recommended PPE for Demolition Crews",
+        "title": "Recommended PPE for Demolition and Concrete Cutting Crews",
         "enabled": true,
         "data": {
           "mode": "rule",
           "paragraphs": [
-            "Demolition contractors purchase PPE in heavy-duty kits because standard construction gear is often insufficient for the intensity and hazard level of teardown work.",
-            "A demolition crew kit should include respiratory, hearing, eye, hand, and foot protection all rated for heavy impact and dust environments.",
-            "Below are examples of PPE commonly selected for demolition and concrete cutting projects:"
+            "Demolition product recommendations should not be a generic heavy-duty PPE list. Start with the demolition method, the material being cut or removed, the silica control method, whether the work is indoors or outdoors, the equipment interface, and whether workers are handling debris after the cut.",
+            "A strong procurement package usually separates saw operators, breaker operators, debris handlers, spotters, supervisors, and elevated-work crews. Each role may share a baseline helmet, footwear, hi-vis, and eye protection, but respirator, glove, hearing, face shield, and fall-protection requirements can differ sharply.",
+            "Use the kit examples below as RFQ structure. Final PPE selection should follow the competent person review, silica plan, demolition engineering survey, noise assessment, and site-specific method statement."
           ]
         }
       },
       {
-        "key": "basic-ppe-set",
+        "key": "role-based-kits",
         "type": "list",
-        "title": "Basic Demolition PPE Set",
+        "title": "Role-Based Demolition PPE Kit Examples",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Type II safety helmet with face shield mount"
+              "title": "Concrete saw operator kit",
+              "text": "Respirator selected by silica controls, sealed goggles, face shield, hearing protection, wet-grip cut-resistant gloves, slip-resistant safety boots, and waterproof or hi-vis outer layer."
             },
             {
-              "text": "Half-face respirator with P100 filters"
+              "title": "Breaker and chipping kit",
+              "text": "Respirator, impact goggles, face shield, hearing protection, anti-vibration or grip gloves, metatarsal or heavy-duty safety boots, and helmet or hard hat selected for impact exposure."
             },
             {
-              "text": "Impact-rated sealed safety goggles"
+              "title": "Debris handling kit",
+              "text": "Cut-resistant gloves, puncture-resistant boots, safety glasses or goggles, helmet, hi-vis garment, and respiratory protection where residual dust remains controlled by the program."
             },
             {
-              "text": "Anti-vibration gloves"
+              "title": "Interior renovation kit",
+              "text": "Task-specific respirator, goggles, cut-resistant gloves, puncture-resistant footwear, head protection, lighting, and protective clothing after legacy-material survey."
             },
             {
-              "text": "Earmuffs (NRR 25+)"
+              "title": "Spotter and equipment interface kit",
+              "text": "High-visibility clothing, hard hat or helmet, safety footwear, eye protection, hearing protection where needed, and communication equipment compatible with PPE."
             },
             {
-              "text": "Steel toe boots with metatarsal guard"
-            },
-            {
-              "text": "Hi-vis vest (Class 2)"
+              "title": "Elevated demolition kit",
+              "text": "Fall protection system, helmet retention, tool tethering, anti-slip footwear, task gloves, eye protection, and a rescue plan matched to the access method."
             }
           ]
         }
       },
       {
-        "key": "example-products",
+        "key": "procurement-checklist",
         "type": "list",
-        "title": "Example PPE Products",
+        "title": "Demolition PPE Procurement Checklist",
         "enabled": true,
         "data": {
           "items": [
             {
-              "title": "Type II Heavy Impact Helmet H350-II"
+              "title": "Separate cutting, breaking, strip-out, debris handling, and elevated work",
+              "text": "Do not issue one demolition kit to every worker if the exposure profile changes by task."
             },
             {
-              "title": "Half-Face Respirator R40 with P100 Cartridges"
+              "title": "Confirm the silica control path",
+              "text": "State whether the task follows OSHA Table 1 controls or an exposure-assessment path, then specify respirators, filters, fit testing, cleaning, and storage around that decision."
             },
             {
-              "title": "Anti-Vibration Demolition Gloves G35-AV (ISO 10819)"
+              "title": "Plan eye, face, and respiratory compatibility together",
+              "text": "Goggles, face shields, full-face respirators, half masks, earmuffs, and helmet accessories can interfere with each other if selected separately."
             },
             {
-              "title": "Sealed Impact Goggles E20-IM"
+              "title": "Specify noise and communication requirements",
+              "text": "Choose plugs, muffs, dual protection, or communication headsets based on actual equipment and supervision needs."
             },
             {
-              "title": "Metatarsal Guard Safety Boots S98-MT"
+              "title": "Buy gloves by task, not by trade name",
+              "text": "Concrete cutting, rebar handling, wet slurry, jackhammering, and debris cleanup need different glove performance."
             },
             {
-              "title": "Dual-Protection Earmuffs HP30 (NRR 28)"
+              "title": "Include replacement stock",
+              "text": "Dust, slurry, scratched lenses, saturated filters, worn gloves, and damaged boot soles create fast PPE turnover on demolition projects."
+            },
+            {
+              "title": "Keep documents with the kit",
+              "text": "Store standards, certifications, test reports, fit-test records, respirator program records, and issue history so site supervisors can prove the PPE program is controlled."
             }
           ]
         }
@@ -9510,33 +9571,41 @@
       {
         "key": "safety-standards",
         "type": "list",
-        "title": "Safety Standards to Consider",
+        "title": "Safety Standards and OSHA Topics to Consider",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Respirable crystalline silica exposure limit in construction (50 µg/m³ PEL)",
-              "title": "OSHA 1926.1153 (Silica Rule)"
+              "title": "OSHA 1926.1153",
+              "text": "Respirable crystalline silica in construction, including Table 1 control methods, exposure limits, respiratory protection triggers, medical surveillance, and written exposure control planning."
             },
             {
-              "text": "Demolition safety requirements and engineering survey",
-              "title": "OSHA 1926 Subpart T"
+              "title": "OSHA 1926 Subpart T",
+              "text": "Demolition requirements, including preparatory operations and the engineering survey before demolition begins."
             },
             {
-              "text": "Respiratory protection program and fit testing",
-              "title": "OSHA 1910.134"
+              "title": "OSHA 1926.103",
+              "text": "Construction respiratory protection requirements, including the respirator program, fit testing, medical evaluation, training, cleaning, storage, and selection."
             },
             {
-              "text": "Occupational noise exposure and hearing conservation",
-              "title": "OSHA 1910.95"
+              "title": "OSHA 1926.52",
+              "text": "Construction occupational noise exposure and hearing conservation requirements."
             },
             {
-              "text": "Protective gloves against mechanical risks (cut, impact, vibration)",
-              "title": "EN 388 / ISO 10819"
+              "title": "OSHA 1926.102",
+              "text": "Construction eye and face protection requirements and recognized eye/face protection standards."
             },
             {
-              "text": "Filtering half masks for particulate protection",
-              "title": "EN 149 (FFP2/FFP3)"
+              "title": "OSHA 1926.95 and 1926.96",
+              "text": "General construction PPE criteria, proper fit, and safety footwear requirements."
+            },
+            {
+              "title": "OSHA 1926.1101",
+              "text": "Asbestos in construction. Older demolition and renovation work requires survey and abatement planning before ordinary demolition PPE is selected."
+            },
+            {
+              "title": "ANSI/ISEA, ASTM, EN and ISO standards",
+              "text": "Use relevant markings for eye/face protection, footwear, gloves, head protection, hearing protection, respirators, hi-vis clothing, and vibration-related glove claims."
             }
           ]
         }
@@ -9547,7 +9616,57 @@
         "title": null,
         "enabled": true,
         "data": {
-          "text": "OSHA's silica rule (1926.1153) requires employers to limit worker exposure to 50 µg/m³ over an 8-hour TWA. Engineering controls (wet cutting, vacuum extraction, ventilation) must be used alongside respiratory PPE—not as replacements for each other."
+          "text": "Do not solve demolition hazards by PPE alone. OSHA silica rules emphasize engineering controls and work practices such as wet methods and dust collection, while Subpart T requires demolition planning before work begins. PPE should support the control plan, not replace it."
+        }
+      },
+      {
+        "key": "related-guides",
+        "type": "list",
+        "title": "Related Construction PPE Guides",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "[Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution)",
+              "text": "Use this as the site-wide pillar for baseline PPE categories, procurement structure, and internal links."
+            },
+            {
+              "title": "[Demolition and Concrete Cutting PPE Checklist](/blog/demolition-concrete-cutting-ppe-checklist)",
+              "text": "Use this field checklist for pre-start PPE checks before concrete cutting, jackhammering, strip-out, debris handling, and elevated demolition work."
+            },
+            {
+              "title": "[Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)",
+              "text": "Use this for silica dust, respirator type, fit testing, cartridges, filter changes, and respiratory program decisions."
+            },
+            {
+              "title": "[Eye and Face Protection for Construction Sites](/blog/construction-eye-face-protection)",
+              "text": "Use this for goggles, face shields, welding/cutting protection, splash, dust, prescription eyewear, and helmet compatibility."
+            },
+            {
+              "title": "[Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)",
+              "text": "Use this for cut, impact, vibration, grip, wet cement, chemical, heat, and electrical glove decisions."
+            },
+            {
+              "title": "[Hearing Protection for Construction Workers](/blog/construction-hearing-protection)",
+              "text": "Use this for earplugs, earmuffs, dual protection, NRR/SNR, communication, and replacement planning."
+            },
+            {
+              "title": "[Construction Safety Footwear Guide](/blog/construction-safety-footwear-guide)",
+              "text": "Use this for toe, puncture, slip, metatarsal, water, ankle, and fit decisions."
+            },
+            {
+              "title": "[High-Visibility Clothing for Construction Workers](/blog/high-visibility-clothing-construction)",
+              "text": "Use this where demolition crews interface with loaders, trucks, night work, roadwork, dust, or low visibility."
+            },
+            {
+              "title": "[Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)",
+              "text": "Use this when demolition creates exposed edges, openings, roof work, scaffold access, or elevated work."
+            },
+            {
+              "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",
+              "text": "Use this to convert demolition PPE requirements into RFQs, kit packaging, replacement stock, and repeat ordering."
+            }
+          ]
         }
       },
       {
@@ -9558,24 +9677,28 @@
         "data": {
           "items": [
             {
-              "a": "A minimum of a half-face respirator with P100 or N95 filters for outdoor work. For enclosed or prolonged cutting, a PAPR system with P100 HEPA cartridges provides better comfort, seal reliability, and protection factor.",
-              "q": "What respirator is required for concrete cutting?"
+              "q": "What respirator is required for concrete cutting?",
+              "a": "It depends on the cutting method, duration, location, and control path. OSHA 1926.1153 Table 1 specifies engineering controls and respiratory protection for common silica-generating tasks. If the employer does not follow Table 1, exposure assessment and a compliant respiratory protection program are required."
             },
             {
-              "a": "Yes. ISO 10819-certified anti-vibration gloves reduce high-frequency vibration transmission and help prevent Hand-Arm Vibration Syndrome (HAVS) during prolonged breaker and saw use. They must be combined with daily vibration exposure time limits.",
-              "q": "Do anti-vibration gloves really reduce HAVS risk?"
+              "q": "Are safety glasses enough for concrete cutting?",
+              "a": "Often no. Concrete cutting, chipping, grinding, and breaking can require sealed goggles and a face shield because ordinary safety glasses leave gaps and do not protect the whole face from fragments or slurry."
             },
             {
-              "a": "Strongly recommended. Falling concrete chunks and exposed rebar can impact the top of the foot above the toe cap. Metatarsal guards extend protection from the toe cap to the ankle.",
-              "q": "Is metatarsal protection necessary for demolition boots?"
+              "q": "Do demolition crews need hearing protection?",
+              "a": "Frequently yes. Breakers, saws, drills, demolition attachments, and heavy equipment can exceed safe exposure levels. OSHA 1926.52 requires protection and hearing conservation controls when construction noise exposure exceeds the regulatory limits."
             },
             {
-              "a": "Pre-demolition surveys must identify asbestos-containing materials. If present, asbestos removal must be done by licensed abatement crews with PAPR systems, full containment suits, and decontamination procedures per OSHA 1926.1101.",
-              "q": "What about asbestos in older buildings being demolished?"
+              "q": "Are anti-vibration gloves enough to control jackhammer exposure?",
+              "a": "No. Gloves may help with comfort and some vibration transmission, but vibration risk also depends on tool choice, maintenance, trigger time, grip force, and task rotation. Treat gloves as one part of a broader vibration-control plan."
             },
             {
-              "a": "Yes. We provide heavy-duty demolition kits including respirators, anti-vibration gloves, impact goggles, NRR 25+ earmuffs, and metatarsal boots with bulk pricing and compliance documentation.",
-              "q": "Can you supply PPE kits for demolition contractors?"
+              "q": "What PPE is needed for older building demolition?",
+              "a": "Older structures may contain asbestos, lead, silica-containing materials, chemical residues, mold, or contaminated dust. A survey and abatement plan should come before ordinary demolition PPE selection."
+            },
+            {
+              "q": "Can demolition PPE be bought as a standard kit?",
+              "a": "A baseline kit is useful, but it should be split by role: saw operator, breaker operator, debris handler, spotter, interior strip-out worker, and elevated demolition crew. Each role changes respirator, glove, eye/face, hearing, footwear, and fall-protection needs."
             }
           ]
         }
@@ -9583,15 +9706,15 @@
       {
         "key": "cta",
         "type": "cta",
-        "title": "Need PPE for Demolition Projects?",
+        "title": "Need PPE for Demolition and Concrete Cutting Projects?",
         "enabled": true,
         "data": {
-          "text": "We supply heavy-duty PPE for demolition and concrete cutting including PAPR systems, anti-vibration gloves, impact-rated protective gear, and metatarsal boots with compliance documentation.",
-          "title": "Need PPE for Demolition Projects?",
-          "primaryHref": "/quote",
+          "title": "Need PPE for Demolition and Concrete Cutting Projects?",
+          "text": "We help contractors and distributors build demolition PPE packages for silica dust, concrete cutting, breaking, debris handling, noise, eye/face hazards, gloves, footwear, hi-vis, and role-based site issue. Bulk supply and documentation-ready sourcing are available.",
           "primaryLabel": "Request a Quote",
-          "secondaryHref": "/contact",
-          "secondaryLabel": "Contact Us"
+          "primaryHref": "/quote",
+          "secondaryLabel": "Contact Us",
+          "secondaryHref": "/contact"
         }
       }
     ],

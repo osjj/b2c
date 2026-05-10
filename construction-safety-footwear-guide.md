@@ -15,6 +15,8 @@ The typical construction foot injury involves an object falling less than four f
 
 This guide covers everything you need to know to select the right safety boots for construction work: the hazards your workers face, what the US and European standards actually require, how to read certification labels, and how to match specific footwear features to specific tasks on site.
 
+Use this page together with the [complete construction PPE solution](/solutions/construction-site-ppe-solution) when footwear is part of a whole-site PPE program. For role-specific applications, connect it to [fall protection PPE for construction](/solutions/fall-protection-construction), [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms), [PPE for road and bridge construction](/solutions/ppe-for-road-and-bridge-construction-projects), and [PPE for electrical installation on construction sites](/solutions/ppe-for-electrical-installation-on-construction-sites).
+
 ---
 
 ## Foot Hazards on a Construction Site
@@ -342,6 +344,17 @@ We supply ASTM F2413 and EN ISO 20345 certified safety footwear for construction
 [View the complete PPE solution for construction sites →](/solutions/construction-site-ppe-solution)
 
 [Read the bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)
+
+Related construction PPE guides:
+
+- [Construction PPE Checklist](/blog/construction-ppe-checklist)
+- [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)
+- [PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)
+- [PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects)
+- [PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites)
+- [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)
+- [Eye and Face Protection for Construction Sites](/blog/construction-eye-face-protection)
+- [High-Visibility Clothing for Construction Workers](/blog/high-visibility-clothing-construction)
 
 ---
 

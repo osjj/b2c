@@ -217,7 +217,8 @@
                 "Safety glasses for routine debris and impact risk",
                 "Goggles for dust, splash, and sealed protection",
                 "Face shields over glasses for grinding and heavy chipping",
-                "Welding helmets and shaded filters for hot work"
+                "Welding helmets and shaded filters for hot work",
+                "Use the [construction eye and face protection guide](/blog/construction-eye-face-protection) for impact, splash, dust, welding, face-shield, and PPE compatibility decisions"
               ]
             },
             {
@@ -259,7 +260,8 @@
                 "Cut-rated gloves for steel, rebar, sheet material, and sharp edges",
                 "Coated gloves for wet handling and masonry work",
                 "Impact gloves where hand crush or back-of-hand strikes are likely",
-                "Chemical-resistant gloves for cement, coatings, and site chemicals"
+                "Chemical-resistant gloves for cement, coatings, and site chemicals",
+                "Use the [construction gloves selection guide](/blog/construction-gloves-selection-guide) when cut, abrasion, impact, chemical, heat, or electrical exposure changes by task"
               ]
             },
             {
@@ -349,7 +351,7 @@
           "mode": "rule",
           "paragraphs": [
             "Most contractors do better when they stop buying construction PPE as isolated items and start buying by role-based kit. General laborers, roof teams, steel crews, demolition teams, and electrical installers need different combinations even when they share the same site gate.",
-            "Use the related products below as a starting set for general construction purchasing, then tighten the specification by trade, hazard assessment, and local compliance standard."
+            "Use the related products below as a starting set for general construction purchasing, then tighten the specification by trade, hazard assessment, and local compliance standard. Product modules should be treated as procurement prompts, not final PPE approval: verify fit, certification, compatibility, and replacement rules before issuing gear to a crew."
           ]
         }
       },
@@ -422,6 +424,14 @@
               "text": "Focused on roadwork, bridge decks, live traffic, Class 2/Class 3 hi-vis, fall exposure, asphalt heat, dust, noise, and role-based crew kits."
             },
             {
+              "title": "[PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work)",
+              "text": "Focused on silica dust, concrete cutting, chipping, grinding, debris handling, high noise, vibration, eye/face impact, gloves, footwear, and role-based demolition kits."
+            },
+            {
+              "title": "[Demolition and Concrete Cutting PPE Checklist](/blog/demolition-concrete-cutting-ppe-checklist)",
+              "text": "Use this field checklist for pre-start PPE checks before concrete cutting, jackhammering, strip-out, debris handling, and elevated demolition work."
+            },
+            {
               "title": "[OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction)",
               "text": "Focused on fit, certification, employer obligations, and the construction standards auditors check first."
             },
@@ -448,6 +458,14 @@
             {
               "title": "[Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)",
               "text": "Focused on silica dust, N95/P100 selection, half-face respirators, cartridges, fit testing, and replacement planning."
+            },
+            {
+              "title": "[Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)",
+              "text": "Focused on cut, abrasion, impact, grip, wet cement, chemical, heat, welding, electrical exposure, fit, dexterity, and replacement planning."
+            },
+            {
+              "title": "[Eye and Face Protection for Construction Sites](/blog/construction-eye-face-protection)",
+              "text": "Focused on safety glasses, goggles, face shields, welding protection, dust, splash, impact hazards, prescription eyewear, and compatibility with helmets and respirators."
             },
             {
               "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",

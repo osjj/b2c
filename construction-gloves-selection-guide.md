@@ -240,7 +240,7 @@ They need more wrist and forearm protection, better heat resistance, and materia
 
 These are for electrical protection, not general site wear. They are used in electrical work where insulating performance is required. They should be treated as a separate category entirely from normal site gloves.
 
-If your site is evaluating electrical exposures, the glove decision belongs alongside the wider electrical PPE plan, not inside the general glove drawer.
+If your site is evaluating electrical exposures, the glove decision belongs alongside the wider electrical PPE plan, not inside the general glove drawer. Use [PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites) when voltage-rated gloves, leather protectors, arc-rated clothing, Class E head protection, and EH footwear need to be specified as one system.
 
 ---
 
@@ -530,6 +530,10 @@ Most buyers and supervisors do not stop at gloves alone. The next useful page de
 - Use [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection) when hand protection is part of concrete cutting, demolition, coating, or respirator cartridge handling work.
 - Use [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide) when grip, puncture risk, or footing are part of the same hand-intensive task.
 - Use [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction) when glove choice is part of an elevated-work system rather than a stand-alone decision.
+- Use [PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms) when gloves must support coupler handling, climbing, tool tethering, and connector control.
+- Use [PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects) when glove choice has to cover asphalt heat, rebar, wet concrete, vibration, cutting, and traffic-zone work.
+- Use [PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites) when ordinary work gloves must be separated from voltage-rated insulating glove systems.
+- Use [Eye and Face Protection for Construction Sites](/blog/construction-eye-face-protection) when the same task creates flying-particle, splash, grinding, or welding exposure.
 - Use [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement) when glove selection needs to become a repeatable purchasing and replenishment plan.
 
 ## FAQ
@@ -565,4 +569,9 @@ Compare them by hazard, dexterity, fit, durability, compatibility with the task,
 - [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)
 - [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide)
 - [Fall Protection PPE for Construction Sites](/solutions/fall-protection-construction)
+- [PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work)
+- [PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)
+- [PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects)
+- [PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites)
+- [Eye and Face Protection for Construction Sites](/blog/construction-eye-face-protection)
 - [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)

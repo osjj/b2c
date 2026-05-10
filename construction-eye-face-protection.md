@@ -13,6 +13,8 @@ One reason this keeps happening is that many sites simplify eye protection too f
 
 That is why eye and face protection should be selected by hazard and operation, not by habit. Use this guide when you need to choose the right construction eye PPE for flying particles, dust, splash, grinding, welding, cutting, and face-level impact. For the wider site-wide PPE structure, use [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution). For the regulation-first view, use [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction). For faster field checks, use [Construction PPE Checklist](/blog/construction-ppe-checklist).
 
+For task-specific branches, connect this guide to [PPE for road and bridge construction](/solutions/ppe-for-road-and-bridge-construction-projects) when cutting, grinding, dust, and traffic exposure overlap; to [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms) when overhead debris and helmet-mounted accessories matter; and to [PPE for electrical installation on construction sites](/solutions/ppe-for-electrical-installation-on-construction-sites) when safety glasses, goggles, or arc-rated face protection must work with electrical PPE.
+
 ---
 
 ## Why Construction Eye and Face Protection Is Often Misselected
@@ -464,6 +466,9 @@ Most site teams do not stop at eye protection alone. The next useful page depend
 - Use [Hearing Protection for Construction Workers](/blog/construction-hearing-protection) when eye PPE has to work with earmuffs, earplugs, communication headsets, or noisy grinding and cutting work.
 - Use [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection) when goggles, face shields, or welding PPE need to work with respirators.
 - Use [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide) when footing, debris, and struck-by hazards are part of the same work zone.
+- Use [PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects) when eyewear is part of concrete cutting, bridge work, paving, traffic-zone, or night-work PPE.
+- Use [PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms) when eye protection must work with helmets, chin straps, tool tethering, and overhead debris controls.
+- Use [PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites) when eye and face PPE must be compatible with Class E head protection, insulating gloves, and arc-rated systems.
 - Use [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement) when eyewear needs to be planned with sizing, replacement stock, and repeat ordering.
 
 ## FAQ
@@ -500,4 +505,8 @@ Start with the actual welding, cutting, or brazing operation and use OSHA's filt
 - [Respiratory Protection for Construction Dust and Fumes](/blog/construction-respiratory-protection)
 - [Construction Gloves: How to Choose the Right Hand Protection](/blog/construction-gloves-selection-guide)
 - [Safety Footwear Guide for Construction Workers](/blog/construction-safety-footwear-guide)
+- [PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work)
+- [PPE for Road and Bridge Construction Projects](/solutions/ppe-for-road-and-bridge-construction-projects)
+- [PPE for Scaffolding and Elevated Platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)
+- [PPE for Electrical Installation on Construction Sites](/solutions/ppe-for-electrical-installation-on-construction-sites)
 - [How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)

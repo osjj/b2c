@@ -706,6 +706,93 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       },
     },
   },
+  {
+    slug: 'demolition-concrete-cutting-ppe-checklist',
+    markdownPath: join(process.cwd(), 'demolition-concrete-cutting-ppe-checklist.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.demolition-concrete-cutting-ppe-checklist.generated.json',
+    ),
+    title:
+      'Demolition and Concrete Cutting PPE Checklist: What Crews Need Before Work Starts',
+    excerpt:
+      'A field-ready PPE checklist for demolition and concrete cutting crews covering silica dust, respirators, eye and face protection, hearing PPE, gloves, footwear, hi-vis, head protection, fall hazards, and procurement checks.',
+    seoTitle:
+      'Demolition and Concrete Cutting PPE Checklist | Silica, Noise and Impact PPE',
+    seoDescription:
+      'Use this demolition and concrete cutting PPE checklist before work starts. Covers silica dust respirators, eye/face protection, hearing PPE, gloves, boots, helmets, hi-vis, fall hazards, and bulk procurement.',
+    seoKeywords:
+      'demolition PPE checklist, concrete cutting PPE checklist, demolition safety checklist, concrete saw PPE, silica dust PPE checklist, jackhammer PPE, demolition worker PPE, concrete cutting safety gear',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick PPE Checklist Before Demolition Starts': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'A demolition PPE checklist should confirm silica controls, impact protection, hearing protection, gloves, footwear, visibility, and fall exposure before work starts.',
+      },
+      'Why Demolition PPE Needs Its Own Checklist': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Demolition changes the jobsite while workers are inside it, so the PPE routine has to adjust by task and exposure.',
+      },
+      'Section 1: Pre-Demolition Hazard Review': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'PPE selection should follow a demolition hazard review, structural survey, utility control, and legacy-material check.',
+      },
+      'Section 2: Respiratory Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Concrete cutting and demolition dust require respiratory protection planning around silica controls, fit testing, filters, and replacement stock.',
+      },
+      'Section 3: Eye and Face Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Goggles, safety glasses, and face shields should be selected around flying fragments, dust, slurry, and cutting exposure.',
+      },
+      'Section 4: Hearing Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Demolition noise from saws, breakers, drills, and equipment has to be planned with hearing protection that fits the rest of the PPE system.',
+      },
+      'Section 5: Hand Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Demolition gloves should be selected by task: cut risk, wet grip, vibration, impact, chemicals, and tool control.',
+      },
+      'Section 6: Foot Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Demolition footwear should cover toe impact, puncture hazards, slip risk, metatarsal exposure, wet slurry, and uneven debris.',
+      },
+      'Section 7: Head Protection, Hi-Vis and Body Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Head protection, hi-vis clothing, and protective workwear help crews stay visible and protected as demolition conditions change.',
+      },
+      'Section 8: Fall Protection and Access Checklist': {
+        url: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+        caption:
+          'Demolition fall protection should be planned around access, edge exposure, anchorage, debris movement, and rescue readiness.',
+      },
+      'Task-Based Demolition PPE Matrix': {
+        url: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+        caption:
+          'Task-based PPE matrices help supervisors separate concrete cutting, jackhammering, strip-out, debris handling, and elevated demolition.',
+      },
+      'Procurement Checklist for Demolition PPE': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Demolition PPE procurement should specify role-based kits, replacement stock, compatibility, documentation, and reorder rules.',
+      },
+      'Common Demolition PPE Mistakes': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Most demolition PPE mistakes come from weak compatibility checks, missing replacement stock, and using baseline PPE for task-specific hazards.',
+      },
+    },
+  },
 ]
 
 function loadGeneratedImages(filePath: string): Record<string, string> {

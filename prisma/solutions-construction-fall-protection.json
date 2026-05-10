@@ -248,8 +248,8 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
-            "For many contractors, a workable starter package includes a full-body harness, a compatible lanyard or SRL, an anchor connector matched to the work area, a helmet or hard hat suitable for work at height, and footwear with stable traction for the surface and weather.",
-            "Below are examples of products commonly surfaced for construction, height-work, and fall protection usage scenes:"
+            "For fall protection pages, the product module should lead with the system, not with generic construction PPE. A workable starter package includes a full-body harness, a compatible lanyard or SRL, an anchor connector matched to the work area, helmet-style head protection or hard hats suitable for work at height, footwear with stable traction, and gloves that allow secure connector handling.",
+            "Use related product suggestions as a fall-arrest specification prompt: check harness sizing, dorsal D-ring access, connector compatibility, anchor assumptions, rescue planning, helmet retention, glove dexterity, and footwear traction before treating any item as site-ready."
           ]
         }
       },
@@ -305,7 +305,7 @@
         "title": "Use this page with the rest of your construction PPE resources",
         "enabled": true,
         "data": {
-          "text": "Use the [construction site PPE solution](/solutions/construction-site-ppe-solution) for the full site-wide framework, the [PPE for scaffolding and elevated platforms solution](/solutions/ppe-for-scaffolding-and-elevated-platforms) for scaffold-specific role kits and dropped-object controls, the [OSHA PPE requirements guide](/blog/osha-ppe-requirements-construction) for regulation details, the [construction PPE checklist](/blog/construction-ppe-checklist) for field execution, the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) for RFQs and repeat ordering, the [construction safety footwear guide](/blog/construction-safety-footwear-guide) when traction and foot protection affect elevated work, and the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat) when deciding whether height-work crews need helmet-style head protection with chin straps."
+          "text": "Use the [construction site PPE solution](/solutions/construction-site-ppe-solution) for the full site-wide framework, the [PPE for scaffolding and elevated platforms solution](/solutions/ppe-for-scaffolding-and-elevated-platforms) for scaffold-specific role kits and dropped-object controls, the [OSHA PPE requirements guide](/blog/osha-ppe-requirements-construction) for regulation details, the [construction PPE checklist](/blog/construction-ppe-checklist) for field execution, the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) for RFQs and repeat ordering, the [construction safety footwear guide](/blog/construction-safety-footwear-guide) when traction and foot protection affect elevated work, the [construction gloves selection guide](/blog/construction-gloves-selection-guide) when connector handling and grip matter, the [eye and face protection guide](/blog/construction-eye-face-protection) when drilling, cutting, or overhead debris is part of the task, and the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat) when deciding whether height-work crews need helmet-style head protection with chin straps."
         }
       },
       {

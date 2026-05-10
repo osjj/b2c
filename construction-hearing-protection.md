@@ -407,6 +407,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
+- [PPE for demolition and concrete cutting work](/solutions/ppe-for-demolition-and-concrete-cutting-work)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
