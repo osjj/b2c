@@ -1,10 +1,11 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { Building2, Mail, MapPin, MessageCircle, Phone } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "About Us | Laifappe",
-  description: "Professional B2B Safety Equipment Supplier - Learn about our company, mission, and commitment to quality.",
+  description: "Professional B2B Safety Equipment Supplier in Foshan, Guangdong, China. Learn about Laifappe, our local offices, contact details, and quality commitment.",
 }
 
 // Core values data
@@ -37,6 +38,45 @@ const stats = [
   { value: "10,000+", label: "Enterprise Clients" },
   { value: "1,000+", label: "Product Types" },
   { value: "98%", label: "Customer Satisfaction" },
+]
+
+const businessDetails = [
+  {
+    label: "Business Name",
+    value: "Laifappe / YUELAIFA PPE",
+    icon: Building2,
+  },
+  {
+    label: "Phone",
+    value: "+86 180 2930 9938",
+    href: "tel:+8618029309938",
+    icon: Phone,
+  },
+  {
+    label: "WhatsApp / WeChat",
+    value: "+86 180 2930 9938",
+    href: "https://wa.me/8618029309938",
+    icon: MessageCircle,
+  },
+  {
+    label: "Email",
+    value: "sales@laifappe.com",
+    href: "mailto:sales@laifappe.com",
+    icon: Mail,
+  },
+]
+
+const localOffices = [
+  {
+    title: "Foshan Chancheng Office",
+    address: "中国广东佛山禅城区华南五金电器批发市场E区13路大道新铺5-8号",
+    description: "Local consultation point for product selection, bulk purchasing, and engineering PPE projects.",
+  },
+  {
+    title: "Foshan Nanhai Office",
+    address: "中国广东佛山南海区华南国际五金电器机电城A区8路2AB, A区8路4AB",
+    description: "Sales coordination point for sample checks, order follow-up, and supplier visits.",
+  },
 ]
 
 // Company history
@@ -135,6 +175,78 @@ export default function AboutPage() {
               fill
               className="object-cover"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Business Details */}
+      <section className="bg-secondary/30 py-16">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-10 max-w-3xl">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                Verified Local Presence
+              </p>
+              <h2 className="mb-4 text-3xl font-bold">
+                Business Information & Foshan Office Points
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Laifappe is based in Foshan, Guangdong, China, with local office points serving PPE distributors,
+                project contractors, factories, and engineering procurement teams.
+              </p>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="rounded-lg border bg-card p-6 shadow-sm">
+                <h3 className="mb-5 text-xl font-semibold">Merchant Details</h3>
+                <dl className="space-y-4">
+                  {businessDetails.map((item) => {
+                    const Icon = item.icon
+                    const value = item.href ? (
+                      <a
+                        href={item.href}
+                        target={item.href.startsWith("http") ? "_blank" : undefined}
+                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="font-medium text-foreground underline-offset-4 hover:underline"
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className="font-medium text-foreground">{item.value}</span>
+                    )
+
+                    return (
+                      <div key={item.label} className="flex gap-3">
+                        <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10">
+                          <Icon className="h-4 w-4 text-primary" />
+                        </div>
+                        <div>
+                          <dt className="text-sm text-muted-foreground">{item.label}</dt>
+                          <dd className="break-all">{value}</dd>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </dl>
+              </div>
+
+              <div className="grid gap-5 sm:grid-cols-2">
+                {localOffices.map((office) => (
+                  <article key={office.title} className="rounded-lg border bg-card p-6 shadow-sm">
+                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
+                      <MapPin className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold">{office.title}</h3>
+                    <p className="mt-3 text-sm font-medium leading-6 text-foreground">
+                      {office.address}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {office.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

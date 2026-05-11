@@ -961,48 +961,7 @@
         }
       }
     ],
-    "productLinks": [
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmnvcgzh2002pumsotay2fwtl",
-        "sort": 0
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmnvp7shl0065umtocwx9pag6",
-        "sort": 1
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmozgyosr002vumeco499z51o",
-        "sort": 2
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmnwqzy4j00axumtoq760h9y1",
-        "sort": 3
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cml3x0rob002tum4oz2ml9llc",
-        "sort": 4
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmnvey6hx006gumsoi4k008fo",
-        "sort": 5
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmnvim6hg00bvumsol2wmlp9e",
-        "sort": 6
-      },
-      {
-        "blockKey": "recommended-ppe",
-        "productId": "cmnv8xzul000fumsoftuppnjm",
-        "sort": 7
-      }
-    ]
+    "productLinks": []
   },
   {
     "slug": "ppe-for-road-and-bridge-construction-projects",
@@ -2933,7 +2892,48 @@
         }
       }
     ],
-    "productLinks": []
+    "productLinks": [
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvcgzh2002pumsotay2fwtl",
+        "sort": 0
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvp7shl0065umtocwx9pag6",
+        "sort": 1
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmozgyosr002vumeco499z51o",
+        "sort": 2
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnwqzy4j00axumtoq760h9y1",
+        "sort": 3
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cml3x0rob002tum4oz2ml9llc",
+        "sort": 4
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvey6hx006gumsoi4k008fo",
+        "sort": 5
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvim6hg00bvumsol2wmlp9e",
+        "sort": 6
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnv8xzul000fumsoftuppnjm",
+        "sort": 7
+      }
+    ]
   },
   {
     "slug": "ppe-for-night-construction-and-low-visibility-work",

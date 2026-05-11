@@ -9859,47 +9859,103 @@
   {
     "slug": "ppe-for-heavy-equipment-operators-on-construction-sites",
     "title": "PPE for Heavy Equipment Operators on Construction Sites",
-    "excerpt": "Heavy equipment operators face whole-body vibration, noise, rollover risks, dust exposure, and struck-by hazards when mounting and dismounting machinery. This guide covers the PPE operators need both inside the cab and when working around excavators, loaders, and cranes.",
+    "excerpt": "A practical PPE guide for excavator, loader, dozer, roller, crane support, dump truck, and compact-equipment operators, covering in-cab exposure, mount and dismount hazards, walk-around inspections, road and bridge work, demolition dust, noise, visibility, footwear, and eye protection.",
     "usageScenes": [
       "construction",
+      "roadwork",
+      "demolition",
       "heavy-duty",
       "impact-resistant",
-      "slip-resistant"
+      "slip-resistant",
+      "high-visibility",
+      "dusty-work",
+      "noise-exposure"
     ],
     "coverImage": "https://shop.laifappe.com/solutions/ppe-for-heavy-equipment-operators-on-construction-sites-cover-1772011607708.webp",
     "isActive": true,
     "sortOrder": 15,
     "seoTitle": "PPE for Heavy Equipment Operators | Construction Machinery Safety Gear",
-    "seoDescription": "Guide to PPE for heavy equipment operators on construction sites including hearing protection, visibility gear, anti-slip boots, and OSHA machinery standards.",
-    "seoKeywords": "heavy equipment operator PPE, construction machinery safety, excavator operator gear, crane operator PPE, OSHA 1926 Subpart O, hearing protection NRR, operator safety boots, ROPS FOPS",
+    "seoDescription": "Select PPE for heavy equipment operators on construction sites. Covers hi-vis clothing, hearing protection, safety boots, goggles, gloves, helmets, dust exposure, road and bridge work, demolition, and operator PPE kits.",
+    "seoKeywords": "heavy equipment operator PPE, construction machinery safety gear, excavator operator PPE, loader operator PPE, road construction equipment operator PPE, demolition equipment operator PPE, hi-vis operator PPE, hearing protection construction equipment, safety boots for equipment operators",
     "sections": [
       {
         "key": "hero-intro",
         "type": "hero",
-        "title": "What PPE do heavy equipment operators need?",
+        "title": "What PPE do heavy equipment operators need on construction sites?",
         "enabled": true,
         "data": {
-          "intro": "Heavy equipment operators on construction sites spend hours operating excavators, bulldozers, loaders, cranes, and compactors. While ROPS/FOPS-equipped cabs provide structural protection, operators face persistent noise, whole-body vibration, dust, and significant struck-by risks during mounting, dismounting, and ground-level tasks:",
+          "intro": "The cab protects operators only part of the time. Risk changes when an operator climbs in or out, checks hydraulic lines, works near ground crews, opens the cab in dusty conditions, or moves between roadwork, bridge, and demolition zones. A usable operator PPE kit should cover both machine operation and the work that happens around the machine:",
           "bullets": [
-            "Safety helmet when outside the cab",
-            "Hearing protection (earplugs or earmuffs, NRR 22+)",
-            "Anti-slip safety boots with steel toe and defined heel",
-            "High visibility vest or jacket (Class 2 minimum)",
-            "Safety glasses for dust and open-cab operation",
-            "Work gloves for daily inspection and maintenance",
-            "Seat belt and proper cab restraint system",
-            "Dust mask for open-cab or dusty ground conditions"
+            "High-visibility vest, jacket, or workwear when outside the cab or near moving traffic",
+            "Hearing protection for engine, breaker, compactor, paver, and demolition noise",
+            "Slip-resistant safety boots for steps, pedals, muddy ground, and oily walk-around checks",
+            "Safety glasses or sealed goggles for dust, wind, flying particles, and open-cab work",
+            "Safety helmet or helmet with chin strap when the operator leaves the protected cab",
+            "Work gloves for inspections, refueling, tie-down checks, and minor maintenance",
+            "Respiratory protection review for silica dust, concrete cutting, sweeping, or open-cab demolition work",
+            "Seat belt, ROPS/FOPS, mirrors, cameras, alarms, and cab condition as critical non-PPE controls"
           ]
         }
       },
       {
-        "key": "guide-overview",
+        "key": "where-this-guide-fits",
         "type": "paragraphs",
-        "title": null,
+        "title": "Where this equipment-operator PPE guide fits",
         "enabled": true,
         "data": {
           "paragraphs": [
-            "This guide covers hazards specific to heavy equipment operation, recommends PPE for both in-cab and ground-level tasks, and references the safety standards that protect operators on construction sites."
+            "Use this guide for excavator, loader, dozer, roller, grader, paver, skid steer, telehandler, crane support, dump truck, and compact-equipment operators. It is written for safety managers, site supervisors, fleet teams, distributors, and procurement teams that need a repeatable PPE kit for operators who move between the cab and the jobsite.",
+            "For the wider jobsite framework, start with the [construction site PPE solution](/solutions/construction-site-ppe-solution). For work zones with traffic exposure, connect this page with [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects). For breakers, crushers, concrete removal, and debris handling, connect it with the [demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist) and the [demolition PPE solution](/solutions/ppe-for-demolition-and-concrete-cutting-work)."
+          ]
+        }
+      },
+      {
+        "key": "operator-exposure-map",
+        "type": "table",
+        "title": "Heavy equipment operator exposure map",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "In-cab operation",
+              "Engine, hydraulic, compactor, paver, or breaker noise; dust if windows are open; vibration and fatigue",
+              "Hearing protection when exposure requires it, safety glasses for open windows, clean cab storage for spare PPE, seat belt and ROPS/FOPS controls"
+            ],
+            [
+              "Mounting and dismounting",
+              "Muddy steps, worn treads, fuel or oil residue, uneven ground, and rushed entry or exit",
+              "Slip-resistant safety boots with a stable sole, gloves for handholds, and 3-point contact"
+            ],
+            [
+              "Daily walk-around inspection",
+              "Sharp edges, hot surfaces, pressurized fluid, battery checks, damaged guards, suspended attachments, and site debris",
+              "Safety glasses or goggles, work gloves, safety helmet, and toe-protection footwear"
+            ],
+            [
+              "Working near ground crews",
+              "Moving machines, blind spots, reversing vehicles, swinging loads, and poor communication",
+              "High-visibility clothing, safety helmet, hearing protection that still allows communication, and clear exclusion-zone rules"
+            ],
+            [
+              "Road and bridge construction",
+              "Traffic, night work, reflective glare, lane changes, reversing trucks, compactors, pavers, rollers, and bridge-edge exposure",
+              "ANSI/ISEA 107 hi-vis apparel, hearing protection, anti-slip footwear, eye protection, and task-specific fall protection where required"
+            ],
+            [
+              "Demolition and concrete breaking",
+              "Silica-containing dust, flying fragments, high impulse noise, unstable debris, rebar, crushed concrete, and open-cab exposure",
+              "Sealed goggles, hearing protection, cut-resistant gloves, safety boots, respiratory protection assessment, and helmet protection outside the cab"
+            ],
+            [
+              "Fueling, minor maintenance, and attachment changes",
+              "Fuel splash, hydraulic oil, pinch points, hot components, sharp couplers, and poor traction around service areas",
+              "Chemical-splash eye protection where needed, gloves matched to the task, slip-resistant boots, and high-visibility clothing"
+            ]
+          ],
+          "headers": [
+            "Work situation",
+            "Main exposure",
+            "PPE priorities"
           ]
         }
       },
@@ -9907,7 +9963,7 @@
         "key": "operator-hazards",
         "type": "table",
         "title": "Heavy Equipment Operator Hazards and Required PPE",
-        "enabled": true,
+        "enabled": false,
         "data": {
           "rows": [
             [
@@ -9959,10 +10015,65 @@
         }
       },
       {
+        "key": "operator-kits-by-role",
+        "type": "group",
+        "title": "PPE kits by equipment role",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Excavator, loader, dozer, and grader operators",
+              "description": "These operators need a compact kit that works when they leave the cab for walk-around inspection, attachment checks, spotter coordination, and fueling.",
+              "items": [
+                "Hi-vis vest or jacket stored inside the cab",
+                "Earplugs or earmuffs based on the equipment noise assessment",
+                "Slip-resistant steel or composite toe boots",
+                "Safety glasses for inspection and dusty open-cab operation",
+                "General-purpose work gloves for checks, pins, chains, and tie-downs",
+                "Safety helmet for all ground-level work outside the protected cab"
+              ]
+            },
+            {
+              "title": "Roadwork, bridge, paver, roller, and traffic-adjacent operators",
+              "description": "Visibility and communication become more important when machines work beside live traffic, night crews, reversing trucks, compactors, or bridge approaches.",
+              "items": [
+                "ANSI/ISEA 107 high-visibility apparel matched to site class requirements",
+                "Hearing protection that does not block radios or warning signals",
+                "Anti-slip footwear for asphalt, wet decks, embankments, and machine steps",
+                "Clear or anti-glare eye protection depending on light conditions",
+                "Helmet or hard hat where overhead, traffic, or bridge-edge hazards exist"
+              ]
+            },
+            {
+              "title": "Demolition, concrete breaking, and debris-handling operators",
+              "description": "Breaker, crusher, loader, and skid steer operators need stronger eye, hearing, hand, and respiratory planning because debris and dust can enter the cab or affect tasks outside the machine.",
+              "items": [
+                "Sealed anti-fog goggles where dust and fragments are difficult to control",
+                "Higher-protection hearing controls for breakers, crushers, saws, and impact tools",
+                "Cut-resistant or impact gloves for debris, rebar, and inspection work",
+                "Safety boots with puncture and slip resistance",
+                "Respirator selection based on the site dust and silica exposure assessment"
+              ]
+            },
+            {
+              "title": "Crane support, lifting-zone, and telehandler operators",
+              "description": "Operators who leave the cab around loads, riggers, signal persons, and staging areas need PPE that improves visibility and protects against falling-object and struck-by exposure.",
+              "items": [
+                "High-visibility clothing visible from the load path and ground level",
+                "Helmet with chin strap where wind, climbing, or leaning creates retention risk",
+                "Safety glasses for dust, wind, and debris",
+                "Grip gloves for hand signals, tag lines, chains, and attachment checks",
+                "Slip-resistant footwear for decks, outriggers, mats, and uneven ground"
+              ]
+            }
+          ]
+        }
+      },
+      {
         "key": "task-based-ppe",
         "type": "group",
         "title": "PPE for Different Operator Tasks",
-        "enabled": true,
+        "enabled": false,
         "data": {
           "groups": [
             {
@@ -10014,40 +10125,90 @@
       {
         "key": "essential-categories",
         "type": "list",
-        "title": "Essential PPE Categories for Equipment Operators",
+        "title": "Essential PPE categories for heavy equipment operators",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Earplugs or earmuffs rated NRR 22+ for continuous engine noise exposure",
-              "title": "Hearing Protection",
+              "text": "Earplugs or earmuffs should be selected from actual noise exposure, task duration, and communication needs. Use the [construction hearing protection guide](/blog/construction-hearing-protection) when standardizing hearing protection for operators, spotters, and road crews.",
+              "title": "Hearing protection",
               "bodyAnchorKey": "ears"
             },
             {
-              "text": "Required immediately when outside the cab on active construction sites",
-              "title": "Head Protection",
+              "text": "Operators may not need a helmet inside an enclosed protected cab, but they need head protection immediately when working outside the cab, near lifting zones, bridge work, demolition debris, or ground crews.",
+              "title": "Head protection",
               "bodyAnchorKey": "head"
             },
             {
-              "text": "Hi-vis vest or jacket (Class 2 minimum) for visibility to other operators",
-              "title": "Visibility",
+              "text": "Hi-vis apparel is a core operator control when people and machines share space. For roadwork, bridge projects, night shifts, and reversing equipment, use the [high-visibility clothing guide](/blog/high-visibility-clothing-construction) to select the right class and garment type.",
+              "title": "High-visibility clothing",
               "bodyAnchorKey": "chest"
             },
             {
-              "text": "Anti-slip soles, steel toe, ankle support, defined heel block for machine steps",
-              "title": "Foot Protection",
+              "text": "Footwear should support safe mounting, dismounting, inspection, and walking on mud, asphalt, rebar, gravel, decks, and oily service areas. Use the [construction safety footwear guide](/blog/construction-safety-footwear-guide) for toe cap, puncture, slip, and ankle-support decisions.",
+              "title": "Foot protection",
               "bodyAnchorKey": "feet"
             },
             {
-              "text": "Safety glasses for dust, debris, and open-cab operation",
-              "title": "Eye Protection",
+              "text": "Safety glasses are usually enough for basic walk-around checks, but sealed goggles are better for dusty demolition, concrete breaking, wind, and open-cab conditions. Use the [construction eye and face protection guide](/blog/construction-eye-face-protection) for glasses, goggles, and face-shield selection.",
+              "title": "Eye and face protection",
               "bodyAnchorKey": "eyes"
             },
             {
-              "text": "Work gloves for inspection; heat-resistant for engine and exhaust checks",
-              "title": "Hand Protection",
+              "text": "Gloves should match inspection and service work, not only driving. Operators may need grip, cut resistance, impact protection, oil handling, or heat resistance depending on attachments, debris, and maintenance tasks. Use the [construction gloves selection guide](/blog/construction-gloves-selection-guide) for task matching.",
+              "title": "Hand protection",
               "bodyAnchorKey": "left-hand"
             }
+          ]
+        }
+      },
+      {
+        "key": "operator-task-selection-matrix",
+        "type": "table",
+        "title": "PPE selection matrix by operator task",
+        "enabled": true,
+        "data": {
+          "rows": [
+            [
+              "Operating from an enclosed cab",
+              "Hearing protection if required by noise assessment, seat belt, clean cab storage for PPE",
+              "Eye protection if windows are open or the cab is dusty; climate and hydration planning"
+            ],
+            [
+              "Operating from an open cab or damaged cab",
+              "Safety glasses or goggles, hearing protection, hi-vis clothing, safety boots",
+              "Respiratory protection review for dust, silica, smoke, or sweeping exposure"
+            ],
+            [
+              "Climbing in or out of the machine",
+              "Slip-resistant safety boots, gloves for handholds, hi-vis clothing",
+              "Replace worn steps, keep access points clean, and reinforce 3-point contact"
+            ],
+            [
+              "Walk-around inspection",
+              "Safety glasses, gloves, safety helmet, safety boots",
+              "Use goggles or splash protection for fluid, battery, or pressure-check tasks"
+            ],
+            [
+              "Working beside traffic or bridge approaches",
+              "High-visibility apparel, hearing protection, safety boots, eye protection",
+              "Upgrade visibility for night work, low light, rain, and multi-machine areas"
+            ],
+            [
+              "Demolition, breaker, crusher, or concrete removal",
+              "Sealed goggles, hearing protection, gloves, safety boots, helmet outside the cab",
+              "Respirator selection should follow the dust and silica control plan"
+            ],
+            [
+              "Fueling, greasing, and attachment changes",
+              "Gloves, eye protection, safety boots, hi-vis clothing",
+              "Add chemical-splash protection where fuel, oil, battery, or cleaning chemicals are handled"
+            ]
+          ],
+          "headers": [
+            "Task",
+            "Baseline PPE",
+            "When to add protection"
           ]
         }
       },
@@ -10057,38 +10218,41 @@
         "title": "Recommended PPE for Equipment Operators",
         "enabled": true,
         "data": {
-          "mode": "rule",
+          "mode": "manual",
           "paragraphs": [
-            "Equipment operators should keep a personal PPE kit stored in or mounted near the cab so protection is always available for ground-level tasks and emergencies.",
-            "An operator PPE kit typically includes hearing protection, hi-vis clothing, helmet, gloves, safety glasses, and steel toe boots.",
-            "Below are examples of PPE commonly selected for heavy equipment operators:"
+            "A useful operator kit should not be built only for the person sitting in the cab. It should cover the moments when the operator leaves the machine, inspects attachments, coordinates with ground crews, walks through a traffic zone, or works around demolition debris.",
+            "For mixed construction fleets, combine high-visibility apparel, hearing protection, slip-resistant safety footwear, anti-fog eye protection, helmet protection for ground tasks, and work gloves for inspection and minor service work.",
+            "The products below are selected to support heavy equipment operator kits and to connect this page with the road/bridge and demolition PPE clusters."
           ]
         }
       },
       {
         "key": "basic-ppe-set",
         "type": "list",
-        "title": "Basic Equipment Operator PPE Set",
+        "title": "Operator PPE procurement checklist",
         "enabled": true,
         "data": {
           "items": [
             {
-              "text": "Hearing protection (earplugs with carrying case)"
+              "text": "Build a standard cab kit that includes hi-vis apparel, hearing protection, safety glasses or goggles, gloves, and a helmet or hard hat for ground-level work."
             },
             {
-              "text": "Hi-vis vest (Class 2, stored in cab)"
+              "text": "Separate in-cab exposure from outside-cab exposure. The cab may reduce some hazards, but it does not protect the operator during inspection, fueling, traffic-zone movement, or emergency exit."
             },
             {
-              "text": "Safety helmet (stored in cab or on hook)"
+              "text": "Match hearing protection to both noise reduction and communication. Operators still need to hear alarms, radios, spotters, and emergency instructions."
             },
             {
-              "text": "Safety glasses (clear lens)"
+              "text": "Choose anti-fog eye protection for humid cabs, cold mornings, open windows, concrete dust, and demolition debris."
             },
             {
-              "text": "Anti-slip steel toe boots with defined heel"
+              "text": "Specify footwear for steps, pedals, gravel, asphalt, mud, rebar, bridge decks, and oily service areas rather than buying only by toe-cap type."
             },
             {
-              "text": "Work gloves (general-purpose)"
+              "text": "Keep replacement earplugs, eyewear, gloves, and hi-vis garments available for day shift, night shift, subcontractors, and visiting operators."
+            },
+            {
+              "text": "Document where respiratory protection is required. Dust masks and respirators should follow the site's exposure assessment, fit, training, and applicable respiratory-protection requirements."
             }
           ]
         }
@@ -10096,27 +10260,30 @@
       {
         "key": "example-products",
         "type": "list",
-        "title": "Example PPE Products",
+        "title": "Related guides for equipment-operator PPE",
         "enabled": true,
         "data": {
           "items": [
             {
-              "title": "Corded Earplugs EP20 (NRR 25) with Storage Case"
+              "title": "[PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)"
             },
             {
-              "title": "Hi-Vis Class 2 Vest HV10 (Orange)"
+              "title": "[Demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist)"
             },
             {
-              "title": "Vented Construction Helmet H200-V"
+              "title": "[High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)"
             },
             {
-              "title": "Anti-Fog Safety Glasses E12-AF"
+              "title": "[Construction hearing protection guide](/blog/construction-hearing-protection)"
             },
             {
-              "title": "Operator Safety Boots S85-OP with Defined Heel"
+              "title": "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)"
             },
             {
-              "title": "General-Purpose Work Gloves G06"
+              "title": "[Construction eye and face protection guide](/blog/construction-eye-face-protection)"
+            },
+            {
+              "title": "[Complete construction site PPE solution](/solutions/construction-site-ppe-solution)"
             }
           ]
         }
@@ -10129,67 +10296,110 @@
         "data": {
           "items": [
             {
-              "text": "Motor vehicles, mechanized equipment, and marine operations",
-              "title": "OSHA 1926 Subpart O"
+              "text": "Construction rules for motor vehicles, mechanized equipment, material handling equipment, and site equipment operation. This is the starting point for machine guarding, equipment condition, and safe operation controls.",
+              "title": "OSHA 29 CFR 1926 Subpart O"
             },
             {
-              "text": "Occupational noise exposure and hearing conservation program",
-              "title": "OSHA 1910.95"
+              "text": "Construction noise requirements apply when operator exposure reaches regulated limits. Hearing protection should be based on measured exposure, equipment type, and shift duration.",
+              "title": "OSHA 29 CFR 1926.52"
             },
             {
-              "text": "Roll-over protective structures (ROPS)",
-              "title": "ISO 3471 / SAE J1040"
-            },
-            {
-              "text": "Falling-object protective structures (FOPS)",
-              "title": "ISO 3449 / SAE J231"
-            },
-            {
-              "text": "High-visibility safety apparel",
+              "text": "High-visibility apparel should match traffic exposure, jobsite visibility, night work, road and bridge activity, and site owner requirements.",
               "title": "ANSI/ISEA 107"
             },
             {
-              "text": "Safety footwear with defined heel requirements",
-              "title": "EN ISO 20345 / ASTM F2413"
+              "text": "Footwear specifications should consider impact, compression, puncture, slip resistance, outsole traction, ankle support, and site ground conditions.",
+              "title": "ASTM F2413 / EN ISO 20345"
+            },
+            {
+              "text": "Eye and face protection should match dust, wind, flying particles, splashes, grinding, demolition debris, and anti-fog requirements.",
+              "title": "ANSI Z87.1 / EN166"
+            },
+            {
+              "text": "ROPS, FOPS, seat belts, mirrors, cameras, alarms, cab integrity, and maintenance are not PPE substitutes. They are machine controls that must work together with operator PPE.",
+              "title": "Machine and cab controls"
             }
           ]
         }
       },
       {
-        "key": "certified-products",
+        "key": "operator-control-note",
         "type": "callout",
-        "title": null,
+        "title": "Important operator safety note",
         "enabled": true,
         "data": {
+          "text": "PPE does not replace equipment controls. Seat belts, ROPS/FOPS, machine maintenance, backup alarms, mirrors, cameras, exclusion zones, spotter communication, and traffic control are still essential. PPE protects the operator during exposure that remains after those controls are in place."
+        }
+      },
+      {
+        "key": "certified-products",
+        "type": "callout",
+        "title": "Important operator safety note",
+        "enabled": false,
+        "data": {
           "text": "Always use the 3-point contact method when mounting and dismounting equipment—two hands and one foot, or two feet and one hand on the machine at all times. Anti-slip boots with defined heel blocks prevent foot slippage on machine steps and pedals."
+        }
+      },
+      {
+        "key": "operator-faq-v2",
+        "type": "faq",
+        "title": "Heavy equipment operator PPE FAQ",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "q": "Do heavy equipment operators need PPE inside an enclosed cab?",
+              "a": "Sometimes. The cab may reduce dust, flying debris, and weather exposure, but it does not automatically remove noise exposure or emergency exit requirements. Operators also need PPE available for inspections, fueling, communication with ground crews, and any task outside the cab."
+            },
+            {
+              "q": "Is hearing protection required for equipment operators?",
+              "a": "Hearing protection should be based on measured or assessed noise exposure. Breakers, compactors, pavers, dozers, loaders, and demolition equipment can create sustained or impulse noise that requires hearing controls."
+            },
+            {
+              "q": "What footwear is best for equipment operators?",
+              "a": "Choose safety boots or shoes with toe protection, slip resistance, stable traction, and enough support for machine steps, pedals, gravel, wet decks, asphalt, mud, and oily service areas. For demolition or rebar exposure, add puncture protection."
+            },
+            {
+              "q": "When should operators use goggles instead of safety glasses?",
+              "a": "Use sealed or close-fitting goggles when dust, wind, concrete fragments, demolition debris, or open-cab operation can bypass standard safety glasses. Anti-fog performance matters because operators move between warm cabs and outdoor conditions."
+            },
+            {
+              "q": "How does PPE change for road and bridge construction?",
+              "a": "Visibility, communication, hearing protection, and footwear become more important because operators work around traffic, reversing trucks, rollers, pavers, bridge decks, low light, and multiple moving machines."
+            },
+            {
+              "q": "How does PPE change for demolition equipment operators?",
+              "a": "Demolition adds dust, silica, flying debris, sharp rebar, high impulse noise, and unstable walking surfaces. Operators usually need stronger eye protection, hearing protection, gloves, footwear, and a respiratory protection review."
+            }
+          ]
         }
       },
       {
         "key": "operator-faq",
         "type": "faq",
         "title": "Frequently Asked Questions",
-        "enabled": true,
+        "enabled": false,
         "data": {
           "items": [
             {
-              "a": "Generally not required inside a ROPS/FOPS-equipped enclosed cab with intact windows. However, a helmet must be donned immediately when stepping outside onto an active construction site.",
-              "q": "Do operators need to wear a helmet inside the cab?"
+              "q": "Do operators need to wear a helmet inside the cab?",
+              "a": "Generally not required inside a ROPS/FOPS-equipped enclosed cab with intact windows. However, a helmet must be donned immediately when stepping outside onto an active construction site."
             },
             {
-              "a": "Yes, when noise levels exceed 85 dB TWA (8-hour time-weighted average). Most construction equipment—excavators, dozers, loaders—exceeds this threshold, making hearing protection standard practice.",
-              "q": "Is hearing protection required for all equipment operators?"
+              "q": "Is hearing protection required for all equipment operators?",
+              "a": "Yes, when noise levels exceed 85 dB TWA (8-hour time-weighted average). Most construction equipment—excavators, dozers, loaders—exceeds this threshold, making hearing protection standard practice."
             },
             {
-              "a": "Steel toe boots with anti-slip soles (SRC rated), ankle support, and a defined heel block that catches on machine steps and prevents foot slippage during 3-point mounting and dismounting.",
-              "q": "What boots are best for equipment operators?"
+              "q": "What boots are best for equipment operators?",
+              "a": "Steel toe boots with anti-slip soles (SRC rated), ankle support, and a defined heel block that catches on machine steps and prevents foot slippage during 3-point mounting and dismounting."
             },
             {
-              "a": "During a rollover, the ROPS maintains a survival space inside the cab—but only if the operator stays in the seat. An unfastened seat belt allows the operator to be thrown outside the protective zone.",
-              "q": "Why is the seat belt critical in ROPS-equipped cabs?"
+              "q": "Why is the seat belt critical in ROPS-equipped cabs?",
+              "a": "During a rollover, the ROPS maintains a survival space inside the cab—but only if the operator stays in the seat. An unfastened seat belt allows the operator to be thrown outside the protective zone."
             },
             {
-              "a": "Yes. We provide compact operator kits including earplugs, safety glasses, hi-vis vest, gloves, and steel toe boots packaged in a durable bag designed for cab storage.",
-              "q": "Can you supply operator PPE kits?"
+              "q": "Can you supply operator PPE kits?",
+              "a": "Yes. We provide compact operator kits including earplugs, safety glasses, hi-vis vest, gloves, and steel toe boots packaged in a durable bag designed for cab storage."
             }
           ]
         }
@@ -10209,7 +10419,48 @@
         }
       }
     ],
-    "productLinks": []
+    "productLinks": [
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvcgzh2002pumsotay2fwtl",
+        "sort": 0
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvp7shl0065umtocwx9pag6",
+        "sort": 1
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmozgyosr002vumeco499z51o",
+        "sort": 2
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnwqzy4j00axumtoq760h9y1",
+        "sort": 3
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cml3x0rob002tum4oz2ml9llc",
+        "sort": 4
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvey6hx006gumsoi4k008fo",
+        "sort": 5
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvim6hg00bvumsol2wmlp9e",
+        "sort": 6
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnv8xzul000fumsoftuppnjm",
+        "sort": 7
+      }
+    ]
   },
   {
     "slug": "ppe-for-night-construction-and-low-visibility-work",
