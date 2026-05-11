@@ -4,6 +4,7 @@ import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const baseUrl = getSiteUrl()
+const GOOGLE_ADS_ID = "AW-18154606166"
 const META_PIXEL_ID = "1405506711622457"
 
 export const metadata: Metadata = {
@@ -75,6 +76,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
