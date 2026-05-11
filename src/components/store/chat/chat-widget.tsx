@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { FloatingEmailButton } from "@/components/store/floating-email-button"
 import { ChatWindow } from "./chat-window"
 import { getPusherClient } from "@/lib/pusher-client"
 import { cn } from "@/lib/utils"
@@ -11,12 +12,6 @@ export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [unreadCount, setUnreadCount] = useState(0)
-
-  useEffect(() => {
-    if (isOpen && !isMinimized) {
-      setUnreadCount(0)
-    }
-  }, [isOpen, isMinimized])
 
   useEffect(() => {
     const visitorId = localStorage.getItem('chat_visitor_id')
@@ -76,12 +71,14 @@ export function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
       {isOpen && !isMinimized && (
-        <div className="mb-4">
+        <div className="mb-1">
           <ChatWindow onClose={handleClose} onMinimize={handleMinimize} />
         </div>
       )}
+
+      {(!isOpen || isMinimized) && <FloatingEmailButton />}
 
       <Button
         onClick={handleOpen}

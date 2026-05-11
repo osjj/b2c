@@ -63,18 +63,19 @@ const businessDetails = [
     value: "sales@laifappe.com",
     href: "mailto:sales@laifappe.com",
     icon: Mail,
+    preferred: true,
   },
 ]
 
 const localOffices = [
   {
     title: "Foshan Chancheng Office",
-    address: "中国广东佛山禅城区华南五金电器批发市场E区13路大道新铺5-8号",
+    address: "Shop 5-8, New Shop Area, Avenue 13, Zone E, South China Hardware & Electrical Appliance Wholesale Market, Chancheng District, Foshan, Guangdong, China",
     description: "Local consultation point for product selection, bulk purchasing, and engineering PPE projects.",
   },
   {
     title: "Foshan Nanhai Office",
-    address: "中国广东佛山南海区华南国际五金电器机电城A区8路2AB, A区8路4AB",
+    address: "2AB, Road 8, Zone A, and 4AB, Road 8, Zone A, South China International Hardware Electrical & Mechanical City, Nanhai District, Foshan, Guangdong, China",
     description: "Sales coordination point for sample checks, order follow-up, and supplier visits.",
   },
 ]
@@ -216,13 +217,16 @@ export default function AboutPage() {
                     )
 
                     return (
-                      <div key={item.label} className="flex gap-3">
+                      <div
+                        key={item.label}
+                        className={`flex gap-3 rounded-md ${item.preferred ? "border border-primary/30 bg-primary/5 p-3" : ""}`}
+                      >
                         <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary/10">
                           <Icon className="h-4 w-4 text-primary" />
                         </div>
                         <div>
                           <dt className="text-sm text-muted-foreground">{item.label}</dt>
-                          <dd className="break-all">{value}</dd>
+                          <dd className={`break-all ${item.preferred ? "text-lg" : ""}`}>{value}</dd>
                         </div>
                       </div>
                     )

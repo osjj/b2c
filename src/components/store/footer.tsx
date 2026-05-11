@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Instagram, Facebook, Twitter } from "lucide-react"
+import { Instagram, Facebook, Twitter, Mail } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
@@ -106,7 +106,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-serif text-lg mb-6 tracking-wide">Follow</h4>
+            <h4 className="font-serif text-lg mb-6 tracking-wide">Contact</h4>
             <div className="flex gap-4">
               {socialLinks.map((item) => {
                 const Icon = item.icon
@@ -124,12 +124,21 @@ export function Footer() {
                 )
               })}
             </div>
-            <p className="text-sm text-muted-foreground mt-6">
-              Customer Service<br />
-              <Link href="/contact" className="hover:text-foreground transition-colors">
+            <div className="mt-6 rounded-lg border border-primary/25 bg-primary/5 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                Email Sales
+              </p>
+              <a
+                href="mailto:sales@laifappe.com"
+                className="mt-2 flex items-center gap-2 break-all text-base font-semibold text-foreground underline-offset-4 hover:underline"
+              >
+                <Mail className="h-4 w-4 shrink-0 text-primary" />
                 sales@laifappe.com
-              </Link>
-            </p>
+              </a>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Preferred for catalogs, quotations, and OEM/ODM requests.
+              </p>
+            </div>
           </div>
         </div>
 

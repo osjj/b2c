@@ -13,7 +13,7 @@ export default function FooterCTA() {
             Ready to Source Quality PPE?
           </h2>
           <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-            Get in touch with our team for product inquiries, custom orders, or to request a
+            Email our team for product inquiries, custom orders, or to request a
             detailed quotation. We&apos;re here to help you find the right protection solutions.
           </p>
 
@@ -24,10 +24,10 @@ export default function FooterCTA() {
               className="h-14 px-8"
               asChild
             >
-              <Link href="/contact">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Contact Sales
-              </Link>
+              <a href="mailto:sales@laifappe.com">
+                <Mail className="mr-2 h-5 w-5" />
+                Email Sales Team
+              </a>
             </Button>
             <Button
               size="lg"
@@ -35,9 +35,9 @@ export default function FooterCTA() {
               className="h-14 px-8 bg-transparent border-white/30 text-white hover:bg-white hover:text-primary"
               asChild
             >
-              <Link href="/products">
+              <Link href="/contact">
                 <FileText className="mr-2 h-5 w-5" />
-                View Catalog
+                Request Quote
               </Link>
             </Button>
           </div>
@@ -47,7 +47,9 @@ export default function FooterCTA() {
             <div>
               <Mail className="h-6 w-6 mx-auto mb-2 opacity-80" />
               <p className="text-sm opacity-80">Email</p>
-              <p className="font-semibold">sales@laifappe.com</p>
+              <a href="mailto:sales@laifappe.com" className="font-semibold underline-offset-4 hover:underline">
+                sales@laifappe.com
+              </a>
             </div>
             <div>
               <MessageCircle className="h-6 w-6 mx-auto mb-2 opacity-80" />

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { FileText, X, Send, Upload, Loader2, Check } from 'lucide-react'
+import { FileText, X, Send, Loader2, Check } from 'lucide-react'
 import { useQuote } from '@/hooks/use-quote'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -174,7 +174,7 @@ export function MiniQuote() {
             </p>
             <p className="font-mono text-lg font-bold text-primary mb-4">{quoteNumber}</p>
             <p className="text-sm text-muted-foreground mb-6">
-              We will contact you shortly via email or WhatsApp/WeChat.
+              We will contact you shortly by email.
             </p>
             <Button onClick={resetAndClose}>Continue Shopping</Button>
           </div>
@@ -210,14 +210,13 @@ export function MiniQuote() {
                 </div>
 
                 <div>
-                  <Label htmlFor="contact">WhatsApp / WeChat *</Label>
+                  <Label htmlFor="contact">Phone / WhatsApp / WeChat (Optional)</Label>
                   <Input
                     id="contact"
                     name="contact"
                     value={formData.contact}
                     onChange={handleInputChange}
-                    placeholder="Your WhatsApp or WeChat ID"
-                    required
+                    placeholder="Optional phone, WhatsApp, or WeChat ID"
                   />
                   {errors.contact && <p className="text-sm text-red-500 mt-1">{errors.contact[0]}</p>}
                 </div>

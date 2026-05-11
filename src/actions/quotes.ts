@@ -1,13 +1,12 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 
 const quoteSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Invalid email'),
-  contact: z.string().min(1, 'WhatsApp/WeChat is required'),
+  contact: z.string().optional(),
   companyName: z.string().optional(),
   remark: z.string().optional(),
   expectedPrice: z.number().min(0).optional(),
@@ -60,7 +59,7 @@ export async function createQuote(data: z.infer<typeof quoteSchema>): Promise<Qu
         quoteNumber: generateQuoteNumber(),
         name,
         email,
-        contact,
+        contact: contact || '',
         companyName: companyName || null,
         remark: remark || null,
         expectedPrice: expectedPrice || null,

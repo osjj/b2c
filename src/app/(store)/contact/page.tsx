@@ -1,21 +1,22 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Mail, MessageCircle, Clock, MapPin, ArrowRight } from 'lucide-react'
+import { Mail, MessageCircle, Clock, MapPin, ArrowRight, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { RequestQuoteButton } from '@/components/store/request-quote-button'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Laifappe',
-  description: 'Contact our sales team for PPE product inquiries, quotations, and OEM/ODM cooperation.',
+  description: 'Email Laifappe sales for PPE product inquiries, quotations, catalogs, and OEM/ODM cooperation.',
 }
 
 const contacts = [
   {
-    title: 'Email',
+    title: 'Email Sales',
     value: 'sales@laifappe.com',
-    href: '',
+    href: 'mailto:sales@laifappe.com',
     icon: Mail,
-    note: 'For quotations and product catalogs. Replace [at] with @ when emailing directly.',
+    note: 'Preferred channel for quotations, catalogs, OEM/ODM projects, and purchase lists.',
+    featured: true,
   },
   {
     title: 'WhatsApp / WeChat',
@@ -43,10 +44,17 @@ export default function ContactPage() {
             Talk To Our PPE Team
           </h1>
           <p className="text-primary-foreground/80 max-w-2xl">
-            Tell us your product requirements, target quantity, and delivery timeline. We will provide a clear and practical quotation plan.
+            Email your product requirements, target quantity, and delivery timeline. Our sales team will reply with a clear quotation plan.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <RequestQuoteButton size="lg" className="h-12 px-6">
+            <Button size="lg" className="h-12 px-6 bg-white text-foreground hover:bg-white/90" asChild>
+              <a href="mailto:sales@laifappe.com">
+                <Mail className="mr-2 h-4 w-4" />
+                Email Sales
+              </a>
+            </Button>
+            <RequestQuoteButton size="lg" variant="secondary" className="h-12 px-6">
+              <FileText className="mr-2 h-4 w-4" />
               Request Quote
             </RequestQuoteButton>
             <Button size="lg" variant="outline" className="h-12 px-6 bg-transparent border-white/30 text-white hover:bg-white hover:text-foreground" asChild>
@@ -64,22 +72,39 @@ export default function ContactPage() {
           {contacts.map((item) => {
             const Icon = item.icon
             const body = (
-              <div className="h-full rounded-xl border bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon className="h-5 w-5 text-primary" />
+              <div className={`h-full rounded-xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md ${item.featured ? 'border-primary/40 bg-primary/5 md:col-span-3 md:p-8' : ''}`}>
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <div className={`mb-4 flex items-center justify-center rounded-lg bg-primary/10 ${item.featured ? 'h-12 w-12' : 'h-10 w-10'}`}>
+                      <Icon className={`${item.featured ? 'h-6 w-6' : 'h-5 w-5'} text-primary`} />
+                    </div>
+                    <h2 className={`${item.featured ? 'text-2xl' : 'text-lg'} font-semibold`}>{item.title}</h2>
+                  </div>
+                  {item.featured && (
+                    <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary-foreground">
+                      Preferred
+                    </span>
+                  )}
                 </div>
-                <h2 className="font-semibold text-lg">{item.title}</h2>
                 <p className="text-sm text-muted-foreground mt-1">{item.note}</p>
-                <p className="mt-4 font-medium break-all">{item.value}</p>
+                <p className={`mt-4 break-all ${item.featured ? 'text-2xl font-bold text-primary md:text-3xl' : 'font-medium'}`}>
+                  {item.value}
+                </p>
               </div>
             )
 
             if (!item.href) {
-              return <div key={item.title}>{body}</div>
+              return <div key={item.title} className={item.featured ? 'md:col-span-3' : undefined}>{body}</div>
             }
 
             return (
-              <a key={item.title} href={item.href} target="_blank" rel="noopener noreferrer">
+              <a
+                key={item.title}
+                href={item.href}
+                target={item.href.startsWith('http') ? '_blank' : undefined}
+                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={item.featured ? 'md:col-span-3' : undefined}
+              >
                 {body}
               </a>
             )
