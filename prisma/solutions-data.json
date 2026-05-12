@@ -10465,195 +10465,213 @@
   {
     "slug": "ppe-for-night-construction-and-low-visibility-work",
     "title": "PPE for Night Construction and Low Visibility Work",
-    "excerpt": "Night construction and low-visibility conditions dramatically increase the risk of struck-by incidents, trips, and falls. Workers need enhanced visibility PPE, proper lighting, and reflective gear to maintain safety when natural light is unavailable.",
+    "excerpt": "A practical PPE solution for night construction, low-light work, fog, rain, tunnels, roadwork, bridge work, demolition, and equipment zones. Covers hi-vis class selection, reflective rainwear, task lighting, clear eye protection, hearing protection, footwear, helmets, and role-based night work kits.",
     "usageScenes": [
       "construction",
+      "roadwork",
+      "night-work",
+      "low-visibility",
+      "high-visibility",
       "heavy-duty",
       "slip-resistant",
-      "impact-resistant"
+      "impact-resistant",
+      "waterproof",
+      "noise-exposure"
     ],
     "coverImage": "https://shop.laifappe.com/solutions/ppe-for-night-construction-and-low-visibility-work-cover-1772011203793.webp",
     "isActive": true,
     "sortOrder": 16,
-    "seoTitle": "PPE for Night Construction | Low Visibility Safety Equipment",
-    "seoDescription": "Guide to PPE for night construction and low-visibility work including Class 3 hi-vis, LED safety lights, reflective helmets, and ANSI/ISEA 107 compliance.",
-    "seoKeywords": "night construction PPE, low visibility safety, Class 3 hi-vis, reflective safety gear, LED safety vest, night work safety, ANSI ISEA 107 Class 3, MUTCD night work, EN ISO 20471",
+    "seoTitle": "Night Construction PPE | Low Visibility Work Safety Gear",
+    "seoDescription": "Choose PPE for night construction and low-visibility work: Class 2/Class 3 hi-vis, reflective rainwear, task lighting, clear eye protection, hearing protection, safety boots, helmets, and roadwork kits.",
+    "seoKeywords": "night construction PPE, low visibility construction PPE, night work safety gear, Class 3 hi vis construction, reflective workwear construction, night road construction PPE, low light construction safety, construction task lighting PPE, reflective rainwear construction, night shift PPE kit",
     "sections": [
       {
         "key": "hero-intro",
         "type": "hero",
         "title": "What PPE is required for night construction and low-visibility work?",
         "enabled": true,
+        "sort": 0,
         "data": {
-          "intro": "Night shifts and low-visibility conditions—fog, rain, dusk, dawn, and underground areas—multiply the risks on construction sites. Equipment operators cannot see ground workers, trip hazards are hidden, and passing traffic may not react in time. Specialized visibility PPE is essential:",
+          "intro": "Night construction changes the risk profile of a site. Workers are harder to see, drivers and equipment operators have less reaction time, wet surfaces are harder to judge, and communication is often worse because of lighting towers, generators, compactors, and traffic. A night-work PPE kit should make each worker visible from multiple angles, keep their footing stable, protect eyes from dust and glare, and preserve communication in high-noise zones.",
           "bullets": [
-            "ANSI Class 3 high-visibility vest or jacket with retroreflective tape",
-            "LED clip-on safety lights or illuminated vest panels",
-            "Safety helmet with reflective strips or reflective cover",
-            "Head-mounted lamp or rechargeable helmet light",
-            "Anti-slip safety boots with reflective accents",
-            "Safety glasses with clear or amber low-light lenses",
-            "Glow sticks or LED wrist bands for personnel tracking",
-            "Thermal hi-vis jacket for cold night conditions"
+            "Use high-visibility garments selected for the actual traffic, equipment, weather, and light level.",
+            "Add retroreflective and active-lighting details where crews work around moving vehicles or plant.",
+            "Keep eye, hearing, head, hand, and footwear protection compatible with lamps, radios, respirators, and rainwear.",
+            "Build separate kits for road crews, bridge crews, spotters, operators, signal persons, and short-duration visitors."
           ]
         }
       },
       {
         "key": "guide-overview",
         "type": "paragraphs",
-        "title": null,
+        "title": "How to use this night work PPE guide",
         "enabled": true,
+        "sort": 1,
         "data": {
           "paragraphs": [
-            "This guide explains the increased hazards during night construction, recommends visibility-focused PPE for different roles, and covers the ANSI/ISEA 107, EN ISO 20471, and MUTCD standards that govern night work safety requirements."
+            "Use this page as a buying and planning checklist for night shifts, pre-dawn starts, tunnels, underpasses, winter afternoons, fog, rain, dust, and other low-visibility construction conditions. It complements the detailed [high-visibility clothing guide](/blog/high-visibility-clothing-construction), [hearing protection guide](/blog/construction-hearing-protection), [safety footwear guide](/blog/construction-safety-footwear-guide), and [eye and face protection guide](/blog/construction-eye-face-protection).",
+            "The final kit should still follow the project hazard assessment, local regulations, client specifications, traffic control plan, and the standards named by the buyer. For public road or bridge work, review this together with the [road and bridge construction PPE solution](/solutions/ppe-for-road-and-bridge-construction-projects). For machine crews, pair it with the [heavy equipment operator PPE checklist](/solutions/ppe-for-heavy-equipment-operators-on-construction-sites)."
           ]
         }
       },
       {
         "key": "night-hazards",
         "type": "table",
-        "title": "Night Construction Hazards and Required PPE",
+        "title": "Night construction hazards and PPE controls",
         "enabled": true,
+        "sort": 2,
         "data": {
+          "headers": [
+            "Night work condition",
+            "Main exposure",
+            "PPE response"
+          ],
           "rows": [
             [
-              "Reduced visibility of workers by operators",
-              "Struck-by vehicles or equipment",
-              "Class 3 hi-vis clothing with LED active lights"
+              "Workers on foot near reversing equipment",
+              "Struck-by and crush exposure",
+              "High-visibility jacket or vest, reflective helmet markings, task lighting, and radio-compatible hearing PPE where needed"
             ],
             [
-              "Trip hazards hidden in darkness",
-              "Falls, sprains, fractures",
-              "Head lamp, anti-slip boots, clear pathway lighting"
+              "Lane closures, flagging, and traffic control",
+              "Vehicle approach from multiple angles",
+              "Roadway-rated hi-vis garments, reflective rainwear, clean retroreflective tape, and clear role identification"
             ],
             [
-              "Passing traffic near night work zone",
-              "Vehicle intrusion into work area",
-              "Class 3 hi-vis with 360° retroreflective tape"
+              "Bridge decks, ramps, scaffolds, and uneven ground",
+              "Trips, slips, falls, and edge exposure",
+              "Slip-resistant safety footwear, head protection, fall protection where required, and compact lighting that does not blind co-workers"
             ],
             [
-              "Glare from construction and vehicle lighting",
-              "Temporary blindness, depth misjudgment",
-              "Anti-glare safety glasses (amber lens)"
+              "Concrete cutting, demolition, milling, and compacting",
+              "Noise, dust, flying fragments, and reduced line of sight",
+              "Clear safety glasses or goggles, hearing protection, gloves, respirators where required, and high-contrast clothing"
             ],
             [
-              "Cold temperatures during night shifts",
-              "Hypothermia, reduced dexterity and reaction time",
-              "Thermal hi-vis jacket, insulated gloves"
-            ],
-            [
-              "Reduced communication and coordination",
-              "Miscoordination near equipment",
-              "LED role-color identification markers, radio"
-            ],
-            [
-              "Fatigue from night shift patterns",
-              "Slower reaction times, poor judgment",
-              "Rest protocols, bright PPE for mutual visibility"
-            ],
-            [
-              "Wet surfaces from dew and condensation",
-              "Slips on steel, scaffolds, and platforms",
-              "Anti-slip boots (SRC rated), non-slip gloves"
+              "Rain, fog, snow, spray, and mud",
+              "Low contrast, wet grip loss, and garment cover-up",
+              "Reflective rainwear, waterproof boots, anti-fog eyewear, and replacement dry gloves or liners"
             ]
-          ],
-          "headers": [
-            "Hazard",
-            "Potential Injury",
-            "Required PPE"
           ]
         }
       },
       {
-        "key": "task-based-ppe",
-        "type": "group",
-        "title": "PPE for Different Night Work Roles",
+        "key": "visibility-selection",
+        "type": "list",
+        "title": "Select hi-vis clothing by exposure, not by habit",
         "enabled": true,
+        "sort": 3,
         "data": {
-          "groups": [
+          "items": [
             {
-              "items": [
-                "Class 3 hi-vis vest with integrated LED modules",
-                "Helmet with reflective tape (all four sides)",
-                "Powered head lamp (300+ lumens)",
-                "Anti-slip boots with reflective trim",
-                "Signal paddle with LED illumination"
-              ],
-              "title": "Night Flaggers and Traffic Controllers",
-              "description": "Flaggers need maximum 360-degree visibility to approaching motorists. Active LED lighting combined with retroreflective material exceeds the strictest MUTCD and ANSI nighttime requirements."
+              "title": "Public road, bridge, and traffic exposure",
+              "text": "Use the project traffic control plan and buyer specification to choose the garment class, color, and tape layout. Night road crews often need sleeves or full upper-body conspicuity rather than a simple daytime vest."
             },
             {
-              "items": [
-                "Class 3 hi-vis jacket (thermal insulated for cold)",
-                "Helmet with reflective strips or cover",
-                "Safety glasses with clear lenses for max light",
-                "Steel toe boots with reflective accents",
-                "Personal LED clip light on front and back"
-              ],
-              "title": "General Laborers on Night Shift",
-              "description": "All ground workers on night sites need Class 3 hi-vis as minimum plus personal task lighting to safely navigate the work area and be visible to equipment operators."
+              "title": "Plant-heavy zones",
+              "text": "Where excavators, loaders, dump trucks, cranes, rollers, or telehandlers operate after dark, choose garments that remain visible when a worker bends, turns, carries tools, or faces away from the operator."
             },
             {
-              "items": [
-                "Hi-vis vest or jacket (kept in cab for exit)",
-                "Head lamp for pre-shift ground inspections",
-                "Safety boots with reflective trim",
-                "Hearing protection",
-                "Cab interior light for instrument visibility"
-              ],
-              "title": "Equipment Operators (Night Shift)",
-              "description": "Operators need hi-vis and head lamps ready for ground-level tasks. Reflective PPE helps spotters and banksmen identify operators when they exit the cab in low-light conditions."
+              "title": "Weather layers",
+              "text": "Rain jackets, thermal jackets, and coveralls must carry their own compliant reflective layout. A non-reflective raincoat worn over a vest removes the protection the vest was meant to provide."
             },
             {
-              "items": [
-                "Class 3 hi-vis with retroreflective tape on torso, arms, and legs",
-                "Illuminated safety vest with battery-powered LED panels",
-                "Clear safety glasses with anti-fog coating",
-                "Reflective gloves or glove-mounted LED clips",
-                "LED wrist/ankle bands for body outline visibility"
-              ],
-              "title": "Road Work Near Live Traffic (Night)",
-              "description": "Workers adjacent to moving traffic at night require the highest visibility class with active illumination on all body sections to exceed MUTCD and ANSI nighttime visibility requirements."
+              "title": "Color and contrast",
+              "text": "Fluorescent yellow-green and orange-red solve different background problems. Choose the color that contrasts with vehicles, barriers, asphalt, concrete, soil, and existing site lighting."
+            },
+            {
+              "title": "Inspection and replacement",
+              "text": "Dirty, cracked, torn, or heavily abraded retroreflective tape should be replaced. Keep spare vests and jackets on night projects so damaged garments do not stay in service."
             }
           ]
         }
       },
       {
-        "key": "essential-categories",
-        "type": "list",
-        "title": "Essential PPE Categories for Night Work",
+        "key": "role-kits",
+        "type": "group",
+        "title": "Role-based PPE kits for night work",
         "enabled": true,
+        "sort": 4,
+        "data": {
+          "groups": [
+            {
+              "title": "Road crew and flagger",
+              "description": "Highest vehicle visibility requirement and frequent weather exposure.",
+              "items": [
+                "Roadway-rated hi-vis vest, jacket, or full set with clean retroreflective tape",
+                "Helmet with reflective decals or cover, plus clear role marking where required",
+                "Clear safety glasses or anti-fog goggles for dust, wind, and glare",
+                "Slip-resistant footwear for asphalt, gravel, wet markings, and shoulder work",
+                "Hearing protection if exposed to compactors, milling machines, saws, or generators"
+              ]
+            },
+            {
+              "title": "Bridge, deck, and elevated work crew",
+              "description": "Visibility must work together with fall protection and edge controls.",
+              "items": [
+                "Hi-vis outer layer compatible with harness straps and lanyard routing",
+                "Helmet with chin strap where the site requires retention at height",
+                "Anti-slip safety boots for wet deck, rebar, steel plate, and ladder movement",
+                "Cut or impact gloves selected for steel, rebar, formwork, or tools",
+                "Compact personal lighting that does not interfere with fall arrest equipment"
+              ]
+            },
+            {
+              "title": "Heavy equipment operator and spotter",
+              "description": "The operator needs cab-compatible PPE, while the spotter needs maximum visibility.",
+              "items": [
+                "Hi-vis vest or jacket visible from front, back, and sides when signaling",
+                "Hearing protection that allows radio or signal communication when needed",
+                "Safety boots with traction on machine steps, mud, gravel, and oily service areas",
+                "Clear eye protection for dust, wind, pressure washing, and refueling tasks",
+                "Gloves that allow hand signals, radio use, inspection, and light maintenance"
+              ]
+            },
+            {
+              "title": "Demolition, concrete cutting, and utility crew",
+              "description": "Night visibility must be layered with dust, fragment, and noise protection.",
+              "items": [
+                "Hi-vis clothing that remains visible under dust and water spray",
+                "Goggles or sealed eyewear for slurry, fragments, and wind-blown debris",
+                "Hearing protection selected for breakers, saws, drills, vacuums, and compressors",
+                "Respiratory protection where silica, dust, fumes, or confined airflow require it",
+                "Waterproof or puncture-resistant footwear for slurry, rubble, and uneven ground"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "ppe-categories",
+        "type": "list",
+        "title": "Essential PPE categories for low-light construction",
+        "enabled": true,
+        "sort": 5,
         "data": {
           "items": [
             {
-              "text": "Class 3 garment with minimum 1,280 sq in fluorescent background and 310 sq in retroreflective tape",
-              "title": "High Visibility Clothing",
-              "bodyAnchorKey": "chest"
+              "title": "High-visibility apparel",
+              "text": "Choose vests, jackets, pants, rainwear, and coveralls around the work zone, not only the worker title. See the [construction hi-vis buying guide](/blog/high-visibility-clothing-construction) for class, color, and tape selection."
             },
             {
-              "text": "Helmet with reflective tape on all four sides or luminescent cover",
-              "title": "Reflective Head Protection",
-              "bodyAnchorKey": "head"
+              "title": "Head protection and helmet visibility",
+              "text": "Use helmets that fit with lamps, earmuffs, visors, chin straps, and reflective decals or covers. Avoid attachments that weaken retention or block the suspension system."
             },
             {
-              "text": "Clear or amber lenses for max light transmission with anti-fog and anti-glare coatings",
-              "title": "Eye Protection",
-              "bodyAnchorKey": "eyes"
+              "title": "Clear eye protection",
+              "text": "Tinted lenses can reduce vision at night. Use clear anti-fog safety glasses or goggles unless the task specifically requires another lens. For grinding or cutting, add face protection over primary eye protection."
             },
             {
-              "text": "Reflective trim, patches, or LED clips for hand visibility to operators",
-              "title": "Hand Visibility",
-              "bodyAnchorKey": "left-hand"
+              "title": "Hearing protection",
+              "text": "Night projects often rely on generators, compressors, compactors, saws, and milling machines. Select earplugs, earmuffs, or communication headsets that protect hearing without breaking site communication."
             },
             {
-              "text": "Anti-slip soles (SRC rated), reflective accents, steel toe for night terrain",
-              "title": "Foot Protection",
-              "bodyAnchorKey": "feet"
+              "title": "Safety footwear",
+              "text": "Prioritize slip resistance, toe protection, puncture resistance, waterproofing, ankle support, and ladder or machine-step grip. Wet asphalt, slurry, bridge decks, and gravel shoulders need different outsole choices."
             },
             {
-              "text": "LED clip lights, battery-powered vest panels, glow bands, and head lamps",
-              "title": "Active Illumination",
-              "bodyAnchorKey": "waist"
+              "title": "Task lighting and active visibility",
+              "text": "Headlamps, helmet lamps, clip lights, and LED vests can help in dark zones, but they must be positioned so they do not blind operators, drivers, or co-workers."
             }
           ]
         }
@@ -10661,138 +10679,127 @@
       {
         "key": "recommended-ppe",
         "type": "paragraphs",
-        "title": "Recommended PPE for Night Construction Crews",
+        "title": "Recommended PPE products for night construction crews",
         "enabled": true,
+        "sort": 6,
         "data": {
-          "mode": "rule",
+          "mode": "manual",
           "paragraphs": [
-            "Night work PPE kits should upgrade standard daytime gear with Class 3 hi-vis garments, active LED lights, and head-mounted illumination for every crew member.",
-            "All personnel on night sites should be visible from at least 1,000 feet (300 m) under vehicle headlight illumination.",
-            "Below are examples of PPE commonly selected for night construction projects:"
+            "The products below are linked from existing active product pages and cover the core night-work categories: hi-vis clothing, reflective rainwear, helmets, clear eye protection, hearing protection, and slip-resistant footwear. Use them as a starting kit, then adjust sizes, standards, colors, and documentation to the project specification.",
+            "For a single project order, split the bill of materials by role: traffic crew, bridge/deck crew, equipment support, demolition or cutting crew, supervisors, and visitors. This keeps high-risk night workers from receiving the same basic kit as low-exposure visitors."
           ]
         }
       },
       {
-        "key": "basic-ppe-set",
-        "type": "list",
-        "title": "Basic Night Construction PPE Set",
+        "key": "procurement-checklist",
+        "type": "table",
+        "title": "Night shift PPE procurement checklist",
         "enabled": true,
+        "sort": 7,
+        "data": {
+          "headers": [
+            "Specification item",
+            "What to confirm before ordering",
+            "Why it matters at night"
+          ],
+          "rows": [
+            [
+              "Hi-vis class and garment type",
+              "Vest, jacket, pants, rainwear, coverall, or full set",
+              "Workers may bend, kneel, carry tools, or wear outer layers that hide a vest"
+            ],
+            [
+              "Color and reflective layout",
+              "Yellow-green or orange-red, tape width, tape placement, and role markings",
+              "Contrast changes against asphalt, barriers, vehicles, soil, and concrete"
+            ],
+            [
+              "Weather rating",
+              "Rain, cold, breathability, waterproof seams, and replacement dry layers",
+              "Wet reflective tape and covered garments reduce visibility and comfort"
+            ],
+            [
+              "Footwear outsole",
+              "Slip resistance on asphalt, gravel, bridge deck, mud, slurry, oil, and machine steps",
+              "Trips and slips increase when workers cannot judge surfaces clearly"
+            ],
+            [
+              "Eye and hearing compatibility",
+              "Clear anti-fog lenses, earmuffs or plugs, helmet slots, radios, and respirators",
+              "Night work often combines glare, dust, high noise, and communication needs"
+            ],
+            [
+              "Replacement stock",
+              "Spare vests, lamps, batteries, eyewear, gloves, earplugs, and boot sizes",
+              "A damaged garment or dead lamp should not remove a worker from compliance"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "standards-and-documents",
+        "type": "list",
+        "title": "Standards and documentation to check",
+        "enabled": true,
+        "sort": 8,
         "data": {
           "items": [
             {
-              "text": "Class 3 hi-vis vest or jacket with retroreflective tape"
+              "title": "ANSI/ISEA 107 or EN ISO 20471 high-visibility apparel",
+              "text": "Confirm the required standard, class, garment type, color, and markings before ordering. Public roadway projects and private construction sites can have different requirements."
             },
             {
-              "text": "Safety helmet with reflective strips"
+              "title": "Local traffic control requirements",
+              "text": "Night lane closures, flagging, and mobile operations may define additional garment, lighting, helmet, or role-identification rules. Follow the project traffic plan and authority requirements."
             },
             {
-              "text": "Rechargeable head lamp (300+ lumens)"
+              "title": "EN 397, ANSI Z89.1, EN 166, ASTM F2413, or other PPE standards",
+              "text": "Match helmets, eyewear, footwear, gloves, and hearing protection to the standards requested by the buyer and the hazards found in the assessment."
             },
             {
-              "text": "Clear safety glasses (anti-fog coated)"
-            },
-            {
-              "text": "Anti-slip steel toe boots with reflective accents"
-            },
-            {
-              "text": "LED clip light (front and back)"
+              "title": "Certificates and technical files",
+              "text": "For bulk procurement, request declarations, test reports, size charts, care instructions, and packaging or labeling requirements early, especially when multiple countries or contractors are involved."
             }
           ]
         }
       },
       {
-        "key": "example-products",
-        "type": "list",
-        "title": "Example PPE Products",
-        "enabled": true,
-        "data": {
-          "items": [
-            {
-              "title": "Class 3 Hi-Vis LED Safety Vest HV30-LED"
-            },
-            {
-              "title": "Reflective Helmet Cover HC10-R"
-            },
-            {
-              "title": "Rechargeable Head Lamp HL50 (400 Lumens)"
-            },
-            {
-              "title": "Clear Anti-Fog Safety Glasses E12-CL"
-            },
-            {
-              "title": "Reflective Steel Toe Boots S85-RF"
-            },
-            {
-              "title": "LED Clip Safety Light CL05 (Red/White Dual Mode)"
-            }
-          ]
-        }
-      },
-      {
-        "key": "safety-standards",
-        "type": "list",
-        "title": "Safety Standards to Consider",
-        "enabled": true,
-        "data": {
-          "items": [
-            {
-              "text": "High-visibility safety apparel (Class 3 requirements for night work)",
-              "title": "ANSI/ISEA 107"
-            },
-            {
-              "text": "High-visibility clothing — test methods, requirements, and performance classes",
-              "title": "EN ISO 20471"
-            },
-            {
-              "text": "Manual on Uniform Traffic Control Devices — temporary traffic control for night work",
-              "title": "MUTCD Chapter 6G"
-            },
-            {
-              "text": "Construction safety requirements",
-              "title": "OSHA 1926"
-            },
-            {
-              "text": "Safety footwear",
-              "title": "EN ISO 20345"
-            }
-          ]
-        }
-      },
-      {
-        "key": "certified-products",
+        "key": "inspection-and-maintenance",
         "type": "callout",
-        "title": null,
+        "title": "Inspection rule for night work PPE",
         "enabled": true,
+        "sort": 9,
         "data": {
-          "text": "Retroreflective tape degrades with washing, UV exposure, and abrasion. Inspect hi-vis garments regularly under direct light and replace when reflective strips no longer return light effectively. ANSI/ISEA 107 Class 3 is the minimum standard for all night construction work."
+          "text": "Inspect night-work PPE under direct light before each shift. Replace hi-vis garments with torn fabric, dirty background material, cracked reflective tape, missing closures, or dead LED modules. Replace clear eyewear that is scratched or fogging, and remove footwear with worn tread before wet night shifts."
         }
       },
       {
         "key": "night-work-faq",
         "type": "faq",
-        "title": "Frequently Asked Questions",
+        "title": "Frequently asked questions",
         "enabled": true,
+        "sort": 10,
         "data": {
           "items": [
             {
-              "a": "ANSI/ISEA 107 Class 3 is required for night work and any work near traffic. Class 3 provides the maximum fluorescent background material (1,280 sq in) and retroreflective striping (310 sq in) for 360° visibility.",
-              "q": "What hi-vis class is required for night construction?"
+              "q": "Is a standard safety vest enough for night construction?",
+              "a": "Not always. A basic vest may be acceptable for low-exposure visitors, but night construction around traffic, equipment, rain, or poor contrast often needs a higher visibility class, sleeves or full-body coverage, reflective rainwear, and role-specific markings."
             },
             {
-              "a": "While not universally mandated by OSHA, many state DOTs and contractors require active LED lights on personnel working near traffic or heavy equipment at night. LED lights significantly supplement passive retroreflective tape.",
-              "q": "Are LED safety lights required or just recommended for night work?"
+              "q": "Should workers wear tinted safety glasses at night?",
+              "a": "Usually no. Clear anti-fog lenses are normally preferred for night work unless a specific task requires a different lens. For flying particles or dust, use goggles or add a face shield over primary eye protection."
             },
             {
-              "a": "Clear lenses provide maximum light transmission (90%+) and are the default for night work. Amber/yellow lenses can enhance contrast in foggy or misty conditions but slightly reduce overall light transmission.",
-              "q": "What lens color is best for night safety glasses?"
+              "q": "Do equipment operators need different PPE at night?",
+              "a": "Yes. Operators need footwear, eyewear, gloves, and hearing protection that work inside and outside the cab. Spotters need stronger visibility and communication compatibility. Use the heavy equipment operator solution when building operator kits."
             },
             {
-              "a": "When retroreflective tape no longer returns bright light when illuminated directly. Typical service life is 6–12 months with daily use. Inspect weekly by shining a flashlight at the garment in a dark area.",
-              "q": "How often should retroreflective hi-vis garments be replaced?"
+              "q": "How often should reflective workwear be replaced?",
+              "a": "Replace it when the background fabric is faded or dirty, reflective tape is cracked or peeling, closures fail, or the garment no longer returns light effectively. Washing, UV exposure, abrasion, mud, and concrete dust all shorten service life."
             },
             {
-              "a": "Yes. We provide night work kits including Class 3 hi-vis jackets, LED clip lights, reflective helmet covers, rechargeable head lamps, and clear safety glasses with bulk pricing.",
-              "q": "Can you supply night construction PPE kits?"
+              "q": "Can Laifappe supply complete night construction PPE kits?",
+              "a": "Yes. Laifappe can help source role-based night construction PPE kits including hi-vis clothing, reflective rainwear, helmets, clear eyewear, hearing protection, gloves, safety footwear, and documentation for bulk orders."
             }
           ]
         }
@@ -10800,19 +10807,61 @@
       {
         "key": "cta",
         "type": "cta",
-        "title": "Need PPE for Night Construction?",
+        "title": "Need PPE for night construction?",
         "enabled": true,
+        "sort": 11,
         "data": {
-          "text": "We supply ANSI Class 3 hi-vis gear, LED safety lights, reflective helmets, rechargeable head lamps, and complete night work PPE kits with bulk pricing and compliance documentation.",
-          "title": "Need PPE for Night Construction?",
+          "title": "Build a night-work PPE list for your crew",
+          "text": "Send the project type, country or standard requirement, worker roles, weather conditions, and estimated quantities. We can help map the kit to hi-vis, rainwear, eyewear, hearing protection, helmets, footwear, and replacement stock.",
+          "primaryLabel": "Request a quote",
           "primaryHref": "/quote",
-          "primaryLabel": "Request a Quote",
-          "secondaryHref": "/contact",
-          "secondaryLabel": "Contact Us"
+          "secondaryLabel": "Browse products",
+          "secondaryHref": "/products"
         }
       }
     ],
-    "productLinks": []
+    "productLinks": [
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvcgzh2002pumsotay2fwtl",
+        "sort": 0
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvp7shl0065umtocwx9pag6",
+        "sort": 1
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnxb4cfl00e3umtow8lq55ge",
+        "sort": 2
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvh4sew008wumsozkeabjv2",
+        "sort": 3
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvngu34004xumto6k32w9wy",
+        "sort": 4
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnwqzy4j00axumtoq760h9y1",
+        "sort": 5
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnujnjty000ruml06qd9fkmq",
+        "sort": 6
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnvd49ed003mumsou9ivxuy9",
+        "sort": 7
+      }
+    ]
   },
   {
     "slug": "ppe-for-underground-construction-and-tunnel-work",
