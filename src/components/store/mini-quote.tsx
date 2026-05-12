@@ -144,8 +144,8 @@ export function MiniQuote() {
   return (
     <Sheet open={isOpen} onOpenChange={(open) => (open ? openQuote() : resetAndClose())}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
-          <FileText className="h-5 w-5" />
+        <Button variant="ghost" size="icon" className="relative h-11 w-11 sm:h-9 sm:w-9">
+          <FileText className="h-6 w-6 sm:h-5 sm:w-5" />
           {totalItems > 0 && (
             <Badge
               variant="secondary"

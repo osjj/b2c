@@ -120,8 +120,8 @@ export function Header({ user }: HeaderProps) {
             {/* Mobile Menu */}
             <Sheet>
               <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="hover:bg-accent shrink-0">
-                  <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" className="h-11 w-11 hover:bg-accent shrink-0 sm:h-9 sm:w-9">
+                  <Menu className="h-7 w-7 sm:h-6 sm:w-6" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-80 px-6 pt-12">

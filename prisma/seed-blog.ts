@@ -10,6 +10,7 @@
  *   - construction-hard-hat-types
  *   - high-visibility-clothing-construction
  *   - construction-safety-helmet-vs-hard-hat
+ *   - heavy-equipment-operator-ppe-checklist
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -703,6 +704,88 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
         caption:
           'A strong helmet RFQ specifies type, class, retention, accessories, fit range, replacement parts, labels, and documentation.',
+      },
+    },
+  },
+  {
+    slug: 'heavy-equipment-operator-ppe-checklist',
+    markdownPath: join(process.cwd(), 'heavy-equipment-operator-ppe-checklist.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.heavy-equipment-operator-ppe-checklist.generated.json',
+    ),
+    title:
+      'Heavy Equipment Operator PPE Checklist for Construction Sites',
+    excerpt:
+      'A field-ready PPE checklist for excavator, loader, dozer, roller, crane support, dump truck, and compact-equipment operators covering hi-vis, hearing protection, boots, eye protection, gloves, helmets, respirators, roadwork, demolition, and cab kits.',
+    seoTitle:
+      'Heavy Equipment Operator PPE Checklist | Construction Machinery Safety Gear',
+    seoDescription:
+      'Use this heavy equipment operator PPE checklist for construction sites. Covers excavator, loader, dozer, roller, and dump truck operator PPE including hi-vis, hearing protection, safety boots, eye protection, gloves, helmets, respirators, roadwork, and demolition.',
+    seoKeywords:
+      'heavy equipment operator PPE checklist, construction equipment operator PPE, excavator operator PPE, loader operator PPE, dozer operator PPE, road construction operator PPE, demolition equipment operator PPE, heavy machinery safety gear, operator PPE kit',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Heavy Equipment Operator PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'A practical operator PPE checklist should cover the cab, the machine access points, the walk-around inspection, and the active work zone around the equipment.',
+      },
+      'Why Equipment Operators Need A Separate PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'Heavy equipment operators move between protected cabs and high-risk ground zones, so their PPE routine needs its own checklist.',
+      },
+      'In-Cab PPE And Controls Checklist': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'The cab is part of the safety system, but operators still need clean, reachable PPE for inspections, communication, and emergency exit.',
+      },
+      'Outside-Cab PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'When operators leave the cab, hi-vis clothing, head protection, eye protection, gloves, boots, and hearing protection become immediate field requirements.',
+      },
+      'Mounting And Dismounting PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Mounting and dismounting expose operators to slips, worn steps, mud, oil, poor lighting, and uneven ground.',
+      },
+      'Walk-Around Inspection PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Daily walk-around inspections require eye, hand, foot, head, and visibility protection because operators work close to attachments, hydraulic lines, and damaged surfaces.',
+      },
+      'Hearing Protection Checklist For Equipment Operators': {
+        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+        caption:
+          'Equipment noise should be handled with exposure assessment, feasible controls, and hearing protection that remains compatible with communication.',
+      },
+      'High-Visibility Checklist Around Heavy Equipment': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'High-visibility clothing helps operators remain visible when they become pedestrians around haul roads, blind spots, traffic, and moving machinery.',
+      },
+      'Eye And Face Protection Checklist': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Operators need eyewear that works for dust, wind, flying particles, walk-around checks, and open-cab conditions.',
+      },
+      'Footwear Checklist For Operators': {
+        url: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=1200&q=80',
+        caption:
+          'Operator footwear must work on machine steps, pedals, gravel, mud, asphalt, bridge decks, and oily service areas.',
+      },
+      'Task-Based Operator PPE Matrix': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'A task-based matrix helps supervisors adjust operator PPE when the work moves from cab operation to roadwork, demolition, inspection, or night work.',
+      },
+      'Procurement Checklist For Operator PPE Kits': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Operator PPE procurement should package baseline cab kits, task modules, sizing, replacement stock, and documentation together.',
       },
     },
   },
