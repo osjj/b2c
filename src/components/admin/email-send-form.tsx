@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useTransition } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState, useTransition } from 'react'
 import { Code2, FileText, Mail, Paperclip, Send, X } from 'lucide-react'
 import { ContentEditor, type ContentEditorRef, type EditorJSData } from '@/components/admin/content-editor'
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
+import type { AdminEmailHistoryItem } from '@/actions/admin/email'
 
 type SendAdminEmailState = {
   success?: boolean
@@ -25,13 +26,24 @@ interface EmailSendFormProps {
   smtpConfigured: boolean
 }
 
+export interface EmailSendFormRef {
+  useTemplate: (template: AdminEmailHistoryItem) => void
+}
+
 const initialState: SendAdminEmailState = {}
 const MAX_ATTACHMENT_COUNT = 5
 const MAX_ATTACHMENT_TOTAL_BYTES = 25 * 1024 * 1024
 
-export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormProps) {
+export const EmailSendForm = forwardRef<EmailSendFormRef, EmailSendFormProps>(function EmailSendForm(
+  { defaultSender, smtpConfigured },
+  ref
+) {
+  const [sender, setSender] = useState(defaultSender)
+  const [recipients, setRecipients] = useState('')
+  const [subject, setSubject] = useState('')
   const [messageMode, setMessageMode] = useState<'editorjs' | 'html'>('editorjs')
   const [editorContent, setEditorContent] = useState<EditorJSData | null>(null)
+  const [editorResetKey, setEditorResetKey] = useState(0)
   const [htmlContent, setHtmlContent] = useState('')
   const [attachments, setAttachments] = useState<File[]>([])
   const editorRef = useRef<ContentEditorRef>(null)
@@ -40,6 +52,44 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
   const router = useRouter()
   const [state, setState] = useState<SendAdminEmailState>(initialState)
   const [pending, startTransition] = useTransition()
+
+  useImperativeHandle(ref, () => ({
+    useTemplate(template) {
+      setSender(template.sender || defaultSender)
+      setRecipients(template.recipients.join(', '))
+      setSubject(template.subject)
+      setAttachments([])
+      setState(initialState)
+
+      if (template.messageMode === 'editorjs' && template.editorContent) {
+        setMessageMode('editorjs')
+        setHtmlContent('')
+        setEditorContent(template.editorContent)
+        setEditorResetKey((currentKey) => currentKey + 1)
+        window.setTimeout(() => {
+          if (template.editorContent) {
+            void editorRef.current?.render(template.editorContent)
+          }
+        }, 0)
+      } else if (template.htmlBody) {
+        setMessageMode('html')
+        setHtmlContent(template.htmlBody)
+        setEditorContent(null)
+      } else {
+        const editorData = createEditorContentFromText(template.textBody)
+        setMessageMode('editorjs')
+        setHtmlContent('')
+        setEditorContent(editorData)
+        setEditorResetKey((currentKey) => currentKey + 1)
+        window.setTimeout(() => {
+          void editorRef.current?.render(editorData)
+        }, 0)
+      }
+
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      toast.success('Email copied into the composer.')
+    },
+  }))
 
   const handleAttachmentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(event.target.files ?? [])
@@ -173,7 +223,8 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
                 id="sender"
                 name="sender"
                 type="email"
-                defaultValue={defaultSender}
+                value={sender}
+                onChange={(event) => setSender(event.target.value)}
                 placeholder="sales@laifappe.com"
                 required
               />
@@ -188,6 +239,8 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
                 id="to"
                 name="to"
                 rows={4}
+                value={recipients}
+                onChange={(event) => setRecipients(event.target.value)}
                 placeholder="first@example.com, second@example.com"
                 required
               />
@@ -201,7 +254,14 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
 
             <div className="space-y-2">
               <Label htmlFor="subject">Subject</Label>
-              <Input id="subject" name="subject" placeholder="SMTP2GO test" required />
+              <Input
+                id="subject"
+                name="subject"
+                value={subject}
+                onChange={(event) => setSubject(event.target.value)}
+                placeholder="SMTP2GO test"
+                required
+              />
               {state.errors?.subject && (
                 <p className="text-sm text-destructive">{state.errors.subject[0]}</p>
               )}
@@ -276,6 +336,7 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
 
                 <TabsContent value="editorjs" className="space-y-3">
                   <ContentEditor
+                    key={editorResetKey}
                     ref={editorRef}
                     value={editorContent}
                     onChange={setEditorContent}
@@ -388,7 +449,7 @@ export function EmailSendForm({ defaultSender, smtpConfigured }: EmailSendFormPr
       </Card>
     </div>
   )
-}
+})
 
 function formatAttachmentSize(bytes: number) {
   if (bytes < 1024 * 1024) {
@@ -411,4 +472,29 @@ function getFirstFieldError(errors?: Record<string, string[]>) {
   }
 
   return null
+}
+
+function createEditorContentFromText(textBody: string): EditorJSData {
+  const paragraphs = textBody
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+
+  return {
+    time: Date.now(),
+    blocks: (paragraphs.length > 0 ? paragraphs : ['']).map((paragraph) => ({
+      id: Math.random().toString(36).slice(2, 12),
+      type: 'paragraph',
+      data: {
+        text: escapeEditorText(paragraph).replace(/\n/g, '<br>'),
+      },
+    })),
+  }
+}
+
+function escapeEditorText(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
 }

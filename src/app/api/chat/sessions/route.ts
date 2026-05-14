@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { auth } from '@/lib/auth'
 
+const CHAT_GREETING =
+  'Hello, we are a professional and cost-effective PPE supplier. How can we help you?'
+
+const chatSessionInclude = {
+  messages: {
+    include: { attachments: true },
+    orderBy: { createdAt: 'asc' as const },
+  },
+}
+
 // GET - List sessions (admin only)
 export async function GET(request: NextRequest) {
   const session = await auth()
@@ -39,39 +49,62 @@ export async function POST(request: NextRequest) {
 
   const session = await auth()
   const userId = session?.user?.id
+  const sessionOwnerWhere = userId ? { userId } : visitorId ? { visitorId } : null
 
-  // Find existing active session
-  let chatSession = await prisma.chatSession.findFirst({
-    where: {
-      status: 'ACTIVE',
-      OR: [
-        userId ? { userId } : {},
-        !userId && visitorId ? { visitorId } : {},
-      ].filter(obj => Object.keys(obj).length > 0),
-    },
-    include: {
-      messages: {
-        include: { attachments: true },
-        orderBy: { createdAt: 'asc' },
-      },
-    },
-  })
-
-  // Create new session if not found
-  if (!chatSession) {
-    chatSession = await prisma.chatSession.create({
-      data: {
-        userId: userId || null,
-        visitorId: userId ? null : visitorId,
-      },
-      include: {
-        messages: {
-          include: { attachments: true },
-          orderBy: { createdAt: 'asc' },
-        },
-      },
-    })
+  if (!sessionOwnerWhere) {
+    return NextResponse.json({ error: 'Missing visitorId' }, { status: 400 })
   }
+
+  const lockKey = userId ? `chat:user:${userId}` : `chat:visitor:${visitorId}`
+
+  const chatSession = await prisma.$transaction(async (tx) => {
+    await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${lockKey})::bigint)`
+
+    let activeSession = await tx.chatSession.findFirst({
+      where: {
+        status: 'ACTIVE',
+        ...sessionOwnerWhere,
+      },
+      include: chatSessionInclude,
+      orderBy: { updatedAt: 'desc' },
+    })
+
+    if (!activeSession) {
+      return tx.chatSession.create({
+        data: {
+          userId: userId || null,
+          visitorId: userId ? null : visitorId,
+          messages: {
+            create: {
+              senderType: 'STAFF',
+              content: CHAT_GREETING,
+              isRead: true,
+            },
+          },
+        },
+        include: chatSessionInclude,
+      })
+    }
+
+    if (activeSession.messages.length === 0) {
+      activeSession = await tx.chatSession.update({
+        where: { id: activeSession.id },
+        data: {
+          updatedAt: new Date(),
+          messages: {
+            create: {
+              senderType: 'STAFF',
+              content: CHAT_GREETING,
+              isRead: true,
+            },
+          },
+        },
+        include: chatSessionInclude,
+      })
+    }
+
+    return activeSession
+  })
 
   return NextResponse.json(chatSession)
 }

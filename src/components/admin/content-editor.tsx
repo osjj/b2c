@@ -5,10 +5,11 @@ import type EditorJS from '@editorjs/editorjs'
 import type { OutputData } from '@editorjs/editorjs'
 import { ImagePreviewDialog } from './image-preview-dialog'
 
-export interface EditorJSData extends OutputData {}
+export type EditorJSData = OutputData
 
 export interface ContentEditorRef {
   save: () => Promise<EditorJSData | null>
+  render: (data: EditorJSData) => Promise<void>
 }
 
 interface ContentEditorProps {
@@ -50,6 +51,11 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
         return data
       }
       return null
+    },
+    async render(data: EditorJSData) {
+      if (editorInstanceRef.current) {
+        await editorInstanceRef.current.render(data)
+      }
     },
   }))
 

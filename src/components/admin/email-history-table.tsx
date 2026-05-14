@@ -1,7 +1,7 @@
- 'use client'
+'use client'
 
 import { useState } from 'react'
-import { Eye, Paperclip } from 'lucide-react'
+import { Copy, Eye, Paperclip } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -25,10 +25,16 @@ import type { AdminEmailHistoryItem } from '@/actions/admin/email'
 
 interface EmailHistoryTableProps {
   items: AdminEmailHistoryItem[]
+  page: number
+  pageSize: number
+  total: number
+  onUseAsTemplate: (item: AdminEmailHistoryItem) => void
 }
 
-export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
+export function EmailHistoryTable({ items, page, pageSize, total, onUseAsTemplate }: EmailHistoryTableProps) {
   const [selectedItem, setSelectedItem] = useState<AdminEmailHistoryItem | null>(null)
+  const startItem = total > 0 ? (page - 1) * pageSize + 1 : 0
+  const endItem = Math.min(page * pageSize, total)
 
   return (
     <>
@@ -36,7 +42,9 @@ export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
         <CardHeader>
           <CardTitle className="font-serif">Send History</CardTitle>
           <CardDescription>
-            Recent emails sent from the admin panel are recorded here.
+            {total > 0
+              ? `Showing ${startItem}-${endItem} of ${total} emails sent from the admin panel.`
+              : 'Emails sent from the admin panel are recorded here.'}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -124,11 +132,28 @@ export function EmailHistoryTable({ items }: EmailHistoryTableProps) {
           {selectedItem && (
             <>
               <DialogHeader>
-                <DialogTitle>{selectedItem.subject}</DialogTitle>
-                <DialogDescription>
-                  Sent {formatDateTime(selectedItem.createdAt)} by {selectedItem.sentBy} to{' '}
-                  {selectedItem.recipients.join(', ')}
-                </DialogDescription>
+                <div className="flex flex-col gap-3 pr-8 md:flex-row md:items-start md:justify-between">
+                  <div className="space-y-1">
+                    <DialogTitle>{selectedItem.subject}</DialogTitle>
+                    <DialogDescription>
+                      Sent {formatDateTime(selectedItem.createdAt)} by {selectedItem.sentBy} to{' '}
+                      {selectedItem.recipients.join(', ')}
+                    </DialogDescription>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      onUseAsTemplate(selectedItem)
+                      setSelectedItem(null)
+                    }}
+                    className="shrink-0"
+                  >
+                    <Copy className="mr-2 h-4 w-4" />
+                    Use as template
+                  </Button>
+                </div>
               </DialogHeader>
 
               <div className="space-y-4">

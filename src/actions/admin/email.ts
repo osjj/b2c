@@ -57,6 +57,7 @@ export type AdminEmailHistoryItem = {
   recipients: string[]
   subject: string
   messageMode: 'editorjs' | 'html'
+  editorContent?: OutputData
   previewText: string
   htmlBody?: string
   textBody: string
@@ -67,6 +68,7 @@ export type AdminEmailHistoryItem = {
 }
 
 const EMAIL_HISTORY_KEY = 'admin_email_history'
+const DEFAULT_EMAIL_HISTORY_PAGE_SIZE = 20
 const MAX_ATTACHMENT_COUNT = 5
 const MAX_ATTACHMENT_TOTAL_BYTES = 25 * 1024 * 1024
 const ALLOWED_ATTACHMENT_EXTENSIONS = new Set(['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png', 'gif', 'webp'])
@@ -176,6 +178,7 @@ export async function sendAdminEmail(
       recipients: parsed.data.to,
       subject: parsed.data.subject,
       messageMode: parsed.data.messageMode,
+      editorContent: emailContent.editorContent,
       previewText: createPreviewText(emailContent.textBody),
       htmlBody: emailContent.htmlBody,
       textBody: emailContent.textBody,
@@ -296,14 +299,36 @@ function formatFileSize(bytes: number) {
   return `${Math.round((bytes / 1024 / 1024) * 10) / 10}MB`
 }
 
-export async function getAdminEmailHistory(limit = 20) {
+export async function getAdminEmailHistory({
+  page = 1,
+  limit = DEFAULT_EMAIL_HISTORY_PAGE_SIZE,
+}: {
+  page?: number
+  limit?: number
+} = {}) {
   await requireAdmin()
 
   const setting = await prisma.setting.findUnique({
     where: { key: EMAIL_HISTORY_KEY },
   })
 
-  return normalizeEmailHistory(setting?.value).slice(0, limit)
+  const history = normalizeEmailHistory(setting?.value)
+  const pageSize = Number.isFinite(limit) ? Math.max(Math.floor(limit), 1) : DEFAULT_EMAIL_HISTORY_PAGE_SIZE
+  const requestedPage = Number.isFinite(page) ? Math.max(Math.floor(page), 1) : 1
+  const total = history.length
+  const totalPages = Math.ceil(total / pageSize)
+  const currentPage = totalPages > 0 ? Math.min(requestedPage, totalPages) : 1
+  const start = (currentPage - 1) * pageSize
+
+  return {
+    items: history.slice(start, start + pageSize),
+    pagination: {
+      page: currentPage,
+      limit: pageSize,
+      total,
+      totalPages,
+    },
+  }
 }
 
 function buildEmailContent(
@@ -311,7 +336,7 @@ function buildEmailContent(
   editorContentRaw?: string,
   htmlContentRaw?: string
 ):
-  | { textBody: string; htmlBody?: string }
+  | { textBody: string; htmlBody?: string; editorContent?: OutputData }
   | { errors: Record<string, string[]> } {
   if (messageMode === 'html') {
     const htmlContent = (htmlContentRaw || '').trim()
@@ -369,6 +394,7 @@ function buildEmailContent(
   }
 
   return {
+    editorContent: parsedContent,
     htmlBody: htmlBody || undefined,
     textBody: textBody || ' ',
   }
@@ -415,6 +441,7 @@ function normalizeEmailHistory(value: unknown): AdminEmailHistoryItem[] {
         : [],
       subject: String(item.subject || ''),
       messageMode: (item.messageMode === 'html' ? 'html' : 'editorjs') as 'html' | 'editorjs',
+      editorContent: normalizeEmailEditorContent(item.editorContent),
       previewText: String(item.previewText || ''),
       htmlBody: item.htmlBody ? String(item.htmlBody) : undefined,
       textBody: String(item.textBody || ''),
@@ -424,6 +451,19 @@ function normalizeEmailHistory(value: unknown): AdminEmailHistoryItem[] {
       createdAt: String(item.createdAt || ''),
     }))
     .filter((item) => item.id && item.subject && item.createdAt)
+}
+
+function normalizeEmailEditorContent(value: unknown): OutputData | undefined {
+  if (!value || typeof value !== 'object') {
+    return undefined
+  }
+
+  const candidate = value as Partial<OutputData>
+  if (!Array.isArray(candidate.blocks)) {
+    return undefined
+  }
+
+  return candidate as OutputData
 }
 
 function normalizeEmailHistoryAttachments(value: unknown): AdminEmailAttachmentItem[] {

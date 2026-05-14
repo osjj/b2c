@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FloatingEmailButton } from "@/components/store/floating-email-button"
@@ -12,8 +12,20 @@ export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [unreadCount, setUnreadCount] = useState(0)
+  const isOpenRef = useRef(false)
+  const isMinimizedRef = useRef(false)
 
   useEffect(() => {
+    isOpenRef.current = isOpen
+  }, [isOpen])
+
+  useEffect(() => {
+    isMinimizedRef.current = isMinimized
+  }, [isMinimized])
+
+  useEffect(() => {
+    let cleanup: (() => void) | undefined
+    let isMounted = true
     const visitorId = localStorage.getItem('chat_visitor_id')
     if (!visitorId) return
 
@@ -25,35 +37,41 @@ export function ChatWidget() {
     })
       .then((res) => res.json())
       .then((session) => {
-        if (session?.id) {
-          const unread = session.messages.filter(
-            (m: { senderType: string; isRead: boolean }) => m.senderType === 'STAFF' && !m.isRead
-          ).length
-          setUnreadCount(unread)
+        if (!isMounted || !session?.id) return
 
-          // Subscribe to new messages
-          const pusher = getPusherClient()
-          const channel = pusher.subscribe(`chat-session-${session.id}`)
-          channel.bind('new-message', (message: { senderType: string }) => {
-            if (message.senderType === 'STAFF' && (isMinimized || !isOpen)) {
-              setUnreadCount((prev) => prev + 1)
-              // Play notification sound
-              try {
-                const audio = new Audio('/sounds/notification.mp3')
-                audio.volume = 0.5
-                audio.play().catch(() => {})
-              } catch {}
-            }
-          })
+        const unread = session.messages.filter(
+          (m: { senderType: string; isRead: boolean }) => m.senderType === 'STAFF' && !m.isRead
+        ).length
+        setUnreadCount(unread)
 
-          return () => {
-            channel.unbind_all()
-            pusher.unsubscribe(`chat-session-${session.id}`)
+        // Subscribe to new messages
+        const pusher = getPusherClient()
+        const channelName = `chat-session-${session.id}`
+        const channel = pusher.subscribe(channelName)
+        channel.bind('new-message', (message: { senderType: string }) => {
+          if (message.senderType === 'STAFF' && (isMinimizedRef.current || !isOpenRef.current)) {
+            setUnreadCount((prev) => prev + 1)
+            // Play notification sound
+            try {
+              const audio = new Audio('/sounds/notification.mp3')
+              audio.volume = 0.5
+              audio.play().catch(() => {})
+            } catch {}
           }
+        })
+
+        cleanup = () => {
+          channel.unbind_all()
+          pusher.unsubscribe(channelName)
         }
       })
       .catch(() => {})
-  }, [isOpen, isMinimized])
+
+    return () => {
+      isMounted = false
+      cleanup?.()
+    }
+  }, [])
 
   const handleOpen = () => {
     setIsOpen(true)

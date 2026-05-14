@@ -66,6 +66,7 @@ type AdminEmailHistoryItem = {
   recipients: string[]
   subject: string
   messageMode: 'editorjs' | 'html'
+  editorContent?: OutputData
   previewText: string
   htmlBody?: string
   textBody: string
@@ -166,6 +167,7 @@ export async function POST(request: NextRequest) {
       recipients: parsed.data.to,
       subject: parsed.data.subject,
       messageMode: parsed.data.messageMode,
+      editorContent: emailContent.editorContent,
       previewText: createPreviewText(emailContent.textBody),
       htmlBody: emailContent.htmlBody,
       textBody: emailContent.textBody,
@@ -201,7 +203,7 @@ function buildEmailContent(
   editorContentRaw?: string,
   htmlContentRaw?: string
 ):
-  | { textBody: string; htmlBody?: string }
+  | { textBody: string; htmlBody?: string; editorContent?: OutputData }
   | { errors: Record<string, string[]> } {
   if (messageMode === 'html') {
     const htmlContent = (htmlContentRaw || '').trim()
@@ -259,6 +261,7 @@ function buildEmailContent(
   }
 
   return {
+    editorContent: parsedContent,
     htmlBody: htmlBody || undefined,
     textBody: textBody || ' ',
   }
