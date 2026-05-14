@@ -1,15 +1,15 @@
 # OSHA PPE Requirements for Construction: Complete Compliance Guide
 
-**Meta Title:** OSHA PPE Requirements for Construction: Complete Compliance Guide 2025  
-**Meta Description:** A practical guide to OSHA PPE requirements for construction: 29 CFR 1926 Subpart E, the January 13, 2025 proper-fit rule, hazard assessment, training, inspections, and citation risk.  
-**Target URL:** /blog/osha-ppe-requirements-construction  
-**Target Keywords:** OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2025
+**Meta Title:** OSHA PPE Requirements for Construction: Complete Compliance Guide 2026
+**Meta Description:** 2026 guide to OSHA construction PPE requirements: 29 CFR 1926 Subpart E, proper fit, heat enforcement, hazard assessment, training, and inspections.
+**Target URL:** /blog/osha-ppe-requirements-construction
+**Target Keywords:** OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2026
 
 ---
 
 If your crews work on construction sites in the United States, PPE compliance is not optional. It sits inside federal OSHA's construction standards, it is enforceable during inspections, and it can become expensive very quickly when employers fail to assess hazards, issue the right equipment, train workers, or enforce use.
 
-This article is the compliance companion to our [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). That solution page is where to plan a role-based PPE program and sourcing strategy. This guide is narrower: it explains what OSHA requires, what changed on **January 13, 2025**, what inspectors look for, and where employers usually create citation exposure. If you need the field-execution version of this topic, use the [construction PPE checklist](/blog/construction-ppe-checklist).
+This article is the compliance companion to our [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). That solution page is where to plan a role-based PPE program and sourcing strategy. This guide is narrower: it explains what OSHA requires, why the **January 13, 2025** PPE proper-fit update still matters in 2026, how heat enforcement affects PPE planning, what inspectors look for, and where employers usually create citation exposure. If you need the field-execution version of this topic, use the [construction PPE checklist](/blog/construction-ppe-checklist).
 
 ---
 
@@ -32,13 +32,13 @@ That structure matters because construction PPE compliance is not one rule. A si
 
 ---
 
-## The 2025 Update: Proper Fit Is Now Explicit
+## The 2026 Reminder: Proper Fit Is Now an Active PPE Compliance Issue
 
 OSHA's most important recent PPE change for construction became effective on **January 13, 2025**. OSHA revised **29 CFR 1926.95(c)** to make explicit that employers must ensure PPE is:
 
 > of safe design and construction for the work to be performed; and selected to ensure that it properly fits each affected employee.
 
-This did not create a brand-new compliance concept out of nowhere. It clarified a gap in the construction text and aligned construction with the fit expectations already explicit in other OSHA sectors. In practice, however, it raises the bar for employers who relied on one-size purchasing habits.
+This did not create a brand-new compliance concept out of nowhere. It clarified a gap in the construction text and aligned construction with the fit expectations already explicit in other OSHA sectors. In 2026, it should be treated as a mature compliance requirement, not a "new rule" that can wait for later implementation. Employers who still rely on one-size purchasing habits are exposed.
 
 ### What proper fit means in practice
 
@@ -61,6 +61,24 @@ To defend compliance under the fit rule, employers should be able to show that t
 - replaced PPE when wear, damage, or poor fit made it ineffective
 
 For a broader role-based view of what crews typically need on site, use the [construction PPE solution page](/solutions/construction-site-ppe-solution). For a category-specific example, see the [construction safety footwear guide](/blog/construction-safety-footwear-guide).
+
+---
+
+## 2026 Heat Enforcement Context: PPE Can Add Heat Burden
+
+On **April 10, 2026**, OSHA updated its [National Emphasis Program for outdoor and indoor heat-related hazards](https://www.osha.gov/news/newsreleases/osha-national-news-release/20260410). The revised program focuses enforcement and outreach on high-risk industries and workplaces where heat stress is most likely to occur, including outdoor construction work.
+
+This is not a PPE standard by itself, but it does affect PPE compliance planning. Construction PPE can protect workers from impact, dust, traffic, chemicals, noise, and falls while also increasing heat burden. Helmets, high-visibility layers, gloves, waterproof boots, respirators, coveralls, and fall harnesses can all reduce cooling or make heavy work more difficult.
+
+For employers, the practical compliance question is whether the site has considered that burden and controlled it. A defensible program should be able to show:
+
+- how heat exposure is assessed for the task, shift, location, and weather
+- whether PPE selection increases heat burden and how that burden is offset
+- how water, rest, shade, acclimatization, and emergency response are handled
+- how respirator use, impermeable clothing, heavy gloves, or high-visibility layers are managed during hot work
+- how supervisors identify heat illness symptoms and respond quickly
+
+The product-selection side of this topic is covered in the [heat stress PPE guide for construction workers](/blog/heat-stress-ppe-construction-workers). For road and bridge crews, heat planning should also connect to the [road and bridge construction PPE solution](/solutions/ppe-for-road-and-bridge-construction-projects).
 
 ---
 
@@ -205,7 +223,7 @@ The [construction PPE solution page](/solutions/construction-site-ppe-solution) 
 
 ---
 
-## Penalties and Citation Exposure in 2025
+## Penalties and Citation Exposure Contractors Should Check in 2026
 
 As of the **January 15, 2025** federal penalty adjustment, OSHA civil penalties are:
 
@@ -216,7 +234,7 @@ As of the **January 15, 2025** federal penalty adjustment, OSHA civil penalties 
 | Willful or repeated | $11,823 to $165,514 per violation |
 | Failure to abate | Up to $16,550 per day beyond the abatement date |
 
-The real risk is not just the top-line number. It is multiplication.
+Employers should still verify current penalty amounts directly with OSHA before making legal or financial decisions, because penalty levels are adjusted periodically. The real risk is not just the top-line number. It is multiplication.
 
 - multiple employees can create multiple exposures
 - multiple standards can be cited from a single event
@@ -259,19 +277,19 @@ That sequence is what turns PPE from a purchase list into a compliance program.
 
 ## Frequently Asked Questions
 
-**Does OSHA require construction PPE to fit each worker?**  
+**Does OSHA require construction PPE to fit each worker?**
 Yes. OSHA's revision to **29 CFR 1926.95(c)** became effective on **January 13, 2025** and explicitly requires PPE to be selected so that it properly fits each affected employee.
 
-**Does OSHA require employers to pay for construction PPE?**  
+**Does OSHA require employers to pay for construction PPE?**
 Usually yes. **29 CFR 1926.95(d)** requires employer payment for required PPE, subject to limited exceptions such as non-specialty safety-toe footwear and non-specialty prescription safety eyewear when off-site wear is permitted.
 
-**Is a written hazard assessment required for construction PPE?**  
+**Is a written hazard assessment required for construction PPE?**
 Construction does not use the same explicit written certification language as general industry, but written documentation is strongly recommended because it is often the clearest evidence that PPE selection was hazard-driven.
 
-**What is the biggest PPE enforcement risk on construction sites?**  
+**What is the biggest PPE enforcement risk on construction sites?**
 In practice, fall exposure remains the biggest and most visible risk. But respiratory protection, training gaps, poor fit, and failure to enforce use can also create serious citations.
 
-**Where should a contractor start if the site needs both compliance and procurement planning?**  
+**Where should a contractor start if the site needs both compliance and procurement planning?**
 Start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) to map the system by role and category, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) to turn that system into a purchasing workflow, then use this OSHA article to confirm the compliance obligations behind that system.
 
 ---
@@ -282,9 +300,9 @@ If your immediate need is to understand the rule set, inspection exposure, and d
 
 If your next step is to decide what to issue across crews, trades, and hazards, move to the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). That page is the better destination for selection, sourcing, and role-based planning.
 
-[View the complete construction PPE solution page →](/solutions/construction-site-ppe-solution)  
-[Browse the construction safety footwear guide →](/blog/construction-safety-footwear-guide)  
-[Contact us about bulk construction PPE supply →](/contact)
+[View the complete construction PPE solution page](/solutions/construction-site-ppe-solution)
+[Browse the construction safety footwear guide](/blog/construction-safety-footwear-guide)
+[Contact us about bulk construction PPE supply](/contact)
 
 ---
 

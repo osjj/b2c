@@ -10,6 +10,7 @@
  *   - construction-hard-hat-types
  *   - high-visibility-clothing-construction
  *   - construction-safety-helmet-vs-hard-hat
+ *   - heat-stress-ppe-construction-workers
  *   - heavy-equipment-operator-ppe-checklist
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
@@ -185,19 +186,24 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     ),
     title: 'OSHA PPE Requirements for Construction: Complete Compliance Guide',
     excerpt:
-      'A regulation-first guide to OSHA PPE requirements for construction covering 29 CFR 1926 Subpart E, the January 13, 2025 proper-fit rule, hazard assessment, training, inspections, and citation risk.',
-    seoTitle: 'OSHA PPE Requirements for Construction: Complete Compliance Guide 2025',
+      'A regulation-first 2026 guide to OSHA PPE requirements for construction covering 29 CFR 1926 Subpart E, the proper-fit rule, heat enforcement context, hazard assessment, training, inspections, and citation risk.',
+    seoTitle: 'OSHA PPE Requirements for Construction: Complete Compliance Guide 2026',
     seoDescription:
-      'A regulation-first guide to OSHA PPE requirements for construction: 29 CFR 1926 Subpart E, the January 13, 2025 proper-fit rule, hazard assessment, training, inspections, and citation risk.',
+      '2026 guide to OSHA construction PPE requirements: 29 CFR 1926 Subpart E, proper fit, heat enforcement, hazard assessment, training, and inspections.',
     seoKeywords:
-      'OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2025',
+      'OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2026',
     heroFallback:
       'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
     sectionImages: {
-      'The 2025 Update: Proper Fit Is Now Explicit': {
+      'The 2026 Reminder: Proper Fit Is Now an Active PPE Compliance Issue': {
         url: 'https://images.unsplash.com/photo-1541976590-713941681591?w=1200&q=80',
         caption:
-          'The 2025 fit-rule update turned PPE sizing from a procurement detail into an explicit compliance issue on construction sites.',
+          'The construction PPE fit rule should now be treated as an active compliance requirement, not a future purchasing project.',
+      },
+      '2026 Heat Enforcement Context: PPE Can Add Heat Burden': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Heat enforcement makes PPE selection, breathability, acclimatization, water, rest, and shade part of the same compliance conversation.',
       },
       'Hazard Assessment: The Step That Drives Everything Else': {
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
@@ -214,10 +220,77 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         caption:
           'PPE inspections are usually a mix of documentation review, direct worker observation, and visible equipment condition checks.',
       },
-      'Penalties and Citation Exposure in 2025': {
+      'Penalties and Citation Exposure Contractors Should Check in 2026': {
         url: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
         caption:
           'For contractors, the real penalty risk comes from multiplication across workers, tasks, and standards rather than a single top-line fine.',
+      },
+    },
+  },
+  {
+    slug: 'heat-stress-ppe-construction-workers',
+    markdownPath: join(process.cwd(), 'heat-stress-ppe-construction-workers.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.heat-stress-ppe-construction-workers.generated.json',
+    ),
+    title:
+      'Heat Stress PPE for Construction Workers: Hot Weather Safety Gear and Checklist',
+    excerpt:
+      'A practical hot-weather construction PPE guide covering breathable hi-vis, cooling PPE, sun protection, helmets, gloves, boots, respirators, hydration support, shade, rest breaks, and heat stress procurement.',
+    seoTitle:
+      'Heat Stress PPE for Construction Workers | Hot Weather Safety Gear',
+    seoDescription:
+      'Choose heat stress PPE for construction: breathable hi-vis, cooling PPE, sun protection, respirators, hydration, shade, rest breaks, and hot-weather kits.',
+    seoKeywords:
+      'heat stress PPE construction, hot weather construction PPE, cooling PPE construction workers, breathable hi vis construction, construction heat safety gear, OSHA heat construction PPE, summer construction PPE checklist, heat stress safety equipment',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Heat Stress PPE Checklist for Construction': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'A heat stress PPE checklist should cover clothing, cooling support, hydration, shade, rest, acclimatization, and emergency response.',
+      },
+      '2026 OSHA Heat Enforcement Context': {
+        url: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+        caption:
+          'OSHA heat enforcement makes hot-weather planning a practical issue for construction supervisors and PPE buyers.',
+      },
+      'Breathable High-Visibility Clothing for Hot Weather': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'Hot-weather hi-vis garments need to balance breathability, visibility class, color contrast, and reflective performance.',
+      },
+      'Head, Face, and Sun Protection': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Head and face protection must remain compatible with sun protection, sweat management, eyewear, hearing protection, and respirators.',
+      },
+      'Cooling PPE: Vests, Towels, and Shade Kits': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Cooling PPE works best when it is paired with practical recharging, cleaning, shade, rest, and hydration logistics.',
+      },
+      'Water, Rest, Shade, and Acclimatization': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Heat illness prevention depends on water, rest, shade, acclimatization, supervision, and emergency response, not PPE alone.',
+      },
+      'Respiratory Protection and Heat Burden': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Respirators can add heat and breathing burden, so dust and silica work needs stronger heat planning instead of weaker protection.',
+      },
+      'Heat Illness Symptoms and Emergency Readiness': {
+        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+        caption:
+          'A hot-weather PPE program should include early symptom recognition, fast cooling, communication, and emergency access.',
+      },
+      'Procurement Checklist for Heat Stress PPE': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Hot-weather PPE procurement should specify breathability, fit, standards, replacement stock, cooling support, and hydration equipment together.',
       },
     },
   },
