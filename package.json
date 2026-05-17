@@ -24,6 +24,7 @@
     "db:gen:blog-images:construction-gloves": "npx tsx prisma/generate-blog-images.construction-gloves-selection-guide.ts",
     "db:gen:blog-images:construction-eye-face": "npx tsx prisma/generate-blog-images.construction-eye-face-protection.ts",
     "db:gen:blog-images:bulk-procurement": "npx tsx prisma/generate-blog-images.bulk-construction-ppe-procurement.ts",
+    "db:gen:blog-images:contractor-ppe-kit": "npx tsx prisma/generate-blog-images.contractor-ppe-kit-checklist.ts",
     "db:gen:blog-images:construction-hearing": "npx tsx prisma/generate-blog-images.construction-hearing-protection.ts",
     "db:gen:blog-images:construction-respiratory": "npx tsx prisma/generate-blog-images.construction-respiratory-protection.ts",
     "db:gen:blog-images:demolition-checklist": "npx tsx prisma/generate-blog-images.demolition-concrete-cutting-ppe-checklist.ts",

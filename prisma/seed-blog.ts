@@ -5,6 +5,7 @@
  *   - construction-safety-footwear-guide
  *   - osha-ppe-requirements-construction
  *   - bulk-construction-ppe-procurement
+ *   - contractor-ppe-kit-checklist
  *   - construction-hearing-protection
  *   - construction-respiratory-protection
  *   - construction-hard-hat-types
@@ -457,6 +458,67 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
         caption:
           'A procurement checklist connects site hazards, standards, sizing, packaging, replacement stock, and issue control.',
+      },
+    },
+  },
+  {
+    slug: 'contractor-ppe-kit-checklist',
+    markdownPath: join(process.cwd(), 'contractor-ppe-kit-checklist.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.contractor-ppe-kit-checklist.generated.json',
+    ),
+    title: 'Contractor PPE Kit Checklist: What to Include for Bulk Orders',
+    excerpt:
+      'A practical contractor PPE kit checklist for bulk orders, covering baseline construction PPE, trade add-ons, sizing, standards, packaging, replacement stock, and RFQ fields.',
+    seoTitle:
+      'Contractor PPE Kit Checklist for Bulk Orders | Construction PPE Kits',
+    seoDescription:
+      'Build contractor PPE kits for bulk orders: baseline construction PPE, trade add-ons, sizing, standards, packaging, replacement stock, and RFQ checks.',
+    seoKeywords:
+      'contractor PPE kit, bulk PPE kit for contractors, construction PPE kit, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, bulk construction PPE kits',
+    heroFallback:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
+    sectionImages: {
+      'Quick Contractor PPE Kit Checklist': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'A contractor PPE kit should start with a clear baseline and then add trade-specific protection by task.',
+      },
+      'What Is a Contractor PPE Kit?': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'A PPE kit turns scattered item purchasing into a repeatable issue package for contractors and crews.',
+      },
+      'Baseline Construction Contractor PPE Kit': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Baseline kits usually cover head, eye, visibility, hand, and foot protection before task modules are added.',
+      },
+      'Trade Add-On Modules': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Trade modules keep contractor PPE kits specific without forcing every worker into the same oversized package.',
+      },
+      'Sizing and Proper Fit in Bulk PPE Kits': {
+        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+        caption:
+          'Bulk PPE kits need real size planning because proper fit is now an active construction PPE requirement.',
+      },
+      'Standards and Documentation to Request': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'A contractor PPE kit quote should identify the standard or approval basis for each item.',
+      },
+      'Packaging, Labeling, and Site Issue Control': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Clear kit packaging and replacement packs reduce field issuing errors on contractor jobsites.',
+      },
+      'Contractor PPE Kit RFQ Template': {
+        url: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+        caption:
+          'A structured RFQ helps suppliers quote the same kit requirements and reduces substitution risk.',
       },
     },
   },

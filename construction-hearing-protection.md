@@ -368,6 +368,10 @@ This check is short enough for daily work and specific enough to prevent the mos
 
 There is no single best hearing protector for every construction worker. Foam earplugs, reusable plugs, earmuffs, helmet-mounted muffs, and communication headsets all have a place. The right choice depends on exposure level, duration, fit, comfort, communication needs, and compatibility with other PPE.
 
+### How do you choose the right hearing protection device for construction sites?
+
+Start with the noise source, exposure time, and the other PPE the worker must wear. Foam earplugs can work well for many mobile tasks, earmuffs are easier to supervise, helmet-mounted muffs can solve hard-hat compatibility problems, and communication headsets may be needed around spotters, alarms, or heavy equipment. Do not choose by the highest NRR alone. Choose a protector that gives enough real-world protection, fits the worker, supports communication, and will actually be worn for the full exposure.
+
 ### When does OSHA require hearing protection in construction?
 
 OSHA construction noise rules require protection when sound levels exceed the limits in **29 CFR 1926.52 Table D-2**. If feasible engineering or administrative controls do not reduce exposure to those limits, hearing protection must be provided and used. **29 CFR 1926.101** also requires inserted ear protective devices to be fitted or determined individually by competent persons.

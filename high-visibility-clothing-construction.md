@@ -329,6 +329,14 @@ Class 2 is commonly used as a baseline for general construction traffic exposure
 
 Sometimes, but not always. A vest may be enough for general site access, but higher-risk work may require Class 3 garments, sleeves, pants, jackets, rainwear, or FR hi-vis. The visible garment must also stay exposed when the worker wears harnesses, tool belts, jackets, or other PPE.
 
+### Does Class 2 high-visibility clothing need to be the outermost layer?
+
+Yes, the high-visibility garment has to remain visible from the outside to do its job. A Class 2 vest or shirt loses much of its value if it is covered by a jacket, raincoat, harness, backpack, tool belt, or other outer layer. For trailer yards, roadwork, equipment routes, and work zones, supervisors should check that reflective tape and fluorescent background material remain visible throughout the shift.
+
+### What should workers wear in work zones?
+
+Workers in construction work zones should wear high-visibility reflective gear matched to the traffic and equipment exposure. Dark clothing is not enough, and jackets worn over vests can create a visibility failure. The practical rule is simple: the compliant high-vis layer should be the visible outer layer, or the outer garment itself should be certified high-vis.
+
 ### What color is best for construction hi-vis?
 
 Fluorescent yellow-green and fluorescent orange-red are both common when certified. Yellow-green often gives strong daytime visibility against dark construction backgrounds. Orange-red may create useful contrast in roadwork and earthmoving environments. The right choice depends on site background, equipment colors, traffic control, and worker role identification.

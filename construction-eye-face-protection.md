@@ -477,6 +477,14 @@ Most site teams do not stop at eye protection alone. The next useful page depend
 
 Not in a blanket sense, but they do need appropriate eye or face protection whenever the task exposes them to the hazards named in OSHA's construction rule. On many active sites, that means safety glasses are the baseline for a large share of work, but some tasks need goggles, face shields, or welding protection instead.
 
+### When is eye protection required on a job site?
+
+Eye protection is required when the task or work area exposes the worker to eye hazards such as flying particles, dust, chips, sparks, chemical splash, molten metal, injurious light, or radiant energy. The right answer is not "only when welding" or "only when drilling." A jobsite should select eye protection from the actual hazard: ordinary impact, side impact, fine dust, splash, grinding, cutting, welding, or laser work.
+
+### What type of eye protection should be used when dust is present?
+
+For light nuisance dust, safety glasses with side protection may be enough if particles are not getting around the lenses. For heavier dust, concrete cutting, masonry work, sweeping, windy debris, or fine particles that reach the eye from the sides, sealed goggles are usually the better choice. A face shield can add face coverage for chips or fragments, but it does not replace primary eye protection where dust or impact hazards can reach the eyes.
+
 ### When are goggles better than safety glasses on a construction site?
 
 Goggles are usually the better choice when dust, splash, or fine particles are getting around ordinary glasses. The issue is not whether goggles are "stronger." It is whether the hazard can enter through the gaps that glasses leave open.

@@ -150,12 +150,12 @@ export default function AboutPage() {
           src="https://shop.laifappe.com/company/about-hero-showroom.webp"
           alt="Laifappe PPE showroom in Foshan"
           fill
-          className="object-cover opacity-70"
+          className="object-cover opacity-90"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,12,18,0.94)_0%,rgba(5,12,18,0.76)_36%,rgba(5,12,18,0.28)_72%,rgba(5,12,18,0.42)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(238,181,92,0.24),transparent_34%),linear-gradient(180deg,rgba(0,0,0,0.1),rgba(0,0,0,0.62))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,12,18,0.9)_0%,rgba(5,12,18,0.78)_34%,rgba(5,12,18,0.34)_58%,rgba(5,12,18,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(238,181,92,0.12),transparent_32%),linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,0.34))]" />
 
         <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col justify-end px-6 pb-10 pt-24 lg:min-h-[700px] lg:px-8">
           <div className="max-w-3xl pb-12">
@@ -163,13 +163,12 @@ export default function AboutPage() {
               <span className="h-2 w-2 bg-[#e9b85f]" />
               Foshan PPE supplier since 2003
             </div>
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[0.98] tracking-normal text-white md:text-7xl">
-              YUELAIFA PPE, built from a real Foshan showroom.
+            <h1 className="max-w-2xl text-4xl font-semibold leading-[1.03] tracking-normal text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.34)] md:text-6xl">
+              PPE sourcing backed by a real showroom.
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-8 text-white/82 md:text-lg">
-              Laifappe supplies labor protection and industrial safety products
-              for distributors, contractors, manufacturers, and engineering
-              procurement teams that need visible stock, accountable contacts,
+            <p className="mt-7 max-w-xl text-base leading-8 text-white/86 drop-shadow-[0_1px_8px_rgba(0,0,0,0.32)] md:text-lg">
+              Laifappe supplies industrial PPE for distributors, contractors,
+              and procurement teams that need visible stock, reliable contacts,
               and steady order execution.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
