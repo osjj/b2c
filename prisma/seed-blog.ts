@@ -13,6 +13,8 @@
  *   - construction-safety-helmet-vs-hard-hat
  *   - heat-stress-ppe-construction-workers
  *   - heavy-equipment-operator-ppe-checklist
+ *   - trenching-excavation-ppe-checklist
+ *   - scaffolding-ppe-checklist
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -1008,6 +1010,129 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
         caption:
           'Most demolition PPE mistakes come from weak compatibility checks, missing replacement stock, and using baseline PPE for task-specific hazards.',
+      },
+    },
+  },
+  {
+    slug: 'trenching-excavation-ppe-checklist',
+    markdownPath: join(process.cwd(), 'trenching-excavation-ppe-checklist.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.trenching-excavation-ppe-checklist.generated.json',
+    ),
+    title:
+      'Trenching and Excavation PPE Checklist for Construction Crews',
+    excerpt:
+      'A field-ready PPE checklist for trenching and excavation crews covering helmets, hi-vis, boots, gloves, eye protection, respirators, hearing PPE, fall and edge exposure, equipment zones, and procurement kits.',
+    seoTitle:
+      'Trenching and Excavation PPE Checklist | Construction Safety Gear',
+    seoDescription:
+      'Use this trenching and excavation PPE checklist for construction crews: helmets, hi-vis, boots, gloves, eye protection, respirators, fall protection, and emergency planning.',
+    seoKeywords:
+      'trenching PPE checklist, excavation PPE checklist, trench safety PPE, PPE for trenching and excavation, excavation safety gear, OSHA trenching PPE, construction excavation PPE, trench worker PPE kit',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Trenching and Excavation PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'A trenching PPE checklist should cover baseline site entry, equipment zones, ground conditions, access, and rescue readiness.',
+      },
+      'OSHA and NIOSH Context for Trenching Work': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Trenching PPE planning should sit inside a broader excavation safety program that includes protective systems and competent-person review.',
+      },
+      'Head Protection for Trenching and Excavation': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'Head protection has to account for equipment movement, spoil piles, pipe handling, ladders, shoring, and edge work.',
+      },
+      'High-Visibility Clothing Around Excavators and Traffic': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'High-visibility clothing helps trench crews remain visible around excavators, loaders, dump trucks, spotters, and traffic.',
+      },
+      'Footwear for Mud, Water, Edges, and Puncture Hazards': {
+        url: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=1200&q=80',
+        caption:
+          'Excavation footwear needs traction, toe protection, puncture resistance, and wet-ground performance.',
+      },
+      'Respiratory Protection and Atmospheric Hazards': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Dust, fumes, utility work, and confined or low-lying areas can make respiratory and atmospheric review part of trench planning.',
+      },
+      'Task-Based Trenching PPE Matrix': {
+        url: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+        caption:
+          'A task-based PPE matrix helps supervisors separate excavation setup, pipe work, shoring, equipment spotting, and backfill.',
+      },
+      'Procurement Checklist for Trenching PPE Kits': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Trenching PPE procurement should package baseline kits, mud and utility modules, replacement stock, and documentation together.',
+      },
+    },
+  },
+  {
+    slug: 'scaffolding-ppe-checklist',
+    markdownPath: join(process.cwd(), 'scaffolding-ppe-checklist.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.scaffolding-ppe-checklist.generated.json',
+    ),
+    title: 'Scaffolding PPE Checklist for Construction Crews',
+    excerpt:
+      'A practical scaffolding PPE checklist for scaffold erectors, users, inspectors, and ground support covering harnesses, helmets, anti-slip boots, gloves, eye protection, hi-vis, and tool lanyards.',
+    seoTitle:
+      'Scaffolding PPE Checklist | Harness, Helmet, Boots and Tool Tethering',
+    seoDescription:
+      'Use this scaffolding PPE checklist for erectors, users, inspectors, and ground support: harnesses, helmets, boots, gloves, eye protection, hi-vis, and tool lanyards.',
+    seoKeywords:
+      'scaffolding PPE checklist, scaffolding PPE, PPE for scaffolding, scaffold PPE kit, scaffold safety harness, scaffold helmet chin strap, anti slip scaffold boots, tool lanyard scaffolding',
+    heroFallback:
+      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80',
+    sectionImages: {
+      'Quick Scaffolding PPE Checklist': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'A scaffolding PPE checklist should cover baseline site entry plus fall exposure, climbing, retention, grip, and dropped-object control.',
+      },
+      'PPE by Scaffolding Role': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Scaffold erectors, users, inspectors, and ground crews do not always need the same PPE package.',
+      },
+      'Fall Protection and Harness Checks': {
+        url: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1200&q=80',
+        caption:
+          'Fall protection for scaffold work depends on the scaffold type, erection phase, access route, anchorage, and rescue plan.',
+      },
+      'Head Protection and Chin Strap Retention': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'Head protection for scaffolding should account for overhead work, dropped objects, climbing, wind, and retention.',
+      },
+      'Footwear for Ladders, Platforms, and Wet Planks': {
+        url: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=1200&q=80',
+        caption:
+          'Scaffold footwear needs reliable grip on ladders, platforms, planks, mud, wet decks, and uneven access points.',
+      },
+      'Gloves for Scaffold Tubes, Couplers, and Tools': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Scaffolding gloves should balance grip, abrasion resistance, cut resistance, impact protection, and tool dexterity.',
+      },
+      'Tool Tethering and Dropped-Object Prevention': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Tool tethering helps reduce dropped-object risk when scaffold work happens above other workers or public areas.',
+      },
+      'Scaffolding PPE Kit Examples': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Scaffolding PPE kits should separate erector, user, inspector, and replacement modules instead of forcing one generic kit.',
       },
     },
   },

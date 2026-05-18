@@ -166,6 +166,7 @@ The checklist becomes more useful when it is mapped to what the worker is actual
 | Cutting, drilling, grinding, or demolition | Add sealed eye protection, hearing review, and respiratory review | Particle, dust, and noise exposure rise quickly |
 | Concrete and masonry work | Add coated or chemical-resistant gloves and silica review | Wet cement and silica both change the risk profile |
 | Roofing, scaffolds, open-sided floors, leading edges | Add fall protection review | Height exposure becomes the controlling factor |
+| Trenching and excavation | Add hi-vis, boot traction review, eye protection, hearing review, respiratory review, and access/edge review | Equipment movement, spoil, mud, utilities, dust, and trench access change the PPE package |
 | Welding, hot work, and cutting | Add task-specific eye/face protection, heat-resistant gloves, and FR review | General site PPE is not enough for hot work |
 | Electrical installation or maintenance | Add electrical PPE review | Standard site PPE is not a substitute for energized-work protection |
 | Roadwork or highway work | Add stronger visibility and traffic review | Traffic exposure can dominate the whole PPE plan |
@@ -330,6 +331,8 @@ Use this guide when the main need is field execution and pre-start checking:
 - Use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction) for the regulation, training, inspection, and citation side.
 - Use [Hearing protection for construction workers](/blog/construction-hearing-protection) when noisy tools, equipment, or work zones need task-specific earplug, earmuff, or communication headset planning.
 - Use [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection) when dust, silica, fumes, coating vapors, demolition, or respirator fit testing becomes the controlling issue.
+- Use [Trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist) when the crew is working near excavators, trench edges, pipe work, wet ground, utilities, or low-lying dust and atmosphere concerns.
+- Use [Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist) when the work involves scaffold erection, platform access, tool tethering, helmet retention, or scaffold-specific fall protection.
 - Use [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide) when the main question is boot selection, ratings, and fit.
 - Use [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement) when the field checklist needs to become a repeatable purchasing and replacement plan.
 - Use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) when you need the full purchasing and category plan across crews and roles.
@@ -401,6 +404,8 @@ If you need the full role-based program behind this checklist, start with our [C
 - [High-visibility clothing for construction workers](/blog/high-visibility-clothing-construction)
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
+- [Trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist)
+- [Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)
 - [How to buy construction PPE in bulk](/blog/bulk-construction-ppe-procurement)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 

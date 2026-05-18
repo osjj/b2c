@@ -94,6 +94,8 @@ Under **29 CFR 1926.95(a)**, PPE must be provided, used, and maintained wherever
 
 Under **29 CFR 1926.95(c)**, PPE has to be appropriate for the work and properly fit the employee. A general hard hat is not enough for every electrical exposure. A dust mask is not automatically adequate for silica-generating work. A fall harness that can be tightened is not automatically a properly fitted harness.
 
+For electrical installation teams, this selection step should separate ordinary construction PPE from voltage-rated and arc-rated protective equipment. Use the [PPE for electrical installation on construction sites guide](/solutions/ppe-for-electrical-installation-on-construction-sites) when the compliance discussion turns into a task-level electrical PPE specification.
+
 ### 3. Pay for required PPE, subject to narrow exceptions
 
 Under **29 CFR 1926.95(d)**, employers generally must provide required PPE at no cost, with limited exceptions such as:
@@ -317,6 +319,7 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 - [Hearing protection for construction workers](/blog/construction-hearing-protection)
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Fall protection PPE for construction sites](/solutions/fall-protection-construction)
+- [PPE for electrical installation on construction sites](/solutions/ppe-for-electrical-installation-on-construction-sites)
 - [Safety footwear guide for construction workers](/blog/construction-safety-footwear-guide)
 
 ---

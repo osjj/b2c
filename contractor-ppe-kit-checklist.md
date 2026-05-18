@@ -120,6 +120,7 @@ The baseline kit is only the starting point. Contractors should add modules by t
 | Demolition crew | Respiratory protection, face shield over goggles, hearing protection, impact gloves, puncture-resistant footwear | Dust, debris, noise, fragments, rebar, and unstable materials |
 | Road and bridge crew | Class 2 or Class 3 hi-vis, hearing protection, eye protection, heat kit, gloves, footwear | Traffic, equipment, asphalt, glare, noise, and weather |
 | Scaffold and elevated-platform crew | Helmet retention, gloves, fall protection interface, dropped-object planning, footwear grip | Climbing, edge exposure, overhead hazards, and tool handling |
+| Trenching and excavation crew | Hi-vis, safety boots, gloves, eye protection, hearing review, respiratory review, helmet retention where needed | Excavators, trucks, mud, spoil, utilities, dust, and edge exposure |
 | Equipment operators | Cab kit, hi-vis for ground movement, safety glasses, gloves, hearing protection, boots | Cab-to-ground exposure, walk-around inspections, dust, and noise |
 | Welding and hot work | Welding helmet, filter lens, FR clothing, heat-resistant gloves, respiratory review, face and eye backup | Radiation, sparks, hot metal, fumes, and surrounding worker exposure |
 | Electrical work | Class E head protection, insulating gloves where required, arc-rated PPE, dielectric footwear where appropriate | Electrical shock, arc exposure, and specialized work rules |
@@ -133,6 +134,8 @@ For specialized tasks, connect the kit to the relevant guide:
 - [hearing protection for construction workers](/blog/construction-hearing-protection)
 - [fall protection PPE for construction sites](/solutions/fall-protection-construction)
 - [heavy equipment operator PPE checklist](/blog/heavy-equipment-operator-ppe-checklist)
+- [trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist)
+- [scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)
 
 ---
 
@@ -324,6 +327,8 @@ If you need a full buying workflow, use the [bulk construction PPE procurement g
 - [Respiratory protection for construction dust and fumes](/blog/construction-respiratory-protection)
 - [Heavy equipment operator PPE checklist](/blog/heavy-equipment-operator-ppe-checklist)
 - [Demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist)
+- [Trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist)
+- [Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)
 
 ---
 

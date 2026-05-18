@@ -541,7 +541,7 @@
           "paragraphs": [
             "Use this page as the scaffolding-specific branch of the complete construction PPE system. For the full site-wide structure, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For the fall-arrest system behind scaffold work, use [fall protection PPE for construction sites](/solutions/fall-protection-construction).",
             "This page focuses on what procurement teams and site supervisors need to specify for scaffold erectors, scaffold users, inspectors, and ground support workers: PPE categories, role-based issue kits, compatibility checks, standards, and replacement controls.",
-            "For related category decisions, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types), [construction safety footwear guide](/blog/construction-safety-footwear-guide), [high-visibility clothing guide](/blog/high-visibility-clothing-construction), and [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
+            "For the article-format checklist, use the [scaffolding PPE checklist](/blog/scaffolding-ppe-checklist). For related category decisions, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types), [construction safety footwear guide](/blog/construction-safety-footwear-guide), [high-visibility clothing guide](/blog/high-visibility-clothing-construction), and [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)."
           ]
         }
       },
@@ -882,6 +882,10 @@
               "text": "Use this for harnesses, SRLs, lanyards, anchors, rescue planning, and inspection requirements."
             },
             {
+              "title": "[Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)",
+              "text": "Use this for a blog-style scaffold PPE checklist covering erectors, users, inspectors, helmets, harnesses, boots, gloves, hi-vis, and tool tethering."
+            },
+            {
               "title": "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
               "text": "Use this for Type I vs Type II, Class G/E/C, chin straps, shell style, and accessory compatibility."
             },
@@ -920,6 +924,14 @@
         "data": {
           "items": [
             {
+              "q": "What PPE is needed for scaffolding work?",
+              "a": "A practical scaffolding PPE set usually includes a safety helmet or hard hat, eye protection, gloves, anti-slip safety boots, and high-visibility clothing. Scaffold erectors, dismantlers, inspectors, and workers exposed to incomplete guardrails or elevated access may also need a full body harness, suitable lanyard or SRL, tool lanyards, and role-specific fall protection equipment."
+            },
+            {
+              "q": "What is the difference between a scaffolding PPE kit and general construction PPE?",
+              "a": "A general construction PPE kit covers baseline site entry. A scaffolding PPE kit adds height-work and scaffold-specific controls such as helmet retention, fall arrest compatibility, tool tethering, anti-slip footwear, gloves for tube and coupler handling, and PPE that remains usable while climbing, leaning, and working on narrow platforms."
+            },
+            {
               "q": "When is a fall arrest harness required on scaffolding?",
               "a": "OSHA's scaffold rules generally require fall protection for employees on scaffolds more than 10 feet above a lower level. On completed scaffolds, guardrails may provide the fall protection. During erection, dismantling, alteration, missing guardrail conditions, or site 100% tie-off policies, a personal fall arrest system may be required."
             },
@@ -938,6 +950,10 @@
             {
               "q": "What PPE should be included in a scaffold erector kit?",
               "a": "A scaffold erector kit usually includes a full body harness, suitable lanyard or SRL, helmet with chin strap, anti-slip safety boots, grip or cut-resistant gloves, eye protection, hi-vis clothing, and tool lanyards. The final kit should match the scaffold type, anchor plan, weather, and site traffic exposure."
+            },
+            {
+              "q": "Do scaffold users need the same PPE as scaffold erectors?",
+              "a": "Not always. Scaffold users on a completed scaffold may need baseline PPE such as helmet, eyewear, gloves, boots, and hi-vis clothing, plus task-specific protection. Scaffold erectors and dismantlers usually need a stronger height-work kit because they work around changing guardrails, exposed edges, moving components, and climbing access."
             },
             {
               "q": "Do you supply complete scaffolding PPE kits?",
