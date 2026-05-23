@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ChevronRight, Clock, Home } from 'lucide-react'
 import { getBlogPostBySlug } from '@/actions/blog'
+import { BlogCommercialLinksSection } from '@/components/store/blog/blog-commercial-links-section'
 import { BlogContentRenderer } from '@/components/store/blog/blog-content-renderer'
 import { TableOfContents } from '@/components/store/solution-detail/table-of-contents'
 import { ToolRecommendationsSection } from '@/components/store/tool-recommendations-section'
+import { getBlogCommercialLinks } from '@/lib/blog-commercial-links'
 import { extractTocFromContent, stripHtml } from '@/lib/blog-toc'
 import { getToolRecommendationsForBlog } from '@/lib/tool-recommendations'
 import { formatDate } from '@/lib/utils'
@@ -96,6 +98,7 @@ export default async function BlogDetailPage({ params }: Props) {
   const content = post.content as EditorContent
   const tocItems = extractTocFromContent(content)
   const readingMinutes = estimateReadingTime(content)
+  const commercialLinks = getBlogCommercialLinks(slug)
   const relatedTools = getToolRecommendationsForBlog({
     slug,
     title: post.title,
@@ -190,6 +193,7 @@ export default async function BlogDetailPage({ params }: Props) {
             </aside>
             <article className="max-w-3xl mx-auto w-full">
               <BlogContentRenderer content={content} />
+              <BlogCommercialLinksSection links={commercialLinks} />
               <ToolRecommendationsSection
                 tools={relatedTools}
                 title="Turn this guide into a faster PPE shortlist"
@@ -201,6 +205,7 @@ export default async function BlogDetailPage({ params }: Props) {
         ) : (
           <article className="max-w-3xl mx-auto w-full">
             <BlogContentRenderer content={content} />
+            <BlogCommercialLinksSection links={commercialLinks} />
             <ToolRecommendationsSection
               tools={relatedTools}
               title="Turn this guide into a faster PPE shortlist"
