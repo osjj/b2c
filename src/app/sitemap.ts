@@ -41,7 +41,8 @@ type SitemapSolution = {
 
 type SitemapBlogPost = {
   slug: string
-  updatedAt: Date
+  publishedAt: Date | null
+  createdAt: Date
 }
 
 function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
@@ -168,7 +169,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     safeQuery<SitemapBlogPost[]>(
       prisma.blogPost.findMany({
         where: { isPublished: true },
-        select: { slug: true, updatedAt: true },
+        select: { slug: true, publishedAt: true, createdAt: true },
       }),
       [],
     ),
@@ -206,7 +207,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.updatedAt,
+    lastModified: post.publishedAt ?? post.createdAt,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
