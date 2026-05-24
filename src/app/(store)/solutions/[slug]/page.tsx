@@ -23,6 +23,8 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
+export const revalidate = 3600
+
 type RecommendedProduct = {
   id: string
   name: string
