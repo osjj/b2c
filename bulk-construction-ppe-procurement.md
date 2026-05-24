@@ -3,7 +3,7 @@
 **Meta Title:** How to Buy Construction PPE in Bulk: Procurement Guide  
 **Meta Description:** A practical guide for buying construction PPE in bulk. Learn how to plan crew packages, verify standards, manage sizing, compare suppliers, reduce waste, and build a repeatable PPE purchasing system.  
 **Target URL:** /blog/bulk-construction-ppe-procurement  
-**Target Keywords:** bulk construction PPE, buy construction PPE in bulk, construction PPE procurement, construction safety equipment supplier, bulk PPE supplier construction, PPE purchasing guide, construction PPE ordering checklist
+**Target Keywords:** buy construction PPE in bulk, bulk construction PPE procurement, construction PPE RFQ, PPE purchasing guide construction, construction PPE ordering checklist, bulk PPE replacement stock, construction PPE size planning
 
 ---
 

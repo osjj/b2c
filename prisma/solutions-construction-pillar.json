@@ -53,6 +53,57 @@
         }
       },
       {
+        "key": "construction-ppe-cluster-map",
+        "type": "group",
+        "title": "Construction PPE guide map",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "Compliance and field execution",
+              "description": "Use these guides when the buyer needs rules, field routines, or inspection-ready PPE planning.",
+              "items": [
+                "[OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)",
+                "[Construction PPE checklist](/blog/construction-ppe-checklist)"
+              ]
+            },
+            {
+              "title": "Category selection",
+              "description": "Use these guides when the buyer is choosing the right PPE category before comparing products.",
+              "items": [
+                "[Construction gloves selection guide](/blog/construction-gloves-selection-guide)",
+                "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
+                "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
+                "[Safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat)",
+                "[Eye and face protection for construction](/blog/construction-eye-face-protection)",
+                "[Respiratory protection for construction](/blog/construction-respiratory-protection)",
+                "[Hearing protection for construction](/blog/construction-hearing-protection)",
+                "[High-visibility clothing for construction](/blog/high-visibility-clothing-construction)"
+              ]
+            },
+            {
+              "title": "Task-based PPE checklists",
+              "description": "Use these guides when the job type controls the PPE mix.",
+              "items": [
+                "[Demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist)",
+                "[Heavy equipment operator PPE checklist](/blog/heavy-equipment-operator-ppe-checklist)",
+                "[Trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist)",
+                "[Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)",
+                "[Heat stress PPE for construction workers](/blog/heat-stress-ppe-construction-workers)"
+              ]
+            },
+            {
+              "title": "Procurement and kits",
+              "description": "Use these guides when the buyer is moving from specification to ordering, RFQs, and issue control.",
+              "items": [
+                "[Bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)",
+                "[Contractor PPE kit checklist](/blog/contractor-ppe-kit-checklist)"
+              ]
+            }
+          ]
+        }
+      },
+      {
         "key": "construction-hazards",
         "type": "table",
         "title": "Construction hazard landscape and PPE focus",

@@ -3,7 +3,7 @@
 **Meta Title:** Contractor PPE Kit Checklist for Bulk Orders | Construction PPE Kits  
 **Meta Description:** Build contractor PPE kits for bulk orders: baseline construction PPE, trade add-ons, sizing, standards, packaging, replacement stock, and RFQ checks.  
 **Target URL:** /blog/contractor-ppe-kit-checklist  
-**Target Keywords:** contractor PPE kit, bulk PPE kit for contractors, construction PPE kit, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, bulk construction PPE kits
+**Target Keywords:** contractor PPE kit, bulk PPE kit for contractors, construction PPE kit checklist, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, site issue PPE kits
 
 ---
 

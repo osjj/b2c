@@ -417,7 +417,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     seoDescription:
       'Learn how to buy construction PPE in bulk with a practical procurement guide covering crew packages, standards, sizing, suppliers, replacement stock, RFQs, and site issue controls.',
     seoKeywords:
-      'bulk construction PPE, buy construction PPE in bulk, construction PPE procurement, construction safety equipment supplier, bulk PPE supplier construction, PPE purchasing guide, construction PPE ordering checklist',
+      'buy construction PPE in bulk, bulk construction PPE procurement, construction PPE RFQ, PPE purchasing guide construction, construction PPE ordering checklist, bulk PPE replacement stock, construction PPE size planning',
     heroFallback:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
     sectionImages: {
@@ -478,7 +478,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     seoDescription:
       'Build contractor PPE kits for bulk orders: baseline construction PPE, trade add-ons, sizing, standards, packaging, replacement stock, and RFQ checks.',
     seoKeywords:
-      'contractor PPE kit, bulk PPE kit for contractors, construction PPE kit, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, bulk construction PPE kits',
+      'contractor PPE kit, bulk PPE kit for contractors, construction PPE kit checklist, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, site issue PPE kits',
     heroFallback:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
     sectionImages: {

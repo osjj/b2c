@@ -17,6 +17,17 @@ Whether your sites operate under OSHA (US), EU Regulation 2016/425 (Europe), or 
 
 ---
 
+## Construction PPE Guide Map
+
+Use this page as the broad commercial hub for **construction site PPE**, **construction PPE suppliers**, **construction safety equipment**, and **bulk construction PPE** planning. Use the supporting guides below when the search intent is narrower:
+
+- **Compliance and field execution:** [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction) and [construction PPE checklist](/blog/construction-ppe-checklist).
+- **Category selection:** [construction gloves selection guide](/blog/construction-gloves-selection-guide), [construction safety footwear guide](/blog/construction-safety-footwear-guide), [types of hard hats for construction](/blog/construction-hard-hat-types), [safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat), [eye and face protection guide](/blog/construction-eye-face-protection), [respiratory protection guide](/blog/construction-respiratory-protection), [hearing protection guide](/blog/construction-hearing-protection), and [high-visibility clothing guide](/blog/high-visibility-clothing-construction).
+- **Task-based PPE checklists:** [demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist), [heavy equipment operator PPE checklist](/blog/heavy-equipment-operator-ppe-checklist), [trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist), [scaffolding PPE checklist](/blog/scaffolding-ppe-checklist), and [heat stress PPE for construction workers](/blog/heat-stress-ppe-construction-workers).
+- **Procurement and kits:** [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) and [contractor PPE kit checklist](/blog/contractor-ppe-kit-checklist).
+
+---
+
 ## The Construction Hazard Landscape: What Your Workers Face Every Day
 
 OSHA has identified four categories of hazard — known as the **Fatal Four** — that together account for more than 60% of all construction worker deaths every year. Understanding these hazards is the foundation of any effective PPE strategy.
