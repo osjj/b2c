@@ -24,6 +24,7 @@ type Props = {
 }
 
 export const revalidate = 3600
+export const dynamic = 'force-static'
 
 type RecommendedProduct = {
   id: string
