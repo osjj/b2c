@@ -308,7 +308,10 @@ function CategorySection() {
 function WhyUsSection() {
   const reasons = [
     ["Factory Direct Pricing", "No traders, no markups. Order straight from a 22-year manufacturer in Foshan with full price transparency."],
-    ["Stable, Scalable Supply", "Seven production lines and 100+ technicians support repeat orders, OEM packaging, and cross-category PPE programs."],
+    [
+      "Stable, Scalable Supply",
+      "Seven production lines and 100+ technicians support repeat orders, OEM packaging, and cross-category PPE programs.",
+    ],
     ["Strict Quality Inspection", "Batch inspection, documentation support, and product standards aligned to buyer requirements before shipment."],
     ["OEM / ODM from 500 units", "Custom branding, packaging, and product development. Minimum 500 pairs for OEM with in-house design support."],
     ["Fast Global Delivery", "DDP, FOB, CIF to 50+ countries. Lead time 2-4 weeks from confirmed order."],
@@ -442,11 +445,10 @@ function FactoryFullSection() {
         <div className={styles.factoryContent}>
           <span>Our factory - Foshan, China</span>
           <h2>
-            20,000m2 production floor, <em>seven lines running.</em>
+            Factory-backed PPE supply, <em>organized for repeat orders.</em>
           </h2>
           <p>
-            Walk through our manufacturing facility: seven production lines, 100+ technicians, and quality control
-            before each shipment.
+            Walk through our production, packing, and inspection workflow before placing bulk PPE orders.
           </p>
           <div className={styles.heroCta}>
             <FactoryTourDialog />
@@ -454,7 +456,7 @@ function FactoryFullSection() {
           <div className={styles.factoryStats}>
             {[
               ["7", "Production Lines"],
-              ["20K", "Facility Size"],
+              ["500+", "OEM MOQ"],
               ["100+", "Technicians"],
               ["22 yr", "In Operation"],
             ].map(([value, label]) => (

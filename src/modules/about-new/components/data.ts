@@ -20,7 +20,7 @@ export const aboutImageUrls = {
 export const heroStats = [
   { value: "2003", label: "Founded in Foshan" },
   { value: "7", label: "Production lines" },
-  { value: "20,000", label: "m2 facility" },
+  { value: "100+", label: "Technicians" },
   { value: "50+", label: "Export countries" },
 ]
 
@@ -67,7 +67,7 @@ export const companyIntroImages = [
   {
     image: aboutImageUrls.chuangfang3,
     title: "Workshop, warehouse, and packing",
-    description: "Production floor, material storage, and packing workflow shown together.",
+    description: "Production floor, material storage, and packing workflow in one sourcing process.",
   },
 ]
 

@@ -116,7 +116,7 @@ function HeroSection() {
         <div className={styles.heroCopy}>
           <div className={styles.heroEyebrow}>
             <span className={styles.liveDot} />
-            Supplier audit page for PPE buyers
+            PPE supplier profile for global buyers
           </div>
           <h1>
             Inspect the factory behind your <em>PPE program.</em>
@@ -248,13 +248,12 @@ function CompanyIntroductionSection() {
             <div className={styles.sectionIntro}>
               <span>- Real local presence</span>
               <h2>
-                Factory, showroom, office, and buyer conversations shown <em>together.</em>
+                A clear view of our factory, showroom, office, and <em>buyer support.</em>
               </h2>
             </div>
             <p>
-              These photos make the company feel concrete: production space, product display, office support, and
-              customer-facing communication. Replace any card with newer factory building, storefront, office, or
-              meeting photos when available.
+              Review the spaces behind the sourcing process: production plant, showroom display, sales office, and
+              customer communication points used for product review and order coordination.
             </p>
           </div>
           <div className={styles.presenceGrid}>
@@ -299,11 +298,11 @@ function FactorySection() {
         <div className={styles.sectionIntro}>
           <span>- Inside the factory</span>
           <h2>
-            Production is presented as a process, not a <em>slogan.</em>
+            A practical production process from specification to <em>shipment.</em>
           </h2>
           <p>
-            Buyers should see what happens between inquiry and shipping: materials are checked, samples are approved,
-            production is monitored, and packing is documented before the order leaves the factory.
+            From inquiry to shipping, materials are checked, samples are approved, production is monitored, and packing
+            details are documented before the order leaves the factory.
           </p>
         </div>
         <div className={styles.processList}>
@@ -330,11 +329,11 @@ function QualitySection() {
           <div className={styles.qualityNarrative}>
             <span>- Quality and documents</span>
             <h2>
-              Review-ready compliance files, not just <em>claims.</em>
+              Compliance documents prepared for <em>buyer review.</em>
             </h2>
             <p>
-              The certificate image gives buyers a quick first check. For serious PPE sourcing, we also prepare the
-              supporting files buyers normally ask for before sample approval or bulk production.
+              For PPE sourcing projects, our team can prepare business documents, product certificates, test reports,
+              sample photos, and packing records before sample approval or bulk production.
             </p>
 
             <div className={styles.documentPanel}>
@@ -390,8 +389,8 @@ function OemSection() {
             </h2>
           </div>
           <p>
-            This section makes customization feel operational: choices, proof samples, packaging, and approval points
-            are visible before mass production starts.
+            Customization starts with material choices, product specifications, proof samples, packaging requirements,
+            and approval points before mass production starts.
           </p>
         </div>
         <div className={styles.oemMedia}>
@@ -424,7 +423,7 @@ function DeliverySection() {
           <div className={styles.sectionIntro}>
             <span>- Warehouse and delivery</span>
             <h2>
-              Make the buyer feel the order is <em>trackable.</em>
+              Clear order stages from quote to <em>delivery.</em>
             </h2>
             <p>
               For B2B PPE, trust is built through clear order stages: quote, sample confirmation, production, packing,
@@ -482,12 +481,12 @@ function BuyerProofSection() {
           <div className={styles.sectionIntro}>
             <span>- Buyer touchpoints</span>
             <h2>
-              Show real conversations, not invented <em>logos.</em>
+              Buyer meetings and sample reviews from real <em>trade touchpoints.</em>
             </h2>
           </div>
           <p>
-            Trade show and sample review images give social proof without relying on unverifiable customer claims.
-            Replace these later with real case studies when you have permission.
+            Trade show and sample review photos show how buyers compare materials, product categories, packaging
+            options, and documentation with our team before placing bulk orders.
           </p>
         </div>
         <div className={styles.buyerGrid}>
