@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
+import { ImageCompressionTool } from "@/components/admin/image-compression-tool"
 import { ScraperSettingsCard } from "@/components/admin/scraper-settings-card"
 
 export default function SettingsPage() {
@@ -17,12 +18,13 @@ export default function SettingsPage() {
       </div>
 
       <Tabs defaultValue="general" className="space-y-6">
-        <TabsList>
+        <TabsList className="flex h-auto flex-wrap justify-start">
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="seo">SEO</TabsTrigger>
           <TabsTrigger value="payments">Payments</TabsTrigger>
           <TabsTrigger value="shipping">Shipping</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
+          <TabsTrigger value="image-tool">Image Tool</TabsTrigger>
           <TabsTrigger value="scraper">数据采集</TabsTrigger>
         </TabsList>
 
@@ -361,6 +363,10 @@ Sitemap: https://your-domain.com/sitemap.xml`}
 
         <TabsContent value="scraper" className="space-y-6">
           <ScraperSettingsCard />
+        </TabsContent>
+
+        <TabsContent value="image-tool" className="space-y-6">
+          <ImageCompressionTool />
         </TabsContent>
       </Tabs>
     </div>

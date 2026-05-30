@@ -298,6 +298,7 @@ export async function getCollectionProducts(slug: string, limit = 8) {
       name: pc.product.name,
       slug: pc.product.slug,
       description: pc.product.description,
+      sku: pc.product.sku,
       price: Number(pc.product.price),
       comparePrice: pc.product.comparePrice ? Number(pc.product.comparePrice) : null,
       image: pc.product.images[0]?.url || null,

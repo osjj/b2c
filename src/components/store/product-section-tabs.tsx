@@ -3,6 +3,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { cn } from '@/lib/utils'
 
+const SECTION_TAB_HEIGHT = 52
+const SECTION_TAB_GAP = 16
+const STICKY_HEADER_HEIGHT_DESKTOP = 75
+const STICKY_HEADER_HEIGHT_MOBILE = 58
+
 interface Tab {
   id: string
   label: string
@@ -29,14 +34,8 @@ export function ProductSectionTabs({
     [hasDescription, hasSpecifications, hasDetails]
   )
 
-  const tabIds = tabs.map((t) => t.id).join(',')
-
   const [activeId, setActiveId] = useState<string>(tabs[0]?.id ?? '')
-
-  // Reset active tab when the set of visible sections changes
-  useEffect(() => {
-    setActiveId(tabs[0]?.id ?? '')
-  }, [tabIds]) // eslint-disable-line react-hooks/exhaustive-deps
+  const activeTabId = tabs.some((tab) => tab.id === activeId) ? activeId : tabs[0]?.id
 
   // Set up IntersectionObserver for scroll-spy
   useEffect(() => {
@@ -71,14 +70,16 @@ export function ProductSectionTabs({
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
-    const offset = 120 // header height + tab bar height
-    const top = el.getBoundingClientRect().top + window.scrollY - offset
+    const stickyHeaderHeight = window.matchMedia('(min-width: 768px)').matches
+      ? STICKY_HEADER_HEIGHT_DESKTOP
+      : STICKY_HEADER_HEIGHT_MOBILE
+    const top = el.getBoundingClientRect().top + window.scrollY - stickyHeaderHeight - SECTION_TAB_HEIGHT - SECTION_TAB_GAP
     window.scrollTo({ top, behavior: 'smooth' })
   }
 
   return (
-    <div className="sticky top-28 z-[5] bg-background border-b -mx-1 px-1 mt-8">
-      <div className="flex gap-6">
+    <div className="sticky top-[58px] z-40 border-y bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/85 md:top-[75px]">
+      <div className="container mx-auto flex gap-8 overflow-x-auto px-6 lg:px-8">
         {tabs.map(({ id, label }) => (
           <button
             key={id}
@@ -86,7 +87,7 @@ export function ProductSectionTabs({
             onClick={() => scrollTo(id)}
             className={cn(
               'py-3 text-sm font-medium border-b-2 transition-colors',
-              activeId === id
+              activeTabId === id
                 ? 'border-primary text-foreground'
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             )}

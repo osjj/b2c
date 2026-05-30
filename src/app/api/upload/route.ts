@@ -61,7 +61,11 @@ export async function POST(request: NextRequest) {
     // Upload optimized image to R2
     const url = await uploadToR2(optimizedBuffer, filename, 'image/webp')
 
-    return NextResponse.json({ url })
+    return NextResponse.json({
+      url,
+      size: optimizedBuffer.byteLength,
+      originalSize: file.size,
+    })
   } catch (error) {
     console.error('Upload error:', error)
     return NextResponse.json(

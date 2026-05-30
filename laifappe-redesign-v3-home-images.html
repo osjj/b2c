@@ -1,0 +1,1180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Laifappe - Industrial PPE Manufacturer for Global Buyers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  :root {
+    --bg: #f7f5f1;
+    --ink: #0a1628;
+    --ink-soft: #1a2740;
+    --muted: #6b7280;
+    --line: rgba(10, 22, 40, 0.08);
+    --line-strong: rgba(10, 22, 40, 0.16);
+    --accent: #e25822;
+    --accent-soft: #f8e8e0;
+    --paper: #ffffff;
+    --sand: #ede9e0;
+    --font-display: 'Instrument Serif', serif;
+    --font-sans: 'Inter Tight', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background:
+      linear-gradient(180deg, rgba(247,245,241,0.94), rgba(247,245,241,0.98)),
+      radial-gradient(circle at 10% 10%, rgba(226,88,34,0.07), transparent 28%),
+      radial-gradient(circle at 90% 30%, rgba(10,22,40,0.08), transparent 26%),
+      var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+  .mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+  /* Bg image utility */
+  .bg-img { background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #e0dccf; }
+
+  /* ============ TOP BAR ============ */
+  .topbar { background: var(--ink); color: rgba(255,255,255,0.7); font-size: 12px; padding: 10px 0; letter-spacing: 0.02em; }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+  .topbar .left { display: flex; gap: 24px; align-items: center; }
+  .topbar .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; display: inline-block; margin-right: 8px; }
+  .topbar a:hover { color: white; }
+
+  /* ============ NAV ============ */
+  .nav { background: var(--bg); border-bottom: 1px solid var(--line); padding: 18px 0; position: sticky; top: 0; z-index: 50; }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-mark { width: 36px; height: 36px; background: var(--ink); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; }
+  .logo-text { font-weight: 600; font-size: 15px; letter-spacing: 0.06em; }
+  .logo-text small { display: block; font-weight: 400; font-size: 10px; color: var(--muted); letter-spacing: 0.15em; margin-top: 1px; }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-actions { display: flex; align-items: center; gap: 16px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
+  .btn-primary { background: var(--ink); color: white; }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line-strong); background: transparent; }
+  .btn-ghost:hover { background: var(--ink); color: white; }
+  .btn-white { background: white; color: var(--ink); }
+  .btn-white:hover { background: var(--accent); color: white; }
+  .btn-accent { background: var(--accent); color: white; }
+  .btn-accent:hover { background: var(--ink); }
+  .arrow { transition: transform 0.2s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* ============ HERO ============ */
+  .hero { background: var(--ink); color: white; position: relative; overflow: hidden; isolation: isolate; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 30%, rgba(226, 88, 34, 0.1), transparent 50%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), transparent 50%); pointer-events: none; z-index: -2; }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(10,22,40,0.98) 0%, rgba(10,22,40,0.76) 58%, rgba(10,22,40,0.9) 100%);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    opacity: 1;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .hero .wrap { position: relative; z-index: 2; }
+  .hero-product-wall { position: absolute; inset: 118px 0 auto auto; width: min(48vw, 680px); height: 600px; pointer-events: none; z-index: 0; opacity: 0.66; }
+  .hero-product-card { position: absolute; background: rgba(255,255,255,0.94); border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 22px 70px rgba(0,0,0,0.34); background-size: contain; background-position: center; background-repeat: no-repeat; }
+  .hero-product-card::after { content: attr(data-label); position: absolute; left: 10px; bottom: 8px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; color: rgba(10,22,40,0.55); }
+  .hero-product-card.card-gloves { width: 240px; height: 178px; right: 390px; top: 86px; transform: rotate(-3deg); }
+  .hero-product-card.card-helmet { width: 214px; height: 164px; right: 44px; top: 18px; transform: rotate(4deg); }
+  .hero-product-card.card-shoes { width: 254px; height: 178px; right: 0; top: 400px; transform: rotate(-2deg); }
+  .hero-product-card.card-goggles { width: 212px; height: 154px; right: 270px; top: 432px; transform: rotate(2deg); }
+  .hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; padding: 80px 0 100px; position: relative; align-items: center; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; font-size: 12px; color: rgba(255,255,255,0.85); margin-bottom: 32px; letter-spacing: 0.02em; }
+  .hero-tag .pulse { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); } 70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); } 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); } }
+  .hero h1 { font-family: var(--font-sans); font-size: clamp(44px, 5vw, 72px); line-height: 0.98; font-weight: 500; letter-spacing: -0.035em; margin: 0 0 28px 0; }
+  .hero h1 .accent-line { color: rgba(255,255,255,0.5); font-family: var(--font-display); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+  .hero p { font-size: 17px; line-height: 1.55; color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 0 36px 0; }
+  .hero-cta { display: flex; gap: 12px; align-items: center; margin-bottom: 56px; }
+  .hero-cta .btn-play { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; color: white; font-size: 14px; background: transparent; border: none; cursor: pointer; }
+  .hero-cta .play-circle { width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .hero-cta .play-circle::before { content: ''; width: 0; height: 0; border-left: 7px solid white; border-top: 5px solid transparent; border-bottom: 5px solid transparent; margin-left: 2px; }
+  .hero-certs { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .hero-certs .label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; margin-right: 8px; }
+  .cert-pill { padding: 6px 12px; border: 1px solid rgba(255,255,255,0.15); font-size: 11px; color: rgba(255,255,255,0.75); letter-spacing: 0.08em; font-family: var(--font-mono); }
+  .product-proof-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 26px; max-width: 560px; }
+  .proof-item { display: grid; grid-template-columns: 58px 1fr; gap: 12px; align-items: center; padding: 8px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.055); backdrop-filter: blur(16px); }
+  .proof-thumb { width: 58px; height: 58px; background-size: contain; background-position: center; background-repeat: no-repeat; background-color: rgba(255,255,255,0.92); }
+  .proof-kicker { display: block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); text-transform: uppercase; }
+  .proof-name { display: block; font-size: 12px; line-height: 1.25; color: rgba(255,255,255,0.88); margin-top: 3px; }
+
+  .hero-visual { position: relative; height: 100%; min-height: 580px; }
+  .hero-main-img { position: relative; height: 480px; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.3); }
+  .hero-main-img .bg-img { width: 100%; height: 100%; }
+  .hero-main-img::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(transparent 49%, rgba(255,255,255,0.08) 50%, transparent 51%), linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.06) 50%, transparent 51%); background-size: 80px 80px; opacity: 0.18; pointer-events: none; z-index: 1; }
+  .hero-main-img .overlay-tag { position: absolute; top: 20px; left: 20px; background: var(--accent); color: white; font-family: var(--font-mono); font-size: 10px; padding: 6px 12px; letter-spacing: 0.12em; z-index: 2; }
+  .hero-main-img .overlay-meta { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.92) 100%); z-index: 2; }
+  .hero-main-img .overlay-meta h3 { font-size: 22px; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .hero-main-img .overlay-meta h3 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--accent); }
+  .hero-main-img .overlay-meta p { font-size: 12px; color: rgba(255,255,255,0.65); margin: 0; font-family: var(--font-mono); letter-spacing: 0.08em; }
+
+  .hero-side-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .hero-stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 18px; }
+  .hero-stat-card .num { font-size: 28px; font-weight: 500; letter-spacing: -0.03em; display: flex; align-items: baseline; gap: 4px; }
+  .hero-stat-card .num .unit { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 400; }
+  .hero-stat-card .desc { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 4px; letter-spacing: 0.02em; }
+
+  /* ============ CLIENTS ============ */
+  .clients { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 0; color: rgba(255,255,255,0.4); }
+  .clients .wrap { display: flex; align-items: center; gap: 48px; flex-wrap: wrap; justify-content: center; }
+  .clients .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; }
+  .clients .logos { display: flex; gap: 48px; flex-wrap: wrap; align-items: center; }
+  .clients .logo-item { font-size: 15px; font-weight: 600; letter-spacing: 0.04em; opacity: 0.75; }
+  .clients .logo-item.serif { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; }
+
+  /* ============ SECTION ============ */
+  .section { padding: 110px 0; }
+  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; gap: 48px; }
+  .section-title { font-size: clamp(36px, 4vw, 52px); line-height: 1; font-weight: 500; letter-spacing: -0.03em; margin: 16px 0 0 0; max-width: 720px; }
+  .section-title em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--accent); }
+  .section-sub { color: var(--muted); max-width: 420px; font-size: 15px; }
+
+  /* ============ VALUE PROPS ============ */
+  .props { background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .props-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .prop { padding: 48px 32px; border-right: 1px solid var(--line); }
+  .prop:last-child { border-right: none; }
+  .prop-num { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 0.12em; }
+  .prop-title { font-size: 20px; font-weight: 500; letter-spacing: -0.01em; margin: 16px 0 8px; }
+  .prop-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ============ REAL PRODUCT BACKDROP ============ */
+  .catalog-backdrop { position: relative; overflow: hidden; background: #111827; color: white; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .catalog-backdrop::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgba(10,22,40,0.96) 0%, rgba(10,22,40,0.78) 48%, rgba(10,22,40,0.92) 100%);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    opacity: 1;
+  }
+  .catalog-backdrop::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 52px 52px; opacity: 0.24; }
+  .catalog-backdrop .wrap { position: relative; z-index: 1; min-height: 380px; display: grid; grid-template-columns: minmax(360px, 0.82fr) 1fr; align-items: center; gap: 52px; }
+  .backdrop-copy { max-width: 520px; padding: 70px 0; }
+  .backdrop-copy .mono { color: var(--accent); }
+  .backdrop-copy h2 { font-size: clamp(32px, 3.2vw, 46px); line-height: 1.02; font-weight: 500; letter-spacing: -0.03em; margin: 14px 0 16px; }
+  .backdrop-copy p { color: rgba(255,255,255,0.68); margin: 0; max-width: 440px; }
+  .backdrop-proof { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .backdrop-proof span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,0.78); border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); padding: 6px 10px; }
+  .backdrop-collage { position: relative; min-height: 330px; }
+  .collage-card { position: absolute; background: #f9fafb; border: 1px solid rgba(255,255,255,0.22); box-shadow: 0 28px 80px rgba(0,0,0,0.34); overflow: hidden; }
+  .collage-card .product-shot { height: 100%; background-size: contain; background-position: center; background-repeat: no-repeat; }
+  .collage-card .shot-label { position: absolute; left: 12px; top: 12px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; color: rgba(10,22,40,0.62); background: rgba(255,255,255,0.72); padding: 4px 7px; }
+  .collage-card:nth-child(1) { width: 240px; height: 240px; left: 0; top: 52px; z-index: 3; }
+  .collage-card:nth-child(2) { width: 250px; height: 210px; left: 170px; top: 0; z-index: 4; }
+  .collage-card:nth-child(3) { width: 235px; height: 215px; left: 352px; top: 88px; z-index: 2; }
+  .collage-card:nth-child(4) { width: 230px; height: 190px; right: 0; top: 22px; z-index: 5; }
+  .collage-card:nth-child(5) { width: 248px; height: 205px; right: 34px; top: 190px; z-index: 1; }
+
+  /* ============ CATEGORIES (WITH IMAGES) ============ */
+  .categories { background: linear-gradient(180deg, #f2efe8 0%, var(--bg) 100%); }
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .cat { background: var(--paper); transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 360px; }
+  .cat .cat-img { height: 180px; position: relative; overflow: hidden; }
+  .cat .cat-img .bg-img { width: 100%; height: 100%; transition: transform 0.4s ease; }
+  .cat:hover .cat-img .bg-img { transform: scale(1.05); }
+  .cat-img .corner-num { position: absolute; top: 12px; right: 12px; background: rgba(10, 22, 40, 0.92); color: white; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; padding: 4px 8px; z-index: 2; }
+  .cat .cat-body { padding: 24px 24px 28px; flex: 1; display: flex; flex-direction: column; }
+  .cat-arrow { color: var(--muted); transition: all 0.3s ease; align-self: flex-end; margin-top: auto; }
+  .cat:hover .cat-arrow { color: var(--accent); transform: translate(4px, -4px); }
+  .cat:hover { background: #fafaf7; }
+  .cat-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 8px; }
+  .cat-title { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 8px; line-height: 1.2; }
+  .cat-desc { font-size: 13px; line-height: 1.55; color: var(--muted); margin: 0 0 20px; }
+  .cat.dark { background: var(--ink); color: white; }
+  .cat.dark .cat-meta { color: var(--accent); }
+  .cat.dark .cat-desc { color: rgba(255,255,255,0.65); }
+  .cat.dark .cat-arrow { color: var(--accent); }
+
+  /* ============ FEATURED PRODUCT ============ */
+  .featured { background: var(--ink); color: white; position: relative; overflow: hidden; }
+  .featured::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(90deg, rgba(10,22,40,0.98), rgba(10,22,40,0.84)), url('https://shop.laifappe.com/products/1768642373366-5jmsld.webp'); background-size: auto, 520px; background-position: center, right 12% center; background-repeat: no-repeat; opacity: 0.32; pointer-events: none; }
+  .featured .wrap { position: relative; z-index: 1; }
+  .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .featured-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--accent); }
+  .featured h2 { font-size: clamp(32px, 3.8vw, 52px); line-height: 1.05; font-weight: 500; letter-spacing: -0.03em; margin: 16px 0 24px; }
+  .featured h2 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--accent); }
+  .featured p { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0 0 32px; max-width: 480px; }
+  .featured-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0 40px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .spec .spec-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+  .spec .spec-value { font-size: 18px; font-weight: 500; margin-top: 6px; }
+  .featured-image { aspect-ratio: 4 / 5; position: relative; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
+  .featured-image .bg-img { width: 100%; height: 100%; }
+  .featured-image .corner-tag { position: absolute; top: 24px; left: 24px; background: var(--accent); color: white; padding: 6px 12px; font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.1em; z-index: 2; }
+  .featured-image .index { position: absolute; bottom: 24px; right: 24px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.85); letter-spacing: 0.12em; z-index: 2; background: rgba(0,0,0,0.5); padding: 4px 8px; }
+
+  /* ============ PRODUCT GRID ============ */
+  .products { background: linear-gradient(180deg, var(--bg) 0%, #f0ece4 100%); position: relative; overflow: hidden; }
+  .products::before { content: ''; position: absolute; right: -90px; top: 40px; width: 360px; height: 360px; background: url('https://shop.laifappe.com/products/1768642503022-18g8iq.webp') center / contain no-repeat; opacity: 0.08; pointer-events: none; }
+  .prod-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .prod { background: var(--paper); border: 1px solid var(--line); transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden; }
+  .prod:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .prod-img { aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
+    .prod-img .bg-img { width: 100%; height: 100%; transition: transform 0.4s ease; }
+    .featured-image .bg-img, .prod-img .bg-img { background-size: contain; background-color: #fff; }
+  .prod:hover .prod-img .bg-img { transform: scale(1.05); }
+  .prod-img .tag { position: absolute; top: 12px; left: 12px; background: var(--ink); color: white; padding: 4px 10px; font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.1em; z-index: 2; }
+  .prod-img .ref { position: absolute; bottom: 12px; right: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--ink); letter-spacing: 0.08em; z-index: 2; background: rgba(255,255,255,0.92); padding: 3px 7px; }
+  .prod-body { padding: 20px; }
+  .prod-cat { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--muted); }
+  .prod-name { font-size: 15px; font-weight: 500; letter-spacing: -0.01em; margin: 8px 0 12px; line-height: 1.3; min-height: 40px; }
+  .prod-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); }
+  .prod-price { font-size: 16px; font-weight: 600; }
+  .prod-price .from { font-size: 10px; font-family: var(--font-mono); color: var(--muted); margin-right: 2px; font-weight: 400; letter-spacing: 0.1em; }
+  .prod-moq { font-size: 11px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.08em; }
+
+  /* ============ FACTORY ============ */
+  .factory { background: var(--paper); padding: 110px 0; }
+  .factory-top { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-bottom: 56px; align-items: end; }
+  .factory-image-grid { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 240px 240px; gap: 12px; margin-bottom: 80px; }
+  .factory-image { position: relative; overflow: hidden; }
+  .factory-image .bg-img { width: 100%; height: 100%; }
+  .factory-image:nth-child(1) { grid-row: span 2; }
+  .factory-image .image-cap { position: absolute; bottom: 12px; left: 12px; background: rgba(10, 22, 40, 0.92); color: white; padding: 6px 12px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; z-index: 2; }
+
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .proc-step { background: var(--paper); padding: 32px 28px; }
+  .proc-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; }
+  .proc-title { font-size: 20px; font-weight: 500; margin: 12px 0 8px; letter-spacing: -0.01em; }
+  .proc-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ============ INDUSTRIES ============ */
+  .industries { background: var(--bg); }
+  .ind-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .ind-card { position: relative; aspect-ratio: 4 / 5; overflow: hidden; cursor: pointer; }
+  .ind-card .bg-img { width: 100%; height: 100%; transition: transform 0.5s ease; }
+  .ind-card:hover .bg-img { transform: scale(1.05); }
+  .ind-card .ind-content { position: absolute; inset: 0; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(180deg, transparent 30%, rgba(10,22,40,0.92) 100%); color: white; z-index: 2; transition: all 0.3s ease; }
+  .ind-card:hover .ind-content { background: linear-gradient(180deg, rgba(10,22,40,0.2) 0%, rgba(10,22,40,0.95) 100%); }
+  .ind-card .ind-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 8px; }
+  .ind-card .ind-title { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .ind-card .ind-desc { font-size: 13px; color: rgba(255,255,255,0.8); margin: 0 0 16px; line-height: 1.5; }
+  .ind-card .ind-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ind-card .ind-tags span { font-family: var(--font-mono); font-size: 10px; color: rgba(255,255,255,0.7); padding: 4px 8px; border: 1px solid rgba(255,255,255,0.25); letter-spacing: 0.05em; }
+
+  /* ============ QUOTE FORM ============ */
+  .quote-section { background: var(--ink); color: white; position: relative; overflow: hidden; }
+  .quote-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(226, 88, 34, 0.15), transparent 50%); pointer-events: none; }
+  .quote-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 96px; align-items: start; position: relative; z-index: 1; }
+  .quote-left { padding-top: 16px; }
+  .quote-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; }
+  .quote-section h2 { font-size: clamp(36px, 4.2vw, 60px); line-height: 1; font-weight: 500; letter-spacing: -0.03em; margin: 16px 0 24px; }
+  .quote-section h2 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--accent); }
+  .quote-section .lede { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0 0 40px; max-width: 460px; }
+  .quote-promises { margin: 40px 0 0; }
+  .promise { display: flex; gap: 20px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.12); align-items: flex-start; }
+  .promise:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .promise-num { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; min-width: 36px; padding-top: 3px; }
+  .promise-title { font-size: 16px; font-weight: 500; margin: 0 0 4px; }
+  .promise-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.55; margin: 0; }
+  .quote-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); padding: 40px; backdrop-filter: blur(20px); }
+  .form-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent); }
+  .form-title { font-size: 24px; font-weight: 500; margin: 8px 0 28px; letter-spacing: -0.02em; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; }
+  .field-full { grid-column: span 2; }
+  .field label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 8px; text-transform: uppercase; }
+  .field input, .field select, .field textarea { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2); color: white; padding: 10px 0; font-size: 15px; font-family: inherit; outline: none; transition: border-color 0.2s ease; }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--accent); }
+  .field select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right center; cursor: pointer; }
+  .field select option { background: var(--ink); color: white; }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .form-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .form-foot .legal { font-size: 12px; color: rgba(255,255,255,0.5); max-width: 280px; line-height: 1.5; }
+  .btn-submit { background: var(--accent); color: white; padding: 14px 28px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s ease; }
+  .btn-submit:hover { background: white; color: var(--ink); }
+
+  /* ============ TESTIMONIAL ============ */
+  .testimonial { background: var(--bg); padding: 110px 0; }
+  .testimonial-quote { font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.25; font-weight: 400; letter-spacing: -0.015em; margin: 0 0 48px; max-width: 1000px; }
+  .testimonial-quote::before { content: '"'; color: var(--accent); margin-right: 4px; }
+  .testimonial-quote::after { content: '"'; color: var(--accent); }
+  .testimonial-meta { display: flex; justify-content: space-between; align-items: end; padding-top: 32px; border-top: 1px solid var(--line-strong); }
+  .testimonial-author { display: flex; align-items: center; gap: 16px; }
+  .author-avatar { width: 48px; height: 48px; background: var(--ink); color: white; display: flex; align-items: center; justify-content: center; font-weight: 500; letter-spacing: 0.02em; font-size: 16px; }
+  .author-name { font-size: 16px; font-weight: 500; }
+  .author-role { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .testimonial-stats { display: flex; gap: 48px; }
+  .ts-stat .ts-num { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; }
+  .ts-stat .ts-label { font-size: 11px; color: var(--muted); font-family: var(--font-mono); letter-spacing: 0.1em; margin-top: 2px; }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--ink); color: rgba(255,255,255,0.7); padding: 80px 0 32px; }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 64px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .foot-brand h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 28px; color: white; margin: 0 0 16px; }
+  .foot-brand p { font-size: 14px; line-height: 1.6; margin: 0 0 24px; max-width: 320px; }
+  .foot-brand .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .foot-brand .badge-row span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); padding: 4px 10px; border: 1px solid rgba(255,255,255,0.15); }
+  .foot-col h4 { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: white; text-transform: uppercase; margin: 0 0 20px; }
+  .foot-col a { display: block; font-size: 14px; padding: 6px 0; color: rgba(255,255,255,0.7); }
+  .foot-col a:hover { color: var(--accent); }
+  .foot-bottom { padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(255,255,255,0.5); }
+  .foot-bottom .legal-links { display: flex; gap: 24px; }
+  .foot-bottom a:hover { color: white; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .hero-inner, .featured-grid, .factory-top, .quote-grid { grid-template-columns: 1fr; gap: 48px; }
+    .props-grid, .cat-grid, .prod-grid, .process-grid, .foot-grid, .ind-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .factory-image-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .factory-image:nth-child(1) { grid-row: auto; min-height: 260px; }
+    .factory-image:nth-child(2), .factory-image:nth-child(3) { min-height: 200px; }
+    .testimonial-meta { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .hero-visual { min-height: auto; }
+    .hero-main-img { height: 380px; }
+    .product-proof-strip { grid-template-columns: 1fr; max-width: 380px; }
+    .hero-product-wall { width: 64vw; opacity: 0.36; }
+    .catalog-backdrop .wrap { grid-template-columns: 1fr; gap: 12px; padding-top: 64px; padding-bottom: 64px; }
+    .backdrop-copy { padding: 0; }
+    .backdrop-collage { min-height: 270px; }
+    .collage-card:nth-child(1) { left: 0; top: 34px; }
+    .collage-card:nth-child(2) { left: 145px; top: 0; }
+    .collage-card:nth-child(3) { left: 310px; top: 68px; }
+    .collage-card:nth-child(4) { right: 50px; top: 18px; }
+    .collage-card:nth-child(5) { right: 0; top: 150px; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .topbar .wrap { justify-content: flex-start; }
+    .topbar .left:nth-child(2) { display: none; }
+    .nav { padding: 16px 0; }
+    .nav .wrap { gap: 12px; }
+    .logo { min-width: 0; }
+    .logo-text { font-size: 14px; }
+    .logo-text small { max-width: 132px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .nav-actions a { display: none; }
+    .nav-actions .btn { padding: 11px 14px; white-space: nowrap; }
+    .section, .factory, .testimonial { padding: 72px 0; }
+    .hero-inner { padding: 56px 0 72px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .props-grid, .cat-grid, .prod-grid, .process-grid, .foot-grid, .ind-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .field-full { grid-column: span 1; }
+    .quote-form { padding: 28px 24px; }
+    .form-foot { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .hero-product-wall { display: none; }
+    .proof-item { grid-template-columns: 48px 1fr; }
+    .proof-thumb { width: 48px; height: 48px; }
+    .catalog-backdrop .wrap { min-height: auto; display: block; padding-top: 56px; padding-bottom: 56px; }
+    .backdrop-copy { padding: 0 0 28px; }
+    .backdrop-collage { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-height: 0; }
+    .collage-card, .collage-card:nth-child(n) { position: relative; left: auto; right: auto; top: auto; width: auto; height: 150px; transform: none; }
+    .collage-card:nth-child(5) { grid-column: span 2; height: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="left">
+      <span><span class="dot"></span>Now accepting Q2 bulk orders &middot; Lead time 2-3 weeks</span>
+    </div>
+    <div class="left">
+      <a href="#">+86 180 2930 9938</a>
+      <a href="#">sales@laifappe.com</a>
+      <a href="#">EN / 中文</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <div class="logo-mark">YL</div>
+      <div class="logo-text">LAIFAPPE<small>YUELAIFA INDUSTRY &middot; EST. 2003</small></div>
+    </div>
+    <div class="nav-links">
+      <a href="#">Products</a>
+      <a href="#">Industries</a>
+      <a href="#">Manufacturing</a>
+      <a href="#">About</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#" style="font-size: 14px; color: var(--muted);">Sign in</a>
+      <button class="btn btn-primary">Request quote <span class="arrow">&rarr;</span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-product-wall" aria-hidden="true">
+    <div class="hero-product-card card-gloves" data-label="CUT GLOVES" style="background-image: url('https://shop.laifappe.com/products/1768788267415-92ot6n.webp');"></div>
+    <div class="hero-product-card card-helmet" data-label="EN397 HELMET" style="background-image: url('https://shop.laifappe.com/products/1775980746266-0-5jol54.webp');"></div>
+    <div class="hero-product-card card-shoes" data-label="SAFETY SHOES" style="background-image: url('https://shop.laifappe.com/products/1769958520632-qoa0ws.webp');"></div>
+    <div class="hero-product-card card-goggles" data-label="EYE PROTECTION" style="background-image: url('https://shop.laifappe.com/products/1768642488908-ukqh9m.webp');"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <span class="pulse"></span>
+          Trusted by 500+ buyers across 50+ countries
+        </div>
+        <h1>Industrial-grade PPE,<br><span class="accent-line">engineered at scale.</span></h1>
+        <p>A certified Chinese manufacturer producing safety gloves, footwear, helmets, and workwear for global distributors since 2003. Direct factory pricing with full OEM/ODM support.</p>
+        <div class="hero-cta">
+          <button class="btn btn-white">Request a quote <span class="arrow">&rarr;</span></button>
+          <button class="btn-play">
+            <span class="play-circle"></span>
+            Watch factory tour
+          </button>
+        </div>
+        <div class="hero-certs">
+          <span class="label">CERTIFIED</span>
+          <span class="cert-pill">CE EN</span>
+          <span class="cert-pill">ISO 9001:2015</span>
+          <span class="cert-pill">ANSI/ISEA</span>
+          <span class="cert-pill">EN 388</span>
+          <span class="cert-pill">SGS TESTED</span>
+        </div>
+        <div class="product-proof-strip" aria-label="Current catalog product examples">
+          <div class="proof-item">
+            <span class="proof-thumb" style="background-image: url('https://shop.laifappe.com/products/1768788267415-92ot6n.webp');"></span>
+            <span>
+              <span class="proof-kicker">Active SKU</span>
+              <span class="proof-name">Nitrile coated work gloves</span>
+            </span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-thumb" style="background-image: url('https://shop.laifappe.com/products/1775980746266-0-5jol54.webp');"></span>
+            <span>
+              <span class="proof-kicker">EN397</span>
+              <span class="proof-name">Vented ABS safety helmet</span>
+            </span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-thumb" style="background-image: url('https://shop.laifappe.com/products/1769958520632-qoa0ws.webp');"></span>
+            <span>
+              <span class="proof-kicker">Steel toe</span>
+              <span class="proof-name">Breathable safety shoes</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-main-img">
+          <span class="overlay-tag">FACTORY 01 &middot; FOSHAN</span>
+          <div class="bg-img" style="background-image: url('public/company/hero-manufacturing.webp');"></div>
+          <div class="overlay-meta">
+            <h3>Seven production lines, <em>one standard</em> of quality.</h3>
+            <p>20,000m&sup2; FACILITY &middot; 100+ TECHNICIANS</p>
+          </div>
+        </div>
+        <div class="hero-side-stats">
+          <div class="hero-stat-card">
+            <div class="num">22<span class="unit">years</span></div>
+            <div class="desc">Manufacturing experience</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="num">24<span class="unit">hours</span></div>
+            <div class="desc">Quote response time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients">
+  <div class="wrap">
+    <span class="label">SHIPPED TO BUYERS IN</span>
+    <div class="logos">
+      <span class="logo-item">UNITED STATES</span>
+      <span class="logo-item">GERMANY</span>
+      <span class="logo-item serif">United Arab Emirates</span>
+      <span class="logo-item">AUSTRALIA</span>
+      <span class="logo-item serif">Sweden</span>
+      <span class="logo-item">JAPAN</span>
+      <span class="logo-item">NETHERLANDS</span>
+    </div>
+  </div>
+</div>
+
+<!-- VALUE PROPS -->
+<section class="props">
+  <div class="wrap">
+    <div class="props-grid">
+      <div class="prop">
+        <div class="prop-num">&mdash; 01</div>
+        <h3 class="prop-title">Direct from factory</h3>
+        <p class="prop-desc">No traders, no markups. Order straight from a 22-year-old manufacturer in Foshan with full price transparency.</p>
+      </div>
+      <div class="prop">
+        <div class="prop-num">&mdash; 02</div>
+        <h3 class="prop-title">Quote in 24 hours</h3>
+        <p class="prop-desc">Dedicated account manager responds within one business day, with itemized pricing, lead time, and shipping options.</p>
+      </div>
+      <div class="prop">
+        <div class="prop-num">&mdash; 03</div>
+        <h3 class="prop-title">OEM &amp; ODM ready</h3>
+        <p class="prop-desc">Custom branding, packaging, and product development. Minimum 500 pairs for OEM. In-house designers and engineers.</p>
+      </div>
+      <div class="prop">
+        <div class="prop-num">&mdash; 04</div>
+        <h3 class="prop-title">Free samples available</h3>
+        <p class="prop-desc">Verified buyers receive free product samples for evaluation. Express shipped worldwide within 5 business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REAL PRODUCT BACKDROP -->
+<section class="catalog-backdrop">
+  <div class="wrap">
+    <div class="backdrop-copy">
+      <div class="mono">&mdash; Real catalog imagery</div>
+      <h2>Show the equipment first, then the factory behind it.</h2>
+      <p>These backgrounds use live homepage catalog assets: gloves, helmets, safety shoes, and category images, so the page feels closer to a working PPE supplier site than a generic industrial brochure.</p>
+      <div class="backdrop-proof">
+        <span>ACTIVE BEST SELLERS</span>
+        <span>REAL PRODUCT PHOTOS</span>
+        <span>FACTORY + SKU MIX</span>
+      </div>
+    </div>
+    <div class="backdrop-collage" aria-label="Clear product background collage">
+      <div class="collage-card">
+        <span class="shot-label">HAND</span>
+        <div class="product-shot" style="background-image: url('https://shop.laifappe.com/products/1768788267415-92ot6n.webp');"></div>
+      </div>
+      <div class="collage-card">
+        <span class="shot-label">LEATHER</span>
+        <div class="product-shot" style="background-image: url('https://shop.laifappe.com/products/1769942844114-ep7z93r.webp');"></div>
+      </div>
+      <div class="collage-card">
+        <span class="shot-label">HELMET</span>
+        <div class="product-shot" style="background-image: url('https://shop.laifappe.com/products/1768835454170-5gbnjn.webp');"></div>
+      </div>
+      <div class="collage-card">
+        <span class="shot-label">VENTED</span>
+        <div class="product-shot" style="background-image: url('https://shop.laifappe.com/products/1775980746266-0-5jol54.webp');"></div>
+      </div>
+      <div class="collage-card">
+        <span class="shot-label">FOOT</span>
+        <div class="product-shot" style="background-image: url('https://shop.laifappe.com/products/1769958520632-qoa0ws.webp');"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section categories">
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <div class="mono">&mdash; Product categories</div>
+        <h2 class="section-title">Full-range protection for <em>every</em> industrial workforce.</h2>
+      </div>
+      <p class="section-sub">From precision-engineered cut-resistant gloves to ANSI-certified safety footwear &mdash; produced under one roof, governed by one quality standard.</p>
+    </div>
+
+    <div class="cat-grid">
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">14 SKUs</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768642373366-5jmsld.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 01</div>
+          <h3 class="cat-title">Hand protection</h3>
+          <p class="cat-desc">Cut, impact, chemical, and heat-resistant gloves engineered for industrial handling and welding.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">11 SKUs</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768642548484-cifnie.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 02</div>
+          <h3 class="cat-title">Foot protection</h3>
+          <p class="cat-desc">Steel-toe boots, anti-slip safety shoes, and waterproof footwear for construction and wet-site work.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">12 SKUs</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768642503022-18g8iq.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 03</div>
+          <h3 class="cat-title">Head protection</h3>
+          <p class="cat-desc">CE EN397-certified safety helmets with adjustable suspension and switchable ventilation.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">6 SKUs</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768642403918-6mu9pc.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 04</div>
+          <h3 class="cat-title">Body protection</h3>
+          <p class="cat-desc">Workwear, coveralls, hi-vis apparel, and chemical-resistant rainwear for every industrial setting.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">3 SKUs</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768642488908-ukqh9m.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 05</div>
+          <h3 class="cat-title">Eye protection</h3>
+          <p class="cat-desc">Anti-fog safety glasses and impact-rated goggles for dust, splash, and projectile protection.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">2 SKUs</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768642435016-5tc07a.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 06</div>
+          <h3 class="cat-title">Respiratory</h3>
+          <p class="cat-desc">N95, FFP2, and reusable half-mask respirators with replaceable filter cartridges.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat">
+        <div class="cat-img">
+          <span class="corner-num">2 SKUs</span>
+          <div class="bg-img" style="background-image: url('public/company/f2.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Category 07</div>
+          <h3 class="cat-title">Fall protection</h3>
+          <p class="cat-desc">Full-body harnesses and lanyard systems for elevated work, roof access, and scaffolding.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+
+      <a class="cat dark">
+        <div class="cat-img">
+          <div class="bg-img" style="background-image: linear-gradient(135deg, rgba(10,22,40,0.7) 0%, rgba(10,22,40,0.3) 100%), url('public/company/f1.webp');"></div>
+        </div>
+        <div class="cat-body">
+          <div class="cat-meta">&mdash; Custom build</div>
+          <h3 class="cat-title">OEM / ODM development</h3>
+          <p class="cat-desc">Design custom PPE under your brand. From sketch to shipment in 8-12 weeks.</p>
+          <span class="cat-arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCT -->
+<section class="section featured">
+  <div class="wrap">
+    <div class="featured-grid">
+      <div>
+        <div class="featured-eyebrow">&mdash; Featured &middot; Series N518</div>
+        <h2>The work glove that <em>50 distributors</em> private-label every quarter.</h2>
+        <p>Our bestselling nitrile-coated polyester work glove. Engineered for grip, breathability, and 6+ months of daily heavy use. Available in 6 sizes, 4 colors, with full OEM packaging in 14 days.</p>
+        <div class="featured-specs">
+          <div class="spec">
+            <div class="spec-label">&mdash; Standard</div>
+            <div class="spec-value">EN 388 &middot; 4543C</div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">&mdash; MOQ</div>
+            <div class="spec-value">500 pairs</div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">&mdash; Lead time</div>
+            <div class="spec-value">14 days</div>
+          </div>
+          <div class="spec">
+            <div class="spec-label">&mdash; Price from</div>
+            <div class="spec-value">$0.28 / pair</div>
+          </div>
+        </div>
+        <button class="btn btn-accent">Request sample <span class="arrow">&rarr;</span></button>
+      </div>
+      <div class="featured-image">
+        <span class="corner-tag">BESTSELLER</span>
+        <span class="index">001 / 048</span>
+        <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768788267415-92ot6n.webp');"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT GRID -->
+<section class="section products">
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <div class="mono">&mdash; Catalog highlights</div>
+        <h2 class="section-title">Best-selling SKUs <em>shipping</em> this quarter.</h2>
+      </div>
+      <a href="#" class="btn btn-ghost">View all 48 products <span class="arrow">&rarr;</span></a>
+    </div>
+
+    <div class="prod-grid">
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">N518</span>
+          <span class="ref">001</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768788267415-92ot6n.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Hand protection</div>
+          <h4 class="prod-name">Blue nitrile-coated safety work gloves</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$2.00</div>
+            <span class="prod-moq">MOQ 500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">CH-04</span>
+          <span class="ref">002</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1769942844114-ep7z93r.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Hand protection</div>
+          <h4 class="prod-name">Heavy-duty cowhide leather work gloves</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$1.00</div>
+            <span class="prod-moq">MOQ 500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">LX-12</span>
+          <span class="ref">003</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1775987431828-0-j807h5.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Hand protection</div>
+          <h4 class="prod-name">EN388 latex-coated polyester work gloves</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$0.28</div>
+            <span class="prod-moq">MOQ 1000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">WG-08</span>
+          <span class="ref">004</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1769917430784-uk0l1k.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Hand protection</div>
+          <h4 class="prod-name">Cowhide split leather welding gloves</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$1.80</div>
+            <span class="prod-moq">MOQ 500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">FRP-01</span>
+          <span class="ref">005</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1768835454170-5gbnjn.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Head protection</div>
+          <h4 class="prod-name">Industrial FRP safety helmet, white</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$24.99</div>
+            <span class="prod-moq">MOQ 100</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">ABS-Y</span>
+          <span class="ref">006</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1775980746266-0-5jol54.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Head protection</div>
+          <h4 class="prod-name">CE EN397 ABS safety helmet, yellow</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$2.65</div>
+            <span class="prod-moq">MOQ 500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod">
+        <div class="prod-img">
+          <span class="tag">SF-22</span>
+          <span class="ref">007</span>
+          <div class="bg-img" style="background-image: url('https://shop.laifappe.com/products/1769958520632-qoa0ws.webp');"></div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">&mdash; Foot protection</div>
+          <h4 class="prod-name">Steel-toe low-cut breathable safety shoes</h4>
+          <div class="prod-foot">
+            <div class="prod-price"><span class="from">FROM</span>$15.00</div>
+            <span class="prod-moq">MOQ 200</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod" style="background: var(--ink); color: white; border-color: var(--ink); display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="prod-body" style="padding: 28px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="prod-cat" style="color: var(--accent);">&mdash; View full catalog</div>
+            <h4 class="prod-name" style="font-size: 22px; line-height: 1.2; margin-top: 16px;">48 SKUs across 7 categories, in stock and ready to ship.</h4>
+          </div>
+          <button class="btn btn-accent" style="align-self: flex-start; margin-top: 24px;">Browse all <span class="arrow">&rarr;</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section industries">
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <div class="mono">&mdash; Industries served</div>
+        <h2 class="section-title">PPE solutions for <em>every</em> demanding environment.</h2>
+      </div>
+      <p class="section-sub">Industry-specific packages tested in the field &mdash; from offshore rigs to chemical processing plants.</p>
+    </div>
+
+    <div class="ind-grid">
+      <a class="ind-card">
+        <div class="bg-img" style="background-image: url('public/company/f1.webp');"></div>
+        <div class="ind-content">
+          <div class="ind-num">&mdash; Sector 01</div>
+          <h3 class="ind-title">Construction</h3>
+          <p class="ind-desc">Complete PPE packages for construction sites, heavy machinery, and high-rise work.</p>
+          <div class="ind-tags">
+            <span>HARD HATS</span><span>SAFETY BOOTS</span><span>HI-VIS VESTS</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="ind-card">
+        <div class="bg-img" style="background-image: url('public/company/f2.webp');"></div>
+        <div class="ind-content">
+          <div class="ind-num">&mdash; Sector 02</div>
+          <h3 class="ind-title">Oil &amp; Gas</h3>
+          <p class="ind-desc">Flame-resistant and chemical-resistant equipment for hazardous environments.</p>
+          <div class="ind-tags">
+            <span>FR COVERALLS</span><span>CHEMICAL GLOVES</span><span>RESPIRATORS</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="ind-card">
+        <div class="bg-img" style="background-image: url('public/company/f3.webp');"></div>
+        <div class="ind-content">
+          <div class="ind-num">&mdash; Sector 03</div>
+          <h3 class="ind-title">Electrical</h3>
+          <p class="ind-desc">Insulated, arc-flash, and dielectric protection for electrical workers.</p>
+          <div class="ind-tags">
+            <span>INSULATED GLOVES</span><span>ARC FLASH</span><span>FACE SHIELDS</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FACTORY -->
+<section class="factory">
+  <div class="wrap">
+    <div class="factory-top">
+      <div>
+        <div class="mono">&mdash; Our factory</div>
+        <h2 class="section-title">A 20,000m&sup2; production floor in <em>Foshan</em>, China.</h2>
+      </div>
+      <p class="section-sub" style="max-width: 460px;">Walk through our manufacturing facility &mdash; seven production lines, 100+ technicians, and a quality control lab that tests every batch before shipment.</p>
+    </div>
+
+    <div class="factory-image-grid">
+      <div class="factory-image">
+        <span class="image-cap">PRODUCTION LINE &middot; 2025</span>
+        <div class="bg-img" style="background-image: url('public/company/f1.webp');"></div>
+      </div>
+      <div class="factory-image">
+        <span class="image-cap">QC LAB</span>
+        <div class="bg-img" style="background-image: url('public/company/f2.webp');"></div>
+      </div>
+      <div class="factory-image">
+        <span class="image-cap">EQUIPMENT</span>
+        <div class="bg-img" style="background-image: url('public/company/f3.webp');"></div>
+      </div>
+    </div>
+
+    <div class="process-grid">
+      <div class="proc-step">
+        <div class="proc-num">&mdash; STEP 01</div>
+        <h3 class="proc-title">Send inquiry</h3>
+        <p class="proc-desc">Tell us what you need &mdash; by product category, certification, or specific SKU reference.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">&mdash; STEP 02</div>
+        <h3 class="proc-title">Get quote in 24h</h3>
+        <p class="proc-desc">Receive itemized pricing, lead time, MOQ, and shipping options from your dedicated account manager.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">&mdash; STEP 03</div>
+        <h3 class="proc-title">Review samples</h3>
+        <p class="proc-desc">Free samples shipped within 5 business days for verified buyers. OEM mockups in 2 weeks.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">&mdash; STEP 04</div>
+        <h3 class="proc-title">Production &amp; ship</h3>
+        <p class="proc-desc">2-4 week production with full QC reports. DDP, FOB, or CIF shipping to 50+ countries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="wrap">
+    <div class="mono">&mdash; Buyer story</div>
+    <p class="testimonial-quote">We've been sourcing PPE from Laifappe for 5 years. Their consistency, on-time delivery, and the OEM service we use for our private-label line have been exceptional. Our workers trust the equipment completely.</p>
+    <div class="testimonial-meta">
+      <div class="testimonial-author">
+        <div class="author-avatar">MC</div>
+        <div>
+          <div class="author-name">Michael Chen, Procurement Director</div>
+          <div class="author-role">BuildCorp International &middot; United States &middot; Construction</div>
+        </div>
+      </div>
+      <div class="testimonial-stats">
+        <div class="ts-stat">
+          <div class="ts-num">50,000+</div>
+          <div class="ts-label">UNITS / YEAR</div>
+        </div>
+        <div class="ts-stat">
+          <div class="ts-num">5 yrs</div>
+          <div class="ts-label">PARTNERSHIP</div>
+        </div>
+        <div class="ts-stat">
+          <div class="ts-num">100%</div>
+          <div class="ts-label">ON-TIME</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section class="section quote-section">
+  <div class="wrap">
+    <div class="quote-grid">
+      <div class="quote-left">
+        <div class="quote-eyebrow">&mdash; Request a quote</div>
+        <h2>Tell us what you need.<br>We'll respond <em>within 24 hours.</em></h2>
+        <p class="lede">Skip the back-and-forth. Send us your requirements and a dedicated account manager will reply with itemized pricing, lead time, and free sample options.</p>
+
+        <div class="quote-promises">
+          <div class="promise">
+            <div class="promise-num">&mdash; 01</div>
+            <div>
+              <h4 class="promise-title">Itemized quotation</h4>
+              <p class="promise-desc">No hidden costs &mdash; unit price, packaging, shipping, and duties all line-itemed.</p>
+            </div>
+          </div>
+          <div class="promise">
+            <div class="promise-num">&mdash; 02</div>
+            <div>
+              <h4 class="promise-title">Free product samples</h4>
+              <p class="promise-desc">Verified buyers get free samples shipped within 5 business days for evaluation.</p>
+            </div>
+          </div>
+          <div class="promise">
+            <div class="promise-num">&mdash; 03</div>
+            <div>
+              <h4 class="promise-title">Dedicated account manager</h4>
+              <p class="promise-desc">One point of contact through quote, sample, production, and shipment &mdash; by email or WhatsApp.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="quote-form" onsubmit="event.preventDefault(); alert('Quote submitted - we will reply within 24 hours.');">
+        <div class="form-tag">&mdash; FORM &middot; TAKES 60 SECONDS</div>
+        <h3 class="form-title">Get your quote</h3>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Your name</label>
+            <input type="text" placeholder="Full name" required />
+          </div>
+          <div class="field">
+            <label>Company</label>
+            <input type="text" placeholder="Company name" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" placeholder="you@company.com" required />
+          </div>
+          <div class="field">
+            <label>WhatsApp / phone</label>
+            <input type="tel" placeholder="+1 555 000 0000" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Product category</label>
+            <select required>
+              <option value="">Select a category</option>
+              <option>Hand protection - gloves</option>
+              <option>Foot protection - boots / shoes</option>
+              <option>Head protection - helmets</option>
+              <option>Body protection - workwear</option>
+              <option>Eye protection</option>
+              <option>Respiratory protection</option>
+              <option>Fall protection</option>
+              <option>OEM / custom development</option>
+              <option>Multiple categories</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Estimated quantity</label>
+            <select required>
+              <option value="">Select volume</option>
+              <option>Under 1,000 units</option>
+              <option>1,000 - 10,000 units</option>
+              <option>10,000 - 50,000 units</option>
+              <option>50,000 - 100,000 units</option>
+              <option>100,000+ units</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field field-full">
+            <label>Requirements (optional)</label>
+            <textarea placeholder="Certifications needed, target price, packaging requirements, or specific SKU references..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-foot">
+          <p class="legal">By submitting, you agree to receive a one-time response from our sales team. No marketing emails.</p>
+          <button type="submit" class="btn-submit">Send inquiry <span class="arrow">&rarr;</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <h3>Laifappe.</h3>
+        <p>Yuelaifa Industry Co., Ltd. Manufacturing certified personal protective equipment for global buyers since 2003.</p>
+        <div class="badge-row">
+          <span>CE EN</span>
+          <span>ISO 9001:2015</span>
+          <span>ANSI/ISEA</span>
+          <span>SGS</span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Products</h4>
+        <a href="#">All products</a>
+        <a href="#">Best sellers</a>
+        <a href="#">Categories</a>
+        <a href="#">Industries</a>
+      </div>
+      <div class="foot-col">
+        <h4>Manufacturing</h4>
+        <a href="#">Our factory</a>
+        <a href="#">OEM/ODM service</a>
+        <a href="#">Quality control</a>
+        <a href="#">Certifications</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="#">AI quote tool</a>
+        <a href="#">Case studies</a>
+        <a href="#">FAQ</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="#">sales@laifappe.com</a>
+        <a href="#">+86 180 2930 9938</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">Request quote</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>漏 2026 Yuelaifa Industry Co., Ltd. All rights reserved.</span>
+      <div class="legal-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+

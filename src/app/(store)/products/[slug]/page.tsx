@@ -15,8 +15,24 @@ import { ProductSectionTabs } from '@/components/store/product-section-tabs'
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 
+type ProductSpecification = {
+  name: string
+  value: string
+}
+
+type ProductContent = Parameters<typeof ContentRenderer>[0]['content']
+
 type Props = {
   params: Promise<{ slug: string }>
+}
+
+function isProductSpecification(spec: unknown): spec is ProductSpecification {
+  if (!spec || typeof spec !== 'object') {
+    return false
+  }
+
+  const candidate = spec as Record<string, unknown>
+  return typeof candidate.name === 'string' && typeof candidate.value === 'string'
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -32,25 +48,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const baseUrl = getSiteUrl()
   const productUrl = `${baseUrl}/products/${product.slug}`
-  const productImage = (product as any).ogImage || product.images[0]?.url
+  const productImage = product.ogImage || product.images[0]?.url
   const productImageAlt = product.images[0]?.alt || product.name
 
   // Use SEO fields from database if available, otherwise fallback to defaults
-  const title = (product as any).metaTitle || product.name
+  const title = product.metaTitle || product.name
   const description =
-    (product as any).metaDescription ||
+    product.metaDescription ||
     product.description?.slice(0, 160) ||
     `Shop ${product.name} at Laifappe. High-quality protective equipment.`
 
   // Parse keywords from database or generate defaults
-  const keywordsFromDb = (product as any).metaKeywords
+  const keywordsFromDb = product.metaKeywords
   const keywords = keywordsFromDb
     ? keywordsFromDb.split(',').map((k: string) => k.trim())
     : [product.name, product.category?.name, 'PPE', 'safety equipment', product.sku].filter(Boolean)
 
   // OG fields with fallbacks
-  const ogTitle = (product as any).ogTitle || title
-  const ogDescription = (product as any).ogDescription || description
+  const ogTitle = product.ogTitle || title
+  const ogDescription = product.ogDescription || description
 
   return {
     title: {
@@ -154,9 +170,11 @@ export default async function ProductDetailPage({
     return HIDDEN_FRONTEND_SPEC_KEYS_NORMALIZED.has(n)
   }
   const visibleSpecs = (product.specifications && Array.isArray(product.specifications))
-    ? (product.specifications as Array<{name: string, value: string}>)
+    ? product.specifications
+        .filter(isProductSpecification)
         .filter(spec => !isInternalSpec(spec.name))
     : []
+  const productContent = product.content as unknown as ProductContent
 
   // Breadcrumb items for JSON-LD. Child categories resolve to their nested URL
   // so the breadcrumb matches the page's canonical location.
@@ -188,7 +206,7 @@ export default async function ProductDetailPage({
       <ProductJsonLd product={product} baseUrl={baseUrl} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
 
-      <div>
+      <div className="bg-background text-foreground">
       {/* Breadcrumb */}
       <div className="container mx-auto px-6 lg:px-8 py-4">
         <nav aria-label="Breadcrumb" className="flex items-center text-sm text-muted-foreground">
@@ -226,6 +244,12 @@ export default async function ProductDetailPage({
         </nav>
       </div>
 
+      <ProductSectionTabs
+        hasDescription={!!product.description}
+        hasSpecifications={visibleSpecs.length > 0}
+        hasDetails={!!productContent}
+      />
+
       {/* Product Detail - persistent two-column layout */}
       <div className="container mx-auto px-6 lg:px-8 py-8">
         <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
@@ -240,16 +264,9 @@ export default async function ProductDetailPage({
               discountPercentage={discountPercentage}
             />
 
-            {/* Sticky Tab Navigation */}
-            <ProductSectionTabs
-              hasDescription={!!product.description}
-              hasSpecifications={visibleSpecs.length > 0}
-              hasDetails={!!product.content}
-            />
-
             {/* Description Section */}
             {product.description && (
-              <section id="description" className="pt-8 border-t mt-8">
+              <section id="description" className="scroll-mt-[150px] pt-8 border-t mt-8">
                 <h2 className="font-serif text-2xl mb-4">Description</h2>
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
                   {product.description}
@@ -258,7 +275,7 @@ export default async function ProductDetailPage({
             )}
             {/* Specifications Section */}
             {visibleSpecs.length > 0 && (
-              <section id="specifications" className="pt-8 border-t mt-8">
+              <section id="specifications" className="scroll-mt-[150px] pt-8 border-t mt-8">
                 <h2 className="font-serif text-2xl mb-4">Specifications</h2>
                 <div className="bg-muted/30 rounded-lg overflow-hidden">
                   <dl className="divide-y">
@@ -274,10 +291,10 @@ export default async function ProductDetailPage({
             )}
 
             {/* Product Details Section */}
-            {product.content && (
-              <section id="product-details" className="pt-8 border-t mt-8">
+            {productContent && (
+              <section id="product-details" className="scroll-mt-[150px] pt-8 border-t mt-8">
                 <h2 className="font-serif text-2xl mb-6">Product Details</h2>
-                <ContentRenderer content={product.content as any} />
+                <ContentRenderer content={productContent} />
               </section>
             )}
           </div>

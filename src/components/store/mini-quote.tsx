@@ -18,16 +18,177 @@ import {
 } from '@/components/ui/sheet'
 import { Badge } from '@/components/ui/badge'
 import { createQuote } from '@/actions/quotes'
+import { cn, formatPrice } from '@/lib/utils'
+import type { QuoteItem } from '@/hooks/use-quote'
 
-export function MiniQuote() {
-  const { items, isOpen, openQuote, closeQuote, removeItem, totalItems, clearQuote } = useQuote()
+interface MiniQuoteProps {
+  hideWhenEmpty?: boolean
+  triggerClassName?: string
+  triggerLabel?: string
+  triggerLabelClassName?: string
+}
+
+type MiniQuoteFormData = {
+  name: string
+  email: string
+  contact: string
+  companyName: string
+  remark: string
+  expectedPrice: string
+  fileUrl: string
+  fileName: string
+}
+
+type QuoteEmailResponse = {
+  success: boolean
+  reason?: string
+}
+
+const QUOTE_LIST_EMAIL_MESSAGE_MAX_LENGTH = 6000
+const QUOTE_LIST_EMAIL_MESSAGE_TRUNCATION_NOTE = '\n\n[Message truncated; quote is saved in admin.]'
+
+function normalizeFormData(formData: MiniQuoteFormData): MiniQuoteFormData {
+  return {
+    name: formData.name.trim(),
+    email: formData.email.trim(),
+    contact: formData.contact.trim(),
+    companyName: formData.companyName.trim(),
+    remark: formData.remark.trim(),
+    expectedPrice: formData.expectedPrice.trim(),
+    fileUrl: formData.fileUrl.trim(),
+    fileName: formData.fileName.trim(),
+  }
+}
+
+function isQuoteEmailResponse(value: unknown): value is QuoteEmailResponse {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+
+  const payload = value as Record<string, unknown>
+  return typeof payload.success === 'boolean'
+}
+
+function buildQuoteListEmailMessage({
+  expectedPrice,
+  formData,
+  items,
+  quoteNumber,
+  totalItems,
+}: {
+  expectedPrice?: number
+  formData: MiniQuoteFormData
+  items: QuoteItem[]
+  quoteNumber: string
+  totalItems: number
+}) {
+  const itemLines = items.map((item, index) =>
+    [
+      `${index + 1}. ${item.name}`,
+      `   SKU: ${item.sku || '-'}`,
+      `   Quantity: ${item.quantity}`,
+      `   Unit Price: ${formatPrice(item.price)}`,
+      item.tierLabel ? `   Tier: ${item.tierLabel}` : null,
+    ]
+      .filter(Boolean)
+      .join('\n')
+  )
+
+  const message = [
+    'Quote List Request',
+    '',
+    `Quote Number: ${quoteNumber || '-'}`,
+    `Total Quantity: ${totalItems}`,
+    `Company Name: ${formData.companyName || '-'}`,
+    `Contact: ${formData.contact || '-'}`,
+    `Expected Total Price: ${expectedPrice === undefined ? '-' : formatPrice(expectedPrice)}`,
+    formData.fileUrl ? `Uploaded File: ${formData.fileName || 'File'} (${formData.fileUrl})` : null,
+    '',
+    'Items:',
+    ...itemLines,
+    '',
+    'Remark:',
+    formData.remark || '-',
+  ]
+    .filter((line): line is string => line !== null)
+    .join('\n')
+
+  if (message.length <= QUOTE_LIST_EMAIL_MESSAGE_MAX_LENGTH) {
+    return message
+  }
+
+  return `${message.slice(
+    0,
+    QUOTE_LIST_EMAIL_MESSAGE_MAX_LENGTH - QUOTE_LIST_EMAIL_MESSAGE_TRUNCATION_NOTE.length
+  )}${QUOTE_LIST_EMAIL_MESSAGE_TRUNCATION_NOTE}`
+}
+
+async function sendQuoteListEmail({
+  expectedPrice,
+  formData,
+  items,
+  quoteNumber,
+  totalItems,
+}: {
+  expectedPrice?: number
+  formData: MiniQuoteFormData
+  items: QuoteItem[]
+  quoteNumber: string
+  totalItems: number
+}): Promise<QuoteEmailResponse> {
+  const response = await fetch('/api/quote-email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      companyName: formData.companyName,
+      email: formData.email,
+      message: buildQuoteListEmailMessage({
+        expectedPrice,
+        formData,
+        items,
+        quoteNumber,
+        totalItems,
+      }),
+      name: formData.name,
+      phone: formData.contact,
+      source: 'Quote List',
+    }),
+  })
+  const payload: unknown = await response.json().catch(() => null)
+
+  if (!isQuoteEmailResponse(payload)) {
+    return {
+      success: false,
+      reason: 'We could not read the email server response.',
+    }
+  }
+
+  if (!response.ok || !payload.success) {
+    return {
+      success: false,
+      reason: payload.reason || 'We could not send the quote email.',
+    }
+  }
+
+  return payload
+}
+
+export function MiniQuote({
+  hideWhenEmpty = false,
+  triggerClassName,
+  triggerLabel,
+  triggerLabelClassName,
+}: MiniQuoteProps = {}) {
+  const { items, isHydrated, isOpen, openQuote, closeQuote, removeItem, totalItems, clearQuote } = useQuote()
   const [showForm, setShowForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [quoteNumber, setQuoteNumber] = useState('')
-  const [errors, setErrors] = useState<Record<string, string[]>>({})
-  const [formData, setFormData] = useState({
+  const [errors, setErrors] = useState<Partial<Record<string, string[]>>>({})
+  const [formData, setFormData] = useState<MiniQuoteFormData>({
     name: '',
     email: '',
     contact: '',
@@ -41,8 +202,8 @@ export function MiniQuote() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: [] }))
+    if (errors[name] || errors.form) {
+      setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }))
     }
   }
 
@@ -72,8 +233,10 @@ export function MiniQuote() {
         fileName: data.fileName,
       }))
     } catch (error) {
-      console.error('Upload error:', error)
-      alert(error instanceof Error ? error.message : 'Upload failed')
+      setErrors((prev) => ({
+        ...prev,
+        form: [error instanceof Error ? error.message : 'Upload failed'],
+      }))
     } finally {
       setIsUploading(false)
     }
@@ -87,9 +250,19 @@ export function MiniQuote() {
     setErrors({})
 
     try {
+      const normalizedFormData = normalizeFormData(formData)
+      const expectedPrice = normalizedFormData.expectedPrice
+        ? Number.parseFloat(normalizedFormData.expectedPrice)
+        : undefined
+
+      if (expectedPrice !== undefined && !Number.isFinite(expectedPrice)) {
+        setErrors({ expectedPrice: ['Expected price must be a valid number'] })
+        return
+      }
+
       const result = await createQuote({
-        ...formData,
-        expectedPrice: formData.expectedPrice ? parseFloat(formData.expectedPrice) : undefined,
+        ...normalizedFormData,
+        expectedPrice,
         items: items.map((item) => ({
           productId: item.productId,
           name: item.name,
@@ -106,13 +279,31 @@ export function MiniQuote() {
       }
 
       if (result.error) {
-        alert(result.error)
+        setErrors({ form: [result.error] })
         return
       }
 
       if (result.success) {
+        const createdQuoteNumber = result.quoteNumber || ''
+        const emailResult = await sendQuoteListEmail({
+          expectedPrice,
+          formData: normalizedFormData,
+          items,
+          quoteNumber: createdQuoteNumber,
+          totalItems,
+        })
+
+        if (!emailResult.success) {
+          setErrors({
+            form: [
+              `Quote ${createdQuoteNumber || 'request'} was saved, but email sending failed: ${emailResult.reason || 'Unknown email error'}`,
+            ],
+          })
+          return
+        }
+
         setSubmitSuccess(true)
-        setQuoteNumber(result.quoteNumber || '')
+        setQuoteNumber(createdQuoteNumber)
         clearQuote()
         setFormData({
           name: '',
@@ -126,8 +317,9 @@ export function MiniQuote() {
         })
       }
     } catch (error) {
-      console.error('Submit error:', error)
-      alert('Failed to submit quote request')
+      setErrors({
+        form: [error instanceof Error ? error.message : 'Failed to submit quote request'],
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -141,11 +333,26 @@ export function MiniQuote() {
     closeQuote()
   }
 
+  if (hideWhenEmpty && !isOpen && (!isHydrated || totalItems === 0)) {
+    return null
+  }
+
   return (
     <Sheet open={isOpen} onOpenChange={(open) => (open ? openQuote() : resetAndClose())}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative h-11 w-11 sm:h-9 sm:w-9">
-          <FileText className="h-6 w-6 sm:h-5 sm:w-5" />
+        <Button
+          aria-label={`Quote list with ${totalItems} item${totalItems === 1 ? '' : 's'}`}
+          className={cn(
+            'relative h-11 w-11 sm:h-9 sm:w-9',
+            triggerLabel && 'w-auto px-4 sm:w-auto',
+            triggerClassName
+          )}
+          size={triggerLabel ? 'default' : 'icon'}
+          type="button"
+          variant="ghost"
+        >
+          <FileText className={cn('h-6 w-6 sm:h-5 sm:w-5', triggerLabel && 'h-4 w-4 sm:h-4 sm:w-4')} />
+          {triggerLabel && <span className={triggerLabelClassName}>{triggerLabel}</span>}
           {totalItems > 0 && (
             <Badge
               variant="secondary"
@@ -306,6 +513,11 @@ export function MiniQuote() {
             </div>
 
             <div className="shrink-0 pt-4 space-y-2 border-t mt-4">
+              {errors.form?.[0] && (
+                <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600" role="alert">
+                  {errors.form[0]}
+                </p>
+              )}
               <div className="flex gap-2">
                 <Button type="button" variant="outline" className="flex-1" onClick={() => setShowForm(false)}>
                   Back

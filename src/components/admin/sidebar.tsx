@@ -20,6 +20,7 @@ import {
   MessageSquare,
   Lightbulb,
   Mail,
+  MailCheck,
   Newspaper,
 } from "lucide-react"
 import { useState } from "react"
@@ -37,6 +38,7 @@ const menuItems = [
   { href: "/admin/quotes", label: "Quotes", icon: FileText },
   { href: "/admin/chat", label: "Chat", icon: MessageSquare },
   { href: "/admin/email", label: "Email", icon: Mail },
+  { href: "/admin/quote-emails", label: "Quote Emails", icon: MailCheck },
   { href: "/admin/customers", label: "Customers", icon: Users },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ]
