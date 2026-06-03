@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laifappe SEO 优先计划日历 | 2026-06-01</title>
+  <style>
+    :root {
+      --paper: #f7f8f5;
+      --ink: #18201f;
+      --muted: #64706b;
+      --line: #d9ded8;
+      --panel: #ffffff;
+      --panel-2: #eef3ef;
+      --blue: #245b8f;
+      --orange: #d8662b;
+      --green: #237056;
+      --red: #b84242;
+      --yellow: #c39127;
+      --shadow: 0 12px 34px rgba(24, 32, 31, 0.08);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(24, 32, 31, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(24, 32, 31, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: "Aptos", "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px 22px 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 18px;
+    }
+
+    .kicker {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 6px 0 0;
+      max-width: 900px;
+      font-size: clamp(30px, 4vw, 56px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      max-width: 840px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    button {
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      min-height: 38px;
+      padding: 8px 12px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+
+    button:hover {
+      background: var(--ink);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .primary-action {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--blue);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 15px;
+    }
+
+    .metric:nth-child(2) { border-top-color: var(--orange); }
+    .metric:nth-child(3) { border-top-color: var(--green); }
+    .metric:nth-child(4) { border-top-color: var(--yellow); }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav-strip {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin: 22px -22px 24px;
+      padding: 10px 22px;
+      border-block: 1px solid var(--line);
+      background: rgba(247, 248, 245, .94);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-strip a {
+      white-space: nowrap;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 7px 12px;
+      text-decoration: none;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 34px 0 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(22px, 2.4vw, 34px);
+      line-height: 1.1;
+    }
+
+    .section-title p {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .priority-board {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .page-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .page-table th,
+    .page-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 7px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .page-table th {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+      padding: 5px 7px;
+      white-space: nowrap;
+    }
+
+    .p0 { background: var(--red); }
+    .p1 { background: var(--orange); }
+    .p2 { background: var(--blue); }
+    .p3 { background: var(--green); }
+
+    .week {
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .week-head {
+      position: sticky;
+      top: 58px;
+      align-self: start;
+      background: var(--ink);
+      border-radius: var(--radius);
+      color: white;
+      padding: 16px;
+    }
+
+    .week-head strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .week-head span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+
+    .week-head em {
+      display: inline-block;
+      margin-top: 12px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+      font-style: normal;
+      padding: 5px 8px;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .day {
+      min-height: 190px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 10px;
+    }
+
+    .day.done {
+      background: #eff7f2;
+      border-color: rgba(35, 112, 86, .42);
+    }
+
+    .date {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 9px;
+      font-weight: 900;
+    }
+
+    .date small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .task {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 7px;
+      margin: 8px 0;
+      color: var(--ink);
+      font-size: 12.5px;
+    }
+
+    .task input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--green);
+      margin-top: 2px;
+    }
+
+    .task span {
+      min-width: 0;
+    }
+
+    .task b {
+      display: inline-block;
+      margin-right: 5px;
+      color: var(--orange);
+      font-size: 11px;
+    }
+
+    .blocked {
+      opacity: .56;
+    }
+
+    .milestone {
+      margin-top: 8px;
+      border-left: 4px solid var(--blue);
+      background: #edf4fa;
+      color: #183e64;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rule {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+
+    .rule strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .rule p,
+    .rule li {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .rule ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .kpi-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .kpi-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--line);
+      padding: 9px 0;
+      font-size: 13px;
+    }
+
+    .kpi-list span {
+      color: var(--muted);
+    }
+
+    .progress-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .progress {
+      height: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel-2);
+    }
+
+    .progress > div {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--orange));
+      transition: width .25s ease;
+    }
+
+    .note {
+      margin-top: 14px;
+      border: 1px dashed var(--muted);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.62);
+      color: var(--muted);
+      font-size: 13px;
+      padding: 12px;
+    }
+
+    @media (max-width: 1100px) {
+      .summary-grid,
+      .rules,
+      .kpi-grid,
+      .priority-board {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .week {
+        grid-template-columns: 1fr;
+      }
+
+      .week-head {
+        position: static;
+      }
+
+      .days {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 20px 14px 46px;
+      }
+
+      .topbar,
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-title p {
+        text-align: left;
+      }
+
+      .summary-grid,
+      .rules,
+      .kpi-grid,
+      .priority-board,
+      .days {
+        grid-template-columns: 1fr;
+      }
+
+      .page-table {
+        font-size: 12px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .actions,
+      .nav-strip {
+        display: none;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .panel,
+      .metric,
+      .day {
+        box-shadow: none;
+      }
+
+      .week {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div>
+        <div class="kicker">Laifappe SEO Execution Calendar</div>
+        <h1>Construction 集群 90 天优先计划日历</h1>
+        <p class="subtitle">从 2026-06-01 开始执行。核心目标：先把已有 Google 展示转成点击和询盘，再做 Construction hub 和新增内容。</p>
+      </div>
+      <div class="actions">
+        <button type="button" class="primary-action" id="printBtn">打印</button>
+        <button type="button" id="resetBtn">清空勾选</button>
+      </div>
+    </header>
+
+    <section class="summary-grid" aria-label="当前基线">
+      <div class="metric">
+        <small>过去 3 个月点击</small>
+        <strong>26</strong>
+        <span>Search Console 导出日期：2026-06-01</span>
+      </div>
+      <div class="metric">
+        <small>过去 3 个月展示</small>
+        <strong>11,506</strong>
+        <span>5 月展示已明显放大，需要先提 CTR</span>
+      </div>
+      <div class="metric">
+        <small>当前 CTR</small>
+        <strong>0.23%</strong>
+        <span>Construction blog 页面 CTR 约 0.12%</span>
+      </div>
+      <div class="metric">
+        <small>平均排名</small>
+        <strong>15.2</strong>
+        <span>多个页面已经在第 1-2 页边缘</span>
+      </div>
+    </section>
+
+    <div class="progress-wrap">
+      <div class="progress" aria-label="整体执行进度"><div id="progressBar"></div></div>
+      <strong id="progressText">0%</strong>
+    </div>
+
+    <nav class="nav-strip" aria-label="日历导航">
+      <a href="#priority">优先页面</a>
+      <a href="#rules">执行规则</a>
+      <a href="#calendar">90 天日历</a>
+      <a href="#kpi">KPI 复盘</a>
+      <a href="#stop">暂缓事项</a>
+    </nav>
+
+    <section id="priority">
+      <div class="section-title">
+        <h2>优先页面</h2>
+        <p>先改已经有展示、排名接近第一页、但没有点击的页面。不要先做大规模 URL 迁移。</p>
+      </div>
+      <div class="priority-board">
+        <div class="panel">
+          <h3>第一批页面：CTR 收割</h3>
+          <table class="page-table">
+            <thead>
+              <tr>
+                <th>优先级</th>
+                <th>URL</th>
+                <th>信号</th>
+                <th>动作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag p0">P0</span></td>
+                <td>/blog/high-visibility-clothing-construction</td>
+                <td>983 展示，0 点击，9.79 位</td>
+                <td>Class 2 vs Class 3 快速答案、采购表、title/meta 重写</td>
+              </tr>
+              <tr>
+                <td><span class="tag p0">P0</span></td>
+                <td>/blog/construction-respiratory-protection</td>
+                <td>792 展示，0 点击，9.28 位</td>
+                <td>Silica、N95、P100、half-face respirator 意图强化</td>
+              </tr>
+              <tr>
+                <td><span class="tag p0">P0</span></td>
+                <td>/blog/bulk-construction-ppe-procurement</td>
+                <td>417 展示，0 点击，9.54 位</td>
+                <td>RFQ template、供应商选择表、采购清单</td>
+              </tr>
+              <tr>
+                <td><span class="tag p1">P1</span></td>
+                <td>/blog/demolition-concrete-cutting-ppe-checklist</td>
+                <td>301 展示，0 点击，7.92 位</td>
+                <td>Silica dust、eye/face、hearing、respirator checklist</td>
+              </tr>
+              <tr>
+                <td><span class="tag p1">P1</span></td>
+                <td>/solutions/ppe-for-road-and-bridge-construction-projects</td>
+                <td>282 展示，0 点击，7.06 位</td>
+                <td>Road work、hi-vis、night work、traffic exposure 采购段</td>
+              </tr>
+              <tr>
+                <td><span class="tag p1">P1</span></td>
+                <td>/solutions/ppe-for-scaffolding-and-elevated-platforms</td>
+                <td>131 展示，0 点击，5.96 位</td>
+                <td>Scaffolding PPE checklist 查询意图吃透</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h3>每个重点页面固定改法</h3>
+          <label class="task"><input type="checkbox" data-id="fixed-1"><span><b>SEO</b> Title 前半段放主词，后半段放采购/标准价值。</span></label>
+          <label class="task"><input type="checkbox" data-id="fixed-2"><span><b>SEO</b> Meta description 写清 bulk order、OSHA、ANSI/ISEA、EN、checklist、RFQ。</span></label>
+          <label class="task"><input type="checkbox" data-id="fixed-3"><span><b>内容</b> H1 后 100 字内直接回答搜索意图。</span></label>
+          <label class="task"><input type="checkbox" data-id="fixed-4"><span><b>内容</b> 增加 quick answer 模块，适合摘要抓取。</span></label>
+          <label class="task"><input type="checkbox" data-id="fixed-5"><span><b>内容</b> 增加 hazard / PPE / standard / buying note 表格。</span></label>
+          <label class="task"><input type="checkbox" data-id="fixed-6"><span><b>转化</b> 增加 Download checklist、Request quote 或 Build PPE kit。</span></label>
+          <div class="milestone">验收：重点页面 14 天后 CTR 开始高于当前页面基线，且内容页到 quote/contact/category 的点击可追踪。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules">
+      <div class="section-title">
+        <h2>执行规则</h2>
+        <p>每周只推进一个主目标，避免内容、代码、转化和架构同时失控。</p>
+      </div>
+      <div class="rules">
+        <div class="rule">
+          <strong>1. 不先迁移 URL</strong>
+          <p>现有 blog 和 solutions URL 已经开始获得排名。先保留 URL，做内部链接和内容强化；90 天后再评估是否迁移到 /construction/。</p>
+        </div>
+        <div class="rule">
+          <strong>2. 先收割，再扩张</strong>
+          <p>新增文章排在第 9 周以后。前 8 周重点是优化已有高展示页面、CTA、RFQ 和内部链接。</p>
+        </div>
+        <div class="rule">
+          <strong>3. 每周五复盘</strong>
+          <ul>
+            <li>Top 页面 CTR 是否提升</li>
+            <li>Top 10/20 查询数量是否增加</li>
+            <li>RFQ / Contact 来源是否可见</li>
+            <li>美国市场展示和点击是否改善</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="calendar">
+      <div class="section-title">
+        <h2>90 天执行日历</h2>
+        <p>日期按北京时间 2026-06-01 起排。每个任务可勾选，状态会保存在本浏览器。</p>
+      </div>
+
+      <div class="week" id="week-1">
+        <div class="week-head"><strong>Week 1</strong><span>06-01 至 06-07</span><em>P0 数据归一化 + CTR 首批</em></div>
+        <div class="days">
+          <article class="day"><div class="date">06-01 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d1-1"><span><b>P0</b> 建立 GSC 周复盘表：page、query、country、device、CTR、position。</span></label>
+            <label class="task"><input type="checkbox" data-id="w1d1-2"><span><b>P0</b> 记录当前基线：26 点击、11,506 展示、0.23% CTR、15.2 位。</span></label>
+          </article>
+          <article class="day"><div class="date">06-02 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d2-1"><span><b>P0</b> URL Inspection：检查非 www 高展示 URL 的 Google-selected canonical。</span></label>
+            <label class="task"><input type="checkbox" data-id="w1d2-2"><span><b>P0</b> 提交 sitemap 和重点页面重新抓取。</span></label>
+          </article>
+          <article class="day"><div class="date">06-03 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d3-1"><span><b>P0</b> 重写 high-visibility 页 title、meta、H1 后首段。</span></label>
+            <label class="task"><input type="checkbox" data-id="w1d3-2"><span><b>P0</b> 增加 Class 2 vs Class 3 快速答案和采购表。</span></label>
+          </article>
+          <article class="day"><div class="date">06-04 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d4-1"><span><b>P0</b> 重写 respiratory 页 title、meta、首屏答案。</span></label>
+            <label class="task"><input type="checkbox" data-id="w1d4-2"><span><b>P0</b> 增加 silica / N95 / P100 / half-face respirator 对照表。</span></label>
+          </article>
+          <article class="day"><div class="date">06-05 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d5-1"><span><b>P0</b> 重写 bulk procurement 页 title、meta、采购导语。</span></label>
+            <label class="task"><input type="checkbox" data-id="w1d5-2"><span><b>复盘</b> 检查本周上线项、提交抓取、记录变更日期。</span></label>
+          </article>
+          <article class="day"><div class="date">06-06 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d6-1"><span><b>P1</b> 补 high-visibility / respiratory / bulk procurement 内部链接。</span></label>
+          </article>
+          <article class="day"><div class="date">06-07 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w1d7-1"><span><b>缓冲</b> 检查页面移动端首屏、CTA 是否可见。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-2">
+        <div class="week-head"><strong>Week 2</strong><span>06-08 至 06-14</span><em>P0/P1 页面刷新</em></div>
+        <div class="days">
+          <article class="day"><div class="date">06-08 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d1-1"><span><b>P1</b> 刷新 demolition checklist：silica dust、respirator、eye/face、hearing。</span></label>
+          </article>
+          <article class="day"><div class="date">06-09 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d2-1"><span><b>P1</b> 刷新 road and bridge solution：traffic exposure、hi-vis、night work。</span></label>
+          </article>
+          <article class="day"><div class="date">06-10 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d3-1"><span><b>P1</b> 刷新 scaffolding solution：scaffolding PPE checklist 查询匹配。</span></label>
+          </article>
+          <article class="day"><div class="date">06-11 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d4-1"><span><b>P1</b> 刷新 heavy equipment operator checklist：role kit、operator PPE 表。</span></label>
+          </article>
+          <article class="day"><div class="date">06-12 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d5-1"><span><b>复盘</b> 对比 7 天 impressions、CTR、平均排名；标注仍需二次改写页面。</span></label>
+          </article>
+          <article class="day"><div class="date">06-13 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d6-1"><span><b>P2</b> 检查博客商业链接是否都指向有效 solution/category/product。</span></label>
+          </article>
+          <article class="day"><div class="date">06-14 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w2d7-1"><span><b>缓冲</b> 整理下周 quote/RFQ 页面需求。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-3">
+        <div class="week-head"><strong>Week 3</strong><span>06-15 至 06-21</span><em>RFQ 转化链路</em></div>
+        <div class="days">
+          <article class="day"><div class="date">06-15 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d1-1"><span><b>P0</b> 设计 /quote 页面字段：品类、数量、标准、目标市场、交付国家、文件上传。</span></label>
+          </article>
+          <article class="day"><div class="date">06-16 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d2-1"><span><b>P0</b> 实现或规划 source 参数：/quote?source=blog-high-visibility。</span></label>
+          </article>
+          <article class="day"><div class="date">06-17 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d3-1"><span><b>P0</b> 邮件/后台记录 source、entry page、message。</span></label>
+          </article>
+          <article class="day"><div class="date">06-18 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d4-1"><span><b>P1</b> 把第一批重点页面 CTA 改为带 source 的 quote 链接或 quote drawer。</span></label>
+          </article>
+          <article class="day"><div class="date">06-19 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d5-1"><span><b>复盘</b> 测试 RFQ 提交流程，确保 sales 能看到来源。</span></label>
+          </article>
+          <article class="day"><div class="date">06-20 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d6-1"><span><b>P2</b> 给工具页增加 quote 下一步入口：PPE calculator、size guide、compliance checker。</span></label>
+          </article>
+          <article class="day"><div class="date">06-21 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w3d7-1"><span><b>缓冲</b> 检查移动端表单输入体验。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-4">
+        <div class="week-head"><strong>Week 4</strong><span>06-22 至 06-28</span><em>下载资产第一批</em></div>
+        <div class="days">
+          <article class="day"><div class="date">06-22 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d1-1"><span><b>P1</b> 创建 Construction PPE RFQ Template。</span></label>
+          </article>
+          <article class="day"><div class="date">06-23 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d2-1"><span><b>P1</b> 创建 Construction PPE Checklist PDF。</span></label>
+          </article>
+          <article class="day"><div class="date">06-24 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d3-1"><span><b>P1</b> 创建 PPE Size & Standards Planning Sheet。</span></label>
+          </article>
+          <article class="day"><div class="date">06-25 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d4-1"><span><b>P1</b> 把 RFQ template 放入 bulk procurement、contractor kit、construction pillar。</span></label>
+          </article>
+          <article class="day"><div class="date">06-26 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d5-1"><span><b>复盘</b> 检查下载点击、RFQ 点击、页面 CTA 可见性。</span></label>
+          </article>
+          <article class="day"><div class="date">06-27 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d6-1"><span><b>P2</b> 下载资产加 UTM 或 source 标记。</span></label>
+          </article>
+          <article class="day"><div class="date">06-28 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w4d7-1"><span><b>缓冲</b> 汇总 4 周变更清单。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-5">
+        <div class="week-head"><strong>Week 5</strong><span>06-29 至 07-05</span><em>Construction Hub 软架构</em></div>
+        <div class="days">
+          <article class="day"><div class="date">06-29 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d1-1"><span><b>P1</b> 确定 hub 方案：先强化 /solutions/construction-site-ppe-solution 或新增 /construction。</span></label>
+          </article>
+          <article class="day"><div class="date">06-30 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d2-1"><span><b>P1</b> 规划 6 个 hub 板块：Guide、Compliance、Procurement、Height、Exposure、Role Kits。</span></label>
+          </article>
+          <article class="day"><div class="date">07-01 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d3-1"><span><b>P1</b> Hub 链接到全部现有 Construction blog / solution 页面。</span></label>
+          </article>
+          <article class="day"><div class="date">07-02 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d4-1"><span><b>P1</b> 子页面 intro、正文、结尾 CTA 三处回链 hub。</span></label>
+          </article>
+          <article class="day"><div class="date">07-03 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d5-1"><span><b>复盘</b> 检查 2-3 次点击内能到达所有 Construction 重点页。</span></label>
+          </article>
+          <article class="day"><div class="date">07-04 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d6-1"><span><b>P2</b> 添加 hub 到首页、solutions hub、blog hub 的显著入口。</span></label>
+          </article>
+          <article class="day"><div class="date">07-05 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w5d7-1"><span><b>缓冲</b> 检查 hub 页面 schema、breadcrumb、canonical。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-6">
+        <div class="week-head"><strong>Week 6</strong><span>07-06 至 07-12</span><em>Pillar + Compliance 刷新</em></div>
+        <div class="days">
+          <article class="day"><div class="date">07-06 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d1-1"><span><b>P1</b> 刷新 construction pillar：从销售页升级成完整 buyer path。</span></label>
+          </article>
+          <article class="day"><div class="date">07-07 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d2-1"><span><b>P1</b> 刷新 OSHA requirements：proper fit rule、hazard assessment、training。</span></label>
+          </article>
+          <article class="day"><div class="date">07-08 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d3-1"><span><b>P1</b> 刷新 construction checklist：下载清单、role-based PPE、采购字段。</span></label>
+          </article>
+          <article class="day"><div class="date">07-09 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d4-1"><span><b>P2</b> 添加可信证明：standards、certification、sample docs、factory proof。</span></label>
+          </article>
+          <article class="day"><div class="date">07-10 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d5-1"><span><b>复盘</b> 检查 pillar 到子页面和 quote 的点击路径。</span></label>
+          </article>
+          <article class="day"><div class="date">07-11 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d6-1"><span><b>P2</b> 检查 FAQ schema 是否只覆盖页面实际可见 FAQ。</span></label>
+          </article>
+          <article class="day"><div class="date">07-12 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w6d7-1"><span><b>缓冲</b> 汇总搜索查询里新增的 Top 20 机会词。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-7">
+        <div class="week-head"><strong>Week 7</strong><span>07-13 至 07-19</span><em>CRO + CTA 测试</em></div>
+        <div class="days">
+          <article class="day"><div class="date">07-13 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d1-1"><span><b>P1</b> 对比 CTA 文案：Request quote、Build PPE kit、Download checklist。</span></label>
+          </article>
+          <article class="day"><div class="date">07-14 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d2-1"><span><b>P1</b> 在 P0 页面加入首屏下方轻 CTA，不只放末尾。</span></label>
+          </article>
+          <article class="day"><div class="date">07-15 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d3-1"><span><b>P1</b> 产品推荐区改为 buyer shortlist，不只是产品列表。</span></label>
+          </article>
+          <article class="day"><div class="date">07-16 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d4-1"><span><b>P2</b> 给 solution 页增加 related checklist/download 模块。</span></label>
+          </article>
+          <article class="day"><div class="date">07-17 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d5-1"><span><b>复盘</b> 汇总 CTA 点击率、RFQ 来源、页面滚动深度。</span></label>
+          </article>
+          <article class="day"><div class="date">07-18 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d6-1"><span><b>P2</b> 修正文案重复、按钮文案过长、移动端 CTA 换行问题。</span></label>
+          </article>
+          <article class="day"><div class="date">07-19 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w7d7-1"><span><b>缓冲</b> 备份本轮改动前后数据。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-8">
+        <div class="week-head"><strong>Week 8</strong><span>07-20 至 07-26</span><em>第二批页面刷新</em></div>
+        <div class="days">
+          <article class="day"><div class="date">07-20 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d1-1"><span><b>P1</b> 刷新 gloves guide：cut、impact、coating、rebar、bulk order。</span></label>
+          </article>
+          <article class="day"><div class="date">07-21 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d2-1"><span><b>P1</b> 刷新 footwear guide：ASTM、EN ISO 20345、fit、bulk size planning。</span></label>
+          </article>
+          <article class="day"><div class="date">07-22 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d3-1"><span><b>P1</b> 刷新 hard hat types：Type I/II、Class G/E/C、helmet vs hard hat 内链。</span></label>
+          </article>
+          <article class="day"><div class="date">07-23 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d4-1"><span><b>P2</b> 刷新 hearing / eye face 页面内部链接和产品路径。</span></label>
+          </article>
+          <article class="day"><div class="date">07-24 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d5-1"><span><b>复盘</b> 用 28 天窗口对比 P0 页面 CTR 和位置变化。</span></label>
+          </article>
+          <article class="day"><div class="date">07-25 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d6-1"><span><b>P2</b> 更新 sitemap lastmod 或触发再抓取。</span></label>
+          </article>
+          <article class="day"><div class="date">07-26 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w8d7-1"><span><b>决策</b> 若 P0 页面 CTR 未提升，准备第二轮 title/meta 测试。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-9">
+        <div class="week-head"><strong>Week 9</strong><span>07-27 至 08-02</span><em>谨慎新增内容</em></div>
+        <div class="days">
+          <article class="day"><div class="date">07-27 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d1-1"><span><b>P2</b> 只在 P0 页面指标稳定后，开始新内容 Brief。</span></label>
+          </article>
+          <article class="day"><div class="date">07-28 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d2-1"><span><b>P2</b> 新内容 1：Construction PPE RFQ Template。</span></label>
+          </article>
+          <article class="day"><div class="date">07-29 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d3-1"><span><b>P2</b> 新内容 2：Construction PPE Supplier Evaluation Checklist。</span></label>
+          </article>
+          <article class="day"><div class="date">07-30 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d4-1"><span><b>P2</b> 新内容 3：PPE Fit Rule for Construction Workers。</span></label>
+          </article>
+          <article class="day"><div class="date">07-31 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d5-1"><span><b>复盘</b> 决定哪些新内容发布，哪些合并到现有页面。</span></label>
+          </article>
+          <article class="day"><div class="date">08-01 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d6-1"><span><b>P3</b> 准备 ANSI vs EN Construction PPE Standards 内容大纲。</span></label>
+          </article>
+          <article class="day"><div class="date">08-02 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w9d7-1"><span><b>缓冲</b> 清理内容 cannibalization 风险。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-10">
+        <div class="week-head"><strong>Week 10</strong><span>08-03 至 08-09</span><em>下载和邮件捕获</em></div>
+        <div class="days">
+          <article class="day"><div class="date">08-03 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d1-1"><span><b>P2</b> 决定下载资产是否 gated：先按钮下载，或邮箱下载 A/B。</span></label>
+          </article>
+          <article class="day"><div class="date">08-04 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d2-1"><span><b>P2</b> 对 RFQ template 加 follow-up email 话术。</span></label>
+          </article>
+          <article class="day"><div class="date">08-05 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d3-1"><span><b>P2</b> 工具页加入下载资产入口：size guide、calculator、compliance checker。</span></label>
+          </article>
+          <article class="day"><div class="date">08-06 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d4-1"><span><b>P2</b> 给下载按钮设置事件追踪或 source 标记。</span></label>
+          </article>
+          <article class="day"><div class="date">08-07 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d5-1"><span><b>复盘</b> 对比下载率、RFQ 点击率、直接邮件点击。</span></label>
+          </article>
+          <article class="day"><div class="date">08-08 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d6-1"><span><b>P3</b> 整理 sales 常见问题，补到 FAQ。</span></label>
+          </article>
+          <article class="day"><div class="date">08-09 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w10d7-1"><span><b>缓冲</b> 检查所有下载链接和移动端体验。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-11">
+        <div class="week-head"><strong>Week 11</strong><span>08-10 至 08-16</span><em>工具页扩大内链</em></div>
+        <div class="days">
+          <article class="day"><div class="date">08-10 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d1-1"><span><b>P2</b> Size guide 链接到 footwear guide、bulk size planning、quote。</span></label>
+          </article>
+          <article class="day"><div class="date">08-11 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d2-1"><span><b>P2</b> PPE calculator 链接到 procurement、contractor kit、RFQ template。</span></label>
+          </article>
+          <article class="day"><div class="date">08-12 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d3-1"><span><b>P2</b> Compliance checker 链接到 footwear、standards、quote。</span></label>
+          </article>
+          <article class="day"><div class="date">08-13 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d4-1"><span><b>P2</b> 从高展示博客反向链接到对应工具。</span></label>
+          </article>
+          <article class="day"><div class="date">08-14 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d5-1"><span><b>复盘</b> 工具页 impressions、CTR、转化路径复盘。</span></label>
+          </article>
+          <article class="day"><div class="date">08-15 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d6-1"><span><b>P3</b> 规划工具页 schema 检查和 Rich Results 测试。</span></label>
+          </article>
+          <article class="day"><div class="date">08-16 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w11d7-1"><span><b>缓冲</b> 整理 Top query 新机会。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-12">
+        <div class="week-head"><strong>Week 12</strong><span>08-17 至 08-23</span><em>二轮 CTR 测试</em></div>
+        <div class="days">
+          <article class="day"><div class="date">08-17 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d1-1"><span><b>P1</b> 找出仍有高展示低 CTR 的 5 个页面。</span></label>
+          </article>
+          <article class="day"><div class="date">08-18 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d2-1"><span><b>P1</b> 第二轮 title/meta：加入 buyer qualifier 和年份/标准。</span></label>
+          </article>
+          <article class="day"><div class="date">08-19 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d3-1"><span><b>P1</b> 重新排序首屏：先答案、再表格、再详细解释。</span></label>
+          </article>
+          <article class="day"><div class="date">08-20 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d4-1"><span><b>P2</b> 检查 cannibalization：solution vs checklist vs category guide。</span></label>
+          </article>
+          <article class="day"><div class="date">08-21 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d5-1"><span><b>复盘</b> 30 天 CTR、clicks、Top 10、RFQ 汇总。</span></label>
+          </article>
+          <article class="day"><div class="date">08-22 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d6-1"><span><b>P3</b> 输出下一季度内容 backlog。</span></label>
+          </article>
+          <article class="day"><div class="date">08-23 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w12d7-1"><span><b>缓冲</b> 准备第 13 周总复盘材料。</span></label>
+          </article>
+        </div>
+      </div>
+
+      <div class="week" id="week-13">
+        <div class="week-head"><strong>Week 13</strong><span>08-24 至 08-30</span><em>90 天复盘和决策</em></div>
+        <div class="days">
+          <article class="day"><div class="date">08-24 <small>周一</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d1-1"><span><b>P0</b> 输出 90 天 GSC 对比：点击、展示、CTR、平均排名。</span></label>
+          </article>
+          <article class="day"><div class="date">08-25 <small>周二</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d2-1"><span><b>P0</b> 输出页面级胜负表：哪些页面提升、哪些需要合并或重写。</span></label>
+          </article>
+          <article class="day"><div class="date">08-26 <small>周三</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d3-1"><span><b>P1</b> 判断是否开始 /construction/ URL 迁移方案。</span></label>
+          </article>
+          <article class="day"><div class="date">08-27 <small>周四</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d4-1"><span><b>P1</b> 判断 Mining 是否进入第二行业集群。</span></label>
+          </article>
+          <article class="day"><div class="date">08-28 <small>周五</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d5-1"><span><b>复盘</b> 确定下一阶段 30 天 sprint。</span></label>
+          </article>
+          <article class="day"><div class="date">08-29 <small>周六</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d6-1"><span><b>归档</b> 保存所有变更记录、GSC 导出、RFQ 来源数据。</span></label>
+          </article>
+          <article class="day"><div class="date">08-30 <small>周日</small></div>
+            <label class="task"><input type="checkbox" data-id="w13d7-1"><span><b>决策</b> 更新计划文件，进入下一轮。</span></label>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kpi">
+      <div class="section-title">
+        <h2>KPI 复盘表</h2>
+        <p>每周五填一次。不要只看排名，要看点击和询盘。</p>
+      </div>
+      <div class="kpi-grid">
+        <div class="panel">
+          <h3>核心指标</h3>
+          <ul class="kpi-list">
+            <li><strong>Non-brand Construction impressions</strong><span>目标：持续增长</span></li>
+            <li><strong>重点页面 CTR</strong><span>目标：高于 0.23%</span></li>
+            <li><strong>Top 10 / Top 20 查询数</strong><span>目标：每月增加</span></li>
+            <li><strong>内容页到 quote/contact 点击</strong><span>目标：能按 source 追踪</span></li>
+            <li><strong>RFQ submissions from content</strong><span>目标：每月增长</span></li>
+            <li><strong>美国市场点击</strong><span>目标：CTR 从 0.13% 上升</span></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>每周五检查清单</h3>
+          <label class="task"><input type="checkbox" data-id="kpi-1"><span>导出 GSC 最近 7 天和最近 28 天页面数据。</span></label>
+          <label class="task"><input type="checkbox" data-id="kpi-2"><span>记录 P0 页面 title/meta 改动后表现。</span></label>
+          <label class="task"><input type="checkbox" data-id="kpi-3"><span>检查 RFQ / email / WhatsApp 是否能追踪来源。</span></label>
+          <label class="task"><input type="checkbox" data-id="kpi-4"><span>记录新增 Top 20 查询，判断是否要补 quick answer。</span></label>
+          <label class="task"><input type="checkbox" data-id="kpi-5"><span>决定下周只推进 1 个主目标。</span></label>
+          <div class="note">建议把每周 GSC 导出文件放到同一目录，文件名使用 YYYY-MM-DD，后续才能判断优化是否有效。</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stop">
+      <div class="section-title">
+        <h2>暂缓事项</h2>
+        <p>这些不是永远不做，而是 90 天内不优先。</p>
+      </div>
+      <div class="rules">
+        <div class="rule">
+          <strong>不做大规模 URL 迁移</strong>
+          <p>/construction/ 可以规划，但不要在已有页面刚获得展示时马上迁移。</p>
+        </div>
+        <div class="rule">
+          <strong>不继续堆大量新文章</strong>
+          <p>前 8 周的重点是把现有展示变成点击和 RFQ。</p>
+        </div>
+        <div class="rule">
+          <strong>不追低商业价值考试题</strong>
+          <p>true/false 类查询能带展示，但采购意图弱。只在能自然服务页面主题时覆盖。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const STORAGE_PREFIX = "laifappe-seo-calendar:";
+    const DEFAULT_COMPLETED_IDS = new Set([
+      "w1d3-1",
+      "w1d3-2",
+      "w1d4-1",
+      "w1d4-2",
+      "w1d5-1",
+      "w1d6-1",
+      "w2d1-1",
+      "w2d2-1",
+      "w2d3-1",
+      "w2d4-1",
+      "w3d4-1",
+      "w4d1-1",
+      "w4d2-1",
+      "w4d3-1",
+      "w4d4-1",
+      "w5d1-1",
+      "w5d2-1",
+      "w5d3-1",
+      "w5d4-1",
+      "w6d1-1",
+      "w6d2-1",
+      "w6d3-1",
+      "w7d1-1",
+      "w7d2-1",
+      "w7d3-1",
+      "w8d1-1",
+      "w8d2-1",
+      "w8d3-1"
+    ]);
+    const DATA_DEPENDENT_IDS = new Set([
+      "w2d5-1",
+      "w3d5-1",
+      "w4d5-1",
+      "w5d5-1",
+      "w6d5-1",
+      "w7d5-1",
+      "w8d5-1",
+      "w8d7-1",
+      "w12d1-1",
+      "w12d2-1",
+      "w12d3-1",
+      "w12d4-1",
+      "w12d5-1",
+      "w12d6-1",
+      "w12d7-1",
+      "w13d1-1",
+      "w13d2-1",
+      "w13d3-1",
+      "w13d4-1",
+      "w13d5-1",
+      "w13d6-1",
+      "w13d7-1"
+    ]);
+
+    function getTaskPriority(task) {
+      const tag = task.querySelector("b")?.textContent?.trim() || "";
+      const id = task.querySelector("input")?.dataset.id || "";
+
+      if (DATA_DEPENDENT_IDS.has(id) || ["复盘", "缓冲", "决策", "归档"].includes(tag)) {
+        return "review";
+      }
+      if (tag === "P0") return "p0";
+      if (tag === "P1") return "p1";
+      if (tag === "P2") return "p2";
+      if (tag === "P3") return "p3";
+      return "review";
+    }
+
+    function formatDate(date) {
+      const weekdays = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return { date: `${month}-${day}`, weekday: weekdays[date.getDay()] };
+    }
+
+    function rebuildCalendarByPriority() {
+      const calendar = document.getElementById("calendar");
+      if (!calendar) return;
+
+      const title = calendar.querySelector(".section-title h2");
+      const description = calendar.querySelector(".section-title p");
+      if (title) title.textContent = "按重要级别执行日历";
+      if (description) {
+        description.textContent =
+          "任务按 P0 → P1 → P2 → P3 → 复盘/缓冲/决策 排列。日期只代表执行顺序，不再把不同优先级穿插到同一阶段。";
+      }
+
+      const oldWeeks = Array.from(calendar.querySelectorAll(".week"));
+      const tasks = oldWeeks.flatMap((week) => Array.from(week.querySelectorAll(".task")));
+      oldWeeks.forEach((week) => week.remove());
+
+      const phases = [
+        {
+          key: "p0",
+          title: "P0 - 先做，解决搜索与转化基础",
+          summary: "数据归一、canonical、核心 CTR 页面、quote/source 记录。",
+          tasks: []
+        },
+        {
+          key: "p1",
+          title: "P1 - 主开发，集中完成高价值页面和转化资产",
+          summary: "重点页面刷新、RFQ 资产、Construction hub、CTA、buyer shortlist。",
+          tasks: []
+        },
+        {
+          key: "p2",
+          title: "P2 - 扩展，等 P0/P1 稳定后推进",
+          summary: "工具页入口、下载追踪、内链扩展、新内容候选。",
+          tasks: []
+        },
+        {
+          key: "p3",
+          title: "P3 - Backlog，低优先但可提前准备",
+          summary: "标准类内容、FAQ、schema 测试和下一季度 backlog。",
+          tasks: []
+        },
+        {
+          key: "review",
+          title: "复盘 / 缓冲 / 决策 - 依赖数据或上线后检查",
+          summary: "GSC 对比、CTR 复盘、URL 迁移判断、下一阶段 sprint。",
+          tasks: []
+        }
+      ];
+
+      const phaseMap = new Map(phases.map((phase) => [phase.key, phase]));
+      tasks.forEach((task) => {
+        phaseMap.get(getTaskPriority(task))?.tasks.push(task);
+      });
+
+      const note = document.createElement("div");
+      note.className = "note";
+      note.textContent =
+        "排期原则：先连续清掉 P0，再连续做 P1。需要未来 GSC 数据或上线验证的任务，即使原标签是 P0/P1，也统一放到最后的复盘/决策区。";
+      calendar.appendChild(note);
+
+      let weekNumber = 1;
+      let dayOffset = 0;
+      const startDate = new Date(2026, 5, 1);
+
+      phases.forEach((phase) => {
+        if (!phase.tasks.length) return;
+
+        const days = [];
+        for (let i = 0; i < phase.tasks.length; i += 2) {
+          days.push(phase.tasks.slice(i, i + 2));
+        }
+
+        for (let i = 0; i < days.length; i += 7) {
+          const weekDays = days.slice(i, i + 7);
+          const weekStart = new Date(startDate);
+          weekStart.setDate(startDate.getDate() + dayOffset);
+          const weekEnd = new Date(startDate);
+          weekEnd.setDate(startDate.getDate() + dayOffset + weekDays.length - 1);
+          const startLabel = formatDate(weekStart).date;
+          const endLabel = formatDate(weekEnd).date;
+
+          const week = document.createElement("div");
+          week.className = "week";
+          week.id = `priority-week-${weekNumber}`;
+
+          const head = document.createElement("div");
+          head.className = "week-head";
+          head.innerHTML = `<strong>Week ${weekNumber}</strong><span>${startLabel} 至 ${endLabel}</span><em>${phase.title}</em>`;
+          week.appendChild(head);
+
+          const grid = document.createElement("div");
+          grid.className = "days";
+
+          weekDays.forEach((dayTasks) => {
+            const currentDate = new Date(startDate);
+            currentDate.setDate(startDate.getDate() + dayOffset);
+            const label = formatDate(currentDate);
+            const day = document.createElement("article");
+            day.className = "day";
+            day.innerHTML = `<div class="date">${label.date} <small>${label.weekday}</small></div>`;
+            dayTasks.forEach((task) => day.appendChild(task));
+            grid.appendChild(day);
+            dayOffset += 1;
+          });
+
+          if (i === 0) {
+            const phaseNote = document.createElement("div");
+            phaseNote.className = "milestone";
+            phaseNote.textContent = phase.summary;
+            grid.firstElementChild?.appendChild(phaseNote);
+          }
+
+          week.appendChild(grid);
+          calendar.appendChild(week);
+          weekNumber += 1;
+        }
+      });
+    }
+
+    rebuildCalendarByPriority();
+
+    const boxes = Array.from(document.querySelectorAll('input[type="checkbox"][data-id]'));
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    function updateDayState(input) {
+      const day = input.closest(".day");
+      if (!day) return;
+      const dayBoxes = Array.from(day.querySelectorAll('input[type="checkbox"]'));
+      day.classList.toggle("done", dayBoxes.length > 0 && dayBoxes.every((box) => box.checked));
+    }
+
+    function updateProgress() {
+      const checked = boxes.filter((box) => box.checked).length;
+      const percent = boxes.length ? Math.round((checked / boxes.length) * 100) : 0;
+      progressBar.style.width = percent + "%";
+      progressText.textContent = percent + "%";
+      boxes.forEach(updateDayState);
+    }
+
+    boxes.forEach((box) => {
+      const storedValue = localStorage.getItem(STORAGE_PREFIX + box.dataset.id);
+      box.checked = storedValue === "1" || (storedValue === null && DEFAULT_COMPLETED_IDS.has(box.dataset.id));
+      box.addEventListener("change", () => {
+        localStorage.setItem(STORAGE_PREFIX + box.dataset.id, box.checked ? "1" : "0");
+        updateProgress();
+      });
+    });
+
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (!confirm("确认清空所有勾选状态？")) return;
+      boxes.forEach((box) => {
+        box.checked = false;
+        localStorage.setItem(STORAGE_PREFIX + box.dataset.id, "0");
+      });
+      updateProgress();
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>

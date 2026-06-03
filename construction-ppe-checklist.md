@@ -15,6 +15,12 @@ This article is the operational companion to our [Complete PPE solution for cons
 
 ---
 
+## Download The Field Checklist
+
+Use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf) for toolbox talks, site induction, and supervisor pre-start checks. If the checklist needs to become a purchase order, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template.pdf) and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) to add quantities, standards, sizes, and replacement stock.
+
+---
+
 ## Why a Construction PPE Checklist Matters
 
 Construction is still one of the highest-risk industries in the United States, and the same hazard patterns appear over and over again: falls, struck-by incidents, caught-in or between hazards, electrical contact, dust exposure, and chronic noise. On most jobsites, PPE failures do not happen because a crew forgot that hard hats exist. They happen because the site stopped at the baseline bundle and never checked whether the actual task added a second layer of exposure.

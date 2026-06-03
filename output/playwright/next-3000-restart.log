@@ -2024,3 +2024,244 @@ Error [TimeoutError]: The operation was aborted due to timeout
  GET / 200 in 1723ms (compile: 48ms, proxy.ts: 351ms, render: 1325ms)
  GET / 200 in 1587ms (compile: 7ms, proxy.ts: 14ms, render: 1566ms)
  GET /about 200 in 145ms (compile: 12ms, proxy.ts: 9ms, render: 124ms)
+ GET /admin/quote-emails 200 in 4.3s (compile: 191ms, proxy.ts: 203ms, render: 3.9s)
+ GET /admin/quote-emails 200 in 1157ms (compile: 17ms, proxy.ts: 72ms, render: 1067ms)
+✓ Compiled in 562ms
+ GET /about 200 in 3.4s (compile: 1347ms, proxy.ts: 80ms, render: 1928ms)
+ GET /admin/quote-emails 200 in 3.9s (compile: 34ms, proxy.ts: 69ms, render: 3.8s)
+✓ Compiled in 205ms
+ GET /about 200 in 759ms (compile: 372ms, proxy.ts: 82ms, render: 304ms)
+ GET /admin/quote-emails 200 in 1005ms (compile: 26ms, proxy.ts: 85ms, render: 894ms)
+✓ Compiled in 327ms
+ GET /admin/quote-emails 200 in 1116ms (compile: 10ms, proxy.ts: 30ms, render: 1076ms)
+ GET /about 200 in 1243ms (compile: 397ms, proxy.ts: 32ms, render: 814ms)
+ GET /about 200 in 632ms (compile: 53ms, proxy.ts: 37ms, render: 542ms)
+ GET /admin/quote-emails 200 in 624ms (compile: 10ms, proxy.ts: 147ms, render: 467ms)
+ GET /about 200 in 576ms (compile: 57ms, proxy.ts: 41ms, render: 478ms)
+ GET /admin/quote-emails 200 in 1346ms (compile: 9ms, proxy.ts: 526ms, render: 811ms)
+ GET /admin/quote-emails 200 in 631ms (compile: 5ms, proxy.ts: 21ms, render: 605ms)
+ GET /admin/quote-emails 200 in 603ms (compile: 7ms, proxy.ts: 98ms, render: 498ms)
+ GET /admin/quote-emails 200 in 900ms (compile: 8ms, proxy.ts: 30ms, render: 862ms)
+ GET /admin/quote-emails 200 in 303ms (compile: 5ms, proxy.ts: 15ms, render: 283ms)
+ GET /admin/quote-emails 200 in 318ms (compile: 145ms, proxy.ts: 22ms, render: 151ms)
+ GET /about 200 in 1140ms (compile: 4ms, proxy.ts: 13ms, render: 1122ms)
+ GET /about 200 in 1178ms (compile: 29ms, proxy.ts: 42ms, render: 1107ms)
+ GET /admin/quote-emails 200 in 156ms (compile: 7ms, proxy.ts: 13ms, render: 136ms)
+ GET /about 200 in 1074ms (compile: 55ms, proxy.ts: 25ms, render: 994ms)
+ GET /admin/quote-emails 200 in 231ms (compile: 6ms, proxy.ts: 36ms, render: 189ms)
+ GET /about 200 in 750ms (compile: 5ms, proxy.ts: 59ms, render: 686ms)
+ GET /admin/quote-emails 200 in 239ms (compile: 5ms, proxy.ts: 88ms, render: 146ms)
+ GET /about 200 in 695ms (compile: 5ms, proxy.ts: 32ms, render: 658ms)
+ GET /admin/quote-emails 200 in 296ms (compile: 4ms, proxy.ts: 79ms, render: 213ms)
+ GET /about 200 in 686ms (compile: 8ms, proxy.ts: 56ms, render: 622ms)
+ GET /admin/quote-emails 200 in 181ms (compile: 4ms, proxy.ts: 14ms, render: 164ms)
+ GET /about 200 in 604ms (compile: 10ms, proxy.ts: 62ms, render: 531ms)
+ GET /about 200 in 416ms (compile: 5ms, proxy.ts: 12ms, render: 399ms)
+ GET /about 200 in 331ms (compile: 7ms, proxy.ts: 50ms, render: 274ms)
+ GET /about 200 in 113ms (compile: 5ms, proxy.ts: 12ms, render: 96ms)
+✓ Compiled in 149ms
+ GET /about 200 in 412ms (compile: 195ms, proxy.ts: 17ms, render: 200ms)
+ GET /admin/quote-emails 200 in 495ms (compile: 44ms, proxy.ts: 18ms, render: 432ms)
+ GET /about 200 in 689ms (compile: 168ms, proxy.ts: 12ms, render: 509ms)
+ GET /about 200 in 351ms (compile: 29ms, proxy.ts: 26ms, render: 296ms)
+ GET /admin/quote-emails 200 in 784ms (compile: 4ms, proxy.ts: 14ms, render: 766ms)
+ GET /about 200 in 299ms (compile: 34ms, proxy.ts: 43ms, render: 221ms)
+ GET /admin/quote-emails 200 in 390ms (compile: 7ms, proxy.ts: 46ms, render: 337ms)
+ GET /admin/quote-emails 200 in 374ms (compile: 5ms, proxy.ts: 9ms, render: 361ms)
+ GET /admin/quote-emails 200 in 720ms (compile: 5ms, proxy.ts: 29ms, render: 686ms)
+ GET /admin/quote-emails 200 in 411ms (compile: 6ms, proxy.ts: 97ms, render: 308ms)
+ GET /admin/quote-emails 200 in 221ms (compile: 5ms, proxy.ts: 21ms, render: 195ms)
+ GET /about 200 in 636ms (compile: 7ms, proxy.ts: 37ms, render: 592ms)
+ GET /about 200 in 525ms (compile: 31ms, proxy.ts: 17ms, render: 477ms)
+ GET /about 200 in 458ms (compile: 5ms, proxy.ts: 17ms, render: 436ms)
+ GET /about 200 in 405ms (compile: 5ms, proxy.ts: 26ms, render: 373ms)
+ GET /admin/quote-emails 200 in 559ms (compile: 67ms, proxy.ts: 16ms, render: 476ms)
+ GET /admin/quote-emails 200 in 567ms (compile: 64ms, proxy.ts: 23ms, render: 481ms)
+ GET /admin/quote-emails 200 in 405ms (compile: 4ms, proxy.ts: 91ms, render: 310ms)
+ GET /admin/quote-emails 200 in 297ms (compile: 5ms, proxy.ts: 18ms, render: 274ms)
+ GET /about 200 in 613ms (compile: 6ms, proxy.ts: 10ms, render: 597ms)
+ GET /admin/quote-emails 200 in 230ms (compile: 5ms, proxy.ts: 14ms, render: 210ms)
+ GET /admin/quote-emails 200 in 217ms (compile: 24ms, proxy.ts: 15ms, render: 179ms)
+ GET /about 200 in 695ms (compile: 4ms, proxy.ts: 12ms, render: 679ms)
+ GET /about 200 in 599ms (compile: 29ms, proxy.ts: 54ms, render: 517ms)
+ GET /admin/quote-emails 200 in 213ms (compile: 4ms, proxy.ts: 71ms, render: 138ms)
+ GET /about 200 in 445ms (compile: 28ms, proxy.ts: 14ms, render: 404ms)
+ GET /about 200 in 256ms (compile: 5ms, proxy.ts: 39ms, render: 213ms)
+ GET /about 200 in 105ms (compile: 4ms, proxy.ts: 17ms, render: 84ms)
+⚠ Server is approaching the used memory threshold, restarting...
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of D:\project\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * D:\project\b2c-store\package-lock.json
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.149.79.7:3000
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 1972ms
+ GET /about 200 in 1559ms (compile: 718ms, proxy.ts: 21ms, render: 819ms)
+ GET /admin 200 in 1175ms (compile: 147ms, proxy.ts: 31ms, render: 998ms)
+ GET / 200 in 2.8s (compile: 413ms, proxy.ts: 120ms, render: 2.3s)
+✓ Compiled in 1106ms
+ GET /about 200 in 328ms (compile: 156ms, proxy.ts: 37ms, render: 135ms)
+ GET / 200 in 1327ms (compile: 11ms, proxy.ts: 42ms, render: 1274ms)
+ GET / 200 in 1548ms (compile: 9ms, proxy.ts: 13ms, render: 1526ms)
+Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+ GET / 200 in 1407ms (compile: 5ms, proxy.ts: 11ms, render: 1390ms)
+ GET /about 200 in 92ms (compile: 5ms, proxy.ts: 18ms, render: 69ms)
+ GET /about 200 in 380ms (compile: 136ms, proxy.ts: 14ms, render: 230ms)
+ GET /about 200 in 381ms (compile: 273ms, proxy.ts: 14ms, render: 95ms)
+ GET /about 200 in 404ms (compile: 97ms, proxy.ts: 15ms, render: 291ms)
+ GET /about 200 in 409ms (compile: 218ms, proxy.ts: 18ms, render: 172ms)
+ GET /about 200 in 401ms (compile: 261ms, proxy.ts: 13ms, render: 127ms)
+ GET /about 200 in 132ms (compile: 3ms, proxy.ts: 54ms, render: 74ms)
+ GET /about 200 in 536ms (compile: 8ms, proxy.ts: 14ms, render: 514ms)
+ GET / 200 in 1520ms (compile: 163ms, proxy.ts: 8ms, render: 1349ms)
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+ GET /admin 200 in 4.2s (compile: 50ms, proxy.ts: 16ms, render: 4.2s)
+ GET / 200 in 1431ms (compile: 4ms, proxy.ts: 8ms, render: 1420ms)
+ GET /about 200 in 91ms (compile: 7ms, proxy.ts: 9ms, render: 75ms)
+ GET /about 200 in 384ms (compile: 144ms, proxy.ts: 8ms, render: 232ms)
+ GET /about 200 in 96ms (compile: 3ms, proxy.ts: 8ms, render: 85ms)
+ GET /about 200 in 298ms (compile: 5ms, proxy.ts: 10ms, render: 284ms)
+ GET / 200 in 1516ms (compile: 162ms, proxy.ts: 8ms, render: 1346ms)
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+ GET /quote?source=blog-high-visibility-clothing-construction 200 in 2.9s (compile: 1894ms, proxy.ts: 198ms, render: 782ms)
+ GET /blog/high-visibility-clothing-construction 200 in 7.4s (compile: 4.1s, proxy.ts: 171ms, render: 3.1s)
+ GET /quote?source=blog-high-visibility-clothing-construction 200 in 98ms (compile: 5ms, proxy.ts: 4ms, render: 89ms)
+ GET /admin 200 in 2.4s (compile: 254ms, proxy.ts: 443ms, render: 1715ms)
+ GET /admin/email 200 in 1670ms (compile: 356ms, proxy.ts: 11ms, render: 1303ms)
+ GET /admin/quote-emails 200 in 375ms (compile: 78ms, proxy.ts: 7ms, render: 291ms)
+ GET /admin/email 200 in 1049ms (compile: 3ms, proxy.ts: 14ms, render: 1032ms)
+ GET /admin/email 200 in 1814ms (compile: 3ms, proxy.ts: 7ms, render: 1803ms)
+ POST /api/admin/email/send 200 in 15.5s (compile: 2.2s, render: 13.3s)
+ GET /admin/email 200 in 1327ms (compile: 3ms, proxy.ts: 11ms, render: 1313ms)
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+prisma:error Error in PostgreSQL connection: Error { kind: Io, cause: Some(Os { code: 10054, kind: ConnectionReset, message: "远程主机强迫关闭了一个现有的连接。" }) }
+ GET /admin 200 in 4.7s (compile: 118ms, proxy.ts: 688ms, render: 3.9s)
+ GET / 200 in 2.3s (compile: 126ms, proxy.ts: 19ms, render: 2.2s)
+ GET /blog 200 in 1893ms (compile: 1189ms, proxy.ts: 12ms, render: 692ms)
+Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+ GET /blog/scaffolding-ppe-checklist 200 in 1393ms (compile: 37ms, proxy.ts: 8ms, render: 1348ms)
+ GET /blog/scaffolding-ppe-checklist 200 in 1299ms (compile: 5ms, proxy.ts: 9ms, render: 1285ms)
+ GET /quote?source=blog-scaffolding-ppe-checklist 200 in 73ms (compile: 12ms, proxy.ts: 14ms, render: 46ms)
+ GET /quote?source=blog-scaffolding-ppe-checklist 200 in 49ms (compile: 3ms, proxy.ts: 12ms, render: 34ms)
+ GET /quote?source=blog-scaffolding-ppe-checklist 200 in 190ms (compile: 29ms, proxy.ts: 11ms, render: 150ms)
+ GET /quote?source=blog-scaffolding-ppe-checklist 200 in 141ms (compile: 12ms, proxy.ts: 9ms, render: 121ms)

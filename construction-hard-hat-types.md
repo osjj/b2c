@@ -15,6 +15,19 @@ Use this article for head protection selection. If the buyer's question is wheth
 
 ---
 
+## Quick Buyer Answer: Type, Class, And Helmet Path
+
+For head protection, the first RFQ line should name the impact type, electrical class, and whether the buyer is staying with a traditional hard hat or moving toward helmet-style protection.
+
+| Decision | Short answer | Link path |
+|---|---|---|
+| Type I vs Type II | Type I is mainly top impact. Type II adds lateral impact protection and is stronger for scaffolding, steel, demolition, equipment zones, and congested structures. | Compare with the [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat). |
+| Class G, E, or C | Class G and E provide electrical insulation levels. Class C is conductive or vented and should not be used for electrical exposure. | Use [OSHA PPE requirements](/blog/osha-ppe-requirements-construction) for compliance context. |
+| Chin strap or retention | Use retention where climbing, wind, scaffold work, or fall exposure makes helmet loss likely. | Connect to [scaffolding PPE](/solutions/ppe-for-scaffolding-and-elevated-platforms) and [fall protection construction](/solutions/fall-protection-construction). |
+| Bulk order planning | Specify shell color, suspension size range, accessory slots, replacement suspensions, and service-life policy. | Use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). |
+
+---
+
 ## Why Hard Hat Type Selection Matters
 
 Hard hats are often treated as a default item: one color, one shell shape, one suspension, one order quantity. That approach is risky because construction head hazards are not all the same.

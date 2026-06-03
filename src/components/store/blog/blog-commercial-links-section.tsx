@@ -30,9 +30,29 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
             Source the PPE covered in this guide
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Move from research to a shortlist with the matching solution page, product
-            categories, and selected PPE options.
+            Move from research to a buyer shortlist with the matching solution page,
+            category paths, selected PPE options, and RFQ next steps.
           </p>
+          <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-muted-foreground">
+            <Link
+              href={links.cta.href}
+              className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Request quote
+            </Link>
+            <Link
+              href={links.solution.href}
+              className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Build PPE kit
+            </Link>
+            <Link
+              href="/downloads/construction-ppe-checklist.pdf"
+              className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Download checklist
+            </Link>
+          </div>
         </div>
 
         <Button asChild size="lg" className="shrink-0">
@@ -72,7 +92,7 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
       </div>
 
       <div className="mt-8 border-t pt-7">
-        <SectionLabel icon={ShoppingBag} label="Recommended products" />
+        <SectionLabel icon={ShoppingBag} label="Buyer shortlist" />
         <ul className="mt-3 grid gap-x-6 gap-y-3 sm:grid-cols-2">
           {links.products.map((product) => (
             <li key={product.href}>

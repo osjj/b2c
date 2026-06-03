@@ -601,5 +601,20 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
 }
 
 export function getBlogCommercialLinks(slug: string) {
-  return BLOG_COMMERCIAL_LINKS[slug]
+  const links = BLOG_COMMERCIAL_LINKS[slug]
+
+  if (!links) {
+    return undefined
+  }
+
+  return {
+    ...links,
+    cta: {
+      ...links.cta,
+      href:
+        links.cta.href === '/quote'
+          ? `/quote?source=${encodeURIComponent(`blog-${slug}`)}`
+          : links.cta.href,
+    },
+  }
 }

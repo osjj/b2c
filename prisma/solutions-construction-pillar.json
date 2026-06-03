@@ -60,44 +60,66 @@
         "data": {
           "groups": [
             {
-              "title": "Compliance and field execution",
-              "description": "Use these guides when the buyer needs rules, field routines, or inspection-ready PPE planning.",
+              "title": "Guide",
+              "description": "Use these pages when a buyer needs the whole construction PPE path before narrowing by role or hazard.",
+              "items": [
+                "[Complete construction PPE solution](/solutions/construction-site-ppe-solution)",
+                "[Construction PPE checklist](/blog/construction-ppe-checklist)",
+                "[Contractor PPE kit checklist](/blog/contractor-ppe-kit-checklist)"
+              ]
+            },
+            {
+              "title": "Compliance",
+              "description": "Use these pages when the buyer needs OSHA, fit, training, hazard assessment, and inspection logic.",
               "items": [
                 "[OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction)",
-                "[Construction PPE checklist](/blog/construction-ppe-checklist)"
-              ]
-            },
-            {
-              "title": "Category selection",
-              "description": "Use these guides when the buyer is choosing the right PPE category before comparing products.",
-              "items": [
-                "[Construction gloves selection guide](/blog/construction-gloves-selection-guide)",
-                "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)",
-                "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
-                "[Safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat)",
-                "[Eye and face protection for construction](/blog/construction-eye-face-protection)",
                 "[Respiratory protection for construction](/blog/construction-respiratory-protection)",
-                "[Hearing protection for construction](/blog/construction-hearing-protection)",
-                "[High-visibility clothing for construction](/blog/high-visibility-clothing-construction)"
+                "[Construction PPE checklist PDF](/downloads/construction-ppe-checklist.pdf)"
               ]
             },
             {
-              "title": "Task-based PPE checklists",
-              "description": "Use these guides when the job type controls the PPE mix.",
+              "title": "Procurement",
+              "description": "Use these pages and templates when the buyer is moving from specification to RFQ, sizes, and repeat ordering.",
               "items": [
-                "[Demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist)",
-                "[Heavy equipment operator PPE checklist](/blog/heavy-equipment-operator-ppe-checklist)",
-                "[Trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist)",
+                "[Bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)",
+                "[Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template.pdf)",
+                "[PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx)"
+              ]
+            },
+            {
+              "title": "Height",
+              "description": "Use these pages when falls, scaffolds, helmet retention, dropped tools, or elevated platforms control the PPE mix.",
+              "items": [
+                "[Fall protection PPE for construction sites](/solutions/fall-protection-construction)",
+                "[PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)",
                 "[Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)",
+                "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
+                "[Safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat)"
+              ]
+            },
+            {
+              "title": "Exposure",
+              "description": "Use these pages when traffic, dust, noise, night work, weather, heat, or impact exposure drives product selection.",
+              "items": [
+                "[PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)",
+                "[Night construction and low-visibility PPE](/solutions/ppe-for-night-construction-and-low-visibility-work)",
+                "[PPE for demolition and concrete cutting work](/solutions/ppe-for-demolition-and-concrete-cutting-work)",
+                "[High-visibility clothing for construction](/blog/high-visibility-clothing-construction)",
+                "[Eye and face protection for construction](/blog/construction-eye-face-protection)",
+                "[Hearing protection for construction](/blog/construction-hearing-protection)",
                 "[Heat stress PPE for construction workers](/blog/heat-stress-ppe-construction-workers)"
               ]
             },
             {
-              "title": "Procurement and kits",
-              "description": "Use these guides when the buyer is moving from specification to ordering, RFQs, and issue control.",
+              "title": "Role Kits",
+              "description": "Use these pages when the buyer needs trade, operator, or task-specific kit logic.",
               "items": [
-                "[Bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)",
-                "[Contractor PPE kit checklist](/blog/contractor-ppe-kit-checklist)"
+                "[Heavy equipment operator PPE checklist](/blog/heavy-equipment-operator-ppe-checklist)",
+                "[PPE for heavy equipment operators](/solutions/ppe-for-heavy-equipment-operators-on-construction-sites)",
+                "[Trenching and excavation PPE checklist](/blog/trenching-excavation-ppe-checklist)",
+                "[PPE for electrical installation on construction sites](/solutions/ppe-for-electrical-installation-on-construction-sites)",
+                "[Construction gloves selection guide](/blog/construction-gloves-selection-guide)",
+                "[Construction safety footwear guide](/blog/construction-safety-footwear-guide)"
               ]
             }
           ]

@@ -15,6 +15,14 @@ Use this guide when you need to build or source PPE kits for contractors, subcon
 
 ---
 
+## Contractor Kit RFQ Pack
+
+Before asking suppliers to quote a contractor PPE kit, attach the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template.pdf). It keeps role type, size range, standards, packaging, replacement stock, and delivery details in one format.
+
+For kit planning, use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf) to confirm the field issue list, then use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) to separate baseline kit quantities from trade add-ons.
+
+---
+
 ## Quick Contractor PPE Kit Checklist
 
 Start with this checklist before you request quotes or approve a kit:

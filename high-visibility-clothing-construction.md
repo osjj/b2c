@@ -1,17 +1,29 @@
-# High-Visibility Clothing for Construction Workers: Class 2, Class 3 and Buying Guide
+# High-Visibility Clothing for Construction Workers: Class 2 vs Class 3 Buying Guide
 
-**Meta Title:** High-Visibility Clothing for Construction Workers | Class 2 vs Class 3 Guide  
-**Meta Description:** Learn how to choose high-visibility clothing for construction workers by OSHA exposure, ANSI/ISEA 107 Type O/R/P, Class 2 vs Class 3, EN ISO 20471, color, reflective tape, weather, FR needs, and bulk buying.  
+**Meta Title:** High-Visibility Clothing for Construction | Class 2 vs Class 3  
+**Meta Description:** Choose construction high-visibility clothing by exposure: Class 2 for most equipment and traffic-adjacent jobsites, Class 3 for roadwork, night work, flaggers, poor weather, and high-speed traffic.  
 **Target URL:** /blog/high-visibility-clothing-construction  
 **Target Keywords:** high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE
 
 ---
 
-High-visibility clothing is one of the most visible pieces of construction PPE, but it is also one of the easiest to under-specify. A cheap vest may make a worker look compliant from a distance while still failing the actual exposure: moving equipment, reversing trucks, night work, road traffic, poor weather, dust, mud, layered clothing, or low-light concrete structures.
+For most active construction jobsites with moving equipment, trucks, loaders, forklifts, or traffic-adjacent work, **ANSI/ISEA 107 Type R Class 2 high-visibility clothing is the practical baseline**. Use **Class 3** when workers face roadwork, night work, high-speed traffic, flagging, poor weather, or complex mobile-equipment zones. For export or international projects, match the same exposure logic to **EN ISO 20471 Class 2 or Class 3**.
 
-This guide explains how to choose high-visibility clothing for construction workers by jobsite risk, OSHA exposure, ANSI/ISEA 107 type and class, EN ISO 20471 class, garment design, color, reflective layout, weather conditions, flame risk, washing durability, and bulk procurement needs.
+Do not buy high-vis workwear only by color or vest type. The RFQ should name the standard, type/class, garment format, color, reflective layout, size range, weather layer, FR or arc need, washing durability, and replacement stock.
 
-Use this article for high-visibility PPE selection. For the full construction PPE structure, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For the regulatory side across PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site issue checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). If you need a solution-page view of this category, use [high-visibility clothing for construction](/solutions/high-visibility-clothing-construction).
+Use this article for high-visibility PPE selection. For the full construction PPE structure, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For the regulatory side across PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site issue checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). For road crews, bridge crews, night shifts, and low-visibility work, connect this guide to [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects) and [night construction and low-visibility PPE](/solutions/ppe-for-night-construction-and-low-visibility-work).
+
+---
+
+## Construction Hi-Vis Quick Answer
+
+| Construction exposure | Recommended starting point | Buyer note |
+|---|---|---|
+| General building site with trucks, cranes, forklifts, telehandlers, or loaders | ANSI/ISEA 107 Type R Class 2 | Treat Class 2 as the normal baseline when workers share space with mobile equipment. |
+| Roadwork, paving, bridge work, utility work near traffic | Type R Class 2 or Class 3 | Increase to Class 3 when speed, traffic proximity, lighting, or role risk is higher. |
+| Flaggers, signal persons, night work, poor weather, high-speed zones | Type R Class 3 garment system | A basic vest may not be enough; specify sleeves, pants, jacket, rainwear, or certified garment combinations. |
+| Export projects or CE/EN procurement | EN ISO 20471 Class 2 or Class 3 | Ask for label photos, declaration/certificate reference, and washing-cycle durability. |
+| Welding, asphalt heat, flame, or arc exposure | FR or arc-rated hi-vis where required | Do not assume ordinary synthetic hi-vis is safe around sparks, heat, or electrical exposure. |
 
 ---
 

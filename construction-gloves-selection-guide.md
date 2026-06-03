@@ -15,6 +15,21 @@ That is why glove selection should start with hazard matching, not with price or
 
 ---
 
+## Quick Buyer Answer: Build The Glove Shortlist
+
+For a construction glove RFQ, separate the order by task instead of buying one "general work glove" for every crew.
+
+| Task group | Glove feature to specify | Bulk order check |
+|---|---|---|
+| Rebar, sheet metal, sharp edges | Cut-resistant liner, suitable EN 388 or ANSI cut level, secure cuff | Confirm size range, dexterity needs, and replacement rate by crew. |
+| Demolition, rigging, impact tools | TPR or impact back, abrasion resistance, reinforced palm | Check whether impact protection still allows safe trigger and tool control. |
+| Wet concrete, masonry, oily handling | Coating choice such as nitrile, latex, or chemical-resistant material | Do not mix wet-cement gloves with dry handling gloves in the same line item. |
+| General material handling | Grip, abrasion resistance, breathable shell, economical replacement | Use this as the baseline glove, then add task-specific gloves as modules. |
+
+For procurement planning, connect glove quantities to the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx).
+
+---
+
 ## Why Construction Glove Selection Is Harder Than It Looks
 
 Hand exposure on construction sites comes from many different directions at the same time:

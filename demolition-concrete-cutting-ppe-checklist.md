@@ -15,6 +15,21 @@ For the full buying and system design page, use [PPE for Demolition and Concrete
 
 ---
 
+## Buyer Quick Answer For Demolition And Concrete Cutting
+
+For RFQs, do not ask for a generic demolition PPE kit. Ask for a kit that names the task, dust control method, respirator type, eye and face protection, hearing protection, glove type, footwear rating, and replacement stock.
+
+| Exposure | Minimum buyer question | PPE shortlist direction |
+|---|---|---|
+| Silica dust | Is the task cutting, grinding, drilling, jackhammering, sweeping, or debris handling concrete or masonry? | Use wet methods or dust collection first, then match NIOSH-approved respirators and replacement filters to the exposure plan. |
+| Respirator fit | Are tight-fitting respirators required, and has fit testing been planned? | Do not bulk-buy one facepiece size. Include size range, fit-test schedule, cartridges or filters, storage bags, and training notes. |
+| Eye and face impact | Will workers face flying chips, dust clouds, slurry, sparks, or splash? | Pair sealed goggles or wraparound glasses with face shields where impact or splash exposure goes beyond basic eyewear. |
+| Hearing | Are saws, breakers, chippers, crushers, or loaders operating near the crew? | Specify earplugs or earmuffs by noise exposure, helmet compatibility, communication needs, and replacement stock. |
+
+This buyer shortcut links the checklist to the [respiratory protection guide](/blog/construction-respiratory-protection), [eye and face protection guide](/blog/construction-eye-face-protection), [hearing protection guide](/blog/construction-hearing-protection), and the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement).
+
+---
+
 ## Quick PPE Checklist Before Demolition Starts
 
 Use this short version before the crew enters the work area:

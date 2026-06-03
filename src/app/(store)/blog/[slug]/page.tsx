@@ -195,6 +195,7 @@ export default async function BlogDetailPage({ params }: Props) {
               <TableOfContents items={tocItems} />
             </aside>
             <article className="max-w-3xl mx-auto w-full">
+              <BlogLightCta links={commercialLinks} />
               <BlogContentRenderer content={content} />
               <BlogCommercialLinksSection links={commercialLinks} />
               <ToolRecommendationsSection
@@ -207,6 +208,7 @@ export default async function BlogDetailPage({ params }: Props) {
           </div>
         ) : (
           <article className="max-w-3xl mx-auto w-full">
+            <BlogLightCta links={commercialLinks} />
             <BlogContentRenderer content={content} />
             <BlogCommercialLinksSection links={commercialLinks} />
             <ToolRecommendationsSection
@@ -219,6 +221,34 @@ export default async function BlogDetailPage({ params }: Props) {
         )}
       </div>
     </div>
+  )
+}
+
+function BlogLightCta({ links }: { links: ReturnType<typeof getBlogCommercialLinks> }) {
+  if (!links) {
+    return null
+  }
+
+  return (
+    <section className="mb-10 rounded-xl border bg-background p-4 shadow-sm sm:p-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Buyer next step
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            Turn this guide into a sourced PPE shortlist with standards, quantities, and role-based kit notes.
+          </p>
+        </div>
+        <Link
+          href={links.cta.href}
+          className="inline-flex shrink-0 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          {links.cta.label}
+          <ChevronRight className="ml-1.5 h-4 w-4" />
+        </Link>
+      </div>
+    </section>
   )
 }
 

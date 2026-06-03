@@ -13,6 +13,12 @@ This article is the compliance companion to our [Complete PPE solution for const
 
 ---
 
+## Compliance Planning Downloads
+
+If you are turning OSHA requirements into a purchasing or site-issue workflow, use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf) for field checks and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) for proper-fit, hazard-assessment, standards, and replacement planning.
+
+---
+
 ## The Legal Framework: Where Construction PPE Requirements Come From
 
 OSHA's construction rules live in **29 CFR Part 1926**. For PPE, the center of gravity is **29 CFR 1926 Subpart E**, but construction employers usually need to read several related standards together:

@@ -1,17 +1,29 @@
-# Respiratory Protection for Construction Dust and Fumes
+# Construction Respiratory Protection: Silica Dust, N95, P100 and Half-Face Respirators
 
-**Meta Title:** Respiratory Protection for Construction Dust and Fumes | N95, P100, Half-Face Respirators  
-**Meta Description:** Learn how to choose respiratory protection for construction dust, silica, demolition, grinding, concrete cutting, welding fumes, and coatings. Covers OSHA rules, N95/P100, fit testing, cartridges, and bulk buying.  
+**Meta Title:** Construction Respiratory Protection | Silica, N95, P100, Half-Face  
+**Meta Description:** Choose construction respiratory protection for silica dust, concrete cutting, demolition, grinding, welding fumes, and coatings. Compare N95, P100, half-face respirators, cartridges, fit testing, and bulk buying.  
 **Target URL:** /blog/construction-respiratory-protection  
 **Target Keywords:** respiratory protection construction, construction dust respirator, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respirator for concrete dust, construction respiratory PPE
 
 ---
 
-Construction dust is not one hazard. It can be respirable crystalline silica from concrete and masonry, wood dust from cutting, gypsum dust from drywall, nuisance dust from cleanup, metal fumes from welding, vapors from coatings, asbestos in renovation work, or mixed dust from demolition. The wrong respirator may look protective and still fail the task.
+Construction respiratory protection starts with the airborne hazard, not the mask name. **N95 respirators may fit some lower-exposure dust tasks**, while **P100 filters or reusable half-face respirators are often better for heavier or recurring silica tasks**. If respirators are required by OSHA or the employer, tight-fitting respirators usually need medical evaluation, fit testing, training, cleaning, storage, and replacement planning.
 
-This guide helps contractors, safety managers, supervisors, and PPE buyers choose respiratory protection for construction dust and fumes. It covers when disposable filtering facepiece respirators are enough, when reusable half-face or full-face respirators make more sense, when cartridges matter, what OSHA requires, and how to buy respiratory PPE in bulk without creating fit, compliance, or replacement problems.
+Silica dust, demolition dust, wood dust, gypsum dust, welding fumes, coating vapors, asbestos, lead, and mixed renovation dust can require different controls. The wrong respirator may look protective and still fail the task.
 
-Use this article for category-level respiratory PPE selection. For the full construction PPE structure, use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For compliance across all PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site execution, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement).
+Use this article for category-level respiratory PPE selection. For the full construction PPE structure, use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For compliance across all PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site execution, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). For silica-heavy demolition, concrete cutting, grinding, and dusty cleanup, pair this guide with the [demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist) and [PPE for demolition and concrete cutting work](/solutions/ppe-for-demolition-and-concrete-cutting-work).
+
+---
+
+## Quick Respirator Selection Table
+
+| Task or hazard | Likely starting point | When to escalate | RFQ / compliance note |
+|---|---|---|---|
+| General non-oil construction dust | NIOSH-approved N95 or equivalent level where exposure supports it | Longer duration, poor seal, heavy dust, or exposure data showing more protection is needed | If required, include fit testing, facial-hair policy, training, and spare stock. |
+| Concrete cutting, drilling, grinding, masonry, silica cleanup | Review OSHA silica Table 1 or exposure assessment first | Use reusable half-face respirator with P100 filters where heavier or recurring silica exposure requires stronger protection | Do not buy respirators before defining water/dust collection controls and filter replacement. |
+| Demolition or renovation with unknown dust | Identify contaminants before selecting PPE | Asbestos, lead, mold, or mixed hazardous dust may require a specialized program | Never treat unknown demolition dust as ordinary nuisance dust. |
+| Welding fumes, coatings, solvents, adhesives | Hazard-specific filter or cartridge selection | P100 alone does not protect against organic vapors unless paired with the correct cartridge | Ask suppliers to specify cartridge type, change-out logic, and compatibility with eye/face PPE. |
+| Repeated high-dust tasks across crews | Reusable half-face or full-face program | PAPR may be needed for long-duration work, heat, comfort, or special fit needs | Plan facepiece sizes, cleaning, storage, replacement parts, and worker training. |
 
 ---
 

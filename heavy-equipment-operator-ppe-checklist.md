@@ -15,6 +15,21 @@ For the full solution-page version, use [PPE for Heavy Equipment Operators on Co
 
 ---
 
+## Operator PPE Kit Shortcut
+
+For procurement, build operator PPE around the moments when the worker leaves the protected cab or moves into a higher-exposure zone.
+
+| Operator situation | PPE kit notes | Procurement check |
+|---|---|---|
+| Enclosed cab, normal operation | Seat belt and cab controls are primary; keep glasses, earplugs, gloves, hi-vis, and helmet available before exit. | Store PPE in a clean cab kit so it is reachable before walk-around checks. |
+| Walk-around inspection and refueling | Hi-vis, safety footwear, gloves, eye protection, and head protection usually move from optional to required. | Specify grip gloves, anti-slip footwear, and replacement eyewear for field service tasks. |
+| Roadwork, bridge work, and truck routes | Visibility and communication control the kit. | Connect the order to [road and bridge PPE](/solutions/ppe-for-road-and-bridge-construction-projects) and specify Class 2 or Class 3 hi-vis by exposure. |
+| Demolition, breaking, crushing, or dusty open-cab work | Dust, noise, eye impact, and vibration increase quickly. | Add respirator review, sealed eyewear, hearing protection, and impact or cut gloves. |
+
+Use this role kit with the [complete construction PPE solution](/solutions/construction-site-ppe-solution) when you are turning operator requirements into a bulk quote.
+
+---
+
 ## Quick Heavy Equipment Operator PPE Checklist
 
 Use this short checklist before operators start work:

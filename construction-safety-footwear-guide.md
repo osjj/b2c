@@ -19,6 +19,21 @@ Use this page together with the [complete construction PPE solution](/solutions/
 
 ---
 
+## Quick Buyer Answer: Footwear Spec And Size Planning
+
+For a construction footwear RFQ, ask for a certified boot or shoe by hazard and workforce size curve, not just a "steel toe boot."
+
+| Buyer decision | What to specify | Why it matters |
+|---|---|---|
+| US compliance | ASTM F2413 version, toe impact/compression, puncture resistance, EH or SD where needed | Keeps the quote tied to a testable footwear label instead of a generic description. |
+| Export or international projects | EN ISO 20345 rating such as S1, S1P, S3, S5, plus slip and penetration details | Helps buyers compare CE/EN footwear without mixing incompatible ratings. |
+| Proper fit | Men's and women's size curve, width needs, socks, climate, and return/replenishment plan | OSHA's 2025 proper-fit rule makes narrow size planning a compliance risk. |
+| Bulk ordering | Baseline quantity, spare sizes, replacement stock, wet-weather or electrical add-ons | Prevents one large footwear order from becoming a long-running site fit problem. |
+
+Use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) before placing a bulk footwear order.
+
+---
+
 ## Foot Hazards on a Construction Site
 
 Before selecting any safety footwear, a hazard assessment is the required first step under both OSHA (29 CFR 1926.95/1926.96) and EU Regulation 2016/425. Construction sites present a wider range of foot hazards than almost any other working environment.
