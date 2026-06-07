@@ -283,6 +283,52 @@ export default async function SolutionsPage({
           ============================================ */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-6 lg:px-8">
+          <section className="mb-8 overflow-hidden rounded-2xl border border-primary/15 bg-card shadow-sm">
+            <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_360px]">
+              <div className="p-5 sm:p-7 lg:p-8">
+                <div className="mb-3 flex flex-wrap items-center gap-2">
+                  <Badge className="bg-accent text-accent-foreground">Priority Hub</Badge>
+                  <Badge variant="secondary">Construction</Badge>
+                </div>
+                <h2 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                  Construction PPE hub
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                  Start here for site-wide construction hazards, PPE category paths, downloadable buying files, and a
+                  quote-ready procurement flow.
+                </p>
+                <div className="mt-5 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2 lg:max-w-2xl">
+                  {['Hazard map', 'Checklist links', 'Product paths', 'Quote source'].map((item) => (
+                    <div key={item} className="flex min-w-0 items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
+                      <span className="min-w-0">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button asChild className="h-11 px-5">
+                    <Link href="/solutions/construction-site-ppe-solution">
+                      Open hub
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild className="h-11 px-5">
+                    <Link href="/blog/construction-ppe-checklist">Checklist</Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="relative hidden min-h-[260px] bg-secondary lg:block">
+                <Image
+                  src="https://shop.laifappe.com/products/1770285316377-hz4oib.webp"
+                  alt="Construction PPE hub equipment set"
+                  fill
+                  sizes="360px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </section>
+
           {/* Section header */}
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
             <div>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ChevronRight, Home } from 'lucide-react'
+import { ArrowRight, CheckCircle2, ChevronRight, Home } from 'lucide-react'
 import { getPublishedBlogPosts } from '@/actions/blog'
 import { BlogPostCard } from '@/components/store/blog/blog-post-card'
 import { formatDate } from '@/lib/utils'
@@ -65,6 +65,57 @@ export default async function BlogIndexPage() {
           <span className="h-px w-12 bg-border" />
         </div>
       </header>
+
+      <section className="container mx-auto px-4 lg:px-6 mb-12">
+        <div className="overflow-hidden rounded-2xl border bg-background shadow-sm">
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="p-5 sm:p-7 lg:p-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
+                Priority hub
+              </p>
+              <h2 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
+                Construction PPE hub
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                Use the hub to move from research articles to hazard mapping, product categories, downloads, and quote
+                planning for construction PPE.
+              </p>
+              <div className="mt-5 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2 lg:max-w-2xl">
+                {['Solution overview', 'Checklist path', 'Product links', 'Quote-ready'].map((item) => (
+                  <span key={item} className="flex min-w-0 items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
+                    <span className="min-w-0">{item}</span>
+                  </span>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/solutions/construction-site-ppe-solution"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  Open hub
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/blog/construction-ppe-checklist"
+                  className="inline-flex h-11 items-center justify-center rounded-md border px-5 text-sm font-semibold transition-colors hover:bg-muted"
+                >
+                  Checklist
+                </Link>
+              </div>
+            </div>
+            <div className="relative hidden min-h-[250px] bg-muted lg:block">
+              <Image
+                src="https://shop.laifappe.com/products/1770285316377-hz4oib.webp"
+                alt="Construction PPE hub guide"
+                fill
+                sizes="340px"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {posts.length === 0 ? (
         <section className="container mx-auto px-4 lg:px-6">

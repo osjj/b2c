@@ -324,24 +324,28 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
     }
     case 'cta': {
       const data = section.data as SectionCtaData
+      const ctaTitle = typeof data?.title === 'string' ? data.title.trim() : ''
+      const sectionTitle = typeof section.title === 'string' ? section.title.trim() : ''
       return common(
         <div className="rounded-2xl border bg-foreground text-background px-6 py-6">
-          <h3 className="text-lg font-semibold">
-            {data?.title ? renderRichText(data.title, `${section.key}-cta-title`) : null}
-          </h3>
+          {ctaTitle && ctaTitle !== sectionTitle && (
+            <h3 className="text-lg font-semibold">
+              {renderRichText(ctaTitle, `${section.key}-cta-title`)}
+            </h3>
+          )}
           {data?.text && (
             <p className="mt-2 text-sm text-background/80">
               {renderRichText(data.text, `${section.key}-cta-text`)}
             </p>
           )}
-          <div className="mt-4 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap items-stretch gap-3">
             {data?.primaryLabel && data?.primaryHref && (
-              <Button asChild>
+              <Button asChild className="h-auto min-h-10 whitespace-normal text-center">
                 <Link href={normalizePublicCtaHref(data.primaryHref)}>{data.primaryLabel}</Link>
               </Button>
             )}
             {data?.secondaryLabel && data?.secondaryHref && (
-              <Button variant="secondary" asChild>
+              <Button variant="secondary" asChild className="h-auto min-h-10 whitespace-normal text-center">
                 <Link href={normalizePublicCtaHref(data.secondaryHref)}>{data.secondaryLabel}</Link>
               </Button>
             )}

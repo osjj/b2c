@@ -455,6 +455,21 @@ The professional point is simple: a dirty, scratched, or unstable protector may 
 
 ---
 
+## Product and Category Path for Eye and Face PPE
+
+For product browsing, start with [Eye Protection](/categories/eye-protection), then split the buying path by task: [Safety Glasses](/categories/eye-protection/safety-glasses) for side-protected routine impact work, [Safety Goggles](/categories/eye-protection/safety-goggles) for dust or splash entry control, and [Face Shields](/categories/head-protection/face-shields) when broader face coverage is needed over primary eye protection.
+
+Common shortlist paths:
+
+- [EN166F anti-fog safety glasses](/products/en166f-anti-fog-anti-scratch-dustproof-safety-glasses) for clear-lens impact protection and side coverage.
+- [Anti-fog transparent safety goggles](/products/anti-fog-anti-scratch-transparent-safety-goggles) for sealed eye coverage in dust or splash-prone work.
+- [Clear PC full face shield](/products/clear-pc-full-face-shield-anti-impact-anti-splash) for face-level debris or splash tasks when worn with primary eye protection.
+- [Flip-up welding helmet](/products/direct-adhesive-available-welding-helmet-flip-up-design) for welding and cutting workflows that need filter-lens protection.
+
+For the full construction kit context, use [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution). For high-dust cutting, grinding, and demolition tasks, use [PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work). To turn this into a buying request, use [Request eye and face PPE options](/quote?source=blog-construction-eye-face-protection).
+
+---
+
 ## Which Related Pages To Use Next
 
 Most site teams do not stop at eye protection alone. The next useful page depends on the next decision:

@@ -313,6 +313,8 @@ When buying hearing protection in bulk, plan for:
 
 For a broader purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement).
 
+For the product path, start with the [hearing protection category](/categories/head-protection/hearing-protection), then shortlist by task: [3M 1100 noise reduction earplugs](/products/3m-1100-earplugs-noise-reduction-hearing-protection) for disposable plug stock, [BDS flanged ear plugs](/products/bds-flanged-ear-plugs-orange-25-db-nrr-ansi-certified-slow) for reusable plug programs, and [adjustable noise reduction earmuffs](/products/red-adjustable-foldable-noise-reduction-earmuffs) for visible, easy-to-supervise hearing protection.
+
 ---
 
 ## Common Mistakes In Construction Hearing Protection
@@ -402,7 +404,7 @@ Start with the [Complete PPE solution for construction sites](/solutions/constru
 
 [View the construction PPE solution page](/solutions/construction-site-ppe-solution)  
 [Read the OSHA construction PPE compliance guide](/blog/osha-ppe-requirements-construction)  
-[Request a bulk PPE quote](/contact)
+[Request a hearing PPE quote](/quote?source=blog-construction-hearing-protection)
 
 ---
 

@@ -588,6 +588,7 @@ function IndustriesSection({ data }: { data: HomeSolutionsData | null }) {
             </Link>
           }
         />
+        <ConstructionHubSpotlight />
         {featuredSolution ? (
           <div className={styles.industryShowcase}>
             <Link className={styles.industryFeaturedCard} href={`/solutions/${featuredSolution.slug}`}>
@@ -678,6 +679,47 @@ function IndustriesSection({ data }: { data: HomeSolutionsData | null }) {
         )}
       </div>
     </section>
+  )
+}
+
+function ConstructionHubSpotlight() {
+  const highlights = ["Site-wide PPE map", "Task checklists", "Product paths", "Quote planning"]
+
+  return (
+    <Link
+      className={styles.constructionHubSpotlight}
+      href="/solutions/construction-site-ppe-solution"
+      aria-label="Open the Construction PPE hub"
+    >
+      <span className={styles.constructionHubMedia}>
+        <Image
+          src="https://shop.laifappe.com/products/1770285316377-hz4oib.webp"
+          alt="Construction PPE kit with helmet, eyewear, gloves, footwear, and high visibility protection"
+          fill
+          sizes="(max-width: 1100px) 100vw, 34vw"
+        />
+      </span>
+      <span className={styles.constructionHubBody}>
+        <small>{"\u2014"} Priority hub</small>
+        <span className={styles.constructionHubTitle}>Construction PPE hub</span>
+        <span className={styles.constructionHubText}>
+          A single entry for construction hazards, equipment categories, downloadable planning files, and quote-ready
+          procurement paths.
+        </span>
+        <span className={styles.constructionHubChecks}>
+          {highlights.map((item) => (
+            <span key={item}>
+              <CheckCircle2 aria-hidden="true" />
+              {item}
+            </span>
+          ))}
+        </span>
+        <span className={styles.constructionHubAction}>
+          Open hub
+          <MoveRight aria-hidden="true" />
+        </span>
+      </span>
+    </Link>
   )
 }
 
