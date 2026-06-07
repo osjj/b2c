@@ -12,6 +12,8 @@ export type QuoteEmailHistoryItem = {
   name: string
   companyName: string
   source: string
+  entryPage: string
+  referrer: string
   message: string
   textBody: string
   htmlBody: string
@@ -99,6 +101,8 @@ function normalizeQuoteEmailHistory(value: unknown): QuoteEmailHistoryItem[] {
       name: String(item.name || ''),
       companyName: String(item.companyName || ''),
       source: String(item.source || ''),
+      entryPage: String(item.entryPage || ''),
+      referrer: String(item.referrer || ''),
       message: String(item.message || ''),
       textBody: String(item.textBody || ''),
       htmlBody: String(item.htmlBody || ''),

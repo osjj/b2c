@@ -17,6 +17,8 @@ const quoteEmailInputSchema = z.object({
   companyName: z.string().trim().max(200, 'Company name is too long.').optional(),
   message: z.string().trim().min(1, 'Message is required.').max(6000, 'Message is too long.'),
   source: z.string().trim().max(80, 'Source is too long.').optional(),
+  entryPage: z.string().trim().max(1000, 'Entry page is too long.').optional(),
+  referrer: z.string().trim().max(1000, 'Referrer is too long.').optional(),
 })
 
 const quoteEmailOutputSchema = z.object({
@@ -81,8 +83,13 @@ export async function POST(request: NextRequest) {
 
   try {
     const subject = `New quote request from ${parsed.data.email}`
-    const textBody = buildQuoteText(parsed.data)
-    const htmlBody = buildQuoteHtml(parsed.data)
+    const quoteInput = {
+      ...parsed.data,
+      entryPage: parsed.data.entryPage || request.headers.get('referer') || '',
+      referrer: parsed.data.referrer || '',
+    }
+    const textBody = buildQuoteText(quoteInput)
+    const htmlBody = buildQuoteHtml(quoteInput)
 
     const response = await fetch('https://api.smtp2go.com/v3/email/send', {
       method: 'POST',
@@ -134,8 +141,10 @@ export async function POST(request: NextRequest) {
         phone: formatPhone(parsed.data),
         name: parsed.data.name || '',
         companyName: parsed.data.companyName || '',
-        source: parsed.data.source || '',
-        message: parsed.data.message,
+        source: quoteInput.source || '',
+        entryPage: quoteInput.entryPage || '',
+        referrer: quoteInput.referrer || '',
+        message: quoteInput.message,
         textBody,
         htmlBody,
         requestId,
@@ -205,6 +214,8 @@ function buildQuoteText(input: QuoteEmailInput) {
     `Name: ${input.name || '-'}`,
     `Company Name: ${input.companyName || '-'}`,
     `Source: ${input.source || '-'}`,
+    `Entry Page: ${input.entryPage || '-'}`,
+    `Referrer: ${input.referrer || '-'}`,
     '',
     'Message:',
     input.message,
@@ -221,6 +232,8 @@ function buildQuoteHtml(input: QuoteEmailInput) {
         ${buildHtmlRow('Name', input.name || '-')}
         ${buildHtmlRow('Company Name', input.companyName || '-')}
         ${buildHtmlRow('Source', input.source || '-')}
+        ${buildHtmlRow('Entry Page', input.entryPage || '-')}
+        ${buildHtmlRow('Referrer', input.referrer || '-')}
       </table>
       <h3 style="margin: 24px 0 8px;">Message</h3>
       <p style="white-space: pre-wrap; margin: 0;">${escapeHtml(input.message)}</p>

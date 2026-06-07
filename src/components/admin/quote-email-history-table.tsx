@@ -129,6 +129,8 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
                   <Detail label="Name" value={selectedItem.name || '-'} />
                   <Detail label="Company" value={selectedItem.companyName || '-'} />
                   <Detail label="Source" value={selectedItem.source || '-'} />
+                  <Detail label="Entry Page" value={selectedItem.entryPage || '-'} />
+                  <Detail label="Referrer" value={selectedItem.referrer || '-'} />
                   <Detail label="Request ID" value={selectedItem.requestId || '-'} />
                 </div>
 

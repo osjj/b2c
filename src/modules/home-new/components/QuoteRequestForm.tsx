@@ -131,6 +131,13 @@ const initialValues: QuoteRequestFormValues = {
   message: "",
 }
 
+function getQuoteTrackingContext() {
+  return {
+    entryPage: window.location.href,
+    referrer: document.referrer,
+  }
+}
+
 function CountryCodeCombobox({
   id,
   onChange,
@@ -336,6 +343,7 @@ export function QuoteRequestForm({
         body: JSON.stringify({
           ...values,
           email: trimmedEmail,
+          ...getQuoteTrackingContext(),
           message: trimmedMessage,
           source,
         }),

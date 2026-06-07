@@ -69,6 +69,13 @@ function isQuoteEmailResponse(value: unknown): value is QuoteEmailResponse {
   return typeof payload.success === 'boolean'
 }
 
+function getQuoteTrackingContext() {
+  return {
+    entryPage: window.location.href,
+    referrer: document.referrer,
+  }
+}
+
 function buildQuoteListEmailMessage({
   expectedPrice,
   formData,
@@ -144,6 +151,7 @@ async function sendQuoteListEmail({
     body: JSON.stringify({
       companyName: formData.companyName,
       email: formData.email,
+      ...getQuoteTrackingContext(),
       message: buildQuoteListEmailMessage({
         expectedPrice,
         formData,

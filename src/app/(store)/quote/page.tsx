@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 export const metadata: Metadata = {
   title: 'Request a PPE Quote | Laifappe',
   description:
-    'Send Laifappe your PPE categories, quantities, standards, target market, and delivery country for a construction PPE quote.',
+    'Tell Laifappe what PPE you need and get a construction PPE quote within 24 hours.',
 }
 
 type QuotePageProps = {
@@ -25,35 +25,20 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
 
   return (
     <main className="min-h-screen bg-ppe-bg-page">
-      <section className="border-b bg-background">
-        <div className="container mx-auto px-6 py-14 lg:px-8 lg:py-18">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              Construction PPE RFQ
-            </p>
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-              Request a PPE quote with the details buyers actually need
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Share categories, quantities, standards, size range, target market, packaging needs, and delivery country. The source field is passed into the quote email history for follow-up tracking.
-            </p>
-          </div>
-        </div>
-      </section>
+      <h1 className="sr-only">Request a PPE quote</h1>
 
-      <section className="container mx-auto grid gap-8 px-6 py-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(380px,1.1fr)] lg:px-8 lg:py-14">
-        <div className="space-y-5">
+      <section className="container mx-auto grid gap-8 px-6 py-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(420px,1.18fr)] lg:px-8 lg:py-14">
+        <div className="order-2 space-y-5 lg:order-1">
           <div className="rounded-xl border bg-background p-6 shadow-sm">
             <div className="flex items-center gap-2 text-sm font-semibold text-primary">
               <FileText className="h-4 w-4" />
-              RFQ fields to include
+              Optional details that help us quote faster
             </div>
             <ul className="mt-5 space-y-3 text-sm leading-relaxed text-muted-foreground">
               {[
-                'Worker roles or job phases: general labor, road crew, demolition, scaffolding, equipment operators.',
-                'PPE categories and standards: ANSI, ASTM, NIOSH, EN, CE, or buyer-specific requirements.',
-                'Estimated quantities, replacement stock, and size curve for fit-critical items.',
-                'Delivery country, packaging format, sample needs, and requested quotation deadline.',
+                'Product type or jobsite use: high-vis clothing, respirators, gloves, helmets, footwear, or mixed PPE kits.',
+                'Estimated quantity, size range, standards, or delivery country if you already know them.',
+                'You can start with a short message. We will ask for missing details during follow-up.',
               ].map((item) => (
                 <li key={item} className="flex gap-3">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -81,18 +66,8 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
           </div>
         </div>
 
-        <div className="rounded-xl border bg-background p-5 shadow-sm">
-          <QuoteRequestForm
-            eyebrow="Request quote"
-            source={source}
-            title={
-              <>
-                Send your PPE list.
-                <br />
-                We respond within 24 hours.
-              </>
-            }
-          />
+        <div className="order-1 lg:order-2">
+          <QuoteRequestForm source={source} />
         </div>
       </section>
     </main>
