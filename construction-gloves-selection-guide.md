@@ -26,7 +26,7 @@ For a construction glove RFQ, separate the order by task instead of buying one "
 | Wet concrete, masonry, oily handling | Coating choice such as nitrile, latex, or chemical-resistant material | Do not mix wet-cement gloves with dry handling gloves in the same line item. |
 | General material handling | Grip, abrasion resistance, breathable shell, economical replacement | Use this as the baseline glove, then add task-specific gloves as modules. |
 
-For procurement planning, connect glove quantities to the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx).
+For procurement planning, connect glove quantities to the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-gloves-selection-guide).
 
 ---
 

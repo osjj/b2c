@@ -8,6 +8,8 @@ const TITLE = 'PPE Quantity Calculator — Monthly Consumption & Budget Planner'
 const DESCRIPTION =
   'Free PPE quantity calculator. Estimate monthly and annual consumption of gloves, hard hats, safety boots, respirators, hi-vis and more — by industry, headcount, shift pattern and exposure level. Export a budget-ready CSV.'
 
+const QUOTE_HREF = '/quote?source=tool-ppe-calculator'
+
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
@@ -283,11 +285,12 @@ export default function PpeCalculatorPage() {
                 Next step: get a tailored quote
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-5">
-                Once you have a consumption estimate, the{' '}
+                Once you have a consumption estimate, send it to our sourcing team for a
+                quote, or use the{' '}
                 <Link href="/tools/ai-quote" className="text-primary font-semibold hover:underline">
                   AI Quote Generator
                 </Link>{' '}
-                matches it to specific SKUs from our catalog with real pricing. Or learn
+                to match it to specific SKUs from our catalog with real pricing. Or learn
                 the standards behind the items in our{' '}
                 <Link href="/blog/construction-safety-footwear-guide" className="text-primary font-semibold hover:underline">
                   construction safety footwear guide
@@ -296,8 +299,14 @@ export default function PpeCalculatorPage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="/tools/ai-quote"
+                  href={QUOTE_HREF}
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
+                >
+                  Request quote
+                </Link>
+                <Link
+                  href="/tools/ai-quote"
+                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
                 >
                   Open AI Quote
                 </Link>

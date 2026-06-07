@@ -15,7 +15,7 @@ This article is the compliance companion to our [Complete PPE solution for const
 
 ## Compliance Planning Downloads
 
-If you are turning OSHA requirements into a purchasing or site-issue workflow, use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf) for field checks and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) for proper-fit, hazard-assessment, standards, and replacement planning.
+If you are turning OSHA requirements into a purchasing or site-issue workflow, use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-osha-ppe-requirements-construction) for field checks and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-osha-ppe-requirements-construction) for proper-fit, hazard-assessment, standards, and replacement planning.
 
 ---
 

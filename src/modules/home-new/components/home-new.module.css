@@ -478,9 +478,16 @@
 }
 
 .heroSlide {
+  height: 100%;
+  inset: 0;
   opacity: 0;
+  object-fit: cover;
   object-position: center;
-  transition: opacity 1.3s ease, transform 8s ease;
+  position: absolute;
+  transition:
+    opacity 1.3s ease,
+    transform 8s ease;
+  width: 100%;
 }
 
 .heroSlideActive {
@@ -1432,19 +1439,25 @@
 .quoteSubmit,
 .quoteRequestFormCompact .quoteSubmit {
   align-items: center;
-  background: var(--home-accent);
+  background: var(--home-accent, #d95820);
   border: 0;
+  box-shadow: 0 14px 32px rgba(217, 88, 32, 0.24);
   color: #fff;
   cursor: pointer;
-  display: flex;
-  font-family: var(--fs);
+  display: inline-flex;
+  font-family: var(--fs, system-ui, sans-serif);
   font-size: 19px;
   font-weight: 700;
   gap: 6px;
   height: 58px;
   justify-content: center;
   margin: 22px 0 0;
+  min-width: 210px;
   padding: 0 28px;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
   width: 100%;
 }
 
@@ -1462,7 +1475,19 @@
 
 .quoteSubmit:hover:not(:disabled) {
   background: #c84918;
+  box-shadow: 0 18px 38px rgba(200, 73, 24, 0.28);
   transform: translateY(-1px);
+}
+
+.quoteSubmit:focus-visible {
+  outline: 3px solid rgba(217, 88, 32, 0.32);
+  outline-offset: 3px;
+}
+
+.quoteSubmit:disabled {
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.72;
 }
 
 .quoteRequestForm .quoteResponseNote {
@@ -1640,9 +1665,22 @@
 }
 
 .quoteDrawerPanel {
+  --home-accent: #d95820;
+  --home-bg: #f2ede4;
+  --home-ink: #0b1929;
+  --home-ink2: #152238;
+  --home-line: rgba(11, 25, 41, 0.1);
+  --home-line2: rgba(11, 25, 41, 0.18);
+  --home-muted: #64748b;
+  --home-paper: #fff;
+  --fd: var(--home-new-fd, "Instrument Serif", serif);
+  --fm: var(--home-new-fm, "JetBrains Mono", monospace);
+  --fs: var(--home-new-fs, "Inter Tight", system-ui, sans-serif);
   background:
     radial-gradient(circle at 76% 92%, rgba(217, 88, 32, 0.2), transparent 18%),
     linear-gradient(135deg, rgba(236, 238, 238, 0.96), rgba(213, 214, 213, 0.96));
+  color: var(--home-ink);
+  font-family: var(--fs);
   max-width: 720px;
   width: min(96vw, 720px);
 }

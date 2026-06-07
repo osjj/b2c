@@ -47,7 +47,9 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
               Build PPE kit
             </Link>
             <Link
-              href="/downloads/construction-ppe-checklist.pdf"
+              data-download-asset="construction-ppe-checklist"
+              data-download-source="blog-commercial-links"
+              href="/downloads/construction-ppe-checklist.pdf?source=blog-commercial-links"
               className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
             >
               Download checklist

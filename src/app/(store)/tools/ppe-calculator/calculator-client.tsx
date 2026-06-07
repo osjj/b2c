@@ -30,6 +30,8 @@ import {
   type Shift,
 } from './data'
 
+const CSV_DOWNLOAD_SOURCE = 'tool-ppe-calculator-csv-export'
+
 interface Row {
   key: string
   name: string
@@ -121,6 +123,8 @@ export function PpeCalculator() {
     const a = document.createElement('a')
     a.href = url
     a.download = `ppe-plan-${role}-${headcount}-workers.csv`
+    a.dataset.downloadSource = CSV_DOWNLOAD_SOURCE
+    a.dataset.downloadAsset = 'ppe-plan-csv'
     a.click()
     URL.revokeObjectURL(url)
   }
@@ -206,7 +210,13 @@ export function PpeCalculator() {
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <Button onClick={handleExportCsv} variant="outline" size="sm">
+          <Button
+            data-download-asset="ppe-plan-csv"
+            data-download-source={CSV_DOWNLOAD_SOURCE}
+            onClick={handleExportCsv}
+            variant="outline"
+            size="sm"
+          >
             <Download className="mr-2 h-4 w-4" />
             Export CSV
           </Button>

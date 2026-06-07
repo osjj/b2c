@@ -17,7 +17,7 @@ This article is the operational companion to our [Complete PPE solution for cons
 
 ## Download The Field Checklist
 
-Use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf) for toolbox talks, site induction, and supervisor pre-start checks. If the checklist needs to become a purchase order, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template.pdf) and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) to add quantities, standards, sizes, and replacement stock.
+Use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-construction-ppe-checklist) for toolbox talks, site induction, and supervisor pre-start checks. If the checklist needs to become a purchase order, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template.pdf?source=blog-construction-ppe-checklist) and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-ppe-checklist) to add quantities, standards, sizes, and replacement stock.
 
 ---
 

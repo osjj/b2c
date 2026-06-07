@@ -10,6 +10,8 @@ const DESCRIPTION =
   'Free safety boot size converter and fitting guide. Convert between US men\'s, US women\'s, UK, EU, China and Japan sizing, plus ASTM and EN width fittings. Includes how-to-measure instructions.'
 const SEO_TITLE = 'Safety Boot Size Conversion Chart - US, EU, UK, CN & JP Guide'
 
+const QUOTE_HREF = '/quote?source=tool-size-guide'
+
 export const metadata: Metadata = {
   title: SEO_TITLE,
   description: DESCRIPTION,
@@ -373,7 +375,8 @@ export default function SizeGuidePage() {
                 Ready to choose your boots?
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-5">
-                Once you know your size, learn what the certification labels mean with the{' '}
+                Once you know your size, send the footwear range to our sourcing team, or
+                learn what the certification labels mean with the{' '}
                 <Link href="/tools/compliance-checker" className="text-primary font-semibold hover:underline">
                   Compliance Label Decoder
                 </Link>
@@ -385,8 +388,14 @@ export default function SizeGuidePage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="/categories/foot-protection"
+                  href={QUOTE_HREF}
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
+                >
+                  Request footwear quote
+                </Link>
+                <Link
+                  href="/categories/foot-protection"
+                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
                 >
                   Shop safety boots
                 </Link>

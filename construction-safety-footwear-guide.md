@@ -30,7 +30,7 @@ For a construction footwear RFQ, ask for a certified boot or shoe by hazard and 
 | Proper fit | Men's and women's size curve, width needs, socks, climate, and return/replenishment plan | OSHA's 2025 proper-fit rule makes narrow size planning a compliance risk. |
 | Bulk ordering | Baseline quantity, spare sizes, replacement stock, wet-weather or electrical add-ons | Prevents one large footwear order from becoming a long-running site fit problem. |
 
-Use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx) before placing a bulk footwear order.
+Use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-safety-footwear-guide) before placing a bulk footwear order.
 
 ---
 
