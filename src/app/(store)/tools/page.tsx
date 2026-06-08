@@ -19,7 +19,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides-section'
 import { getSiteUrl } from '@/lib/site-url'
+import { TOOLS_HUB_RELATED_GUIDES } from '@/lib/tool-related-guides'
 
 const HUB_TITLE = 'Free PPE Tools — Quote Generator, Quantity Calculator, Size & Label Decoder'
 const HUB_DESCRIPTION =
@@ -455,6 +457,12 @@ export default function ToolsIndexPage() {
           </div>
 
           {/* ── SUGGEST A TOOL ────────────────────────── */}
+          <ToolRelatedGuidesSection
+            title="High-impression guides connected to these tools"
+            description="These guides already receive search visibility. Use them with the tools when moving from research into quantity planning, standards checks, sizing, and quote preparation."
+            guides={TOOLS_HUB_RELATED_GUIDES}
+          />
+
           <Card className="overflow-hidden border-border/60 bg-white/95 shadow-[0_32px_90px_-50px_rgba(15,23,42,0.22)]">
             <CardContent className="flex flex-col items-center py-12 text-center sm:py-16">
               <div className="flex h-14 w-14 items-center justify-center rounded-[1.5rem] bg-accent/15 border border-accent/25">

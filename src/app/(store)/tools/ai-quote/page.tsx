@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { ExportButtons } from '@/components/tools/ai-quote/ExportButtons'
 import { QuoteTable } from '@/components/tools/ai-quote/QuoteTable'
+import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides-section'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -23,6 +24,7 @@ import {
 } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { calculateQuoteTotal } from '@/lib/ai-quote'
+import { TOOL_RELATED_GUIDES } from '@/lib/tool-related-guides'
 import type { AiQuoteResponse, QuoteItem } from '@/types/ai-quote'
 
 const EXAMPLES = [
@@ -411,6 +413,14 @@ export default function AiQuotePage() {
             )}
           </CardContent>
         </Card>
+      </section>
+
+      <section className="container mx-auto px-6 pb-24 lg:px-8">
+        <ToolRelatedGuidesSection
+          title="Guides to prepare a better quote request"
+          description="Use these high-intent buying guides when you need to turn the generated shortlist into quantities, standards, kit structure, and supplier questions."
+          guides={TOOL_RELATED_GUIDES['ai-quote']}
+        />
       </section>
     </div>
   )

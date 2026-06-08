@@ -88,18 +88,24 @@ const PROCUREMENT_DOWNLOADS = [
     href: '/downloads/construction-ppe-checklist.pdf',
     label: 'Checklist PDF',
     description: 'Field-ready construction PPE checklist for site supervisors.',
+    action: 'Download',
+    isDownload: true,
   },
   {
     id: 'construction-ppe-rfq-template',
-    href: '/downloads/construction-ppe-rfq-template.pdf',
+    href: '/downloads/construction-ppe-rfq-template',
     label: 'RFQ template',
-    description: 'Quote request template for quantities, standards, and delivery details.',
+    description: 'Open the template page before downloading or sending a quote request.',
+    action: 'Open template',
+    isDownload: false,
   },
   {
     id: 'ppe-size-standards-planning-sheet',
     href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
     label: 'Size sheet',
     description: 'Spreadsheet for sizing, standards, and replacement planning.',
+    action: 'Download',
+    isDownload: true,
   },
 ]
 
@@ -440,9 +446,9 @@ function SolutionProcurementDownloads({ source }: { source: string }) {
           <Link
             key={asset.id}
             href={withSource(asset.href, source)}
-            download
-            data-download-asset={asset.id}
-            data-download-source={source}
+            download={asset.isDownload ? true : undefined}
+            data-download-asset={asset.isDownload ? asset.id : undefined}
+            data-download-source={asset.isDownload ? source : undefined}
             className="group flex min-w-0 flex-col rounded-xl border bg-background p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
           >
             <span className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -451,7 +457,7 @@ function SolutionProcurementDownloads({ source }: { source: string }) {
             <span className="text-sm font-semibold text-foreground">{asset.label}</span>
             <span className="mt-2 text-sm leading-5 text-muted-foreground">{asset.description}</span>
             <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-primary">
-              Download
+              {asset.action}
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </span>
           </Link>

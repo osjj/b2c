@@ -10,7 +10,10 @@ import { TableOfContents } from '@/components/store/solution-detail/table-of-con
 import { ToolRecommendationsSection } from '@/components/store/tool-recommendations-section'
 import { getBlogCommercialLinks } from '@/lib/blog-commercial-links'
 import { extractTocFromContent, stripHtml } from '@/lib/blog-toc'
-import { getToolRecommendationsForBlog } from '@/lib/tool-recommendations'
+import {
+  getToolRecommendationsForBlog,
+  shouldShowBlogToolShortcuts,
+} from '@/lib/tool-recommendations'
 import { formatDate } from '@/lib/utils'
 import { getSiteUrl } from '@/lib/site-url'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo'
@@ -107,6 +110,7 @@ export default async function BlogDetailPage({ params }: Props) {
     title: post.title,
     excerpt: post.excerpt,
   })
+  const showToolShortcuts = shouldShowBlogToolShortcuts(slug)
   const baseUrl = getSiteUrl()
   const postUrl = `${baseUrl}/blog/${post.slug}`
   const description =
@@ -194,33 +198,77 @@ export default async function BlogDetailPage({ params }: Props) {
             <aside className="hidden lg:block">
               <TableOfContents items={tocItems} />
             </aside>
-            <article className="max-w-3xl mx-auto w-full">
+            <article className="max-w-3xl mx-auto w-full min-w-0">
               <BlogLightCta links={commercialLinks} />
+              {showToolShortcuts ? <BlogToolShortcuts tools={relatedTools} /> : null}
               <BlogContentRenderer content={content} />
               <BlogCommercialLinksSection links={commercialLinks} />
+              {!showToolShortcuts ? (
+                <ToolRecommendationsSection
+                  tools={relatedTools}
+                  title="Turn this guide into a faster PPE shortlist"
+                  description="Use the matching tools to check footwear sizing, decode certification labels, or estimate order quantities before you move from research to purchasing."
+                />
+              ) : null}
+              <BlogFooter />
+            </article>
+          </div>
+        ) : (
+          <article className="max-w-3xl mx-auto w-full min-w-0">
+            <BlogLightCta links={commercialLinks} />
+            {showToolShortcuts ? <BlogToolShortcuts tools={relatedTools} /> : null}
+            <BlogContentRenderer content={content} />
+            <BlogCommercialLinksSection links={commercialLinks} />
+            {!showToolShortcuts ? (
               <ToolRecommendationsSection
                 tools={relatedTools}
                 title="Turn this guide into a faster PPE shortlist"
                 description="Use the matching tools to check footwear sizing, decode certification labels, or estimate order quantities before you move from research to purchasing."
               />
-              <BlogFooter />
-            </article>
-          </div>
-        ) : (
-          <article className="max-w-3xl mx-auto w-full">
-            <BlogLightCta links={commercialLinks} />
-            <BlogContentRenderer content={content} />
-            <BlogCommercialLinksSection links={commercialLinks} />
-            <ToolRecommendationsSection
-              tools={relatedTools}
-              title="Turn this guide into a faster PPE shortlist"
-              description="Use the matching tools to check footwear sizing, decode certification labels, or estimate order quantities before you move from research to purchasing."
-            />
+            ) : null}
             <BlogFooter />
           </article>
         )}
       </div>
     </div>
+  )
+}
+
+function BlogToolShortcuts({ tools }: { tools: ReturnType<typeof getToolRecommendationsForBlog> }) {
+  if (tools.length === 0) {
+    return null
+  }
+
+  return (
+    <section className="mb-10 rounded-xl border bg-primary/5 p-4 shadow-sm sm:p-5">
+      <div className="flex flex-col gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Planning tools
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            Use these tools before moving from this guide into quantities, sizing, labels, or RFQ planning.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {tools.slice(0, 3).map((tool) => (
+            <Link
+              key={tool.id}
+              href={tool.href}
+              className="group flex min-w-0 items-center justify-between gap-3 rounded-lg border bg-background px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:bg-background/80"
+            >
+              <span className="min-w-0">
+                <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  {tool.eyebrow}
+                </span>
+                <span className="mt-1 block group-hover:text-primary">{tool.title}</span>
+              </span>
+              <ChevronRight className="h-4 w-4 flex-shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 

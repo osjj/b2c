@@ -54,6 +54,15 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
             >
               Download checklist
             </Link>
+            {links.resources?.map((resource) => (
+              <Link
+                key={resource.href}
+                href={resource.href}
+                className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                {resource.label}
+              </Link>
+            ))}
           </div>
         </div>
 

@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Home, Ruler, Footprints, Info, Clock } from 'lucide-react'
+import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides-section'
 import { getSiteUrl } from '@/lib/site-url'
+import { TOOL_RELATED_GUIDES } from '@/lib/tool-related-guides'
 import { SizeConverter } from './size-converter-client'
 import { SIZE_CHART, WIDTH_CHART } from './data'
 
@@ -342,6 +344,14 @@ export default function SizeGuidePage() {
             </p>
           </div>
         </div>
+      </section>
+
+      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+        <ToolRelatedGuidesSection
+          title="Footwear guides to use after sizing"
+          description="Once size and width are clear, use these buying guides to confirm standards, role needs, and bulk order details before requesting safety footwear pricing."
+          guides={TOOL_RELATED_GUIDES['size-guide']}
+        />
       </section>
 
       {/* FAQ */}

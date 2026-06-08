@@ -49,9 +49,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="outline">
                 <Link
-                  data-download-asset="construction-ppe-rfq-template"
-                  data-download-source="quote-page"
-                  href="/downloads/construction-ppe-rfq-template.pdf?source=quote-page"
+                  href="/downloads/construction-ppe-rfq-template?source=quote-page"
                 >
                   RFQ template
                   <ArrowRight className="ml-2 h-4 w-4" />

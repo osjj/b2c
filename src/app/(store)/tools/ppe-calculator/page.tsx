@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Home, Clock, RefreshCw, FileCheck, Info } from 'lucide-react'
+import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides-section'
 import { getSiteUrl } from '@/lib/site-url'
+import { TOOL_RELATED_GUIDES } from '@/lib/tool-related-guides'
 import { PpeCalculator } from './calculator-client'
 
 const TITLE = 'PPE Quantity Calculator — Monthly Consumption & Budget Planner'
@@ -252,6 +254,14 @@ export default function PpeCalculatorPage() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+        <ToolRelatedGuidesSection
+          title="Use these guides to refine your PPE quantities"
+          description="The calculator gives a planning number. These high-impression buying guides help you adjust that number by task, replacement rate, and PPE category before sending an RFQ."
+          guides={TOOL_RELATED_GUIDES['ppe-calculator']}
+        />
       </section>
 
       {/* FAQ */}

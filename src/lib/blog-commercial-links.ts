@@ -8,6 +8,7 @@ export interface BlogCommercialLinks {
   categories: BlogCommercialLink[]
   products: BlogCommercialLink[]
   cta: BlogCommercialLink
+  resources?: BlogCommercialLink[]
 }
 
 const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
@@ -146,6 +147,12 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request a bulk PPE quote',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-bulk-construction-ppe-procurement',
+        label: 'RFQ template',
+      },
+    ],
   },
   'construction-ppe-checklist': {
     solution: {
@@ -182,6 +189,12 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Build a construction PPE kit',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-ppe-checklist',
+        label: 'RFQ template',
+      },
+    ],
   },
   'osha-ppe-requirements-construction': {
     solution: {
@@ -527,6 +540,12 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Build contractor PPE kits',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-kit-checklist',
+        label: 'RFQ template',
+      },
+    ],
   },
   'trenching-excavation-ppe-checklist': {
     solution: {

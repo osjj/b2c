@@ -31,7 +31,7 @@ Use this guide when your team needs to buy construction PPE in bulk for a projec
 
 Use these files before sending supplier inquiries, especially when the order includes multiple roles, standards, or size ranges:
 
-- [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template.pdf?source=blog-bulk-construction-ppe-procurement) - send this with the work scope, standards, quantities, packaging needs, and delivery country.
+- [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-bulk-construction-ppe-procurement) - send this with the work scope, standards, quantities, packaging needs, and delivery country.
 - [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-bulk-construction-ppe-procurement) - use this as the field checklist behind the purchase list.
 - [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-bulk-construction-ppe-procurement) - build the size curve, standards matrix, and replacement-stock estimate before comparing quotes.
 

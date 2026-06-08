@@ -59,6 +59,81 @@ const FALLBACK_ORDER: ToolRecommendationId[] = [
   'compliance-checker',
 ]
 
+const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
+  'construction-safety-footwear-guide': [
+    'size-guide',
+    'compliance-checker',
+    'ppe-calculator',
+  ],
+  'construction-gloves-selection-guide': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'high-visibility-clothing-construction': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'construction-respiratory-protection': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'construction-hard-hat-types': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'construction-eye-face-protection': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'construction-hearing-protection': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'osha-ppe-requirements-construction': [
+    'compliance-checker',
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'bulk-construction-ppe-procurement': [
+    'ai-quote',
+    'ppe-calculator',
+    'size-guide',
+  ],
+  'demolition-concrete-cutting-ppe-checklist': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'construction-safety-helmet-vs-hard-hat': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'heavy-equipment-operator-ppe-checklist': [
+    'ppe-calculator',
+    'ai-quote',
+    'size-guide',
+  ],
+  'construction-ppe-checklist': [
+    'ppe-calculator',
+    'ai-quote',
+    'compliance-checker',
+  ],
+}
+
+const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
+  'construction-safety-footwear-guide',
+  'construction-gloves-selection-guide',
+  'high-visibility-clothing-construction',
+  'construction-respiratory-protection',
+  'construction-hard-hat-types',
+  'construction-eye-face-protection',
+  'construction-hearing-protection',
+  'osha-ppe-requirements-construction',
+  'bulk-construction-ppe-procurement',
+  'demolition-concrete-cutting-ppe-checklist',
+  'construction-safety-helmet-vs-hard-hat',
+  'heavy-equipment-operator-ppe-checklist',
+])
+
 function normalizeText(value: string) {
   return value.toLowerCase()
 }
@@ -97,6 +172,11 @@ export function getToolRecommendationsForBlog(input: {
   title: string
   excerpt?: string | null
 }) {
+  const override = BLOG_TOOL_OVERRIDES[input.slug]
+  if (override) {
+    return override.map((id) => TOOL_CATALOG[id])
+  }
+
   const haystack = normalizeText([input.slug, input.title, input.excerpt ?? ''].join(' '))
   const scores = new Map<ToolRecommendationId, number>()
 
@@ -167,6 +247,10 @@ export function getToolRecommendationsForBlog(input: {
     'ai-quote',
     'compliance-checker',
   ])
+}
+
+export function shouldShowBlogToolShortcuts(slug: string) {
+  return PRIORITY_BLOG_TOOL_SHORTCUTS.has(slug)
 }
 
 export function getToolRecommendationsForSolution(input: {

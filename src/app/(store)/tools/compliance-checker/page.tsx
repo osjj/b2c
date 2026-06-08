@@ -8,7 +8,9 @@ import {
   FileCheck,
   Info,
 } from 'lucide-react'
+import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides-section'
 import { getSiteUrl } from '@/lib/site-url'
+import { TOOL_RELATED_GUIDES } from '@/lib/tool-related-guides'
 import { ComplianceDecoder } from './decoder-client'
 import {
   EN_CLASSES,
@@ -426,6 +428,14 @@ Size 10 W`}
             </ul>
           </div>
         </div>
+      </section>
+
+      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+        <ToolRelatedGuidesSection
+          title="Guides for checking standards before buying"
+          description="Use these pages to connect decoded labels with construction footwear requirements, OSHA context, and RFQ-level supplier checks."
+          guides={TOOL_RELATED_GUIDES['compliance-checker']}
+        />
       </section>
 
       {/* FAQ */}
