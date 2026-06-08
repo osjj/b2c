@@ -7,6 +7,7 @@ import {
   Download,
   FileCheck2,
   FileText,
+  HardHat,
   PackageCheck,
   Ruler,
   ShieldCheck,
@@ -104,6 +105,12 @@ const TOOL_STEPS = [
     description: 'Use the size guide before locking safety boot sizes, width notes, and conversion requirements.',
     icon: Ruler,
   },
+  {
+    href: '/tools/hard-hat-class-decoder?source=construction-ppe-rfq-template',
+    title: 'Decode hard hat classes',
+    description: 'Use the hard hat decoder before specifying Type I/II and Class G/E/C in a head protection RFQ.',
+    icon: HardHat,
+  },
 ]
 
 const FAQ_ITEMS = [
@@ -139,7 +146,7 @@ export const metadata: Metadata = {
   description:
     'Download a construction PPE RFQ template for bulk orders. Capture worker roles, PPE categories, standards, quantities, sizes, supplier documents, packaging, and delivery details.',
   alternates: {
-    canonical: PAGE_PATH,
+    canonical: `${getSiteUrl()}${PAGE_PATH}`,
   },
 }
 

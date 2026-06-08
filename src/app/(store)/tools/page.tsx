@@ -6,6 +6,7 @@ import {
   ChevronRight,
   FileText,
   Hammer,
+  HardHat,
   Ruler,
   ShieldCheck,
   Sparkles,
@@ -23,9 +24,10 @@ import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides
 import { getSiteUrl } from '@/lib/site-url'
 import { TOOLS_HUB_RELATED_GUIDES } from '@/lib/tool-related-guides'
 
-const HUB_TITLE = 'Free PPE Tools — Quote Generator, Quantity Calculator, Size & Label Decoder'
+const HUB_TITLE =
+  'Free PPE Tools - Quote Generator, Quantity Calculator, Size and Hard Hat Decoders'
 const HUB_DESCRIPTION =
-  'Free online toolkit for PPE procurement, hazard assessment and compliance: AI quote generator, PPE quantity calculator, safety boot size converter and ASTM / EN ISO 20345 label decoder. No signup.'
+  'Free online toolkit for PPE procurement, hazard assessment and compliance: AI quote generator, PPE quantity calculator, safety boot size converter, ASTM / EN ISO 20345 label decoder and hard hat class decoder. No signup.'
 
 export const metadata: Metadata = {
   title: HUB_TITLE,
@@ -37,6 +39,8 @@ export const metadata: Metadata = {
     'safety boot size chart',
     'ASTM F2413 decoder',
     'EN ISO 20345 decoder',
+    'hard hat class decoder',
+    'ANSI Z89.1 hard hat classes',
     'free PPE calculator',
     'AI PPE quote',
   ],
@@ -135,6 +139,15 @@ const TOOLS: ToolEntry[] = [
     category: 'compliance',
     icon: ShieldCheck,
     tags: ['ASTM F2413', 'EN ISO 20345'],
+  },
+  {
+    href: '/tools/hard-hat-class-decoder',
+    title: 'Hard Hat Class Decoder',
+    description:
+      'Decode Type I vs Type II and Class G, Class E, and Class C before adding head protection to an RFQ.',
+    category: 'reference',
+    icon: HardHat,
+    tags: ['ANSI Z89.1', 'Type I / II', 'Class G / E / C'],
   },
 ]
 

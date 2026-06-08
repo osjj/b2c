@@ -1,8 +1,8 @@
 # Construction Respiratory Protection: Silica Dust, N95, P100 and Half-Face Respirators
 
-**Meta Title:** Construction Respiratory Protection | Silica, N95, P100, Half-Face  
-**Meta Description:** Choose construction respiratory protection for silica dust, concrete cutting, demolition, grinding, welding fumes, and coatings. Compare N95, P100, half-face respirators, cartridges, fit testing, and bulk buying.  
-**Target URL:** /blog/construction-respiratory-protection  
+**Meta Title:** N95 vs P100 vs Half-Face Respirators for Construction Dust
+**Meta Description:** Compare N95, P100, half-face and full-face respirators for construction dust, silica, concrete cutting, demolition, grinding, welding fumes, coatings, fit testing, and bulk RFQs.
+**Target URL:** /blog/construction-respiratory-protection
 **Target Keywords:** respiratory protection construction, construction dust respirator, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respirator for concrete dust, construction respiratory PPE
 
 ---
@@ -12,6 +12,20 @@ Construction respiratory protection starts with the airborne hazard, not the mas
 Silica dust, demolition dust, wood dust, gypsum dust, welding fumes, coating vapors, asbestos, lead, and mixed renovation dust can require different controls. The wrong respirator may look protective and still fail the task.
 
 Use this article for category-level respiratory PPE selection. For the full construction PPE structure, use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For compliance across all PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site execution, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). For silica-heavy demolition, concrete cutting, grinding, and dusty cleanup, pair this guide with the [demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist) and [PPE for demolition and concrete cutting work](/solutions/ppe-for-demolition-and-concrete-cutting-work).
+
+## Quick Answer: N95 vs P100 vs Half-Face Respirator
+
+For construction dust, the right respirator depends on the task, exposure level, work controls, fit, and whether OSHA requires respiratory protection. **N95** can be a starting point for some lower-exposure non-oil dust tasks. **P100** provides higher particulate filtration and is often used for heavier dust or recurring silica work. **Reusable half-face respirators** make more sense when crews need replaceable filters, better fit control, cleaning, storage, and repeat use.
+
+| Buyer question | Short answer | RFQ note |
+|---|---|---|
+| Is N95 enough for construction dust? | Sometimes, for lower-exposure dust where the task and controls support it. | Ask for NIOSH approval, model, sizes, and fit-test support where required. |
+| Is P100 better than N95 for concrete dust? | P100 has higher particulate filtration, but it still must match the task, exposure, and facepiece. | Specify filter class, facepiece type, replacement schedule, and compatible eye PPE. |
+| When should I buy half-face respirators? | Use them for repeated high-dust work, silica-heavy tasks, or crews needing replaceable filters. | Include facepiece sizes, filters, cleaning wipes, storage bags, and spare parts. |
+| Does P100 protect against paint fumes? | Not by itself. Vapors need the correct vapor or combination cartridge. | Ask suppliers to name the cartridge type and change-out logic. |
+| What should a bulk respirator order include? | Respirators, filters/cartridges, fit-test support, cleaning, storage, training, and replacement stock. | Use a structured RFQ instead of buying masks by unit price only. |
+
+Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection) to request respirator models, filter classes, cartridge types, NIOSH or EN approval details, facepiece sizes, fit-test support, and replacement parts in one supplier-ready format.
 
 ---
 
@@ -391,9 +405,12 @@ Respiratory protection should be planned with the rest of the worker's PPE. Dust
 
 Start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) for the full category structure. Use the [OSHA PPE requirements for construction guide](/blog/osha-ppe-requirements-construction) for compliance context. Use the [construction PPE checklist](/blog/construction-ppe-checklist) for field checks. Use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement) when the respirator decision needs to become a repeatable purchasing and replacement plan.
 
-[View the construction PPE solution page](/solutions/construction-site-ppe-solution)  
-[Read the OSHA construction PPE compliance guide](/blog/osha-ppe-requirements-construction)  
-[Request a bulk PPE quote](/contact)
+For procurement, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection) to specify respirator type, filter or cartridge class, approval basis, facepiece size, replacement stock, cleaning supplies, storage, and supplier documents. Use the [PPE Quantity Calculator](/tools/ppe-calculator?source=blog-construction-respiratory-protection) to estimate disposable respirators and replacement filters, then use the [AI Quote Generator](/tools/ai-quote?source=blog-construction-respiratory-protection) or [request a respirator quote](/quote?source=blog-construction-respiratory-protection).
+
+- [View the construction PPE solution page](/solutions/construction-site-ppe-solution)
+- [Read the OSHA construction PPE compliance guide](/blog/osha-ppe-requirements-construction)
+- [Download the RFQ template](/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection)
+- [Request a bulk PPE quote](/quote?source=blog-construction-respiratory-protection)
 
 ---
 

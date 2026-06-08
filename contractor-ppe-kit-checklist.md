@@ -19,7 +19,7 @@ Use this guide when you need to build or source PPE kits for contractors, subcon
 
 Before asking suppliers to quote a contractor PPE kit, attach the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-kit-checklist). It keeps role type, size range, standards, packaging, replacement stock, and delivery details in one format.
 
-For kit planning, use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-contractor-ppe-kit-checklist) to confirm the field issue list, then use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-contractor-ppe-kit-checklist) to separate baseline kit quantities from trade add-ons.
+For kit planning, use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-contractor-ppe-kit-checklist) to confirm the field issue list, then use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-contractor-ppe-kit-checklist) to separate baseline kit quantities from trade add-ons. If you already know the worker count and kit types, use the [AI Quote Generator](/tools/ai-quote?source=blog-contractor-ppe-kit-checklist) or [request contractor PPE kit pricing](/quote?source=blog-contractor-ppe-kit-checklist).
 
 ---
 
@@ -260,7 +260,7 @@ Use this RFQ structure when asking suppliers for a bulk contractor PPE kit quote
 | Lead time | Initial order, replenishment order, emergency order |
 | Substitution rules | No substitution without approval for standards, size, or category |
 
-This template helps suppliers quote the same thing. It also makes it easier to compare a low price against a complete and workable package.
+This template helps suppliers quote the same thing. It also makes it easier to compare a low price against a complete and workable package. For a downloadable version, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-kit-checklist-rfq-section), then attach the kit matrix and size curve before asking suppliers for price.
 
 ---
 
@@ -317,7 +317,7 @@ A contractor kit is built for productive work and should match the worker's trad
 
 The best contractor PPE kit is simple enough to issue quickly and specific enough to match real work. Start with a baseline kit, add trade modules, verify standards, plan sizes, package the order clearly, and keep replacement stock ready.
 
-If you need a full buying workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). If you need a site-wide category map, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). If you are preparing a quote for multiple crews or contractor groups, [contact Laifappe](/contact) with your project type, worker count, country or standard requirements, and required kit types.
+If you need a full buying workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). If you need a site-wide category map, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). If you are preparing a quote for multiple crews or contractor groups, [download the RFQ template](/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-kit-checklist-bottom), use the [AI Quote Generator](/tools/ai-quote?source=blog-contractor-ppe-kit-checklist-bottom), or [request contractor PPE kit pricing](/quote?source=blog-contractor-ppe-kit-checklist) with your project type, worker count, country or standard requirements, and required kit types.
 
 ---
 

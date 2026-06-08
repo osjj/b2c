@@ -410,12 +410,12 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.bulk-construction-ppe-procurement.generated.json',
     ),
-    title: 'How to Buy Construction PPE in Bulk: Procurement Guide',
+    title: 'How to Buy Construction PPE in Bulk: RFQ Template, Checklist and Size Planning',
     excerpt:
-      'A practical guide for buying construction PPE in bulk: crew packages, standards, sizing, supplier evaluation, replacement stock, RFQ fields, and site issue controls.',
-    seoTitle: 'How to Buy Construction PPE in Bulk: Procurement Guide',
+      'A practical guide for buying construction PPE in bulk with an RFQ template path, role-based checklist, standards, sizing, supplier evaluation, replacement stock, and site issue controls.',
+    seoTitle: 'Buy Construction PPE in Bulk | RFQ Template, Checklist, Size Plan',
     seoDescription:
-      'Learn how to buy construction PPE in bulk with a practical procurement guide covering crew packages, standards, sizing, suppliers, replacement stock, RFQs, and site issue controls.',
+      'Buy construction PPE in bulk with a repeatable RFQ process. Plan worker roles, PPE categories, standards, quantities, size ranges, replacement stock, supplier documents, and delivery details.',
     seoKeywords:
       'buy construction PPE in bulk, bulk construction PPE procurement, construction PPE RFQ, PPE purchasing guide construction, construction PPE ordering checklist, bulk PPE replacement stock, construction PPE size planning',
     heroFallback:
@@ -592,13 +592,13 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-respiratory-protection.generated.json',
     ),
-    title: 'Respiratory Protection for Construction Dust and Fumes',
+    title: 'N95 vs P100 vs Half-Face Respirators for Construction Dust',
     excerpt:
-      'A practical guide to choosing construction respiratory protection for silica dust, demolition, grinding, concrete cutting, welding fumes, coatings, fit testing, and bulk buying.',
+      'A practical guide comparing N95, P100, half-face, full-face, and PAPR options for construction dust, silica, concrete cutting, demolition, welding fumes, coatings, fit testing, and bulk RFQs.',
     seoTitle:
-      'Respiratory Protection for Construction Dust and Fumes | N95, P100, Half-Face Respirators',
+      'N95 vs P100 vs Half-Face Respirators for Construction Dust',
     seoDescription:
-      'Learn how to choose respiratory protection for construction dust, silica, demolition, grinding, concrete cutting, welding fumes, and coatings. Covers OSHA rules, N95/P100, fit testing, cartridges, and bulk buying.',
+      'Compare N95, P100, half-face and full-face respirators for construction dust, silica, concrete cutting, demolition, grinding, welding fumes, coatings, fit testing, and bulk RFQs.',
     seoKeywords:
       'respiratory protection construction, construction dust respirator, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respirator for concrete dust, construction respiratory PPE',
     heroFallback:
@@ -714,13 +714,13 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.high-visibility-clothing-construction.generated.json',
     ),
-    title: 'High-Visibility Clothing for Construction Workers: Class 2, Class 3 and Buying Guide',
+    title: 'Class 2 vs Class 3 High-Visibility Clothing for Construction',
     excerpt:
-      'A practical guide to choosing construction high-visibility clothing by OSHA exposure, ANSI/ISEA 107 Type O/R/P, Class 2 vs Class 3, EN ISO 20471, garment design, color, weather, FR needs, durability, and bulk buying.',
+      'A practical guide to construction high-visibility clothing: when Class 2 hi-vis must stay as the outermost visible layer, when to use Class 3, and how to specify ANSI/ISEA 107 or EN ISO 20471 in a bulk RFQ.',
     seoTitle:
-      'High-Visibility Clothing for Construction Workers | Class 2 vs Class 3 Guide',
+      'Class 2 vs Class 3 High-Visibility Clothing for Construction',
     seoDescription:
-      'Learn how to choose high-visibility clothing for construction workers by OSHA exposure, ANSI/ISEA 107 Type O/R/P, Class 2 vs Class 3, EN ISO 20471, color, reflective tape, weather, FR needs, and bulk buying.',
+      'Choose construction high-visibility clothing by exposure. Learn when Class 2 hi-vis must stay as the outermost visible layer, when to use Class 3, and how to specify ANSI/ISEA 107 or EN ISO 20471 in a bulk RFQ.',
     seoKeywords:
       'high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
     heroFallback:

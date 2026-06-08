@@ -5,11 +5,13 @@ import { getSiteUrl } from '@/lib/site-url'
 export const revalidate = 3600
 export const dynamic = 'force-dynamic'
 
-const TOOLS_HUB_LASTMOD = new Date('2026-04-20')
+const TOOLS_HUB_LASTMOD = new Date('2026-06-08')
 const AI_QUOTE_TOOL_LASTMOD = new Date('2026-04-20')
 const PPE_CALCULATOR_TOOL_LASTMOD = new Date('2026-04-20')
 const SIZE_GUIDE_TOOL_LASTMOD = new Date('2026-04-25')
 const COMPLIANCE_TOOL_LASTMOD = new Date('2026-04-25')
+const HARD_HAT_DECODER_TOOL_LASTMOD = new Date('2026-06-08')
+const CONSTRUCTION_PPE_RFQ_TEMPLATE_LASTMOD = new Date('2026-06-08')
 const HOME_LASTMOD = new Date('2026-05-30')
 const PRODUCTS_HUB_LASTMOD = new Date('2026-04-23')
 const CATEGORIES_HUB_LASTMOD = new Date('2026-04-23')
@@ -43,6 +45,7 @@ type SitemapBlogPost = {
   slug: string
   publishedAt: Date | null
   createdAt: Date
+  updatedAt: Date
 }
 
 function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
@@ -125,6 +128,18 @@ function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/tools/hard-hat-class-decoder`,
+      lastModified: HARD_HAT_DECODER_TOOL_LASTMOD,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/downloads/construction-ppe-rfq-template`,
+      lastModified: CONSTRUCTION_PPE_RFQ_TEMPLATE_LASTMOD,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ]
 }
 
@@ -169,7 +184,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     safeQuery<SitemapBlogPost[]>(
       prisma.blogPost.findMany({
         where: { isPublished: true },
-        select: { slug: true, publishedAt: true, createdAt: true },
+        select: { slug: true, publishedAt: true, createdAt: true, updatedAt: true },
       }),
       [],
     ),
@@ -207,7 +222,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogPostPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.publishedAt ?? post.createdAt,
+    lastModified: post.updatedAt,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))

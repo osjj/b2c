@@ -2,6 +2,7 @@ import Link from 'next/link'
 import {
   ArrowRight,
   Calculator,
+  HardHat,
   Ruler,
   ShieldCheck,
   Sparkles,
@@ -14,6 +15,7 @@ const ICONS: Record<ToolRecommendation['id'], LucideIcon> = {
   'ppe-calculator': Calculator,
   'size-guide': Ruler,
   'compliance-checker': ShieldCheck,
+  'hard-hat-class-decoder': HardHat,
 }
 
 interface ToolRecommendationsSectionProps {

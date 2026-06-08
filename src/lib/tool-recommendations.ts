@@ -3,6 +3,7 @@ export type ToolRecommendationId =
   | 'ppe-calculator'
   | 'size-guide'
   | 'compliance-checker'
+  | 'hard-hat-class-decoder'
 
 export interface ToolRecommendation {
   id: ToolRecommendationId
@@ -50,6 +51,15 @@ const TOOL_CATALOG: Record<ToolRecommendationId, ToolRecommendation> = {
     cta: 'Decode labels',
     eyebrow: 'Compliance',
   },
+  'hard-hat-class-decoder': {
+    id: 'hard-hat-class-decoder',
+    href: '/tools/hard-hat-class-decoder',
+    title: 'Hard Hat Class Decoder',
+    description:
+      'Decode Type I vs Type II and Class G, Class E, and Class C before writing head protection into an RFQ.',
+    cta: 'Decode hard hats',
+    eyebrow: 'Reference',
+  },
 }
 
 const FALLBACK_ORDER: ToolRecommendationId[] = [
@@ -57,6 +67,7 @@ const FALLBACK_ORDER: ToolRecommendationId[] = [
   'ppe-calculator',
   'size-guide',
   'compliance-checker',
+  'hard-hat-class-decoder',
 ]
 
 const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
@@ -78,6 +89,7 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ai-quote',
   ],
   'construction-hard-hat-types': [
+    'hard-hat-class-decoder',
     'ppe-calculator',
     'ai-quote',
   ],
@@ -104,6 +116,7 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ai-quote',
   ],
   'construction-safety-helmet-vs-hard-hat': [
+    'hard-hat-class-decoder',
     'ppe-calculator',
     'ai-quote',
   ],
@@ -221,6 +234,17 @@ export function getToolRecommendationsForBlog(input: {
     'procurement',
     'order',
   ]
+  const headProtectionTerms = [
+    'hard hat',
+    'helmet',
+    'head protection',
+    'class e',
+    'class g',
+    'class c',
+    'type i',
+    'type ii',
+    'z89.1',
+  ]
 
   if (includesAny(haystack, footwearTerms)) {
     addScore(scores, 'size-guide', 8)
@@ -237,6 +261,11 @@ export function getToolRecommendationsForBlog(input: {
     addScore(scores, 'ai-quote', 4)
   }
 
+  if (includesAny(haystack, headProtectionTerms)) {
+    addScore(scores, 'hard-hat-class-decoder', 9)
+    addScore(scores, 'ppe-calculator', 2)
+  }
+
   if (haystack.includes('construction')) {
     addScore(scores, 'ppe-calculator', 3)
     addScore(scores, 'ai-quote', 2)
@@ -246,6 +275,7 @@ export function getToolRecommendationsForBlog(input: {
     'ppe-calculator',
     'ai-quote',
     'compliance-checker',
+    'hard-hat-class-decoder',
   ])
 }
 
@@ -280,6 +310,22 @@ export function getToolRecommendationsForSolution(input: {
   ) {
     addScore(scores, 'size-guide', 6)
     addScore(scores, 'compliance-checker', 6)
+  }
+
+  if (
+    includesAny(haystack, [
+      'hard hat',
+      'helmet',
+      'head protection',
+      'z89.1',
+      'class e',
+      'class g',
+      'class c',
+      'type i',
+      'type ii',
+    ])
+  ) {
+    addScore(scores, 'hard-hat-class-decoder', 8)
   }
 
   if (

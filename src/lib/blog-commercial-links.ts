@@ -294,6 +294,12 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request a respirator quote',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection',
+        label: 'RFQ template',
+      },
+    ],
   },
   'construction-eye-face-protection': {
     solution: {
@@ -472,6 +478,12 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request hi-vis workwear pricing',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-high-visibility-clothing-construction',
+        label: 'RFQ template',
+      },
+    ],
   },
   'construction-safety-helmet-vs-hard-hat': {
     solution: {

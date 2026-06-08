@@ -1,8 +1,8 @@
 # High-Visibility Clothing for Construction Workers: Class 2 vs Class 3 Buying Guide
 
-**Meta Title:** High-Visibility Clothing for Construction | Class 2 vs Class 3  
-**Meta Description:** Choose construction high-visibility clothing by exposure: Class 2 for most equipment and traffic-adjacent jobsites, Class 3 for roadwork, night work, flaggers, poor weather, and high-speed traffic.  
-**Target URL:** /blog/high-visibility-clothing-construction  
+**Meta Title:** Class 2 vs Class 3 High-Visibility Clothing for Construction
+**Meta Description:** Choose construction high-visibility clothing by exposure. Learn when Class 2 hi-vis must stay as the outermost visible layer, when to use Class 3, and how to specify ANSI/ISEA 107 or EN ISO 20471 in a bulk RFQ.
+**Target URL:** /blog/high-visibility-clothing-construction
 **Target Keywords:** high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE
 
 ---
@@ -12,6 +12,22 @@ For most active construction jobsites with moving equipment, trucks, loaders, fo
 Do not buy high-vis workwear only by color or vest type. The RFQ should name the standard, type/class, garment format, color, reflective layout, size range, weather layer, FR or arc need, washing durability, and replacement stock.
 
 Use this article for high-visibility PPE selection. For the full construction PPE structure, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For the regulatory side across PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site issue checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). For road crews, bridge crews, night shifts, and low-visibility work, connect this guide to [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects) and [night construction and low-visibility PPE](/solutions/ppe-for-night-construction-and-low-visibility-work).
+
+## Direct Answer: Does Class 2 Hi-Vis Need To Be The Outermost Layer?
+
+Yes. If a worker is relying on Class 2 high-visibility clothing for traffic, trailer yard, equipment route, or work-zone visibility, the compliant hi-vis layer must stay visible from the outside. A Class 2 vest or shirt does not perform as intended if it is hidden under a raincoat, jacket, hoodie, fall harness, tool belt, backpack, or other outer layer.
+
+The practical rule for supervisors is simple: **the outermost visible layer should be certified high-vis, or the certified high-vis garment must remain clearly exposed.**
+
+| Situation | Correct action | Common failure |
+|---|---|---|
+| Worker adds a jacket over a Class 2 vest | Use a certified hi-vis jacket or wear the vest over the jacket if site rules allow it | Dark jacket covers the reflective tape |
+| Worker adds rainwear | Use ANSI/ISEA 107 or EN ISO 20471 hi-vis rainwear | Clear or dark rainwear reduces visibility |
+| Worker wears a fall harness | Check that fluorescent material and reflective tape remain visible | Harness webbing blocks the main reflective pattern |
+| Trailer yard, loading area, or equipment route | Keep Class 2 or higher hi-vis visible for the full shift | Vest is removed, covered, or too dirty to work |
+| Night work or high-speed traffic | Move to Class 3 or a certified garment system | Basic sleeveless vest is treated as enough |
+
+For a bulk order, write this into the RFQ: "Hi-vis garments must remain visible as the outermost work layer; provide certified outerwear options for rain, cold weather, and Class 3 exposure." Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-high-visibility-clothing-construction) if you need a supplier-ready format.
 
 ---
 
@@ -324,6 +340,8 @@ For a broader PPE package, pair this article with:
 - [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)
 - [Construction hard hat types](/blog/construction-hard-hat-types)
 - [Construction safety footwear guide](/blog/construction-safety-footwear-guide)
+
+For procurement, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-high-visibility-clothing-construction) to specify garment class, color, size range, outer-layer requirements, weather layers, washing durability, and label photos. If you already know the role count and class requirements, [request high-vis workwear pricing](/quote?source=blog-high-visibility-clothing-construction).
 
 ---
 

@@ -72,6 +72,12 @@ const GUIDE_CATALOG = {
     description: 'A field checklist for turning tool output into daily PPE issue and inspection routines.',
     eyebrow: 'Checklist',
   },
+  'construction-safety-helmet-vs-hard-hat': {
+    href: '/blog/construction-safety-helmet-vs-hard-hat',
+    title: 'Safety Helmet vs Hard Hat',
+    description: 'Use this when the buying question is whether to keep hard hats or upgrade to helmet-style protection.',
+    eyebrow: 'Helmet upgrade',
+  },
   'contractor-ppe-kit-checklist': {
     href: '/blog/contractor-ppe-kit-checklist',
     title: 'Contractor PPE Kit Checklist',
@@ -120,5 +126,11 @@ export const TOOL_RELATED_GUIDES = {
     'osha-ppe-requirements-construction',
     'bulk-construction-ppe-procurement',
     'construction-ppe-checklist',
+  ]),
+  'hard-hat-class-decoder': pickGuides([
+    'construction-hard-hat-types',
+    'construction-safety-helmet-vs-hard-hat',
+    'bulk-construction-ppe-procurement',
+    'contractor-ppe-kit-checklist',
   ]),
 } satisfies Record<string, ToolRelatedGuide[]>

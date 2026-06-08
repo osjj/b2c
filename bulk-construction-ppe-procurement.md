@@ -35,7 +35,7 @@ Use these files before sending supplier inquiries, especially when the order inc
 - [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-bulk-construction-ppe-procurement) - use this as the field checklist behind the purchase list.
 - [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-bulk-construction-ppe-procurement) - build the size curve, standards matrix, and replacement-stock estimate before comparing quotes.
 
-If the scope is still changing, complete the checklist first, then attach the RFQ template when asking suppliers for price, sample, and documentation responses.
+If the scope is still changing, complete the checklist first, then attach the RFQ template when asking suppliers for price, sample, and documentation responses. If you need to turn the scope into a supplier message faster, use the [AI Quote Generator](/tools/ai-quote?source=blog-bulk-construction-ppe-procurement) or [request a bulk PPE quote](/quote?source=blog-bulk-construction-ppe-procurement) with your worker count, country, standards, and delivery deadline.
 
 ---
 
@@ -399,7 +399,7 @@ Example RFQ language:
 
 > We are sourcing construction PPE for a multi-trade project. Please quote by category and by size where applicable. Include certification documents, available size range, MOQ, lead time, packaging options, replacement availability, and any model substitutions that may occur during repeat orders.
 
-This kind of RFQ makes the supplier compare the same requirements instead of quoting whatever is easiest to sell.
+This kind of RFQ makes the supplier compare the same requirements instead of quoting whatever is easiest to sell. For a supplier-ready format, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-bulk-construction-ppe-procurement-rfq-section), then attach size notes from the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-bulk-construction-ppe-procurement-rfq-section).
 
 ---
 
@@ -486,9 +486,11 @@ Bulk PPE purchasing works best when it connects safety, procurement, and site op
 
 Start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) to map the full PPE category structure. Use the [OSHA PPE requirements for construction guide](/blog/osha-ppe-requirements-construction) to confirm the compliance side. Use the [construction PPE checklist](/blog/construction-ppe-checklist) for field execution. Then use this procurement guide to turn those decisions into a repeatable buying process.
 
-[View the construction PPE solution page](/solutions/construction-site-ppe-solution)  
-[Read the OSHA construction PPE compliance guide](/blog/osha-ppe-requirements-construction)  
-[Request a bulk PPE quote](/contact)
+- [View the construction PPE solution page](/solutions/construction-site-ppe-solution)
+- [Read the OSHA construction PPE compliance guide](/blog/osha-ppe-requirements-construction)
+- [Download the Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-bulk-construction-ppe-procurement-bottom)
+- [Open the AI Quote Generator](/tools/ai-quote?source=blog-bulk-construction-ppe-procurement-bottom)
+- [Request a bulk PPE quote](/quote?source=blog-bulk-construction-ppe-procurement)
 
 ---
 
