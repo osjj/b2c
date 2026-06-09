@@ -3,6 +3,7 @@
 import * as Dialog from "@radix-ui/react-dialog"
 import type { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, ReactNode } from "react"
 import { useEffect, useId, useMemo, useRef, useState } from "react"
+import { pushDataLayerEvent } from "@/lib/analytics-events"
 import styles from "./home-new.module.css"
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -360,6 +361,12 @@ export function QuoteRequestForm({
       }
 
       setValues(initialValues)
+      pushDataLayerEvent({
+        event: "quote_submit",
+        form_id: "quote_request_form",
+        quote_type: "fast_rfq",
+        source,
+      })
       setStatus("Your quote request has been sent successfully.")
     } catch {
       setErrors({

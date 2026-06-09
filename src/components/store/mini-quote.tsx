@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/sheet'
 import { Badge } from '@/components/ui/badge'
 import { createQuote } from '@/actions/quotes'
+import { pushDataLayerEvent } from '@/lib/analytics-events'
 import { cn, formatPrice } from '@/lib/utils'
 import type { QuoteItem } from '@/hooks/use-quote'
 
@@ -312,6 +313,13 @@ export function MiniQuote({
 
         setSubmitSuccess(true)
         setQuoteNumber(createdQuoteNumber)
+        pushDataLayerEvent({
+          event: 'quote_submit',
+          form_id: 'quote_list',
+          has_file: Boolean(normalizedFormData.fileUrl),
+          item_count: totalItems,
+          quote_type: 'quote_list',
+        })
         clearQuote()
         setFormData({
           name: '',

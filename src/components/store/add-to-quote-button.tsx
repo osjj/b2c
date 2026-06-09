@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { FileText, Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { pushDataLayerEvent } from '@/lib/analytics-events'
 import { useQuoteStore } from '@/stores/quote'
 
 interface AddToQuoteButtonProps extends Omit<React.ComponentProps<typeof Button>, 'onClick'> {
@@ -45,6 +46,14 @@ export function AddToQuoteButton({
         tierLabel,
       })
       openQuote()
+      pushDataLayerEvent({
+        event: 'add_to_quote',
+        item_id: productId,
+        item_name: productName,
+        item_sku: sku,
+        quantity,
+        source: 'product_add_to_quote',
+      })
       setIsAdded(true)
       setTimeout(() => setIsAdded(false), 2000)
     }
