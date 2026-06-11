@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { CheckCircle2, Clock3, Mail, MapPin, Monitor, MoveRight, Phone, Shield } from "lucide-react"
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google"
 import { getCollectionProducts } from "@/actions/collections"
 import { getSolutions } from "@/actions/solutions"
 import { formatUsageSceneLabel, USAGE_SCENES, type UsageScene } from "@/types/solution"
@@ -15,27 +14,6 @@ import { SectionHeader } from "./SectionHeader"
 import styles from "./home-new.module.css"
 
 const HOME_DATA_TIMEOUT_MS = 1200
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--home-new-fs",
-  display: "swap",
-})
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--home-new-fd",
-  display: "swap",
-})
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--home-new-fm",
-  display: "swap",
-})
 
 type FeaturedProductsData = NonNullable<Awaited<ReturnType<typeof getCollectionProducts>>>
 type FeaturedProduct = FeaturedProductsData["products"][number]
@@ -113,9 +91,7 @@ export async function NewHomePage() {
 
 export function NewHomeShell({ children }: { children: ReactNode }) {
   return (
-    <div className={`${styles.page} ${interTight.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}>
-      {children}
-    </div>
+    <div className={styles.page}>{children}</div>
   )
 }
 

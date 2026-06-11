@@ -116,7 +116,7 @@ function normalizeLegacyEmailHistory(value: unknown): LegacyEmailHistoryItem[] {
 
   return value
     .filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === 'object')
-    .map((item) => ({
+    .map<LegacyEmailHistoryItem>((item) => ({
       id: String(item.id || ''),
       sender: String(item.sender || ''),
       recipients: Array.isArray(item.recipients)

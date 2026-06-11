@@ -10,9 +10,9 @@
   --muted: #64748b;
   --line: rgba(11, 25, 41, 0.1);
   --line2: rgba(11, 25, 41, 0.18);
-  --fd: var(--about-new-fd), "Instrument Serif", serif;
-  --fs: var(--about-new-fs), "Inter Tight", system-ui, sans-serif;
-  --fm: var(--about-new-fm), "JetBrains Mono", monospace;
+  --fd: Georgia, "Times New Roman", serif;
+  --fs: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --fm: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--fs);

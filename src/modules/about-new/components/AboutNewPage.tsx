@@ -13,7 +13,6 @@ import {
   Truck,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
-import { Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google"
 import { QuoteDrawer, QuoteRequestForm } from "@/modules/home-new/components"
 import {
   auditPills,
@@ -32,27 +31,6 @@ import {
   supplierFacts,
 } from "./data"
 import styles from "./about-new.module.css"
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--about-new-fs",
-  display: "swap",
-})
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--about-new-fd",
-  display: "swap",
-})
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--about-new-fm",
-  display: "swap",
-})
 
 const trustCards: Array<{
   icon: LucideIcon
@@ -83,7 +61,7 @@ const trustCards: Array<{
 
 export function AboutNewPage() {
   return (
-    <div className={`${styles.page} ${interTight.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable}`}>
+    <div className={styles.page}>
       <main>
         <HeroSection />
         <AuditStrip />

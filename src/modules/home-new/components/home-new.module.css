@@ -8,9 +8,9 @@
   --home-muted: #64748b;
   --home-line: rgba(11, 25, 41, 0.1);
   --home-line2: rgba(11, 25, 41, 0.18);
-  --fd: var(--home-new-fd), "Instrument Serif", serif;
-  --fs: var(--home-new-fs), "Inter Tight", system-ui, sans-serif;
-  --fm: var(--home-new-fm), "JetBrains Mono", monospace;
+  --fd: Georgia, "Times New Roman", serif;
+  --fs: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --fm: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   background: var(--home-bg);
   color: var(--home-ink);
   font-family: var(--fs);
@@ -1673,9 +1673,9 @@
   --home-line2: rgba(11, 25, 41, 0.18);
   --home-muted: #64748b;
   --home-paper: #fff;
-  --fd: var(--home-new-fd, "Instrument Serif", serif);
-  --fm: var(--home-new-fm, "JetBrains Mono", monospace);
-  --fs: var(--home-new-fs, "Inter Tight", system-ui, sans-serif);
+  --fd: Georgia, "Times New Roman", serif;
+  --fm: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --fs: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background:
     radial-gradient(circle at 76% 92%, rgba(217, 88, 32, 0.2), transparent 18%),
     linear-gradient(135deg, rgba(236, 238, 238, 0.96), rgba(213, 214, 213, 0.96));
