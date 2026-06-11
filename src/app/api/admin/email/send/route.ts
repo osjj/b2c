@@ -1,11 +1,22 @@
 import type { OutputData } from '@editorjs/editorjs'
+import { createHash, randomUUID } from 'node:crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
 import { requireAdmin } from '@/lib/auth-utils'
 import { editorJsToEmailContent, htmlToText } from '@/lib/email-content'
-import { prisma } from '@/lib/prisma'
+import {
+  createAdminEmailMessage,
+  createPreviewText,
+  type StoredAdminEmailAttachmentInput,
+} from '@/lib/admin-email-store'
+import {
+  assertR2Configured,
+  deleteObjectFromR2,
+  r2BucketName,
+  uploadObjectToR2,
+} from '@/lib/r2'
 
 const recipientListSchema = z
   .string()
@@ -37,7 +48,6 @@ const sendEmailSchema = z.object({
   htmlContent: optionalFormStringSchema,
 })
 
-const EMAIL_HISTORY_KEY = 'admin_email_history'
 const MAX_ATTACHMENT_COUNT = 5
 const MAX_ATTACHMENT_TOTAL_BYTES = 25 * 1024 * 1024
 const ALLOWED_ATTACHMENT_EXTENSIONS = new Set(['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png', 'gif', 'webp'])
@@ -54,32 +64,30 @@ const MIME_BY_EXTENSION: Record<string, string> = {
   webp: 'image/webp',
 }
 
-type AdminEmailAttachmentItem = {
-  filename: string
-  mimetype: string
-  size: number
-}
-
-type AdminEmailHistoryItem = {
-  id: string
-  sender: string
-  recipients: string[]
-  subject: string
-  messageMode: 'editorjs' | 'html'
-  editorContent?: OutputData
-  previewText: string
-  htmlBody?: string
-  textBody: string
-  attachments: AdminEmailAttachmentItem[]
-  sentBy: string
-  requestId?: string
-  createdAt: string
-}
-
 type Smtp2GoAttachment = {
   filename: string
   fileblob: string
   mimetype: string
+}
+
+type PreparedEmailAttachment = {
+  filename: string
+  mimetype: string
+  size: number
+  buffer: Buffer
+  sha256: string
+  smtpAttachment: Smtp2GoAttachment
+}
+
+type Smtp2GoResponsePayload = {
+  request_id?: string
+  error?: string
+  data?: {
+    email_id?: string
+  }
+  email_response?: {
+    email_id?: string
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -117,7 +125,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(attachmentsResult, { status: 400 })
   }
 
+  const messageId = randomUUID()
+  let uploadedAttachments: StoredAdminEmailAttachmentInput[] = []
+  let smtpSucceeded = false
+
   try {
+    uploadedAttachments = await uploadEmailAttachments(messageId, attachmentsResult.preparedAttachments)
+
     const response = await fetch('https://api.smtp2go.com/v3/email/send', {
       method: 'POST',
       headers: {
@@ -136,20 +150,10 @@ export async function POST(request: NextRequest) {
       cache: 'no-store',
     })
 
-    const payload = (await response.json().catch(() => null)) as
-      | {
-          request_id?: string
-          error?: string
-          data?: {
-            email_id?: string
-          }
-          email_response?: {
-            email_id?: string
-          }
-        }
-      | null
+    const payload = (await response.json().catch(() => null)) as Smtp2GoResponsePayload | null
 
     if (!response.ok) {
+      await cleanupUploadedAttachments(uploadedAttachments)
       return NextResponse.json(
         { error: payload?.error || `SMTP2GO request failed with status ${response.status}.` },
         { status: response.status }
@@ -157,12 +161,16 @@ export async function POST(request: NextRequest) {
     }
 
     if (payload?.error) {
+      await cleanupUploadedAttachments(uploadedAttachments)
       return NextResponse.json({ error: payload.error }, { status: 400 })
     }
 
+    smtpSucceeded = true
+
     const requestId = payload?.request_id || payload?.data?.email_id || payload?.email_response?.email_id
 
-    await appendAdminEmailHistory({
+    await createAdminEmailMessage({
+      id: messageId,
       sender: parsed.data.sender,
       recipients: parsed.data.to,
       subject: parsed.data.subject,
@@ -171,21 +179,27 @@ export async function POST(request: NextRequest) {
       previewText: createPreviewText(emailContent.textBody),
       htmlBody: emailContent.htmlBody,
       textBody: emailContent.textBody,
-      attachments: attachmentsResult.historyAttachments,
+      attachments: uploadedAttachments,
       sentBy: admin.email || admin.name || 'Admin',
       requestId,
     })
 
+    revalidatePath('/admin/email')
+
     return NextResponse.json({
       success: true,
       message: `Email sent to ${parsed.data.to.length} recipient${parsed.data.to.length > 1 ? 's' : ''}${
-        attachmentsResult.historyAttachments.length > 0
-          ? ` with ${attachmentsResult.historyAttachments.length} attachment${attachmentsResult.historyAttachments.length > 1 ? 's' : ''}`
+        uploadedAttachments.length > 0
+          ? ` with ${uploadedAttachments.length} attachment${uploadedAttachments.length > 1 ? 's' : ''}`
           : ''
       }.`,
       requestId,
     })
   } catch (error) {
+    if (!smtpSucceeded) {
+      await cleanupUploadedAttachments(uploadedAttachments)
+    }
+
     return NextResponse.json(
       {
         error:
@@ -272,7 +286,7 @@ async function buildEmailAttachments(
 ): Promise<
   | {
       smtpAttachments: Smtp2GoAttachment[]
-      historyAttachments: AdminEmailAttachmentItem[]
+      preparedAttachments: PreparedEmailAttachment[]
     }
   | { errors: Record<string, string[]> }
 > {
@@ -281,7 +295,7 @@ async function buildEmailAttachments(
   if (files.length === 0) {
     return {
       smtpAttachments: [],
-      historyAttachments: [],
+      preparedAttachments: [],
     }
   }
 
@@ -315,18 +329,19 @@ async function buildEmailAttachments(
     files.map(async (file) => {
       const filename = sanitizeAttachmentFileName(file.name)
       const mimetype = getAttachmentMimeType(file)
-      const fileblob = Buffer.from(await file.arrayBuffer()).toString('base64')
+      const buffer = Buffer.from(await file.arrayBuffer())
+      const sha256 = createHash('sha256').update(buffer).digest('hex')
 
       return {
+        filename,
+        mimetype,
+        size: file.size,
+        buffer,
+        sha256,
         smtpAttachment: {
           filename,
-          fileblob,
+          fileblob: buffer.toString('base64'),
           mimetype,
-        },
-        historyAttachment: {
-          filename,
-          mimetype,
-          size: file.size,
         },
       }
     })
@@ -334,75 +349,59 @@ async function buildEmailAttachments(
 
   return {
     smtpAttachments: preparedAttachments.map((attachment) => attachment.smtpAttachment),
-    historyAttachments: preparedAttachments.map((attachment) => attachment.historyAttachment),
+    preparedAttachments,
   }
 }
 
-async function appendAdminEmailHistory(
-  entry: Omit<AdminEmailHistoryItem, 'id' | 'createdAt'>
-) {
-  const existingSetting = await prisma.setting.findUnique({
-    where: { key: EMAIL_HISTORY_KEY },
-  })
-
-  const existingHistory = normalizeEmailHistory(existingSetting?.value)
-  const nextHistory: AdminEmailHistoryItem[] = [
-    {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      createdAt: new Date().toISOString(),
-      ...entry,
-    },
-    ...existingHistory,
-  ].slice(0, 100)
-
-  await prisma.setting.upsert({
-    where: { key: EMAIL_HISTORY_KEY },
-    update: { value: nextHistory as never },
-    create: { key: EMAIL_HISTORY_KEY, value: nextHistory as never },
-  })
-
-  revalidatePath('/admin/email')
-}
-
-function normalizeEmailHistory(value: unknown): AdminEmailHistoryItem[] {
-  if (!Array.isArray(value)) {
+async function uploadEmailAttachments(
+  messageId: string,
+  attachments: PreparedEmailAttachment[]
+): Promise<StoredAdminEmailAttachmentInput[]> {
+  if (attachments.length === 0) {
     return []
   }
 
-  return value
-    .filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === 'object')
-    .map((item) => ({
-      id: String(item.id || ''),
-      sender: String(item.sender || ''),
-      recipients: Array.isArray(item.recipients)
-        ? item.recipients.map((recipient) => String(recipient))
-        : [],
-      subject: String(item.subject || ''),
-      messageMode: (item.messageMode === 'html' ? 'html' : 'editorjs') as 'html' | 'editorjs',
-      previewText: String(item.previewText || ''),
-      htmlBody: item.htmlBody ? String(item.htmlBody) : undefined,
-      textBody: String(item.textBody || ''),
-      attachments: normalizeEmailHistoryAttachments(item.attachments),
-      sentBy: String(item.sentBy || 'Admin'),
-      requestId: item.requestId ? String(item.requestId) : undefined,
-      createdAt: String(item.createdAt || ''),
-    }))
-    .filter((item) => item.id && item.subject && item.createdAt)
-}
+  assertR2Configured()
 
-function normalizeEmailHistoryAttachments(value: unknown): AdminEmailAttachmentItem[] {
-  if (!Array.isArray(value)) {
-    return []
+  const uploadResults = await Promise.allSettled(
+    attachments.map(async (attachment): Promise<StoredAdminEmailAttachmentInput> => {
+      const attachmentId = randomUUID()
+      const storageKey = `admin-email-attachments/${messageId}/${attachmentId}-${attachment.filename}`
+
+      await uploadObjectToR2(storageKey, attachment.buffer, attachment.mimetype)
+
+      return {
+        id: attachmentId,
+        filename: attachment.filename,
+        mimetype: attachment.mimetype,
+        size: attachment.size,
+        storageProvider: 'r2',
+        storageBucket: r2BucketName,
+        storageKey,
+        sha256: attachment.sha256,
+      }
+    })
+  )
+
+  const uploadedAttachments = uploadResults
+    .filter((result): result is PromiseFulfilledResult<StoredAdminEmailAttachmentInput> => result.status === 'fulfilled')
+    .map((result) => result.value)
+
+  const failedUpload = uploadResults.find((result) => result.status === 'rejected')
+  if (failedUpload) {
+    await cleanupUploadedAttachments(uploadedAttachments)
+    throw new Error('Attachment upload to object storage failed. The email was not sent.')
   }
 
-  return value
-    .filter((item): item is Record<string, unknown> => Boolean(item) && typeof item === 'object')
-    .map((item) => ({
-      filename: String(item.filename || ''),
-      mimetype: String(item.mimetype || 'application/octet-stream'),
-      size: Number(item.size || 0),
-    }))
-    .filter((item) => item.filename && Number.isFinite(item.size))
+  return uploadedAttachments
+}
+
+async function cleanupUploadedAttachments(attachments: StoredAdminEmailAttachmentInput[]) {
+  if (attachments.length === 0) {
+    return
+  }
+
+  await Promise.allSettled(attachments.map((attachment) => deleteObjectFromR2(attachment.storageKey)))
 }
 
 function isAllowedAttachment(file: File) {
@@ -425,8 +424,4 @@ function sanitizeAttachmentFileName(filename: string) {
 
 function formatFileSize(bytes: number) {
   return `${Math.round((bytes / 1024 / 1024) * 10) / 10}MB`
-}
-
-function createPreviewText(textBody: string) {
-  return textBody.replace(/\s+/g, ' ').trim().slice(0, 240)
 }

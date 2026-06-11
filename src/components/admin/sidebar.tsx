@@ -50,18 +50,18 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "bg-card border-r min-h-screen flex flex-col transition-all duration-300",
-        collapsed ? "w-20" : "w-64"
+        "bg-card border-r min-h-screen flex shrink-0 flex-col transition-all duration-300",
+        collapsed ? "w-20" : "w-20 md:w-64"
       )}
     >
       {/* Logo */}
-      <div className="h-16 border-b flex items-center justify-between px-4">
+      <div className="flex h-16 items-center justify-between border-b px-3 md:px-4">
         {!collapsed && (
-          <Link href="/admin" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+          <Link href="/admin" className="flex w-full items-center justify-center gap-2 md:justify-start">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary">
               <Store className="h-4 w-4 text-primary-foreground" />
             </div>
-            <span className="font-serif text-lg tracking-wide">Laifappe</span>
+            <span className="hidden font-serif text-lg tracking-wide md:inline">Laifappe</span>
           </Link>
         )}
         {collapsed && (
@@ -83,16 +83,16 @@ export function Sidebar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200",
+                  "flex items-center justify-center gap-3 rounded-lg px-2 py-2.5 text-sm transition-all duration-200 md:justify-start md:px-3",
                   isActive
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                  collapsed && "justify-center px-2"
+                  collapsed && "md:justify-center md:px-2"
                 )}
                 title={collapsed ? item.label : undefined}
               >
                 <item.icon className={cn("h-5 w-5 flex-shrink-0", collapsed && "h-5 w-5")} />
-                {!collapsed && <span>{item.label}</span>}
+                {!collapsed && <span className="hidden md:inline">{item.label}</span>}
               </Link>
             )
           })}
@@ -105,23 +105,23 @@ export function Sidebar() {
           href="/"
           target="_blank"
           className={cn(
-            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors",
-            collapsed && "justify-center px-2"
+            "flex items-center justify-center gap-3 rounded-lg px-2 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:justify-start md:px-3",
+            collapsed && "md:justify-center md:px-2"
           )}
           title={collapsed ? "View Store" : undefined}
         >
           <Store className="h-5 w-5" />
-          {!collapsed && <span>View Store</span>}
+          {!collapsed && <span className="hidden md:inline">View Store</span>}
         </Link>
         <button
           className={cn(
-            "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors",
-            collapsed && "justify-center px-2"
+            "flex w-full items-center justify-center gap-3 rounded-lg px-2 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:justify-start md:px-3",
+            collapsed && "md:justify-center md:px-2"
           )}
           title={collapsed ? "Logout" : undefined}
         >
           <LogOut className="h-5 w-5" />
-          {!collapsed && <span>Logout</span>}
+          {!collapsed && <span className="hidden md:inline">Logout</span>}
         </button>
       </div>
 
@@ -137,8 +137,8 @@ export function Sidebar() {
             <ChevronRight className="h-4 w-4" />
           ) : (
             <>
-              <ChevronLeft className="h-4 w-4 mr-2" />
-              <span>Collapse</span>
+              <ChevronLeft className="h-4 w-4 md:mr-2" />
+              <span className="hidden md:inline">Collapse</span>
             </>
           )}
         </Button>

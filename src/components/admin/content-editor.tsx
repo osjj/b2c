@@ -16,10 +16,11 @@ interface ContentEditorProps {
   value?: EditorJSData | null
   onChange?: (data: EditorJSData) => void
   placeholder?: string
+  imageCaption?: boolean | 'optional'
 }
 
 export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(function ContentEditor(
-  { value, onChange, placeholder = 'Start writing product details...' },
+  { value, onChange, placeholder = 'Start writing product details...', imageCaption = true },
   ref
 ) {
   const editorInstanceRef = useRef<EditorJS | null>(null)
@@ -134,6 +135,9 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
           image: {
             class: ImageTool,
             config: {
+              features: {
+                caption: imageCaption,
+              },
               uploader: {
                 async uploadByFile(file: File) {
                   const formData = new FormData()
@@ -194,7 +198,7 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
       editorInstanceRef.current = null
       isInitializedRef.current = false
     }
-  }, [holderId, placeholder])
+  }, [holderId, placeholder, imageCaption])
 
   return (
     <>

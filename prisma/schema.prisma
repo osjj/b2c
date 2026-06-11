@@ -319,6 +319,62 @@ model Setting {
   @@map("settings")
 }
 
+model AdminEmailMessage {
+  id            String                   @id @default(cuid())
+  sender        String
+  subject       String
+  messageMode   String                   @map("message_mode")
+  editorContent Json?                    @map("editor_content")
+  previewText   String                   @map("preview_text") @db.Text
+  htmlBody      String?                  @map("html_body") @db.Text
+  textBody      String                   @map("text_body") @db.Text
+  sentBy        String                   @map("sent_by")
+  requestId     String?                  @map("request_id")
+  createdAt     DateTime                 @default(now()) @map("created_at")
+  updatedAt     DateTime                 @updatedAt @map("updated_at")
+  attachments   AdminEmailAttachment[]
+  recipients    AdminEmailRecipientLog[]
+
+  @@index([createdAt])
+  @@index([requestId])
+  @@map("admin_email_messages")
+}
+
+model AdminEmailRecipientLog {
+  id                  String            @id @default(cuid())
+  messageId           String            @map("message_id")
+  recipient           String
+  recipientNormalized String            @map("recipient_normalized")
+  status              String            @default("SENT")
+  createdAt           DateTime          @default(now()) @map("created_at")
+  message             AdminEmailMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@index([messageId])
+  @@index([recipientNormalized, createdAt])
+  @@map("admin_email_recipient_logs")
+}
+
+model AdminEmailAttachment {
+  id              String            @id @default(cuid())
+  messageId       String            @map("message_id")
+  filename        String
+  contentType     String            @map("content_type")
+  sizeBytes       Int               @map("size_bytes")
+  storageProvider String            @default("r2") @map("storage_provider")
+  storageBucket   String?           @map("storage_bucket")
+  storageKey      String            @map("storage_key")
+  sha256          String
+  createdAt       DateTime          @default(now()) @map("created_at")
+  expiresAt       DateTime?         @map("expires_at")
+  deletedAt       DateTime?         @map("deleted_at")
+  message         AdminEmailMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@index([messageId])
+  @@index([storageKey])
+  @@index([sha256])
+  @@map("admin_email_attachments")
+}
+
 model Attribute {
   id            String                  @id @default(cuid())
   name          String

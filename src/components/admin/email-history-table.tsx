@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy, Eye, Paperclip } from 'lucide-react'
+import { Copy, Download, Eye, Paperclip } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -21,7 +21,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import type { AdminEmailHistoryItem } from '@/actions/admin/email'
+import type { AdminEmailHistoryItem } from '@/lib/admin-email-store'
 
 interface EmailHistoryTableProps {
   items: AdminEmailHistoryItem[]
@@ -38,7 +38,7 @@ export function EmailHistoryTable({ items, page, pageSize, total, onUseAsTemplat
 
   return (
     <>
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <CardTitle className="font-serif">Send History</CardTitle>
           <CardDescription>
@@ -173,10 +173,22 @@ export function EmailHistoryTable({ items, page, pageSize, total, onUseAsTemplat
                     <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Attachments</p>
                     <div className="mt-3 space-y-2">
                       {selectedItem.attachments.map((attachment) => (
-                        <div key={`${attachment.filename}-${attachment.size}`} className="flex items-center gap-2 text-sm">
+                        <div key={attachment.id} className="flex items-center gap-2 text-sm">
                           <Paperclip className="h-4 w-4 text-muted-foreground" />
                           <span className="min-w-0 truncate">{attachment.filename}</span>
                           <span className="shrink-0 text-muted-foreground">{formatFileSize(attachment.size)}</span>
+                          {attachment.canDownload ? (
+                            <Button asChild variant="outline" size="sm" className="ml-auto shrink-0">
+                              <a href={`/api/admin/email/attachments/${attachment.id}/download`}>
+                                <Download className="mr-2 h-4 w-4" />
+                                Download
+                              </a>
+                            </Button>
+                          ) : (
+                            <span className="ml-auto shrink-0 rounded-md border bg-muted px-2 py-1 text-xs text-muted-foreground">
+                              Metadata only
+                            </span>
+                          )}
                         </div>
                       ))}
                     </div>

@@ -13,6 +13,35 @@ const nextConfig: NextConfig = {
     ];
   },
   async headers() {
+    const devAdminCacheResetHeaders =
+      process.env.NODE_ENV === 'development'
+        ? [
+            {
+              source: '/admin/:path*',
+              headers: [
+                {
+                  key: 'Clear-Site-Data',
+                  value: '"cache"',
+                },
+              ],
+            },
+          ]
+        : [];
+    const staticAssetHeaders =
+      process.env.NODE_ENV === 'production'
+        ? [
+            {
+              source: '/_next/static/:path*',
+              headers: [
+                {
+                  key: 'Cache-Control',
+                  value: 'public, max-age=31536000, immutable',
+                },
+              ],
+            },
+          ]
+        : [];
+
     return [
       {
         source: '/:path*',
@@ -35,15 +64,8 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
+      ...devAdminCacheResetHeaders,
+      ...staticAssetHeaders,
     ];
   },
   images: {

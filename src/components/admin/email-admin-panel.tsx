@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { EmailHistoryTable } from '@/components/admin/email-history-table'
 import { EmailSendForm, type EmailSendFormRef } from '@/components/admin/email-send-form'
 import { Pagination } from '@/components/admin/pagination'
-import type { AdminEmailHistoryItem } from '@/actions/admin/email'
+import type { AdminEmailHistoryItem } from '@/lib/admin-email-store'
 
 interface EmailAdminPanelProps {
   defaultSender: string

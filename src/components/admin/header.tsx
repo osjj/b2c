@@ -36,10 +36,10 @@ export function AdminHeader({ user }: AdminHeaderProps) {
   }
 
   return (
-    <header className="h-16 border-b bg-card px-6 flex items-center justify-between sticky top-0 z-40">
+    <header className="sticky top-0 z-40 flex h-16 min-w-0 items-center justify-between border-b bg-card px-6">
       {/* Search */}
-      <div className="flex items-center gap-4 flex-1 max-w-md">
-        <div className="relative flex-1">
+      <div className="flex min-w-0 max-w-md flex-1 items-center gap-4">
+        <div className="relative min-w-0 flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search products, orders..."
@@ -49,7 +49,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-2">
+      <div className="flex shrink-0 items-center gap-2">
         {/* Theme Toggle */}
         <Button
           variant="ghost"
