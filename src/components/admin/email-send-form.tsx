@@ -30,7 +30,15 @@ type SendAdminEmailState = {
 }
 
 type MessageMode = 'editorjs' | 'html'
-type ReplyTemplateKind = 'quotationProgress' | 'facebookInquiry'
+type ReplyTemplateKind = 'quotationProgress' | 'facebookInquiry' | 'facebookInquiryNoCatalogue'
+
+type ReplyEmailTemplate = {
+  subject: string
+  paragraphs: string[]
+  greeting?: string
+  signatureName?: string
+  catalogueUrl?: string
+}
 
 type RecipientHistoryCheckResponse = {
   success?: boolean
@@ -59,14 +67,7 @@ const MAX_ATTACHMENT_COUNT = 5
 const MAX_ATTACHMENT_TOTAL_BYTES = 25 * 1024 * 1024
 const DEFAULT_EMAIL_TEMPLATE_SUBJECT = 'PPE Supply Proposal and Quotation Support from LAIFAPPE'
 const LAIFAPPE_LOGO_URL = 'https://www.laifappe.com/logo2.png'
-const REPLY_EMAIL_TEMPLATES: Record<
-  ReplyTemplateKind,
-  {
-    subject: string
-    paragraphs: string[]
-    catalogueUrl?: string
-  }
-> = {
+const REPLY_EMAIL_TEMPLATES: Record<ReplyTemplateKind, ReplyEmailTemplate> = {
   quotationProgress: {
     subject: 'Your Inquiry – Quotation in Progress',
     paragraphs: [
@@ -83,6 +84,17 @@ const REPLY_EMAIL_TEMPLATES: Record<
       'Once we receive your detailed requirements, we will provide you with a suitable quotation and delivery information.',
     ],
     catalogueUrl: 'https://shop.laifappe.com/LAIFA_PPE_catalog.pdf',
+  },
+  facebookInquiryNoCatalogue: {
+    subject: 'Thank You for Your Inquiry – LAIFAPPE Safety Equipment',
+    greeting: 'Hi [Customer Name],',
+    paragraphs: [
+      'Thank you for your request.',
+      'This is Laifappe Safety Equipment. We supply bulk PPE products including safety gloves, safety shoes, helmets and workwear.',
+      'Could you please confirm:<br>1. Which PPE products do you need?<br>2. Estimated quantity?<br>3. Destination country?<br>4. Are you buying for distribution, company use, or a project?',
+      'After we receive the details, we can send MOQ, factory pricing and lead time.',
+    ],
+    signatureName: 'Laifappe Safety Equipment',
   },
 }
 
@@ -469,6 +481,18 @@ export const EmailSendForm = forwardRef<EmailSendFormRef, EmailSendFormProps>(fu
               >
                 <Mail className="mr-2 h-4 w-4" />
                 Facebook回复
+              </Button>
+              <Button
+                type="button"
+                variant={canInsertReplyTemplate ? 'default' : 'secondary'}
+                disabled={!canInsertReplyTemplate}
+                onClick={() => handleUseReplyTemplate('facebookInquiryNoCatalogue')}
+                aria-label="插入 Facebook 无目录回复"
+                title={canInsertReplyTemplate ? undefined : 'Select an EditorJS or HTML template first.'}
+                className="w-full sm:w-auto"
+              >
+                <Mail className="mr-2 h-4 w-4" />
+                FB无目录
               </Button>
             </div>
           </div>
@@ -899,6 +923,8 @@ function createProfessionalEmailTemplate() {
 
 function createReplyEmailTemplate(replyTemplateKind: ReplyTemplateKind) {
   const replyTemplate = REPLY_EMAIL_TEMPLATES[replyTemplateKind]
+  const greeting = replyTemplate.greeting || 'Dear [Customer Name],'
+  const signatureName = replyTemplate.signatureName || 'LAIFAPPE Sales Team'
   const paragraphsHtml = replyTemplate.paragraphs
     .map((paragraph, index) => {
       const shouldInsertCatalogue =
@@ -943,12 +969,12 @@ function createReplyEmailTemplate(replyTemplateKind: ReplyTemplateKind) {
             </tr>
             <tr>
               <td style="padding:24px 34px 0;">
-                <p style="margin:0 0 18px; font-size:15px; line-height:25px; color:#1f2937;">Dear [Customer Name],</p>
+                <p style="margin:0 0 18px; font-size:15px; line-height:25px; color:#1f2937;">${greeting}</p>
                 ${paragraphsHtml}
 
                 <p style="margin:0; font-size:15px; line-height:25px; color:#1f2937;">
                   Best regards,<br>
-                  <strong>LAIFAPPE Sales Team</strong>
+                  <strong>${signatureName}</strong>
                 </p>
               </td>
             </tr>
@@ -1098,6 +1124,8 @@ function createProfessionalEditorTemplate(): EditorJSData {
 
 function createReplyEditorTemplate(replyTemplateKind: ReplyTemplateKind): EditorJSData {
   const replyTemplate = REPLY_EMAIL_TEMPLATES[replyTemplateKind]
+  const greeting = replyTemplate.greeting || 'Dear [Customer Name],'
+  const signatureName = replyTemplate.signatureName || 'LAIFAPPE Sales Team'
   const bodyBlocks = replyTemplate.paragraphs.flatMap((paragraph, index) => {
     const blocks = [createEditorParagraphBlock(paragraph)]
 
@@ -1115,9 +1143,9 @@ function createReplyEditorTemplate(replyTemplateKind: ReplyTemplateKind): Editor
   return {
     time: Date.now(),
     blocks: [
-      createEditorParagraphBlock('Dear [Customer Name],'),
+      createEditorParagraphBlock(greeting),
       ...bodyBlocks,
-      createEditorParagraphBlock('Best regards,<br><b>LAIFAPPE Sales Team</b>'),
+      createEditorParagraphBlock(`Best regards,<br><b>${signatureName}</b>`),
       {
         id: createEditorBlockId(),
         type: 'delimiter',
