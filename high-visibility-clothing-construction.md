@@ -1,7 +1,7 @@
-# High-Visibility Clothing for Construction Workers: Class 2 vs Class 3 Buying Guide
+# Class 2 vs Class 3 High-Visibility Clothing for Construction
 
-**Meta Title:** Class 2 vs Class 3 High-Visibility Clothing for Construction
-**Meta Description:** Choose construction high-visibility clothing by exposure. Learn when Class 2 hi-vis must stay as the outermost visible layer, when to use Class 3, and how to specify ANSI/ISEA 107 or EN ISO 20471 in a bulk RFQ.
+**Meta Title:** Class 2 Hi-Vis Outer Layer Rule | Construction Guide
+**Meta Description:** Class 2 hi-vis must stay visible as the outer layer in trailer yards, work zones, and equipment routes. Compare Class 2 vs Class 3 for construction RFQs.
 **Target URL:** /blog/high-visibility-clothing-construction
 **Target Keywords:** high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE
 
@@ -13,11 +13,13 @@ Do not buy high-vis workwear only by color or vest type. The RFQ should name the
 
 Use this article for high-visibility PPE selection. For the full construction PPE structure, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For the regulatory side across PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site issue checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). For road crews, bridge crews, night shifts, and low-visibility work, connect this guide to [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects) and [night construction and low-visibility PPE](/solutions/ppe-for-night-construction-and-low-visibility-work).
 
-## Direct Answer: Does Class 2 Hi-Vis Need To Be The Outermost Layer?
+## True Or False: Class 2 Hi-Vis Must Be The Outermost Layer
 
-Yes. If a worker is relying on Class 2 high-visibility clothing for traffic, trailer yard, equipment route, or work-zone visibility, the compliant hi-vis layer must stay visible from the outside. A Class 2 vest or shirt does not perform as intended if it is hidden under a raincoat, jacket, hoodie, fall harness, tool belt, backpack, or other outer layer.
+True. If a worker is relying on Class 2 high-visibility clothing for a trailer yard, work zone, traffic route, equipment route, or loading area, the compliant hi-vis layer must stay visible from the outside. A Class 2 vest or shirt does not perform as intended if it is hidden under a raincoat, jacket, hoodie, fall harness, tool belt, backpack, or other outer layer.
 
 The practical rule for supervisors is simple: **the outermost visible layer should be certified high-vis, or the certified high-vis garment must remain clearly exposed.**
+
+This is the direct answer to the common safety-check question: "Class 2 high visibility clothing must be the outermost layer of clothing when on the trailer yard." The answer is true when that garment is the layer being used for visibility control.
 
 | Situation | Correct action | Common failure |
 |---|---|---|
@@ -25,6 +27,7 @@ The practical rule for supervisors is simple: **the outermost visible layer shou
 | Worker adds rainwear | Use ANSI/ISEA 107 or EN ISO 20471 hi-vis rainwear | Clear or dark rainwear reduces visibility |
 | Worker wears a fall harness | Check that fluorescent material and reflective tape remain visible | Harness webbing blocks the main reflective pattern |
 | Trailer yard, loading area, or equipment route | Keep Class 2 or higher hi-vis visible for the full shift | Vest is removed, covered, or too dirty to work |
+| Work zones with jackets or hoodies | Move the certified hi-vis layer outside or issue certified hi-vis outerwear | Warm clothing hides the compliant garment |
 | Night work or high-speed traffic | Move to Class 3 or a certified garment system | Basic sleeveless vest is treated as enough |
 
 For a bulk order, write this into the RFQ: "Hi-vis garments must remain visible as the outermost work layer; provide certified outerwear options for rain, cold weather, and Class 3 exposure." Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-high-visibility-clothing-construction) if you need a supplier-ready format.
@@ -359,9 +362,9 @@ Class 2 is commonly used as a baseline for general construction traffic exposure
 
 Sometimes, but not always. A vest may be enough for general site access, but higher-risk work may require Class 3 garments, sleeves, pants, jackets, rainwear, or FR hi-vis. The visible garment must also stay exposed when the worker wears harnesses, tool belts, jackets, or other PPE.
 
-### Does Class 2 high-visibility clothing need to be the outermost layer?
+### True or false: Class 2 high-visibility clothing must be the outermost layer in a trailer yard?
 
-Yes, the high-visibility garment has to remain visible from the outside to do its job. A Class 2 vest or shirt loses much of its value if it is covered by a jacket, raincoat, harness, backpack, tool belt, or other outer layer. For trailer yards, roadwork, equipment routes, and work zones, supervisors should check that reflective tape and fluorescent background material remain visible throughout the shift.
+True when the Class 2 garment is the visibility control for that worker. The high-visibility garment has to remain visible from the outside to do its job. A Class 2 vest or shirt loses much of its value if it is covered by a jacket, raincoat, harness, backpack, tool belt, or other outer layer. For trailer yards, roadwork, equipment routes, and work zones, supervisors should check that reflective tape and fluorescent background material remain visible throughout the shift.
 
 ### What should workers wear in work zones?
 

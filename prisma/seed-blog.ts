@@ -66,15 +66,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     slug: 'construction-safety-footwear-guide',
     markdownPath: join(process.cwd(), 'construction-safety-footwear-guide.md'),
     generatedImagesPath: join(__dirname, 'blog-images.generated.json'),
-    title: 'Safety Footwear Guide for Construction Workers',
+    title: 'Construction Safety Footwear Guide: ASTM, EN ISO 20345 and Size Planning',
     excerpt:
-      'Choose the right construction safety boots the first time. A complete guide covering ASTM F2413, EN ISO 20345 S1–S5 ratings, steel vs composite toe, and how to match footwear to every construction hazard.',
+      'Choose construction safety footwear by site hazard, ASTM F2413 or EN ISO 20345 rating, slip and puncture risk, electrical exposure, and bulk size planning.',
     seoTitle:
-      'Safety Footwear Guide for Construction Workers | ASTM & EN ISO 20345 Explained',
+      'Construction Safety Footwear Guide | ASTM, EN & Sizes',
     seoDescription:
-      'Choose the right construction safety boots the first time. Complete guide covering ASTM F2413, EN ISO 20345 S1–S5 ratings, steel vs composite toe, and how to match footwear to every construction hazard.',
+      'Choose construction safety footwear by site hazard, ASTM F2413 or EN ISO 20345 rating, slip/puncture risk, electrical exposure, and bulk size planning.',
     seoKeywords:
-      'construction safety footwear, construction safety boots, steel toe boots construction, ASTM F2413, EN ISO 20345, safety boots for construction workers, composite toe vs steel toe, puncture resistant boots construction',
+      'construction safety footwear, construction site footwear, safety footwear construction site, construction safety boots, steel toe boots construction, ASTM F2413, EN ISO 20345, safety boots for construction workers, composite toe vs steel toe, puncture resistant boots construction, bulk safety footwear size planning',
     heroFallback:
       'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80',
     sectionImages: {
@@ -304,14 +304,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-gloves-selection-guide.generated.json',
     ),
-    title: 'Construction Gloves: How to Choose the Right Hand Protection',
+    title: 'Construction Hand Protection Guide: Gloves for Rebar, Cut and Impact Work',
     excerpt:
-      'A practical guide to choosing construction gloves by hazard, task, grip, dexterity, cut risk, impact exposure, chemical contact, hot work, and electrical PPE requirements.',
-    seoTitle: 'Construction Gloves: How to Choose the Right Hand Protection',
+      'Choose construction hand protection for rebar, abrasive materials, wet cement, impact tools, electrical work, and bulk glove orders by task and size.',
+    seoTitle:
+      'Construction Hand Protection | Rebar & Cut Gloves',
     seoDescription:
-      'Learn how to choose construction gloves by hazard, task, coating, cut resistance, impact protection, chemical exposure, heat, and electrical work. Practical guide for contractors, supervisors, and PPE buyers.',
+      'Choose construction hand protection for rebar, abrasive materials, wet cement, impact tools, electrical work, and bulk glove orders by task and size.',
     seoKeywords:
-      'construction gloves how to choose, construction hand protection, construction work gloves, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction',
+      'construction hand protection, hand protection in construction, construction gloves how to choose, construction work gloves, gloves used in construction, proper hand protection for rebar work, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction',
     heroFallback:
       'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
     sectionImages: {
@@ -410,14 +411,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.bulk-construction-ppe-procurement.generated.json',
     ),
-    title: 'How to Buy Construction PPE in Bulk: RFQ Template, Checklist and Size Planning',
+    title: 'How to Buy Bulk Construction PPE for a New Crew',
     excerpt:
-      'A practical guide for buying construction PPE in bulk with an RFQ template path, role-based checklist, standards, sizing, supplier evaluation, replacement stock, and site issue controls.',
-    seoTitle: 'Buy Construction PPE in Bulk | RFQ Template, Checklist, Size Plan',
+      'A practical guide for buying bulk construction PPE for a new crew, comparing contractor PPE suppliers, building RFQ fields, planning sizes, and setting replacement stock.',
+    seoTitle:
+      'Bulk Construction PPE Supplier Guide | RFQ & Crew Kits',
     seoDescription:
-      'Buy construction PPE in bulk with a repeatable RFQ process. Plan worker roles, PPE categories, standards, quantities, size ranges, replacement stock, supplier documents, and delivery details.',
+      'Buy bulk construction PPE for a new crew. Compare contractor PPE suppliers, build RFQ fields, size plans, replacement stock, and trade kit requirements.',
     seoKeywords:
-      'buy construction PPE in bulk, bulk construction PPE procurement, construction PPE RFQ, PPE purchasing guide construction, construction PPE ordering checklist, bulk PPE replacement stock, construction PPE size planning',
+      'buy construction PPE in bulk, bulk construction PPE procurement, contractor PPE supplier bulk, best bulk PPE kit for contractors, bulk safety equipment for new construction crew, construction PPE RFQ, PPE purchasing guide construction, construction PPE ordering checklist, bulk PPE replacement stock, construction PPE size planning',
     heroFallback:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
     sectionImages: {
@@ -470,15 +472,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.contractor-ppe-kit-checklist.generated.json',
     ),
-    title: 'Contractor PPE Kit Checklist: What to Include for Bulk Orders',
+    title: 'Best Bulk PPE Kit for Contractors: Checklist for Bulk Orders',
     excerpt:
-      'A practical contractor PPE kit checklist for bulk orders, covering baseline construction PPE, trade add-ons, sizing, standards, packaging, replacement stock, and RFQ fields.',
+      'Build bulk PPE kits for contractors by trade, size, standard, packaging, replacement stock, and supplier RFQ checks.',
     seoTitle:
-      'Contractor PPE Kit Checklist for Bulk Orders | Construction PPE Kits',
+      'Best Bulk PPE Kit for Contractors | Checklist & RFQ',
     seoDescription:
-      'Build contractor PPE kits for bulk orders: baseline construction PPE, trade add-ons, sizing, standards, packaging, replacement stock, and RFQ checks.',
+      'Build bulk PPE kits for contractors by trade, size, standard, packaging, and replacement stock. Includes baseline kit, add-on modules, and supplier RFQ checks.',
     seoKeywords:
-      'contractor PPE kit, bulk PPE kit for contractors, construction PPE kit checklist, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, site issue PPE kits',
+      'best bulk PPE kit for contractors, contractor PPE kit, bulk PPE kit for contractors, contractor PPE supplier bulk, construction PPE kit checklist, industrial PPE kits construction procurement, contractor safety kit, PPE kit checklist, site issue PPE kits',
     heroFallback:
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
     sectionImages: {
@@ -716,13 +718,13 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     ),
     title: 'Class 2 vs Class 3 High-Visibility Clothing for Construction',
     excerpt:
-      'A practical guide to construction high-visibility clothing: when Class 2 hi-vis must stay as the outermost visible layer, when to use Class 3, and how to specify ANSI/ISEA 107 or EN ISO 20471 in a bulk RFQ.',
+      'A practical guide to the Class 2 hi-vis outer-layer rule for trailer yards, work zones, equipment routes, Class 2 vs Class 3 selection, and construction RFQs.',
     seoTitle:
-      'Class 2 vs Class 3 High-Visibility Clothing for Construction',
+      'Class 2 Hi-Vis Outer Layer Rule | Construction Guide',
     seoDescription:
-      'Choose construction high-visibility clothing by exposure. Learn when Class 2 hi-vis must stay as the outermost visible layer, when to use Class 3, and how to specify ANSI/ISEA 107 or EN ISO 20471 in a bulk RFQ.',
+      'Class 2 hi-vis must stay visible as the outer layer in trailer yards, work zones, and equipment routes. Compare Class 2 vs Class 3 for construction RFQs.',
     seoKeywords:
-      'high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
+      'Class 2 hi-vis outer layer rule, high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, trailer yard hi-vis clothing, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
     heroFallback:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
     sectionImages: {

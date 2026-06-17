@@ -50,6 +50,16 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request a bulk glove quote',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-gloves-selection-guide',
+        label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-gloves-selection-guide',
+        label: 'Size sheet',
+      },
+    ],
   },
   'construction-safety-footwear-guide': {
     solution: {
@@ -83,6 +93,16 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request a safety footwear quote',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-safety-footwear-guide',
+        label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-safety-footwear-guide',
+        label: 'Size sheet',
+      },
+    ],
   },
   'construction-hard-hat-types': {
     solution: {
