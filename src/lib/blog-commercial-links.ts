@@ -104,6 +104,49 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       },
     ],
   },
+  'type-1-vs-type-2-hard-hats': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Construction head protection solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+      { href: '/categories/head-protection/face-shields', label: 'Face shields' },
+    ],
+    products: [
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN397 ABS safety helmet',
+      },
+      {
+        href: '/products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit',
+        label: 'CE EN397 ANSI vented safety helmet',
+      },
+      {
+        href: '/products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6',
+        label: 'HDPE safety helmet with chin strap',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request Type I/II hard hat options',
+    },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-type-1-vs-type-2-hard-hats',
+        label: 'RFQ template',
+      },
+      {
+        href: '/tools/hard-hat-class-decoder?source=blog-type-1-vs-type-2-hard-hats',
+        label: 'Hard hat decoder',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-type-1-vs-type-2-hard-hats',
+        label: 'Standards sheet',
+      },
+    ],
+  },
   'construction-hard-hat-types': {
     solution: {
       href: '/solutions/construction-site-ppe-solution',
@@ -132,6 +175,16 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request a hard hat quote',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-hard-hat-types',
+        label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-hard-hat-types',
+        label: 'Standards sheet',
+      },
+    ],
   },
   'bulk-construction-ppe-procurement': {
     solution: {
@@ -213,6 +266,10 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       {
         href: '/downloads/construction-ppe-rfq-template?source=blog-construction-ppe-checklist',
         label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-ppe-checklist',
+        label: 'Size sheet',
       },
     ],
   },
@@ -319,6 +376,10 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
         href: '/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection',
         label: 'RFQ template',
       },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-respiratory-protection',
+        label: 'Size sheet',
+      },
     ],
   },
   'construction-eye-face-protection': {
@@ -354,6 +415,16 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       href: '/quote',
       label: 'Request eye and face PPE options',
     },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-eye-face-protection',
+        label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-eye-face-protection',
+        label: 'Size sheet',
+      },
+    ],
   },
   'demolition-concrete-cutting-ppe-checklist': {
     solution: {

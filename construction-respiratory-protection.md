@@ -1,19 +1,19 @@
-# Construction Respiratory Protection: Silica Dust, N95, P100 and Half-Face Respirators
+# Construction Dust Respirator Guide: N95 vs P100 vs Half-Face
 
-**Meta Title:** N95 vs P100 vs Half-Face Respirators for Construction Dust
-**Meta Description:** Compare N95, P100, half-face and full-face respirators for construction dust, silica, concrete cutting, demolition, grinding, welding fumes, coatings, fit testing, and bulk RFQs.
+**Meta Title:** Construction Dust Respirator | N95 vs P100 Guide
+**Meta Description:** Compare N95, P100 and half-face respirators for construction dust, silica, concrete dust, demolition, grinding, welding fumes, fit testing, and bulk RFQs.
 **Target URL:** /blog/construction-respiratory-protection
-**Target Keywords:** respiratory protection construction, construction dust respirator, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respirator for concrete dust, construction respiratory PPE
+**Target Keywords:** construction dust respirator, respirator for concrete dust, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respiratory protection construction, construction respiratory PPE
 
 ---
 
-Construction respiratory protection starts with the airborne hazard, not the mask name. **N95 respirators may fit some lower-exposure dust tasks**, while **P100 filters or reusable half-face respirators are often better for heavier or recurring silica tasks**. If respirators are required by OSHA or the employer, tight-fitting respirators usually need medical evaluation, fit testing, training, cleaning, storage, and replacement planning.
+Construction dust respirator selection starts with the airborne hazard, not the mask name. For concrete dust, silica dust, demolition dust, grinding, and cutting, the buyer needs to compare N95, P100, and reusable half-face respirators against the task, controls, duration, fit, and OSHA requirements. **N95 respirators may fit some lower-exposure dust tasks**, while **P100 filters or reusable half-face respirators are often better for heavier or recurring silica tasks**.
 
 Silica dust, demolition dust, wood dust, gypsum dust, welding fumes, coating vapors, asbestos, lead, and mixed renovation dust can require different controls. The wrong respirator may look protective and still fail the task.
 
 Use this article for category-level respiratory PPE selection. For the full construction PPE structure, use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For compliance across all PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). For site execution, use the [construction PPE checklist](/blog/construction-ppe-checklist). For purchasing workflow, use the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement). For silica-heavy demolition, concrete cutting, grinding, and dusty cleanup, pair this guide with the [demolition and concrete cutting PPE checklist](/blog/demolition-concrete-cutting-ppe-checklist) and [PPE for demolition and concrete cutting work](/solutions/ppe-for-demolition-and-concrete-cutting-work).
 
-## Quick Answer: N95 vs P100 vs Half-Face Respirator
+## Quick Answer: Construction Dust Respirator, N95, P100 Or Half-Face?
 
 For construction dust, the right respirator depends on the task, exposure level, work controls, fit, and whether OSHA requires respiratory protection. **N95** can be a starting point for some lower-exposure non-oil dust tasks. **P100** provides higher particulate filtration and is often used for heavier dust or recurring silica work. **Reusable half-face respirators** make more sense when crews need replaceable filters, better fit control, cleaning, storage, and repeat use.
 
@@ -372,6 +372,10 @@ This checklist is especially important for concrete cutting, drilling, grinding,
 ---
 
 ## Frequently Asked Questions
+
+### What respirator should be used for concrete dust?
+
+For concrete dust, start by reviewing silica exposure, OSHA Table 1 controls, task duration, and whether water delivery or dust collection is being used. Some controlled lower-exposure tasks may use an N95, while heavier or recurring concrete dust work may need a reusable half-face respirator with P100 filters.
 
 ### What respirator is best for construction dust?
 

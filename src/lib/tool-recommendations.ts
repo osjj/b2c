@@ -93,6 +93,11 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ppe-calculator',
     'ai-quote',
   ],
+  'type-1-vs-type-2-hard-hats': [
+    'hard-hat-class-decoder',
+    'ai-quote',
+    'ppe-calculator',
+  ],
   'construction-eye-face-protection': [
     'ppe-calculator',
     'ai-quote',
@@ -137,6 +142,7 @@ const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
   'construction-gloves-selection-guide',
   'high-visibility-clothing-construction',
   'construction-respiratory-protection',
+  'type-1-vs-type-2-hard-hats',
   'construction-hard-hat-types',
   'construction-eye-face-protection',
   'construction-hearing-protection',

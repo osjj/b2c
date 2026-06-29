@@ -8,6 +8,7 @@
  *   - contractor-ppe-kit-checklist
  *   - construction-hearing-protection
  *   - construction-respiratory-protection
+ *   - type-1-vs-type-2-hard-hats
  *   - construction-hard-hat-types
  *   - high-visibility-clothing-construction
  *   - construction-safety-helmet-vs-hard-hat
@@ -137,14 +138,16 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-ppe-checklist.generated.json',
     ),
-    title: 'Construction PPE Checklist: What Every Worker Needs on Site',
+    title:
+      'Construction PPE Checklist: Site Entry, Task Add-Ons and Worker PPE List',
     excerpt:
-      'A practical construction PPE checklist for site managers, safety officers, and contractors. Covers hard hats, eye protection, gloves, boots, hi-vis, fall protection, respirators, and start-of-shift checks.',
-    seoTitle: 'Construction PPE Checklist: What Every Worker Needs on Site',
+      'A practical construction PPE checklist for site entry, task add-ons, trade-based worker PPE lists, fit checks, replacement stock, and start-of-shift routines.',
+    seoTitle:
+      'Construction PPE Checklist | Site Entry & Task Add-Ons',
     seoDescription:
-      'A practical construction PPE checklist for site managers, safety officers, and contractors. Covers hard hats, eye protection, gloves, boots, hi-vis, fall protection, respirators, and start-of-shift checks.',
+      'Use this construction PPE checklist for hard hats, eye protection, gloves, boots, hi-vis, respirators, fall protection, task add-ons, and shift checks.',
     seoKeywords:
-      'construction PPE checklist, PPE checklist for construction workers, construction site PPE checklist, what PPE is required on a construction site, construction worker PPE list',
+      'construction PPE checklist, PPE checklist for construction workers, construction site PPE checklist, what PPE is required on a construction site, construction worker PPE list, site entry PPE checklist, construction PPE by trade',
     heroFallback:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
     sectionImages: {
@@ -360,15 +363,16 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-eye-face-protection.generated.json',
     ),
-    title: 'Eye and Face Protection for Construction Sites',
+    title:
+      'Construction Eye and Face Protection: Safety Glasses, Goggles and Face Shields',
     excerpt:
-      'A practical guide to choosing eye and face protection for construction by task, hazard, side protection, splash exposure, dust, grinding, welding, and face shield use.',
+      'Choose construction eye and face protection by task: safety glasses, goggles, face shields, welding eye protection, dust, splash, grinding, and side protection.',
     seoTitle:
-      'Eye and Face Protection for Construction Sites: How to Choose the Right PPE',
+      'Construction Eye and Face PPE | Glasses, Goggles, Shields',
     seoDescription:
-      'Learn how to choose eye and face protection for construction by task, hazard, side protection, splash exposure, dust, grinding, welding, and face shield use. Practical guide for contractors, supervisors, and PPE buyers.',
+      'Choose construction eye and face protection by task: safety glasses, goggles, face shields, welding eye protection, dust, splash, grinding, and side protection.',
     seoKeywords:
-      'eye and face protection construction, construction safety glasses, construction goggles, face shield construction, welding eye protection construction, eye PPE for construction sites, construction eye protection requirements',
+      'eye and face protection construction, construction eye and face PPE, construction safety glasses, construction goggles, face shield construction, welding eye protection construction, eye PPE for construction sites, construction eye protection requirements, safety glasses vs goggles construction',
     heroFallback:
       'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
     sectionImages: {
@@ -594,15 +598,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-respiratory-protection.generated.json',
     ),
-    title: 'N95 vs P100 vs Half-Face Respirators for Construction Dust',
+    title: 'Construction Dust Respirator Guide: N95 vs P100 vs Half-Face',
     excerpt:
-      'A practical guide comparing N95, P100, half-face, full-face, and PAPR options for construction dust, silica, concrete cutting, demolition, welding fumes, coatings, fit testing, and bulk RFQs.',
+      'Compare N95, P100 and half-face respirators for construction dust, silica, concrete dust, demolition, grinding, welding fumes, fit testing, and bulk RFQs.',
     seoTitle:
-      'N95 vs P100 vs Half-Face Respirators for Construction Dust',
+      'Construction Dust Respirator | N95 vs P100 Guide',
     seoDescription:
-      'Compare N95, P100, half-face and full-face respirators for construction dust, silica, concrete cutting, demolition, grinding, welding fumes, coatings, fit testing, and bulk RFQs.',
+      'Compare N95, P100 and half-face respirators for construction dust, silica, concrete dust, demolition, grinding, welding fumes, fit testing, and bulk RFQs.',
     seoKeywords:
-      'respiratory protection construction, construction dust respirator, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respirator for concrete dust, construction respiratory PPE',
+      'construction dust respirator, respirator for concrete dust, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respiratory protection construction, construction respiratory PPE',
     heroFallback:
       'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1600&q=80',
     sectionImages: {
@@ -649,21 +653,88 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     },
   },
   {
+    slug: 'type-1-vs-type-2-hard-hats',
+    markdownPath: join(process.cwd(), 'type-1-vs-type-2-hard-hats.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.type-1-vs-type-2-hard-hats.generated.json',
+    ),
+    title:
+      'Type 1 vs Type 2 Hard Hats: Class G, E, C Explained for Construction Buyers',
+    excerpt:
+      'Compare Type 1 vs Type 2 hard hats and Class G, Class E, and Class C ratings before adding construction head protection to a bulk PPE RFQ.',
+    seoTitle:
+      'Type 1 vs Type 2 Hard Hats | Class G, E, C Explained',
+    seoDescription:
+      'Compare Type 1 vs Type 2 hard hats and Class G, Class E, Class C ratings for construction buyers. Learn which hard hat spec belongs in a bulk RFQ.',
+    seoKeywords:
+      'type 1 vs type 2 hard hat, Type I vs Type II hard hat, Class G hard hat, Class E hard hat, Class C hard hat, Type 1 Class C hard hat, Type 1 Class G hard hat, hard hat classes, construction hard hat buyer guide, ANSI Z89.1 hard hat',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: Type 1 vs Type 2 Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Type 1 and Type 2 hard hats solve different impact exposure problems, so buyers should specify the required type before choosing color or price.',
+      },
+      'Type 1 And Type 2 Are Impact Ratings, Not Electrical Ratings': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A clear head protection RFQ separates impact type from electrical class.',
+      },
+      'What Type 1 Hard Hats Mean': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Type 1 hard hats focus mainly on top impact from falling or flying objects.',
+      },
+      'What Type 2 Hard Hats Mean': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Type 2 head protection adds lateral impact coverage for higher-movement and congested construction tasks.',
+      },
+      'Class G, Class E, And Class C Explained': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Hard hat class selection should follow electrical exposure, not shell color or worker preference.',
+      },
+      'Common Combinations Buyers Ask About': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Common hard hat combinations include Type 1 Class G, Type 1 Class C, Type 2 Class E, and Type 2 Class C.',
+      },
+      'Which Hard Hat Should Contractors Buy In Bulk?': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Contractor head protection orders work best when quantities are separated by role, task, and electrical exposure.',
+      },
+      'How To Write A Better Hard Hat RFQ': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'A strong hard hat RFQ includes type, class, shell style, retention, accessory compatibility, replacement parts, and documentation.',
+      },
+      'Field Selection Checklist': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Field trials help confirm fit, retention, compatibility, and worker acceptance before a bulk hard hat order.',
+      },
+    },
+  },
+  {
     slug: 'construction-hard-hat-types',
     markdownPath: join(process.cwd(), 'construction-hard-hat-types.md'),
     generatedImagesPath: join(
       __dirname,
       'blog-images.construction-hard-hat-types.generated.json',
     ),
-    title: 'Types of Hard Hats for Construction: Class G, E, C and Helmet Selection',
+    title: 'Construction Hard Hat Types: Class G, E, C and Helmet Selection',
     excerpt:
-      'A practical guide to choosing construction hard hats by OSHA requirements, ANSI/ISEA Z89.1 Type I and Type II impact protection, Class G/E/C electrical ratings, shell style, accessories, fit, inspection, and bulk buying.',
+      'Choose construction hard hats by Class G/E/C, helmet style, impact risk, electrical exposure, fit, accessories, inspection, and bulk RFQ needs.',
     seoTitle:
-      'Types of Hard Hats for Construction | Class G, E, C and Type I vs Type II',
+      'Construction Hard Hat Types | Class G, E, C Guide',
     seoDescription:
-      'Learn how to choose construction hard hats by OSHA requirements, ANSI/ISEA Z89.1 Type I and Type II impact protection, Class G/E/C electrical ratings, brim style, ventilation, chin straps, accessories, inspection, and bulk buying.',
+      'Choose construction hard hats by Class G/E/C, helmet style, impact risk, electrical exposure, fit, accessories, inspection, and bulk RFQ needs.',
     seoKeywords:
-      'types of hard hats construction, construction hard hat types, Class E hard hat, Class G hard hat, Type I vs Type II hard hat, hard hat classes, ANSI Z89.1 hard hat, construction helmet selection',
+      'construction hard hat types, types of hard hats construction, hard hat classes, Class G hard hat, Class E hard hat, Class C hard hat, ANSI Z89.1 hard hat, construction helmet selection, hard hat bulk buying, construction head protection',
     heroFallback:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
     sectionImages: {

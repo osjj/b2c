@@ -1,17 +1,33 @@
-# Construction PPE Checklist: What Every Worker Needs on Site
+# Construction PPE Checklist: Site Entry, Task Add-Ons and Worker PPE List
 
-**Meta Title:** Construction PPE Checklist: What Every Worker Needs on Site  
-**Meta Description:** A practical construction PPE checklist for site managers, safety officers, and contractors. Covers hard hats, eye protection, gloves, boots, hi-vis, fall protection, respirators, and start-of-shift checks.  
+**Meta Title:** Construction PPE Checklist | Site Entry & Task Add-Ons
+**Meta Description:** Use this construction PPE checklist for hard hats, eye protection, gloves, boots, hi-vis, respirators, fall protection, task add-ons, and shift checks.
 **Target URL:** /blog/construction-ppe-checklist  
-**Target Keywords:** construction PPE checklist, PPE checklist for construction workers, construction site PPE checklist, what PPE is required on a construction site, construction worker PPE list
+**Target Keywords:** construction PPE checklist, PPE checklist for construction workers, construction site PPE checklist, what PPE is required on a construction site, construction worker PPE list, site entry PPE checklist, construction PPE by trade
 
 ---
 
-If you ask ten supervisors what PPE a construction worker needs on site, you will usually hear the same short list: hard hat, safety glasses, gloves, boots, hi-vis. That is a decent starting point, but it is not a usable construction PPE checklist.
+If you ask what PPE is required on a construction site, the short answer is usually head protection, eye protection, hand protection, safety footwear, and task-specific add-ons such as high-visibility clothing, hearing protection, respiratory protection, fall protection, face protection, or electrical PPE. That is the start of a construction worker PPE list, not the finish.
 
 Real construction PPE decisions depend on the task, the location, the exposure, and whether the worker is cutting concrete, working near traffic, climbing onto a leading edge, handling chemicals, or just moving materials in a general access zone. A site that treats PPE as one fixed bundle will under-protect some workers and overspec others.
 
 This article is the operational companion to our [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). Use that page to build your full category mix and purchasing logic. Use this checklist when you need a faster field answer to the practical question: what should each worker be wearing before work starts today?
+
+---
+
+## Quick Answer: What PPE Is Required On A Construction Site?
+
+Most active construction sites start with baseline PPE, then add task-specific protection based on the work being done. A general site-entry checklist is useful, but supervisors should still adjust it for cutting, grinding, traffic zones, scaffolding, electrical work, demolition, trenching, welding, and high-noise work.
+
+| PPE layer | Typical construction checklist item | When to add more |
+|---|---|---|
+| Site entry baseline | hard hat, safety glasses, gloves, safety footwear | Upgrade by trade, task, weather, traffic, and exposure. |
+| Visibility | hi-vis vest, shirt, jacket, or rainwear | Required where vehicles, equipment, roadwork, or low visibility are present. |
+| Dust and fumes | respirator review, N95, P100, half-face respirator, or task-specific cartridge | Add when cutting, grinding, drilling, demolition, welding, coating, or silica work is present. |
+| Height work | harness, lanyard, SRL, anchor, rescue plan | Add where fall exposure controls require it. |
+| Hot work and debris | face shield, welding helmet, goggles, hearing protection, heat gloves | Add when grinding, welding, chipping, cutting, or demolition creates higher exposure. |
+
+Use the [Construction PPE Checklist PDF](/downloads/construction-ppe-checklist.pdf?source=blog-construction-ppe-checklist), [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-construction-ppe-checklist), and [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-ppe-checklist) when the checklist needs to become a purchasing plan.
 
 ---
 
@@ -372,8 +388,11 @@ If a team is trying to standardize role-based purchasing rather than daily check
 
 ## Frequently Asked Questions
 
-**What PPE is required on most construction sites?**  
-At minimum, most active construction sites require head protection, eye protection, gloves, safety footwear, and additional PPE according to the actual exposure. High-visibility clothing, hearing protection, respirators, and fall protection are all common depending on the task and location.
+**What PPE is required on a construction site?**
+Most active construction sites require head protection, eye protection, gloves, safety footwear, and task-specific PPE based on the exposure. High-visibility clothing, hearing protection, respirators, face shields, fall protection, and electrical PPE are common add-ons depending on the task and location.
+
+**What should be on a construction worker PPE list?**
+A construction worker PPE list should include baseline site-entry PPE, task-specific add-ons, fit and sizing checks, inspection points, replacement stock, and links to the site hazard assessment. A short list of products is not enough if it does not change by task.
 
 **Does every worker need the same construction PPE?**  
 No. A general laborer, roofer, electrician, welder, demolition worker, and roadwork crew member may share some baseline PPE, but their added protection requirements are often very different.
@@ -395,9 +414,9 @@ The best construction PPE checklist is the one supervisors can actually use befo
 
 If you need the full role-based program behind this checklist, start with our [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). If you need the regulation side, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction). If footwear is one of the main weak points on your site, continue to the [construction safety footwear guide](/blog/construction-safety-footwear-guide).
 
-[View the complete construction PPE solution page →](/solutions/construction-site-ppe-solution)  
-[Read the OSHA construction PPE compliance guide →](/blog/osha-ppe-requirements-construction)  
-[Read the construction safety footwear guide →](/blog/construction-safety-footwear-guide)
+- [View the complete construction PPE solution page](/solutions/construction-site-ppe-solution)
+- [Read the OSHA construction PPE compliance guide](/blog/osha-ppe-requirements-construction)
+- [Read the construction safety footwear guide](/blog/construction-safety-footwear-guide)
 
 ---
 

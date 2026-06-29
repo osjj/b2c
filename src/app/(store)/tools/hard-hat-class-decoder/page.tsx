@@ -208,10 +208,10 @@ export default function HardHatClassDecoderPage() {
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
           <Link
-            href="/blog/construction-hard-hat-types"
+            href="/blog/type-1-vs-type-2-hard-hats"
             className="inline-flex min-h-11 items-center justify-center rounded-md border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
           >
-            Read hard hat guide
+            Read Type I/II guide
           </Link>
         </div>
       </header>

@@ -33,8 +33,14 @@ const GUIDE_CATALOG = {
   'construction-hard-hat-types': {
     href: '/blog/construction-hard-hat-types',
     title: 'Hard Hat Types Guide',
-    description: 'Use this for Type I/II, Class G/E/C, helmet accessories, and head protection choices.',
+    description: 'Use this for construction hard hat classes, shell styles, accessories, fit, and replacement planning.',
     eyebrow: '717 impressions',
+  },
+  'type-1-vs-type-2-hard-hats': {
+    href: '/blog/type-1-vs-type-2-hard-hats',
+    title: 'Type 1 vs Type 2 Hard Hats',
+    description: 'Use this when buyers need a focused explanation of Type I/II and Class G/E/C before an RFQ.',
+    eyebrow: 'Hard hat query',
   },
   'construction-eye-face-protection': {
     href: '/blog/construction-eye-face-protection',
@@ -95,7 +101,7 @@ export const TOOLS_HUB_RELATED_GUIDES = pickGuides([
   'construction-gloves-selection-guide',
   'high-visibility-clothing-construction',
   'construction-respiratory-protection',
-  'construction-hard-hat-types',
+  'type-1-vs-type-2-hard-hats',
   'construction-eye-face-protection',
 ])
 
@@ -128,9 +134,9 @@ export const TOOL_RELATED_GUIDES = {
     'construction-ppe-checklist',
   ]),
   'hard-hat-class-decoder': pickGuides([
+    'type-1-vs-type-2-hard-hats',
     'construction-hard-hat-types',
     'construction-safety-helmet-vs-hard-hat',
     'bulk-construction-ppe-procurement',
-    'contractor-ppe-kit-checklist',
   ]),
 } satisfies Record<string, ToolRelatedGuide[]>
