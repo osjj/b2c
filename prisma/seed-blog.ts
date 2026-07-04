@@ -307,15 +307,16 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-gloves-selection-guide.generated.json',
     ),
-    title: 'Construction Hand Protection Guide: Gloves for Rebar, Cut and Impact Work',
+    title:
+      'Construction Site Safety Gloves: Hand Protection Guide for Rebar, Cut and Impact Work',
     excerpt:
-      'Choose construction hand protection for rebar, abrasive materials, wet cement, impact tools, electrical work, and bulk glove orders by task and size.',
+      'Choose construction site safety gloves by task: rebar, cut, abrasion, wet cement, impact tools, electrical work, fit, and bulk glove orders.',
     seoTitle:
-      'Construction Hand Protection | Rebar & Cut Gloves',
+      'Construction Site Safety Gloves | Hand Protection Guide',
     seoDescription:
-      'Choose construction hand protection for rebar, abrasive materials, wet cement, impact tools, electrical work, and bulk glove orders by task and size.',
+      'Choose construction site safety gloves by task: rebar, cut, abrasion, wet cement, impact tools, electrical work, fit, and bulk glove orders.',
     seoKeywords:
-      'construction hand protection, hand protection in construction, construction gloves how to choose, construction work gloves, gloves used in construction, proper hand protection for rebar work, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction',
+      'construction site safety gloves, safety gloves for construction sites, construction hand protection, hand protection in construction, construction gloves how to choose, construction work gloves, gloves used in construction, proper hand protection for rebar work, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction',
     heroFallback:
       'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
     sectionImages: {
@@ -419,9 +420,9 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     excerpt:
       'A practical guide for buying bulk construction PPE for a new crew, comparing contractor PPE suppliers, building RFQ fields, planning sizes, and setting replacement stock.',
     seoTitle:
-      'Bulk Construction PPE Supplier Guide | RFQ & Crew Kits',
+      'Contractor PPE Supplier Bulk Guide | RFQ & Crew Kits',
     seoDescription:
-      'Buy bulk construction PPE for a new crew. Compare contractor PPE suppliers, build RFQ fields, size plans, replacement stock, and trade kit requirements.',
+      'Compare contractor PPE supplier bulk options for a new crew: RFQ fields, size plans, standards, replacement stock, packaging, and trade kit needs.',
     seoKeywords:
       'buy construction PPE in bulk, bulk construction PPE procurement, contractor PPE supplier bulk, best bulk PPE kit for contractors, bulk safety equipment for new construction crew, construction PPE RFQ, PPE purchasing guide construction, construction PPE ordering checklist, bulk PPE replacement stock, construction PPE size planning',
     heroFallback:
@@ -789,13 +790,13 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     ),
     title: 'Class 2 vs Class 3 High-Visibility Clothing for Construction',
     excerpt:
-      'A practical guide to the Class 2 hi-vis outer-layer rule for trailer yards, work zones, equipment routes, Class 2 vs Class 3 selection, and construction RFQs.',
+      'A practical guide to the Class 2 high visibility outermost-layer rule for trailer yards, work zones, equipment routes, Class 2 vs Class 3 selection, and construction RFQs.',
     seoTitle:
-      'Class 2 Hi-Vis Outer Layer Rule | Construction Guide',
+      'Class 2 High Visibility Outer Layer Rule | Construction',
     seoDescription:
-      'Class 2 hi-vis must stay visible as the outer layer in trailer yards, work zones, and equipment routes. Compare Class 2 vs Class 3 for construction RFQs.',
+      'Class 2 high visibility clothing must stay visible as the outermost layer in trailer yards, work zones, and equipment routes. Compare Class 2 vs Class 3.',
     seoKeywords:
-      'Class 2 hi-vis outer layer rule, high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, trailer yard hi-vis clothing, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
+      'class 2 high visibility clothing must be the outermost layer, Class 2 hi-vis outer layer rule, high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, trailer yard hi-vis clothing, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
     heroFallback:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
     sectionImages: {

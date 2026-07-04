@@ -1,28 +1,29 @@
-# Construction Hand Protection Guide: Gloves for Rebar, Cut and Impact Work
+# Construction Site Safety Gloves: Hand Protection Guide for Rebar, Cut and Impact Work
 
-**Meta Title:** Construction Hand Protection | Rebar & Cut Gloves  
-**Meta Description:** Choose construction hand protection for rebar, abrasive materials, wet cement, impact tools, electrical work, and bulk glove orders by task and size.  
+**Meta Title:** Construction Site Safety Gloves | Hand Protection Guide
+**Meta Description:** Choose construction site safety gloves by task: rebar, cut, abrasion, wet cement, impact tools, electrical work, fit, and bulk glove orders.
 **Target URL:** /blog/construction-gloves-selection-guide  
-**Target Keywords:** construction hand protection, hand protection in construction, construction gloves how to choose, construction work gloves, gloves used in construction, proper hand protection for rebar work, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction
+**Target Keywords:** construction site safety gloves, safety gloves for construction sites, construction hand protection, hand protection in construction, construction gloves how to choose, construction work gloves, gloves used in construction, proper hand protection for rebar work, cut resistant gloves construction, impact gloves construction, gloves for masonry work, welding gloves construction, electrical gloves construction
 
 ---
 
-Hand protection in construction starts with the task: rebar tying, abrasive material handling, wet cement, demolition, impact tools, welding, electrical work, and general material handling all need different glove choices. A useful RFQ should name the hazard, glove material or coating, cut or impact level, size range, replacement rate, and whether the glove is part of a larger PPE kit.
+Construction site safety gloves should be selected by task, not bought as one generic pair for every worker. Rebar tying, abrasive material handling, wet cement, demolition, impact tools, welding, electrical work, and general material handling all need different glove choices. A useful RFQ should name the hazard, glove material or coating, cut or impact level, size range, replacement rate, and whether the glove is part of a larger PPE kit.
 
 Construction gloves are one of the most common PPE items on any jobsite, and also one of the most commonly misselected.
 
 Many sites buy one glove for everyone and assume the hand-protection problem is solved. It is not. The glove that works for moving drywall is not the glove for tying rebar. The glove that works for rough framing is not the glove for wet cement, solvents, welding, or electrical exposure. A glove that improves grip on one task can reduce dexterity on another. A glove that protects well against abrasion may perform badly against chemical splash. A glove that feels strong may still be the wrong choice for sharp sheet metal or energized work.
 
-That is why glove selection should start with hazard matching, not with price or habit. Use this guide when you need to choose the right construction gloves by task, material, coating, cut risk, impact exposure, and site conditions. For the wider site-wide PPE mix, use [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution). For the regulation-first view, use [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction). For field issue and pre-start checks, use [Construction PPE Checklist](/blog/construction-ppe-checklist).
+That is why glove selection should start with hazard matching, not with price or habit. Use this guide when you need to choose the right construction site safety gloves by task, material, coating, cut risk, impact exposure, and site conditions. For the wider site-wide PPE mix, use [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution). For the regulation-first view, use [OSHA PPE Requirements for Construction](/blog/osha-ppe-requirements-construction). For field issue and pre-start checks, use [Construction PPE Checklist](/blog/construction-ppe-checklist).
 
 ---
 
-## Quick Answer: Hand Protection In Construction
+## Quick Answer: Construction Site Safety Gloves
 
-For a construction glove RFQ, separate the order by task instead of buying one "general work glove" for every crew. The right construction hand protection is the glove that workers will keep on while still getting enough cut, puncture, abrasion, grip, chemical, heat, impact, or electrical protection for the actual task.
+For a construction site safety gloves RFQ, separate the order by task instead of buying one "general work glove" for every crew. The right construction hand protection is the glove that workers will keep on while still getting enough cut, puncture, abrasion, grip, chemical, heat, impact, or electrical protection for the actual task.
 
 | Task group | Glove feature to specify | Bulk order check |
 |---|---|---|
+| Site-entry baseline | General-purpose coated knit glove with dependable grip and size range | Good for routine handling, but do not use it as the answer for every construction hand hazard. |
 | Rebar, sheet metal, sharp edges | Cut-resistant liner, suitable EN 388 or ANSI cut level, usable dexterity, secure cuff | Confirm size range, tying dexterity, puncture exposure, and replacement rate by crew. |
 | Rough, abrasive materials | Abrasion-resistant palm, durable coating or leather, strong grip | Do not overbuy cut level if abrasion and service life are the real problems. |
 | Demolition, rigging, impact tools | TPR or impact back, abrasion resistance, reinforced palm | Check whether impact protection still allows safe trigger and tool control. |

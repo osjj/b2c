@@ -78,7 +78,7 @@ export function ProductSectionTabs({
   }
 
   return (
-    <div className="sticky top-[58px] z-40 border-y bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/85 md:top-[75px]">
+    <div className="sticky top-[75px] z-40 hidden border-y bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/85 md:block">
       <div className="container mx-auto flex gap-8 overflow-x-auto px-6 lg:px-8">
         {tabs.map(({ id, label }) => (
           <button

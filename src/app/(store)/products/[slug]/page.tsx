@@ -6,7 +6,7 @@ import { getProductBySlug, getProducts } from '@/actions/products'
 import { getTierPriceRange, type PriceTier } from '@/lib/pricing'
 import { formatPrice } from '@/lib/utils'
 import { AddToCartButton } from '@/components/store/add-to-cart-button'
-import { B2BProductActions } from '@/components/store/b2b-product-actions'
+import { B2BProductActions, type B2BProductVariant } from '@/components/store/b2b-product-actions'
 import { ProductCard } from '@/components/store/product-card'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
@@ -22,6 +22,14 @@ type ProductSpecification = {
 
 type ProductContent = Parameters<typeof ContentRenderer>[0]['content']
 
+type ProcurementSummaryItem = {
+  label: string
+  value: string
+}
+
+type ProductVariantOptionValue = B2BProductVariant['options'][string]
+type ProductVariantOptions = Record<string, ProductVariantOptionValue>
+
 type Props = {
   params: Promise<{ slug: string }>
 }
@@ -33,6 +41,59 @@ function isProductSpecification(spec: unknown): spec is ProductSpecification {
 
   const candidate = spec as Record<string, unknown>
   return typeof candidate.name === 'string' && typeof candidate.value === 'string'
+}
+
+function getSpecValue(specs: ProductSpecification[], names: string[]) {
+  const normalizedNames = names.map((name) => name.toLowerCase())
+  return specs.find((spec) => normalizedNames.includes(spec.name.toLowerCase()))?.value
+}
+
+function isProductVariantOptionValue(value: unknown): value is ProductVariantOptionValue {
+  return (
+    value === null
+    || typeof value === 'string'
+    || typeof value === 'number'
+    || typeof value === 'boolean'
+  )
+}
+
+function normalizeVariantOptions(value: unknown): ProductVariantOptions {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return {}
+  }
+
+  return Object.entries(value).reduce<ProductVariantOptions>((options, [key, optionValue]) => {
+    if (isProductVariantOptionValue(optionValue)) {
+      options[key] = optionValue
+    }
+    return options
+  }, {})
+}
+
+function ProductProcurementSummary({
+  items,
+}: {
+  items: ProcurementSummaryItem[]
+}) {
+  if (items.length === 0) return null
+
+  return (
+    <dl
+      aria-label="Procurement summary"
+      className="grid grid-cols-2 gap-x-3 gap-y-2 border-y bg-muted/30 px-3 py-3 text-xs sm:grid-cols-3 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-3 lg:px-4 lg:py-4 lg:text-sm"
+    >
+      {items.map((item) => (
+        <div key={item.label} className="min-w-0 space-y-1">
+          <dt className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground lg:text-[11px]">
+            {item.label}
+          </dt>
+          <dd className="break-words font-semibold leading-snug text-foreground">
+            {item.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -145,6 +206,14 @@ export default async function ProductDetailPage({
     price: Number(tier.price),
     sortOrder: tier.sortOrder,
   })) || []
+  const normalizedVariants: B2BProductVariant[] = product.variants?.map((variant) => ({
+    id: variant.id,
+    name: variant.name,
+    sku: variant.sku,
+    price: Number(variant.price),
+    stock: variant.stock,
+    options: normalizeVariantOptions(variant.options),
+  })) || []
   const tierPriceRange = getTierPriceRange(normalizedPriceTiers)
   const displayPrice = tierPriceRange
     ? tierPriceRange.min === tierPriceRange.max
@@ -175,6 +244,16 @@ export default async function ProductDetailPage({
         .filter(spec => !isInternalSpec(spec.name))
     : []
   const productContent = product.content as unknown as ProductContent
+  const minimumOrderFromTier = normalizedPriceTiers.length > 0
+    ? `${Math.min(...normalizedPriceTiers.map((tier) => tier.minQuantity))}+ units`
+    : null
+  const procurementSummaryItems = [
+    { label: 'MOQ', value: getSpecValue(visibleSpecs, ['Minimum order']) || minimumOrderFromTier },
+    { label: 'Package', value: getSpecValue(visibleSpecs, ['Package size']) },
+    { label: 'G.W.', value: getSpecValue(visibleSpecs, ['Gross weight']) },
+    { label: 'Origin', value: getSpecValue(visibleSpecs, ['Origin']) },
+    { label: 'Standard', value: getSpecValue(visibleSpecs, ['Standard reference', 'Standard']) },
+  ].filter((item): item is ProcurementSummaryItem => Boolean(item.value))
 
   // Breadcrumb items for JSON-LD. Child categories resolve to their nested URL
   // so the breadcrumb matches the page's canonical location.
@@ -200,6 +279,86 @@ export default async function ProductDetailPage({
     { name: product.name, url: `${baseUrl}/products/${product.slug}` },
   ]
 
+  const productInfoContent = (
+    <>
+      {product.category && (
+        <p className="text-sm tracking-[0.2em] uppercase text-primary">
+          {product.category.name}
+        </p>
+      )}
+
+      <h1
+        className="line-clamp-3 font-serif text-2xl leading-tight sm:text-3xl md:line-clamp-none md:text-4xl"
+        title={product.name}
+      >
+        {product.name}
+      </h1>
+
+      <div className="flex items-baseline gap-3">
+        <span className="text-2xl font-bold">
+          {displayPrice}
+        </span>
+        {hasDiscount && (
+          <span className="text-lg text-muted-foreground line-through">
+            {formatPrice(Number(product.comparePrice))}
+          </span>
+        )}
+      </div>
+
+      <ProductProcurementSummary items={procurementSummaryItems} />
+
+      <div className="lg:hidden">
+        <ProductImageGallery
+          images={product.images}
+          productName={product.name}
+          hasDiscount={!!hasDiscount}
+          discountPercentage={discountPercentage}
+        />
+      </div>
+
+      {/* Product Attributes */}
+      {product.attributeValues && product.attributeValues.length > 0 && (
+        <div className="space-y-3">
+          {product.attributeValues
+            .filter(av => av.attribute.isActive)
+            .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
+            .map((av) => {
+              let displayValue = ''
+              if (av.textValue) {
+                displayValue = av.textValue
+              } else if (av.option) {
+                displayValue = av.option.value
+              } else if (av.optionIds && av.optionIds.length > 0) {
+                const optionValues = av.optionIds
+                  .map(id => av.attribute.options?.find(opt => opt.id === id)?.value)
+                  .filter(Boolean)
+                displayValue = optionValues.join(', ')
+              } else if (av.boolValue !== null) {
+                displayValue = av.boolValue ? 'Yes' : 'No'
+              }
+              if (!displayValue) return null
+
+              return (
+                <div key={av.id} className="space-y-1">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide">
+                    {av.attribute.name}
+                  </p>
+                  <p className="text-sm font-medium">{displayValue}</p>
+                </div>
+              )
+            })}
+        </div>
+      )}
+
+      {/* SKU */}
+      {product.sku && normalizedVariants.length === 0 && (
+        <p className="text-sm text-muted-foreground">
+          SKU: {product.sku}
+        </p>
+      )}
+    </>
+  )
+
   return (
     <>
       {/* SEO: Structured Data */}
@@ -208,7 +367,7 @@ export default async function ProductDetailPage({
 
       <div className="bg-background text-foreground">
       {/* Breadcrumb */}
-      <div className="container mx-auto px-6 lg:px-8 py-4">
+      <div className="container mx-auto hidden px-6 py-4 md:block lg:px-8">
         <nav aria-label="Breadcrumb" className="flex items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
@@ -251,18 +410,20 @@ export default async function ProductDetailPage({
       />
 
       {/* Product Detail - persistent two-column layout */}
-      <div className="container mx-auto px-6 lg:px-8 py-8">
+      <div className="container mx-auto px-4 py-4 md:px-6 md:py-8 lg:px-8">
         <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
 
           {/* LEFT COLUMN: Images + Content Sections */}
           <div className="order-2 lg:order-1">
             {/* Images */}
-            <ProductImageGallery
-              images={product.images}
-              productName={product.name}
-              hasDiscount={!!hasDiscount}
-              discountPercentage={discountPercentage}
-            />
+            <div className="hidden lg:block">
+              <ProductImageGallery
+                images={product.images}
+                productName={product.name}
+                hasDiscount={!!hasDiscount}
+                discountPercentage={discountPercentage}
+              />
+            </div>
 
             {/* Description Section */}
             {product.description && (
@@ -299,80 +460,23 @@ export default async function ProductDetailPage({
             )}
           </div>
           {/* RIGHT COLUMN: Sticky Product Info */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-28 lg:self-start lg:z-[10] lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
-            <div className="space-y-6">
-              {product.category && (
-                <p className="text-sm tracking-[0.2em] uppercase text-primary">
-                  {product.category.name}
-                </p>
-              )}
-
-              <h1 className="font-serif text-3xl md:text-4xl">{product.name}</h1>
-
-              <div className="flex items-baseline gap-3">
-                <span className="text-2xl font-bold">
-                  {displayPrice}
-                </span>
-                {hasDiscount && (
-                  <span className="text-lg text-muted-foreground line-through">
-                    {formatPrice(Number(product.comparePrice))}
-                  </span>
-                )}
-              </div>
-
-              {/* Product Attributes */}
-              {product.attributeValues && product.attributeValues.length > 0 && (
-                <div className="space-y-3">
-                  {product.attributeValues
-                    .filter(av => av.attribute.isActive)
-                    .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
-                    .map((av) => {
-                      let displayValue = ''
-                      if (av.textValue) {
-                        displayValue = av.textValue
-                      } else if (av.option) {
-                        displayValue = av.option.value
-                      } else if (av.optionIds && av.optionIds.length > 0) {
-                        const optionValues = av.optionIds
-                          .map(id => av.attribute.options?.find(opt => opt.id === id)?.value)
-                          .filter(Boolean)
-                        displayValue = optionValues.join(', ')
-                      } else if (av.boolValue !== null) {
-                        displayValue = av.boolValue ? 'Yes' : 'No'
-                      }
-                      if (!displayValue) return null
-
-                      return (
-                        <div key={av.id} className="space-y-1">
-                          <p className="text-xs text-muted-foreground uppercase tracking-wide">
-                            {av.attribute.name}
-                          </p>
-                          <p className="text-sm font-medium">{displayValue}</p>
-                        </div>
-                      )
-                    })}
-                </div>
-              )}
-
-              {/* SKU */}
-              {product.sku && (
-                <p className="text-sm text-muted-foreground">
-                  SKU: {product.sku}
-                </p>
-              )}
-
-              {/* Add to Cart or Quote */}
-              <div className="pt-4">
-                {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
-                  <B2BProductActions
-                    productId={product.id}
-                    productName={product.name}
-                    productImage={product.images[0]?.url}
-                    sku={product.sku || undefined}
-                    defaultPrice={Number(product.price)}
-                    priceTiers={normalizedPriceTiers}
-                  />
-                ) : (
+          <div className="order-1 lg:order-2 lg:sticky lg:top-28 lg:z-[10] lg:self-start">
+            {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
+              <B2BProductActions
+                productId={product.id}
+                productName={product.name}
+                productImage={product.images[0]?.url}
+                sku={product.sku || undefined}
+                defaultPrice={Number(product.price)}
+                priceTiers={normalizedPriceTiers}
+                variants={normalizedVariants}
+              >
+                {productInfoContent}
+              </B2BProductActions>
+            ) : (
+              <div className="space-y-4 lg:space-y-6">
+                {productInfoContent}
+                <div className="pt-4">
                   <AddToCartButton
                     productId={product.id}
                     productName={product.name}
@@ -383,9 +487,9 @@ export default async function ProductDetailPage({
                   >
                     Add to Cart
                   </AddToCartButton>
-                )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
         </div>
