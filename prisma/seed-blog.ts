@@ -859,15 +859,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-safety-helmet-vs-hard-hat.generated.json',
     ),
-    title: 'Safety Helmet vs Hard Hat for Construction: When Should You Upgrade?',
+    title: 'Safety Helmet vs Hard Hat for Construction: When Buyers Should Upgrade',
     excerpt:
-      'A practical comparison of construction safety helmets and traditional hard hats: when to upgrade, Type I vs Type II, chin straps, side-impact protection, electrical classes, accessory compatibility, and bulk purchasing.',
+      'A buyer-focused comparison of construction safety helmets and traditional hard hats: when to upgrade for Type II side impact, chin straps, Class E/G/C ratings, accessory compatibility, and bulk PPE RFQs.',
     seoTitle:
-      'Safety Helmet vs Hard Hat for Construction | When to Upgrade',
+      'Safety Helmet vs Hard Hat for Construction | Buyer Guide',
     seoDescription:
-      'Compare construction safety helmets and traditional hard hats. Learn when Type II helmets, chin straps, side-impact protection, Class E/G/C ratings, and helmet accessories make sense for scaffolding, roadwork, demolition, electrical, and height work.',
+      'Compare safety helmets vs hard hats for construction buyers. Learn when to upgrade for Type II side impact, chin straps, Class E/G/C, height work, and bulk PPE RFQs.',
     seoKeywords:
-      'safety helmet vs hard hat construction, construction safety helmet, hard hat vs safety helmet, Type II safety helmet construction, chin strap hard hat construction, construction helmet vs hard hat, safety helmet for scaffolding, hard hat upgrade',
+      'safety helmet vs hard hat construction, safety helmet vs hard hat, construction safety helmet, hard hat vs safety helmet, when to upgrade hard hats, Type II safety helmet construction, chin strap hard hat construction, construction helmet vs hard hat, safety helmet for scaffolding, hard hat upgrade, construction helmet upgrade',
     heroFallback:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
     sectionImages: {
