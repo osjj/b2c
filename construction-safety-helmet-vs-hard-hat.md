@@ -13,7 +13,7 @@ The answer is not "always upgrade" and it is not "hard hats are obsolete." A tra
 
 This guide compares safety helmets and hard hats for construction buyers, safety managers, contractors, distributors, and procurement teams. It explains the practical differences, the OSHA and ANSI basis, when Type II head protection matters, when chin straps help, what electrical classes still mean, and how to write a supplier-ready purchase specification.
 
-Use this article as the comparison page. For the focused Type I vs Type II and Class G/E/C decision, read [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats). For the broader category view, read [Types of hard hats for construction](/blog/construction-hard-hat-types). For the full PPE system, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For scaffold work, use [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms). For bridge, roadwork, and traffic exposure, use [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects).
+Use this article as the comparison page. For the focused Type I vs Type II decision, read [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats). For the focused electrical class decision, read [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats). For the broader category view, read [Types of hard hats for construction](/blog/construction-hard-hat-types). For the full PPE system, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For scaffold work, use [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms). For bridge, roadwork, and traffic exposure, use [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects).
 
 ---
 
@@ -306,6 +306,7 @@ Helmet-mounted earmuffs, face shields, goggles, respirators, headlamps, liners, 
 
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats)
+- [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)
 - [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)

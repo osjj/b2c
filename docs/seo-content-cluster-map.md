@@ -22,6 +22,7 @@ All blog spokes should support this hub. Blog pages can mention construction PPE
 | `/blog/construction-safety-footwear-guide` | construction safety footwear | Safety footwear selection and standards | construction PPE sourcing solution |
 | `/blog/construction-hard-hat-types` | types of hard hats for construction | Head protection type and class selection | construction head protection solution |
 | `/blog/construction-safety-helmet-vs-hard-hat` | safety helmet vs hard hat construction | Helmet upgrade comparison | helmet PPE for elevated work |
+| `/blog/class-e-vs-class-g-vs-class-c-hard-hats` | class e vs class g vs class c hard hats | Electrical hard hat class selection | hard hat electrical class decision |
 | `/blog/construction-eye-face-protection` | eye and face protection construction | Eye and face PPE selection | eye and face PPE for high-dust work |
 | `/blog/construction-respiratory-protection` | respiratory protection construction | Dust, silica, and respirator selection | respiratory PPE for demolition and concrete cutting |
 | `/blog/construction-hearing-protection` | hearing protection construction | Noise PPE selection | construction PPE solution with hearing protection |
@@ -44,4 +45,3 @@ All blog spokes should support this hub. Blog pages can mention construction PPE
 - Hub metadata may use broad commercial phrases: `construction PPE supplier`, `construction safety equipment`, `bulk construction PPE`, `construction PPE solution`.
 - Blog metadata should use precise informational or task-based phrases.
 - Procurement spokes may use `bulk` language, but should avoid claiming the generic supplier keyword unless the page is intended to replace the hub.
-

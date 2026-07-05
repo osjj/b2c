@@ -147,6 +147,49 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       },
     ],
   },
+  'class-e-vs-class-g-vs-class-c-hard-hats': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Construction head protection solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+      { href: '/categories/head-protection/face-shields', label: 'Face shields' },
+    ],
+    products: [
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN397 ABS safety helmet',
+      },
+      {
+        href: '/products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit',
+        label: 'CE EN397 ANSI vented safety helmet',
+      },
+      {
+        href: '/products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6',
+        label: 'HDPE safety helmet with chin strap',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request hard hat class options',
+    },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-class-e-vs-class-g-vs-class-c-hard-hats',
+        label: 'RFQ template',
+      },
+      {
+        href: '/tools/hard-hat-class-decoder?source=blog-class-e-vs-class-g-vs-class-c-hard-hats',
+        label: 'Hard hat decoder',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-class-e-vs-class-g-vs-class-c-hard-hats',
+        label: 'Standards sheet',
+      },
+    ],
+  },
   'construction-hard-hat-types': {
     solution: {
       href: '/solutions/construction-site-ppe-solution',

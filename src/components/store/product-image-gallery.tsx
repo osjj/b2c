@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -26,16 +26,42 @@ export function ProductImageGallery({
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isZooming, setIsZooming] = useState(false)
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 })
+  const [thumbnailStart, setThumbnailStart] = useState(0)
   const imageContainerRef = useRef<HTMLDivElement>(null)
 
-  const currentImage = images[currentIndex]
+  const safeCurrentIndex = images.length > 0 ? Math.min(currentIndex, images.length - 1) : 0
+  const currentImage = images[safeCurrentIndex]
+  const visibleThumbnailCount = Math.min(images.length, 6)
+  const maxThumbnailStart = Math.max(0, images.length - visibleThumbnailCount)
+  const safeThumbnailStart = Math.min(thumbnailStart, maxThumbnailStart)
+  const visibleThumbnails = images.slice(
+    safeThumbnailStart,
+    safeThumbnailStart + visibleThumbnailCount
+  )
+  const hasThumbnailControls = images.length > visibleThumbnailCount
+
+  const selectImage = (nextIndex: number) => {
+    if (images.length === 0) return
+
+    const boundedIndex = (nextIndex + images.length) % images.length
+    setCurrentIndex(boundedIndex)
+    setThumbnailStart((prev) => {
+      if (boundedIndex < prev) {
+        return boundedIndex
+      }
+      if (boundedIndex >= prev + visibleThumbnailCount) {
+        return Math.min(boundedIndex - visibleThumbnailCount + 1, maxThumbnailStart)
+      }
+      return Math.min(prev, maxThumbnailStart)
+    })
+  }
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+    selectImage(safeCurrentIndex - 1)
   }
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+    selectImage(safeCurrentIndex + 1)
   }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -143,33 +169,70 @@ export function ProductImageGallery({
         {/* Image Counter */}
         {images.length > 1 && (
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-2 py-1 rounded-full z-10">
-            {currentIndex + 1} / {images.length}
+            {safeCurrentIndex + 1} / {images.length}
           </div>
         )}
       </div>
 
       {/* Thumbnail Gallery - Smaller Size */}
       {images.length > 1 && (
-        <div className="grid grid-cols-6 gap-2">
-          {images.slice(0, 6).map((image, index) => (
+        <div
+          className={cn(
+            'grid gap-2',
+            hasThumbnailControls
+              ? 'grid-cols-[2.25rem_minmax(0,1fr)_2.25rem]'
+              : 'grid-cols-1'
+          )}
+        >
+          {hasThumbnailControls && (
             <button
-              key={image.id}
-              onClick={() => setCurrentIndex(index)}
-              className={cn(
-                'relative aspect-square overflow-hidden bg-muted transition-all',
-                currentIndex === index
-                  ? 'ring-2 ring-primary ring-offset-1'
-                  : 'hover:ring-2 hover:ring-muted-foreground/30 opacity-70 hover:opacity-100'
-              )}
+              type="button"
+              onClick={goToPrevious}
+              className="flex min-h-11 items-center justify-center rounded-md border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
+              aria-label="Show previous image"
             >
-              <Image
-                src={image.url}
-                alt={`${productName} ${index + 1}`}
-                fill
-                className="object-cover"
-              />
+              <ChevronLeft className="h-5 w-5" />
             </button>
-          ))}
+          )}
+
+          <div className="grid grid-cols-6 gap-2">
+            {visibleThumbnails.map((image, offset) => {
+              const imageIndex = safeThumbnailStart + offset
+              return (
+                <button
+                  key={image.id}
+                  type="button"
+                  onClick={() => selectImage(imageIndex)}
+                  className={cn(
+                    'relative aspect-square overflow-hidden bg-muted transition-all',
+                    safeCurrentIndex === imageIndex
+                      ? 'ring-2 ring-primary ring-offset-1'
+                      : 'hover:ring-2 hover:ring-muted-foreground/30 opacity-70 hover:opacity-100'
+                  )}
+                  aria-label={`Show image ${imageIndex + 1}`}
+                  aria-current={safeCurrentIndex === imageIndex ? 'true' : undefined}
+                >
+                  <Image
+                    src={image.url}
+                    alt={`${productName} ${imageIndex + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              )
+            })}
+          </div>
+
+          {hasThumbnailControls && (
+            <button
+              type="button"
+              onClick={goToNext}
+              className="flex min-h-11 items-center justify-center rounded-md border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
+              aria-label="Show next image"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          )}
         </div>
       )}
     </div>

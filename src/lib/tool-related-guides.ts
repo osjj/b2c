@@ -42,6 +42,12 @@ const GUIDE_CATALOG = {
     description: 'Use this when buyers need a focused explanation of Type I/II and Class G/E/C before an RFQ.',
     eyebrow: 'Hard hat query',
   },
+  'class-e-vs-class-g-vs-class-c-hard-hats': {
+    href: '/blog/class-e-vs-class-g-vs-class-c-hard-hats',
+    title: 'Class E vs G vs C Hard Hats',
+    description: 'Use this when buyers need a focused electrical class explanation before choosing vented or non-vented head protection.',
+    eyebrow: 'Electrical class',
+  },
   'construction-eye-face-protection': {
     href: '/blog/construction-eye-face-protection',
     title: 'Eye and Face Protection Guide',
@@ -134,6 +140,7 @@ export const TOOL_RELATED_GUIDES = {
     'construction-ppe-checklist',
   ]),
   'hard-hat-class-decoder': pickGuides([
+    'class-e-vs-class-g-vs-class-c-hard-hats',
     'type-1-vs-type-2-hard-hats',
     'construction-hard-hat-types',
     'construction-safety-helmet-vs-hard-hat',

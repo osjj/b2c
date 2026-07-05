@@ -9,6 +9,7 @@
  *   - construction-hearing-protection
  *   - construction-respiratory-protection
  *   - type-1-vs-type-2-hard-hats
+ *   - class-e-vs-class-g-vs-class-c-hard-hats
  *   - construction-hard-hat-types
  *   - high-visibility-clothing-construction
  *   - construction-safety-helmet-vs-hard-hat
@@ -717,6 +718,88 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
         caption:
           'Field trials help confirm fit, retention, compatibility, and worker acceptance before a bulk hard hat order.',
+      },
+    },
+  },
+  {
+    slug: 'class-e-vs-class-g-vs-class-c-hard-hats',
+    markdownPath: join(process.cwd(), 'class-e-vs-class-g-vs-class-c-hard-hats.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.class-e-vs-class-g-vs-class-c-hard-hats.generated.json',
+    ),
+    title:
+      'Class E vs Class G vs Class C Hard Hats: Electrical Ratings Explained for Construction Buyers',
+    excerpt:
+      'Compare Class E, Class G, and Class C hard hats for construction buyers. Learn electrical ratings, vented shell limits, RFQ wording, and bulk buying checks.',
+    seoTitle:
+      'Class E vs Class G vs Class C Hard Hats | Buyer Guide',
+    seoDescription:
+      'Compare Class E, Class G, and Class C hard hats for construction buyers. Learn electrical ratings, vented shell limits, RFQ wording, and bulk buying checks.',
+    seoKeywords:
+      'class e vs class g hard hat, class e hard hat, class g hard hat, class c hard hat, hard hat electrical classes, Class E vs Class G vs Class C hard hats, ANSI Z89.1 hard hat class, electrical hard hat rating, vented hard hat electrical work, construction hard hat class',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: Class E vs Class G vs Class C Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Class E, Class G, and Class C hard hats solve different electrical exposure problems and should be specified separately from impact type.',
+      },
+      'What OSHA Requires For Electrical Head Protection': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Construction head protection selection should start with impact and electrical hazards, then move into Type and Class.',
+      },
+      'Class E Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Class E hard hats are typically specified for construction work where higher electrical exposure is credible.',
+      },
+      'Class G Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Class G hard hats are often used as a general construction baseline where limited electrical protection is needed.',
+      },
+      'Class C Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Class C hard hats can prioritize ventilation and comfort, but they are not for electrical exposure.',
+      },
+      'Class E vs Class G vs Class C Comparison Table': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A comparison table helps buyers separate electrical class, shell ventilation, jobsite use, and RFQ wording.',
+      },
+      'Common Construction Buyer Scenarios': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Different construction crews can need different hard hat classes inside the same contractor order.',
+      },
+      'Vented vs Non-Vented Shells And Electrical Classes': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Vented and non-vented shells should be checked against the required hard hat electrical class before buying.',
+      },
+      'How To Write The Hard Hat Class Into An RFQ': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'A good hard hat RFQ separates electrical class, impact type, shell style, accessories, replacement parts, and documentation.',
+      },
+      'Marking, Inspection, And Replacement Checks': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'Field checks should confirm the marked Type, Class, shell condition, suspension, accessories, and replacement parts.',
+      },
+      'Common Mistakes When Buying Hard Hat Classes': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Common mistakes include issuing Class C in electrical zones, confusing Type with Class, and ignoring accessories.',
+      },
+      'Buyer Decision Matrix': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'A buyer decision matrix turns site hazards into a practical hard hat class and type specification.',
       },
     },
   },

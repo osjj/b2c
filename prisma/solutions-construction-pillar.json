@@ -95,6 +95,7 @@
                 "[Scaffolding PPE checklist](/blog/scaffolding-ppe-checklist)",
                 "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
                 "[Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats)",
+                "[Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)",
                 "[Hard Hat Class Decoder](/tools/hard-hat-class-decoder)",
                 "[Safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat)"
               ]
@@ -272,6 +273,7 @@
                 "Use chin straps where climbing or high-wind movement makes retention critical",
                 "Use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for Type I vs Type II, Class G/E/C, shell style, fit, and accessory decisions",
                 "Use the [Type 1 vs Type 2 hard hats guide](/blog/type-1-vs-type-2-hard-hats) to separate impact type decisions from Class G, Class E, and Class C electrical rating decisions",
+                "Use the [Class E vs Class G vs Class C hard hats guide](/blog/class-e-vs-class-g-vs-class-c-hard-hats) when electrical exposure, vented shells, or non-vented Class E/G head protection is the buying question",
                 "Use the [Hard Hat Class Decoder](/tools/hard-hat-class-decoder) when buyers need a quick way to match construction hazards to Class G, Class E, or Class C head protection",
                 "Use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat) when deciding whether to upgrade from traditional hard hats to helmet-style Type II or chin-strap head protection"
               ]
@@ -523,6 +525,10 @@
             {
               "title": "[Type 1 vs Type 2 Hard Hats](/blog/type-1-vs-type-2-hard-hats)",
               "text": "Focused on impact protection type, electrical class selection, common buyer combinations, and RFQ wording for contractor bulk orders."
+            },
+            {
+              "title": "[Class E vs Class G vs Class C Hard Hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)",
+              "text": "Focused on hard hat electrical ratings, Class E/G/C selection, vented shell limits, and supplier-ready RFQ wording."
             },
             {
               "title": "[Hard Hat Class Decoder](/tools/hard-hat-class-decoder)",

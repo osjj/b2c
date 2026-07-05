@@ -30,6 +30,7 @@
     "db:gen:blog-images:demolition-checklist": "npx tsx prisma/generate-blog-images.demolition-concrete-cutting-ppe-checklist.ts",
     "db:gen:blog-images:construction-hard-hat": "npx tsx prisma/generate-blog-images.construction-hard-hat-types.ts",
     "db:gen:blog-images:type-1-vs-type-2-hard-hats": "npx tsx prisma/generate-blog-images.type-1-vs-type-2-hard-hats.ts",
+    "db:gen:blog-images:hard-hat-classes": "npx tsx prisma/generate-blog-images.class-e-vs-class-g-vs-class-c-hard-hats.ts",
     "db:gen:blog-images:high-visibility": "npx tsx prisma/generate-blog-images.high-visibility-clothing-construction.ts",
     "db:gen:blog-images:heat-stress": "npx tsx prisma/generate-blog-images.heat-stress-ppe-construction-workers.ts",
     "db:gen:blog-images:safety-helmet-vs-hard-hat": "npx tsx prisma/generate-blog-images.construction-safety-helmet-vs-hard-hat.ts",

@@ -13,7 +13,7 @@ Hard hat classes are a different decision. Class G, Class E, and Class C describ
 
 This guide is written for construction buyers, safety managers, contractors, distributors, and procurement teams who need to write a clearer RFQ for hard hats, safety helmets, and head protection kits.
 
-Use this page for the focused Type 1 vs Type 2 and Class G/E/C decision. For the broader category overview, use the [construction hard hat types guide](/blog/construction-hard-hat-types). If your decision is whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat). For the full PPE package, start with the [construction PPE solution page](/solutions/construction-site-ppe-solution).
+Use this page for the focused Type 1 vs Type 2 decision. For the focused electrical class decision, use the [Class E vs Class G vs Class C hard hats guide](/blog/class-e-vs-class-g-vs-class-c-hard-hats). For the broader category overview, use the [construction hard hat types guide](/blog/construction-hard-hat-types). If your decision is whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat). For the full PPE package, start with the [construction PPE solution page](/solutions/construction-site-ppe-solution).
 
 ---
 
@@ -290,6 +290,7 @@ Use this checklist before approving a bulk hard hat order:
 ## Related Guides And Tools
 
 - [Construction hard hat types guide](/blog/construction-hard-hat-types)
+- [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)
 - [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [Hard hat class decoder](/tools/hard-hat-class-decoder?source=blog-type-1-vs-type-2-hard-hats)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)
