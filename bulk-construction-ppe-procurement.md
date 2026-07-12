@@ -9,7 +9,7 @@
 
 The fastest way to buy construction PPE in bulk is to build the RFQ from the jobsite scope, not from a generic product list. Start with worker roles, task hazards, PPE categories, target standards, quantities, size ranges, replacement stock, supplier documentation, packaging, and delivery country. Then ask every supplier to quote against the same structure.
 
-If your search is "contractor PPE supplier bulk," the real buying question is not only who can ship a large order. It is which supplier can support contractor-ready PPE in repeatable sizes, standards, kit packaging, documents, replacement stock, and approved substitutions across the full project cycle.
+If your search is **"how do I buy bulk safety equipment for a new construction crew?"**, start with a baseline site-entry kit, then add task-specific PPE by trade. If your search is **"contractor PPE supplier bulk"**, the real buying question is not only who can ship a large order. It is which supplier can support contractor-ready PPE in repeatable sizes, standards, kit packaging, documents, replacement stock, and approved substitutions across the full project cycle.
 
 When a contractor orders PPE for one worker, a wrong size or missing feature is an inconvenience. When a contractor orders PPE for 200 workers across several trades, the same mistake becomes a site-wide safety gap, a budget problem, and a replacement problem that repeats for the life of the project.
 
@@ -24,11 +24,13 @@ Start with the crew and hazard profile, then send suppliers one structured RFQ. 
 | Buying question | Fast answer | Link or next step |
 |---|---|---|
 | What is the best bulk PPE kit for contractors? | A modular kit: baseline site PPE plus trade add-ons for roadwork, electrical work, demolition, concrete, scaffolding, and hot work. | Use the [contractor PPE kit checklist](/blog/contractor-ppe-kit-checklist). |
-| How do I compare a contractor PPE supplier for bulk orders? | Compare certification proof, size range, category depth, repeat-order stability, packaging, samples, and replacement support before unit price. | Use the supplier scorecard below. |
+| How do I compare a contractor PPE supplier for bulk orders? | Compare certification proof, size range, category depth, repeat-order stability, packaging, samples, replacement support, and substitution control before unit price. | Use the [contractor PPE supplier bulk checklist](/blog/contractor-ppe-supplier-bulk-checklist). |
 | What should go in the first RFQ? | Worker count, roles, delivery country, required standards, PPE categories, sizes, packaging, replacement stock, and document requirements. | Open the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-bulk-construction-ppe-procurement-quick-answer). |
 | What if the crew size is still changing? | Quote a baseline quantity plus spare sizes and reorder lead time, then separate consumables from durable PPE. | Use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-bulk-construction-ppe-procurement-quick-answer). |
 
 If you already know the crew size, work type, target market, and delivery country, [request a bulk PPE quote](/quote?source=blog-bulk-construction-ppe-procurement-quick-answer) with those details.
+
+For buyers comparing more than one supplier, use the [Contractor PPE Supplier Bulk Checklist](/blog/contractor-ppe-supplier-bulk-checklist) before approving the quote. It gives you a supplier scorecard for certificates, size curves, kit packing, repeat orders, substitutions, samples, and delivery risk.
 
 ---
 

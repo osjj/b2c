@@ -1,0 +1,312 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=e8]:
+        - link "sales@laifappe.com" [ref=e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=e11]: EN
+    - banner [ref=e13]:
+      - generic [ref=e14]:
+        - link "Laifappe homepage" [ref=e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=e16]
+          - generic [ref=e17]:
+            - strong [ref=e18]: 粤来发劳保
+            - generic [ref=e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=e20]:
+          - link "Home" [ref=e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e27]:
+          - link "Email" [ref=e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=e39] [cursor=pointer]:
+            - generic [ref=e41]: →
+    - main [ref=e42]:
+      - generic [ref=e43]:
+        - navigation "Breadcrumb" [ref=e45]:
+          - link "Home" [ref=e46] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=e49] [cursor=pointer]:
+            - /url: /products
+          - link "Hand Protection" [ref=e52] [cursor=pointer]:
+            - /url: /categories/hand-protection
+          - link "Nitrile Coated Gloves" [ref=e55] [cursor=pointer]:
+            - /url: /categories/hand-protection/nitrile-coated-gloves
+          - generic [ref=e58]: Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff
+        - generic [ref=e60]:
+          - button "Description" [ref=e61]
+          - button "Specifications" [ref=e62]
+          - button "Product Details" [ref=e63]
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - generic [ref=e68]:
+              - generic [ref=e69]:
+                - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff" [ref=e70]
+                - button "Previous image" [ref=e71]
+                - button "Next image" [ref=e74]
+                - generic [ref=e77]: 1 / 7
+              - generic [ref=e78]:
+                - button "Show previous image" [ref=e79]
+                - generic [ref=e82]:
+                  - button "Show image 1" [ref=e83]:
+                    - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff 1" [ref=e84]
+                  - button "Show image 2" [ref=e85]:
+                    - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff 2" [ref=e86]
+                  - button "Show image 3" [ref=e87]:
+                    - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff 3" [ref=e88]
+                  - button "Show image 4" [ref=e89]:
+                    - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff 4" [ref=e90]
+                  - button "Show image 5" [ref=e91]:
+                    - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff 5" [ref=e92]
+                  - button "Show image 6" [ref=e93]:
+                    - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff 6" [ref=e94]
+                - button "Show next image" [ref=e95]
+            - generic [ref=e98]:
+              - heading "Description" [level=2] [ref=e99]
+              - paragraph [ref=e100]: Green nitrile rubber work gloves with flocked lining, raised palm texture, straight cuff, 1 mm body thickness, and S to XL size options for cleaning, maintenance, electronic work, and oil or light chemical handling tasks.
+            - generic [ref=e101]:
+              - heading "Specifications" [level=2] [ref=e102]
+              - generic [ref=e104]:
+                - generic [ref=e105]:
+                  - term [ref=e106]: Product type
+                  - definition [ref=e107]: Nitrile flocked work gloves
+                - generic [ref=e108]:
+                  - term [ref=e109]: SKU option
+                  - definition [ref=e110]: S / 7#, M / 8#, L / 9#, XL / 10#
+                - generic [ref=e111]:
+                  - term [ref=e112]: Minimum order
+                  - definition [ref=e113]: 100 pairs
+                - generic [ref=e114]:
+                  - term [ref=e115]: Material
+                  - definition [ref=e116]: Nitrile rubber
+                - generic [ref=e117]:
+                  - term [ref=e118]: Lining
+                  - definition [ref=e119]: Flocked
+                - generic [ref=e120]:
+                  - term [ref=e121]: Size/length
+                  - definition [ref=e122]: 33 cm length; palm widths S 10 cm, M 10.5 cm, L 11 cm, XL 12 cm
+                - generic [ref=e123]:
+                  - term [ref=e124]: Thickness
+                  - definition [ref=e125]: 1 mm
+                - generic [ref=e126]:
+                  - term [ref=e127]: Cuff
+                  - definition [ref=e128]: Straight cuff
+                - generic [ref=e129]:
+                  - term [ref=e130]: Color
+                  - definition [ref=e131]: Green
+                - generic [ref=e132]:
+                  - term [ref=e133]: Package size
+                  - definition [ref=e134]: 33 x 15 x 1 cm per pair
+                - generic [ref=e135]:
+                  - term [ref=e136]: Gross weight
+                  - definition [ref=e137]: 100 g per pair
+                - generic [ref=e138]:
+                  - term [ref=e139]: Origin
+                  - definition [ref=e140]: China
+            - generic [ref=e141]:
+              - heading "Product Details" [level=2] [ref=e142]
+              - generic [ref=e143]:
+                - figure [ref=e144]:
+                  - img "Product detail image" [ref=e146]
+                - figure [ref=e147]:
+                  - img "Product detail image" [ref=e149]
+                - figure [ref=e150]:
+                  - img "Product detail image" [ref=e152]
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - paragraph [ref=e156]: Nitrile Coated Gloves
+              - heading "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff" [level=1] [ref=e157]
+              - generic [ref=e158]: $0.55
+              - generic "Procurement summary" [ref=e160]:
+                - generic [ref=e161]:
+                  - term [ref=e162]: MOQ
+                  - definition [ref=e163]: 100 pairs
+                - generic [ref=e164]:
+                  - term [ref=e165]: Package
+                  - definition [ref=e166]: 33 x 15 x 1 cm per pair
+                - generic [ref=e167]:
+                  - term [ref=e168]: G.W.
+                  - definition [ref=e169]: 100 g per pair
+                - generic [ref=e170]:
+                  - term [ref=e171]: Origin
+                  - definition [ref=e172]: China
+              - generic [ref=e173]:
+                - paragraph [ref=e174]: Bulk Pricing
+                - generic [ref=e175]:
+                  - generic [ref=e176]:
+                    - generic [ref=e177]: Quantity
+                    - generic [ref=e178]: Unit Price
+                    - generic [ref=e179]: Savings
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: 100+ units
+                    - generic [ref=e183]: $0.55/unit
+                    - generic [ref=e184]:
+                      - generic [ref=e185]: "-"
+                      - generic [ref=e186]: Recommended
+              - generic [ref=e187]:
+                - generic [ref=e188]:
+                  - paragraph [ref=e189]: Size
+                  - generic [ref=e190]:
+                    - button "S" [pressed] [ref=e191]
+                    - button "M" [disabled] [ref=e192]
+                    - button "L" [disabled] [ref=e193]
+                    - button "XL" [disabled] [ref=e194]
+                - generic [ref=e195]:
+                  - paragraph [ref=e196]: Number
+                  - generic [ref=e197]:
+                    - button "7" [pressed] [ref=e198]
+                    - button "8" [disabled] [ref=e199]
+                    - button "9" [disabled] [ref=e200]
+                    - button "10" [disabled] [ref=e201]
+                - generic [ref=e202]:
+                  - paragraph [ref=e203]: Palm Width
+                  - generic [ref=e204]:
+                    - button "10 cm" [pressed] [ref=e205]
+                    - button "10.5 cm" [disabled] [ref=e206]
+                    - button "11 cm" [disabled] [ref=e207]
+                    - button "12 cm" [disabled] [ref=e208]
+                - generic [ref=e209]:
+                  - generic [ref=e210]:
+                    - paragraph [ref=e211]: Selected SKU
+                    - paragraph [ref=e212]: HP-NIT-FG-GRN-S
+                  - generic [ref=e213]:
+                    - paragraph [ref=e214]: Available
+                    - paragraph [ref=e215]: 996,622 units
+              - generic [ref=e216]:
+                - paragraph [ref=e217]: Quantity
+                - generic [ref=e218]:
+                  - button [disabled]
+                  - spinbutton [ref=e219]: "100"
+                  - button [ref=e220]
+              - generic [ref=e221]:
+                - generic [ref=e222]:
+                  - paragraph [ref=e223]: Unit Price
+                  - paragraph [ref=e224]: $0.55
+                - generic [ref=e225]:
+                  - paragraph [ref=e226]: Subtotal
+                  - paragraph [ref=e227]: $55.00
+            - button "Add to Quote" [ref=e229]
+        - generic [ref=e230]:
+          - heading "Related Products" [level=2] [ref=e231]
+          - generic [ref=e232]:
+            - generic [ref=e234]:
+              - link "Chuang Xin N518 Blue Nitrile Coated Safety Work Gloves HOT -33%" [ref=e235] [cursor=pointer]:
+                - /url: /products/chuang-xin-n518-blue-nitrile-coated-safety-work-gloves
+                - generic [ref=e236]:
+                  - img "Chuang Xin N518 Blue Nitrile Coated Safety Work Gloves" [ref=e237]
+                  - generic [ref=e239]:
+                    - generic [ref=e240]: HOT
+                    - generic [ref=e243]: "-33%"
+              - generic [ref=e244]:
+                - generic [ref=e245]: Nitrile Coated Gloves
+                - link [ref=e250] [cursor=pointer]:
+                  - /url: /products/chuang-xin-n518-blue-nitrile-coated-safety-work-gloves
+                  - heading "Chuang Xin N518 Blue Nitrile Coated Safety Work Gloves" [level=3] [ref=e251]
+                - generic [ref=e252]: From $1.05
+                - button "Add to Quote" [ref=e255]
+            - generic [ref=e257]:
+              - link "Blue Nitrile Coated Safety Work Gloves N518 HOT -13%" [ref=e258] [cursor=pointer]:
+                - /url: /products/blue-nitrile-coated-safety-work-gloves-n518
+                - generic [ref=e259]:
+                  - img "Blue Nitrile Coated Safety Work Gloves N518" [ref=e260]
+                  - generic [ref=e262]:
+                    - generic [ref=e263]: HOT
+                    - generic [ref=e266]: "-13%"
+              - generic [ref=e267]:
+                - generic [ref=e268]: Nitrile Coated Gloves
+                - link [ref=e273] [cursor=pointer]:
+                  - /url: /products/blue-nitrile-coated-safety-work-gloves-n518
+                  - heading "Blue Nitrile Coated Safety Work Gloves N518" [level=3] [ref=e274]
+                - generic [ref=e275]: From $1.70
+                - button "Add to Quote" [ref=e278]
+    - contentinfo [ref=e279]:
+      - generic [ref=e280]:
+        - generic [ref=e281]:
+          - generic [ref=e282]:
+            - link "Laifappe homepage" [ref=e283] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=e284]
+              - generic [ref=e285]:
+                - strong [ref=e286]: 粤来发劳保
+                - generic [ref=e287]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=e288]: Yuelaifa Industry Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=e289]:
+              - generic [ref=e290]: CE EN
+              - generic [ref=e291]: ISO 9001
+              - generic [ref=e292]: ANSI
+              - generic [ref=e293]: BSCI
+          - navigation "Footer products" [ref=e294]:
+            - heading "Products" [level=3] [ref=e295]
+            - link "Head Protection" [ref=e296] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=e297] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=e298] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=e299] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=e300] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=e301] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=e302]:
+            - heading "Solutions" [level=3] [ref=e303]
+            - link "Construction" [ref=e304] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=e305] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=e306] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=e307] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=e308] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=e309] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=e310]:
+            - heading "Company" [level=3] [ref=e311]
+            - link "About Us" [ref=e312] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=e313] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=e314] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=e315] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=e316] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e317]:
+            - heading "Contact Us" [level=3] [ref=e318]
+            - paragraph [ref=e319]: +86 180 2930 9938
+            - paragraph [ref=e323]: sales@laifappe.com
+            - paragraph [ref=e328]:
+              - generic [ref=e329]: W
+              - link "www.laifappe.com" [ref=e330] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=e331]: Foshan, Guangdong, China
+        - generic [ref=e336]:
+          - generic [ref=e337]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=e338]:
+            - link "Privacy Policy" [ref=e339] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=e340] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=e341] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - button "Open Next.js Dev Tools" [ref=e347] [cursor=pointer]
+  - alert [ref=e351]

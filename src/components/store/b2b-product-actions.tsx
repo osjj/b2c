@@ -143,10 +143,16 @@ export function B2BProductActions({
 
   const activeDefaultPrice = selectedVariant?.price ?? defaultPrice
   const activePriceTiers = useMemo(
-    () => selectedVariant
-      ? priceTiers.map((tier) => ({ ...tier, price: activeDefaultPrice }))
-      : priceTiers,
-    [activeDefaultPrice, priceTiers, selectedVariant]
+    () => {
+      const variantPriceOffset = activeDefaultPrice - defaultPrice
+      return priceTiers.map((tier) => ({
+        ...tier,
+        // Variants have one base price, so apply their difference consistently
+        // without discarding the product's volume-pricing discount structure.
+        price: Math.max(0, tier.price + variantPriceOffset),
+      }))
+    },
+    [activeDefaultPrice, defaultPrice, priceTiers]
   )
   const sortedPriceTiers = useMemo(
     () => [...activePriceTiers].sort((a, b) => a.minQuantity - b.minQuantity),

@@ -18,6 +18,7 @@ All blog spokes should support this hub. Blog pages can mention construction PPE
 | `/blog/osha-ppe-requirements-construction` | OSHA PPE requirements construction | Compliance and regulation review | OSHA-ready construction PPE solution |
 | `/blog/bulk-construction-ppe-procurement` | buy construction PPE in bulk | Bulk procurement workflow and RFQ planning | bulk construction PPE solution |
 | `/blog/contractor-ppe-kit-checklist` | contractor PPE kit | Contractor issue kits and bulk packaging | construction contractor PPE kit solution |
+| `/blog/contractor-ppe-supplier-bulk-checklist` | contractor PPE supplier bulk | Supplier scorecard and bulk order comparison | contractor PPE supplier checklist |
 | `/blog/construction-gloves-selection-guide` | construction gloves | Hand protection selection by hazard and task | complete construction PPE solution |
 | `/blog/construction-safety-footwear-guide` | construction safety footwear | Safety footwear selection and standards | construction PPE sourcing solution |
 | `/blog/construction-hard-hat-types` | types of hard hats for construction | Head protection type and class selection | construction head protection solution |

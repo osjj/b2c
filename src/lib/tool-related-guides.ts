@@ -48,6 +48,24 @@ const GUIDE_CATALOG = {
     description: 'Use this when buyers need a focused electrical class explanation before choosing vented or non-vented head protection.',
     eyebrow: 'Electrical class',
   },
+  'vented-vs-non-vented-hard-hats-construction': {
+    href: '/blog/vented-vs-non-vented-hard-hats-construction',
+    title: 'Vented vs Non-Vented Hard Hats',
+    description: 'Use this when buyers need shell ventilation, Class C limits, heat comfort, and inventory control context.',
+    eyebrow: 'Shell ventilation',
+  },
+  'full-brim-vs-cap-style-hard-hats-construction': {
+    href: '/blog/full-brim-vs-cap-style-hard-hats-construction',
+    title: 'Full Brim vs Cap Style Hard Hats',
+    description: 'Use this when buyers need brim-shape, weather coverage, and accessory compatibility context.',
+    eyebrow: 'Brim style',
+  },
+  'hard-hat-color-codes-construction-sites': {
+    href: '/blog/hard-hat-color-codes-construction-sites',
+    title: 'Hard Hat Color Codes',
+    description: 'Use this when buyers need role colors, visitor control, inventory separation, and RFQ color wording.',
+    eyebrow: 'Color coding',
+  },
   'construction-eye-face-protection': {
     href: '/blog/construction-eye-face-protection',
     title: 'Eye and Face Protection Guide',
@@ -96,6 +114,12 @@ const GUIDE_CATALOG = {
     description: 'Use this when quote and quantity users need role-based kit structure.',
     eyebrow: 'Kit planning',
   },
+  'contractor-ppe-supplier-bulk-checklist': {
+    href: '/blog/contractor-ppe-supplier-bulk-checklist',
+    title: 'Contractor PPE Supplier Checklist',
+    description: 'Use this when buyers need supplier scorecards, documents, kit packing, substitutions, and replenishment checks.',
+    eyebrow: 'Supplier check',
+  },
 } satisfies Record<string, ToolRelatedGuide>
 
 function pickGuides(keys: Array<keyof typeof GUIDE_CATALOG>) {
@@ -114,6 +138,7 @@ export const TOOLS_HUB_RELATED_GUIDES = pickGuides([
 export const TOOL_RELATED_GUIDES = {
   'ai-quote': pickGuides([
     'bulk-construction-ppe-procurement',
+    'contractor-ppe-supplier-bulk-checklist',
     'construction-ppe-checklist',
     'contractor-ppe-kit-checklist',
     'osha-ppe-requirements-construction',
@@ -121,6 +146,7 @@ export const TOOL_RELATED_GUIDES = {
   'ppe-calculator': pickGuides([
     'bulk-construction-ppe-procurement',
     'contractor-ppe-kit-checklist',
+    'contractor-ppe-supplier-bulk-checklist',
     'construction-gloves-selection-guide',
     'high-visibility-clothing-construction',
     'construction-respiratory-protection',
@@ -141,6 +167,9 @@ export const TOOL_RELATED_GUIDES = {
   ]),
   'hard-hat-class-decoder': pickGuides([
     'class-e-vs-class-g-vs-class-c-hard-hats',
+    'vented-vs-non-vented-hard-hats-construction',
+    'full-brim-vs-cap-style-hard-hats-construction',
+    'hard-hat-color-codes-construction-sites',
     'type-1-vs-type-2-hard-hats',
     'construction-hard-hat-types',
     'construction-safety-helmet-vs-hard-hat',

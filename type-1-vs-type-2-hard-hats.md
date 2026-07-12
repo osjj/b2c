@@ -13,7 +13,7 @@ Hard hat classes are a different decision. Class G, Class E, and Class C describ
 
 This guide is written for construction buyers, safety managers, contractors, distributors, and procurement teams who need to write a clearer RFQ for hard hats, safety helmets, and head protection kits.
 
-Use this page for the focused Type 1 vs Type 2 decision. For the focused electrical class decision, use the [Class E vs Class G vs Class C hard hats guide](/blog/class-e-vs-class-g-vs-class-c-hard-hats). For the broader category overview, use the [construction hard hat types guide](/blog/construction-hard-hat-types). If your decision is whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat). For the full PPE package, start with the [construction PPE solution page](/solutions/construction-site-ppe-solution).
+Use this page for the focused Type 1 vs Type 2 decision. For the focused electrical class decision, use the [Class E vs Class G vs Class C hard hats guide](/blog/class-e-vs-class-g-vs-class-c-hard-hats). For shell airflow and Class C risk, use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction). For brim shape, use the [full brim vs cap style hard hats guide](/blog/full-brim-vs-cap-style-hard-hats-construction). For color coding by role, visitor stock, or site identification, use the [hard hat color codes guide](/blog/hard-hat-color-codes-construction-sites). For the broader category overview, use the [construction hard hat types guide](/blog/construction-hard-hat-types). If your decision is whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat guide](/blog/construction-safety-helmet-vs-hard-hat). For the full PPE package, start with the [construction PPE solution page](/solutions/construction-site-ppe-solution).
 
 ---
 
@@ -291,6 +291,9 @@ Use this checklist before approving a bulk hard hat order:
 
 - [Construction hard hat types guide](/blog/construction-hard-hat-types)
 - [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)
+- [Vented vs non-vented hard hats for construction](/blog/vented-vs-non-vented-hard-hats-construction)
+- [Full brim vs cap style hard hats for construction](/blog/full-brim-vs-cap-style-hard-hats-construction)
+- [Hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites)
 - [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [Hard hat class decoder](/tools/hard-hat-class-decoder?source=blog-type-1-vs-type-2-hard-hats)
 - [Construction PPE checklist](/blog/construction-ppe-checklist)

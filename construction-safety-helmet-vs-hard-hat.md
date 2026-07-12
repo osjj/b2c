@@ -13,7 +13,7 @@ The answer is not "always upgrade" and it is not "hard hats are obsolete." A tra
 
 This guide compares safety helmets and hard hats for construction buyers, safety managers, contractors, distributors, and procurement teams. It explains the practical differences, the OSHA and ANSI basis, when Type II head protection matters, when chin straps help, what electrical classes still mean, and how to write a supplier-ready purchase specification.
 
-Use this article as the comparison page. For the focused Type I vs Type II decision, read [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats). For the focused electrical class decision, read [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats). For the broader category view, read [Types of hard hats for construction](/blog/construction-hard-hat-types). For the full PPE system, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For scaffold work, use [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms). For bridge, roadwork, and traffic exposure, use [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects).
+Use this article as the comparison page. For the focused Type I vs Type II decision, read [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats). For the focused electrical class decision, read [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats). For the shell ventilation decision, read [vented vs non-vented hard hats for construction](/blog/vented-vs-non-vented-hard-hats-construction). For brim shape, read [full brim vs cap style hard hats](/blog/full-brim-vs-cap-style-hard-hats-construction). For role colors, visitor helmets, and color-coded site identification, read [hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites). For the broader category view, read [Types of hard hats for construction](/blog/construction-hard-hat-types). For the full PPE system, start with the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For scaffold work, use [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms). For bridge, roadwork, and traffic exposure, use [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects).
 
 ---
 
@@ -155,7 +155,7 @@ Upgrading to a safety helmet does not remove the electrical class decision. Buye
 | Class E | Higher electrical protection | Often considered where electrical contact exposure is possible |
 | Class C | Conductive or no electrical protection | May be vented and cooler, but not suitable for electrical exposure |
 
-Vented helmets are attractive for hot-weather roadwork and outdoor construction, but a vented Class C product may be wrong around energized electrical exposure. Electrical crews, utility work, temporary power, and overhead line exposure need a stricter review.
+Vented helmets are attractive for hot-weather roadwork and outdoor construction, but a vented Class C product may be wrong around energized electrical exposure. Electrical crews, utility work, temporary power, and overhead line exposure need a stricter review. Use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction) when the buyer needs a focused shell ventilation decision.
 
 Do not buy by style first. Buy by class and hazard first.
 
@@ -307,6 +307,9 @@ Helmet-mounted earmuffs, face shields, goggles, respirators, headlamps, liners, 
 - [Types of hard hats for construction](/blog/construction-hard-hat-types)
 - [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats)
 - [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)
+- [Vented vs non-vented hard hats for construction](/blog/vented-vs-non-vented-hard-hats-construction)
+- [Full brim vs cap style hard hats for construction](/blog/full-brim-vs-cap-style-hard-hats-construction)
+- [Hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites)
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [PPE for scaffolding and elevated platforms](/solutions/ppe-for-scaffolding-and-elevated-platforms)
 - [PPE for road and bridge construction projects](/solutions/ppe-for-road-and-bridge-construction-projects)

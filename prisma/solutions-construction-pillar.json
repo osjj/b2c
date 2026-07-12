@@ -82,6 +82,7 @@
               "description": "Use these pages and templates when the buyer is moving from specification to RFQ, sizes, and repeat ordering.",
               "items": [
                 "[Bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)",
+                "[Contractor PPE supplier bulk checklist](/blog/contractor-ppe-supplier-bulk-checklist)",
                 "[Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=solution-construction-pillar)",
                 "[PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=solution-construction-pillar)"
               ]
@@ -96,6 +97,9 @@
                 "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
                 "[Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats)",
                 "[Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)",
+                "[Vented vs non-vented hard hats](/blog/vented-vs-non-vented-hard-hats-construction)",
+                "[Full brim vs cap style hard hats](/blog/full-brim-vs-cap-style-hard-hats-construction)",
+                "[Hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites)",
                 "[Hard Hat Class Decoder](/tools/hard-hat-class-decoder)",
                 "[Safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat)"
               ]
@@ -274,6 +278,9 @@
                 "Use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for Type I vs Type II, Class G/E/C, shell style, fit, and accessory decisions",
                 "Use the [Type 1 vs Type 2 hard hats guide](/blog/type-1-vs-type-2-hard-hats) to separate impact type decisions from Class G, Class E, and Class C electrical rating decisions",
                 "Use the [Class E vs Class G vs Class C hard hats guide](/blog/class-e-vs-class-g-vs-class-c-hard-hats) when electrical exposure, vented shells, or non-vented Class E/G head protection is the buying question",
+                "Use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction) when shell ventilation, Class C inventory control, or heat comfort is the buying question",
+                "Use the [full brim vs cap style hard hats guide](/blog/full-brim-vs-cap-style-hard-hats-construction) when weather coverage, accessory compatibility, or brim shape is the buying question",
+                "Use the [hard hat color codes guide](/blog/hard-hat-color-codes-construction-sites) when role colors, visitor helmets, color-coded inventory, or hard hat RFQ color wording is the buying question",
                 "Use the [Hard Hat Class Decoder](/tools/hard-hat-class-decoder) when buyers need a quick way to match construction hazards to Class G, Class E, or Class C head protection",
                 "Use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat) when deciding whether to upgrade from traditional hard hats to helmet-style Type II or chin-strap head protection"
               ]
@@ -531,6 +538,18 @@
               "text": "Focused on hard hat electrical ratings, Class E/G/C selection, vented shell limits, and supplier-ready RFQ wording."
             },
             {
+              "title": "[Vented vs Non-Vented Hard Hats](/blog/vented-vs-non-vented-hard-hats-construction)",
+              "text": "Focused on shell ventilation, Class C use limits, non-vented Class E/G buying, heat comfort, RFQ wording, and inventory controls."
+            },
+            {
+              "title": "[Full Brim vs Cap Style Hard Hats](/blog/full-brim-vs-cap-style-hard-hats-construction)",
+              "text": "Focused on brim shape, weather exposure, accessory compatibility, Type/Class separation, RFQ wording, and bulk buying."
+            },
+            {
+              "title": "[Hard Hat Color Codes on Construction Sites](/blog/hard-hat-color-codes-construction-sites)",
+              "text": "Focused on common hard hat color meanings, role identification, visitor helmets, color-coded inventory, and RFQ color wording without confusing color with Type or Class."
+            },
+            {
               "title": "[Hard Hat Class Decoder](/tools/hard-hat-class-decoder)",
               "text": "Use this tool to turn jobsite hazards such as electrical exposure, heat, ventilation needs, and side-impact risk into a practical hard hat class recommendation."
             },
@@ -561,6 +580,10 @@
             {
               "title": "[How to Buy Construction PPE in Bulk](/blog/bulk-construction-ppe-procurement)",
               "text": "Focused on RFQs, supplier comparison, sizing, replacement stock, packaging, and repeat ordering for construction PPE buyers."
+            },
+            {
+              "title": "[Contractor PPE Supplier Bulk Checklist](/blog/contractor-ppe-supplier-bulk-checklist)",
+              "text": "Focused on supplier scorecards, standards documents, size support, kit packing, substitutions, replacement stock, and repeat-order risk."
             },
             {
               "title": "[Construction Safety Footwear Guide](/blog/construction-safety-footwear-guide)",

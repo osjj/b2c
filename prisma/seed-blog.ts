@@ -6,10 +6,14 @@
  *   - osha-ppe-requirements-construction
  *   - bulk-construction-ppe-procurement
  *   - contractor-ppe-kit-checklist
+ *   - contractor-ppe-supplier-bulk-checklist
  *   - construction-hearing-protection
  *   - construction-respiratory-protection
  *   - type-1-vs-type-2-hard-hats
  *   - class-e-vs-class-g-vs-class-c-hard-hats
+ *   - vented-vs-non-vented-hard-hats-construction
+ *   - full-brim-vs-cap-style-hard-hats-construction
+ *   - hard-hat-color-codes-construction-sites
  *   - construction-hard-hat-types
  *   - high-visibility-clothing-construction
  *   - construction-safety-helmet-vs-hard-hat
@@ -533,6 +537,68 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     },
   },
   {
+    slug: 'contractor-ppe-supplier-bulk-checklist',
+    markdownPath: join(process.cwd(), 'contractor-ppe-supplier-bulk-checklist.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.contractor-ppe-supplier-bulk-checklist.generated.json',
+    ),
+    title:
+      'Contractor PPE Supplier Bulk Checklist: How to Compare Suppliers for Construction Orders',
+    excerpt:
+      'Compare contractor PPE supplier bulk options by standards, size support, kit packing, samples, substitutions, replacement stock, and delivery risk.',
+    seoTitle:
+      'Contractor PPE Supplier Bulk Checklist | Construction',
+    seoDescription:
+      'Compare contractor PPE supplier bulk options by standards, sizes, kit packing, replacement stock, samples, documents, substitutions, and delivery risk.',
+    seoKeywords:
+      'contractor PPE supplier bulk, contractor PPE supplier checklist, bulk PPE supplier for contractors, compare contractor PPE suppliers, bulk construction PPE supplier, contractor safety equipment supplier, PPE supplier scorecard, bulk PPE ordering checklist, construction PPE supplier comparison',
+    heroFallback:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: How To Compare Contractor PPE Suppliers For Bulk Orders': {
+        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+        caption:
+          'A contractor PPE supplier should be compared by proof, repeatability, kit control, replacement support, and delivery risk before unit price.',
+      },
+      'Supplier Scorecard For Contractor PPE Bulk Orders': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'A supplier scorecard makes PPE quotes comparable across documents, sizes, packing control, substitutions, and repeat orders.',
+      },
+      'Standards And Documentation To Request': {
+        url: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+        caption:
+          'Bulk PPE supplier approval should include item-level documents, label photos, and product data before the order scales.',
+      },
+      'Size Support And Proper Fit Planning': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Size support separates a serious contractor PPE supplier from a seller of generic one-size products.',
+      },
+      'Kit Packing, Labeling, And Site Issue Control': {
+        url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+        caption:
+          'Packing contractor PPE by worker, trade, site, or phase reduces sorting errors when the shipment reaches the jobsite.',
+      },
+      'Replacement Stock And Repeat Order Support': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'A bulk PPE supplier should support the project after the first shipment with spare sizes, consumables, and repeat orders.',
+      },
+      'Substitution Control: The Hidden Bulk PPE Risk': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Substitution control protects the buyer from hidden changes in PPE standard, rating, size, material, and compatibility.',
+      },
+      'Buyer Checklist': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'A final buyer checklist confirms that supplier capability, documents, samples, packing, and replenishment are ready before approval.',
+      },
+    },
+  },
+  {
     slug: 'construction-hearing-protection',
     markdownPath: join(process.cwd(), 'construction-hearing-protection.md'),
     generatedImagesPath: join(
@@ -804,6 +870,282 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     },
   },
   {
+    slug: 'vented-vs-non-vented-hard-hats-construction',
+    markdownPath: join(process.cwd(), 'vented-vs-non-vented-hard-hats-construction.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.vented-vs-non-vented-hard-hats-construction.generated.json',
+    ),
+    title:
+      'Vented vs Non-Vented Hard Hats for Construction: Buyer Guide',
+    excerpt:
+      'Compare vented vs non-vented hard hats for construction buyers. Learn when Class C ventilation fits, when Class E/G electrical protection matters, and how to write RFQs.',
+    seoTitle:
+      'Vented vs Non-Vented Hard Hats | Construction Guide',
+    seoDescription:
+      'Compare vented vs non-vented hard hats for construction buyers. Learn when to use Class C ventilation, when Class E/G electrical protection matters, and how to write RFQs.',
+    seoKeywords:
+      'vented vs non vented hard hat, vented hard hats construction, non vented hard hats, Class C vented hard hat, Class E non vented hard hat, vented hard hat electrical work, construction hard hat ventilation, hard hat heat stress, hard hat shell style, hard hat RFQ',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: Vented vs Non-Vented Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Vented and non-vented hard hats should be selected by electrical exposure, impact risk, comfort, and inventory control.',
+      },
+      'What Vented Hard Hats Are Good For': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Vented hard hats can improve airflow and worker acceptance where electrical exposure is controlled out.',
+      },
+      'When Non-Vented Hard Hats Are The Better Choice': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Non-vented hard hats are often the safer starting point where electrical protection or conservative site issue matters.',
+      },
+      'Electrical Classes: Class E, Class G, And Class C': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Electrical class should be verified from the product marking and documentation before selecting a vented shell.',
+      },
+      'Vented vs Non-Vented Hard Hat Comparison Table': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A comparison table helps buyers separate comfort, electrical class, RFQ wording, and inventory control.',
+      },
+      'Construction Scenarios: Which Shell Should Buyers Choose?': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Different construction crews can need different shell choices inside one contractor head protection order.',
+      },
+      'Heat Stress, Comfort, And PPE Compliance': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Hot-weather comfort should be planned without downgrading required electrical protection.',
+      },
+      'Accessory Compatibility And Shell Modifications': {
+        url: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+        caption:
+          'Hard hats must work with eye protection, hearing protection, respirators, face shields, lights, and chin straps.',
+      },
+      'How To Write Vented Or Non-Vented Hard Hats Into An RFQ': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A strong hard hat RFQ separates Type, Class, vented or non-vented shell, accessories, samples, and documentation.',
+      },
+      'Inspection, Marking, And Inventory Controls': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Inventory controls help keep vented Class C stock out of electrical work zones.',
+      },
+      'Common Buying Mistakes': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Common mistakes include treating vented shells as a universal upgrade and assuming non-vented shells are automatically electrical-rated.',
+      },
+      'Buyer Checklist': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'A buyer checklist turns electrical exposure, impact type, ventilation, accessories, and replacement parts into a clearer purchase order.',
+      },
+    },
+  },
+  {
+    slug: 'full-brim-vs-cap-style-hard-hats-construction',
+    markdownPath: join(process.cwd(), 'full-brim-vs-cap-style-hard-hats-construction.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.full-brim-vs-cap-style-hard-hats-construction.generated.json',
+    ),
+    title:
+      'Full Brim vs Cap Style Hard Hats for Construction Buyers',
+    excerpt:
+      'Compare full brim vs cap style hard hats for construction buyers. Learn when brim shape matters for sun, rain, accessories, Type/Class, and bulk RFQs.',
+    seoTitle:
+      'Full Brim vs Cap Style Hard Hats | Construction Guide',
+    seoDescription:
+      'Compare full brim vs cap style hard hats for construction buyers. Learn when brim shape matters for sun, rain, debris, accessories, Type/Class, and bulk RFQs.',
+    seoKeywords:
+      'full brim vs cap style hard hat, full brim hard hats construction, cap style hard hats, full brim hard hat vs cap style, construction hard hat brim style, full brim hard hat for construction, cap hard hat construction, hard hat brim style, hard hat accessory compatibility, hard hat RFQ',
+    heroFallback:
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: Full Brim vs Cap Style Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Full brim and cap style hard hats should be compared after Type, Class, vent status, and accessory needs are clear.',
+      },
+      'What Full Brim Hard Hats Are Good For': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Full brim hard hats can help outdoor construction crews with sun, rain runoff, and all-around nuisance debris coverage.',
+      },
+      'What Cap Style Hard Hats Are Good For': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Cap style hard hats are often easier to use with face shields, earmuffs, lamps, and common construction accessories.',
+      },
+      'OSHA, ANSI, Type, And Class Still Come First': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Brim shape is not the compliance category; Type, Class, product marking, and hazard fit still come first.',
+      },
+      'Full Brim vs Cap Style Comparison Table': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A comparison table helps buyers separate weather coverage, accessory fit, Type, Class, and RFQ wording.',
+      },
+      'Construction Scenarios: Which Brim Style Fits?': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Different construction crews can need different brim styles inside one contractor head protection order.',
+      },
+      'Sun, Rain, And Weather Exposure': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Outdoor weather exposure is one of the strongest reasons to compare full brim and cap style hard hats.',
+      },
+      'Accessory Compatibility: Face Shields, Earmuffs, Lights, And Chin Straps': {
+        url: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+        caption:
+          'Accessory compatibility should be tested with the actual face shields, earmuffs, lights, chin straps, and respirators.',
+      },
+      'Full Brim, Cap Style, And Electrical Work': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Electrical exposure should decide Class G, Class E, or Class C before the buyer chooses full brim or cap style.',
+      },
+      'Bulk Buying And Inventory Control': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Bulk hard hat orders should split quantities by crew, work zone, accessory load, and brim style.',
+      },
+      'How To Write Full Brim Or Cap Style Into An RFQ': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A strong RFQ separates full brim and cap style options while keeping Type, Class, accessories, and documentation visible.',
+      },
+      'Inspection, Fit, And Replacement Checks': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Inspection and fit checks should confirm shell condition, suspension, accessories, markings, and replacement parts.',
+      },
+      'Common Buying Mistakes': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Common mistakes include treating brim shape as the main safety rating and skipping accessory tests before bulk purchase.',
+      },
+      'Buyer Checklist': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'A buyer checklist turns brim style, Type, Class, accessories, weather exposure, and replacement parts into a clearer purchase order.',
+      },
+    },
+  },
+  {
+    slug: 'hard-hat-color-codes-construction-sites',
+    markdownPath: join(process.cwd(), 'hard-hat-color-codes-construction-sites.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.hard-hat-color-codes-construction-sites.generated.json',
+    ),
+    title:
+      'Hard Hat Color Codes on Construction Sites: Buyer Guide',
+    excerpt:
+      'Learn common hard hat color codes on construction sites, what each color usually means, and how buyers should specify color without confusing it with ANSI Type or Class.',
+    seoTitle:
+      'Hard Hat Color Codes | Construction Site Buyer Guide',
+    seoDescription:
+      'Learn common hard hat color codes on construction sites, what each color usually means, and how buyers should specify color without confusing it with ANSI Type or Class.',
+    seoKeywords:
+      'hard hat color codes construction, hard hat color meanings, construction hard hat color code, what do hard hat colors mean, white hard hat meaning, yellow hard hat meaning, blue hard hat meaning, green hard hat meaning, hard hat colors by trade, hard hat color code chart',
+    heroFallback:
+      'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80',
+    sectionImages: {
+      'Quick Answer: Hard Hat Color Codes On Construction Sites': {
+        url: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+        caption:
+          'Hard hat colors help construction teams identify roles quickly, but color is not the same as Type, Class, or compliance.',
+      },
+      'Are Hard Hat Colors Required By OSHA?': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'OSHA head protection requirements focus on hazards, impact, electrical exposure, and suitable protective helmets, not one universal color chart.',
+      },
+      'Common Hard Hat Color Code Chart': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'A hard hat color chart should be treated as a site communication rule, not as proof of safety performance.',
+      },
+      'White Hard Hats: Supervisors, Engineers, And Visitors': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'White hard hats are often used for supervisors, engineers, inspectors, managers, or client representatives.',
+      },
+      'Yellow Hard Hats: General Construction Crews': {
+        url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+        caption:
+          'Yellow hard hats are a common baseline issue color for general construction workers and site crews.',
+      },
+      'Blue Hard Hats: Electricians, Carpenters, And Technical Trades': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'Blue hard hats may identify electricians or technical trades, but electrical protection still depends on the marked Class.',
+      },
+      'Green Hard Hats: Safety, First Aid, New Workers, Or Trainees': {
+        url: 'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1200&q=80',
+        caption:
+          'Green hard hats need clear site rules because they can mean safety staff, first aid, new workers, or trainees.',
+      },
+      'Orange, Red, Brown, And Gray Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?w=1200&q=80',
+        caption:
+          'Orange, red, brown, and gray hard hats can help identify traffic roles, emergency duties, hot work, visitors, or spare stock.',
+      },
+      'Color Codes Are Not Type, Class, Or Compliance': {
+        url: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=1200&q=80',
+        caption:
+          'Hard hat Type and Class markings should be confirmed before color is assigned by role or project rule.',
+      },
+      'How To Build A Site-Specific Hard Hat Color Code': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'A good color code is simple, documented, trained during orientation, and aligned with actual site roles.',
+      },
+      'Procurement Matrix: Color By Role Without Losing Safety Specs': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A procurement matrix keeps role colors separate from Type, Class, shell style, accessories, and documentation.',
+      },
+      'Logos, Stickers, Reflective Tape, And Helmet Markings': {
+        url: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80',
+        caption:
+          'Labels, logos, and reflective tape should not hide required markings, shell damage, or inspection areas.',
+      },
+      'Inventory Control For Color-Coded Hard Hats': {
+        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+        caption:
+          'Color-coded head protection programs need controlled bins, reorder SKUs, replacement parts, and separation by electrical class.',
+      },
+      'How To Write Hard Hat Colors Into An RFQ': {
+        url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+        caption:
+          'A strong hard hat RFQ requests colors by role while keeping Type, Class, shell style, accessories, samples, and documents visible.',
+      },
+      'Common Mistakes With Hard Hat Color Codes': {
+        url: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80',
+        caption:
+          'Common color-code mistakes include treating color as compliance, confusing green meanings, and accepting lower-rated substitutes.',
+      },
+      'Buyer Checklist': {
+        url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
+        caption:
+          'A buyer checklist keeps color coding connected to hazard assessment, Type, Class, inventory, stickers, and supplier documents.',
+      },
+    },
+  },
+  {
     slug: 'construction-hard-hat-types',
     markdownPath: join(process.cwd(), 'construction-hard-hat-types.md'),
     generatedImagesPath: join(
@@ -871,13 +1213,14 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.high-visibility-clothing-construction.generated.json',
     ),
-    title: 'Class 2 vs Class 3 High-Visibility Clothing for Construction',
+    title:
+      'Class 2 High Visibility Clothing Must Be the Outermost Layer: True or False?',
     excerpt:
-      'A practical guide to the Class 2 high visibility outermost-layer rule for trailer yards, work zones, equipment routes, Class 2 vs Class 3 selection, and construction RFQs.',
+      'A direct answer to the Class 2 high visibility outermost-layer rule for trailer yards and work zones, with Class 2 vs Class 3 selection and RFQ notes.',
     seoTitle:
-      'Class 2 High Visibility Outer Layer Rule | Construction',
+      'Class 2 High Visibility Outermost Layer Rule',
     seoDescription:
-      'Class 2 high visibility clothing must stay visible as the outermost layer in trailer yards, work zones, and equipment routes. Compare Class 2 vs Class 3.',
+      'True or false: Class 2 high visibility clothing must be the outermost layer in trailer yards and work zones. Learn when Class 2 or Class 3 applies.',
     seoKeywords:
       'class 2 high visibility clothing must be the outermost layer, Class 2 hi-vis outer layer rule, high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, trailer yard hi-vis clothing, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
     heroFallback:

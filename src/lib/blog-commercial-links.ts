@@ -190,6 +190,135 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       },
     ],
   },
+  'vented-vs-non-vented-hard-hats-construction': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Construction head protection solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+      { href: '/categories/head-protection/face-shields', label: 'Face shields' },
+    ],
+    products: [
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN397 ABS safety helmet',
+      },
+      {
+        href: '/products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit',
+        label: 'CE EN397 ANSI vented safety helmet',
+      },
+      {
+        href: '/products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6',
+        label: 'HDPE safety helmet with chin strap',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request vented/non-vented hard hat options',
+    },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-vented-vs-non-vented-hard-hats-construction',
+        label: 'RFQ template',
+      },
+      {
+        href: '/tools/hard-hat-class-decoder?source=blog-vented-vs-non-vented-hard-hats-construction',
+        label: 'Hard hat decoder',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-vented-vs-non-vented-hard-hats-construction',
+        label: 'Standards sheet',
+      },
+    ],
+  },
+  'full-brim-vs-cap-style-hard-hats-construction': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Construction head protection solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+      { href: '/categories/head-protection/face-shields', label: 'Face shields' },
+    ],
+    products: [
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN397 ABS safety helmet',
+      },
+      {
+        href: '/products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit',
+        label: 'CE EN397 ANSI vented safety helmet',
+      },
+      {
+        href: '/products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6',
+        label: 'HDPE safety helmet with chin strap',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request full brim/cap style hard hat options',
+    },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-full-brim-vs-cap-style-hard-hats-construction',
+        label: 'RFQ template',
+      },
+      {
+        href: '/tools/hard-hat-class-decoder?source=blog-full-brim-vs-cap-style-hard-hats-construction',
+        label: 'Hard hat decoder',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-full-brim-vs-cap-style-hard-hats-construction',
+        label: 'Standards sheet',
+      },
+    ],
+  },
+  'hard-hat-color-codes-construction-sites': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Construction head protection solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+      { href: '/categories/head-protection/face-shields', label: 'Face shields' },
+    ],
+    products: [
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN397 ABS safety helmet',
+      },
+      {
+        href: '/products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit',
+        label: 'CE EN397 ANSI vented safety helmet',
+      },
+      {
+        href: '/products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6',
+        label: 'HDPE safety helmet with chin strap',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request color-coded hard hat options',
+    },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-hard-hat-color-codes-construction-sites',
+        label: 'RFQ template',
+      },
+      {
+        href: '/tools/hard-hat-class-decoder?source=blog-hard-hat-color-codes-construction-sites',
+        label: 'Hard hat decoder',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-hard-hat-color-codes-construction-sites',
+        label: 'Standards sheet',
+      },
+    ],
+  },
   'construction-hard-hat-types': {
     solution: {
       href: '/solutions/construction-site-ppe-solution',
@@ -690,6 +819,52 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       {
         href: '/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-kit-checklist',
         label: 'RFQ template',
+      },
+    ],
+  },
+  'contractor-ppe-supplier-bulk-checklist': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Bulk contractor PPE sourcing solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      { href: '/categories/eye-protection', label: 'Eye protection' },
+      { href: '/categories/hand-protection', label: 'Work gloves' },
+      { href: '/categories/foot-protection', label: 'Safety footwear' },
+      { href: '/categories/body-protection/hi-vis-workwear', label: 'Hi-vis workwear' },
+      { href: '/categories/fall-protection', label: 'Fall protection' },
+    ],
+    products: [
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN397 ABS safety helmet',
+      },
+      {
+        href: '/products/en166f-anti-fog-anti-scratch-dustproof-safety-glasses',
+        label: 'EN166F anti-fog safety glasses',
+      },
+      {
+        href: '/products/blue-nitrile-coated-safety-work-gloves-n518',
+        label: 'Nitrile coated safety work gloves',
+      },
+      {
+        href: '/products/mens-reflective-safety-work-vest-v-neck-zipper-front',
+        label: 'Reflective safety work vest',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Compare bulk PPE suppliers',
+    },
+    resources: [
+      {
+        href: '/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-supplier-bulk-checklist',
+        label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-contractor-ppe-supplier-bulk-checklist',
+        label: 'Size and standards sheet',
       },
     ],
   },

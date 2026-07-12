@@ -103,6 +103,21 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ai-quote',
     'ppe-calculator',
   ],
+  'vented-vs-non-vented-hard-hats-construction': [
+    'hard-hat-class-decoder',
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'full-brim-vs-cap-style-hard-hats-construction': [
+    'hard-hat-class-decoder',
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'hard-hat-color-codes-construction-sites': [
+    'hard-hat-class-decoder',
+    'ppe-calculator',
+    'ai-quote',
+  ],
   'construction-eye-face-protection': [
     'ppe-calculator',
     'ai-quote',
@@ -117,6 +132,11 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ai-quote',
   ],
   'bulk-construction-ppe-procurement': [
+    'ai-quote',
+    'ppe-calculator',
+    'size-guide',
+  ],
+  'contractor-ppe-supplier-bulk-checklist': [
     'ai-quote',
     'ppe-calculator',
     'size-guide',
@@ -150,10 +170,12 @@ const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
   'type-1-vs-type-2-hard-hats',
   'class-e-vs-class-g-vs-class-c-hard-hats',
   'construction-hard-hat-types',
+  'hard-hat-color-codes-construction-sites',
   'construction-eye-face-protection',
   'construction-hearing-protection',
   'osha-ppe-requirements-construction',
   'bulk-construction-ppe-procurement',
+  'contractor-ppe-supplier-bulk-checklist',
   'demolition-concrete-cutting-ppe-checklist',
   'construction-safety-helmet-vs-hard-hat',
   'heavy-equipment-operator-ppe-checklist',

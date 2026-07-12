@@ -11,7 +11,7 @@ Class E vs Class G vs Class C hard hats is an electrical protection decision. It
 
 For most purchasing teams, the hard hat class question comes up when a supplier asks whether the order should be Class E, Class G, or Class C. The short answer is simple: use Class E for higher electrical exposure, Class G for general limited electrical exposure, and Class C only where electrical contact risk is not present. The practical buying decision is more detailed because shell ventilation, accessories, chin straps, face shields, lights, and replacement parts can all affect the final specification.
 
-Use this page for the focused electrical class decision. For impact direction, read [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats). For the broader head protection category, read [construction hard hat types](/blog/construction-hard-hat-types). If the question is whether to upgrade from traditional hard hats to helmet-style protection, use the [safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat). For a quick field decision, use the [Hard Hat Class Decoder](/tools/hard-hat-class-decoder?source=blog-class-e-vs-class-g-vs-class-c-hard-hats). For the complete jobsite PPE system, start with the [construction PPE solution](/solutions/construction-site-ppe-solution).
+Use this page for the focused electrical class decision. For impact direction, read [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats). For the broader head protection category, read [construction hard hat types](/blog/construction-hard-hat-types). For the focused shell ventilation decision, use [vented vs non-vented hard hats for construction](/blog/vented-vs-non-vented-hard-hats-construction). For brim shape, use [full brim vs cap style hard hats](/blog/full-brim-vs-cap-style-hard-hats-construction). For role color, visitor helmets, or color-coded inventory control, use [hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites). If the question is whether to upgrade from traditional hard hats to helmet-style protection, use the [safety helmet vs hard hat comparison](/blog/construction-safety-helmet-vs-hard-hat). For a quick field decision, use the [Hard Hat Class Decoder](/tools/hard-hat-class-decoder?source=blog-class-e-vs-class-g-vs-class-c-hard-hats). For the complete jobsite PPE system, start with the [construction PPE solution](/solutions/construction-site-ppe-solution).
 
 ---
 
@@ -148,7 +148,7 @@ Use this table when turning a site hazard review into a purchasing specification
 | RFQ language | Class E, non-vented, Type I or II, documentation required | Class G, Type I or II, shell style specified | Class C only for non-electrical zones |
 | Common buyer mistake | Assuming Class E solves impact direction | Treating Class G as enough for all electrical work | Buying vented Class C for everyone |
 
-The class decision should be made before color coding. A color program can help organize jobsite roles, but color does not prove compliance. The hard hat marking, supplier data sheet, certificate, and product construction matter more than color.
+The class decision should be made before color coding. A color program can help organize jobsite roles, but color does not prove compliance. The hard hat marking, supplier data sheet, certificate, and product construction matter more than color. Use the [hard hat color codes guide](/blog/hard-hat-color-codes-construction-sites) when the site needs role colors without weakening the electrical class specification.
 
 ---
 
@@ -172,7 +172,7 @@ For a fast first pass, use the [Hard Hat Class Decoder](/tools/hard-hat-class-de
 
 ## Vented vs Non-Vented Shells And Electrical Classes
 
-Venting is one of the most common reasons buyers choose the wrong hard hat class. Vented shells can improve comfort in hot weather, but ventilation openings can conflict with electrical protection requirements.
+Venting is one of the most common reasons buyers choose the wrong hard hat class. Vented shells can improve comfort in hot weather, but ventilation openings can conflict with electrical protection requirements. For a fuller shell-by-shell buying framework, use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction).
 
 As a practical buying rule:
 
@@ -283,6 +283,9 @@ For the full head protection path, use:
 
 - [Construction hard hat types](/blog/construction-hard-hat-types)
 - [Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats)
+- [Vented vs non-vented hard hats for construction](/blog/vented-vs-non-vented-hard-hats-construction)
+- [Full brim vs cap style hard hats for construction](/blog/full-brim-vs-cap-style-hard-hats-construction)
+- [Hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites)
 - [Safety helmet vs hard hat for construction](/blog/construction-safety-helmet-vs-hard-hat)
 - [Hard Hat Class Decoder](/tools/hard-hat-class-decoder?source=blog-class-e-vs-class-g-vs-class-c-hard-hats)
 - [Bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement)
