@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/prisma'
 import { getSiteUrl } from '@/lib/site-url'
+import { normalizeSitemapImageUrls } from '@/lib/sitemap-images'
 
 export const revalidate = 3600
 export const dynamic = 'force-dynamic'
@@ -25,11 +26,15 @@ const EXCLUDED_SOLUTION_SLUGS = new Set(['ppe-safety-equipment-for-construction-
 type SitemapProduct = {
   slug: string
   updatedAt: Date
+  images: Array<{
+    url: string
+  }>
 }
 
 type SitemapCategory = {
   slug: string
   updatedAt: Date
+  image: string | null
   parent: {
     slug: string
     isActive: boolean
@@ -39,6 +44,7 @@ type SitemapCategory = {
 type SitemapSolution = {
   slug: string
   updatedAt: Date
+  coverImage: string | null
 }
 
 type SitemapBlogPost = {
@@ -46,6 +52,15 @@ type SitemapBlogPost = {
   publishedAt: Date | null
   createdAt: Date
   updatedAt: Date
+  coverImage: string | null
+}
+
+function buildImageSitemapField(
+  baseUrl: string,
+  candidates: ReadonlyArray<string | null | undefined>
+) {
+  const images = normalizeSitemapImageUrls(baseUrl, candidates)
+  return images.length > 0 ? { images } : {}
 }
 
 function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
@@ -159,7 +174,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     safeQuery<SitemapProduct[]>(
       prisma.product.findMany({
         where: { isActive: true },
-        select: { slug: true, updatedAt: true },
+        select: {
+          slug: true,
+          updatedAt: true,
+          images: {
+            orderBy: [
+              { sortOrder: 'asc' },
+              { createdAt: 'asc' },
+              { id: 'asc' },
+            ],
+            select: { url: true },
+          },
+        },
       }),
       [],
     ),
@@ -169,6 +195,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         select: {
           slug: true,
           updatedAt: true,
+          image: true,
           parent: { select: { slug: true, isActive: true } },
         },
       }),
@@ -177,14 +204,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     safeQuery<SitemapSolution[]>(
       prisma.solution.findMany({
         where: { isActive: true },
-        select: { slug: true, updatedAt: true },
+        select: { slug: true, updatedAt: true, coverImage: true },
       }),
       [],
     ),
     safeQuery<SitemapBlogPost[]>(
       prisma.blogPost.findMany({
         where: { isPublished: true },
-        select: { slug: true, publishedAt: true, createdAt: true, updatedAt: true },
+        select: {
+          slug: true,
+          publishedAt: true,
+          createdAt: true,
+          updatedAt: true,
+          coverImage: true,
+        },
       }),
       [],
     ),
@@ -195,6 +228,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: product.updatedAt,
     changeFrequency: 'weekly' as const,
     priority: 0.8,
+    ...buildImageSitemapField(
+      baseUrl,
+      product.images.map((image) => image.url)
+    ),
   }))
 
   const categoryPages: MetadataRoute.Sitemap = categories
@@ -206,6 +243,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: category.updatedAt,
       changeFrequency: 'weekly' as const,
       priority: category.parent ? 0.6 : 0.7,
+      ...buildImageSitemapField(baseUrl, [category.image]),
     }))
 
   const solutionPages: MetadataRoute.Sitemap = solutions
@@ -214,6 +252,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: solution.updatedAt,
       changeFrequency: 'weekly' as const,
       priority: 0.8,
+      ...buildImageSitemapField(baseUrl, [solution.coverImage]),
     }))
     .filter((solution) => {
       const slug = solution.url.split('/').pop()
@@ -225,6 +264,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: post.updatedAt,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
+    ...buildImageSitemapField(baseUrl, [post.coverImage]),
   }))
 
   return [

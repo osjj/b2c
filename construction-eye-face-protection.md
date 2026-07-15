@@ -373,9 +373,11 @@ The right lens on paper can still be the wrong purchase if crews cannot wear it 
 
 ## Face Shield Use: The Point Many Sites Get Wrong
 
-This deserves its own section because it causes so much confusion.
+### Do You Need Safety Glasses or Goggles Under a Face Shield? Yes.
 
-A face shield is often useful, but it does not automatically replace primary eye protection. OSHA's PPE assessment material says face shields do not protect workers from impact hazards by themselves and should be used in combination with goggles or safety spectacles when impact hazards are present.
+Yes—when flying chips, fragments, dust, or splash can reach the eyes, use primary eye protection under the face shield. Choose safety glasses with side protection for routine impact, or goggles when dust or splash can enter around ordinary glasses.
+
+OSHA's PPE assessment material says face shields do not protect workers from impact hazards by themselves and should be used in combination with goggles or safety spectacles when impact hazards are present.
 
 That makes the hierarchy clearer:
 

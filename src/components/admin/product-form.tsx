@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState, useState, useRef, useTransition, useCallback } from 'react'
-import { Product, Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
+import type { Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
 import { buildProductSlugBase } from '@/lib/product-slug'
 import { Button } from '@/components/ui/button'
@@ -28,7 +28,10 @@ import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import { CollectImageAIDialog } from './collect-image-ai-dialog'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
-import { buildPageTitle } from '@/lib/seo-title'
+import {
+  buildProductMetaDescription,
+  buildProductMetaTitle,
+} from '@/lib/product-seo'
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 type AttributeWithOptions = Attribute & {
@@ -141,7 +144,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   // AI 图片生成弹框状态 (用于 Product Details 详情图)
   const [contentDetailAIDialogOpen, setContentDetailAIDialogOpen] = useState(false)
 
-  function handleContentDetailImagesAIUpdate(newUrls: string[], _newSelected: Set<string>) {
+  function handleContentDetailImagesAIUpdate(newUrls: string[]) {
     setContent((prev) => {
       if (!prev) return prev
       let imgIndex = 0
@@ -195,7 +198,7 @@ export function ProductForm({ product, categories, collections = [], productColl
     }
   }
 
-  function handleImagesAIUpdate(newUrls: string[], _newSelected: Set<string>) {
+  function handleImagesAIUpdate(newUrls: string[]) {
     const altMap = new Map(images.map((img) => [img.url, img.alt]))
     setImages(newUrls.map((url, i) => ({
       url,
@@ -210,15 +213,23 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [ogTitle, setOgTitle] = useState(product?.ogTitle || '')
   const [ogDescription, setOgDescription] = useState(product?.ogDescription || '')
   const [ogImage, setOgImage] = useState(product?.ogImage || '')
-  const previewTitle = buildPageTitle(metaTitle || name || 'Product Title')
+  const previewTitle = buildProductMetaTitle({
+    name: name || 'Product Title',
+    metaTitle,
+  })
+  const previewDescription = buildProductMetaDescription({
+    name: name || 'Product Title',
+    description,
+    metaDescription,
+  })
 
   // Usage Scenes for Solution association
   const [usageScenes, setUsageScenes] = useState<string[]>(product?.usageScenes || [])
 
   // Initialize attribute values from existing product
-  const [attributeValues, setAttributeValues] = useState<Record<string, any>>(() => {
+  const [attributeValues, setAttributeValues] = useState<Record<string, unknown>>(() => {
     if (!product?.attributeValues) return {}
-    const values: Record<string, any> = {}
+    const values: Record<string, unknown> = {}
     for (const av of product.attributeValues) {
       if (av.textValue !== null) {
         values[av.attributeId] = av.textValue
@@ -795,7 +806,7 @@ export function ProductForm({ product, categories, collections = [], productColl
                     {process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'}/products/{slug || 'product-slug'}
                   </p>
                   <p className="text-sm text-muted-foreground line-clamp-2">
-                    {metaDescription || description?.slice(0, 160) || 'Product description...'}
+                    {previewDescription}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     Final title length: {previewTitle.length}/60

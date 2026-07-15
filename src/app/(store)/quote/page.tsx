@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'Request a PPE Quote | Laifappe',
   description:
     'Tell Laifappe what PPE you need and get a construction PPE quote within 24 hours.',
+  alternates: {
+    canonical: '/quote',
+  },
 }
 
 type QuotePageProps = {
@@ -49,7 +52,8 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild variant="outline">
                 <Link
-                  href="/downloads/construction-ppe-rfq-template?source=quote-page"
+                  href="/downloads/construction-ppe-rfq-template"
+                  data-source="quote-page"
                 >
                   RFQ template
                   <ArrowRight className="ml-2 h-4 w-4" />

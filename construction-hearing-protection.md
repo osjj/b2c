@@ -13,6 +13,8 @@ NIOSH construction surveillance data shows why this category deserves its own pa
 
 This guide helps safety managers, supervisors, and PPE buyers choose hearing protection for construction workers by task, exposure, comfort, compatibility, and replacement planning. For the full site-wide PPE structure, use the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). For daily field checks, use the [construction PPE checklist](/blog/construction-ppe-checklist). For OSHA compliance context across all PPE categories, use [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction).
 
+For blasting, crushers, drilling rigs, haul trucks, and processing equipment, use the [mining and quarrying PPE solution](/solutions/ppe-safety-equipment-for-mining-quarrying) to place hearing protection inside the wider mine-site PPE package.
+
 ---
 
 ## Why Construction Hearing Protection Is Harder Than It Looks

@@ -290,6 +290,7 @@ function BlogLightCta({ links }: { links: ReturnType<typeof getBlogCommercialLin
         </div>
         <Link
           href={links.cta.href}
+          data-source={links.cta.source}
           className="inline-flex shrink-0 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
         >
           {links.cta.label}

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/store/product-card'
 import { BodyLinkMapSection } from './body-link-map-section'
 import { isBodyLinkedList } from '@/lib/body-link-map'
+import { normalizeInternalAttributionLink } from '@/lib/seo-links'
 import { getTaskScenePreset, normalizeTaskCards } from '@/lib/task-cards'
 import { normalizePublicCtaHref } from '@/lib/store-solution-categories'
 import type {
@@ -59,10 +60,16 @@ function renderRichText(text: string, keyPrefix: string) {
     const linkMatch = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part)
     if (linkMatch) {
       const [, label, href] = linkMatch
-      const isInternal = href.startsWith('/')
+      const isInternal = href.startsWith('/') && !href.startsWith('//')
       if (isInternal) {
+        const normalizedLink = normalizeInternalAttributionLink(href)
         return (
-          <Link key={key} href={href} className={INLINE_CONTENT_LINK_CLASS}>
+          <Link
+            key={key}
+            href={normalizedLink.href}
+            data-source={normalizedLink.source}
+            className={INLINE_CONTENT_LINK_CLASS}
+          >
             {label}
           </Link>
         )

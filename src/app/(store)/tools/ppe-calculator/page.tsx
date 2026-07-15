@@ -10,7 +10,8 @@ const TITLE = 'PPE Quantity Calculator — Monthly Consumption & Budget Planner'
 const DESCRIPTION =
   'Free PPE quantity calculator. Estimate monthly and annual consumption of gloves, hard hats, safety boots, respirators, hi-vis and more — by industry, headcount, shift pattern and exposure level. Export a budget-ready CSV.'
 
-const QUOTE_HREF = '/quote?source=tool-ppe-calculator'
+const QUOTE_HREF = '/quote'
+const QUOTE_SOURCE = 'tool-ppe-calculator'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -310,6 +311,7 @@ export default function PpeCalculatorPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={QUOTE_HREF}
+                  data-source={QUOTE_SOURCE}
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
                 >
                   Request quote

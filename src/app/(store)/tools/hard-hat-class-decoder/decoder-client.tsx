@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, HardHat } from 'lucide-react'
 
+const LINK_SOURCE = 'tool-hard-hat-class-decoder'
+
 const IMPACT_OPTIONS = [
   {
     id: 'top',
@@ -197,14 +199,16 @@ export function HardHatDecoder() {
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link
-              href="/downloads/construction-ppe-rfq-template?source=tool-hard-hat-class-decoder"
+              href="/downloads/construction-ppe-rfq-template"
+              data-source={LINK_SOURCE}
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Add to RFQ template
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <Link
-              href="/quote?source=tool-hard-hat-class-decoder"
+              href="/quote"
+              data-source={LINK_SOURCE}
               className="inline-flex min-h-11 items-center justify-center rounded-md border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
             >
               Request head protection quote

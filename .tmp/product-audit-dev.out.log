@@ -1,0 +1,21 @@
+
+> b2c-store@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.153.185.7:3000
+- Environments: .env
+
+✓ Starting...
+○ Compiling middleware ...
+✓ Ready in 26.5s
+○ Compiling /products ...
+ GET /products 200 in 12.9s (compile: 6.8s, proxy.ts: 597ms, render: 5.5s)
+ GET /products/10mm-polypropylene-safety-rope-fall-protection-rescue 200 in 6.5s (compile: 1016ms, proxy.ts: 12ms, render: 5.5s)
+ GET /products/acid-alkali-resistant-reflective-work-coverall 200 in 4.0s (compile: 22ms, proxy.ts: 7ms, render: 4.0s)
+ GET /products/clear-pc-grass-trimmer-face-shield 200 in 3.2s (compile: 14ms, proxy.ts: 5ms, render: 3.1s)
+ GET /products/green-nitrile-flocked-work-gloves-33cm-straight-cuff 200 in 3.7s (compile: 13ms, proxy.ts: 6ms, render: 3.7s)
+ GET /products/zinc-plated-twin-large-hook-shock-absorbing-fall-protection-lanyard 200 in 3.3s (compile: 14ms, proxy.ts: 6ms, render: 3.2s)
+ GET /products/acid-alkali-resistant-reflective-work-coverall 200 in 3.1s (compile: 16ms, proxy.ts: 5ms, render: 3.1s)
+ GET /products/acid-alkali-resistant-reflective-work-coverall 200 in 3.3s (compile: 75ms, proxy.ts: 50ms, render: 3.1s)

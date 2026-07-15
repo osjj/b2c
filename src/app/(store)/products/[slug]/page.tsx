@@ -1,6 +1,6 @@
 import { notFound, permanentRedirect } from 'next/navigation'
 import Link from 'next/link'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
 import { getTierPriceRange, type PriceTier } from '@/lib/pricing'
@@ -12,7 +12,10 @@ import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 import { ProductSectionTabs } from '@/components/store/product-section-tabs'
-import { buildPageTitle } from '@/lib/seo-title'
+import {
+  buildProductMetaDescription,
+  buildProductMetaTitle,
+} from '@/lib/product-seo'
 import { getSiteUrl } from '@/lib/site-url'
 
 type ProductSpecification = {
@@ -112,12 +115,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const productImage = product.ogImage || product.images[0]?.url
   const productImageAlt = product.images[0]?.alt || product.name
 
-  // Use SEO fields from database if available, otherwise fallback to defaults
-  const title = product.metaTitle || product.name
-  const description =
-    product.metaDescription ||
-    product.description?.slice(0, 160) ||
-    `Shop ${product.name} at Laifappe. High-quality protective equipment.`
+  // Curated SEO fields win; generated fallbacks stop at clean phrase/sentence boundaries.
+  const title = buildProductMetaTitle(product)
+  const description = buildProductMetaDescription(product)
 
   // Parse keywords from database or generate defaults
   const keywordsFromDb = product.metaKeywords
@@ -131,7 +131,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: {
-      absolute: buildPageTitle(title),
+      absolute: title,
     },
     description,
     keywords: keywords as string[],

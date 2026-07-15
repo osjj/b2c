@@ -20,8 +20,9 @@ const PAGE_PATH = '/tools/hard-hat-class-decoder'
 const TITLE = 'Hard Hat Class Decoder - Type I vs Type II, Class G, E and C'
 const DESCRIPTION =
   'Free hard hat class decoder for construction buyers. Compare ANSI/ISEA Z89.1 Type I vs Type II and Class G, Class E, and Class C before adding head protection to an RFQ.'
-const QUOTE_HREF = '/quote?source=tool-hard-hat-class-decoder'
-const RFQ_HREF = '/downloads/construction-ppe-rfq-template?source=tool-hard-hat-class-decoder'
+const QUOTE_HREF = '/quote'
+const RFQ_HREF = '/downloads/construction-ppe-rfq-template'
+const LINK_SOURCE = 'tool-hard-hat-class-decoder'
 
 const TYPE_ROWS = [
   {
@@ -202,6 +203,7 @@ export default function HardHatClassDecoderPage() {
         <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             href={RFQ_HREF}
+            data-source={LINK_SOURCE}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Add to RFQ template
@@ -370,6 +372,7 @@ export default function HardHatClassDecoderPage() {
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <Link
                 href={RFQ_HREF}
+                data-source={LINK_SOURCE}
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Open RFQ template
@@ -377,6 +380,7 @@ export default function HardHatClassDecoderPage() {
               </Link>
               <Link
                 href={QUOTE_HREF}
+                data-source={LINK_SOURCE}
                 className="inline-flex min-h-11 items-center justify-center rounded-md border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 Request a quote

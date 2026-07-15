@@ -4,6 +4,10 @@ import * as Dialog from "@radix-ui/react-dialog"
 import type { ChangeEvent, FormEvent, KeyboardEvent, ReactElement, ReactNode } from "react"
 import { useEffect, useId, useMemo, useRef, useState } from "react"
 import { pushDataLayerEvent } from "@/lib/analytics-events"
+import {
+  clearRecentAttributionSource,
+  readRecentAttributionSource,
+} from "@/lib/seo-links"
 import styles from "./home-new.module.css"
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -334,6 +338,8 @@ export function QuoteRequestForm({
     setIsSubmitting(true)
     setErrors({})
     setStatus(null)
+    const submissionSource =
+      source === "Quote page" ? readRecentAttributionSource() ?? source : source
 
     try {
       const response = await fetch("/api/quote-email", {
@@ -346,7 +352,7 @@ export function QuoteRequestForm({
           email: trimmedEmail,
           ...getQuoteTrackingContext(),
           message: trimmedMessage,
-          source,
+          source: submissionSource,
         }),
       })
       const payload = (await response.json().catch(() => null)) as QuoteEmailResponse | null
@@ -365,8 +371,9 @@ export function QuoteRequestForm({
         event: "quote_submit",
         form_id: "quote_request_form",
         quote_type: "fast_rfq",
-        source,
+        source: submissionSource,
       })
+      clearRecentAttributionSource()
       setStatus("Your quote request has been sent successfully.")
     } catch {
       setErrors({

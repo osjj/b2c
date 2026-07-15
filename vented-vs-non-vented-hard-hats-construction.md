@@ -1,7 +1,7 @@
 # Vented vs Non-Vented Hard Hats for Construction: Buyer Guide
 
 **Meta Title:** Vented vs Non-Vented Hard Hats | Construction Guide
-**Meta Description:** Compare vented vs non-vented hard hats for construction buyers. Learn when to use Class C ventilation, when Class E/G electrical protection matters, and how to write RFQs.
+**Meta Description:** Choose vented or non-vented hard hats by airflow, heat, and electrical class. Learn when Class C vents fit and when Class E/G shells match the jobsite.
 **Target URL:** /blog/vented-vs-non-vented-hard-hats-construction
 **Target Keywords:** vented vs non vented hard hat, vented hard hats construction, non vented hard hats, Class C vented hard hat, Class E non vented hard hat, vented hard hat electrical work, construction hard hat ventilation, hard hat heat stress, hard hat shell style, hard hat RFQ
 

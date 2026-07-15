@@ -17,11 +17,19 @@ test('buildPageTitle falls back to the base title when brand suffix would overfl
   assert.equal(result.length <= 60, true)
 })
 
-test('buildPageTitle truncates long dynamic titles on a word boundary', () => {
+test('buildPageTitle truncates long dynamic titles on a clean phrase boundary', () => {
   const result = buildPageTitle(
     'Industrial Cut Resistant Nitrile Palm-Coated Anti-Slip Safety Work Gloves for Manufacturing and Warehousing'
   )
 
-  assert.equal(result.endsWith('...'), true)
+  assert.equal(result.endsWith('...'), false)
   assert.equal(result.length <= 60, true)
+  assert.equal(/\b(?:and|for|of|with)$/i.test(result), false)
+})
+
+test('buildPageTitle avoids a partial final word when cutting a product name', () => {
+  assert.equal(
+    buildPageTitle('6kV Insulated Anti-Puncture Safety Shoes with Quick-Lace Dial'),
+    '6kV Insulated Anti-Puncture Safety Shoes with Quick-Lace'
+  )
 })

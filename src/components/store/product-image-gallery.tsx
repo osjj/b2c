@@ -3,15 +3,14 @@
 import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import type { ProductImage } from '@/types'
+import { buildProductImageAlt } from '@/lib/product-image-alt'
 import { cn } from '@/lib/utils'
 
-interface ProductImage {
-  id: string
-  url: string
-}
+type ProductGalleryImage = Pick<ProductImage, 'id' | 'url' | 'alt'>
 
 interface ProductImageGalleryProps {
-  images: ProductImage[]
+  images: ReadonlyArray<ProductGalleryImage>
   productName: string
   hasDiscount?: boolean
   discountPercentage?: number
@@ -31,6 +30,13 @@ export function ProductImageGallery({
 
   const safeCurrentIndex = images.length > 0 ? Math.min(currentIndex, images.length - 1) : 0
   const currentImage = images[safeCurrentIndex]
+  const currentImageAlt = currentImage
+    ? buildProductImageAlt({
+        productName,
+        imageAlt: currentImage.alt,
+        imageIndex: safeCurrentIndex,
+      })
+    : ''
   const visibleThumbnailCount = Math.min(images.length, 6)
   const maxThumbnailStart = Math.max(0, images.length - visibleThumbnailCount)
   const safeThumbnailStart = Math.min(thumbnailStart, maxThumbnailStart)
@@ -109,7 +115,7 @@ export function ProductImageGallery({
             {/* Normal Image */}
             <Image
               src={currentImage.url}
-              alt={productName}
+              alt={currentImageAlt}
               fill
               className={cn(
                 'object-cover transition-opacity duration-200',
@@ -214,7 +220,11 @@ export function ProductImageGallery({
                 >
                   <Image
                     src={image.url}
-                    alt={`${productName} ${imageIndex + 1}`}
+                    alt={buildProductImageAlt({
+                      productName,
+                      imageAlt: image.alt,
+                      imageIndex,
+                    })}
                     fill
                     className="object-cover"
                   />

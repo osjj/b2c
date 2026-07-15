@@ -71,7 +71,9 @@ The first layer is the baseline PPE that applies to most workers on most active 
 
 **Common site mistake:** Treating any helmet-shaped object as compliant head protection, even when it is damaged, badly fitted, or mismatched to the task.
 
-For a deeper selection guide covering Type I vs Type II, Class G/E/C, vented and non-vented shells, chin straps, and accessories, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types). If the site is deciding whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
+For the broad category decision covering Type, Class, shell style, fit, chin straps, and accessories, use the [types of hard hats for construction guide](/blog/construction-hard-hat-types). If impact direction is the open question, use the [Type 1 vs Type 2 hard hats buyer guide](/blog/type-1-vs-type-2-hard-hats). When shell ventilation, heat comfort, and electrical class overlap, use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction). If the site is deciding whether to upgrade from traditional hard hats to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
+
+If the site uses helmet colors for role identification or visitor control, keep that policy separate from impact Type and electrical Class. The [hard hat color codes guide](/blog/hard-hat-color-codes-construction-sites) shows buyers how to specify role colors without treating color as proof of protection.
 
 ### 2. Eye and face protection
 
@@ -210,6 +212,8 @@ For roofs, scaffolds, elevated platforms, open-sided floors, steel work, and lea
 - Pre-use inspection completed
 
 For the OSHA compliance, training, and inspection side of this topic, see [OSHA PPE requirements for construction](/blog/osha-ppe-requirements-construction).
+
+For scaffold erection, dismantling, platform access, and elevated work packages, use the [PPE for scaffolding and elevated platforms solution](/solutions/ppe-for-scaffolding-and-elevated-platforms) to coordinate fall arrest, helmet retention, footwear grip, gloves, and tool tethering.
 
 ### Concrete cutting, drilling, demolition, and masonry
 

@@ -883,7 +883,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     seoTitle:
       'Vented vs Non-Vented Hard Hats | Construction Guide',
     seoDescription:
-      'Compare vented vs non-vented hard hats for construction buyers. Learn when to use Class C ventilation, when Class E/G electrical protection matters, and how to write RFQs.',
+      'Choose vented or non-vented hard hats by airflow, heat, and electrical class. Learn when Class C vents fit and when Class E/G shells match the jobsite.',
     seoKeywords:
       'vented vs non vented hard hat, vented hard hats construction, non vented hard hats, Class C vented hard hat, Class E non vented hard hat, vented hard hat electrical work, construction hard hat ventilation, hard hat heat stress, hard hat shell style, hard hat RFQ',
     heroFallback:
@@ -1213,14 +1213,12 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.high-visibility-clothing-construction.generated.json',
     ),
-    title:
-      'Class 2 High Visibility Clothing Must Be the Outermost Layer: True or False?',
+    title: 'Must Class 2 Hi-Vis Be the Outermost Layer?',
     excerpt:
       'A direct answer to the Class 2 high visibility outermost-layer rule for trailer yards and work zones, with Class 2 vs Class 3 selection and RFQ notes.',
-    seoTitle:
-      'Class 2 High Visibility Outermost Layer Rule',
+    seoTitle: 'Must Class 2 Hi-Vis Be the Outermost Layer?',
     seoDescription:
-      'True or false: Class 2 high visibility clothing must be the outermost layer in trailer yards and work zones. Learn when Class 2 or Class 3 applies.',
+      "Class 2 hi-vis must remain visible when it is the worker's visibility-control garment. Learn how outerwear, harnesses and weather affect the right setup.",
     seoKeywords:
       'class 2 high visibility clothing must be the outermost layer, Class 2 hi-vis outer layer rule, high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, trailer yard hi-vis clothing, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
     heroFallback:

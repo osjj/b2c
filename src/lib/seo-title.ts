@@ -10,16 +10,16 @@ function truncateTitle(value: string, maxLength: number): string {
     return value
   }
 
-  const truncated = value.slice(0, maxLength - 3).trim()
-  const separatorIndex = Math.max(
-    truncated.lastIndexOf(' '),
-    truncated.lastIndexOf('|'),
-    truncated.lastIndexOf('-'),
-    truncated.lastIndexOf('/')
-  )
+  const candidate = value.slice(0, maxLength).trim()
+  const lastCharacterIsPartial = value.length > maxLength && !/\s/.test(value[maxLength] || '')
+  const wordBoundary = lastCharacterIsPartial ? candidate.lastIndexOf(' ') : candidate.length
+  const safeCutoff = wordBoundary > 0 ? wordBoundary : candidate.length
 
-  const safeCutoff = separatorIndex > Math.floor(maxLength / 2) ? separatorIndex : truncated.length
-  return `${truncated.slice(0, safeCutoff).trim()}...`
+  return candidate
+    .slice(0, safeCutoff)
+    .replace(/[|/:;,\-\u2013\u2014]+$/g, '')
+    .replace(/\b(?:a|an|and|by|for|from|in|of|on|or|the|to|with)$/i, '')
+    .trim()
 }
 
 type BuildPageTitleOptions = {

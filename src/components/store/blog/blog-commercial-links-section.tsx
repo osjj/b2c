@@ -36,12 +36,14 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
           <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-muted-foreground">
             <Link
               href={links.cta.href}
+              data-source={links.cta.source}
               className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
             >
               Request quote
             </Link>
             <Link
               href={links.solution.href}
+              data-source={links.solution.source}
               className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
             >
               Build PPE kit
@@ -49,15 +51,16 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
             <Link
               data-download-asset="construction-ppe-checklist"
               data-download-source="blog-commercial-links"
-              href="/downloads/construction-ppe-checklist.pdf?source=blog-commercial-links"
+              href="/downloads/construction-ppe-checklist.pdf"
               className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
             >
               Download checklist
             </Link>
             {links.resources?.map((resource) => (
               <Link
-                key={resource.href}
+                key={`${resource.href}-${resource.label}`}
                 href={resource.href}
+                data-source={resource.source}
                 className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
               >
                 {resource.label}
@@ -67,7 +70,7 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
         </div>
 
         <Button asChild size="lg" className="shrink-0">
-          <Link href={links.cta.href}>
+          <Link href={links.cta.href} data-source={links.cta.source}>
             <ClipboardCheck className="h-4 w-4" />
             {links.cta.label}
           </Link>
@@ -79,6 +82,7 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
           <SectionLabel icon={Boxes} label="Solution" />
           <Link
             href={links.solution.href}
+            data-source={links.solution.source}
             className="mt-3 inline-flex items-center gap-2 text-base font-semibold text-primary underline-offset-4 hover:underline"
           >
             {links.solution.label}
@@ -93,6 +97,7 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
               <Link
                 key={category.href}
                 href={category.href}
+                data-source={category.source}
                 className="rounded-full border bg-muted/30 px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
               >
                 {category.label}
@@ -109,6 +114,7 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
             <li key={product.href}>
               <Link
                 href={product.href}
+                data-source={product.source}
                 className="group inline-flex items-start gap-2 text-sm font-medium leading-relaxed text-foreground underline-offset-4 hover:text-primary hover:underline"
               >
                 <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />

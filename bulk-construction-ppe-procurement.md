@@ -134,7 +134,7 @@ Do not use the baseline package as a shortcut for high-risk tasks. It should be 
 
 For example, a general laborer moving materials may need baseline PPE plus task-specific gloves. A roofer may need the same baseline layer plus a fall protection system and more suitable footwear. A worker cutting concrete may need the baseline layer plus respiratory protection, face protection, and hearing protection. An electrician may need a different head protection class, insulating gloves, and arc-related PPE.
 
-For head protection specifications in particular, use the [Type 1 vs Type 2 hard hats buyer guide](/blog/type-1-vs-type-2-hard-hats) before finalizing Type I vs Type II and Class G/E/C. Then use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for venting, brim style, chin straps, accessories, inspection, and replacement planning. If the buying decision is whether to keep traditional hard hats or upgrade to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
+For head protection specifications in particular, use the [Type 1 vs Type 2 hard hats buyer guide](/blog/type-1-vs-type-2-hard-hats) before finalizing the impact direction requirement. Use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction) before splitting hot-weather and electrical crews, then use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for brim style, chin straps, accessories, inspection, and replacement planning. If the order uses role colors, visitor stock, or color-coded packaging, use the [hard hat color codes guide](/blog/hard-hat-color-codes-construction-sites) without confusing color with Type or Class. If the buying decision is whether to keep traditional hard hats or upgrade to helmet-style head protection, use the [safety helmet vs hard hat comparison guide](/blog/construction-safety-helmet-vs-hard-hat).
 
 ---
 
@@ -152,6 +152,8 @@ Construction PPE becomes expensive when every worker receives every item. It bec
 | Electrical work | Class E head protection, insulating gloves where required, EH footwear, arc-rated PPE where needed | Treating electrical PPE as ordinary construction PPE |
 | Demolition and renovation | Respiratory protection, goggles, cut gloves, hard hat, puncture-resistant footwear, coveralls where needed | Buying dust masks without evaluating actual respiratory exposure |
 | Welding and hot work | Welding helmet, welding gloves, flame-resistant clothing, face and respiratory protection where needed | Using standard hi-vis or synthetic clothing near sparks |
+
+Scaffold packages need more than a generic height-work add-on. Use the [PPE for scaffolding and elevated platforms solution](/solutions/ppe-for-scaffolding-and-elevated-platforms) to define role-based harness, helmet retention, footwear, glove, and tool-tethering requirements before requesting prices.
 
 This is where the [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution) becomes useful. It gives the wider category structure. This procurement guide turns that structure into a buying process.
 

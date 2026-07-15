@@ -18,10 +18,11 @@ import { getSiteUrl } from '@/lib/site-url'
 
 const PAGE_PATH = '/downloads/construction-ppe-rfq-template'
 const PDF_PATH = '/downloads/construction-ppe-rfq-template.pdf'
-const PDF_HREF = `${PDF_PATH}?source=construction-ppe-rfq-template`
-const QUOTE_HREF = '/quote?source=construction-ppe-rfq-template'
-const AI_QUOTE_HREF = '/tools/ai-quote?source=construction-ppe-rfq-template'
-const CALCULATOR_HREF = '/tools/ppe-calculator?source=construction-ppe-rfq-template'
+const PDF_HREF = PDF_PATH
+const QUOTE_HREF = '/quote'
+const AI_QUOTE_HREF = '/tools/ai-quote'
+const CALCULATOR_HREF = '/tools/ppe-calculator'
+const ATTRIBUTION_SOURCE = 'construction-ppe-rfq-template'
 
 const FIELD_GROUPS = [
   {
@@ -100,13 +101,13 @@ const TOOL_STEPS = [
     icon: FileText,
   },
   {
-    href: '/tools/size-guide?source=construction-ppe-rfq-template',
+    href: '/tools/size-guide',
     title: 'Check footwear sizing',
     description: 'Use the size guide before locking safety boot sizes, width notes, and conversion requirements.',
     icon: Ruler,
   },
   {
-    href: '/tools/hard-hat-class-decoder?source=construction-ppe-rfq-template',
+    href: '/tools/hard-hat-class-decoder',
     title: 'Decode hard hat classes',
     description: 'Use the hard hat decoder before specifying Type I/II and Class G/E/C in a head protection RFQ.',
     icon: HardHat,
@@ -203,7 +204,7 @@ export default function ConstructionPpeRfqTemplatePage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="min-h-11">
-                <Link href={QUOTE_HREF}>
+                <Link href={QUOTE_HREF} data-source={ATTRIBUTION_SOURCE}>
                   Request a Bulk PPE Quote
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
@@ -365,6 +366,7 @@ export default function ConstructionPpeRfqTemplatePage() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    data-source={ATTRIBUTION_SOURCE}
                     className="group block bg-card p-4 transition-colors first:rounded-t-xl last:rounded-b-xl hover:bg-primary/5"
                   >
                     <div className="flex items-start gap-3">
@@ -441,7 +443,7 @@ export default function ConstructionPpeRfqTemplatePage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="min-h-11 bg-background">
-                <Link href={QUOTE_HREF}>
+                <Link href={QUOTE_HREF} data-source={ATTRIBUTION_SOURCE}>
                   Request Quote
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>

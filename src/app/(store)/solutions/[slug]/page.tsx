@@ -361,10 +361,6 @@ export default async function SolutionDetailPage({ params }: Props) {
   )
 }
 
-function withSource(href: string, source: string) {
-  return `${href}?source=${encodeURIComponent(source)}`
-}
-
 function SolutionTrustProofSection() {
   return (
     <section className="overflow-hidden rounded-2xl border bg-background shadow-sm">
@@ -434,7 +430,8 @@ function SolutionProcurementDownloads({ source }: { source: string }) {
           </p>
         </div>
         <Link
-          href={`/quote?source=${encodeURIComponent(source)}`}
+          href="/quote"
+          data-source={source}
           className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
         >
           Request quote
@@ -445,7 +442,8 @@ function SolutionProcurementDownloads({ source }: { source: string }) {
         {PROCUREMENT_DOWNLOADS.map((asset) => (
           <Link
             key={asset.id}
-            href={withSource(asset.href, source)}
+            href={asset.href}
+            data-source={source}
             download={asset.isDownload ? true : undefined}
             data-download-asset={asset.isDownload ? asset.id : undefined}
             data-download-source={asset.isDownload ? source : undefined}

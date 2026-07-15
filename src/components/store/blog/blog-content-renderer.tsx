@@ -1,6 +1,7 @@
 import type { JSX } from 'react'
 import Image from 'next/image'
 import { slugifyHeading } from '@/lib/blog-toc'
+import { rewriteInternalAttributionLinksInHtml } from '@/lib/seo-links'
 
 interface Block {
   id?: string
@@ -86,7 +87,7 @@ function renderHeader(block: Block, index: number, usedIds: Set<string>) {
         key={key}
         id={id}
         className="scroll-mt-28 font-serif text-2xl sm:text-3xl leading-tight mt-14 mb-5 text-foreground"
-        dangerouslySetInnerHTML={{ __html: text }}
+        dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
       />
     )
   }
@@ -96,7 +97,7 @@ function renderHeader(block: Block, index: number, usedIds: Set<string>) {
       <h3
         key={key}
         className="font-serif text-xl sm:text-2xl leading-snug mt-10 mb-4 text-foreground"
-        dangerouslySetInnerHTML={{ __html: text }}
+        dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
       />
     )
   }
@@ -105,7 +106,7 @@ function renderHeader(block: Block, index: number, usedIds: Set<string>) {
     <h4
       key={key}
       className="font-sans font-semibold text-lg mt-8 mb-3 text-foreground"
-      dangerouslySetInnerHTML={{ __html: text }}
+      dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
     />
   )
 }
@@ -115,7 +116,9 @@ function renderParagraph(block: Block, index: number) {
     <p
       key={block.id || `p-${index}`}
       className="my-5 text-base leading-[1.85] text-foreground/85"
-      dangerouslySetInnerHTML={{ __html: String(block.data.text ?? '') }}
+      dangerouslySetInnerHTML={{
+        __html: rewriteInternalAttributionLinksInHtml(String(block.data.text ?? '')),
+      }}
     />
   )
 }
@@ -135,7 +138,11 @@ function renderList(block: Block, index: number) {
 
       return (
         <li key={idx} className="mb-2 leading-[1.85]">
-          <span dangerouslySetInnerHTML={{ __html: content }} />
+          <span
+            dangerouslySetInnerHTML={{
+              __html: rewriteInternalAttributionLinksInHtml(content),
+            }}
+          />
           {nestedItems && <Tag className="mt-2 ml-2">{renderItems(nestedItems)}</Tag>}
         </li>
       )
@@ -198,7 +205,9 @@ function renderImage(block: Block, index: number) {
       {hasCaption && (
         <figcaption
           className="text-center text-sm italic text-muted-foreground mt-3"
-          dangerouslySetInnerHTML={{ __html: caption }}
+          dangerouslySetInnerHTML={{
+            __html: rewriteInternalAttributionLinksInHtml(caption),
+          }}
         />
       )}
     </figure>
@@ -240,7 +249,9 @@ function renderTable(block: Block, index: number) {
                 <th
                   key={idx}
                   className="border-b px-4 py-3 text-left font-semibold text-foreground"
-                  dangerouslySetInnerHTML={{ __html: cell }}
+                  dangerouslySetInnerHTML={{
+                    __html: rewriteInternalAttributionLinksInHtml(cell),
+                  }}
                 />
               ))}
             </tr>
@@ -260,7 +271,9 @@ function renderTable(block: Block, index: number) {
                       ? 'px-4 py-3 align-top font-medium text-foreground'
                       : 'px-4 py-3 align-top text-foreground/85'
                   }
-                  dangerouslySetInnerHTML={{ __html: cell }}
+                  dangerouslySetInnerHTML={{
+                    __html: rewriteInternalAttributionLinksInHtml(cell),
+                  }}
                 />
               ))}
             </tr>
@@ -285,7 +298,7 @@ function renderQuote(block: Block, index: number) {
     >
       <p
         className="text-lg italic text-foreground/90 leading-relaxed"
-        dangerouslySetInnerHTML={{ __html: text }}
+        dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
       />
       {caption && (
         <cite className="block mt-3 text-sm text-muted-foreground not-italic">

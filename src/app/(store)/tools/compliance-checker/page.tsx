@@ -25,7 +25,8 @@ const DESCRIPTION =
   'Free decoder for safety boot labels. Instantly explain S1, S2, S3, S4, S5, SRC, HRO, ASTM F2413-18, I/75, C/75, EH, PR and every EN ISO 20345 and ASTM safety-footwear code.'
 const SEO_TITLE = 'What Does S3 SRC HRO Mean? Safety Footwear Label Decoder'
 
-const QUOTE_HREF = '/quote?source=tool-compliance-checker'
+const QUOTE_HREF = '/quote'
+const QUOTE_SOURCE = 'tool-compliance-checker'
 
 export const metadata: Metadata = {
   title: SEO_TITLE,
@@ -486,6 +487,7 @@ Size 10 W`}
               <div className="flex flex-wrap gap-3">
                 <Link
                   href={QUOTE_HREF}
+                  data-source={QUOTE_SOURCE}
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
                 >
                   Get a quote

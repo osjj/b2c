@@ -1,6 +1,9 @@
+import { normalizeInternalAttributionLink } from '@/lib/seo-links'
+
 export interface BlogCommercialLink {
   href: string
   label: string
+  source?: string
 }
 
 export interface BlogCommercialLinks {
@@ -52,11 +55,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-gloves-selection-guide',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-gloves-selection-guide',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Size sheet',
       },
     ],
@@ -95,11 +98,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-safety-footwear-guide',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-safety-footwear-guide',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Size sheet',
       },
     ],
@@ -134,15 +137,15 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-type-1-vs-type-2-hard-hats',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/tools/hard-hat-class-decoder?source=blog-type-1-vs-type-2-hard-hats',
+        href: '/tools/hard-hat-class-decoder',
         label: 'Hard hat decoder',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-type-1-vs-type-2-hard-hats',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Standards sheet',
       },
     ],
@@ -177,15 +180,15 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-class-e-vs-class-g-vs-class-c-hard-hats',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/tools/hard-hat-class-decoder?source=blog-class-e-vs-class-g-vs-class-c-hard-hats',
+        href: '/tools/hard-hat-class-decoder',
         label: 'Hard hat decoder',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-class-e-vs-class-g-vs-class-c-hard-hats',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Standards sheet',
       },
     ],
@@ -220,15 +223,15 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-vented-vs-non-vented-hard-hats-construction',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/tools/hard-hat-class-decoder?source=blog-vented-vs-non-vented-hard-hats-construction',
+        href: '/tools/hard-hat-class-decoder',
         label: 'Hard hat decoder',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-vented-vs-non-vented-hard-hats-construction',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Standards sheet',
       },
     ],
@@ -263,15 +266,15 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-full-brim-vs-cap-style-hard-hats-construction',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/tools/hard-hat-class-decoder?source=blog-full-brim-vs-cap-style-hard-hats-construction',
+        href: '/tools/hard-hat-class-decoder',
         label: 'Hard hat decoder',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-full-brim-vs-cap-style-hard-hats-construction',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Standards sheet',
       },
     ],
@@ -306,15 +309,15 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-hard-hat-color-codes-construction-sites',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/tools/hard-hat-class-decoder?source=blog-hard-hat-color-codes-construction-sites',
+        href: '/tools/hard-hat-class-decoder',
         label: 'Hard hat decoder',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-hard-hat-color-codes-construction-sites',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Standards sheet',
       },
     ],
@@ -349,11 +352,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-hard-hat-types',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-hard-hat-types',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Standards sheet',
       },
     ],
@@ -394,7 +397,7 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-bulk-construction-ppe-procurement',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
     ],
@@ -436,11 +439,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-ppe-checklist',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-ppe-checklist',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Size sheet',
       },
     ],
@@ -545,11 +548,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-respiratory-protection',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Size sheet',
       },
     ],
@@ -589,11 +592,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-construction-eye-face-protection',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-eye-face-protection',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Size sheet',
       },
     ],
@@ -743,7 +746,7 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-high-visibility-clothing-construction',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
     ],
@@ -817,7 +820,7 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-kit-checklist',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
     ],
@@ -859,11 +862,11 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
     },
     resources: [
       {
-        href: '/downloads/construction-ppe-rfq-template?source=blog-contractor-ppe-supplier-bulk-checklist',
+        href: '/downloads/construction-ppe-rfq-template',
         label: 'RFQ template',
       },
       {
-        href: '/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-contractor-ppe-supplier-bulk-checklist',
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
         label: 'Size and standards sheet',
       },
     ],
@@ -940,21 +943,30 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
   },
 }
 
-export function getBlogCommercialLinks(slug: string) {
+function normalizeBlogCommercialLink(
+  link: BlogCommercialLink,
+  source: string,
+): BlogCommercialLink {
+  return {
+    ...link,
+    ...normalizeInternalAttributionLink(link.href, source),
+  }
+}
+
+export function getBlogCommercialLinks(slug: string): BlogCommercialLinks | undefined {
   const links = BLOG_COMMERCIAL_LINKS[slug]
 
   if (!links) {
     return undefined
   }
 
+  const source = `blog-${slug}`
+
   return {
-    ...links,
-    cta: {
-      ...links.cta,
-      href:
-        links.cta.href === '/quote'
-          ? `/quote?source=${encodeURIComponent(`blog-${slug}`)}`
-          : links.cta.href,
-    },
+    solution: normalizeBlogCommercialLink(links.solution, source),
+    categories: links.categories.map((link) => normalizeBlogCommercialLink(link, source)),
+    products: links.products.map((link) => normalizeBlogCommercialLink(link, source)),
+    cta: normalizeBlogCommercialLink(links.cta, source),
+    resources: links.resources?.map((link) => normalizeBlogCommercialLink(link, source)),
   }
 }
