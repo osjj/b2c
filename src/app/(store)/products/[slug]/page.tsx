@@ -414,7 +414,7 @@ export default async function ProductDetailPage({
         <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
 
           {/* LEFT COLUMN: Images + Content Sections */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 rounded-lg bg-white p-4 lg:order-1">
             {/* Images */}
             <div className="hidden lg:block">
               <ProductImageGallery
@@ -460,7 +460,7 @@ export default async function ProductDetailPage({
             )}
           </div>
           {/* RIGHT COLUMN: Sticky Product Info */}
-          <div className="order-1 lg:order-2 lg:sticky lg:top-28 lg:z-[10] lg:self-start">
+          <div className="order-1 rounded-lg bg-white p-4 lg:order-2 lg:sticky lg:top-28 lg:z-[10] lg:self-start">
             {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
               <B2BProductActions
                 productId={product.id}

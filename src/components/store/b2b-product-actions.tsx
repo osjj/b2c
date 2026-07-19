@@ -321,18 +321,6 @@ export function B2BProductActions({
               </div>
             ))}
 
-            {selectedVariant && (
-              <div className="grid grid-cols-2 gap-3 rounded-md border bg-muted/30 p-3 text-sm">
-                <div className="min-w-0">
-                  <p className="text-xs uppercase text-muted-foreground">Selected SKU</p>
-                  <p className="break-words font-medium">{selectedVariant.sku}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase text-muted-foreground">Available</p>
-                  <p className="font-medium">{selectedVariant.stock.toLocaleString()} units</p>
-                </div>
-              </div>
-            )}
           </div>
         )}
 
