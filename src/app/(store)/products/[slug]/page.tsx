@@ -17,11 +17,10 @@ import {
   buildProductMetaTitle,
 } from '@/lib/product-seo'
 import { getSiteUrl } from '@/lib/site-url'
-
-type ProductSpecification = {
-  name: string
-  value: string
-}
+import {
+  getStorefrontVisibleProductSpecifications,
+  type ProductSpecification,
+} from '@/lib/product-specification-visibility'
 
 type ProductContent = Parameters<typeof ContentRenderer>[0]['content']
 
@@ -35,15 +34,6 @@ type ProductVariantOptions = Record<string, ProductVariantOptionValue>
 
 type Props = {
   params: Promise<{ slug: string }>
-}
-
-function isProductSpecification(spec: unknown): spec is ProductSpecification {
-  if (!spec || typeof spec !== 'object') {
-    return false
-  }
-
-  const candidate = spec as Record<string, unknown>
-  return typeof candidate.name === 'string' && typeof candidate.value === 'string'
 }
 
 function getSpecValue(specs: ProductSpecification[], names: string[]) {
@@ -223,26 +213,7 @@ export default async function ProductDetailPage({
 
   const baseUrl = getSiteUrl()
 
-  // 过滤内部来源字段。既要匹配原始 key（sourceUrl1688 / offerId1688），
-  // 也要匹配被 AI 规范化后的人类可读标签（"1688 Source URL" / "1688 Offer ID"）
-  const HIDDEN_FRONTEND_SPEC_KEYS_NORMALIZED = new Set([
-    'sourceurl',
-    'sourcelink',
-    'sourcepageurl',
-    'originalsourceurl',
-    'alibabasourceurl',
-    '1688sourceurl',
-    'sourceurl1688',
-  ])
-  const isInternalSpec = (name: string) => {
-    const n = (name || '').toLowerCase().replace(/[\s_\-]+/g, '')
-    return HIDDEN_FRONTEND_SPEC_KEYS_NORMALIZED.has(n)
-  }
-  const visibleSpecs = (product.specifications && Array.isArray(product.specifications))
-    ? product.specifications
-        .filter(isProductSpecification)
-        .filter(spec => !isInternalSpec(spec.name))
-    : []
+  const visibleSpecs = getStorefrontVisibleProductSpecifications(product.specifications)
   const productContent = product.content as unknown as ProductContent
   const minimumOrderFromTier = normalizedPriceTiers.length > 0
     ? `${Math.min(...normalizedPriceTiers.map((tier) => tier.minQuantity))}+ units`
@@ -455,7 +426,7 @@ export default async function ProductDetailPage({
             {productContent && (
               <section id="product-details" className="scroll-mt-[150px] pt-8 border-t mt-8">
                 <h2 className="font-serif text-2xl mb-6">Product Details</h2>
-                <ContentRenderer content={productContent} />
+                <ContentRenderer content={productContent} seamlessDetailImages />
               </section>
             )}
           </div>

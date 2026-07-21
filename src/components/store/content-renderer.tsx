@@ -1,30 +1,34 @@
 import type { JSX } from 'react'
 import Image from 'next/image'
 
-interface Block {
+export interface ContentBlock {
   id: string
   type: string
-  data: Record<string, any>
+  data: Record<string, unknown>
 }
 
 interface EditorJSContent {
   time?: number
   version?: string
-  blocks: Block[]
+  blocks: ContentBlock[]
 }
 
 interface ContentRendererProps {
   content: EditorJSContent | null | undefined
+  seamlessDetailImages?: boolean
 }
 
-export function ContentRenderer({ content }: ContentRendererProps) {
+export function ContentRenderer({
+  content,
+  seamlessDetailImages = false,
+}: ContentRendererProps) {
   if (!content?.blocks?.length) {
     return null
   }
 
   return (
     <div className="prose prose-sm md:prose-base max-w-none">
-      {content.blocks.map((block) => {
+      {content.blocks.map((block, index) => {
         switch (block.type) {
           case 'header':
             return renderHeader(block)
@@ -33,7 +37,15 @@ export function ContentRenderer({ content }: ContentRendererProps) {
           case 'list':
             return renderList(block)
           case 'image':
-            return renderImage(block)
+            return renderImage(
+              block,
+              getImageSpacingClass(
+                block,
+                content.blocks[index - 1],
+                content.blocks[index + 1],
+                seamlessDetailImages
+              )
+            )
           case 'delimiter':
             return renderDelimiter(block)
           case 'quote':
@@ -46,9 +58,13 @@ export function ContentRenderer({ content }: ContentRendererProps) {
   )
 }
 
-function renderHeader(block: Block) {
-  const { text, level } = block.data
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements
+function renderHeader(block: ContentBlock) {
+  const text = typeof block.data.text === 'string' ? block.data.text : ''
+  const level =
+    typeof block.data.level === 'number' && block.data.level >= 1 && block.data.level <= 6
+      ? block.data.level
+      : 2
+  const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
   return (
     <Tag
@@ -59,26 +75,35 @@ function renderHeader(block: Block) {
   )
 }
 
-function renderParagraph(block: Block) {
+function renderParagraph(block: ContentBlock) {
+  const text = typeof block.data.text === 'string' ? block.data.text : ''
+
   return (
     <p
       key={block.id}
       className="text-muted-foreground leading-relaxed"
-      dangerouslySetInnerHTML={{ __html: block.data.text }}
+      dangerouslySetInnerHTML={{ __html: text }}
     />
   )
 }
 
-function renderList(block: Block) {
+function renderList(block: ContentBlock) {
   const { style, items } = block.data
   const Tag = style === 'ordered' ? 'ol' : 'ul'
 
   // Handle both old format (string[]) and new format (object[])
-  const renderItems = (listItems: any[]): JSX.Element[] => {
-    return listItems.map((item: any, index: number) => {
-      // New format: { content: string, items: [] }
-      const content = typeof item === 'string' ? item : item.content
-      const nestedItems = typeof item === 'object' && item.items?.length > 0 ? item.items : null
+  const renderItems = (listItems: unknown[]): JSX.Element[] => {
+    return listItems.map((item, index) => {
+      const content =
+        typeof item === 'string'
+          ? item
+          : isRecord(item) && typeof item.content === 'string'
+            ? item.content
+            : ''
+      const nestedItems =
+        isRecord(item) && Array.isArray(item.items) && item.items.length > 0
+          ? item.items
+          : null
 
       return (
         <li key={index}>
@@ -95,57 +120,100 @@ function renderList(block: Block) {
 
   return (
     <Tag key={block.id} className="text-muted-foreground">
-      {renderItems(items)}
+      {renderItems(Array.isArray(items) ? items : [])}
     </Tag>
   )
 }
 
-function renderImage(block: Block) {
-  const { file, caption, stretched, withBorder, withBackground } = block.data
-  const url = file?.url || block.data.url
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value)
+}
 
-  // Validate URL: must exist, not be empty/whitespace, and be a valid URL format
+function hasMeaningfulCaption(caption: unknown): caption is string {
+  return (
+    typeof caption === 'string' &&
+    caption.replace(/<br\s*\/?>/gi, '').trim().length > 0
+  )
+}
+
+function getValidImageUrl(block: ContentBlock): string | null {
+  const file = block.data.file
+  const fileUrl = isRecord(file) && typeof file.url === 'string' ? file.url : undefined
+  const url = fileUrl || block.data.url
+
   if (!url || typeof url !== 'string' || !url.trim()) return null
 
   const trimmedUrl = url.trim()
-
-  // Check if it's a valid URL (absolute or relative path starting with /)
-  const isValidUrl = trimmedUrl.startsWith('/') ||
+  const isValidUrl =
+    trimmedUrl.startsWith('/') ||
     trimmedUrl.startsWith('http://') ||
     trimmedUrl.startsWith('https://') ||
     trimmedUrl.startsWith('data:')
 
-  if (!isValidUrl) return null
+  return isValidUrl ? trimmedUrl : null
+}
 
-  // Check if caption has actual content (not just <br> tags or whitespace)
-  const hasCaption = caption && caption.replace(/<br\s*\/?>/gi, '').trim().length > 0
+export function isJoinableDetailImageBlock(
+  block: ContentBlock | null | undefined
+): boolean {
+  if (!block || block.type !== 'image' || !getValidImageUrl(block)) return false
+
+  return (
+    block.data.stretched === true &&
+    !Boolean(block.data.withBorder) &&
+    !Boolean(block.data.withBackground) &&
+    !hasMeaningfulCaption(block.data.caption)
+  )
+}
+
+export function getImageSpacingClass(
+  block: ContentBlock,
+  previousBlock: ContentBlock | undefined,
+  nextBlock: ContentBlock | undefined,
+  seamlessDetailImages: boolean
+): string {
+  if (!seamlessDetailImages || !isJoinableDetailImageBlock(block)) return 'my-6'
+
+  const joinsPrevious = isJoinableDetailImageBlock(previousBlock)
+  const joinsNext = isJoinableDetailImageBlock(nextBlock)
+  if (!joinsPrevious && !joinsNext) return 'my-6'
+
+  return `${joinsPrevious ? 'mt-0' : 'mt-6'} ${joinsNext ? 'mb-0' : 'mb-6'}`
+}
+
+function renderImage(block: ContentBlock, spacingClass: string) {
+  const { caption, stretched, withBorder, withBackground } = block.data
+  const trimmedUrl = getValidImageUrl(block)
+  if (!trimmedUrl) return null
+
+  const captionText = hasMeaningfulCaption(caption) ? caption : null
 
   return (
     <figure
       key={block.id}
-      className={`my-6 ${stretched ? 'w-full' : ''} ${withBackground ? 'bg-muted p-4 rounded-lg' : ''}`}
+      className={`${spacingClass} leading-none ${stretched === true ? 'w-full' : ''} ${withBackground ? 'bg-muted p-4 rounded-lg' : ''}`}
     >
       <div className={`relative ${withBorder ? 'border rounded-lg overflow-hidden' : ''}`}>
         <Image
           src={trimmedUrl}
-          alt={hasCaption ? caption : 'Product detail image'}
+          alt={captionText ?? 'Product detail image'}
           width={800}
           height={600}
-          className="w-full h-auto object-contain"
+          className="block w-full h-auto object-contain"
           sizes="(max-width: 768px) 100vw, 800px"
         />
       </div>
-      {hasCaption && (
+      {captionText && (
         <figcaption
-          className="text-center text-sm text-muted-foreground mt-2"
-          dangerouslySetInnerHTML={{ __html: caption }}
+          className="text-center text-sm leading-normal text-muted-foreground mt-2"
+          dangerouslySetInnerHTML={{ __html: captionText }}
         />
       )}
     </figure>
   )
 }
 
-function renderDelimiter(block: Block) {
+function renderDelimiter(block: ContentBlock) {
   return (
     <div key={block.id} className="flex justify-center my-8">
       <div className="flex gap-2">
@@ -157,8 +225,10 @@ function renderDelimiter(block: Block) {
   )
 }
 
-function renderQuote(block: Block) {
-  const { text, caption, alignment } = block.data
+function renderQuote(block: ContentBlock) {
+  const text = typeof block.data.text === 'string' ? block.data.text : ''
+  const caption = typeof block.data.caption === 'string' ? block.data.caption : null
+  const alignment = block.data.alignment
 
   return (
     <blockquote
