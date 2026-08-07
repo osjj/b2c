@@ -34,8 +34,11 @@ test('normalizes case, spaces, underscores, and hyphens for Purchase Price', () 
 
 test('preserves existing internal source-field filtering', () => {
   const visible = getStorefrontVisibleProductSpecifications([
+    { name: 'Source', value: 'https://example.com/source' },
     { name: 'Source URL', value: 'https://example.com/source' },
     { name: '1688_Source_URL', value: 'https://detail.1688.com/example' },
+    { name: 'Notion Source', value: 'https://notion.so/example' },
+    { name: 'NOTION_SOURCE', value: 'https://notion.so/example-2' },
     { name: 'Size', value: 'One Size' },
   ])
 

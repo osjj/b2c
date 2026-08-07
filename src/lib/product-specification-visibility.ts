@@ -4,6 +4,7 @@ export type ProductSpecification = {
 }
 
 const HIDDEN_STOREFRONT_SPEC_KEYS = new Set([
+  'source',
   'sourceurl',
   'sourcelink',
   'sourcepageurl',
@@ -11,6 +12,7 @@ const HIDDEN_STOREFRONT_SPEC_KEYS = new Set([
   'alibabasourceurl',
   '1688sourceurl',
   'sourceurl1688',
+  'notionsource',
   'purchaseprice',
 ])
 

@@ -1,0 +1,306 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=e8]:
+        - link "sales@laifappe.com" [ref=e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=e11]: EN
+    - banner [ref=e13]:
+      - generic [ref=e14]:
+        - link "Laifappe homepage" [ref=e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=e16]
+          - generic [ref=e17]:
+            - strong [ref=e18]: 粤来发劳保
+            - generic [ref=e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=e20]:
+          - link "Home" [ref=e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e27]:
+          - link "Email" [ref=e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=e33] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=e37] [cursor=pointer]:
+            - generic [ref=e39]: →
+    - main [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e47]:
+          - navigation [ref=e48]:
+            - link "Home" [ref=e49] [cursor=pointer]:
+              - /url: /
+            - generic [ref=e52]: Products
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - generic [ref=e55]: Professional Protective Equipment
+              - heading "All Products" [level=1] [ref=e59]
+              - paragraph [ref=e60]: We provide high-quality industrial safety equipment that meets international standards and protects every worker.
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e63]: "65"
+                - generic [ref=e64]: Total Products
+              - generic [ref=e66]:
+                - generic [ref=e67]: "7"
+                - generic [ref=e68]: Categories
+        - generic [ref=e71]:
+          - link "All" [ref=e72] [cursor=pointer]:
+            - /url: /products
+          - link "Foot Protection" [ref=e77] [cursor=pointer]:
+            - /url: /categories/foot-protection
+          - link "Body Protection" [ref=e78] [cursor=pointer]:
+            - /url: /categories/body-protection
+          - link "Eye Protection" [ref=e79] [cursor=pointer]:
+            - /url: /categories/eye-protection
+          - link "Respiratory Protection" [ref=e80] [cursor=pointer]:
+            - /url: /categories/respiratory-protection
+          - link "Hand Protection" [ref=e81] [cursor=pointer]:
+            - /url: /categories/hand-protection
+          - link "Fall Protection" [ref=e82] [cursor=pointer]:
+            - /url: /categories/fall-protection
+          - link "Head Protection" [ref=e83] [cursor=pointer]:
+            - /url: /categories/head-protection
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]: 65 products
+            - generic [ref=e91]:
+              - combobox [ref=e92]:
+                - generic: Newest
+              - combobox [ref=e93]
+          - generic [ref=e94]:
+            - generic [ref=e96]:
+              - link [ref=e97] [cursor=pointer]:
+                - /url: /products/cut-resistant-pu-coated-work-gloves
+                - img "Cut-Resistant PU-Coated Work Gloves" [ref=e99]
+              - generic [ref=e101]:
+                - generic [ref=e102]: Cut Resistant Gloves
+                - link [ref=e107] [cursor=pointer]:
+                  - /url: /products/cut-resistant-pu-coated-work-gloves
+                  - heading "Cut-Resistant PU-Coated Work Gloves" [level=3] [ref=e108]
+                - generic [ref=e109]: From $0.69
+                - button "Add to Quote" [ref=e112]
+            - generic [ref=e114]:
+              - link [ref=e115] [cursor=pointer]:
+                - /url: /products/pvc-coated-anti-slip-work-gloves
+                - img "PVC-Coated Anti-Slip Work Gloves" [ref=e117]
+              - generic [ref=e119]:
+                - generic [ref=e120]: Acid, Alkali & Oil Resistant Gloves
+                - link [ref=e125] [cursor=pointer]:
+                  - /url: /products/pvc-coated-anti-slip-work-gloves
+                  - heading "PVC-Coated Anti-Slip Work Gloves" [level=3] [ref=e126]
+                - generic [ref=e127]: From $0.56
+                - button "Add to Quote" [ref=e130]
+            - generic [ref=e132]:
+              - link [ref=e133] [cursor=pointer]:
+                - /url: /products/flame-resistant-anti-static-reflective-work-coverall
+                - img "Flame-Resistant Anti-Static Reflective Work Coverall" [ref=e135]
+              - generic [ref=e137]:
+                - generic [ref=e138]: Flame Resistant Coveralls
+                - link [ref=e143] [cursor=pointer]:
+                  - /url: /products/flame-resistant-anti-static-reflective-work-coverall
+                  - heading "Flame-Resistant Anti-Static Reflective Work Coverall" [level=3] [ref=e144]
+                - generic [ref=e145]: From $19.17
+                - button "Add to Quote" [ref=e148]
+            - generic [ref=e150]:
+              - link [ref=e151] [cursor=pointer]:
+                - /url: /products/cotton-reflective-work-coverall
+                - img "Cotton Reflective Work Coverall" [ref=e153]
+              - generic [ref=e155]:
+                - generic [ref=e156]: Work Coveralls
+                - link [ref=e161] [cursor=pointer]:
+                  - /url: /products/cotton-reflective-work-coverall
+                  - heading "Cotton Reflective Work Coverall" [level=3] [ref=e162]
+                - generic [ref=e163]: From $10.31
+                - button "Add to Quote" [ref=e166]
+            - generic [ref=e168]:
+              - link [ref=e169] [cursor=pointer]:
+                - /url: /products/thick-natural-latex-rubber-household-gloves-30cm
+                - img "Thick Natural Latex Rubber Household Gloves, 30 cm" [ref=e171]
+              - generic [ref=e173]:
+                - generic [ref=e174]: Latex Coated Gloves
+                - link [ref=e179] [cursor=pointer]:
+                  - /url: /products/thick-natural-latex-rubber-household-gloves-30cm
+                  - heading "Thick Natural Latex Rubber Household Gloves, 30 cm" [level=3] [ref=e180]
+                - generic [ref=e181]: From $0.32
+                - button "Add to Quote" [ref=e184]
+            - generic [ref=e186]:
+              - link [ref=e187] [cursor=pointer]:
+                - /url: /products/acid-alkali-resistant-reflective-work-coverall
+                - img "Acid/Alkali-Resistant Anti-Static Reflective Work Coverall" [ref=e189]
+              - generic [ref=e191]:
+                - generic [ref=e192]: Work Coveralls
+                - link [ref=e197] [cursor=pointer]:
+                  - /url: /products/acid-alkali-resistant-reflective-work-coverall
+                  - heading "Acid/Alkali-Resistant Anti-Static Reflective Work Coverall" [level=3] [ref=e198]
+                - generic [ref=e199]: From $17.70
+                - button "Add to Quote" [ref=e202]
+            - generic [ref=e204]:
+              - link [ref=e205] [cursor=pointer]:
+                - /url: /products/green-nitrile-flocked-work-gloves-33cm-straight-cuff
+                - img "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff" [ref=e207]
+              - generic [ref=e209]:
+                - generic [ref=e210]: Nitrile Coated Gloves
+                - link [ref=e215] [cursor=pointer]:
+                  - /url: /products/green-nitrile-flocked-work-gloves-33cm-straight-cuff
+                  - heading "Green Nitrile Flocked Work Gloves, 33 cm Straight Cuff" [level=3] [ref=e216]
+                - generic [ref=e217]: From $0.55
+                - button "Add to Quote" [ref=e220]
+            - generic [ref=e222]:
+              - link [ref=e223] [cursor=pointer]:
+                - /url: /products/custom-flame-resistant-anti-static-reflective-coverall
+                - img "Custom Flame-Resistant Anti-Static Reflective Coverall" [ref=e225]
+              - generic [ref=e227]:
+                - generic [ref=e228]: Flame Resistant Coveralls
+                - link [ref=e233] [cursor=pointer]:
+                  - /url: /products/custom-flame-resistant-anti-static-reflective-coverall
+                  - heading "Custom Flame-Resistant Anti-Static Reflective Coverall" [level=3] [ref=e234]
+                - generic [ref=e235]: From $7.37
+                - button "Add to Quote" [ref=e238]
+            - generic [ref=e240]:
+              - link [ref=e241] [cursor=pointer]:
+                - /url: /products/wire-mesh-grass-trimmer-face-shield
+                - img "Wire Mesh Grass Trimmer Face Shield" [ref=e243]
+              - generic [ref=e245]:
+                - generic [ref=e246]: Face Shields
+                - link [ref=e251] [cursor=pointer]:
+                  - /url: /products/wire-mesh-grass-trimmer-face-shield
+                  - heading "Wire Mesh Grass Trimmer Face Shield" [level=3] [ref=e252]
+                - generic [ref=e253]: From $0.74
+                - button "Add to Quote" [ref=e256]
+            - generic [ref=e258]:
+              - link [ref=e259] [cursor=pointer]:
+                - /url: /products/clear-pc-grass-trimmer-face-shield
+                - img "Clear PC Grass Trimmer Face Shield" [ref=e261]
+              - generic [ref=e263]:
+                - generic [ref=e264]: Face Shields
+                - link [ref=e269] [cursor=pointer]:
+                  - /url: /products/clear-pc-grass-trimmer-face-shield
+                  - heading "Clear PC Grass Trimmer Face Shield" [level=3] [ref=e270]
+                - generic [ref=e271]: From $0.74
+                - button "Add to Quote" [ref=e274]
+            - generic [ref=e276]:
+              - link [ref=e277] [cursor=pointer]:
+                - /url: /products/cotton-button-work-coverall
+                - img "Cotton Button Work Coverall" [ref=e279]
+              - generic [ref=e281]:
+                - generic [ref=e282]: Work Coveralls
+                - link [ref=e287] [cursor=pointer]:
+                  - /url: /products/cotton-button-work-coverall
+                  - heading "Cotton Button Work Coverall" [level=3] [ref=e288]
+                - generic [ref=e289]: From $10.29
+                - button "Add to Quote" [ref=e292]
+            - generic [ref=e294]:
+              - link [ref=e295] [cursor=pointer]:
+                - /url: /products/10mm-polypropylene-safety-rope-fall-protection-rescue
+                - img "10 mm Polypropylene Safety Rope for Work-at-Height and Rescue Use" [ref=e297]
+              - generic [ref=e299]:
+                - generic [ref=e300]: Fall Protection
+                - link [ref=e305] [cursor=pointer]:
+                  - /url: /products/10mm-polypropylene-safety-rope-fall-protection-rescue
+                  - heading "10 mm Polypropylene Safety Rope for Work-at-Height and Rescue Use" [level=3] [ref=e306]
+                - generic [ref=e307]: From $0.11
+                - button "Add to Quote" [ref=e310]
+          - generic [ref=e312]:
+            - link [ref=e313] [cursor=pointer]:
+              - /url: /products?page=0
+            - link "1" [ref=e314] [cursor=pointer]:
+              - /url: /products?page=1
+            - link "2" [ref=e315] [cursor=pointer]:
+              - /url: /products?page=2
+            - link "3" [ref=e316] [cursor=pointer]:
+              - /url: /products?page=3
+            - link "4" [ref=e317] [cursor=pointer]:
+              - /url: /products?page=4
+            - link "5" [ref=e318] [cursor=pointer]:
+              - /url: /products?page=5
+            - link "6" [ref=e319] [cursor=pointer]:
+              - /url: /products?page=6
+            - link [ref=e320] [cursor=pointer]:
+              - /url: /products?page=2
+    - contentinfo [ref=e321]:
+      - generic [ref=e322]:
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - link "Laifappe homepage" [ref=e325] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=e326]
+              - generic [ref=e327]:
+                - strong [ref=e328]: 粤来发劳保
+                - generic [ref=e329]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=e330]: Yuelaifa Industry Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=e331]:
+              - generic [ref=e332]: CE EN
+              - generic [ref=e333]: ISO 9001
+              - generic [ref=e334]: ANSI
+              - generic [ref=e335]: BSCI
+          - navigation "Footer products" [ref=e336]:
+            - heading "Products" [level=3] [ref=e337]
+            - link "Head Protection" [ref=e338] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=e339] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=e340] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=e341] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=e342] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=e343] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=e344]:
+            - heading "Solutions" [level=3] [ref=e345]
+            - link "Construction" [ref=e346] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=e347] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=e348] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=e349] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=e350] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=e351] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=e352]:
+            - heading "Company" [level=3] [ref=e353]
+            - link "About Us" [ref=e354] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=e355] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=e356] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=e357] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=e358] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e359]:
+            - heading "Contact Us" [level=3] [ref=e360]
+            - paragraph [ref=e361]: +86 180 2930 9938
+            - paragraph [ref=e365]: sales@laifappe.com
+            - paragraph [ref=e370]:
+              - generic [ref=e371]: W
+              - link "www.laifappe.com" [ref=e372] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=e373]: Foshan, Guangdong, China
+        - generic [ref=e378]:
+          - generic [ref=e379]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=e380]:
+            - link "Privacy Policy" [ref=e381] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=e382] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=e383] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - alert [ref=e384]
