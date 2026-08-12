@@ -1,0 +1,575 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e3]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+    - banner [ref=f1e9]:
+      - generic [ref=f1e10]:
+        - link "Laifappe homepage" [ref=f1e11] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f1e12]
+          - generic [ref=f1e13]:
+            - strong [ref=f1e14]: 粤来发劳保
+            - generic [ref=f1e15]: YUELAIFA PPE · EST. 2003
+        - generic [ref=f1e16]:
+          - link "Email" [ref=f1e17] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f1e22] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f1e26] [cursor=pointer]:
+            - generic [ref=f1e27]: →
+          - button "Open navigation menu" [ref=f1e28] [cursor=pointer]
+      - navigation "Mobile homepage navigation" [ref=f1e31]:
+        - link "Home →" [ref=f1e32] [cursor=pointer]:
+          - /url: /
+        - link "Products →" [ref=f1e33] [cursor=pointer]:
+          - /url: /products
+        - link "Solutions →" [ref=f1e34] [cursor=pointer]:
+          - /url: /solutions
+        - link "Tools →" [ref=f1e35] [cursor=pointer]:
+          - /url: /tools
+        - link "Blog →" [ref=f1e36] [cursor=pointer]:
+          - /url: /blog
+        - link "About →" [ref=f1e37] [cursor=pointer]:
+          - /url: /about
+    - main [ref=f1e38]:
+      - generic [ref=f1e39]:
+        - navigation [ref=f1e40]:
+          - list [ref=f1e41]:
+            - listitem [ref=f1e42]:
+              - link [ref=f1e43] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f1e49]:
+              - link "Blog" [ref=f1e50] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=f1e53]: "Mining PPE Checklist by Task: Drilling, Crushing, Haul Roads & Processing"
+        - generic [ref=f1e54]:
+          - paragraph [ref=f1e55]: Safety Guide
+          - 'heading "Mining PPE Checklist by Task: Drilling, Crushing, Haul Roads & Processing" [level=1] [ref=f1e56]'
+          - paragraph [ref=f1e57]: A field-ready mining PPE checklist for drilling, blasting, crushing, screening, haul roads, processing, and maintenance crews, with controls-first checks for each task.
+          - generic [ref=f1e58]:
+            - time [ref=f1e59]: August 12, 2026
+            - generic [ref=f1e61]: 14 min read
+        - 'img "Mining PPE Checklist by Task: Drilling, Crushing, Haul Roads & Processing" [ref=f1e67]'
+        - article [ref=f1e70]:
+          - generic [ref=f1e72]:
+            - generic [ref=f1e73]:
+              - paragraph [ref=f1e74]: Buyer next step
+              - paragraph [ref=f1e75]: Turn this guide into a sourced PPE shortlist with standards, quantities, and role-based kit notes.
+            - link "Request task-based mining PPE options" [ref=f1e76] [cursor=pointer]:
+              - /url: /quote
+          - generic [ref=f1e80]:
+            - generic [ref=f1e81]:
+              - paragraph [ref=f1e82]: Planning tools
+              - paragraph [ref=f1e83]: Use these tools before moving from this guide into quantities, sizing, labels, or RFQ planning.
+            - generic [ref=f1e84]:
+              - link "Planning PPE Quantity Calculator" [ref=f1e85] [cursor=pointer]:
+                - /url: /tools/ppe-calculator
+                - generic [ref=f1e86]:
+                  - generic [ref=f1e87]: Planning
+                  - generic [ref=f1e88]: PPE Quantity Calculator
+              - link "Procurement AI Quote Generator" [ref=f1e91] [cursor=pointer]:
+                - /url: /tools/ai-quote
+                - generic [ref=f1e92]:
+                  - generic [ref=f1e93]: Procurement
+                  - generic [ref=f1e94]: AI Quote Generator
+          - generic [ref=f1e97]:
+            - paragraph [ref=f1e98]: A mining PPE checklist should change with the task. A driller working beside a rig, an authorized blasting team, a crusher operator, a screen-deck inspector, a haul-road spotter, and a maintenance technician can work at the same mine while facing very different dust, noise, impact, visibility, entanglement, chemical, electrical, and stored-energy hazards.
+            - paragraph [ref=f1e99]: This field guide helps mine and quarry supervisors turn the day's work plan into a task-specific PPE check. It covers drilling, blasting, crushing, screening and processing, haul roads and transport, and maintenance. It does not replace the mine's risk assessment, exposure monitoring, traffic plan, blast plan, isolation procedure, training, equipment manuals, or local legal requirements.
+            - paragraph [ref=f1e100]:
+              - text: For the broader category, documentation, sizing, and bulk RFQ framework, use the
+              - link "Mining Safety Equipment and PPE for Quarry Operations solution" [ref=f1e101] [cursor=pointer]:
+                - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+              - text: . This article stays focused on the pre-task and start-of-shift checklist.
+            - heading "Quick Mining PPE Checklist by Task" [level=2] [ref=f1e107]
+            - paragraph [ref=f1e108]: Use this matrix to identify what must be confirmed before the detailed task check begins. The PPE column is a selection prompt, not a universal minimum kit.
+            - figure "A task matrix separates drilling, blasting, crushing, screening, haul-road, and maintenance checks before PPE is issued." [ref=f1e109]:
+              - img "A task matrix separates drilling, blasting, crushing, screening, haul-road, and maintenance checks before PPE is issued." [ref=f1e111]
+            - table [ref=f1e114]:
+              - rowgroup [ref=f1e115]:
+                - row [ref=f1e116]:
+                  - columnheader "Task" [ref=f1e117]
+                  - columnheader "Verify controls and conditions first" [ref=f1e118]
+                  - columnheader "PPE questions to close before work" [ref=f1e119]
+              - rowgroup [ref=f1e120]:
+                - row [ref=f1e121]:
+                  - cell "Drilling" [ref=f1e122]
+                  - cell "Ground condition, drill guarding, exclusion zone, dust suppression or collection, noise exposure, lighting, communication" [ref=f1e123]
+                  - cell "Head and eye protection; hearing protection; respirator only from the exposure assessment and program; gloves that do not create an entanglement hazard; boots for terrain and puncture risk" [ref=f1e124]
+                - row [ref=f1e125]:
+                  - cell "Blasting" [ref=f1e126]
+                  - cell "Authorized personnel, site-specific blast plan, blast area, access guards, warning and communication method, evacuation, post-blast inspection and re-entry release" [ref=f1e127]
+                  - cell "Site-defined head, eye, hearing, visibility, footwear, clothing, and respiratory requirements for the worker's authorized role and re-entry conditions" [ref=f1e128]
+                - row [ref=f1e129]:
+                  - cell "Crushing" [ref=f1e130]
+                  - cell "Guards, blocked material procedure, dust controls, isolation points, safe access, start-up warning, housekeeping" [ref=f1e131]
+                  - cell "Impact-rated eye protection; hearing protection; task-selected respiratory protection; head protection; gloves and boots suited to material handling and access conditions" [ref=f1e132]
+                - row [ref=f1e133]:
+                  - cell "Screening and processing" [ref=f1e134]
+                  - cell "Guards, walkways, spillage, dust and mist controls, chemical information, safe sampling points, working-at-height controls" [ref=f1e135]
+                  - cell "Eye or face protection; hearing protection; respiratory protection where assessed; gloves matched to product or chemical contact; footwear; fall protection only within a designed system" [ref=f1e136]
+                - row [ref=f1e137]:
+                  - cell "Haul roads and transport" [ref=f1e138]
+                  - cell "Traffic plan, blind areas, communication, road and berm condition, lighting, weather, pre-operational inspection, safe parking and pedestrian zones" [ref=f1e139]
+                  - cell "High-visibility clothing for ground exposure; head, eye, hearing, respiratory, hand, and foot protection based on outside-cab tasks; seat belt and cab controls checked separately" [ref=f1e140]
+                - row [ref=f1e141]:
+                  - cell "Maintenance" [ref=f1e142]
+                  - cell "Shutdown scope, all energy sources, isolation and verification, blocking, permits, access, hot work, electrical or confined-space controls" [ref=f1e143]
+                  - cell "Eye and face protection; task-specific gloves; hearing and respiratory protection; head and foot protection; welding, electrical, fall, or chemical PPE only after the specialist hazard review" [ref=f1e144]
+            - paragraph [ref=f1e145]: If the first column cannot be verified, adding more PPE does not make the task ready. Stop and resolve the control, authorization, or work-condition gap first.
+            - 'heading "Before Any Task: Six Checks That Apply Across the Mine" [level=2] [ref=f1e146]'
+            - paragraph [ref=f1e147]: "Run these six checks before selecting the task module:"
+            - list [ref=f1e148]:
+              - listitem [ref=f1e149]:
+                - generic [ref=f1e150]:
+                  - strong [ref=f1e151]: Name the exact task and location.
+                  - text: "\"Processing\" is too broad. Record whether the worker is operating from a closed cab, taking a sample, clearing spillage, inspecting a screen, changing a liner, or entering a restricted area."
+              - listitem [ref=f1e152]:
+                - generic [ref=f1e153]:
+                  - strong [ref=f1e154]: Confirm the control status.
+                  - text: Verify guarding, ventilation, wet suppression, local extraction, isolation, barriers, traffic separation, lighting, and communication before relying on PPE.
+              - listitem [ref=f1e155]:
+                - generic [ref=f1e156]:
+                  - strong [ref=f1e157]: Review measured exposure.
+                  - text: Noise and airborne contaminant decisions should come from exposure data and the mine's program. Do not select a respirator or hearing protector from the task name alone.
+              - listitem [ref=f1e158]:
+                - generic [ref=f1e159]:
+                  - strong [ref=f1e160]: Check compatibility and fit.
+                  - text: Head protection, eyewear, earmuffs, respirators, lamps, face shields, garments, and fall-protection equipment must work together without breaking seals, loosening retention, or hiding reflective material.
+              - listitem [ref=f1e161]:
+                - generic [ref=f1e162]:
+                  - strong [ref=f1e163]: Inspect before issue.
+                  - text: Remove damaged, contaminated, expired, incomplete, badly fitting, or unauthorized equipment from service. Include replaceable parts and consumables in the check.
+              - listitem [ref=f1e164]:
+                - generic [ref=f1e165]:
+                  - strong [ref=f1e166]: Define the change trigger.
+                  - text: "Tell the crew when the checklist must be repeated: a new bench, different rock, dry instead of wet operation, a failed dust control, changed traffic route, night work, maintenance entry, spill, misfire, or unexpected ground condition."
+            - paragraph [ref=f1e167]:
+              - text: For U.S. surface and underground metal and nonmetal mines, the current
+              - link "30 CFR Parts 56 and 57" [ref=f1e168] [cursor=pointer]:
+                - /url: https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K
+              - text: organize requirements by hazards such as explosives, drilling, haulage, machinery, electricity, and personal protection. Other jurisdictions use different rules, so treat the U.S. references in this guide as examples rather than a global compliance list.
+            - heading "Drilling PPE Checklist" [level=2] [ref=f1e169]
+            - paragraph [ref=f1e170]: Drilling can combine respirable dust, flying fragments, high noise, vibration, rotating components, rough ground, overhead exposure, compressed air, and vehicle interaction. Keep the checklist tied to the drill type, position, rock, dust-control method, and whether the worker is inside or outside an enclosed cab.
+            - figure "Drilling PPE decisions follow ground conditions, guarding, dust controls, measured noise, work position, and equipment instructions." [ref=f1e171]:
+              - img "Drilling PPE decisions follow ground conditions, guarding, dust controls, measured noise, work position, and equipment instructions." [ref=f1e173]
+            - heading "Controls and work conditions" [level=3] [ref=f1e175]
+            - list [ref=f1e176]:
+              - listitem [ref=f1e177]: Has the driller completed the task and area examination required by the mine procedure?
+              - listitem [ref=f1e178]: Is the drill on stable ground with the work zone, moving components, rods, and access route controlled?
+              - listitem [ref=f1e179]: Are guards, interlocks, dust collection, water delivery, ventilation, and cab filtration operating as intended?
+              - listitem [ref=f1e180]: Are nearby workers outside the drill's restricted or exclusion area?
+              - listitem [ref=f1e181]: Is communication clear between the operator, helper, mobile-equipment operators, and supervisor?
+              - listitem [ref=f1e182]: Has noise and respirable dust exposure been assessed for this drill, material, control method, and work position?
+              - listitem [ref=f1e183]: Is lighting sufficient for rod handling, access, inspection, and ground-condition checks?
+            - heading "PPE and issue check" [level=3] [ref=f1e184]
+            - list [ref=f1e185]:
+              - listitem [ref=f1e186]:
+                - generic [ref=f1e187]:
+                  - strong [ref=f1e188]: "Head:"
+                  - text: Select
+                  - link "safety helmets" [ref=f1e189] [cursor=pointer]:
+                    - /url: /categories/head-protection/safety-helmets
+                  - text: for the mine's impact, retention, clearance, accessory, and lamp requirements; inspect shell, suspension, retention, and attachments.
+              - listitem [ref=f1e190]:
+                - generic [ref=f1e191]:
+                  - strong [ref=f1e192]: "Eyes and face:"
+                  - text: Select safety glasses, sealed
+                  - link "safety goggles" [ref=f1e193] [cursor=pointer]:
+                    - /url: /categories/eye-protection/safety-goggles
+                  - text: ", or face protection from the fragment direction, dust level, compressed-air use, and nearby work. A face shield is normally supplementary rather than a replacement for primary eye protection."
+              - listitem [ref=f1e194]:
+                - generic [ref=f1e195]:
+                  - strong [ref=f1e196]: "Hearing:"
+                  - text: Select
+                  - link "hearing protection" [ref=f1e197] [cursor=pointer]:
+                    - /url: /categories/head-protection/hearing-protection
+                  - text: from measured noise, required attenuation, communication needs, and compatibility with the helmet and eyewear.
+              - listitem [ref=f1e198]:
+                - generic [ref=f1e199]:
+                  - strong [ref=f1e200]: "Respiratory:"
+                  - text: Use engineering controls first. If respiratory protection is required, select an approved device through the mine's written program, exposure data, medical evaluation, fit testing, training, and change-out or maintenance rules. Do not default every quarry driller to the same disposable mask.
+              - listitem [ref=f1e201]:
+                - generic [ref=f1e202]:
+                  - strong [ref=f1e203]: "Hands:"
+                  - text: Match gloves to handling, abrasion, cut, impact, grip, temperature, and vibration needs. Confirm the equipment manufacturer and site procedure permit glove use at that point; loose clothing and gloves can increase entanglement risk near rotating components.
+              - listitem [ref=f1e204]:
+                - generic [ref=f1e205]:
+                  - strong [ref=f1e206]: "Feet and body:"
+                  - text: Check protective toe, puncture, metatarsal, slip, ankle, terrain, weather, and visibility needs. Keep loose garments, drawstrings, and unsecured accessories away from moving parts.
+            - paragraph [ref=f1e207]:
+              - text: NIOSH notes that rock drilling and quarry work can create respirable crystalline silica exposure and that personal monitoring helps characterize a miner's exposure. Use the current
+              - link "NIOSH mining and silicosis resources" [ref=f1e208] [cursor=pointer]:
+                - /url: https://www.cdc.gov/niosh/mining/topics/silicosis.html
+              - text: as exposure-control context, not as a shortcut to a respirator model.
+            - heading "Blasting PPE Checklist" [level=2] [ref=f1e209]
+            - paragraph [ref=f1e210]: Blasting is not a PPE-led task. Authorization, blast-area control, communication, evacuation, guarding, and a competent post-blast inspection determine whether people can be present. This checklist deliberately avoids explosive selection, loading, initiation, timing, or misfire-handling instructions.
+            - figure "Blast-area authorization, access control, warnings, evacuation, and post-blast inspection come before role-specific PPE." [ref=f1e211]:
+              - img "Blast-area authorization, access control, warnings, evacuation, and post-blast inspection come before role-specific PPE." [ref=f1e213]
+            - heading "Authorization and area control" [level=3] [ref=f1e215]
+            - list [ref=f1e216]:
+              - listitem [ref=f1e217]: Is every person involved trained, authorized, and assigned a defined role under the mine's blast procedure?
+              - listitem [ref=f1e218]: Has the authorized team reviewed the site-specific blast plan and the conditions that affect the blast area?
+              - listitem [ref=f1e219]: Are access routes guarded or barricaded, with people and vehicles removed before firing?
+              - listitem [ref=f1e220]: Are warnings, radios, sirens, hand signals, and the all-clear method understood and tested?
+              - listitem [ref=f1e221]: Is the blast shelter or evacuation location suitable for the site conditions?
+              - listitem [ref=f1e222]: Are weather, visibility, public-road, neighboring-work-area, and mobile-equipment interactions addressed?
+              - listitem [ref=f1e223]: After firing, has the authorized person completed the required post-blast inspection and released the area for re-entry?
+              - listitem [ref=f1e224]: If there is a suspected misfire, unusual fume, flyrock, ground instability, or communication failure, has re-entry stopped under the site procedure?
+            - heading "PPE and readiness check" [level=3] [ref=f1e225]
+            - list [ref=f1e226]:
+              - listitem [ref=f1e227]: Issue only the PPE specified for the worker's authorized role and location; do not treat PPE as permission to remain in a blast area.
+              - listitem [ref=f1e228]: Confirm head, eye, hearing, visibility, footwear, hand, weather, and clothing requirements for preparation and permitted post-blast tasks.
+              - listitem [ref=f1e229]: Base respiratory protection for post-blast dust or contaminants on monitoring, ventilation, re-entry criteria, and the written respiratory program—not on a fixed waiting time or a generic filter.
+              - listitem [ref=f1e230]: Inspect radios, cap lamps, high-visibility outer layers, eyewear, and other role-critical equipment before the blast sequence begins.
+              - listitem [ref=f1e231]: Keep logos, badges, tools, and garment layers from covering reflective areas or interfering with PPE fit.
+            - paragraph [ref=f1e232]:
+              - text: MSHA's
+              - link "explosives and blasting safety alert" [ref=f1e233] [cursor=pointer]:
+                - /url: https://www.msha.gov/sites/default/files/News_Media/Explosives-Alert.pdf
+              - text: emphasizes blast-area clearance, guarded access, warnings, and a post-blast inspection before re-entry. Apply the mine's current rules and the blasting authority's direction; this article is only a readiness prompt.
+            - heading "Crushing PPE Checklist" [level=2] [ref=f1e234]
+            - paragraph [ref=f1e235]: Crusher work changes by position. A control-room operator, feeder attendant, loader operator, cleanup worker, sampler, and mechanic do not share the same exposure. Define whether the worker is operating, observing, sampling, cleaning, clearing a blockage, or maintaining equipment.
+            - figure "Crusher checks combine guarding, dust and noise controls, safe access, startup warnings, and task-specific PPE." [ref=f1e236]:
+              - img "Crusher checks combine guarding, dust and noise controls, safe access, startup warnings, and task-specific PPE." [ref=f1e238]
+            - heading "Controls and access" [level=3] [ref=f1e240]
+            - list [ref=f1e241]:
+              - listitem [ref=f1e242]: Are crusher, feeder, conveyor, and transfer-point guards complete and secured?
+              - listitem [ref=f1e243]: Are water sprays, extraction, enclosures, and housekeeping controls operating?
+              - listitem [ref=f1e244]: Are walkways, stairs, handrails, platforms, and emergency stops accessible and free of spillage?
+              - listitem [ref=f1e245]: Is a safe procedure in place for bridged or blocked material, and is entry or manual intervention prohibited until the required isolation and blocking are complete?
+              - listitem [ref=f1e246]: Are start-up warnings and communication methods working?
+              - listitem [ref=f1e247]: Are workers separated from loader routes, falling material, discharge zones, and suspended loads?
+            - heading "PPE and issue check" [level=3] [ref=f1e248]
+            - list [ref=f1e249]:
+              - listitem [ref=f1e250]: Select impact-rated eye protection from the fragment and dust exposure; add face protection where the task assessment requires it.
+              - listitem [ref=f1e251]: Select hearing protection from measured crusher and conveyor noise and confirm workers can still receive critical warnings.
+              - listitem [ref=f1e252]: Select respiratory protection from the contaminant, exposure result, dust controls, assigned protection requirement, and written program.
+              - listitem [ref=f1e253]: Select head protection for falling material, fixed structures, access clearance, and retention needs.
+              - listitem [ref=f1e254]: Choose gloves for sample handling, sharp rock, abrasion, cut, impact, grip, heat, or chemicals—but do not allow gloves or loose clothing near unguarded moving components.
+              - listitem [ref=f1e255]: Choose boots for toe and metatarsal exposure, puncture, slip, spillage, stairs, and wet or uneven ground.
+            - paragraph [ref=f1e256]: If a worker is clearing a jam, changing a liner, entering a chute, or working behind a guard, stop using the operating checklist and switch to the maintenance and isolation checklist below.
+            - heading "Screening and Processing PPE Checklist" [level=2] [ref=f1e257]
+            - paragraph [ref=f1e258]: Screens and processing plants add vibrating equipment, conveyors, dust, wet product, reagents, sampling points, elevated walkways, and repeated inspection routes. The checklist must separate normal operation from cleaning, sampling, reagent handling, and maintenance.
+            - figure "Processing PPE changes between normal operation, sampling, cleanup, reagent handling, and maintenance access." [ref=f1e259]:
+              - img "Processing PPE changes between normal operation, sampling, cleanup, reagent handling, and maintenance access." [ref=f1e261]
+            - heading "Controls and work conditions" [level=3] [ref=f1e263]
+            - list [ref=f1e264]:
+              - listitem [ref=f1e265]: Are screen drives, belts, pulleys, shafts, return rollers, and other moving parts guarded?
+              - listitem [ref=f1e266]: Are walkway spillage, mud, standing water, loose material, and trip hazards controlled?
+              - listitem [ref=f1e267]: Are dust extraction, spray systems, ventilation, and enclosed cabins functioning?
+              - listitem [ref=f1e268]: Are sampling points designed so the worker can take a sample without reaching into moving equipment or entering a discharge path?
+              - listitem [ref=f1e269]: Are chemical labels, safety data, eyewash or shower access, and spill controls available where reagents or treatment chemicals are used?
+              - listitem [ref=f1e270]: Are platform, ladder, edge, and opening controls complete before elevated inspection begins?
+            - heading "PPE and issue check" [level=3] [ref=f1e271]
+            - list [ref=f1e272]:
+              - listitem [ref=f1e273]: Use safety glasses, goggles, or a face shield combination selected for dust, flying particles, splash, mist, and the chemical involved.
+              - listitem [ref=f1e274]: Select hearing protection from measurements around screens, drives, pumps, crushers, and conveyors.
+              - listitem [ref=f1e275]: Select respiratory protection only after identifying the contaminant and exposure; verify the face seal is not compromised by eyewear or other PPE.
+              - listitem [ref=f1e276]: "Choose gloves from the actual contact: sharp samples, wet grip, abrasion, chemical splash, heat, or cleaning. One general-purpose glove is rarely suitable for every processing task."
+              - listitem [ref=f1e277]: Check boots for slip, toe, puncture, chemical, wet-work, and stair-grip needs.
+              - listitem [ref=f1e278]: Where fall protection is required, use only the site-designed system with approved anchorage, compatible connectors, clearance, inspection, and rescue planning. A harness alone is not a fall-protection system.
+            - paragraph [ref=f1e279]:
+              - text: For workers exposed to respirable crystalline silica, U.S. mine operators should review the current
+              - link "30 CFR Part 60 respiratory protection requirements" [ref=f1e280] [cursor=pointer]:
+                - /url: https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-60/subpart-B/section-60.14
+              - text: ", including program administration, medical evaluation, selection, training, fit testing, maintenance, inspection, and storage."
+            - heading "Haul Roads and Transport PPE Checklist" [level=2] [ref=f1e281]
+            - paragraph [ref=f1e282]: High-visibility clothing is useful around mobile equipment, but visibility apparel cannot replace traffic separation, blind-area controls, communication, road maintenance, berms, safe speeds, and seat-belt use. Separate the in-cab operator check from the outside-cab and pedestrian check.
+            - figure "Haul-road readiness connects traffic separation, visibility, communication, road condition, vehicle inspection, and outside-cab PPE." [ref=f1e283]:
+              - img "Haul-road readiness connects traffic separation, visibility, communication, road condition, vehicle inspection, and outside-cab PPE." [ref=f1e285]
+            - heading "Route, vehicle, and communication check" [level=3] [ref=f1e287]
+            - list [ref=f1e288]:
+              - listitem [ref=f1e289]: Is the current traffic plan understood by operators, contractors, spotters, pedestrians, and visitors?
+              - listitem [ref=f1e290]: Are one-way routes, right-of-way rules, parking areas, dump points, exclusion zones, and pedestrian crossings clear?
+              - listitem [ref=f1e291]: Have road width, grade, berms, potholes, rutting, loose material, dust, water, lighting, and weather been checked?
+              - listitem [ref=f1e292]: Has the operator completed the pre-operational equipment inspection and reported safety defects?
+              - listitem [ref=f1e293]: Are camera, proximity, lighting, horn, alarm, radio, and other warning systems functioning?
+              - listitem [ref=f1e294]: Does every approach to large equipment require positive communication or another site-approved confirmation?
+              - listitem [ref=f1e295]: Is the seat belt and mounting hardware inspected and used as required?
+            - heading "Outside-cab and pedestrian PPE check" [level=3] [ref=f1e296]
+            - list [ref=f1e297]:
+              - listitem [ref=f1e298]:
+                - generic [ref=f1e299]:
+                  - text: Wear
+                  - link "hi-vis workwear" [ref=f1e300] [cursor=pointer]:
+                    - /url: /categories/body-protection/hi-vis-workwear
+                  - text: that remains visible from the directions and under the lighting expected on the route. Keep it as the visible outer layer and replace heavily soiled, faded, torn, or covered garments.
+              - listitem [ref=f1e301]: Use head protection required for the work zone, especially when inspecting near loading, dumping, overhead structures, or loose material.
+              - listitem [ref=f1e302]: Select eyewear for wind, dust, glare, flying particles, and maintenance inspection; clean it before leaving the cab.
+              - listitem [ref=f1e303]: Carry or issue hearing and respiratory protection for outside-cab tasks only where the exposure assessment and site rules require it.
+              - listitem [ref=f1e304]:
+                - generic [ref=f1e305]:
+                  - text: Select gloves and
+                  - link "safety boots" [ref=f1e306] [cursor=pointer]:
+                    - /url: /categories/foot-protection/safety-boots
+                  - text: for three-point access, inspection, samples, chains, rough ground, mud, fuel or oil contact, and weather.
+              - listitem [ref=f1e307]: Store PPE so it remains clean, reachable, and undamaged in the cab; do not leave emergency or required gear buried behind loose items.
+            - paragraph [ref=f1e308]:
+              - text: MSHA's
+              - link "Powered Haulage Equipment Safety Guidance" [ref=f1e309] [cursor=pointer]:
+                - /url: https://www.msha.gov/sites/default/files/events/Powered%20Haulage%20Guidance.pdf
+              - text: treats visibility, communication, traffic management, road condition, seat belts, and pre-operational examination as connected controls. Use that systems view rather than reducing haul-road safety to a reflective vest.
+            - heading "Maintenance PPE Checklist" [level=2] [ref=f1e310]
+            - paragraph [ref=f1e311]: Maintenance includes inspections, lubrication, belt work, liner changes, welding, grinding, electrical troubleshooting, tyre or wheel work, hydraulic repair, elevated access, confined spaces, and chemical cleaning. Do not start with a generic mechanic kit; start with the work scope and every energy source.
+            - figure "Maintenance PPE is selected only after shutdown scope, energy isolation, verification, blocking, permits, and access are defined." [ref=f1e312]:
+              - img "Maintenance PPE is selected only after shutdown scope, energy isolation, verification, blocking, permits, and access are defined." [ref=f1e314]
+            - heading "Isolation and permit check" [level=3] [ref=f1e316]
+            - list [ref=f1e317]:
+              - listitem [ref=f1e318]: Has the equipment been shut down under the mine's procedure?
+              - listitem [ref=f1e319]: Have electrical, mechanical, hydraulic, pneumatic, thermal, chemical, pressure, spring, rotating, suspended, and gravitational energy sources been identified?
+              - listitem [ref=f1e320]: Are disconnects isolated and locked or tagged as required, with stored energy released, restrained, grounded, or blocked?
+              - listitem [ref=f1e321]: Has isolation been verified before guards are removed or work begins?
+              - listitem [ref=f1e322]: Are raised components, counterweights, hoppers, chutes, conveyors, and mobile equipment securely blocked against movement?
+              - listitem [ref=f1e323]: Are hot-work, electrical, work-at-height, confined-space, lifting, line-breaking, or chemical permits required?
+              - listitem [ref=f1e324]: Is the work area barricaded, with start-up controls and responsibility for return to service clear?
+            - heading "PPE and issue check" [level=3] [ref=f1e325]
+            - list [ref=f1e326]:
+              - listitem [ref=f1e327]: Select primary eye protection and task-specific face protection for grinding, cutting, chipping, fluid release, splash, or hot work.
+              - listitem [ref=f1e328]: Select gloves separately for cut, impact, grip, chemical, thermal, welding, or electrical tasks. Do not use a glove outside its intended protection, and reassess entanglement near rotating parts.
+              - listitem [ref=f1e329]: Select hearing protection for tool and plant noise while preserving required communication.
+              - listitem [ref=f1e330]: Select respiratory protection for welding fume, dust, coatings, chemicals, or confined work only through the exposure assessment and written program.
+              - listitem [ref=f1e331]: Confirm head protection, footwear, clothing, and knee or body protection against overhead work, dropped parts, sharp edges, hot surfaces, oil, mud, and access conditions.
+              - listitem [ref=f1e332]: Use welding, electrical, arc-rated, chemical, fall-protection, or confined-space equipment only under the specialist procedure with the correct ratings, compatibility, inspection, and rescue provisions.
+            - paragraph [ref=f1e333]:
+              - text: For U.S. surface metal and nonmetal mines,
+              - link "30 CFR 56.12016" [ref=f1e334] [cursor=pointer]:
+                - /url: https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-K/section-56.12016
+              - text: addresses de-energizing and locking out electrically powered equipment before mechanical work, with limited qualified-person exceptions. Site and jurisdiction requirements may be broader.
+            - heading "How Supervisors Turn the Checklist Into Role Kits" [level=2] [ref=f1e335]
+            - paragraph [ref=f1e336]: The goal is not six oversized kits. Build a controlled baseline plus task modules.
+            - figure "A controlled baseline plus task modules helps supervisors issue PPE without creating one oversized kit for every mine worker." [ref=f1e337]:
+              - img "A controlled baseline plus task modules helps supervisors issue PPE without creating one oversized kit for every mine worker." [ref=f1e339]
+            - table [ref=f1e342]:
+              - rowgroup [ref=f1e343]:
+                - row [ref=f1e344]:
+                  - columnheader "Kit layer" [ref=f1e345]
+                  - columnheader "Typical contents" [ref=f1e346]
+                  - columnheader "Issue rule" [ref=f1e347]
+              - rowgroup [ref=f1e348]:
+                - row [ref=f1e349]:
+                  - cell "Mine-site baseline" [ref=f1e350]
+                  - cell "Site-approved head protection, everyday eye protection, visibility garment, protective footwear, basic hearing protection where designated" [ref=f1e351]
+                  - cell "Issued by role and work area; fit and compatibility recorded" [ref=f1e352]
+                - row [ref=f1e353]:
+                  - cell "Drilling module" [ref=f1e354]
+                  - cell "Sealed or task-selected eye protection, hearing option, approved respirator and consumables where required, task-selected gloves" [ref=f1e355]
+                  - cell "Released only for the specified drill, material, controls, and exposure conditions" [ref=f1e356]
+                - row [ref=f1e357]:
+                  - cell "Processing module" [ref=f1e358]
+                  - cell "Dust or splash eye/face protection, hearing option, respiratory consumables where required, wet/chemical/task glove options" [ref=f1e359]
+                  - cell "Matched to operating, sampling, cleanup, or reagent-handling role" [ref=f1e360]
+                - row [ref=f1e361]:
+                  - cell "Haul-road module" [ref=f1e362]
+                  - cell "Outer-layer hi-vis, clean eyewear, weather gear, outside-cab hearing or respiratory PPE where assessed" [ref=f1e363]
+                  - cell "Stored and inspected for drivers, spotters, pedestrians, and inspection crews" [ref=f1e364]
+                - row [ref=f1e365]:
+                  - cell "Maintenance module" [ref=f1e366]
+                  - cell "Task eye/face protection, glove options, hearing, respirator components, welding/electrical/fall/chemical PPE under permit" [ref=f1e367]
+                  - cell "Controlled by job scope, authorization, isolation, and specialist procedure" [ref=f1e368]
+                - row [ref=f1e369]:
+                  - cell "Replacement stock" [ref=f1e370]
+                  - cell "Lenses, eyewear, earplugs, earmuff cushions, respirator filters or cartridges, straps, sweatbands, gloves, garments, laces and approved spare parts" [ref=f1e371]
+                  - cell "Reorder points based on use, contamination, damage, shelf life, lead time, and workforce size" [ref=f1e372]
+            - paragraph [ref=f1e373]:
+              - text: Use the
+              - link "PPE quantity calculator" [ref=f1e374] [cursor=pointer]:
+                - /url: /tools/ppe-calculator
+              - text: to convert headcount, issue frequency, and replacement assumptions into quantities. Keep the calculation separate by task module so high-use consumables do not distort the entire mine order.
+            - paragraph [ref=f1e375]:
+              - text: For each line item in an RFQ, record the task, work area, hazard, required product standard or approval, model documentation, size range, compatibility, packaging, spare parts, inspection criteria, replacement trigger, sample approval, and permitted substitutions. Then submit the reviewed specification through the
+              - link "quote request" [ref=f1e376] [cursor=pointer]:
+                - /url: /quote
+              - text: .
+            - heading "Common Mining PPE Checklist Mistakes" [level=2] [ref=f1e377]
+            - list [ref=f1e378]:
+              - listitem [ref=f1e379]:
+                - generic [ref=f1e380]:
+                  - strong [ref=f1e381]: Issuing one mine-wide kit.
+                  - text: A standard baseline can help, but drilling, blasting, crushing, screening, transport, and maintenance need different task modules.
+              - listitem [ref=f1e382]:
+                - generic [ref=f1e383]:
+                  - strong [ref=f1e384]: Using PPE to close a control gap.
+                  - text: A vest does not fix an uncontrolled traffic route; a respirator does not replace required dust controls; gloves do not make exposed moving parts safe.
+              - listitem [ref=f1e385]:
+                - generic [ref=f1e386]:
+                  - strong [ref=f1e387]: Choosing respirators from the word "silica."
+                  - text: Selection needs contaminant and exposure data, controls, approval, medical evaluation, fit, training, and a written program.
+              - listitem [ref=f1e388]:
+                - generic [ref=f1e389]:
+                  - strong [ref=f1e390]: Ignoring glove entanglement.
+                  - text: More hand protection is not always safer near rotating or moving components. Follow the equipment manufacturer and mine procedure.
+              - listitem [ref=f1e391]:
+                - generic [ref=f1e392]:
+                  - strong [ref=f1e393]: Treating a face shield as primary eye protection.
+                  - text: Confirm whether safety glasses or goggles are also required for the task.
+              - listitem [ref=f1e394]:
+                - generic [ref=f1e395]:
+                  - strong [ref=f1e396]: Leaving compatibility until after delivery.
+                  - text: Test helmet, eyewear, earmuff, respirator, lamp, garment, and face-shield combinations before a bulk order.
+              - listitem [ref=f1e397]:
+                - generic [ref=f1e398]:
+                  - strong [ref=f1e399]: Using a fixed post-blast re-entry time.
+                  - text: Re-entry belongs to the blast procedure, authorized inspection, ventilation, monitoring, and site conditions—not a generic blog rule.
+              - listitem [ref=f1e400]:
+                - generic [ref=f1e401]:
+                  - strong [ref=f1e402]: Buying specialist PPE without the specialist program.
+                  - text: Electrical, arc-flash, welding, fall-protection, chemical, and respiratory equipment require trained selection and use.
+              - listitem [ref=f1e403]:
+                - generic [ref=f1e404]:
+                  - strong [ref=f1e405]: Tracking issue but not removal.
+                  - text: Record damage, contamination, failed fit, expiry, missing parts, and replacement so unsuitable equipment does not return to service.
+            - 'heading "Supervisor Sign-Off: A Short Start-of-Shift Record" [level=2] [ref=f1e406]'
+            - paragraph [ref=f1e407]: "Before releasing the crew, record:"
+            - list [ref=f1e408]:
+              - listitem [ref=f1e409]: Task, location, equipment, shift, and supervisor.
+              - listitem [ref=f1e410]: Work-area and equipment examination completed.
+              - listitem [ref=f1e411]: Critical controls operating and any restrictions.
+              - listitem [ref=f1e412]: Exposure data or program used for respiratory and hearing decisions.
+              - listitem [ref=f1e413]: Task module issued by role and size.
+              - listitem [ref=f1e414]: Compatibility and condition check completed.
+              - listitem [ref=f1e415]: Authorization, permit, or specialist review confirmed where required.
+              - listitem [ref=f1e416]: Communication, exclusion, traffic, and emergency arrangements confirmed.
+              - listitem [ref=f1e417]: Stop-work and checklist-repeat triggers explained.
+              - listitem [ref=f1e418]: Damaged equipment quarantined and replacement stock available.
+            - paragraph [ref=f1e419]: Keep this record with the mine's own pre-start, task training, permit, and inspection documents. It is a bridge between the hazard-control system and PPE issue—not a replacement for those records.
+            - heading "Frequently Asked Questions" [level=2] [ref=f1e420]
+            - heading "Is there one standard PPE checklist for every mine worker?" [level=3] [ref=f1e421]
+            - paragraph [ref=f1e422]: No. A site can define baseline PPE, but the final checklist depends on mine type, task, work area, equipment, measured exposure, traffic interaction, local rules, and the mine's procedures. Build task modules for drilling, blasting, processing, haulage, and maintenance instead of forcing one universal kit.
+            - heading "Is an N95 enough for drilling or crusher dust?" [level=3] [ref=f1e423]
+            - paragraph [ref=f1e424]: The task name is not enough to answer. The mine must identify the contaminant, measure or otherwise assess exposure as required, use feasible controls, and select an approved respirator with the necessary protection under a written program. U.S. mine teams should check current MSHA requirements; other jurisdictions may differ.
+            - heading "Should drill operators always wear anti-vibration gloves?" [level=3] [ref=f1e425]
+            - paragraph [ref=f1e426]: No universal glove recommendation replaces tool selection, maintenance, exposure reduction, work practices, and the equipment manufacturer's instructions. A glove must preserve control and fit, have relevant task data, and not introduce entanglement near rotating components.
+            - heading "What PPE should workers wear during blasting?" [level=3] [ref=f1e427]
+            - paragraph [ref=f1e428]: Only authorized roles should be involved, under the mine's blast procedure. Blast-area clearance, guarding, warning, evacuation, and post-blast inspection come before PPE. The PPE itself depends on the person's role, location, preparation work, re-entry conditions, and applicable rules.
+            - heading "Can crusher operators and maintenance workers share the same PPE kit?" [level=3] [ref=f1e429]
+            - paragraph [ref=f1e430]: They can share approved baseline items, but maintenance often adds isolation-dependent eye and face, hand, respiratory, welding, electrical, chemical, fall, or confined-space requirements. Create a separate maintenance module controlled by the job scope and permit.
+            - heading "How often should the checklist be reviewed?" [level=3] [ref=f1e431]
+            - paragraph [ref=f1e432]: Review it whenever the task, equipment, material, control method, location, shift, route, weather, exposure result, product model, incident learning, legal requirement, or manufacturer instruction changes. Also set a scheduled review under the mine's management system.
+            - paragraph [ref=f1e438]:
+              - strong [ref=f1e439]: Need a role-based mine or quarry PPE list?
+              - text: Send the task map, workforce by role, work areas, exposure information, required standards, size range, documentation needs, and replacement assumptions. LAIFAPPE can organize available products and document samples into a buyer review list before quotation; the mine operator remains responsible for hazard assessment, final selection, training, fit, and use.
+          - generic [ref=f1e440]:
+            - generic [ref=f1e441]:
+              - generic [ref=f1e442]:
+                - paragraph [ref=f1e443]: Related PPE
+                - heading "Source the PPE covered in this guide" [level=2] [ref=f1e444]
+                - paragraph [ref=f1e445]: Move from research to a buyer shortlist with the matching solution page, category paths, selected PPE options, and RFQ next steps.
+                - generic [ref=f1e446]:
+                  - link "Request quote" [ref=f1e447] [cursor=pointer]:
+                    - /url: /quote
+                  - link "Build PPE kit" [ref=f1e448] [cursor=pointer]:
+                    - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+              - link "Request task-based mining PPE options" [ref=f1e449] [cursor=pointer]:
+                - /url: /quote
+            - generic [ref=f1e450]:
+              - generic [ref=f1e451]:
+                - generic [ref=f1e452]: Solution
+                - link "Mining and quarrying PPE solution" [ref=f1e463] [cursor=pointer]:
+                  - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+              - generic [ref=f1e466]:
+                - generic [ref=f1e467]: PPE categories
+                - generic [ref=f1e472]:
+                  - link "Safety helmets" [ref=f1e473] [cursor=pointer]:
+                    - /url: /categories/head-protection/safety-helmets
+                  - link "Half-face respirators" [ref=f1e474] [cursor=pointer]:
+                    - /url: /categories/respiratory-protection/half-face-respirators
+                  - link "Safety goggles" [ref=f1e475] [cursor=pointer]:
+                    - /url: /categories/eye-protection/safety-goggles
+                  - link "Hearing protection" [ref=f1e476] [cursor=pointer]:
+                    - /url: /categories/head-protection/hearing-protection
+                  - link "Safety boots" [ref=f1e477] [cursor=pointer]:
+                    - /url: /categories/foot-protection/safety-boots
+                  - link "Hi-vis workwear" [ref=f1e478] [cursor=pointer]:
+                    - /url: /categories/body-protection/hi-vis-workwear
+            - generic [ref=f1e479]:
+              - generic [ref=f1e480]: Buyer shortlist
+              - list [ref=f1e484]:
+                - listitem [ref=f1e485]:
+                  - link "Reusable half-face respirator" [ref=f1e486] [cursor=pointer]:
+                    - /url: /products/reusable-half-face-respirator-dual-filters-dust
+                - listitem [ref=f1e490]:
+                  - link "Anti-fog dustproof safety goggles" [ref=f1e491] [cursor=pointer]:
+                    - /url: /products/anti-fog-dustproof-pc-safety-goggles-for-construction
+                - listitem [ref=f1e495]:
+                  - link "A5 impact mechanic gloves" [ref=f1e496] [cursor=pointer]:
+                    - /url: /products/a5-cut-resistant-tpr-impact-mechanic-gloves-sandy-nitrile
+                - listitem [ref=f1e500]:
+                  - link "Steel toe mining safety rain boots" [ref=f1e501] [cursor=pointer]:
+                    - /url: /products/pvc-steel-toe-safety-rain-boots-for-mining-and-industrial
+          - link "Back to all articles" [ref=f1e506] [cursor=pointer]:
+            - /url: /blog
+    - contentinfo [ref=f1e509]:
+      - generic [ref=f1e510]:
+        - generic [ref=f1e511]:
+          - generic [ref=f1e512]:
+            - link "Laifappe homepage" [ref=f1e513] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f1e514]
+              - generic [ref=f1e515]:
+                - strong [ref=f1e516]: 粤来发劳保
+                - generic [ref=f1e517]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f1e518]: Yuelaifa Industry Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f1e519]:
+              - generic [ref=f1e520]: CE EN
+              - generic [ref=f1e521]: ISO 9001
+              - generic [ref=f1e522]: ANSI
+              - generic [ref=f1e523]: BSCI
+          - navigation "Footer products" [ref=f1e524]:
+            - heading "Products" [level=3] [ref=f1e525]
+            - link "Head Protection" [ref=f1e526] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f1e527] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f1e528] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f1e529] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f1e530] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f1e531] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f1e532]:
+            - heading "Solutions" [level=3] [ref=f1e533]
+            - link "Construction" [ref=f1e534] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f1e535] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f1e536] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f1e537] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f1e538] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f1e539] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f1e540]:
+            - heading "Company" [level=3] [ref=f1e541]
+            - link "About Us" [ref=f1e542] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f1e543] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f1e544] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f1e545] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f1e546] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f1e547]:
+            - heading "Contact Us" [level=3] [ref=f1e548]
+            - paragraph [ref=f1e549]: +86 180 2930 9938
+            - paragraph [ref=f1e553]: sales@laifappe.com
+            - paragraph [ref=f1e558]:
+              - generic [ref=f1e559]: W
+              - link "www.laifappe.com" [ref=f1e560] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f1e561]: Foshan, Guangdong, China
+        - generic [ref=f1e566]:
+          - generic [ref=f1e567]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f1e568]:
+            - link "Privacy Policy" [ref=f1e569] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f1e570] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f1e571] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - button "Open Next.js Dev Tools" [ref=f1e577] [cursor=pointer]
+  - alert [ref=f1e581]

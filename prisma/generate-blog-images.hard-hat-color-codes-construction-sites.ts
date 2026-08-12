@@ -50,6 +50,7 @@ const r2Client = new S3Client({
 interface ImagePlan {
   key: string
   aspect: '16:9' | '4:3'
+  role: 'hero' | 'product-detail' | 'comparison' | 'scenario' | 'procurement' | 'inspection' | 'standards' | 'checklist'
   prompt: string
 }
 
@@ -63,6 +64,7 @@ const PLAN: ImagePlan[] = [
   {
     key: 'hero',
     aspect: '16:9',
+    role: 'hero',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog hero image for hard hat color codes on construction sites. ' +
@@ -75,193 +77,209 @@ const PLAN: ImagePlan[] = [
   {
     key: 'quick-answer-hard-hat-color-codes-on-construction-sites',
     aspect: '4:3',
+    role: 'scenario',
     prompt:
-      'Use case: product-mockup. ' +
+      'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
-      'Primary request: quick visual overview of construction hard hat color codes without text labels. ' +
-      'Scene/backdrop: clean jobsite safety table with concrete texture and blurred construction background. ' +
-      'Subject: white, yellow, blue, green, orange, red, brown, and gray hard hats arranged in a neat color lineup with blank inspection card. ' +
-      'Composition/framing: 4:3 practical color comparison for B2B buyers, no readable text. ' +
+      'Primary request: workers arriving at a controlled jobsite entrance wearing several clearly different hard hat colors, showing that color is a local role signal. ' +
+      'Scene/backdrop: morning site-access gate with turnstile, PPE issue window, and concrete structure in soft focus. ' +
+      'Subject: small mixed crew seen from a three-quarter documentary angle, varied helmet colors and credible PPE, no posed portrait. ' +
+      'Composition/framing: 4:3 waist-level editorial scene with natural movement and visible color variety, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'are-hard-hat-colors-required-by-osha',
     aspect: '4:3',
+    role: 'standards',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: construction head protection compliance review showing color is separate from safety rating. ' +
-      'Scene/backdrop: safety office table with multiple colored hard hats, blank compliance folder, safety glasses, and PPE samples. ' +
-      'Subject: safety manager inspecting hard hat shell and suspension without readable markings. ' +
-      'Composition/framing: 4:3 medium close-up, professional compliance planning scene. ' +
+      'Scene/backdrop: neutral inspection bench with one helmet upside down, a second helmet in side profile, calipers, and a blank standards folder. ' +
+      'Subject: gloved hands checking the suspension, shell, and molded label area; colors remain secondary to protective construction. ' +
+      'Composition/framing: 4:3 macro-to-medium standards inspection, shallow depth of field, no readable markings. ' +
       BASE_STYLE,
   },
   {
-    key: 'common-hard-hat-color-code-chart',
+    key: 'example-site-hard-hat-color-code-patterns',
     aspect: '4:3',
+    role: 'comparison',
     prompt:
       'Use case: product-mockup. ' +
       'Asset type: blog section image. ' +
-      'Primary request: common construction hard hat color code chart visual without any written chart or labels. ' +
-      'Scene/backdrop: organized PPE issue counter in a construction site office. ' +
-      'Subject: color-coded hard hats in separate rows with matching blank bins and no readable labels. ' +
-      'Composition/framing: 4:3 organized procurement layout for color-coded site issue. ' +
+      'Primary request: example site-assigned hard hat color patterns shown as a visual comparison, never as a universal standard. ' +
+      'Scene/backdrop: matte gray studio floor divided into subtle zones with small blank role tokens and PPE accessories. ' +
+      'Subject: eight different helmet colors arranged in a top-down grid with varied brim and helmet silhouettes, no duplicated product pose. ' +
+      'Composition/framing: 4:3 true overhead comparison layout with generous spacing, no written chart or labels. ' +
       BASE_STYLE,
   },
   {
     key: 'white-hard-hats-supervisors-engineers-and-visitors',
     aspect: '4:3',
+    role: 'scenario',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: white hard hats used for supervisors, engineers, inspectors, and visitors on a construction site. ' +
       'Scene/backdrop: jobsite walkway and safety briefing area with controlled background activity. ' +
-      'Subject: white hard hats on a table beside safety glasses and blank visitor badges, supervisor reviewing PPE with worker. ' +
-      'Composition/framing: 4:3 documentary construction safety scene, no readable text. ' +
+      'Subject: supervisor in a white hard hat briefing two workers while a visitor receives a second white helmet at the edge of frame. ' +
+      'Composition/framing: 4:3 wide documentary scene from shoulder height, active site depth, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'yellow-hard-hats-general-construction-crews',
     aspect: '4:3',
+    role: 'scenario',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
-      'Primary request: yellow hard hats for general construction crews and baseline site issue. ' +
+      'Primary request: yellow hard hats used as a project-assigned crew color without implying a default protective rating. ' +
       'Scene/backdrop: active but controlled concrete and steel construction area. ' +
       'Subject: workers wearing yellow hard hats, safety glasses, gloves, and hi-vis vests during safe site coordination. ' +
-      'Composition/framing: 4:3 practical field scene with yellow hard hats clearly visible. ' +
+      'Composition/framing: 4:3 low three-quarter documentary view with workers coordinating material handling safely, not posing. ' +
       BASE_STYLE,
   },
   {
     key: 'blue-hard-hats-electricians-carpenters-and-technical-trades',
     aspect: '4:3',
+    role: 'product-detail',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: blue hard hats for electricians, carpenters, and technical trades while keeping electrical class separate. ' +
-      'Scene/backdrop: controlled MEP construction area with safe distance from electrical equipment and no readable signage. ' +
-      'Subject: blue hard hats, insulated gloves, safety glasses, blank checklist, and technical trade PPE samples on a workbench. ' +
-      'Composition/framing: 4:3 safe technical trade PPE planning scene. ' +
+      'Scene/backdrop: controlled MEP staging bench beside de-energized conduit work, electrical room softly blurred. ' +
+      'Subject: close-up of a blue non-vented helmet, suspension and compatible eye protection with an electrician in the background. ' +
+      'Composition/framing: 4:3 side-profile product detail with cool lighting and shallow depth of field. ' +
       BASE_STYLE,
   },
   {
     key: 'green-hard-hats-safety-first-aid-new-workers-or-trainees',
     aspect: '4:3',
+    role: 'scenario',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: green hard hats for safety staff, first aid, new workers, or trainees with clear site issue control. ' +
       'Scene/backdrop: construction induction area with PPE table, blank orientation cards, and blurred training group. ' +
-      'Subject: green hard hats beside safety glasses, gloves, and blank role markers without readable text. ' +
-      'Composition/framing: 4:3 site orientation and safety identification scene. ' +
+      'Subject: hands passing a green helmet to a new worker during induction, with a safety professional and training group softly behind. ' +
+      'Composition/framing: 4:3 close documentary moment focused on issue control, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'orange-red-brown-and-gray-hard-hats',
     aspect: '4:3',
+    role: 'comparison',
     prompt:
       'Use case: product-mockup. ' +
       'Asset type: blog section image. ' +
       'Primary request: orange, red, brown, and gray hard hats for traffic, emergency, hot work, and visitor roles. ' +
-      'Scene/backdrop: organized PPE issue shelf with traffic cones blurred in background and hot work PPE samples nearby. ' +
-      'Subject: orange, red, brown, and gray hard hats arranged with safety glasses, face shield, gloves, and blank visitor badge. ' +
-      'Composition/framing: 4:3 color-coded role identification layout, no readable text. ' +
+      'Scene/backdrop: industrial issue rack with four distinct bays suggesting traffic, emergency, hot-work, and visitor functions. ' +
+      'Subject: orange helmet with traffic wand, red with emergency kit, brown with welding face shield, gray with visitor glasses; no people. ' +
+      'Composition/framing: 4:3 frontal product comparison with four visually distinct clusters, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'color-codes-are-not-type-class-or-compliance',
     aspect: '4:3',
+    role: 'product-detail',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: visual distinction between hard hat color coding and Type/Class safety performance. ' +
       'Scene/backdrop: construction safety office table with colored hard hats, non-vented electrical hard hat, vented shell, and accessory samples. ' +
-      'Subject: buyer inspecting helmet interior and suspension while colored helmets sit nearby. ' +
-      'Composition/framing: 4:3 compliance and procurement review, no readable labels. ' +
+      'Subject: two same-color helmets turned upside down to reveal different venting and suspension details, with a hand pointing to molded label areas. ' +
+      'Composition/framing: 4:3 tight product comparison emphasizing construction details over color, no readable labels. ' +
       BASE_STYLE,
   },
   {
     key: 'how-to-build-a-site-specific-hard-hat-color-code',
     aspect: '4:3',
+    role: 'procurement',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: safety manager building a site-specific hard hat color code for workers, visitors, and trades. ' +
       'Scene/backdrop: jobsite meeting table with colored hard hats, blank planning sheet, PPE samples, and blurred construction background. ' +
       'Subject: supervisor and safety manager arranging colored hard hats by role without readable labels. ' +
-      'Composition/framing: 4:3 practical site planning scene. ' +
+      'Composition/framing: 4:3 true top-down planning scene with hands, color samples, blank cards, and varied helmet angles. ' +
       BASE_STYLE,
   },
   {
     key: 'procurement-matrix-color-by-role-without-losing-safety-specs',
     aspect: '4:3',
+    role: 'procurement',
     prompt:
       'Use case: product-mockup. ' +
       'Asset type: blog section image. ' +
       'Primary request: procurement matrix for role-based hard hat colors while preserving Type and Class specs, without text. ' +
-      'Scene/backdrop: PPE warehouse desk with hard hats in several colors, accessory parts, blank purchase forms, and cartons. ' +
-      'Subject: procurement buyer checking colored hard hat samples and replacement suspensions before bulk order. ' +
-      'Composition/framing: 4:3 B2B procurement planning scene, no readable labels. ' +
+      'Scene/backdrop: warehouse sample-review station with open cartons, size-neutral headforms, suspension parts, and blank purchase sheets. ' +
+      'Subject: buyer comparing helmet samples across colors while checking that each shares the same approved construction. ' +
+      'Composition/framing: 4:3 oblique desk-to-shelf view, credible B2B procurement scene, no readable labels. ' +
       BASE_STYLE,
   },
   {
     key: 'logos-stickers-reflective-tape-and-helmet-markings',
     aspect: '4:3',
+    role: 'inspection',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: hard hat stickers, reflective tape, and inspection markings without covering required safety areas. ' +
       'Scene/backdrop: clean PPE workbench with colored hard hats, reflective tape rolls, blank labels, safety glasses, and inspection light. ' +
       'Subject: worker applying a blank non-readable label to a hard hat while leaving inspection areas visible. ' +
-      'Composition/framing: 4:3 close-up, no readable text, no logos. ' +
+      'Composition/framing: 4:3 macro close-up of hands and shell surface with visible inspection space, no readable text or logos. ' +
       BASE_STYLE,
   },
   {
     key: 'inventory-control-for-color-coded-hard-hats',
     aspect: '4:3',
+    role: 'procurement',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: inventory control for color-coded hard hats and separated electrical class stock. ' +
       'Scene/backdrop: organized PPE storage area with shelves, cartons, separated hard hats, suspensions, chin straps, and blank bin labels. ' +
       'Subject: warehouse worker sorting colored hard hats before construction crew issue. ' +
-      'Composition/framing: 4:3 practical inventory control scene, no readable text. ' +
+      'Composition/framing: 4:3 aisle-level warehouse view with depth, separated stock zones, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'how-to-write-hard-hat-colors-into-an-rfq',
     aspect: '4:3',
+    role: 'procurement',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: RFQ preparation for hard hat colors, Type, Class, accessories, samples, and documentation. ' +
       'Scene/backdrop: procurement desk at construction safety office with laptop screen blurred, blank forms, colored hard hats, and PPE accessories. ' +
       'Subject: buyer comparing color-coded hard hat samples and replacement parts before sending supplier request. ' +
-      'Composition/framing: 4:3 B2B procurement planning scene, no readable labels. ' +
+      'Composition/framing: 4:3 over-the-shoulder procurement desk scene with samples in foreground and softly blurred screen, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'common-mistakes-with-hard-hat-color-codes',
     aspect: '4:3',
+    role: 'inspection',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: common mistakes in hard hat color code programs, including mixed stock and wrong role signals. ' +
       'Scene/backdrop: PPE issue station with colored hard hats being sorted into clear groups, blank tags, and accessory samples. ' +
-      'Subject: safety manager separating similar-looking hard hats by shell type and color before issue. ' +
-      'Composition/framing: 4:3 practical corrective inventory scene, no readable text. ' +
+      'Subject: safety manager catches two same-color helmets with different venting and moves them into separate issue trays. ' +
+      'Composition/framing: 4:3 candid corrective inspection from the side, no hazard event, no readable text. ' +
       BASE_STYLE,
   },
   {
     key: 'buyer-checklist',
     aspect: '4:3',
+    role: 'checklist',
     prompt:
       'Use case: photorealistic-natural. ' +
       'Asset type: blog section image. ' +
       'Primary request: buyer checklist for hard hat color codes, Type/Class verification, stickers, visitor helmets, and replacement stock. ' +
-      'Scene/backdrop: safety office table with colored hard hats, blank checklist, replacement suspensions, safety glasses, and gloves. ' +
-      'Subject: procurement manager and safety manager reviewing color-coded head protection before bulk purchase. ' +
-      'Composition/framing: 4:3 B2B decision planning scene, no readable text. ' +
+      'Scene/backdrop: clean neutral tabletop with one helmet, suspension, chin strap, eye protection, replacement parts, and blank checklist boxes. ' +
+      'Subject: final approved purchase kit arranged without people, showing inspection and replacement readiness. ' +
+      'Composition/framing: 4:3 minimalist top-down checklist still life, no readable text. ' +
       BASE_STYLE,
   },
 ]
@@ -534,6 +552,7 @@ async function main(): Promise<void> {
   const args = process.argv.slice(2)
   const force = args.includes('--force')
   const local = args.includes('--local')
+  const uploadLocal = args.includes('--upload-local')
   const keyFilter = args
     .find((arg) => arg.startsWith('--key='))
     ?.slice('--key='.length)
@@ -542,7 +561,10 @@ async function main(): Promise<void> {
     .filter(Boolean)
 
   const existing = await loadExisting()
-  const next: GeneratedImages = { ...existing }
+  const plannedKeys = new Set(PLAN.map((plan) => plan.key))
+  const next: GeneratedImages = Object.fromEntries(
+    Object.entries(existing).filter(([key]) => plannedKeys.has(key)),
+  )
 
   const plansToRun = PLAN.filter((plan) => {
     if (keyFilter && keyFilter.length > 0 && !keyFilter.includes(plan.key)) {
@@ -571,7 +593,17 @@ async function main(): Promise<void> {
     console.log(`[${index + 1}/${plansToRun.length}] ${plan.key} (${plan.aspect})`)
 
     try {
-      if (local) {
+      if (uploadLocal) {
+        const localPath = path.join(PUBLIC_OUTPUT_DIR, `${plan.key}.webp`)
+        if (!existsSync(localPath)) {
+          throw new Error(`Local WebP not found: ${localPath}`)
+        }
+        const webpBuffer = await readFile(localPath)
+        const filename = `${plan.key}-${Date.now()}.webp`
+        const r2Url = await uploadBlogImage(webpBuffer, filename)
+        console.log(`    Uploaded local WebP: ${r2Url}\n`)
+        next[plan.key] = r2Url
+      } else if (local) {
         const localUrl = await generateLocalImage(plan)
         console.log(`    Generated local WebP: ${localUrl}\n`)
         next[plan.key] = localUrl

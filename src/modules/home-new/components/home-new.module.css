@@ -5289,6 +5289,15 @@
 }
 
 @media (max-width: 1100px) {
+  .constructionHubSpotlight {
+    grid-template-columns: 1fr;
+  }
+
+  .constructionHubMedia {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
   .industryShowcase,
   .industryFeaturedCard {
     grid-template-columns: 1fr;
@@ -5353,6 +5362,18 @@
   }
 
   .industryRegularGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .constructionHubBody {
+    padding: 34px 24px;
+  }
+
+  .constructionHubTitle {
+    font-size: 30px;
+  }
+
+  .constructionHubChecks {
     grid-template-columns: 1fr;
   }
 

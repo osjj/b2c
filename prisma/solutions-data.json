@@ -3495,8 +3495,8 @@
   },
   {
     "slug": "ppe-safety-equipment-for-mining-quarrying",
-    "title": "What PPE Do Workers Need in Mining and Quarrying Operations?",
-    "excerpt": "Mining and quarrying operations expose workers to rockfalls, dust inhalation, heavy vibration, loud blasting, and confined-space hazards. This guide covers essential PPE selections, hazard-to-gear mapping, and procurement advice for mine-site safety.",
+    "title": "Mining Safety Equipment and PPE for Quarry Operations",
+    "excerpt": "Select mining safety equipment by task, exposure and work area. This guide connects mine and quarry hazards to PPE documentation, sizing and bulk RFQ decisions.",
     "usageScenes": [
       "heavy-duty",
       "impact-resistant",
@@ -3508,24 +3508,24 @@
     "coverImage": "https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp",
     "isActive": true,
     "sortOrder": 4,
-    "seoTitle": "Mining PPE Supplier | Quarry Safety Equipment Guide",
-    "seoDescription": "Complete guide to PPE for mining and quarrying. Covers hazards, required gear, safety standards, and bulk procurement for mine operators.",
-    "seoKeywords": "mining PPE, quarrying safety equipment, mine safety helmet, dust respirator, impact resistant gloves, MSHA regulations, ANSI Z89.1, PPE supplier, wholesale, mining boots",
+    "seoTitle": "Mining Safety Equipment & Quarry PPE Supplier Guide",
+    "seoDescription": "Plan mining PPE for drilling, crushing, haul roads and processing. Compare helmets, respirators, hearing protection, boots and bulk RFQ requirements.",
+    "seoKeywords": "mining safety equipment, mining PPE, quarry safety equipment, mining PPE supplier, mine safety helmet, mining respirator, quarry dust PPE, MSHA silica rule, mining hearing protection, mining safety boots, bulk mining PPE",
     "sections": [
       {
         "key": "hero-intro",
         "type": "hero",
-        "title": "Essential PPE for Mining and Quarrying: Protecting Workers Underground and at Surface",
+        "title": "Mining Safety Equipment by Task, Exposure and Work Area",
         "enabled": true,
         "data": {
-          "intro": "Mining and quarrying operations present some of the most severe workplace hazards, including rockfalls, silica dust, explosive blasting, heavy machinery vibration, and extreme noise levels. To protect workers both underground and at surface operations, the following PPE is commonly mandated:",
+          "intro": "Mining safety equipment should be selected from documented hazards, measured dust and noise exposure, vehicle routes, work area conditions, and the mine operator's procedures. There is no single PPE kit for every underground mine, surface mine, quarry, haul road, crusher, or processing plant. Start the RFQ with these decision areas:",
           "bullets": [
-            "Hard hats with chin straps rated for impact and penetration",
-            "Dust respirators and particulate filtering masks",
-            "Impact-resistant safety goggles",
-            "Heavy-duty cut and vibration-resistant gloves",
-            "Steel toe mining boots with metatarsal guards",
-            "High-visibility vests for surface haulage areas"
+            "Head protection selected for falling objects, impact, low clearances, cap-lamp mounting, and retention needs",
+            "Respiratory protection selected from the contaminant, measured exposure, required assigned protection factor, and applicable respiratory protection program",
+            "Impact-rated eye and face protection matched to drilling, crushing, screening, grinding, and chemical tasks",
+            "Hearing protection selected from measured noise exposure, fit, compatibility, and required attenuation",
+            "Gloves and footwear matched to cut, impact, vibration, puncture, slip, metatarsal, and chemical hazards",
+            "High-visibility apparel and lighting selected for haul roads, mobile equipment, night work, and pedestrian routes"
           ]
         }
       },
@@ -3536,57 +3536,60 @@
         "enabled": true,
         "data": {
           "paragraphs": [
-            "This guide helps mine operators, safety managers, and procurement teams identify the correct PPE for each mining task, understand applicable safety standards such as MSHA and ANSI, and source certified equipment in bulk for large-scale mining and quarrying projects."
+            "Use this page as the commercial hub for mining PPE and quarry safety equipment. It helps mine operators, safety managers, and procurement teams map hazards to specifications, compare documentation, plan sizes and replacement stock, and prepare a role-based bulk RFQ.",
+            "For a field-ready pre-task routine, use the [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task). It separates drilling, blasting, crushing, screening and processing, haul roads, and maintenance without repeating this hub's category and RFQ guidance.",
+            "For respirable crystalline silica, use the [Silica Dust Controls and Respirator Selection for Mining and Quarrying guide](/blog/mining-silica-dust-controls-respirator-selection). It covers exposure monitoring, engineering controls, APF calculations, fit testing, written program elements, and the current judicial stay affecting the 2024 rule's compliance deadlines.",
+            "Build category shortlists from [safety helmets](/categories/head-protection/safety-helmets), [half-face respirators](/categories/respiratory-protection/half-face-respirators), [safety goggles](/categories/eye-protection/safety-goggles), [hearing protection](/categories/head-protection/hearing-protection), [cut-resistant gloves](/categories/hand-protection/cut-resistant-gloves), [safety boots](/categories/foot-protection/safety-boots), and [hi-vis workwear](/categories/body-protection/hi-vis-workwear). Product availability does not replace the mine operator's hazard assessment or product-specific document review."
           ]
         }
       },
       {
         "key": "mining-hazards",
         "type": "table",
-        "title": "Common Mining and Quarrying Hazards and Required PPE",
+        "title": "Mining and Quarrying Hazards and PPE Selection Points",
         "enabled": true,
         "data": {
           "rows": [
             [
               "Rockfall and cave-in",
               "Head trauma, crushing injuries",
-              "Safety helmet with chin strap"
+              "Head protection selected for impact, penetration, retention, cap-lamp, and clearance needs"
             ],
             [
               "Silica dust and airborne particles",
               "Silicosis, chronic lung disease",
-              "P2/P3 particulate respirator"
+              "Exposure monitoring and engineering controls first; respirator type and APF selected from measured exposure and the written program"
             ],
             [
               "Blasting noise and drilling vibration",
               "Permanent hearing loss",
-              "Earmuffs rated NRR 25+"
+              "Hearing protection selected from measured exposure, required attenuation, fit, and communication needs"
             ],
             [
               "Flying rock fragments",
               "Eye lacerations, blindness",
-              "Impact-rated safety goggles"
+              "Impact-rated goggles and face protection selected for the task and fragment direction"
             ],
             [
               "Sharp ore and rough rock surfaces",
               "Hand cuts and abrasions",
-              "Cut-resistant gloves (EN 388 Level 4+)"
+              "Glove selected for the actual cut, puncture, abrasion, grip, vibration, and dexterity hazards"
             ],
             [
               "Heavy equipment and falling tools",
               "Foot crush and metatarsal fractures",
-              "Steel toe boots with metatarsal guard"
+              "Protective footwear selected for toe, metatarsal, puncture, slip, ankle, and electrical hazards"
             ],
             [
               "Low visibility in underground tunnels",
               "Collision with vehicles or equipment",
-              "Reflective hi-vis vest and cap lamp"
+              "Hi-vis apparel, cap or area lighting, traffic controls, and proximity procedures selected for the route"
             ]
           ],
           "headers": [
             "Hazard",
             "Potential Injury",
-            "Required PPE"
+            "Selection starting point"
           ]
         }
       },
@@ -3599,10 +3602,10 @@
           "cards": [
             {
               "items": [
-                "Hard hat with chin strap and cap lamp bracket",
-                "P3 particulate respirator",
-                "NRR 25+ earmuffs",
-                "Anti-vibration gloves"
+                "Head protection compatible with cap lamps and the site's retention requirements",
+                "Respirator selected from the exposure assessment and required APF",
+                "Hearing protection selected from measured noise and communication needs",
+                "Gloves selected for grip, impact, cut, and vibration exposure"
               ],
               "scene": "heavy-duty",
               "title": "Underground Drilling and Blasting",
@@ -3611,10 +3614,10 @@
             },
             {
               "items": [
-                "Impact-rated safety helmet",
-                "Safety goggles with side shields",
-                "Steel toe boots with ankle support",
-                "Hi-vis reflective vest"
+                "Head protection selected for falling-object and impact exposure",
+                "Impact-rated eye protection matched to flying-fragment exposure",
+                "Protective footwear matched to toe, puncture, slip, and terrain hazards",
+                "Hi-vis apparel selected for haul-road and mobile-equipment exposure"
               ],
               "scene": "falling-objects",
               "title": "Surface Quarry Extraction",
@@ -3623,9 +3626,9 @@
             },
             {
               "items": [
-                "Dust respirator with replaceable filters",
-                "Sealed safety goggles",
-                "Hearing protection ear plugs"
+                "Respiratory protection selected after dust characterization and exposure monitoring",
+                "Sealed or vented impact-rated goggles selected for dust and fogging conditions",
+                "Hearing protection selected for crusher and conveyor noise exposure"
               ],
               "scene": "dusty-work",
               "title": "Ore Crushing and Material Processing",
@@ -3634,10 +3637,10 @@
             },
             {
               "items": [
-                "Slip-resistant mining boots",
-                "Reflective vest with retroreflective strips",
-                "Hard hat with integrated lamp",
-                "Impact-resistant gloves"
+                "Protective footwear selected for wet, uneven, puncture, and slip hazards",
+                "Hi-vis apparel compatible with the site's vehicle interaction plan",
+                "Head protection and lighting compatible with the underground travel route",
+                "Gloves selected for handling, impact, and maintenance tasks"
               ],
               "scene": "slip-resistant",
               "title": "Underground Transport and Haulage",
@@ -3646,9 +3649,9 @@
             },
             {
               "items": [
-                "Impact-resistant gloves with dorsal protection",
-                "Safety helmet with face shield attachment",
-                "Steel toe boots"
+                "Gloves selected for impact, cut, grip, and tool-control needs",
+                "Head and face protection selected for overhead work and flying fragments",
+                "Protective footwear selected for falling-object, puncture, and ground conditions"
               ],
               "scene": "impact-resistant",
               "title": "Rock Bolting and Ground Support",
@@ -3667,32 +3670,32 @@
           "image": "/body.png",
           "items": [
             {
-              "text": "Impact and penetration resistant hard hats with chin strap and lamp bracket for underground use",
+              "text": "Select head protection for impact direction, penetration, retention, low clearance, and cap-lamp compatibility; verify the product standard and mine procedure",
               "title": "Mining Safety Helmets",
               "bodyAnchorKey": "head"
             },
             {
-              "text": "Sealed, impact-rated goggles to protect against flying rock fragments and dust",
+              "text": "Select impact-rated goggles or face protection for fragment direction, dust sealing, fogging, and compatibility with respirators and head protection",
               "title": "Safety Goggles",
               "bodyAnchorKey": "eyes"
             },
             {
-              "text": "Earmuffs or earplugs rated NRR 25+ for blasting, drilling, and crushing operations",
+              "text": "Select earmuffs, earplugs, or dual protection from measured exposure, required attenuation, fit, communication, and compatibility needs",
               "title": "Hearing Protection",
               "bodyAnchorKey": "ears"
             },
             {
-              "text": "P2 or P3 particulate respirators to prevent silicosis and other respiratory diseases",
+              "text": "Select a NIOSH-approved or jurisdiction-appropriate respirator from the contaminant, measured concentration, required APF, oil aerosol conditions, fit test, and written program",
               "title": "Respirators and Dust Masks",
               "bodyAnchorKey": "mouth"
             },
             {
-              "text": "Cut-resistant, anti-vibration gloves for handling ore, tools, and equipment",
+              "text": "Select gloves for the task's cut, abrasion, puncture, impact, grip, chemical, vibration, and dexterity requirements; do not rely on a single rating alone",
               "title": "Heavy-Duty Work Gloves",
               "bodyAnchorKey": "left-hand"
             },
             {
-              "text": "Steel toe with metatarsal guard, puncture-resistant sole, and slip-resistant outsole",
+              "text": "Select footwear for toe, metatarsal, puncture, slip, terrain, ankle, chemical, and electrical hazards, then verify fit across the workforce",
               "title": "Mining Safety Boots",
               "bodyAnchorKey": "feet"
             }
@@ -3708,9 +3711,10 @@
         "data": {
           "mode": "rule",
           "paragraphs": [
-            "Mining operations typically procure PPE in standardized kits for each role, including driller kits, surface operator kits, and underground transport kits, to ensure consistent compliance across shifts.",
-            "When sourcing mining PPE in bulk, verify that each item carries the appropriate certification marks such as ANSI Z89.1 for helmets, EN 388 for gloves, and NIOSH approval for respirators.",
-            "Consider establishing a scheduled replacement program based on manufacturer lifespan ratings and on-site wear assessments to maintain protection effectiveness over time."
+            "Build role-based kits only after defining hazards and work areas. A driller, crusher operator, haul-truck spotter, maintenance technician, laboratory worker, and underground transport worker should not automatically receive the same PPE specification.",
+            "For each line item, request the product standard, model number, label photos, declaration or certificate sample where applicable, test report reference, size range, compatibility notes, packaging plan, and replacement SKU. NIOSH approval should be verified for respirators marketed as NIOSH Approved.",
+            "Set inspection and replacement criteria from the manufacturer instructions, damage and contamination conditions, fit, service-life limits, wash cycles, and site experience. Do not use one universal replacement interval for every helmet, respirator component, glove, garment, or boot.",
+            "Use the [PPE calculator](/tools/ppe-calculator) for role quantities and replacement stock, then send the site, task, standard, size, documentation, and delivery requirements through the [quote request](/quote?source=solution-ppe-safety-equipment-for-mining-quarrying)."
           ]
         }
       },
@@ -3722,8 +3726,12 @@
         "data": {
           "items": [
             {
-              "text": "U.S. Mine Safety and Health Administration standards for surface and underground metal/non-metal mines",
-              "title": "MSHA 30 CFR Part 56/57"
+              "text": "U.S. Mine Safety and Health Administration standards for surface and underground metal and nonmetal mines; apply the specific section that governs the hazard and operation",
+              "title": "MSHA 30 CFR Parts 56 and 57"
+            },
+            {
+              "text": "Uniform U.S. requirements for respirable crystalline silica exposure monitoring, controls, corrective action, medical surveillance, and respiratory protection; confirm current compliance dates and obligations for the mine type",
+              "title": "MSHA 30 CFR Part 60"
             },
             {
               "text": "Industrial head protection — impact and penetration resistance requirements for hard hats",
@@ -3754,7 +3762,19 @@
         "title": null,
         "enabled": true,
         "data": {
-          "text": "All mining PPE should carry valid MSHA acceptance markings, ANSI certification, or equivalent EN/ISO approvals to meet mine-site audit requirements."
+          "text": "Do not apply one approval label to every mining PPE category. Identify the rule and product standard that apply to each line item, then verify the model-specific label, declaration, certificate or test report. NIOSH approval applies to respirators represented as NIOSH Approved; MSHA approval or acceptance applies only where the regulation requires it."
+        }
+      },
+      {
+        "key": "mining-selection-sources",
+        "type": "paragraphs",
+        "title": "Primary Sources for Mining PPE and Silica Decisions",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "For U.S. silica programs, start with the [MSHA final rule resources](https://www.msha.gov/regulations/rulemaking/silica) and confirm the obligations and compliance date for the mine type. MSHA's rule uses a 50 micrograms per cubic meter full-shift PEL and a 25 micrograms per cubic meter action level, calculated as an 8-hour time-weighted average.",
+            "Use [NIOSH mining and silicosis guidance](https://www.cdc.gov/niosh/mining/topics/silicosis.html) for monitoring and control context, and [NIOSH respiratory protection resources for mine workers](https://www.cdc.gov/niosh/mining/tools/respiratory-protection.html) when evaluating approved mine-use respirators. These sources do not replace the mine operator's competent safety, industrial hygiene, or regulatory review."
+          ]
         }
       },
       {
@@ -3765,27 +3785,27 @@
         "data": {
           "items": [
             {
-              "a": "Underground miners typically need a hard hat with cap lamp, P2/P3 respirator, hearing protection, impact-rated goggles, cut-resistant gloves, and steel toe boots with metatarsal guards.",
+              "a": "The required PPE depends on the mine type, task, measured exposures, equipment routes, emergency plan, and applicable rules. A role specification may address head protection and cap-lamp compatibility, eye and hearing protection, gloves, footwear, hi-vis apparel, respiratory protection, and approved escape equipment where required; it should not begin with one universal underground kit.",
               "q": "What PPE is required for underground mining operations?"
             },
             {
-              "a": "Most manufacturers recommend replacing mining hard hats every 2 to 5 years, or immediately after any significant impact or visible damage.",
+              "a": "There is no universal replacement interval for every mining helmet. Follow the model's manufacturer instructions and site policy, inspect before use, and remove it after a significant impact or when the shell, suspension, retention system, accessories, labels, or fit show damage or unacceptable deterioration.",
               "q": "How often should mining safety helmets be replaced?"
             },
             {
-              "a": "A NIOSH-approved N95 or P2/P3 particulate filtering respirator is required for silica dust exposure in quarrying operations.",
+              "a": "Do not choose a respirator from the word silica alone. The mine operator must use exposure monitoring and controls, then select an approved respirator with the required assigned protection factor for the measured concentration and work conditions. Tight-fitting respirators also require medical evaluation, training, fit testing, and a written respiratory protection program where applicable. An N95 filtering facepiece is only one possible option within its permitted protection range; higher exposures can require a higher-APF respirator.",
               "q": "What type of respirator is needed for silica dust in quarries?"
             },
             {
-              "a": "Yes, anti-vibration gloves help reduce the risk of Hand-Arm Vibration Syndrome (HAVS) for workers who operate pneumatic drills, rock bolters, and similar vibrating equipment.",
+              "a": "Do not rely on an anti-vibration glove as the primary control. Evaluate the tool and exposure duration, reduce vibration at the source, maintain equipment, rotate or limit exposure where appropriate, and review the glove's task-specific test data, grip, fit, and dexterity before selection.",
               "q": "Are anti-vibration gloves necessary for mining drill operators?"
             },
             {
-              "a": "Key standards include MSHA 30 CFR Parts 56 and 57, ANSI Z89.1 for helmets, ANSI Z87.1 for eye protection, EN 388 for gloves, and ISO 20345 for safety footwear.",
+              "a": "The applicable requirements depend on jurisdiction, mine type, hazard, and product category. U.S. teams may need MSHA 30 CFR Parts 56, 57, and 60 together with product standards such as ANSI/ISEA Z89.1, ANSI/ISEA Z87.1, NIOSH 42 CFR Part 84, and buyer-required footwear or glove standards. Verify the current rule and model-specific documentation rather than applying the same list to every mine.",
               "q": "What safety standards apply to mining PPE equipment?"
             },
             {
-              "a": "Yes, most PPE manufacturers offer bulk pricing and custom branding options including company logos on helmets, vests, and glove cuffs for mine-site identification.",
+              "a": "Bulk and branding options are product- and supplier-specific. Put required quantities, sizes, standards, documentation, logo location, marking method, sample approval, packaging, lead time, and replacement-SKU needs in the RFQ. Confirm that decoration does not cover labels, reflective material, ventilation, inspection points, or safety-critical components.",
               "q": "Can mining PPE be purchased in bulk with custom branding?"
             }
           ]
@@ -3794,11 +3814,11 @@
       {
         "key": "cta",
         "type": "cta",
-        "title": "Need PPE for Your Mining or Quarrying Operation?",
+        "title": "Build a Mining or Quarry PPE RFQ",
         "enabled": true,
         "data": {
-          "text": "We supply certified mining PPE in bulk with MSHA and ANSI compliance documentation. Get custom kits for underground, surface, and processing plant workers.",
-          "title": "Need PPE for Your Mining or Quarrying Operation?",
+          "text": "Send the mine type, work areas, tasks, hazards, required standards, document list, workforce sizes, replacement quantities, branding needs, and delivery schedule. Laifappe can organize available product specifications and document samples into a buyer review list before quotation.",
+          "title": "Build a Mining or Quarry PPE RFQ",
           "primaryHref": "/quote",
           "primaryLabel": "Request a Quote",
           "secondaryHref": "/contact",

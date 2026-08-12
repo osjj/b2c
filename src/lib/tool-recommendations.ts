@@ -160,6 +160,14 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ai-quote',
     'compliance-checker',
   ],
+  'mining-ppe-checklist-by-task': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
+  'mining-silica-dust-controls-respirator-selection': [
+    'ai-quote',
+    'ppe-calculator',
+  ],
 }
 
 const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
@@ -179,6 +187,8 @@ const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
   'demolition-concrete-cutting-ppe-checklist',
   'construction-safety-helmet-vs-hard-hat',
   'heavy-equipment-operator-ppe-checklist',
+  'mining-ppe-checklist-by-task',
+  'mining-silica-dust-controls-respirator-selection',
 ])
 
 function normalizeText(value: string) {

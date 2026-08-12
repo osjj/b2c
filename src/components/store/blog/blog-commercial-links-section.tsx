@@ -48,14 +48,17 @@ export function BlogCommercialLinksSection({ links }: BlogCommercialLinksSection
             >
               Build PPE kit
             </Link>
-            <Link
-              data-download-asset="construction-ppe-checklist"
-              data-download-source="blog-commercial-links"
-              href="/downloads/construction-ppe-checklist.pdf"
-              className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
-            >
-              Download checklist
-            </Link>
+            {links.solution.href !==
+              '/solutions/ppe-safety-equipment-for-mining-quarrying' && (
+              <Link
+                data-download-asset="construction-ppe-checklist"
+                data-download-source="blog-commercial-links"
+                href="/downloads/construction-ppe-checklist.pdf"
+                className="rounded-full border px-3 py-1.5 transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                Download checklist
+              </Link>
+            )}
             {links.resources?.map((resource) => (
               <Link
                 key={`${resource.href}-${resource.label}`}

@@ -564,7 +564,7 @@ function IndustriesSection({ data }: { data: HomeSolutionsData | null }) {
             </Link>
           }
         />
-        <ConstructionHubSpotlight />
+        <PriorityHubSpotlights />
         {featuredSolution ? (
           <div className={styles.industryShowcase}>
             <Link className={styles.industryFeaturedCard} href={`/solutions/${featuredSolution.slug}`}>
@@ -658,44 +658,60 @@ function IndustriesSection({ data }: { data: HomeSolutionsData | null }) {
   )
 }
 
-function ConstructionHubSpotlight() {
-  const highlights = ["Site-wide PPE map", "Task checklists", "Product paths", "Quote planning"]
+function PriorityHubSpotlights() {
+  const hubs = [
+    {
+      href: "/solutions/construction-site-ppe-solution",
+      title: "Construction PPE hub",
+      description:
+        "A single entry for construction hazards, equipment categories, downloadable planning files, and quote-ready procurement paths.",
+      image: "https://shop.laifappe.com/products/1770285316377-hz4oib.webp",
+      imageAlt: "Construction PPE kit with helmet, eyewear, gloves, footwear, and high visibility protection",
+      highlights: ["Site-wide PPE map", "Task checklists", "Product paths", "Quote planning"],
+    },
+    {
+      href: "/solutions/ppe-safety-equipment-for-mining-quarrying",
+      title: "Mining & Quarrying PPE hub",
+      description:
+        "A task-based entry for mine and quarry hazards, exposure controls, PPE category paths, documentation, and bulk RFQ planning.",
+      image: "https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp",
+      imageAlt: "Mining and quarry PPE for drilling, crushing, haul roads, and processing work",
+      highlights: ["Task hazard map", "Exposure controls", "Product paths", "Bulk RFQ planning"],
+    },
+  ]
 
   return (
-    <Link
-      className={styles.constructionHubSpotlight}
-      href="/solutions/construction-site-ppe-solution"
-      aria-label="Open the Construction PPE hub"
-    >
-      <span className={styles.constructionHubMedia}>
-        <Image
-          src="https://shop.laifappe.com/products/1770285316377-hz4oib.webp"
-          alt="Construction PPE kit with helmet, eyewear, gloves, footwear, and high visibility protection"
-          fill
-          sizes="(max-width: 1100px) 100vw, 34vw"
-        />
-      </span>
-      <span className={styles.constructionHubBody}>
-        <small>{"\u2014"} Priority hub</small>
-        <span className={styles.constructionHubTitle}>Construction PPE hub</span>
-        <span className={styles.constructionHubText}>
-          A single entry for construction hazards, equipment categories, downloadable planning files, and quote-ready
-          procurement paths.
-        </span>
-        <span className={styles.constructionHubChecks}>
-          {highlights.map((item) => (
-            <span key={item}>
-              <CheckCircle2 aria-hidden="true" />
-              {item}
+    <>
+      {hubs.map((hub) => (
+        <Link
+          className={styles.constructionHubSpotlight}
+          href={hub.href}
+          aria-label={`Open the ${hub.title}`}
+          key={hub.href}
+        >
+          <span className={styles.constructionHubMedia}>
+            <Image src={hub.image} alt={hub.imageAlt} fill sizes="(max-width: 1100px) 100vw, 34vw" />
+          </span>
+          <span className={styles.constructionHubBody}>
+            <small>{"\u2014"} Priority hub</small>
+            <span className={styles.constructionHubTitle}>{hub.title}</span>
+            <span className={styles.constructionHubText}>{hub.description}</span>
+            <span className={styles.constructionHubChecks}>
+              {hub.highlights.map((item) => (
+                <span key={item}>
+                  <CheckCircle2 aria-hidden="true" />
+                  {item}
+                </span>
+              ))}
             </span>
-          ))}
-        </span>
-        <span className={styles.constructionHubAction}>
-          Open hub
-          <MoveRight aria-hidden="true" />
-        </span>
-      </span>
-    </Link>
+            <span className={styles.constructionHubAction}>
+              Open hub
+              <MoveRight aria-hidden="true" />
+            </span>
+          </span>
+        </Link>
+      ))}
+    </>
   )
 }
 

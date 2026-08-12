@@ -21,6 +21,8 @@
  *   - heavy-equipment-operator-ppe-checklist
  *   - trenching-excavation-ppe-checklist
  *   - scaffolding-ppe-checklist
+ *   - mining-ppe-checklist-by-task
+ *   - mining-silica-dust-controls-respirator-selection
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -1057,7 +1059,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     seoTitle:
       'Hard Hat Color Codes | Construction Site Buyer Guide',
     seoDescription:
-      'Learn common hard hat color codes on construction sites, what each color usually means, and how buyers should specify color without confusing it with ANSI Type or Class.',
+      'See example hard hat color codes for construction roles and learn how buyers can specify colors without confusing them with ANSI Type or electrical Class.',
     seoKeywords:
       'hard hat color codes construction, hard hat color meanings, construction hard hat color code, what do hard hat colors mean, white hard hat meaning, yellow hard hat meaning, blue hard hat meaning, green hard hat meaning, hard hat colors by trade, hard hat color code chart',
     heroFallback:
@@ -1073,10 +1075,10 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         caption:
           'OSHA head protection requirements focus on hazards, impact, electrical exposure, and suitable protective helmets, not one universal color chart.',
       },
-      'Common Hard Hat Color Code Chart': {
+      'Example Site Hard Hat Color-Code Patterns': {
         url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
         caption:
-          'A hard hat color chart should be treated as a site communication rule, not as proof of safety performance.',
+          'Example color assignments can support site communication, but they are project rules rather than proof of safety performance.',
       },
       'White Hard Hats: Supervisors, Engineers, And Visitors': {
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
@@ -1213,12 +1215,12 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.high-visibility-clothing-construction.generated.json',
     ),
-    title: 'Must Class 2 Hi-Vis Be the Outermost Layer?',
+    title: 'Class 2 Hi-Vis Outermost-Layer Rule: True, With Conditions',
     excerpt:
-      'A direct answer to the Class 2 high visibility outermost-layer rule for trailer yards and work zones, with Class 2 vs Class 3 selection and RFQ notes.',
-    seoTitle: 'Must Class 2 Hi-Vis Be the Outermost Layer?',
+      'A practical answer to the Class 2 hi-vis outer-layer question for trailer yards and work zones, with jacket, rainwear, harness, and Class 2 vs Class 3 examples.',
+    seoTitle: 'True: Class 2 Hi-Vis Must Stay Visible as the Outer Layer',
     seoDescription:
-      "Class 2 hi-vis must remain visible when it is the worker's visibility-control garment. Learn how outerwear, harnesses and weather affect the right setup.",
+      'True when Class 2 hi-vis is the visibility-control garment: it must stay visible. See trailer-yard, jacket, rainwear, harness and outer-layer examples.',
     seoKeywords:
       'class 2 high visibility clothing must be the outermost layer, Class 2 hi-vis outer layer rule, high visibility clothing construction, hi vis construction clothing, construction safety vest requirements, trailer yard hi-vis clothing, Class 2 vs Class 3 hi vis, ANSI 107 construction, EN ISO 20471 construction, reflective workwear construction, high visibility PPE',
     heroFallback:
@@ -1631,6 +1633,133 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
         caption:
           'Scaffolding PPE kits should separate erector, user, inspector, and replacement modules instead of forcing one generic kit.',
+      },
+    },
+  },
+  {
+    slug: 'mining-ppe-checklist-by-task',
+    markdownPath: join(process.cwd(), 'mining-ppe-checklist-by-task.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.mining-ppe-checklist-by-task.generated.json',
+    ),
+    title:
+      'Mining PPE Checklist by Task: Drilling, Crushing, Haul Roads & Processing',
+    excerpt:
+      'A field-ready mining PPE checklist for drilling, blasting, crushing, screening, haul roads, processing, and maintenance crews, with controls-first checks for each task.',
+    seoTitle:
+      'Mining PPE Checklist by Task | Drill, Crush & Haul',
+    seoDescription:
+      'Use this mining PPE checklist for drilling, blasting, crushing, screening, haul roads, processing, and maintenance crews before each shift.',
+    seoKeywords:
+      'mining PPE checklist, quarry PPE checklist, drilling PPE, blasting PPE checklist, crusher operator PPE, screening plant PPE, haul road PPE, mine maintenance PPE',
+    heroFallback:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    sectionImages: {
+      'Quick Mining PPE Checklist by Task': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A task matrix separates drilling, blasting, crushing, screening, haul-road, and maintenance checks before PPE is issued.',
+      },
+      'Drilling PPE Checklist': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Drilling PPE decisions follow ground conditions, guarding, dust controls, measured noise, work position, and equipment instructions.',
+      },
+      'Blasting PPE Checklist': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Blast-area authorization, access control, warnings, evacuation, and post-blast inspection come before role-specific PPE.',
+      },
+      'Crushing PPE Checklist': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Crusher checks combine guarding, dust and noise controls, safe access, startup warnings, and task-specific PPE.',
+      },
+      'Screening and Processing PPE Checklist': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Processing PPE changes between normal operation, sampling, cleanup, reagent handling, and maintenance access.',
+      },
+      'Haul Roads and Transport PPE Checklist': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Haul-road readiness connects traffic separation, visibility, communication, road condition, vehicle inspection, and outside-cab PPE.',
+      },
+      'Maintenance PPE Checklist': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Maintenance PPE is selected only after shutdown scope, energy isolation, verification, blocking, permits, and access are defined.',
+      },
+      'How Supervisors Turn the Checklist Into Role Kits': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A controlled baseline plus task modules helps supervisors issue PPE without creating one oversized kit for every mine worker.',
+      },
+    },
+  },
+  {
+    slug: 'mining-silica-dust-controls-respirator-selection',
+    markdownPath: join(
+      process.cwd(),
+      'mining-silica-dust-controls-respirator-selection.md',
+    ),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.mining-silica-dust-controls-respirator-selection.generated.json',
+    ),
+    title:
+      'Silica Dust Controls and Respirator Selection for Mining and Quarrying',
+    excerpt:
+      'A mine- and quarry-specific guide to silica exposure monitoring, engineering controls, APF calculations, fit testing, and written respiratory protection programs.',
+    seoTitle:
+      'Mining Silica Dust Controls & Respirator Selection',
+    seoDescription:
+      'Plan mine silica monitoring, engineering controls, APF calculations, fit testing, and a written respiratory protection program for quarry work.',
+    seoKeywords:
+      'mining silica dust controls, quarry silica respirator, mining respirator selection, mining APF, mine respirator fit test, MSHA silica rule, mining respiratory protection program',
+    heroFallback:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    sectionImages: {
+      'Quick Decision Flow: Measure, Control, Verify, Then Select': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'The decision sequence starts with representative exposure data and verified engineering controls before APF and respirator selection.',
+      },
+      'Exposure Monitoring: Sample the Work That Actually Happens': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Personal breathing-zone sampling should represent the worker, task, controls, material, production rate, and full-shift conditions.',
+      },
+      'Engineering Controls by Mining and Quarrying Process': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Wet methods, enclosure, local exhaust, filtered cabs, and worker separation control silica at drilling, crushing, screening, and transfer sources.',
+      },
+      'Verify Controls Before Selecting Respiratory Protection': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Control verification combines operating indicators, maintenance evidence, and follow-up exposure monitoring before respirator calculations are finalized.',
+      },
+      'Calculate Required Protection and Choose an APF': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'APF selection uses measured post-control concentration, the applicable limit or target, maximum use concentration, and the complete respirator class.',
+      },
+      '100-Series, HE, P100, Facepieces, and PAPRs': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Filter efficiency, facepiece design, operating mode, NIOSH approval, and APF are separate parts of one respirator selection decision.',
+      },
+      'Fit Testing, Seal Checks, and Facial Hair': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Fit testing qualifies a specific tight-fitting model and size, while the wearer performs a seal check each time the respirator is donned.',
+      },
+      'Build the Written Respiratory Protection Program': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A written program assigns ownership for hazard evaluation, selection, medical review, fit testing, training, maintenance, storage, and change control.',
       },
     },
   },

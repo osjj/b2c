@@ -941,6 +941,83 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       label: 'Request scaffolding PPE kits',
     },
   },
+  'mining-ppe-checklist-by-task': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+      {
+        href: '/categories/respiratory-protection/half-face-respirators',
+        label: 'Half-face respirators',
+      },
+      { href: '/categories/eye-protection/safety-goggles', label: 'Safety goggles' },
+      {
+        href: '/categories/head-protection/hearing-protection',
+        label: 'Hearing protection',
+      },
+      { href: '/categories/foot-protection/safety-boots', label: 'Safety boots' },
+      { href: '/categories/body-protection/hi-vis-workwear', label: 'Hi-vis workwear' },
+    ],
+    products: [
+      {
+        href: '/products/reusable-half-face-respirator-dual-filters-dust',
+        label: 'Reusable half-face respirator',
+      },
+      {
+        href: '/products/anti-fog-dustproof-pc-safety-goggles-for-construction',
+        label: 'Anti-fog dustproof safety goggles',
+      },
+      {
+        href: '/products/a5-cut-resistant-tpr-impact-mechanic-gloves-sandy-nitrile',
+        label: 'A5 impact mechanic gloves',
+      },
+      {
+        href: '/products/pvc-steel-toe-safety-rain-boots-for-mining-and-industrial',
+        label: 'Steel toe mining safety rain boots',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request task-based mining PPE options',
+    },
+  },
+  'mining-silica-dust-controls-respirator-selection': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      {
+        href: '/categories/respiratory-protection',
+        label: 'Respiratory protection',
+      },
+      {
+        href: '/categories/respiratory-protection/half-face-respirators',
+        label: 'Half-face respirators',
+      },
+      { href: '/categories/eye-protection/safety-goggles', label: 'Safety goggles' },
+      {
+        href: '/categories/head-protection/hearing-protection',
+        label: 'Hearing protection',
+      },
+    ],
+    products: [
+      {
+        href: '/products/reusable-half-face-respirator-dual-filters-dust',
+        label: 'Reusable half-face respirator',
+      },
+      {
+        href: '/products/anti-fog-dustproof-pc-safety-goggles-for-construction',
+        label: 'Anti-fog dustproof safety goggles',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request respirator documentation and options',
+    },
+  },
 }
 
 function normalizeBlogCommercialLink(
