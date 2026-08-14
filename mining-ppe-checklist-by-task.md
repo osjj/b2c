@@ -11,7 +11,7 @@ A mining PPE checklist should change with the task. A driller working beside a r
 
 This field guide helps mine and quarry supervisors turn the day's work plan into a task-specific PPE check. It covers drilling, blasting, crushing, screening and processing, haul roads and transport, and maintenance. It does not replace the mine's risk assessment, exposure monitoring, traffic plan, blast plan, isolation procedure, training, equipment manuals, or local legal requirements.
 
-For the broader category, documentation, sizing, and bulk RFQ framework, use the [Mining Safety Equipment and PPE for Quarry Operations solution](/solutions/ppe-safety-equipment-for-mining-quarrying). This article stays focused on the pre-task and start-of-shift checklist.
+For the broader category, documentation, sizing, and bulk RFQ framework, use the [Mining Safety Equipment and PPE for Quarry Operations solution](/solutions/ppe-safety-equipment-for-mining-quarrying). To compare how the equipment changes between an open pit, underground mine, quarry, and processing area, use the [Open-Pit vs Underground Mining PPE guide](/blog/open-pit-vs-underground-mining-ppe). This article stays focused on the pre-task and start-of-shift checklist.
 
 ---
 

@@ -168,6 +168,10 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ai-quote',
     'ppe-calculator',
   ],
+  'open-pit-vs-underground-mining-ppe': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
 }
 
 const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
@@ -189,6 +193,7 @@ const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
   'heavy-equipment-operator-ppe-checklist',
   'mining-ppe-checklist-by-task',
   'mining-silica-dust-controls-respirator-selection',
+  'open-pit-vs-underground-mining-ppe',
 ])
 
 function normalizeText(value: string) {

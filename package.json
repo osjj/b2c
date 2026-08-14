@@ -41,6 +41,7 @@
     "db:gen:blog-images:scaffolding-ppe": "npx tsx prisma/generate-blog-images.scaffolding-ppe-checklist.ts",
     "db:gen:blog-images:mining-ppe": "npx tsx prisma/generate-blog-images.mining-ppe-checklist-by-task.ts",
     "db:gen:blog-images:mining-silica": "npx tsx prisma/generate-blog-images.mining-silica-dust-controls-respirator-selection.ts",
+    "db:gen:blog-images:mining-areas": "npx tsx prisma/generate-blog-images.open-pit-vs-underground-mining-ppe.ts",
     "db:gen:solution:fall-protection-images": "npx tsx prisma/generate-solution-fall-protection-images.ts",
     "db:index:embeddings": "npx tsx scripts/index-product-embeddings.ts",
     "db:gen:product-meta-titles": "npx tsx scripts/generate-product-meta-title-candidates.ts"

@@ -23,6 +23,7 @@
  *   - scaffolding-ppe-checklist
  *   - mining-ppe-checklist-by-task
  *   - mining-silica-dust-controls-respirator-selection
+ *   - open-pit-vs-underground-mining-ppe
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
  * upserted on `slug`.
@@ -1760,6 +1761,69 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
         caption:
           'A written program assigns ownership for hazard evaluation, selection, medical review, fit testing, training, maintenance, storage, and change control.',
+      },
+    },
+  },
+  {
+    slug: 'open-pit-vs-underground-mining-ppe',
+    markdownPath: join(
+      process.cwd(),
+      'open-pit-vs-underground-mining-ppe.md',
+    ),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.open-pit-vs-underground-mining-ppe.generated.json',
+    ),
+    title: 'Open-Pit vs Underground Mining PPE: Key Differences',
+    excerpt:
+      'A practical comparison of open-pit, underground, quarry, and processing-area PPE differences across traffic, lighting, ground, dust, noise, weather, chemicals, and emergency escape.',
+    seoTitle: 'Open-Pit vs Underground Mining PPE | Key Differences',
+    seoDescription:
+      'Compare open-pit, underground, quarry, and processing-area mining PPE by traffic, lighting, ground, dust, noise, weather, chemicals, and escape needs.',
+    seoKeywords:
+      'open-pit mining PPE, underground mining PPE, quarry PPE, mineral processing PPE, surface vs underground mining safety equipment, mining PPE differences',
+    heroFallback:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    sectionImages: {
+      'Quick Comparison: Open-Pit, Underground, Quarry, and Processing PPE': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A four-area comparison separates the environment, residual hazards, PPE specification, and non-PPE controls for open pits, underground mines, quarries, and processing plants.',
+      },
+      'Open-Pit Mining PPE: Visibility, Weather, Traffic, and Travel Distance': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Open-pit PPE decisions account for haul-truck blind areas, outside-cab exposure, long routes, terrain, glare, wind, rain, heat, cold, and night work.',
+      },
+      'Underground Mining PPE: Clearance, Lighting, Ventilation, and Escape': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Underground selection treats the helmet, lamp, retention, eyewear, hearing, radio, visibility, respiratory protection, and escape equipment as compatible but separately controlled systems.',
+      },
+      'Quarry PPE: Bench Work, Drilling, Blasting, and Crusher Proximity': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Quarry PPE changes as workers move between benches, drilling, blast boundaries, loaders, crushers, wet suppression, contractors, and public interfaces.',
+      },
+      'Processing-Area PPE: Machinery, Noise, Dust, Reagents, and Maintenance': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Processing PPE is selected separately for control-room operation, inspection, sampling, cleanup, reagent handling, and isolated maintenance.',
+      },
+      'Workers Who Cross Between Areas Need a Controlled Changeover': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A controlled baseline plus clean area modules helps mobile crews change equipment without carrying one oversized or contaminated kit.',
+      },
+      'Emergency and Self-Rescue Equipment Is Not Routine Work PPE': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Emergency self-rescue devices and routine workplace respirators require separate approvals, programs, inspection, storage, training, and procurement records.',
+      },
+      'How to Write the Differences Into a Mining PPE RFQ': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A mining PPE RFQ should separate each work zone, role, task, operating state, hazard basis, compatibility requirement, environment, lifecycle, and document package.',
       },
     },
   },
