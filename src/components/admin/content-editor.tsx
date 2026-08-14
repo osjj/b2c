@@ -17,10 +17,17 @@ interface ContentEditorProps {
   onChange?: (data: EditorJSData) => void
   placeholder?: string
   imageCaption?: boolean | 'optional'
+  onSetAsPrimaryImage?: (imageUrl: string) => boolean
 }
 
 export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(function ContentEditor(
-  { value, onChange, placeholder = 'Start writing product details...', imageCaption = true },
+  {
+    value,
+    onChange,
+    placeholder = 'Start writing product details...',
+    imageCaption = true,
+    onSetAsPrimaryImage,
+  },
   ref
 ) {
   const editorInstanceRef = useRef<EditorJS | null>(null)
@@ -214,6 +221,18 @@ export const ContentEditor = forwardRef<ContentEditorRef, ContentEditorProps>(fu
         open={!!previewImage}
         onOpenChange={(open) => !open && setPreviewImage(null)}
         src={previewImage || ''}
+        primaryAction={
+          previewImage && onSetAsPrimaryImage
+            ? {
+                label: 'Set as main image',
+                onClick: () => {
+                  if (onSetAsPrimaryImage(previewImage)) {
+                    setPreviewImage(null)
+                  }
+                },
+              }
+            : undefined
+        }
         alt="图片预览"
       />
     </>

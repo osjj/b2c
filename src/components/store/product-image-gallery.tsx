@@ -105,7 +105,7 @@ export function ProductImageGallery({
       {/* Main Image with Zoom */}
       <div
         ref={imageContainerRef}
-        className="relative aspect-square overflow-hidden bg-muted cursor-crosshair group"
+        className="relative aspect-square overflow-hidden bg-white cursor-crosshair group"
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -118,7 +118,7 @@ export function ProductImageGallery({
               alt={currentImageAlt}
               fill
               className={cn(
-                'object-cover transition-opacity duration-200',
+                'object-contain transition-opacity duration-200',
                 isZooming && 'opacity-0'
               )}
               priority
@@ -226,7 +226,7 @@ export function ProductImageGallery({
                       imageIndex,
                     })}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </button>
               )

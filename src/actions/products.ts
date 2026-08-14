@@ -39,7 +39,9 @@ const productSchema = z.object({
   metaTitle: z.string().max(60).optional().nullable(),
   metaDescription: z.string().max(160).optional().nullable(),
   metaKeywords: z.string().optional().nullable(),
-  ogTitle: z.string().max(60).optional().nullable(),
+  // Open Graph titles may reasonably be longer than the SEO meta title.
+  // Keep a safety limit without rejecting existing curated social titles.
+  ogTitle: z.string().max(100, 'Social title must be 100 characters or fewer').optional().nullable(),
   ogDescription: z.string().max(200).optional().nullable(),
   ogImage: z.string().optional().nullable(),
   // Usage Scenes for Solution association

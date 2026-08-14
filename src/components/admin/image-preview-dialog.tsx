@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { ZoomIn, ZoomOut, RotateCcw, X } from 'lucide-react'
+import { ImagePlus, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -16,6 +16,10 @@ interface ImagePreviewDialogProps {
   onOpenChange: (open: boolean) => void
   src: string
   alt?: string
+  primaryAction?: {
+    label: string
+    onClick: () => void
+  }
 }
 
 export function ImagePreviewDialog({
@@ -23,6 +27,7 @@ export function ImagePreviewDialog({
   onOpenChange,
   src,
   alt = 'Preview image',
+  primaryAction,
 }: ImagePreviewDialogProps) {
   const [scale, setScale] = useState(1)
 
@@ -51,6 +56,12 @@ export function ImagePreviewDialog({
         <DialogHeader className="p-4 pb-2 flex flex-row items-center justify-between">
           <DialogTitle className="text-sm font-medium">图片预览</DialogTitle>
           <div className="flex items-center gap-2">
+            {primaryAction && (
+              <Button type="button" size="sm" onClick={primaryAction.onClick}>
+                <ImagePlus className="h-4 w-4" />
+                {primaryAction.label}
+              </Button>
+            )}
             <Button
               type="button"
               variant="outline"

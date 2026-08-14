@@ -2,6 +2,7 @@
 
 import { useActionState, useState, useRef, useTransition, useCallback } from 'react'
 import type { Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
+import { Loader2 } from 'lucide-react'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
 import { buildProductSlugBase } from '@/lib/product-slug'
 import { Button } from '@/components/ui/button'
@@ -32,6 +33,10 @@ import {
   buildProductMetaDescription,
   buildProductMetaTitle,
 } from '@/lib/product-seo'
+import {
+  MAX_PRODUCT_GALLERY_IMAGES,
+  promoteToPrimaryProductImage,
+} from '@/lib/product-gallery'
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 type AttributeWithOptions = Attribute & {
@@ -104,6 +109,10 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [images, setImages] = useState<ImageData[]>(
     product?.images.map((img) => ({ url: img.url, alt: img.alt || '' })) || []
   )
+  const [galleryActionMessage, setGalleryActionMessage] = useState<{
+    kind: 'success' | 'error'
+    text: string
+  } | null>(null)
   const [slug, setSlug] = useState(product?.slug || '')
   const [selectedCollections, setSelectedCollections] = useState<string[]>(productCollectionIds)
   const [specifications, setSpecifications] = useState<Specification[]>(() => {
@@ -206,6 +215,31 @@ export function ProductForm({ product, categories, collections = [], productColl
     })))
   }
 
+  const handleSetDetailImageAsPrimary = useCallback((imageUrl: string) => {
+    const result = promoteToPrimaryProductImage(
+      images,
+      { url: imageUrl, alt: name || 'Product image' },
+      MAX_PRODUCT_GALLERY_IMAGES
+    )
+
+    if (result.status === 'gallery-full') {
+      setGalleryActionMessage({
+        kind: 'error',
+        text: `The main gallery already has ${MAX_PRODUCT_GALLERY_IMAGES} images. Remove one before adding this detail image.`,
+      })
+      return false
+    }
+
+    setImages(result.images)
+    setGalleryActionMessage({
+      kind: 'success',
+      text: result.status === 'already-primary'
+        ? 'This image is already the main image.'
+        : 'Detail image set as the main image. Click Update Product to save.',
+    })
+    return true
+  }, [images, name])
+
   // SEO Fields
   const [metaTitle, setMetaTitle] = useState(product?.metaTitle || '')
   const [metaDescription, setMetaDescription] = useState(product?.metaDescription || '')
@@ -248,11 +282,17 @@ export function ProductForm({ product, categories, collections = [], productColl
     ? updateProduct.bind(null, product.id)
     : createProduct
 
-  const [state, formAction] = useActionState<ProductState, FormData>(
+  const [state, formAction, actionPending] = useActionState<ProductState, FormData>(
     action,
     {}
   )
-  const [pending, startTransition] = useTransition()
+  const [transitionPending, startTransition] = useTransition()
+  const [isPreparingSubmit, setIsPreparingSubmit] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const isSaving = isPreparingSubmit || transitionPending || actionPending
+  const validationErrors = Object.entries(state.errors ?? {}).flatMap(([field, messages]) =>
+    messages.map((message) => `${field}: ${message}`)
+  )
 
   const handleNameChange = (newName: string) => {
     setName(newName)
@@ -381,24 +421,41 @@ export function ProductForm({ product, categories, collections = [], productColl
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // Force save editor content before form submission
-    if (contentEditorRef.current) {
-      const editorData = await contentEditorRef.current.save()
-      if (editorData) {
-        setContent(editorData)
-        // Update hidden input directly since setState is async
-        const contentInput = formRef.current?.querySelector('input[name="content"]') as HTMLInputElement
-        if (contentInput) {
-          contentInput.value = JSON.stringify(editorData)
+    if (isSaving) return
+
+    setIsPreparingSubmit(true)
+    setSubmitError(null)
+
+    try {
+      // Force save editor content before form submission
+      if (contentEditorRef.current) {
+        const editorData = await contentEditorRef.current.save()
+        if (editorData) {
+          setContent(editorData)
+          // Update hidden input directly since setState is async
+          const contentInput = formRef.current?.querySelector('input[name="content"]')
+          if (contentInput instanceof HTMLInputElement) {
+            contentInput.value = JSON.stringify(editorData)
+          }
         }
       }
-    }
 
-    // Submit form via action
-    const formData = new FormData(formRef.current!)
-    startTransition(() => {
-      formAction(formData)
-    })
+      const form = formRef.current
+      if (!form) {
+        throw new Error('Product form is unavailable')
+      }
+
+      // Submit form via action. useActionState keeps actionPending true until
+      // the server action has either returned an error or redirected on success.
+      const formData = new FormData(form)
+      startTransition(() => {
+        formAction(formData)
+      })
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to save product')
+    } finally {
+      setIsPreparingSubmit(false)
+    }
   }
 
   return (
@@ -412,9 +469,21 @@ export function ProductForm({ product, categories, collections = [], productColl
         />
       </div>
 
-      {state.error && (
-        <div className="p-3 text-sm text-red-600 bg-red-50 rounded-md">
-          {state.error}
+      {(submitError || state.error || validationErrors.length > 0) && (
+        <div
+          role="alert"
+          className="space-y-1 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+        >
+          <p className="font-medium">Product was not updated.</p>
+          {submitError && <p>{submitError}</p>}
+          {state.error && <p>{state.error}</p>}
+          {validationErrors.length > 0 && (
+            <ul className="list-disc space-y-1 pl-5">
+              {validationErrors.map((message) => (
+                <li key={message}>{message}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 
@@ -517,7 +586,12 @@ export function ProductForm({ product, categories, collections = [], productColl
               </Button>
             </CardHeader>
             <CardContent>
-              <ImageUpload value={images} onChange={setImages} productName={name} />
+              <ImageUpload
+                value={images}
+                onChange={setImages}
+                maxImages={MAX_PRODUCT_GALLERY_IMAGES}
+                productName={name}
+              />
             </CardContent>
           </Card>
 
@@ -664,7 +738,23 @@ export function ProductForm({ product, categories, collections = [], productColl
                 value={content}
                 onChange={setContent}
                 placeholder="Add detailed product description with images..."
+                onSetAsPrimaryImage={handleSetDetailImageAsPrimary}
               />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Click a detail image to preview it, then choose Set as main image. Click Update Product to save.
+              </p>
+              {galleryActionMessage && (
+                <p
+                  role={galleryActionMessage.kind === 'error' ? 'alert' : 'status'}
+                  className={
+                    galleryActionMessage.kind === 'error'
+                      ? 'mt-2 text-sm text-red-600'
+                      : 'mt-2 text-sm text-green-700'
+                  }
+                >
+                  {galleryActionMessage.text}
+                </p>
+              )}
             </CardContent>
           </Card>
 
@@ -766,7 +856,12 @@ export function ProductForm({ product, categories, collections = [], productColl
                   value={ogTitle}
                   onChange={(e) => setOgTitle(e.target.value)}
                   placeholder="Defaults to Meta Title"
+                  maxLength={100}
                 />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Recommended: up to 60 characters</span>
+                  <span>{ogTitle.length}/100</span>
+                </div>
               </div>
 
               {/* OG Description */}
@@ -931,10 +1026,11 @@ export function ProductForm({ product, categories, collections = [], productColl
       </div>
 
       <div className="flex gap-4">
-        <Button type="submit" disabled={pending}>
-          {pending ? 'Saving...' : product ? 'Update Product' : 'Create Product'}
+        <Button type="submit" disabled={isSaving} aria-busy={isSaving}>
+          {isSaving && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
+          {isSaving ? 'Saving...' : product ? 'Update Product' : 'Create Product'}
         </Button>
-        <Button type="button" variant="outline" onClick={() => history.back()}>
+        <Button type="button" variant="outline" onClick={() => history.back()} disabled={isSaving}>
           Cancel
         </Button>
       </div>

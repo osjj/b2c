@@ -65,14 +65,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       <div className="relative bg-card rounded-lg border border-border/60 overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20">
         {/* Image Section */}
         <Link href={`/products/${product.slug}`}>
-          <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-secondary/30 to-secondary/60 p-4">
-            <Image
-              src={imageUrl}
-              alt={product.name}
-              fill
-              className="object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-sm"
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            />
+          <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-secondary/30 to-secondary/60">
+            <div className="absolute inset-3 sm:inset-4">
+              <Image
+                src={imageUrl}
+                alt={product.name}
+                fill
+                className="object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-sm"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              />
+            </div>
 
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
