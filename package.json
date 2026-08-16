@@ -45,7 +45,8 @@
     "db:gen:blog-images:mining-hearing": "npx tsx prisma/generate-blog-images.mining-hearing-protection-guide.ts",
     "db:gen:solution:fall-protection-images": "npx tsx prisma/generate-solution-fall-protection-images.ts",
     "db:index:embeddings": "npx tsx scripts/index-product-embeddings.ts",
-    "db:gen:product-meta-titles": "npx tsx scripts/generate-product-meta-title-candidates.ts"
+    "db:gen:product-meta-titles": "npx tsx scripts/generate-product-meta-title-candidates.ts",
+    "indexnow:submit": "npx tsx scripts/submit-indexnow.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.965.0",
