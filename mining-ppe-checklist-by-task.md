@@ -36,7 +36,7 @@ Run these six checks before selecting the task module:
 
 1. **Name the exact task and location.** "Processing" is too broad. Record whether the worker is operating from a closed cab, taking a sample, clearing spillage, inspecting a screen, changing a liner, or entering a restricted area.
 2. **Confirm the control status.** Verify guarding, ventilation, wet suppression, local extraction, isolation, barriers, traffic separation, lighting, and communication before relying on PPE.
-3. **Review measured exposure.** Noise and airborne contaminant decisions should come from exposure data and the mine's program. Do not select a respirator or hearing protector from the task name alone.
+3. **Review measured exposure.** Noise and airborne contaminant decisions should come from exposure data and the mine's program. Do not select a respirator or hearing protector from the task name alone. For the dedicated MSHA Part 62 and protector-selection workflow, use the [Mining Hearing Protection Guide](/blog/mining-hearing-protection-guide).
 4. **Check compatibility and fit.** Head protection, eyewear, earmuffs, respirators, lamps, face shields, garments, and fall-protection equipment must work together without breaking seals, loosening retention, or hiding reflective material.
 5. **Inspect before issue.** Remove damaged, contaminated, expired, incomplete, badly fitting, or unauthorized equipment from service. Include replaceable parts and consumables in the check.
 6. **Define the change trigger.** Tell the crew when the checklist must be repeated: a new bench, different rock, dry instead of wet operation, a failed dust control, changed traffic route, night work, maintenance entry, spill, misfire, or unexpected ground condition.

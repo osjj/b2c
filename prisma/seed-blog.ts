@@ -22,6 +22,7 @@
  *   - trenching-excavation-ppe-checklist
  *   - scaffolding-ppe-checklist
  *   - mining-ppe-checklist-by-task
+ *   - mining-hearing-protection-guide
  *   - mining-silica-dust-controls-respirator-selection
  *   - open-pit-vs-underground-mining-ppe
  *
@@ -1634,6 +1635,63 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&q=80',
         caption:
           'Scaffolding PPE kits should separate erector, user, inspector, and replacement modules instead of forcing one generic kit.',
+      },
+    },
+  },
+  {
+    slug: 'mining-hearing-protection-guide',
+    markdownPath: join(process.cwd(), 'mining-hearing-protection-guide.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.mining-hearing-protection-guide.generated.json',
+    ),
+    title:
+      'Mining Hearing Protection Guide: MSHA Part 62, Earplugs, Earmuffs & Dual Protection',
+    excerpt:
+      'Select mining and quarry hearing protection using MSHA Part 62 exposure levels, controls, earplug and earmuff choices, dual protection, fit, compatibility, and RFQ checks.',
+    seoTitle:
+      'Mining Hearing Protection Guide | MSHA Part 62',
+    seoDescription:
+      'Select mining hearing protection using MSHA Part 62 exposure levels, controls, earplugs, earmuffs, dual protection, fit, and RFQ checks.',
+    seoKeywords:
+      'mining hearing protection, MSHA Part 62, quarry hearing protection, crusher noise PPE, mining earplugs, mining earmuffs, dual hearing protection mining, mine hearing conservation program',
+    heroFallback:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    sectionImages: {
+      'Quick MSHA Part 62 Decision Table': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'The MSHA Part 62 action level, PEL, and dual-protection level route miners into different controls and hearing conservation actions.',
+      },
+      'Measure and Control Mine Noise Before Selecting Hearing Protection': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Representative exposure monitoring and feasible source or administrative controls come before hearing protector selection.',
+      },
+      'What a Part 62 Hearing Conservation Program Must Cover': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A compliant hearing conservation program connects monitoring, protector choice, audiometry, training, and records.',
+      },
+      'Hearing Protection by Mining and Quarry Task': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Drilling, crushing, screening, haulage, and maintenance require different fit, compatibility, and communication trials.',
+      },
+      'Earplugs vs Earmuffs vs Dual Hearing Protection': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'Earplug, earmuff, and dual-protection choices should balance measured exposure, fit, wear time, hygiene, and other PPE.',
+      },
+      'Fit, Compatibility, Communication, and Warning Signals': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'The complete helmet, eyewear, respirator, hearing, lamp, and radio assembly must work without breaking fit or communication.',
+      },
+      'Build a Mining Hearing Protection RFQ': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A useful RFQ defines exposure groups, compatible PPE, document needs, trials, replacement parts, and delivery requirements.',
       },
     },
   },

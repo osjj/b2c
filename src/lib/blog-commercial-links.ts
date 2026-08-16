@@ -941,6 +941,43 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       label: 'Request scaffolding PPE kits',
     },
   },
+  'mining-hearing-protection-guide': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      {
+        href: '/categories/head-protection/hearing-protection',
+        label: 'Hearing protection',
+      },
+      { href: '/categories/head-protection', label: 'Head protection' },
+    ],
+    products: [
+      {
+        href: '/products/red-adjustable-foldable-noise-reduction-earmuffs',
+        label: 'Adjustable noise-reduction earmuffs',
+      },
+      {
+        href: '/products/bds-flanged-ear-plugs-orange-25-db-nrr-ansi-certified-slow',
+        label: 'Reusable corded flanged earplugs',
+      },
+      {
+        href: '/products/3m-1100-earplugs-noise-reduction-hearing-protection',
+        label: 'Disposable foam earplugs',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request mining hearing protection options',
+    },
+    resources: [
+      {
+        href: '/tools/ppe-calculator',
+        label: 'PPE quantity calculator',
+      },
+    ],
+  },
   'mining-ppe-checklist-by-task': {
     solution: {
       href: '/solutions/ppe-safety-equipment-for-mining-quarrying',

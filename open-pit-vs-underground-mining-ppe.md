@@ -232,6 +232,7 @@ No. Put them in a separate emergency-equipment specification with the applicable
 
 - [Mining Safety Equipment and PPE for Quarry Operations](/solutions/ppe-safety-equipment-for-mining-quarrying)
 - [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task)
+- [Mining Hearing Protection Guide: MSHA Part 62, Earplugs, Earmuffs & Dual Protection](/blog/mining-hearing-protection-guide)
 - [Silica Dust Controls and Respirator Selection for Mining and Quarrying](/blog/mining-silica-dust-controls-respirator-selection)
 - [30 CFR Part 56 - Surface Metal and Nonmetal Mines](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56)
 - [30 CFR Part 57 - Underground Metal and Nonmetal Mines](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57)

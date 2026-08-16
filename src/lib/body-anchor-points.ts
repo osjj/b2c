@@ -3,13 +3,14 @@ import { clampBodyAnchor, isValidBodyAnchor } from './body-link-map'
 
 export const BODY_ANCHOR_POINTS = [
   { key: 'head', label: 'Head', point: { x: 50, y: 9 } },
-  { key: 'eyes', label: 'Eyes', point: { x: 55, y: 14 } },
+  { key: 'eyes', label: 'Eyes', point: { x: 50, y: 14 } },
+  { key: 'nose', label: 'Nose', point: { x: 50, y: 16 } },
   { key: 'ears', label: 'Ears', point: { x: 54, y: 22 } },
-  { key: 'mouth', label: 'Mouth', point: { x: 53, y: 18 } },
-  { key: 'chest', label: 'Chest', point: { x: 30, y: 52 } },
-  { key: 'left-hand', label: 'Left Hand', point: { x: 50, y: 42 } },
-  { key: 'waist', label: 'Waist', point: { x: 60, y: 48 } },
-  { key: 'feet', label: 'Feet', point: { x: 40, y: 85 } },
+  { key: 'mouth', label: 'Mouth', point: { x: 50, y: 18 } },
+  { key: 'chest', label: 'Chest', point: { x: 50, y: 35 } },
+  { key: 'left-hand', label: 'Left Hand', point: { x: 31, y: 55 } },
+  { key: 'waist', label: 'Waist', point: { x: 50, y: 49 } },
+  { key: 'feet', label: 'Feet', point: { x: 43, y: 92 } },
 ] as const
 
 export type BodyAnchorKey = (typeof BODY_ANCHOR_POINTS)[number]['key']

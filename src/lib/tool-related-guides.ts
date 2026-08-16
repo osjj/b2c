@@ -78,6 +78,12 @@ const GUIDE_CATALOG = {
     description: 'Use this for earplug, earmuff, NRR/SNR, communication, and replacement planning.',
     eyebrow: '523 impressions',
   },
+  'mining-hearing-protection-guide': {
+    href: '/blog/mining-hearing-protection-guide',
+    title: 'Mining Hearing Protection Guide',
+    description: 'Connect MSHA Part 62 exposure groups to controls, earplug, earmuff, dual-protection, and RFQ decisions.',
+    eyebrow: 'Mining noise',
+  },
   'osha-ppe-requirements-construction': {
     href: '/blog/osha-ppe-requirements-construction',
     title: 'OSHA PPE Requirements',
@@ -142,6 +148,7 @@ export const TOOL_RELATED_GUIDES = {
     'construction-ppe-checklist',
     'contractor-ppe-kit-checklist',
     'osha-ppe-requirements-construction',
+    'mining-hearing-protection-guide',
   ]),
   'ppe-calculator': pickGuides([
     'bulk-construction-ppe-procurement',
@@ -151,6 +158,7 @@ export const TOOL_RELATED_GUIDES = {
     'high-visibility-clothing-construction',
     'construction-respiratory-protection',
     'construction-hearing-protection',
+    'mining-hearing-protection-guide',
     'construction-ppe-checklist',
   ]),
   'size-guide': pickGuides([

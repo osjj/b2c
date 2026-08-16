@@ -9,6 +9,8 @@
 
 If your crews work on construction sites in the United States, PPE compliance is not optional. It sits inside federal OSHA's construction standards, it is enforceable during inspections, and it can become expensive very quickly when employers fail to assess hazards, issue the right equipment, train workers, or enforce use.
 
+The newest complete [Bureau of Labor Statistics fatality data](https://www.bls.gov/opub/ted/2026/fatal-work-injuries-declined-in-2024.htm) available in 2026 records **1,034 deaths in private-industry construction during 2024**, down from 1,075 in 2023. Falls, slips, and trips caused **389 construction deaths** that year. These figures reinforce why fall protection, fit, eye and face protection, respiratory protection, and task-specific PPE remain active compliance priorities rather than one-time purchasing decisions.
+
 This article is the compliance companion to our [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution). That solution page is where to plan a role-based PPE program and sourcing strategy. This guide is narrower: it explains what OSHA requires, why the **January 13, 2025** PPE proper-fit update still matters in 2026, how heat enforcement affects PPE planning, what inspectors look for, and where employers usually create citation exposure. If you need the field-execution version of this topic, use the [construction PPE checklist](/blog/construction-ppe-checklist).
 
 ---
@@ -233,14 +235,15 @@ The [construction PPE solution page](/solutions/construction-site-ppe-solution) 
 
 ## Penalties and Citation Exposure Contractors Should Check in 2026
 
-As of the **January 15, 2025** federal penalty adjustment, OSHA civil penalties are:
+OSHA's [**May 21, 2026** civil-penalty memorandum](https://www.osha.gov/memos/2026-05-21/2026-annual-adjustments-osha-civil-penalties) kept the 2025 maximum amounts in effect for 2026 and updated several policy-based minimum amounts:
 
 | Violation type | Penalty level |
 |---|---|
-| Other-than-serious | Up to $16,550 per violation |
-| Serious | $1,221 to $16,550 per violation |
-| Willful or repeated | $11,823 to $165,514 per violation |
-| Failure to abate | Up to $16,550 per day beyond the abatement date |
+| Other-than-serious | $0 to $16,550 per violation |
+| Serious | $1,085 to $16,550 per violation |
+| Repeated | $4,256 to $165,514 per violation |
+| Willful | $11,823 to $165,514 per violation |
+| Failure to abate | Up to $16,550 per day beyond the abatement date, generally limited to 30 days |
 
 Employers should still verify current penalty amounts directly with OSHA before making legal or financial decisions, because penalty levels are adjusted periodically. The real risk is not just the top-line number. It is multiplication.
 
@@ -330,4 +333,4 @@ If your next step is to decide what to issue across crews, trades, and hazards, 
 
 ---
 
-*Sources: OSHA 29 CFR 1926.95, OSHA 29 CFR 1926.52, OSHA 29 CFR 1926.21, OSHA 29 CFR 1926.28, OSHA 29 CFR 1926 Subpart M, OSHA Personal Protective Equipment in Construction Final Rule published December 12, 2024 and effective January 13, 2025, OSHA 2025 Annual Adjustments to Civil Penalties effective January 15, 2025, OSHA Top 10 Most Frequently Cited Standards for Fiscal Year 2024, and U.S. Bureau of Labor Statistics Census of Fatal Occupational Injuries 2023.*
+*Sources: OSHA 29 CFR 1926.95, OSHA 29 CFR 1926.52, OSHA 29 CFR 1926.21, OSHA 29 CFR 1926.28, OSHA 29 CFR 1926 Subpart M, OSHA Personal Protective Equipment in Construction Final Rule published December 12, 2024 and effective January 13, 2025, OSHA 2026 Annual Adjustments to Civil Penalties memorandum dated May 21, 2026, OSHA Top 10 Most Frequently Cited Standards for Fiscal Year 2025, and U.S. Bureau of Labor Statistics Census of Fatal Occupational Injuries 2024.*

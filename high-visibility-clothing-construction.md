@@ -9,7 +9,7 @@
 
 **Short answer: True—when Class 2 high-visibility clothing is the worker's visibility-control garment, it must remain visible from the outside.** On a trailer yard, work zone, equipment route, loading area, or traffic-adjacent construction site, a jacket, hoodie, or rain shell should not hide the compliant garment. Use suitable certified hi-vis outerwear or move the compliant layer outside, subject to the employer's hazard assessment and site rules.
 
-Do not treat “Class 2 must always be the outermost layer” as a universal standalone OSHA sentence. In temporary traffic-control zones within a highway right-of-way, the 2023 MUTCD requires Performance Class 2 or 3 apparel and assigns class selection to the employer-designated person responsible for worker safety. OSHA separately requires warning garments for flaggers. On other construction and trailer-yard sites, the employer's hazard assessment and site policy determine the required class and garment setup.
+Do not treat “Class 2 must always be the outermost layer” as a universal standalone OSHA sentence. In temporary traffic-control zones within a highway right-of-way, Section 6C.05 of the current FHWA MUTCD — 11th Edition with Revision 1, dated December 2025 — requires Performance Class 2 or 3 apparel and assigns class selection to the employer-designated person responsible for worker safety. OSHA separately requires warning garments for flaggers. On other construction and trailer-yard sites, the employer's hazard assessment and site policy determine the required class and garment setup.
 
 The buying rule is simple: either the outer garment must itself be suitable certified hi-vis, or the selected Class 2 or Class 3 garment must remain clearly visible from the front, back, and sides. Harnesses, tool belts, radios, and backpacks should be assessed with the garment as a system so they do not defeat its intended visibility. Do not buy high-vis workwear only by color or vest type. The RFQ should name the standard, type/class, garment format, color, reflective layout, size range, weather layer, FR or arc need, washing durability, and replacement stock.
 
@@ -393,6 +393,6 @@ Yes. High-vis garments should be part of the baseline construction PPE package f
 - [OSHA 29 CFR 1926.201, Signaling](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.201)
 - [OSHA highway work zone safety resources](https://www.osha.gov/highway-workzones)
 - [OSHA interpretation on high-visibility warning garments in highway and road construction work zones](https://www.osha.gov/laws-regs/standardinterpretations/2009-08-05)
-- [FHWA 2023 MUTCD, Section 6C.05 High-Visibility Safety Apparel](https://mutcd.fhwa.dot.gov/pdfs/11th_Edition/part6.pdf)
+- [FHWA MUTCD 11th Edition with Revision 1 (December 2025), Section 6C.05 High-Visibility Safety Apparel](https://mutcd.fhwa.dot.gov/pdfs/11th_Editionr1/mutcd11theditionr1hl.pdf)
 - [ANSI/ISEA 107-2020, American National Standard for High-Visibility Safety Apparel](https://webstore.ansi.org/standards/isea/ansiisea1072020)
 - [ISO 20471:2013, High visibility clothing — Test methods and requirements](https://www.iso.org/standard/42816.html)

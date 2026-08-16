@@ -11,6 +11,7 @@ test('BODY_ANCHOR_POINTS contains stable preset keys', () => {
   assert.deepEqual(keys, [
     'head',
     'eyes',
+    'nose',
     'ears',
     'mouth',
     'chest',

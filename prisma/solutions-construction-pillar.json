@@ -19,7 +19,7 @@
     "coverImage": "https://shop.laifappe.com/products/1770285316377-hz4oib.webp",
     "isActive": true,
     "sortOrder": 0,
-    "seoTitle": "Complete PPE Solution for Construction Sites | OSHA and CE Certified Safety Equipment",
+    "seoTitle": "Construction Site PPE Guide | OSHA, EN & Bulk Supply",
     "seoDescription": "Construction site PPE guide covering fall protection, hard hats, respiratory gear, safety footwear, OSHA rules, EN standards, and bulk supply planning.",
     "seoKeywords": "construction site PPE, construction safety equipment, PPE for construction workers, construction PPE supplier, OSHA construction PPE, CE certified construction PPE, EN standard construction PPE, bulk construction PPE",
     "sections": [
@@ -167,7 +167,7 @@
             [
               "Silica dust, demolition dust, fumes, and vapors",
               "Concrete cutting, drilling, welding, and coatings expose workers to harmful airborne contaminants.",
-              "FFP2 or N95 for light dust, FFP3 or P100 systems for heavy exposure, sealed eye protection"
+              "Respirator selected from the contaminant, engineering controls, OSHA silica Table 1 or measured exposure, required protection factor, fit, and applicable NIOSH approval or EN/CE conformity; sealed eye protection where required"
             ],
             [
               "High noise from jackhammers, saws, drills, and grinders",
@@ -289,9 +289,9 @@
               "title": "High-visibility clothing",
               "description": "Visibility control matters on mixed-traffic sites with trucks, cranes, telehandlers, rollers, loaders, and reversing plant.",
               "items": [
-                "Class 2 garments suit most general site traffic exposure",
-                "Class 3 visibility is preferred for roadwork and high-speed vehicle zones",
-                "Flame-resistant hi-vis garments are needed around hot work and ignition sources",
+                "Select Class 2 or Class 3 from the applicable work-zone rule, traffic speed, visibility, worker role, employer hazard assessment, and site policy",
+                "Class 3 or a certified garment system may be appropriate for higher-risk roadwork, flagging, night work, and high-speed vehicle exposure",
+                "Select flame-resistant or arc-rated hi-vis only where the flame or electrical hazard assessment requires it",
                 "Wet-weather hi-vis outerwear should preserve visibility, not cover it",
                 "Use the [high-visibility clothing for construction workers guide](/blog/high-visibility-clothing-construction) for Class 2 vs Class 3, color, reflective layout, weather, FR, and replacement decisions"
               ]
@@ -332,10 +332,10 @@
               "title": "Respiratory protection",
               "description": "Dust and vapor control is where many sites under-spec PPE, especially around silica, demolition, and coatings.",
               "items": [
-                "Use FFP2 or N95 for lower dust tasks where exposure remains controlled",
-                "Step up to FFP3 or P100 systems for silica-heavy cutting, drilling, and demolition",
-                "Use cartridge respirators for solvent vapors, coatings, and mixed airborne hazards",
-                "Fit testing and filter change routines are part of the program, not optional extras",
+                "Identify the airborne contaminant and apply engineering controls, OSHA silica Table 1, or measured exposure before selecting a respirator",
+                "Select the complete NIOSH-approved or EN respirator by required protection factor, contaminant, oil or vapor hazards, work duration, and facepiece; filter class alone is not enough",
+                "Use the correct particulate, gas or vapor, or combination filter or cartridge for coatings, solvents, fumes, and mixed airborne hazards",
+                "Medical evaluation, fit testing, facial-hair and use controls, training, cleaning, storage, and change schedules belong in the respiratory protection program",
                 "Use the [construction respiratory protection guide](/blog/construction-respiratory-protection) for N95, P100, half-face, cartridge, fit-test, and silica dust decisions"
               ]
             },

@@ -82,32 +82,107 @@ const TRUST_PROOF_ITEMS = [
   },
 ]
 
-const PROCUREMENT_DOWNLOADS = [
-  {
-    id: 'construction-ppe-checklist',
-    href: '/downloads/construction-ppe-checklist.pdf',
-    label: 'Checklist PDF',
-    description: 'Field-ready construction PPE checklist for site supervisors.',
-    action: 'Download',
-    isDownload: true,
-  },
-  {
-    id: 'construction-ppe-rfq-template',
-    href: '/downloads/construction-ppe-rfq-template',
-    label: 'RFQ template',
-    description: 'Open the template page before downloading or sending a quote request.',
-    action: 'Open template',
-    isDownload: false,
-  },
-  {
-    id: 'ppe-size-standards-planning-sheet',
-    href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
-    label: 'Size sheet',
-    description: 'Spreadsheet for sizing, standards, and replacement planning.',
-    action: 'Download',
-    isDownload: true,
-  },
-]
+type ProcurementResource = {
+  id: string
+  href: string
+  label: string
+  description: string
+  action: string
+  isDownload: boolean
+}
+
+type ProcurementResources = {
+  eyebrow: string
+  title: string
+  description: string
+  assets: ProcurementResource[]
+  relatedLinks: Array<{
+    href: string
+    label: string
+  }>
+}
+
+const DEFAULT_PROCUREMENT_RESOURCES: ProcurementResources = {
+  eyebrow: 'Related downloads',
+  title: 'Turn this solution into a buying brief',
+  description:
+    'Download the checklist, RFQ template, and size sheet, then send quantities and standards through the quote form.',
+  assets: [
+    {
+      id: 'construction-ppe-checklist',
+      href: '/downloads/construction-ppe-checklist.pdf',
+      label: 'Checklist PDF',
+      description: 'Field-ready construction PPE checklist for site supervisors.',
+      action: 'Download',
+      isDownload: true,
+    },
+    {
+      id: 'construction-ppe-rfq-template',
+      href: '/downloads/construction-ppe-rfq-template',
+      label: 'RFQ template',
+      description: 'Open the template page before downloading or sending a quote request.',
+      action: 'Open template',
+      isDownload: false,
+    },
+    {
+      id: 'ppe-size-standards-planning-sheet',
+      href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
+      label: 'Size sheet',
+      description: 'Spreadsheet for sizing, standards, and replacement planning.',
+      action: 'Download',
+      isDownload: true,
+    },
+  ],
+  relatedLinks: [
+    { href: '/blog/construction-ppe-checklist', label: 'Checklist guide' },
+    { href: '/blog/bulk-construction-ppe-procurement', label: 'Bulk buying' },
+    { href: '/tools/ppe-calculator', label: 'PPE calculator' },
+  ],
+}
+
+const MINING_PROCUREMENT_RESOURCES: ProcurementResources = {
+  eyebrow: 'Mining resources',
+  title: 'Turn this mining PPE guide into a buying brief',
+  description:
+    'Review the task checklist, silica controls, and work-area comparison, then send quantities, standards, and documentation requirements through the quote form.',
+  assets: [
+    {
+      id: 'mining-ppe-checklist-by-task',
+      href: '/blog/mining-ppe-checklist-by-task',
+      label: 'Mining checklist',
+      description: 'Task-based checks for drilling, blasting, crushing, haul roads, processing, and maintenance.',
+      action: 'Open checklist',
+      isDownload: false,
+    },
+    {
+      id: 'mining-silica-dust-controls-respirator-selection',
+      href: '/blog/mining-silica-dust-controls-respirator-selection',
+      label: 'Silica controls',
+      description: 'Exposure monitoring, engineering controls, APF selection, fit testing, and program checks.',
+      action: 'Open guide',
+      isDownload: false,
+    },
+    {
+      id: 'open-pit-vs-underground-mining-ppe',
+      href: '/blog/open-pit-vs-underground-mining-ppe',
+      label: 'Work-area guide',
+      description: 'Compare PPE decisions for open-pit, underground, quarry, and processing work areas.',
+      action: 'Open guide',
+      isDownload: false,
+    },
+  ],
+  relatedLinks: [
+    { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
+    { href: '/categories/respiratory-protection', label: 'Respiratory protection' },
+    { href: '/tools/ppe-calculator', label: 'PPE calculator' },
+  ],
+}
+
+function getProcurementResources(solutionSlug: string): ProcurementResources {
+  return solutionSlug === 'ppe-safety-equipment-for-mining-quarrying'
+    ? MINING_PROCUREMENT_RESOURCES
+    : DEFAULT_PROCUREMENT_RESOURCES
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
@@ -291,7 +366,7 @@ export default async function SolutionDetailPage({ params }: Props) {
   const solutionResourceSections = (
     <>
       <SolutionTrustProofSection />
-      <SolutionProcurementDownloads source={solutionSource} />
+      <SolutionProcurementDownloads source={solutionSource} solutionSlug={slug} />
       <ToolRecommendationsSection
         tools={relatedTools}
         title="Move from PPE guidance to order planning"
@@ -412,22 +487,21 @@ function SolutionTrustProofSection() {
   )
 }
 
-function SolutionProcurementDownloads({ source }: { source: string }) {
+function SolutionProcurementDownloads({ source, solutionSlug }: { source: string; solutionSlug: string }) {
+  const resources = getProcurementResources(solutionSlug)
+
   return (
     <section className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div>
           <div className="mb-2 flex items-center gap-2 text-sm font-medium text-primary">
             <Download className="h-4 w-4" aria-hidden="true" />
-            Related downloads
+            {resources.eyebrow}
           </div>
           <h2 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
-            Turn this solution into a buying brief
+            {resources.title}
           </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-            Download the checklist, RFQ template, and size sheet, then send quantities and standards through the quote
-            form.
-          </p>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">{resources.description}</p>
         </div>
         <Link
           href="/quote"
@@ -439,7 +513,7 @@ function SolutionProcurementDownloads({ source }: { source: string }) {
         </Link>
       </div>
       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        {PROCUREMENT_DOWNLOADS.map((asset) => (
+        {resources.assets.map((asset) => (
           <Link
             key={asset.id}
             href={asset.href}
@@ -462,11 +536,7 @@ function SolutionProcurementDownloads({ source }: { source: string }) {
         ))}
       </div>
       <div className="mt-5 flex flex-wrap gap-3 border-t pt-5 text-sm">
-        {[
-          { href: '/blog/construction-ppe-checklist', label: 'Checklist guide' },
-          { href: '/blog/bulk-construction-ppe-procurement', label: 'Bulk buying' },
-          { href: '/tools/ppe-calculator', label: 'PPE calculator' },
-        ].map((item) => (
+        {resources.relatedLinks.map((item) => (
           <Link
             key={item.href}
             href={item.href}

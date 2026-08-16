@@ -127,7 +127,7 @@ export function BodyLinkMapSection({
       <div ref={containerRef} className="relative">
         <svg
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-20 h-full w-full"
+          className="pointer-events-none absolute inset-0 z-20 hidden h-full w-full xl:block"
         >
           {connectors.map((line) => {
             const isActive = activeItemKey === line.itemKey
@@ -163,8 +163,12 @@ export function BodyLinkMapSection({
           })}
         </svg>
 
-        <div className="relative z-10 grid gap-6 md:grid-cols-[minmax(300px,420px)_minmax(0,1fr)]">
-          <div ref={imageRef} className="relative mx-auto w-full max-w-[420px] overflow-hidden rounded-xl border bg-muted/20">
+        <div className="relative z-10 grid gap-6 xl:grid-cols-[minmax(300px,420px)_minmax(0,1fr)]">
+          {/* Anchor percentages must stay tied to the image aspect box, not a stretched grid row. */}
+          <div
+            ref={imageRef}
+            className="relative mx-auto w-full max-w-[420px] self-start overflow-hidden rounded-xl border bg-muted/20"
+          >
             <div className="relative aspect-[2/3] w-full">
               <Image
                 src={imageSrc}
@@ -186,7 +190,7 @@ export function BodyLinkMapSection({
                   onMouseLeave={() => setActiveItemKey(null)}
                   onFocus={() => setActiveItemKey(item.itemKey)}
                   onBlur={() => setActiveItemKey(null)}
-                  className="absolute z-30 h-4 w-4 -translate-x-1/2 -translate-y-1/2 transition-transform focus-visible:outline-none"
+                  className="absolute z-30 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 transition-transform focus-visible:outline-none xl:block"
                   style={{ left: `${item.bodyAnchor.x}%`, top: `${item.bodyAnchor.y}%` }}
                 >
                   <span
@@ -200,7 +204,7 @@ export function BodyLinkMapSection({
             })}
           </div>
 
-          <div className="space-y-3">
+          <div className="grid gap-3 sm:grid-cols-2 xl:block xl:space-y-3">
             {linkedItems.map((item, index) => {
               const isActive = activeItemKey === item.itemKey
               return (
