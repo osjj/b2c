@@ -6,6 +6,10 @@ import { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
+import {
+  collectCategoryIndexNowUrls,
+  scheduleIndexNowUrls,
+} from '@/lib/indexnow-auto'
 
 const categorySchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -228,7 +232,22 @@ export async function createCategory(
     return { error: 'Slug already exists' }
   }
 
+  const parent = result.data.parentId
+    ? await prisma.category.findUnique({
+        where: { id: result.data.parentId },
+        select: { slug: true, isActive: true },
+      })
+    : null
+
   await prisma.category.create({ data: result.data })
+
+  scheduleIndexNowUrls(
+    collectCategoryIndexNowUrls(null, {
+      slug: result.data.slug,
+      isActive: result.data.isActive,
+      parent,
+    })
+  )
 
   revalidatePath('/admin/categories')
   revalidatePath('/categories')
@@ -260,10 +279,10 @@ export async function updateCategory(
   }
 
   // Check slug uniqueness (exclude current)
-  const existing = await prisma.category.findFirst({
+  const slugClash = await prisma.category.findFirst({
     where: { slug: result.data.slug, NOT: { id } },
   })
-  if (existing) {
+  if (slugClash) {
     return { error: 'Slug already exists' }
   }
 
@@ -272,10 +291,68 @@ export async function updateCategory(
     return { error: 'Category cannot be its own parent' }
   }
 
+  const existingCategory = await prisma.category.findUnique({
+    where: { id },
+    select: {
+      slug: true,
+      isActive: true,
+      parent: { select: { slug: true, isActive: true } },
+      children: { select: { slug: true, isActive: true } },
+    },
+  })
+  if (!existingCategory) {
+    return { error: 'Category not found' }
+  }
+
+  const nextParent = result.data.parentId
+    ? await prisma.category.findUnique({
+        where: { id: result.data.parentId },
+        select: { slug: true, isActive: true },
+      })
+    : null
+
   await prisma.category.update({
     where: { id },
     data: result.data,
   })
+
+  const indexNowUrls = collectCategoryIndexNowUrls(
+    {
+      slug: existingCategory.slug,
+      isActive: existingCategory.isActive,
+      parent: existingCategory.parent,
+    },
+    {
+      slug: result.data.slug,
+      isActive: result.data.isActive,
+      parent: nextParent,
+    }
+  )
+
+  for (const child of existingCategory.children) {
+    indexNowUrls.push(
+      ...collectCategoryIndexNowUrls(
+        {
+          slug: child.slug,
+          isActive: child.isActive,
+          parent: {
+            slug: existingCategory.slug,
+            isActive: existingCategory.isActive,
+          },
+        },
+        {
+          slug: child.slug,
+          isActive: child.isActive,
+          parent: {
+            slug: result.data.slug,
+            isActive: result.data.isActive,
+          },
+        }
+      )
+    )
+  }
+
+  scheduleIndexNowUrls(indexNowUrls)
 
   revalidatePath('/admin/categories')
   revalidatePath('/categories')
@@ -285,6 +362,19 @@ export async function updateCategory(
 // Delete category
 export async function deleteCategory(id: string) {
   await requireAdmin()
+
+  const category = await prisma.category.findUnique({
+    where: { id },
+    select: {
+      slug: true,
+      isActive: true,
+      parent: { select: { slug: true, isActive: true } },
+    },
+  })
+
+  if (!category) {
+    throw new Error('Category not found')
+  }
 
   // Check for products
   const productCount = await prisma.product.count({
@@ -303,6 +393,17 @@ export async function deleteCategory(id: string) {
   }
 
   await prisma.category.delete({ where: { id } })
+
+  scheduleIndexNowUrls(
+    collectCategoryIndexNowUrls(
+      {
+        slug: category.slug,
+        isActive: category.isActive,
+        parent: category.parent,
+      },
+      null
+    )
+  )
 
   revalidatePath('/admin/categories')
   revalidatePath('/categories')

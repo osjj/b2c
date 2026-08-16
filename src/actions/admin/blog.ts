@@ -6,6 +6,10 @@ import { redirect } from 'next/navigation'
 import type { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/auth-utils'
+import {
+  collectBlogIndexNowUrls,
+  scheduleIndexNowUrls,
+} from '@/lib/indexnow-auto'
 
 export type BlogPostState = {
   error?: string
@@ -87,6 +91,13 @@ export async function createBlogPost(
     },
   })
 
+  scheduleIndexNowUrls(
+    collectBlogIndexNowUrls(null, {
+      slug: parsed.data.slug,
+      isPublic: parsed.data.isPublished,
+    })
+  )
+
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
   redirect('/admin/blog')
@@ -144,6 +155,13 @@ export async function updateBlogPost(
     },
   })
 
+  scheduleIndexNowUrls(
+    collectBlogIndexNowUrls(
+      { slug: existing.slug, isPublic: existing.isPublished },
+      { slug: parsed.data.slug, isPublic: parsed.data.isPublished }
+    )
+  )
+
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
   revalidatePath(`/blog/${parsed.data.slug}`)
@@ -158,6 +176,12 @@ export async function deleteBlogPost(id: string) {
   const existing = await prisma.blogPost.findUnique({ where: { id } })
   if (!existing) return
   await prisma.blogPost.delete({ where: { id } })
+  scheduleIndexNowUrls(
+    collectBlogIndexNowUrls(
+      { slug: existing.slug, isPublic: existing.isPublished },
+      null
+    )
+  )
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
   revalidatePath(`/blog/${existing.slug}`)
@@ -175,6 +199,12 @@ export async function toggleBlogPostPublish(id: string) {
       publishedAt: nowPublishing ? existing.publishedAt ?? new Date() : null,
     },
   })
+  scheduleIndexNowUrls(
+    collectBlogIndexNowUrls(
+      { slug: existing.slug, isPublic: existing.isPublished },
+      { slug: existing.slug, isPublic: nowPublishing }
+    )
+  )
   revalidatePath('/admin/blog')
   revalidatePath('/blog')
   revalidatePath(`/blog/${existing.slug}`)

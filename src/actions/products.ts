@@ -5,6 +5,10 @@ import { redirect } from 'next/navigation'
 import { after } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { buildProductEmbeddingText, generateEmbedding } from '@/lib/embeddings'
+import {
+  collectProductIndexNowUrls,
+  scheduleIndexNowUrls,
+} from '@/lib/indexnow-auto'
 import { generateUniqueProductSlug, saveLegacyProductSlug } from '@/lib/product-slug.server'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
@@ -447,6 +451,12 @@ export async function createProduct(
   if (createdProductId) {
     after(() => updateProductEmbedding(createdProductId))
   }
+  scheduleIndexNowUrls(
+    collectProductIndexNowUrls(null, {
+      slug: normalizedSlug,
+      isPublic: productData.isActive,
+    })
+  )
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
@@ -559,7 +569,7 @@ export async function updateProduct(
   const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
   const currentProduct = await prisma.product.findUnique({
     where: { id },
-    select: { slug: true },
+    select: { slug: true, isActive: true },
   })
 
   if (!currentProduct) {
@@ -687,6 +697,12 @@ export async function updateProduct(
   )
 
   after(() => updateProductEmbedding(id))
+  scheduleIndexNowUrls(
+    collectProductIndexNowUrls(
+      { slug: currentProduct.slug, isPublic: currentProduct.isActive },
+      { slug: normalizedSlug, isPublic: productData.isActive }
+    )
+  )
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
@@ -699,10 +715,26 @@ export async function updateProduct(
 export async function archiveProduct(id: string) {
   await requireAdmin()
 
+  const product = await prisma.product.findUnique({
+    where: { id },
+    select: { slug: true, isActive: true },
+  })
+
+  if (!product) {
+    throw new Error('Product not found')
+  }
+
   await prisma.product.update({
     where: { id },
     data: { isActive: false },
   })
+
+  scheduleIndexNowUrls(
+    collectProductIndexNowUrls(
+      { slug: product.slug, isPublic: product.isActive },
+      { slug: product.slug, isPublic: false }
+    )
+  )
 
   revalidatePath('/admin/products')
   revalidatePath('/products')
@@ -712,6 +744,15 @@ export async function archiveProduct(id: string) {
 // Only works for products without order history
 export async function deleteProduct(id: string) {
   await requireAdmin()
+
+  const product = await prisma.product.findUnique({
+    where: { id },
+    select: { slug: true, isActive: true },
+  })
+
+  if (!product) {
+    throw new Error('Product not found')
+  }
 
   // Check if product has any order items
   const orderItemCount = await prisma.orderItem.count({
@@ -739,6 +780,13 @@ export async function deleteProduct(id: string) {
     // Finally delete the product
     await tx.product.delete({ where: { id } })
   })
+
+  scheduleIndexNowUrls(
+    collectProductIndexNowUrls(
+      { slug: product.slug, isPublic: product.isActive },
+      null
+    )
+  )
 
   revalidatePath('/admin/products')
   revalidatePath('/products')

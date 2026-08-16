@@ -5,6 +5,10 @@ import {
   resolveProductIdBySlug,
   saveLegacyProductSlug,
 } from '@/lib/product-slug.server'
+import {
+  collectProductIndexNowUrls,
+  scheduleIndexNowUrls,
+} from '@/lib/indexnow-auto'
 import { z } from 'zod'
 
 // API Key for batch operations (set in environment variables)
@@ -58,6 +62,7 @@ export async function POST(request: NextRequest) {
 
     const { products } = result.data
     const results: { success: boolean; slug: string; id?: string; error?: string }[] = []
+    const indexNowUrls: string[] = []
 
     for (const productData of products) {
       try {
@@ -136,6 +141,12 @@ export async function POST(request: NextRequest) {
         })
 
         results.push({ success: true, slug: product.slug, id: product.id })
+        indexNowUrls.push(
+          ...collectProductIndexNowUrls(
+            { slug: existing.slug, isPublic: existing.isActive },
+            { slug: product.slug, isPublic: product.isActive }
+          )
+        )
       } catch (error) {
         results.push({
           success: false,
@@ -147,6 +158,8 @@ export async function POST(request: NextRequest) {
 
     const successCount = results.filter(r => r.success).length
     const failCount = results.filter(r => !r.success).length
+
+    scheduleIndexNowUrls(indexNowUrls)
 
     return NextResponse.json({
       message: `Batch update complete: ${successCount} updated, ${failCount} failed`,

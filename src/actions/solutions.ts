@@ -5,6 +5,10 @@ import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
+import {
+  collectSolutionIndexNowUrls,
+  scheduleIndexNowUrls,
+} from '@/lib/indexnow-auto'
 import type { SolutionSectionInput, SolutionSectionType } from '@/types/solution'
 import type { Prisma } from '@prisma/client'
 import {
@@ -282,6 +286,13 @@ export async function createSolution(
     },
   })
 
+  scheduleIndexNowUrls(
+    collectSolutionIndexNowUrls(null, {
+      slug: data.slug,
+      isPublic: data.isActive,
+    })
+  )
+
   revalidatePath('/admin/solutions')
   revalidatePath('/solutions')
   redirect('/admin/solutions')
@@ -317,6 +328,14 @@ export async function updateSolution(
   }
 
   const data = result.data
+
+  const solution = await prisma.solution.findUnique({
+    where: { id },
+    select: { slug: true, isActive: true },
+  })
+  if (!solution) {
+    return { error: 'Solution not found' }
+  }
 
   const existing = await prisma.solution.findFirst({
     where: { slug: data.slug, NOT: { id } },
@@ -379,6 +398,13 @@ export async function updateSolution(
     }
   })
 
+  scheduleIndexNowUrls(
+    collectSolutionIndexNowUrls(
+      { slug: solution.slug, isPublic: solution.isActive },
+      { slug: data.slug, isPublic: data.isActive }
+    )
+  )
+
   revalidatePath('/admin/solutions')
   revalidatePath('/solutions')
   revalidatePath(`/solutions/${data.slug}`)
@@ -398,6 +424,13 @@ export async function deleteSolution(id: string) {
   }
 
   await prisma.solution.delete({ where: { id } })
+
+  scheduleIndexNowUrls(
+    collectSolutionIndexNowUrls(
+      { slug: solution.slug, isPublic: solution.isActive },
+      null
+    )
+  )
 
   revalidatePath('/admin/solutions')
   revalidatePath('/solutions')
@@ -419,6 +452,13 @@ export async function toggleSolutionActive(id: string) {
     where: { id },
     data: { isActive: !solution.isActive },
   })
+
+  scheduleIndexNowUrls(
+    collectSolutionIndexNowUrls(
+      { slug: solution.slug, isPublic: solution.isActive },
+      { slug: solution.slug, isPublic: !solution.isActive }
+    )
+  )
 
   revalidatePath('/admin/solutions')
   revalidatePath('/solutions')

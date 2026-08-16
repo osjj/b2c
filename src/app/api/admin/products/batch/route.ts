@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { generateUniqueProductSlug } from '@/lib/product-slug.server'
+import {
+  collectProductIndexNowUrls,
+  scheduleIndexNowUrls,
+} from '@/lib/indexnow-auto'
 import { z } from 'zod'
 
 // API Key for batch operations (set in environment variables)
@@ -53,6 +57,7 @@ export async function POST(request: NextRequest) {
 
     const { products } = result.data
     const results: { success: boolean; slug: string; id?: string; error?: string }[] = []
+    const indexNowUrls: string[] = []
 
     for (const productData of products) {
       try {
@@ -104,6 +109,12 @@ export async function POST(request: NextRequest) {
         })
 
         results.push({ success: true, slug: product.slug, id: product.id })
+        indexNowUrls.push(
+          ...collectProductIndexNowUrls(null, {
+            slug: product.slug,
+            isPublic: data.isActive,
+          })
+        )
       } catch (error) {
         results.push({
           success: false,
@@ -115,6 +126,8 @@ export async function POST(request: NextRequest) {
 
     const successCount = results.filter(r => r.success).length
     const failCount = results.filter(r => !r.success).length
+
+    scheduleIndexNowUrls(indexNowUrls)
 
     return NextResponse.json({
       message: `Batch complete: ${successCount} created, ${failCount} failed`,
