@@ -17,8 +17,8 @@ const UPLOAD_MANIFEST_PATH = path.join(IMPORT_DIR, 'upload-manifest.json')
 
 const CATEGORY_SLUG = 'head-protection'
 const CATEGORY_NAME = 'Head Protection'
-const PRODUCT_NAME = 'EN 397 ABS Industrial Safety Helmet 2158T'
-const PRODUCT_SLUG = 'en-397-abs-industrial-safety-helmet-2158t'
+const PRODUCT_NAME = 'EN 397 ABS Safety Helmet with T-Shaped Top Ridge'
+const PRODUCT_SLUG = 'en-397-abs-safety-helmet-t-shaped-ridge'
 const PRODUCT_PRICE = new Prisma.Decimal('0.00')
 const PRODUCT_WEIGHT_KG = new Prisma.Decimal('0.41')
 const NOTION_PAGE_ID = '3bed505a-0030-80c2-897a-e01327d8a5fb'
@@ -459,7 +459,7 @@ async function writeProduct(
       data: {
         name: PRODUCT_NAME,
         slug: PRODUCT_SLUG,
-        description: 'Non-vented ABS industrial safety helmet model 2158T with four-point suspension, rear ratchet adjustment, adjustable chin strap, front sweatband and rain-channel brim. The listing references EN 397:2012 + A1:2012; certification and test documentation were not provided.',
+        description: 'Non-vented ABS industrial safety helmet with a T-shaped top ridge, model 2158T, four-point suspension, rear ratchet adjustment, adjustable chin strap, front sweatband and rain-channel brim. The listing references EN 397:2012 + A1:2012; certification and test documentation were not provided.',
         price: PRODUCT_PRICE,
         comparePrice: null,
         cost: null,
@@ -472,11 +472,11 @@ async function writeProduct(
         specifications,
         content: productContent(details),
         usageScenes: ['construction', 'steel-production', 'installation', 'railway-maintenance'],
-        metaTitle: '2158T ABS Industrial Safety Helmet with Ratchet Adjustment',
-        metaDescription: 'Model 2158T non-vented ABS industrial safety helmet with four-point suspension, ratchet adjustment, chin strap and 410 g ±5% weight.',
-        metaKeywords: 'ABS safety helmet, EN 397 helmet, industrial hard hat, ratchet safety helmet, model 2158T',
+        metaTitle: 'T-Shaped Top Ridge ABS Safety Helmet with Ratchet',
+        metaDescription: 'EN 397 ABS safety helmet with a T-shaped top ridge, four-point suspension, ratchet adjustment, chin strap and 410 g ±5% weight.',
+        metaKeywords: 'T-shaped ridge safety helmet, ABS safety helmet, EN 397 helmet, industrial hard hat, ratchet safety helmet, model 2158T',
         ogTitle: PRODUCT_NAME,
-        ogDescription: 'Non-vented ABS industrial safety helmet model 2158T with four-point suspension and rear ratchet adjustment.',
+        ogDescription: 'Non-vented ABS safety helmet with a T-shaped top ridge, four-point suspension and rear ratchet adjustment.',
         ogImage: gallery[0]?.outputUrl ?? null,
         images: {
           create: gallery.map((asset, index) => ({
