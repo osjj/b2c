@@ -17,7 +17,7 @@ function truncateTitle(value: string, maxLength: number): string {
 
   return candidate
     .slice(0, safeCutoff)
-    .replace(/[|/:;,\-\u2013\u2014]+$/g, '')
+    .replace(/[&|/:;,\-\u2013\u2014]+$/g, '')
     .replace(/\b(?:a|an|and|by|for|from|in|of|on|or|the|to|with)$/i, '')
     .trim()
 }

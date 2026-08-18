@@ -12,6 +12,13 @@ const GUIDE_CATALOG = {
     description: 'Use this when tool users need ASTM, EN ISO 20345, toe cap, outsole, and fit context.',
     eyebrow: '2,202 impressions',
   },
+  'mining-quarry-safety-boots-guide': {
+    href: '/blog/mining-quarry-safety-boots-guide',
+    title: 'Mining & Quarry Safety Boots Guide',
+    description:
+      'Turn mine hazards, standards evidence, fit trials, size curves, and replacement stock into a footwear RFQ.',
+    eyebrow: 'Mining footwear',
+  },
   'construction-gloves-selection-guide': {
     href: '/blog/construction-gloves-selection-guide',
     title: 'Construction Gloves Guide',
@@ -149,6 +156,7 @@ export const TOOL_RELATED_GUIDES = {
     'contractor-ppe-kit-checklist',
     'osha-ppe-requirements-construction',
     'mining-hearing-protection-guide',
+    'mining-quarry-safety-boots-guide',
   ]),
   'ppe-calculator': pickGuides([
     'bulk-construction-ppe-procurement',
@@ -159,16 +167,19 @@ export const TOOL_RELATED_GUIDES = {
     'construction-respiratory-protection',
     'construction-hearing-protection',
     'mining-hearing-protection-guide',
+    'mining-quarry-safety-boots-guide',
     'construction-ppe-checklist',
   ]),
   'size-guide': pickGuides([
     'construction-safety-footwear-guide',
+    'mining-quarry-safety-boots-guide',
     'bulk-construction-ppe-procurement',
     'construction-ppe-checklist',
     'osha-ppe-requirements-construction',
   ]),
   'compliance-checker': pickGuides([
     'construction-safety-footwear-guide',
+    'mining-quarry-safety-boots-guide',
     'osha-ppe-requirements-construction',
     'bulk-construction-ppe-procurement',
     'construction-ppe-checklist',

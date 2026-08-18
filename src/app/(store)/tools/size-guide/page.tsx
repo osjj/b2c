@@ -9,8 +9,8 @@ import { SIZE_CHART, WIDTH_CHART } from './data'
 
 const TITLE = 'Safety Boot Size Guide — US, EU, UK, CN & JP Conversion Chart'
 const DESCRIPTION =
-  'Free safety boot size converter and fitting guide. Convert between US men\'s, US women\'s, UK, EU, China and Japan sizing, plus ASTM and EN width fittings. Includes how-to-measure instructions.'
-const SEO_TITLE = 'Safety Boot Size Conversion Chart - US, EU, UK, CN & JP Guide'
+  'Convert safety boot sizes across US men\'s, US women\'s, UK, EU, China and Japan. Check foot length, width and steel-toe fit before ordering work boots.'
+const SEO_TITLE = 'Safety Boot Size Chart & Converter | US, EU, UK, CN & JP'
 
 const QUOTE_HREF = '/quote'
 const QUOTE_SOURCE = 'tool-size-guide'

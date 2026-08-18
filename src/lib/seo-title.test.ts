@@ -33,3 +33,10 @@ test('buildPageTitle avoids a partial final word when cutting a product name', (
     '6kV Insulated Anti-Puncture Safety Shoes with Quick-Lace'
   )
 })
+
+test('buildPageTitle removes a dangling ampersand after truncation', () => {
+  assert.equal(
+    buildPageTitle('Flame-Retardant Reflective Worker Coveralls for Mining & Quarrying'),
+    'Flame-Retardant Reflective Worker Coveralls for Mining'
+  )
+})

@@ -1055,6 +1055,40 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       label: 'Request respirator documentation and options',
     },
   },
+  'mining-quarry-safety-boots-guide': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/foot-protection', label: 'Foot protection' },
+      { href: '/categories/foot-protection/safety-boots', label: 'Safety boots' },
+      {
+        href: '/categories/foot-protection/safety-rain-boots',
+        label: 'Safety rain boots',
+      },
+    ],
+    products: [
+      {
+        href: '/products/pvc-steel-toe-safety-rain-boots-for-mining-and-industrial',
+        label: 'PVC steel toe safety rain boots',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request mining safety boot options',
+    },
+    resources: [
+      {
+        href: '/tools/size-guide',
+        label: 'Safety boot size guide',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
+        label: 'PPE size and standards planning sheet',
+      },
+    ],
+  },
   'open-pit-vs-underground-mining-ppe': {
     solution: {
       href: '/solutions/ppe-safety-equipment-for-mining-quarrying',

@@ -25,6 +25,34 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600
 
+const PRIORITY_HUBS = [
+  {
+    title: 'Construction PPE hub',
+    description:
+      'Move from research articles to hazard mapping, product categories, downloads, and quote planning for construction PPE.',
+    features: ['Solution overview', 'Checklist path', 'Product links', 'Quote-ready'],
+    href: '/solutions/construction-site-ppe-solution',
+    action: 'Open construction hub',
+    secondaryHref: '/blog/construction-ppe-checklist',
+    secondaryAction: 'Construction checklist',
+    image: 'https://shop.laifappe.com/products/1770285316377-hz4oib.webp',
+    imageAlt: 'Construction PPE hub guide',
+  },
+  {
+    title: 'Mining & quarrying PPE hub',
+    description:
+      'Compare task, work-area, dust, noise, and footwear decisions before building a mine or quarry PPE buying brief.',
+    features: ['Task checklist', 'Work-area guide', 'Exposure guides', 'Buyer resources'],
+    href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+    action: 'Open mining hub',
+    secondaryHref: '/blog/mining-ppe-checklist-by-task',
+    secondaryAction: 'Mining checklist',
+    image:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    imageAlt: 'Mining and quarrying PPE hub guide',
+  },
+] as const
+
 export default async function BlogIndexPage() {
   const posts = await getPublishedBlogPosts()
   const [featured, ...rest] = posts
@@ -67,53 +95,57 @@ export default async function BlogIndexPage() {
       </header>
 
       <section className="container mx-auto px-4 lg:px-6 mb-12">
-        <div className="overflow-hidden rounded-2xl border bg-background shadow-sm">
-          <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_340px]">
-            <div className="p-5 sm:p-7 lg:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
-                Priority hub
-              </p>
-              <h2 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
-                Construction PPE hub
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-                Use the hub to move from research articles to hazard mapping, product categories, downloads, and quote
-                planning for construction PPE.
-              </p>
-              <div className="mt-5 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2 lg:max-w-2xl">
-                {['Solution overview', 'Checklist path', 'Product links', 'Quote-ready'].map((item) => (
-                  <span key={item} className="flex min-w-0 items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
-                    <span className="min-w-0">{item}</span>
-                  </span>
-                ))}
+        <div className="grid gap-6 lg:grid-cols-2">
+          {PRIORITY_HUBS.map((hub) => (
+            <article
+              key={hub.href}
+              className="flex min-w-0 flex-col overflow-hidden rounded-2xl border bg-background shadow-sm"
+            >
+              <div className="relative aspect-[16/7] bg-muted">
+                <Image
+                  src={hub.image}
+                  alt={hub.imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/solutions/construction-site-ppe-solution"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-                >
-                  Open hub
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/blog/construction-ppe-checklist"
-                  className="inline-flex h-11 items-center justify-center rounded-md border px-5 text-sm font-semibold transition-colors hover:bg-muted"
-                >
-                  Checklist
-                </Link>
+              <div className="flex flex-1 flex-col p-5 sm:p-7">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
+                  Priority hub
+                </p>
+                <h2 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">
+                  {hub.title}
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                  {hub.description}
+                </p>
+                <div className="mt-5 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
+                  {hub.features.map((item) => (
+                    <span key={item} className="flex min-w-0 items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
+                      <span className="min-w-0">{item}</span>
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-auto flex flex-wrap gap-3 pt-6">
+                  <Link
+                    href={hub.href}
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                  >
+                    {hub.action}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href={hub.secondaryHref}
+                    className="inline-flex h-11 items-center justify-center rounded-md border px-5 text-sm font-semibold transition-colors hover:bg-muted"
+                  >
+                    {hub.secondaryAction}
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className="relative hidden min-h-[250px] bg-muted lg:block">
-              <Image
-                src="https://shop.laifappe.com/products/1770285316377-hz4oib.webp"
-                alt="Construction PPE hub guide"
-                fill
-                sizes="340px"
-                className="object-cover"
-              />
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </section>
 

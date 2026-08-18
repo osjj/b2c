@@ -291,6 +291,7 @@ Facial hair must not cross or interfere with a tight-fitting face seal or valve.
 - [Mining Safety Equipment and PPE for Quarry Operations](/solutions/ppe-safety-equipment-for-mining-quarrying)
 - [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task)
 - [Open-Pit vs Underground Mining PPE: Key Differences](/blog/open-pit-vs-underground-mining-ppe)
+- [Mining & Quarry Safety Boots Buyer Guide](/blog/mining-quarry-safety-boots-guide)
 - [Respiratory protection product categories](/categories/respiratory-protection)
 - [Half-face respirator category](/categories/respiratory-protection/half-face-respirators)
 - [Construction Respiratory Protection Guide](/blog/construction-respiratory-protection) for OSHA-regulated construction work rather than mine operations

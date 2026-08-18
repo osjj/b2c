@@ -164,6 +164,8 @@ High-visibility clothing is useful around mobile equipment, but visibility appar
 - Select gloves and [safety boots](/categories/foot-protection/safety-boots) for three-point access, inspection, samples, chains, rough ground, mud, fuel or oil contact, and weather.
 - Store PPE so it remains clean, reachable, and undamaged in the cab; do not leave emergency or required gear buried behind loose items.
 
+For the dedicated toe, metatarsal, puncture, wet-work, fit, documentation, and bulk-order decision, use the [Mining & Quarry Safety Boots Buyer Guide](/blog/mining-quarry-safety-boots-guide).
+
 MSHA's [Powered Haulage Equipment Safety Guidance](https://www.msha.gov/sites/default/files/events/Powered%20Haulage%20Guidance.pdf) treats visibility, communication, traffic management, road condition, seat belts, and pre-operational examination as connected controls. Use that systems view rather than reducing haul-road safety to a reflective vest.
 
 ## Maintenance PPE Checklist

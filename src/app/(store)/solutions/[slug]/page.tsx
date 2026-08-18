@@ -144,7 +144,7 @@ const MINING_PROCUREMENT_RESOURCES: ProcurementResources = {
   eyebrow: 'Mining resources',
   title: 'Turn this mining PPE guide into a buying brief',
   description:
-    'Review the task checklist, silica controls, and work-area comparison, then send quantities, standards, and documentation requirements through the quote form.',
+    'Review task, footwear, silica, hearing, and work-area decisions, then send quantities, standards, and documentation requirements through the quote form.',
   assets: [
     {
       id: 'mining-ppe-checklist-by-task',
@@ -155,10 +155,26 @@ const MINING_PROCUREMENT_RESOURCES: ProcurementResources = {
       isDownload: false,
     },
     {
+      id: 'mining-quarry-safety-boots-guide',
+      href: '/blog/mining-quarry-safety-boots-guide',
+      label: 'Safety boots guide',
+      description: 'Compare protective toe, metatarsal, puncture, grip, wet-work, fit, and RFQ requirements.',
+      action: 'Open guide',
+      isDownload: false,
+    },
+    {
       id: 'mining-silica-dust-controls-respirator-selection',
       href: '/blog/mining-silica-dust-controls-respirator-selection',
       label: 'Silica controls',
       description: 'Exposure monitoring, engineering controls, APF selection, fit testing, and program checks.',
+      action: 'Open guide',
+      isDownload: false,
+    },
+    {
+      id: 'mining-hearing-protection-guide',
+      href: '/blog/mining-hearing-protection-guide',
+      label: 'Hearing guide',
+      description: 'Connect measured noise, controls, protector fit, compatibility, and replacement planning.',
       action: 'Open guide',
       isDownload: false,
     },
@@ -174,6 +190,7 @@ const MINING_PROCUREMENT_RESOURCES: ProcurementResources = {
   relatedLinks: [
     { href: '/categories/head-protection/safety-helmets', label: 'Safety helmets' },
     { href: '/categories/respiratory-protection', label: 'Respiratory protection' },
+    { href: '/categories/foot-protection/safety-boots', label: 'Safety boots' },
     { href: '/tools/ppe-calculator', label: 'PPE calculator' },
   ],
 }
@@ -489,6 +506,10 @@ function SolutionTrustProofSection() {
 
 function SolutionProcurementDownloads({ source, solutionSlug }: { source: string; solutionSlug: string }) {
   const resources = getProcurementResources(solutionSlug)
+  const assetGridColumns =
+    solutionSlug === 'ppe-safety-equipment-for-mining-quarrying'
+      ? 'sm:grid-cols-2'
+      : 'sm:grid-cols-3'
 
   return (
     <section className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
@@ -512,7 +533,7 @@ function SolutionProcurementDownloads({ source, solutionSlug }: { source: string
           <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
-      <div className="mt-5 grid gap-3 sm:grid-cols-3">
+      <div className={`mt-5 grid gap-3 ${assetGridColumns}`}>
         {resources.assets.map((asset) => (
           <Link
             key={asset.id}

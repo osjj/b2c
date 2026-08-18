@@ -256,6 +256,7 @@ Follow the manufacturer and the mine's condition-based rules. Replace disposable
 - [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task)
 - [Open-Pit vs Underground Mining PPE: Key Differences](/blog/open-pit-vs-underground-mining-ppe)
 - [Mining Silica Dust Controls and Respirator Selection](/blog/mining-silica-dust-controls-respirator-selection)
+- [Mining & Quarry Safety Boots Buyer Guide](/blog/mining-quarry-safety-boots-guide)
 - [Hearing Protection for Construction Workers](/blog/construction-hearing-protection) for OSHA-regulated construction work rather than MSHA-covered mine operations
 - [MSHA Compliance Guide to the Occupational Noise Exposure Standard](https://arlweb.msha.gov/REGS/COMPLIAN/GUIDES/noise/guide303.PDF)
 - [NIOSH Mining Noise-Induced Hearing Loss](https://www.cdc.gov/niosh/mining/topics/hearing-loss.html)

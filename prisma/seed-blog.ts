@@ -24,6 +24,7 @@
  *   - mining-ppe-checklist-by-task
  *   - mining-hearing-protection-guide
  *   - mining-silica-dust-controls-respirator-selection
+ *   - mining-quarry-safety-boots-guide
  *   - open-pit-vs-underground-mining-ppe
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
@@ -1819,6 +1820,51 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
         caption:
           'A written program assigns ownership for hazard evaluation, selection, medical review, fit testing, training, maintenance, storage, and change control.',
+      },
+    },
+  },
+  {
+    slug: 'mining-quarry-safety-boots-guide',
+    markdownPath: join(process.cwd(), 'mining-quarry-safety-boots-guide.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.mining-quarry-safety-boots-guide.generated.json',
+    ),
+    title: 'Mining & Quarry Safety Boots Buyer Guide',
+    excerpt:
+      'Compare mining and quarry safety boots by hazard, work area, fit, standards evidence, sample trials, size planning, replacement stock, and bulk RFQ requirements.',
+    seoTitle: 'Mining & Quarry Safety Boots Buyer Guide',
+    seoDescription:
+      'Compare mining and quarry safety boots by toe, metatarsal, puncture, grip, wet-work, fit, documents, trials, sizing, and bulk RFQ needs before ordering.',
+    seoKeywords:
+      'mining safety boots, quarry safety boots, mining footwear, steel toe mining boots, waterproof quarry boots, mine safety boot RFQ, bulk mining boots',
+    heroFallback:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    sectionImages: {
+      'Quick Answer: Build the Boot Specification in Seven Steps': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A mining footwear brief moves from work-area hazards through evidence, fit trials, controlled variants, and replacement planning.',
+      },
+      'Compare Boot Protection Features Separately': {
+        url: 'https://shop.laifappe.com/products/1776090539403-0-640fly.webp',
+        caption:
+          'Toe, metatarsal, puncture, outsole, wet-work, electrical, and chemical requirements need separate verification.',
+      },
+      'Match Safety Boots to the Mine or Quarry Work Area': {
+        url: 'https://shop.laifappe.com/blog/open-pit-vs-underground-mining-ppe/quarry-ppe-bench-work-drilling-blasting-and-crusher-proximity-1786694302641.webp',
+        caption:
+          'Open-pit routes, underground travelways, quarry processing, and maintenance areas require different footwear trials.',
+      },
+      'Run a Fit, Size, and Wear Trial Before Bulk Approval': {
+        url: 'https://www.laifappe.com/blog/contractor-ppe-supplier-bulk-checklist/size-support.webp',
+        caption:
+          'Representative workers should trial the exact boot with real socks, routes, vehicles, stairs, and shift conditions.',
+      },
+      'Write a Quote-Ready Mining Safety Boot RFQ': {
+        url: 'https://shop.laifappe.com/blog/bulk-construction-ppe-procurement/a-practical-bulk-ppe-request-for-quote-template-1777562345610.webp',
+        caption:
+          'The RFQ should define hazards, standards, sizes, model evidence, sample approval, commercial terms, and lifecycle needs.',
       },
     },
   },
