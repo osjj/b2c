@@ -66,6 +66,8 @@ MSHA's powered-haulage guidance recommends high-visibility clothing around power
 - Select [safety boots](/categories/foot-protection/safety-boots) for broken ground, mud, water, slopes, climbing, sole grip, ankle support, toe, puncture, metatarsal, chemical, and temperature hazards actually present.
 - Plan sunscreen, shade, hydration, work-rest, heated or cooled refuges, and weather scheduling as program controls rather than treating clothing as the complete heat- or cold-stress solution.
 
+For the footwear-specific workflow - from toe, metatarsal, and puncture protection to wet-work, fit, model evidence, and bulk RFQ planning - use the [Mining & Quarry Safety Boots Buyer Guide](/blog/mining-quarry-safety-boots-guide).
+
 ## Underground Mining PPE: Clearance, Lighting, Ventilation, and Escape
 
 Underground PPE must work in a low-light, restricted environment where roof or rib conditions, equipment clearances, wet ground, ventilation, contaminants, communication, and emergency egress influence the specification. Small compatibility failures - a lamp bracket that loosens retention, earmuffs that block a radio, eyewear that fogs, or a self-rescuer that cannot be reached - can matter more underground than product appearance.

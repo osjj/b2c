@@ -1,29 +1,51 @@
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { ArrowRight, CheckCircle2, ChevronRight, Home } from 'lucide-react'
 import { getPublishedBlogPosts } from '@/actions/blog'
 import { BlogPostCard } from '@/components/store/blog/blog-post-card'
-import { formatDate } from '@/lib/utils'
+import { StorePagination } from '@/components/store/store-pagination'
 import { getSiteUrl } from '@/lib/site-url'
+import {
+  getStoreBlogPageConfig,
+  getStoreBlogPageRange,
+  getStoreBlogTotalPages,
+  normalizeBlogPage,
+  splitFeaturedBlogPost,
+} from '@/lib/store-blog-pagination'
+import { formatDate } from '@/lib/utils'
 
-export const metadata: Metadata = {
-  title: 'Blog · Safety & PPE Guides',
-  description:
-    'In-depth safety footwear, PPE selection and workplace protection guides for procurement managers, safety officers and site supervisors.',
-  alternates: {
-    canonical: `${getSiteUrl()}/blog`,
-  },
-  openGraph: {
-    title: 'Blog · Safety & PPE Guides',
-    description:
-      'In-depth safety footwear, PPE selection and workplace protection guides.',
-    url: `${getSiteUrl()}/blog`,
-    type: 'website',
-  },
+type BlogIndexPageProps = {
+  searchParams: Promise<{ page?: string | string[] }>
 }
 
 export const revalidate = 3600
+
+const PAGE_TITLE = 'Blog · Safety & PPE Guides'
+const PAGE_DESCRIPTION =
+  'In-depth safety footwear, PPE selection and workplace protection guides for procurement managers, safety officers and site supervisors.'
+
+export async function generateMetadata({ searchParams }: BlogIndexPageProps): Promise<Metadata> {
+  const params = await searchParams
+  const page = normalizeBlogPage(params.page)
+  const title = page > 1 ? `${PAGE_TITLE} · Page ${page}` : PAGE_TITLE
+  const pageUrl = `${getSiteUrl()}/blog${page > 1 ? `?page=${page}` : ''}`
+
+  return {
+    title,
+    description: PAGE_DESCRIPTION,
+    alternates: { canonical: pageUrl },
+    openGraph: {
+      title,
+      description:
+        'In-depth safety footwear, PPE selection and workplace protection guides.',
+      url: pageUrl,
+      type: 'website',
+    },
+  }
+}
 
 const PRIORITY_HUBS = [
   {
@@ -53,9 +75,22 @@ const PRIORITY_HUBS = [
   },
 ] as const
 
-export default async function BlogIndexPage() {
-  const posts = await getPublishedBlogPosts()
-  const [featured, ...rest] = posts
+export default async function BlogIndexPage({ searchParams }: BlogIndexPageProps) {
+  const params = await searchParams
+  const page = normalizeBlogPage(params.page)
+  const pageConfig = getStoreBlogPageConfig(page)
+  const { posts, total } = await getPublishedBlogPosts({
+    skip: pageConfig.skip,
+    take: pageConfig.take,
+  })
+  const totalPages = getStoreBlogTotalPages(total)
+
+  if (page > 1 && page > totalPages) {
+    notFound()
+  }
+
+  const { featuredPost: featured, regularPosts: rest } = splitFeaturedBlogPost(posts, page)
+  const visibleRange = getStoreBlogPageRange(page, posts.length, total)
 
   return (
     <div className="bg-ppe-bg-page min-h-screen pb-24">
@@ -88,7 +123,7 @@ export default async function BlogIndexPage() {
         <div className="mt-8 flex items-center justify-center gap-3">
           <span className="h-px w-12 bg-border" />
           <span className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            {posts.length} article{posts.length === 1 ? '' : 's'}
+            {total} article{total === 1 ? '' : 's'}
           </span>
           <span className="h-px w-12 bg-border" />
         </div>
@@ -149,7 +184,7 @@ export default async function BlogIndexPage() {
         </div>
       </section>
 
-      {posts.length === 0 ? (
+      {total === 0 ? (
         <section className="container mx-auto px-4 lg:px-6">
           <div className="border rounded-2xl py-20 text-center bg-background">
             <p className="text-muted-foreground">No articles published yet.</p>
@@ -207,10 +242,12 @@ export default async function BlogIndexPage() {
           {/* Other posts grid */}
           {rest.length > 0 ? (
             <section className="container mx-auto px-4 lg:px-6">
-              <div className="flex items-end justify-between mb-6">
-                <h2 className="font-serif text-2xl sm:text-3xl">More articles</h2>
+              <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <h2 className="font-serif text-2xl sm:text-3xl">
+                  {page === 1 ? 'More articles' : 'Latest articles'}
+                </h2>
                 <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  {rest.length} more
+                  Page {page} · Articles {visibleRange.start}–{visibleRange.end} of {total}
                 </span>
               </div>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -226,6 +263,14 @@ export default async function BlogIndexPage() {
                 ))}
               </div>
             </section>
+          ) : null}
+
+          {totalPages > 1 ? (
+            <div className="container mx-auto mt-12 px-4 lg:px-6">
+              <Suspense fallback={null}>
+                <StorePagination currentPage={page} totalPages={totalPages} total={total} />
+              </Suspense>
+            </div>
           ) : null}
         </>
       )}

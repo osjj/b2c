@@ -296,6 +296,8 @@ Examples from [29 CFR 1926.102(c)](https://www.osha.gov/laws-regs/regulations/st
 
 The standard also says more dense shades may be used to suit the individual's needs. OSHA's PPE assessment guidance recommends starting with a shade that is too dark and then moving lighter until the worker can see the zone sufficiently without dropping below the minimum protective shade.
 
+For a workshop-wide buying path, use the [metal fabrication and welding PPE solution](/solutions/ppe-for-metal-fabrication-and-welding-workshops). It separates welding helmets and filter lenses from grinding face shields and primary eyewear, then connects those choices to hot-work clothing, gloves, respiratory protection, hearing protection, footwear, and a quote-ready workshop specification.
+
 ### Laser layout and specialty laser work
 
 Most construction eye PPE decisions do not involve lasers, but when they do, the site should stop treating the issue like ordinary tinted eyewear. Under [29 CFR 1926.54](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.54), only qualified and trained employees should operate laser equipment, and workers exposed above the rule's threshold must be provided with ant-laser eye protection.
