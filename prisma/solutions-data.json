@@ -3661,6 +3661,132 @@
         }
       },
       {
+        "key": "mining-safety-equipment-by-task",
+        "type": "table",
+        "title": "Mining Safety Equipment List by Work Area and Task",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Work area or task",
+            "Principal hazards",
+            "PPE and other controls to plan",
+            "Buyer verification points",
+            "Deeper guide"
+          ],
+          "rows": [
+            [
+              "Surface mines and quarry benches",
+              "Mobile equipment, falling or flying rock, weather, UV exposure, uneven ground and noise",
+              "Task-specific head, eye, hearing, hand, foot and hi-vis PPE; separate traffic plans, exclusion zones, dust suppression and communications",
+              "Confirm the work zone, product model and standard, visibility and weather needs, size range, compatibility and required documents",
+              "[Open-pit and underground mining PPE comparison](/blog/open-pit-vs-underground-mining-ppe)"
+            ],
+            [
+              "Underground production and travel",
+              "Low clearance, restricted visibility, falling ground, dust, noise, vehicle interaction and escape conditions",
+              "Task-specific head, eye, respiratory, hearing, hand, foot and visibility PPE; separately plan ventilation, lighting, traffic controls, communications and approved emergency systems",
+              "Confirm clearance and cap-lamp needs, measured exposures, route rules, equipment compatibility and jurisdiction-specific escape requirements",
+              "[Open-pit and underground mining PPE comparison](/blog/open-pit-vs-underground-mining-ppe)"
+            ],
+            [
+              "Drilling and blasting",
+              "Respirable dust, flyrock, high noise, vibration, impact and restricted access",
+              "Eye and face, hearing, respiratory, head, hand and foot protection selected after exposure and task review; engineering controls and blast-zone procedures remain separate controls",
+              "Verify exposure data, required APF and respirator approval where applicable, impact rating, hearing-protection fit and compatibility",
+              "[Mining PPE checklist by task](/blog/mining-ppe-checklist-by-task)"
+            ],
+            [
+              "Crushing, screening and processing",
+              "Silica and nuisance dust, fragments, machinery, noise, chemicals and slips",
+              "Respiratory, eye and face, hearing, hand, foot and protective-clothing options; separately address enclosure, extraction, guarding, lockout and monitoring",
+              "Confirm contaminant and exposure results, APF, eye-protection sealing, chemical compatibility, noise data and model documents",
+              "[Mining silica controls and respirator selection](/blog/mining-silica-dust-controls-respirator-selection)"
+            ],
+            [
+              "Drilling, crushing and processing noise",
+              "Continuous and impulse noise, hearing damage, communication interference and missed warning signals",
+              "Reduce noise through feasible engineering and administrative controls, then select task-appropriate earplugs, earmuffs or dual protection from the exposure assessment and hearing conservation program",
+              "Use measured noise data; verify fit, required attenuation, compatibility, communication and warning-signal needs rather than choosing by a single advertised rating",
+              "[Mining hearing protection guide](/blog/mining-hearing-protection-guide)"
+            ],
+            [
+              "Haul roads and mobile-equipment zones",
+              "Blind spots, struck-by exposure, low visibility, weather, dust and slips",
+              "Hi-vis apparel, suitable head, eye, hearing and foot protection; traffic management, proximity systems, lighting and communications are mine safety systems rather than PPE",
+              "Confirm the site's visibility specification, reflective-material placement, weather layers, footwear fit and compatibility with other worn equipment",
+              "[Mining PPE checklist by task](/blog/mining-ppe-checklist-by-task)"
+            ],
+            [
+              "Maintenance and ground support",
+              "Stored energy, sharp edges, falling objects, hot work, chemicals, vibration and work at height",
+              "PPE selected for the specific maintenance step; guarding, isolation, lockout, access and fall-prevention systems must be planned independently",
+              "Confirm the job procedure, energy-isolation boundary, cut or chemical data, impact needs, fall-protection compatibility and replacement criteria",
+              "[Mining PPE checklist by task](/blog/mining-ppe-checklist-by-task)"
+            ],
+            [
+              "Safety footwear across mine and quarry areas",
+              "Toe and metatarsal impact, puncture, slip, uneven terrain, chemicals and fit-related fatigue",
+              "Safety boots specified by work area and hazard rather than one universal model",
+              "Verify each protective feature separately, then run a size, fit and wear trial before bulk approval",
+              "[Mining and quarry safety boots buyer guide](/blog/mining-quarry-safety-boots-guide)"
+            ]
+          ]
+        }
+      },
+      {
+        "key": "surface-vs-underground-mining-ppe",
+        "type": "paragraphs",
+        "title": "Surface Mining PPE vs Underground Mining PPE",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Surface mining and quarry PPE decisions often give more weight to haul-road visibility, weather and UV exposure, long travel distances, loose terrain, mobile-equipment interaction, drilling and blasting zones, and transitions into crushers or workshops. The traffic plan, dust suppression, warning systems and equipment exclusion zones are controls outside the PPE specification.",
+            "Underground mining PPE decisions add low-clearance head protection, cap-lamp and accessory compatibility, restricted visibility, ventilation conditions, travel-route rules, ground-control exposure and site-specific escape requirements. Self-rescue, gas detection, communications, ventilation and emergency equipment must be selected under the mine's separate safety and emergency systems, not treated as generic routine PPE.",
+            "Both environments still require task and exposure data before specifying products. Compare the full decision factors in the [Open-Pit vs Underground Mining PPE guide](/blog/open-pit-vs-underground-mining-ppe), then use this hub to prepare model, size, document and RFQ requirements without assuming one kit suits every mine or jurisdiction."
+          ]
+        }
+      },
+      {
+        "key": "ppe-vs-mine-safety-systems",
+        "type": "table",
+        "title": "PPE vs Other Mine Safety Controls and Systems",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Safety layer",
+            "Distinct role",
+            "Selection and procurement boundary"
+          ],
+          "rows": [
+            [
+              "Worn PPE",
+              "Equipment worn by an individual to reduce exposure or injury risk after the hazard and task have been assessed",
+              "Specify the exact model, standard, fit, compatibility and documents for the worker and task; PPE does not replace higher-level controls"
+            ],
+            [
+              "Engineering controls",
+              "Controls such as enclosure, local extraction, ventilation, wet methods, isolation, guarding or source noise reduction that remove or reduce hazards at their source",
+              "Treat these as mine, plant or equipment-system requirements rather than PPE; this page does not imply that LAIFAPPE supplies or designs them"
+            ],
+            [
+              "Traffic and mobile-equipment controls",
+              "Site measures such as traffic plans, segregated routes, barriers, exclusion zones, lighting, cameras, alarms or proximity-detection systems that manage struck-by risk",
+              "Keep the system specification and responsible supplier separate from hi-vis clothing or other worn PPE; verify it under the mine's mobile-equipment safety plan"
+            ],
+            [
+              "Exposure monitoring",
+              "Dust, silica, noise, gas or other sampling and measurement used to characterize conditions and support control and PPE decisions",
+              "Monitoring devices, methods and qualified review are not themselves PPE; use results from the mine's exposure program before selecting respiratory or hearing protection"
+            ],
+            [
+              "Emergency systems",
+              "Site-specific escape, self-rescue, gas detection, communications, emergency lighting and response arrangements for foreseeable emergencies",
+              "Confirm applicable mine rules, approvals, procedures, training and system compatibility separately; do not treat emergency systems as a generic routine-PPE bundle or assume supplier availability"
+            ]
+          ]
+        }
+      },
+      {
         "key": "mining-hazards",
         "type": "table",
         "title": "Mining and Quarrying Hazards and PPE Selection Points",
@@ -3821,17 +3947,97 @@
         }
       },
       {
+        "key": "supplemental-mining-ppe-categories",
+        "type": "group",
+        "title": "Supplemental Mining PPE Categories to Specify by Task",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "High-Visibility Apparel",
+              "description": "Hi-vis apparel can improve worker conspicuity, but it does not replace traffic separation, lighting, equipment visibility aids, communications or the mine's mobile-equipment controls.",
+              "items": [
+                "Define the work zone, light and weather conditions, viewing distances and the site's garment specification before selecting color or reflective-material placement",
+                "Check fit over seasonal layers and compatibility with harnesses, lamps, radios and other worn equipment",
+                "Verify the exact garment model, label, care instructions and visibility performance requested by the site; do not infer a class or standard from color alone"
+              ]
+            },
+            {
+              "title": "Protective Clothing",
+              "description": "Protective clothing must be selected for the identified exposure; a general mining garment is not automatically suitable for chemicals, flame, heat, arc, dust or severe weather.",
+              "items": [
+                "Identify the substance, task, contact route, duration and environmental conditions before choosing material or coverage",
+                "Request model-specific test information and limitations for any chemical, flame, heat, arc or particle-protection claim",
+                "Check closures, seams, mobility, heat stress, contamination control, cleaning and compatibility with gloves, footwear and respiratory protection"
+              ]
+            },
+            {
+              "title": "Task-Conditional Fall Protection",
+              "description": "Fall protection belongs in the PPE specification only where the task and access method create a fall hazard and the site's fall-protection plan requires a personal system; it is not routine PPE for every miner.",
+              "items": [
+                "Define the work location, fall distance, access method, edge or opening, rescue plan and applicable site or jurisdiction requirements",
+                "Have the site verify anchorage, clearance, connectors, energy absorption, compatibility and inspection requirements as a complete system",
+                "Confirm harness size and fit, user training, competent oversight and rescue capability before use; a harness alone is not a complete fall-protection solution"
+              ]
+            }
+          ]
+        }
+      },
+      {
         "key": "recommended-ppe",
         "type": "paragraphs",
         "title": "Procurement Guidance for Mining PPE",
         "enabled": true,
         "data": {
-          "mode": "rule",
+          "mode": "manual",
           "paragraphs": [
             "Build role-based kits only after defining hazards and work areas. A driller, crusher operator, haul-truck spotter, maintenance technician, laboratory worker, and underground transport worker should not automatically receive the same PPE specification.",
             "For each line item, request the product standard, model number, label photos, declaration or certificate sample where applicable, test report reference, size range, compatibility notes, packaging plan, and replacement SKU. NIOSH approval should be verified for respirators marketed as NIOSH Approved.",
             "Set inspection and replacement criteria from the manufacturer instructions, damage and contamination conditions, fit, service-life limits, wash cycles, and site experience. Do not use one universal replacement interval for every helmet, respirator component, glove, garment, or boot.",
-            "Use the [PPE calculator](/tools/ppe-calculator) for role quantities and replacement stock, then send the site, task, standard, size, documentation, and delivery requirements through the [quote request](/quote?source=solution-ppe-safety-equipment-for-mining-quarrying)."
+            "Use the [PPE calculator](/tools/ppe-calculator) for role quantities and replacement stock, then send the site, task, standard, size, documentation, and delivery requirements through the [quote request](/quote?source=solution-ppe-safety-equipment-for-mining-quarrying).",
+            "These products are starting points for buyer review, not universal mining PPE selections. Confirm the exact model, task, exposure, standard, compatibility and documentation before approval."
+          ]
+        }
+      },
+      {
+        "key": "mining-ppe-supplier-checklist",
+        "type": "list",
+        "title": "How to Evaluate a Mining PPE Supplier",
+        "enabled": true,
+        "data": {
+          "items": [
+            {
+              "title": "Match documents to the exact model",
+              "text": "Request the model number, label photos, applicable standard, declaration or certificate sample, test report reference and manufacturer instructions for each line item. Verify respirator approvals in the relevant issuing body's database when an approval is required or claimed."
+            },
+            {
+              "title": "Approve samples against the work area",
+              "text": "Define the sample quantity and acceptance checks for fit, visibility, grip, dexterity, sealing, fogging, hearing-protection fit and compatibility with equipment already worn. A sample review does not replace the mine operator's hazard assessment or exposure program."
+            },
+            {
+              "title": "Plan workforce sizing",
+              "text": "Provide the size distribution by role and request the available size range, size chart and fit-trial process. Keep replacement stock and special-size needs visible instead of assuming one size mix fits every crew."
+            },
+            {
+              "title": "Check cross-product compatibility",
+              "text": "Review helmets, lamps, eye and face protection, respirators, earmuffs, garments and fall-protection equipment as a worn system. Confirm that straps, seals, retention systems, communication devices and inspection points do not interfere with one another."
+            },
+            {
+              "title": "Confirm packaging and identification",
+              "text": "Specify unit and carton labels, model and size identification, document placement and any site-specific kit grouping in the RFQ. Ask the supplier to confirm the proposed pack before order approval."
+            },
+            {
+              "title": "Protect replacement continuity",
+              "text": "Record the approved model, compatible replacement parts or cartridges where applicable, proposed replacement SKU and the process for notifying buyers of substitutions or discontinuation. Re-evaluate any changed model rather than treating it as automatically equivalent."
+            },
+            {
+              "title": "Control branding changes",
+              "text": "Approve the logo location, marking method and artwork on a sample. Decoration must not cover regulatory labels, reflective material, ventilation, seals, inspection points or safety-critical components."
+            },
+            {
+              "title": "Make delivery planning explicit",
+              "text": "State required quantities, sizes, destination, requested delivery window, shipment split and document deadlines, then ask the supplier to confirm availability and timing for the quoted models. Do not assume stock, lead time or MOQ until they are confirmed in the quotation."
+            }
           ]
         }
       },
@@ -3885,12 +4091,15 @@
       {
         "key": "mining-selection-sources",
         "type": "paragraphs",
-        "title": "Primary Sources for Mining PPE and Silica Decisions",
+        "title": "Primary Sources for Mining PPE and Safety Decisions",
         "enabled": true,
         "data": {
           "paragraphs": [
-            "For U.S. silica programs, start with the [MSHA final rule resources](https://www.msha.gov/regulations/rulemaking/silica) and confirm the obligations and compliance date for the mine type. MSHA's rule uses a 50 micrograms per cubic meter full-shift PEL and a 25 micrograms per cubic meter action level, calculated as an 8-hour time-weighted average.",
-            "Use [NIOSH mining and silicosis guidance](https://www.cdc.gov/niosh/mining/topics/silicosis.html) for monitoring and control context, and [NIOSH respiratory protection resources for mine workers](https://www.cdc.gov/niosh/mining/tools/respiratory-protection.html) when evaluating approved mine-use respirators. These sources do not replace the mine operator's competent safety, industrial hygiene, or regulatory review."
+            "For U.S. metal and nonmetal operations, review the current eCFR text for [30 CFR Part 56, Safety and Health Standards for Surface Metal and Nonmetal Mines](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56) and [30 CFR Part 57, Safety and Health Standards for Underground Metal and Nonmetal Mines](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57). Determine which provisions apply to the mine, task and work area instead of treating either part as a product approval list.",
+            "For mine noise programs, consult the current [30 CFR Part 62 occupational noise exposure requirements](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-M/part-62). Use the mine's exposure measurements and program decisions when evaluating hearing-protection fit, attenuation, compatibility and communication needs.",
+            "For U.S. respirable crystalline silica requirements, use the current [30 CFR Part 60 text](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-M/part-60) together with [MSHA's silica rulemaking resources](https://www.msha.gov/regulations/rulemaking/silica). Confirm the rule's current scope, effective or compliance dates and mine-specific obligations directly from MSHA before changing a program or product specification.",
+            "Use [NIOSH guidance on machinery and struck-by injuries in mining](https://www.cdc.gov/niosh/mining/topics/machinery-struck-by-injuries.html) to inform visibility and mobile-equipment risk discussions. Hi-vis apparel is only one possible worker-level measure and does not replace traffic plans, separation, equipment visibility aids or other mine controls.",
+            "Use [NIOSH respiratory protection resources for mine workers](https://www.cdc.gov/niosh/mining/tools/respiratory-protection.html) when reviewing respirator selection and approved configurations. The mine's contaminant assessment, measured exposure, required protection, medical evaluation, fit testing, training and written program determine whether a specific respirator is appropriate."
           ]
         }
       },
@@ -3943,7 +4152,23 @@
         }
       }
     ],
-    "productLinks": []
+    "productLinks": [
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmnv8xzul000fumsoftuppnjm",
+        "sort": 0
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmt5xiyq20001uml424thilvy",
+        "sort": 1
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmt092kis0001umy05t2z8mlt",
+        "sort": 2
+      }
+    ]
   },
   {
     "slug": "ppe-for-oil-and-gas-field-operations",
