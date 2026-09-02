@@ -30,6 +30,8 @@ For a construction site safety gloves RFQ, separate the order by task instead of
 | Wet concrete, masonry, oily handling | Coating choice such as nitrile, latex, or chemical-resistant material | Do not mix wet-cement gloves with dry handling gloves in the same line item. |
 | General material handling | Grip, abrasion resistance, breathable shell, economical replacement | Use this as the baseline glove, then add task-specific gloves as modules. |
 
+To screen product families before writing the RFQ, compare [all hand protection](/categories/hand-protection), [cut-resistant gloves](/categories/hand-protection/cut-resistant-gloves), [nitrile-coated gloves](/categories/hand-protection/nitrile-coated-gloves), and [leather work gloves](/categories/hand-protection/leather-work-gloves). Category labels are a starting point, not proof that a specific model meets the required cut, impact, chemical, heat, or electrical performance; verify the model documentation and sample on the actual task.
+
 For procurement planning, connect glove quantities to the [bulk construction PPE procurement guide](/blog/bulk-construction-ppe-procurement), the [contractor PPE kit checklist](/blog/contractor-ppe-kit-checklist), and the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-gloves-selection-guide). For a supplier-ready request, use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-construction-gloves-selection-guide) or [request a bulk glove quote](/quote?source=blog-construction-gloves-selection-guide).
 
 ---

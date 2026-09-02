@@ -15,6 +15,7 @@
  *   - full-brim-vs-cap-style-hard-hats-construction
  *   - hard-hat-color-codes-construction-sites
  *   - construction-hard-hat-types
+ *   - fiberglass-vs-abs-vs-hdpe-safety-helmets
  *   - high-visibility-clothing-construction
  *   - construction-safety-helmet-vs-hard-hat
  *   - heat-stress-ppe-construction-workers
@@ -203,7 +204,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     title: 'OSHA PPE Requirements for Construction: Complete Compliance Guide',
     excerpt:
       'A regulation-first 2026 guide to OSHA PPE requirements for construction covering 29 CFR 1926 Subpart E, the proper-fit rule, heat enforcement context, hazard assessment, training, inspections, and citation risk.',
-    seoTitle: 'OSHA PPE Requirements for Construction: Complete Compliance Guide 2026',
+    seoTitle: 'OSHA Construction PPE Requirements | 2026 Compliance Guide',
     seoDescription:
       '2026 guide to OSHA construction PPE requirements: 29 CFR 1926 Subpart E, proper fit, heat enforcement, hazard assessment, training, and inspections.',
     seoKeywords:
@@ -1208,6 +1209,61 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
         caption:
           'A strong hard hat program includes fit, daily inspection, shell replacement, spare suspensions, and bulk inventory planning.',
+      },
+    },
+  },
+  {
+    slug: 'fiberglass-vs-abs-vs-hdpe-safety-helmets',
+    markdownPath: join(
+      process.cwd(),
+      'fiberglass-vs-abs-vs-hdpe-safety-helmets.md',
+    ),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.fiberglass-vs-abs-vs-hdpe-safety-helmets.generated.json',
+    ),
+    title:
+      'Fiberglass vs ABS vs HDPE Safety Helmets: Material, Heat, Electrical, and Bulk Buying Guide',
+    excerpt:
+      'Compare fiberglass, ABS, and HDPE safety helmet shells by model-specific evidence, electrical class, heat limits, fit, accessories, and bulk RFQ controls.',
+    seoTitle:
+      'Fiberglass vs ABS vs HDPE Safety Helmets | Buyer Guide',
+    seoDescription:
+      'Compare fiberglass, ABS and HDPE safety helmets by tested performance, electrical class, heat limits, weight, fit, documents and bulk RFQ evidence.',
+    seoKeywords:
+      'fiberglass vs ABS vs HDPE safety helmets, fiberglass safety helmet, FRP safety helmet, ABS safety helmet, HDPE safety helmet, hard hat shell material, safety helmet material comparison, high heat safety helmet, bulk safety helmet RFQ',
+    heroFallback:
+      'https://shop.laifappe.com/blog/construction-hard-hat-types/hero-1777955740457.webp',
+    sectionImages: {
+      'Fiberglass vs ABS vs HDPE: What The Material Label Means': {
+        url: 'https://shop.laifappe.com/blog/construction-hard-hat-types/hard-hat-types-type-i-vs-type-ii-1777955886140.webp',
+        caption:
+          'Fiberglass or FRP, ABS, and HDPE identify shell construction, but the exact tested helmet configuration determines suitability.',
+      },
+      'Compare Safety Helmet Materials By Evidence, Not Assumptions': {
+        url: 'https://shop.laifappe.com/blog/construction-hard-hat-types/what-osha-requires-for-construction-head-protection-1777955833174.webp',
+        caption:
+          'A buyer evidence matrix compares exact models, markings, documents, temperature limits, weight, fit, and accessories.',
+      },
+      'How Heat And Electrical Requirements Change The Decision': {
+        url: 'https://shop.laifappe.com/blog/construction-hard-hat-types/hard-hat-electrical-classes-class-g-e-and-c-1777955944269.webp',
+        caption:
+          'Heat and electrical performance must come from the exact model marking, datasheet, and approved configuration rather than the material name.',
+      },
+      'Run A Jobsite Sample Approval Before Bulk Ordering': {
+        url: 'https://shop.laifappe.com/blog/construction-hard-hat-types/how-to-choose-hard-hats-by-construction-task-1777956068270.webp',
+        caption:
+          'Representative workers should trial the exact shell, suspension, retention system, and compatible accessories before bulk approval.',
+      },
+      'Write A Quote-Ready Safety Helmet RFQ': {
+        url: 'https://shop.laifappe.com/blog/construction-hard-hat-types/fit-inspection-replacement-and-bulk-purchasing-1777956150727.webp',
+        caption:
+          'A quote-ready helmet RFQ locks the model evidence, shell construction, fit system, accessories, sample, quantities, and substitution controls.',
+      },
+      'Inspect, Store, And Replace Helmets By Product Instructions': {
+        url: 'https://shop.laifappe.com/blog/class-e-vs-class-g-vs-class-c-hard-hats/marking-inspection-and-replacement-checks.webp',
+        caption:
+          'Inspection and replacement decisions follow impact history, product condition, storage, records, and the manufacturer instructions.',
       },
     },
   },

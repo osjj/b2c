@@ -1,9 +1,17 @@
 # OSHA PPE Requirements for Construction: Complete Compliance Guide
 
-**Meta Title:** OSHA PPE Requirements for Construction: Complete Compliance Guide 2026
+**Meta Title:** OSHA Construction PPE Requirements | 2026 Compliance Guide
 **Meta Description:** 2026 guide to OSHA construction PPE requirements: 29 CFR 1926 Subpart E, proper fit, heat enforcement, hazard assessment, training, and inspections.
 **Target URL:** /blog/osha-ppe-requirements-construction
 **Target Keywords:** OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2026
+
+---
+
+## Quick Answer: What Does OSHA Require for Construction PPE?
+
+OSHA does not prescribe one universal PPE kit for every construction site. Under [29 CFR 1926.95](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95) and [29 CFR 1926.28](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.28), employers must match PPE to the hazards of the operation, require its use where needed, select equipment that is safe for the work and properly fits each affected employee, and keep it sanitary and reliable. Required employer-paid PPE is subject to the specific exceptions in 1926.95(d), and task-specific standards still apply to areas such as head, eye and face, hearing, respiratory, foot, electrical, and fall protection.
+
+For a practical workflow, start with the [construction PPE solution](/solutions/construction-site-ppe-solution), use the [construction PPE checklist](/blog/construction-ppe-checklist) for field execution, and check individual equipment requirements with the [PPE standards compliance checker](/tools/compliance-checker).
 
 ---
 
@@ -67,6 +75,8 @@ To defend compliance under the fit rule, employers should be able to show that t
 - issued fit-critical PPE by worker, especially harnesses, eyewear, gloves, and footwear
 - verified employee-owned PPE for adequacy and fit before allowing use
 - replaced PPE when wear, damage, or poor fit made it ineffective
+
+For fit-sensitive purchasing, use the [Safety Boot Size Guide](/tools/size-guide) to plan footwear measurements and conversions, and the [construction gloves selection guide](/blog/construction-gloves-selection-guide) to match glove sizing, dexterity, and protection to the task. Both are planning aids; final fit still has to be confirmed with the approved product and worker.
 
 For a broader role-based view of what crews typically need on site, use the [construction PPE solution page](/solutions/construction-site-ppe-solution). For a category-specific example, see the [construction safety footwear guide](/blog/construction-safety-footwear-guide).
 

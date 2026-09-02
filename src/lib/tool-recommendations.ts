@@ -93,6 +93,11 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'ppe-calculator',
     'ai-quote',
   ],
+  'fiberglass-vs-abs-vs-hdpe-safety-helmets': [
+    'hard-hat-class-decoder',
+    'ai-quote',
+    'ppe-calculator',
+  ],
   'type-1-vs-type-2-hard-hats': [
     'hard-hat-class-decoder',
     'ai-quote',

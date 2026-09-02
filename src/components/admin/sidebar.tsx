@@ -22,6 +22,7 @@ import {
   Mail,
   MailCheck,
   Newspaper,
+  ReceiptText,
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -43,9 +44,20 @@ const menuItems = [
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ]
 
-export function Sidebar() {
+interface SidebarProps {
+  quotationEnabled?: boolean
+}
+
+export function Sidebar({ quotationEnabled = false }: SidebarProps) {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
+  const visibleMenuItems = quotationEnabled
+    ? [
+        ...menuItems.slice(0, 9),
+        { href: "/admin/quotation-workbench", label: "Quote Workbench", icon: ReceiptText },
+        ...menuItems.slice(9),
+      ]
+    : menuItems
 
   return (
     <aside
@@ -74,7 +86,7 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 py-6 px-3">
         <div className="space-y-1">
-          {menuItems.map((item) => {
+          {visibleMenuItems.map((item) => {
             const isActive =
               pathname === item.href ||
               (item.href !== "/admin" && pathname.startsWith(item.href))

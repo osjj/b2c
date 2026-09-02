@@ -361,6 +361,51 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       },
     ],
   },
+  'fiberglass-vs-abs-vs-hdpe-safety-helmets': {
+    solution: {
+      href: '/solutions/construction-site-ppe-solution',
+      label: 'Construction head protection solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      {
+        href: '/categories/head-protection/safety-helmets',
+        label: 'Safety helmets',
+      },
+    ],
+    products: [
+      {
+        href: '/products/industrial-white-fiberglass-frp-safety-helmet',
+        label: 'Fiberglass FRP safety helmet',
+      },
+      {
+        href: '/products/en397-abs-safety-helmet-with-6-point-suspension',
+        label: 'EN 397 ABS safety helmet',
+      },
+      {
+        href: '/products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6',
+        label: 'HDPE safety helmet with chin strap',
+      },
+    ],
+    cta: {
+      href: '/quote',
+      label: 'Request a helmet material quote',
+    },
+    resources: [
+      {
+        href: '/tools/hard-hat-class-decoder',
+        label: 'Hard hat class decoder',
+      },
+      {
+        href: '/downloads/construction-ppe-rfq-template',
+        label: 'RFQ template',
+      },
+      {
+        href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
+        label: 'Standards sheet',
+      },
+    ],
+  },
   'bulk-construction-ppe-procurement': {
     solution: {
       href: '/solutions/construction-site-ppe-solution',

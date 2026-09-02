@@ -404,6 +404,7 @@ Only use liners, caps, or cold-weather accessories that are compatible with the 
 - [Complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
 - [Type 1 vs Type 2 hard hats buyer guide](/blog/type-1-vs-type-2-hard-hats)
 - [Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)
+- [Fiberglass vs ABS vs HDPE safety helmet materials](/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets)
 - [Vented vs non-vented hard hats for construction](/blog/vented-vs-non-vented-hard-hats-construction)
 - [Full brim vs cap style hard hats for construction](/blog/full-brim-vs-cap-style-hard-hats-construction)
 - [Hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites)

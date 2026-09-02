@@ -97,6 +97,7 @@
                 "[Types of hard hats for construction](/blog/construction-hard-hat-types)",
                 "[Type 1 vs Type 2 hard hats](/blog/type-1-vs-type-2-hard-hats)",
                 "[Class E vs Class G vs Class C hard hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)",
+                "[Fiberglass vs ABS vs HDPE safety helmet materials](/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets)",
                 "[Vented vs non-vented hard hats](/blog/vented-vs-non-vented-hard-hats-construction)",
                 "[Full brim vs cap style hard hats](/blog/full-brim-vs-cap-style-hard-hats-construction)",
                 "[Hard hat color codes on construction sites](/blog/hard-hat-color-codes-construction-sites)",
@@ -278,6 +279,7 @@
                 "Use the [types of hard hats for construction guide](/blog/construction-hard-hat-types) for Type I vs Type II, Class G/E/C, shell style, fit, and accessory decisions",
                 "Use the [Type 1 vs Type 2 hard hats guide](/blog/type-1-vs-type-2-hard-hats) to separate impact type decisions from Class G, Class E, and Class C electrical rating decisions",
                 "Use the [Class E vs Class G vs Class C hard hats guide](/blog/class-e-vs-class-g-vs-class-c-hard-hats) when electrical exposure, vented shells, or non-vented Class E/G head protection is the buying question",
+                "Use the [fiberglass vs ABS vs HDPE safety helmet guide](/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets) when shell material, temperature evidence, model documentation, or sample approval is the buying question",
                 "Use the [vented vs non-vented hard hats guide](/blog/vented-vs-non-vented-hard-hats-construction) when shell ventilation, Class C inventory control, or heat comfort is the buying question",
                 "Use the [full brim vs cap style hard hats guide](/blog/full-brim-vs-cap-style-hard-hats-construction) when weather coverage, accessory compatibility, or brim shape is the buying question",
                 "Use the [hard hat color codes guide](/blog/hard-hat-color-codes-construction-sites) when role colors, visitor helmets, color-coded inventory, or hard hat RFQ color wording is the buying question",
@@ -536,6 +538,10 @@
             {
               "title": "[Class E vs Class G vs Class C Hard Hats](/blog/class-e-vs-class-g-vs-class-c-hard-hats)",
               "text": "Focused on hard hat electrical ratings, Class E/G/C selection, vented shell limits, and supplier-ready RFQ wording."
+            },
+            {
+              "title": "[Fiberglass vs ABS vs HDPE Safety Helmets](/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets)",
+              "text": "Focused on model-specific shell-material evidence, heat and electrical limits, jobsite sample approval, documents, and bulk RFQ controls."
             },
             {
               "title": "[Vented vs Non-Vented Hard Hats](/blog/vented-vs-non-vented-hard-hats-construction)",

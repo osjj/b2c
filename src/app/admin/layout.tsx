@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 import { auth } from "@/lib/auth"
 import { Sidebar } from "@/components/admin/sidebar"
 import { AdminHeader } from "@/components/admin/header"
+import { isQuotationWorkbenchEnabled } from "@/lib/quotation/feature"
 
 export default async function AdminLayout({
   children,
@@ -20,7 +21,7 @@ export default async function AdminLayout({
 
   return (
     <div className="flex min-h-screen w-full bg-muted/30">
-      <Sidebar />
+      <Sidebar quotationEnabled={isQuotationWorkbenchEnabled()} />
       <div className="flex min-w-0 flex-1 flex-col">
         <AdminHeader user={session.user} />
         <main className="min-w-0 flex-1 p-6">{children}</main>

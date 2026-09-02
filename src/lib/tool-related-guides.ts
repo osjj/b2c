@@ -43,6 +43,13 @@ const GUIDE_CATALOG = {
     description: 'Use this for construction hard hat classes, shell styles, accessories, fit, and replacement planning.',
     eyebrow: '717 impressions',
   },
+  'fiberglass-vs-abs-vs-hdpe-safety-helmets': {
+    href: '/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets',
+    title: 'Safety Helmet Material Guide',
+    description:
+      'Compare fiberglass or FRP, ABS, and HDPE shells without treating material names as impact, electrical, or heat approvals.',
+    eyebrow: 'Shell materials',
+  },
   'type-1-vs-type-2-hard-hats': {
     href: '/blog/type-1-vs-type-2-hard-hats',
     title: 'Type 1 vs Type 2 Hard Hats',
@@ -186,6 +193,7 @@ export const TOOL_RELATED_GUIDES = {
   ]),
   'hard-hat-class-decoder': pickGuides([
     'class-e-vs-class-g-vs-class-c-hard-hats',
+    'fiberglass-vs-abs-vs-hdpe-safety-helmets',
     'vented-vs-non-vented-hard-hats-construction',
     'full-brim-vs-cap-style-hard-hats-construction',
     'hard-hat-color-codes-construction-sites',

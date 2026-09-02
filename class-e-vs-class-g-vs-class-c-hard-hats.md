@@ -68,7 +68,7 @@ Class E may be appropriate for:
 - bridge, plant, rail, or infrastructure work where electrical systems are nearby
 - general contractors who want a conservative non-vented head protection baseline for mixed crews
 
-Class E is usually the safest class to ask about when the buyer is not yet sure whether electrical exposure exists. However, it is not automatically the best choice for every worker. Class E products may have less ventilation, different shell materials, and different comfort tradeoffs. Workers in hot climates may push back if the product is heavy, hot, or poorly fitted.
+Class E is usually the safest class to ask about when the buyer is not yet sure whether electrical exposure exists. However, it is not automatically the best choice for every worker. Class E products may have less ventilation, different shell materials, and different comfort tradeoffs. Workers in hot climates may push back if the product is heavy, hot, or poorly fitted. Use the [fiberglass vs ABS vs HDPE safety helmet guide](/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets) to compare material evidence without treating the shell material as an electrical rating.
 
 Good RFQ wording:
 

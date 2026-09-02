@@ -116,44 +116,46 @@ model Category {
 }
 
 model Product {
-  id              String                  @id @default(cuid())
-  name            String
-  slug            String                  @unique
-  description     String?
-  price           Decimal                 @db.Decimal(10, 2)
-  comparePrice    Decimal?                @db.Decimal(10, 2)
-  cost            Decimal?                @db.Decimal(10, 2)
-  sku             String?                 @unique
-  barcode         String?
-  stock           Int                     @default(0)
-  lowStock        Int                     @default(5)
-  weight          Decimal?                @db.Decimal(10, 2)
-  categoryId      String?
-  isActive        Boolean                 @default(true)
-  isFeatured      Boolean                 @default(false)
-  createdAt       DateTime                @default(now())
-  updatedAt       DateTime                @updatedAt
-  specifications  Json?
-  content         Json?
-  metaDescription String?                 @map("meta_description")
-  metaKeywords    String?                 @map("meta_keywords")
-  metaTitle       String?                 @map("meta_title")
-  ogDescription   String?                 @map("og_description")
-  ogImage         String?                 @map("og_image")
-  ogTitle         String?                 @map("og_title")
-  sortOrder       Int                     @default(0)
-  usageScenes     String[]                @default([])
-  cartItems       CartItem[]
-  orderItems      OrderItem[]
-  priceTiers      PriceTier[]
-  attributeValues ProductAttributeValue[]
-  collections     ProductCollection[]
-  images          ProductImage[]
-  slugRedirects   ProductSlugRedirect[]
-  variants        ProductVariant[]
-  category        Category?               @relation(fields: [categoryId], references: [id])
-  quoteItems      QuoteItem[]
-  embedding       Unsupported("vector(1024)")?
+  id                  String                       @id @default(cuid())
+  name                String
+  slug                String                       @unique
+  description         String?
+  price               Decimal                      @db.Decimal(10, 2)
+  comparePrice        Decimal?                     @db.Decimal(10, 2)
+  cost                Decimal?                     @db.Decimal(10, 2)
+  sku                 String?                      @unique
+  barcode             String?
+  stock               Int                          @default(0)
+  lowStock            Int                          @default(5)
+  weight              Decimal?                     @db.Decimal(10, 2)
+  categoryId          String?
+  isActive            Boolean                      @default(true)
+  isFeatured          Boolean                      @default(false)
+  createdAt           DateTime                     @default(now())
+  updatedAt           DateTime                     @updatedAt
+  specifications      Json?
+  content             Json?
+  metaDescription     String?                      @map("meta_description")
+  metaKeywords        String?                      @map("meta_keywords")
+  metaTitle           String?                      @map("meta_title")
+  ogDescription       String?                      @map("og_description")
+  ogImage             String?                      @map("og_image")
+  ogTitle             String?                      @map("og_title")
+  sortOrder           Int                          @default(0)
+  usageScenes         String[]                     @default([])
+  cartItems           CartItem[]
+  orderItems          OrderItem[]
+  priceTiers          PriceTier[]
+  attributeValues     ProductAttributeValue[]
+  collections         ProductCollection[]
+  images              ProductImage[]
+  slugRedirects       ProductSlugRedirect[]
+  variants            ProductVariant[]
+  category            Category?                    @relation(fields: [categoryId], references: [id])
+  quoteItems          QuoteItem[]
+  quotationProducts   QuotationProduct[]
+  salesQuotationItems SalesQuotationItem[]
+  embedding           Unsupported("vector(1024)")?
 
   @@index([categoryId])
   @@index([isActive, isFeatured])
@@ -505,44 +507,44 @@ model ChatAttachment {
 }
 
 model Solution {
-  id             String   @id
-  slug           String   @unique
-  title          String
-  excerpt        String?
-  coverImage     String?  @map("cover_image")
+  id         String  @id
+  slug       String  @unique
+  title      String
+  excerpt    String?
+  coverImage String? @map("cover_image")
 
-  isActive       Boolean  @default(true) @map("is_active")
-  sortOrder      Int      @default(0)    @map("sort_order")
+  isActive  Boolean @default(true) @map("is_active")
+  sortOrder Int     @default(0) @map("sort_order")
 
-  seoTitle       String?  @map("seo_title")
-  seoDescription String?  @map("seo_description")
-  seoKeywords    String?  @map("seo_keywords")
+  seoTitle       String? @map("seo_title")
+  seoDescription String? @map("seo_description")
+  seoKeywords    String? @map("seo_keywords")
 
-  usageScenes    String[] @default([])   @map("usage_scenes")
+  usageScenes String[] @default([]) @map("usage_scenes")
 
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @updatedAt      @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  sections       SolutionSection[]
-  productLinks   SolutionProductLink[]
+  sections     SolutionSection[]
+  productLinks SolutionProductLink[]
 
   @@map("solutions")
 }
 
 model SolutionSection {
-  id         String   @id
-  solutionId String   @map("solution_id")
-  sort       Int      @default(0)
+  id         String  @id
+  solutionId String  @map("solution_id")
+  sort       Int     @default(0)
   type       String
   key        String
   title      String?
-  enabled    Boolean  @default(true)
-  data       Json     @default("{}")
+  enabled    Boolean @default(true)
+  data       Json    @default("{}")
 
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt      @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+  solution Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
 
   @@unique([solutionId, key])
   @@index([solutionId, sort])
@@ -551,15 +553,15 @@ model SolutionSection {
 }
 
 model SolutionProductLink {
-  id         String   @id
-  solutionId String   @map("solution_id")
-  blockKey   String   @map("block_key")
-  productId  String   @map("product_id")
-  sort       Int      @default(0)
+  id         String @id
+  solutionId String @map("solution_id")
+  blockKey   String @map("block_key")
+  productId  String @map("product_id")
+  sort       Int    @default(0)
 
-  createdAt  DateTime @default(now()) @map("created_at")
+  createdAt DateTime @default(now()) @map("created_at")
 
-  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+  solution Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
 
   @@unique([solutionId, blockKey, productId])
   @@index([solutionId, blockKey, sort])
@@ -621,24 +623,455 @@ enum AttachmentType {
 }
 
 model BlogPost {
-  id              String    @id @default(cuid())
-  slug            String    @unique
-  title           String
-  excerpt         String?
-  coverImage      String?   @map("cover_image")
-  content         Json?
-  isPublished     Boolean   @default(false) @map("is_published")
-  publishedAt     DateTime? @map("published_at")
-  authorId        String?   @map("author_id")
-  seoTitle        String?   @map("seo_title")
-  seoDescription  String?   @map("seo_description")
-  seoKeywords     String?   @map("seo_keywords")
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  title          String
+  excerpt        String?
+  coverImage     String?   @map("cover_image")
+  content        Json?
+  isPublished    Boolean   @default(false) @map("is_published")
+  publishedAt    DateTime? @map("published_at")
+  authorId       String?   @map("author_id")
+  seoTitle       String?   @map("seo_title")
+  seoDescription String?   @map("seo_description")
+  seoKeywords    String?   @map("seo_keywords")
 
-  createdAt       DateTime  @default(now()) @map("created_at")
-  updatedAt       DateTime  @updatedAt      @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  author          User?     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  author User? @relation(fields: [authorId], references: [id], onDelete: SetNull)
 
   @@index([isPublished, publishedAt])
   @@map("blog_posts")
+}
+
+model BusinessCustomer {
+  id          String                    @id @default(cuid())
+  companyName String                    @map("company_name")
+  countryCode String?                   @map("country_code")
+  email       String?
+  phone       String?
+  address     String?                   @db.Text
+  notes       String?                   @db.Text
+  isActive    Boolean                   @default(true) @map("is_active")
+  createdAt   DateTime                  @default(now()) @map("created_at")
+  updatedAt   DateTime                  @updatedAt @map("updated_at")
+  contacts    BusinessCustomerContact[]
+  quotations  SalesQuotation[]
+
+  @@index([companyName])
+  @@index([countryCode])
+  @@index([email])
+  @@index([updatedAt])
+  @@map("business_customers")
+}
+
+model BusinessCustomerContact {
+  id         String           @id @default(cuid())
+  customerId String           @map("customer_id")
+  name       String
+  title      String?
+  email      String?
+  phone      String?
+  isPrimary  Boolean          @default(false) @map("is_primary")
+  createdAt  DateTime         @default(now()) @map("created_at")
+  updatedAt  DateTime         @updatedAt @map("updated_at")
+  customer   BusinessCustomer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@index([email])
+  @@map("business_customer_contacts")
+}
+
+model QuotationProduct {
+  id             String                       @id @default(cuid())
+  internalNumber String                       @unique @map("internal_number")
+  productId      String?                      @map("product_id")
+  nameZh         String?                      @map("name_zh")
+  nameEn         String?                      @map("name_en")
+  sku            String?
+  model          String?
+  unit           String                       @default("pcs")
+  moq            Decimal?                     @db.Decimal(18, 4)
+  specifications Json?
+  standards      Json?
+  certificates   Json?
+  internalNotes  String?                      @map("internal_notes") @db.Text
+  status         QuotationProductStatus       @default(DRAFT)
+  createdAt      DateTime                     @default(now()) @map("created_at")
+  updatedAt      DateTime                     @updatedAt @map("updated_at")
+  product        Product?                     @relation(fields: [productId], references: [id], onDelete: SetNull)
+  images         QuotationProductImage[]
+  sources        QuotationProductSource[]
+  costRecords    QuotationProductCostRecord[]
+  quotationItems SalesQuotationItem[]
+
+  @@index([productId])
+  @@index([nameZh])
+  @@index([nameEn])
+  @@index([model])
+  @@index([status, updatedAt])
+  @@map("quotation_products")
+}
+
+model QuotationProductImage {
+  id                 String               @id @default(cuid())
+  quotationProductId String               @map("quotation_product_id")
+  sourceFileId       String?              @map("source_file_id")
+  displayName        String?              @map("display_name")
+  objectKey          String               @map("object_key")
+  contentType        String               @map("content_type")
+  sizeBytes          Int                  @map("size_bytes")
+  sha256             String
+  sortOrder          Int                  @default(0) @map("sort_order")
+  isCustomerVisible  Boolean              @default(true) @map("is_customer_visible")
+  createdAt          DateTime             @default(now()) @map("created_at")
+  quotationProduct   QuotationProduct     @relation(fields: [quotationProductId], references: [id], onDelete: Cascade)
+  sourceFile         QuotationSourceFile? @relation(fields: [sourceFileId], references: [id], onDelete: SetNull)
+
+  @@index([quotationProductId, sortOrder])
+  @@index([sourceFileId])
+  @@index([sha256])
+  @@map("quotation_product_images")
+}
+
+model QuotationProductSource {
+  id                 String               @id @default(cuid())
+  quotationProductId String               @map("quotation_product_id")
+  sourceFileId       String?              @map("source_file_id")
+  sourceType         String               @map("source_type")
+  supplierName       String?              @map("supplier_name")
+  sourceUrl          String?              @map("source_url")
+  notes              String?              @db.Text
+  createdAt          DateTime             @default(now()) @map("created_at")
+  quotationProduct   QuotationProduct     @relation(fields: [quotationProductId], references: [id], onDelete: Cascade)
+  sourceFile         QuotationSourceFile? @relation(fields: [sourceFileId], references: [id], onDelete: SetNull)
+
+  @@index([quotationProductId])
+  @@index([sourceFileId])
+  @@map("quotation_product_sources")
+}
+
+model QuotationProductCostRecord {
+  id                 String           @id @default(cuid())
+  quotationProductId String           @map("quotation_product_id")
+  amount             Decimal          @db.Decimal(18, 6)
+  currency           String           @db.VarChar(3)
+  exchangeRate       Decimal?         @map("exchange_rate") @db.Decimal(18, 8)
+  effectiveAt        DateTime         @default(now()) @map("effective_at")
+  notes              String?          @db.Text
+  createdAt          DateTime         @default(now()) @map("created_at")
+  quotationProduct   QuotationProduct @relation(fields: [quotationProductId], references: [id], onDelete: Restrict)
+
+  @@index([quotationProductId, effectiveAt])
+  @@map("quotation_product_cost_records")
+}
+
+model SalesQuotation {
+  id              String                      @id @default(cuid())
+  quotationNumber String                      @unique @map("quotation_number")
+  customerId      String                      @map("customer_id")
+  outcomeStatus   SalesQuotationOutcomeStatus @default(OPEN) @map("outcome_status")
+  createdBy       String                      @map("created_by")
+  createdAt       DateTime                    @default(now()) @map("created_at")
+  updatedAt       DateTime                    @updatedAt @map("updated_at")
+  customer        BusinessCustomer            @relation(fields: [customerId], references: [id], onDelete: Restrict)
+  revisions       SalesQuotationRevision[]
+  audits          QuotationAuditLog[]
+  sourceFiles     QuotationSourceFile[]
+
+  @@index([customerId])
+  @@index([outcomeStatus, createdAt])
+  @@index([createdAt])
+  @@map("sales_quotations")
+}
+
+model SalesQuotationRevision {
+  id                   String                         @id @default(cuid())
+  salesQuotationId     String                         @map("sales_quotation_id")
+  revisionNumber       Int                            @map("revision_number")
+  version              Int                            @default(1)
+  state                SalesQuotationRevisionState    @default(DRAFT)
+  documentLanguage     QuotationDocumentLanguage      @default(ENGLISH) @map("document_language")
+  templateVersion      String                         @default("stage-a-v1") @map("template_version")
+  quotationDate        DateTime                       @map("quotation_date") @db.Date
+  validUntil           DateTime?                      @map("valid_until") @db.Date
+  currency             String                         @db.VarChar(3)
+  currencyMinorUnit    Int                            @default(2) @map("currency_minor_unit")
+  roundingMode         QuotationRoundingMode          @default(HALF_UP) @map("rounding_mode")
+  customerSnapshot     Json                           @map("customer_snapshot")
+  publicTerms          Json?                          @map("public_terms")
+  internalNotes        String?                        @map("internal_notes") @db.Text
+  subtotal             Decimal                        @default(0) @db.Decimal(18, 6)
+  discountAmount       Decimal                        @default(0) @map("discount_amount") @db.Decimal(18, 6)
+  discountPercent      Decimal?                       @map("discount_percent") @db.Decimal(9, 6)
+  shippingFee          Decimal                        @default(0) @map("shipping_fee") @db.Decimal(18, 6)
+  otherFee             Decimal                        @default(0) @map("other_fee") @db.Decimal(18, 6)
+  taxRate              Decimal                        @default(0) @map("tax_rate") @db.Decimal(9, 6)
+  taxAmount            Decimal                        @default(0) @map("tax_amount") @db.Decimal(18, 6)
+  roundingAdjustment   Decimal                        @default(0) @map("rounding_adjustment") @db.Decimal(18, 6)
+  total                Decimal                        @default(0) @db.Decimal(18, 6)
+  totalCost            Decimal?                       @map("total_cost") @db.Decimal(18, 6)
+  profit               Decimal?                       @db.Decimal(18, 6)
+  finalizedAt          DateTime?                      @map("finalized_at")
+  issuedAt             DateTime?                      @map("issued_at")
+  createdBy            String                         @map("created_by")
+  createdAt            DateTime                       @default(now()) @map("created_at")
+  updatedAt            DateTime                       @updatedAt @map("updated_at")
+  salesQuotation       SalesQuotation                 @relation(fields: [salesQuotationId], references: [id], onDelete: Restrict)
+  items                SalesQuotationItem[]
+  documents            SalesQuotationDocument[]
+  finalizationAttempts QuotationFinalizationAttempt[]
+
+  @@unique([salesQuotationId, revisionNumber])
+  @@index([salesQuotationId])
+  @@index([state, quotationDate])
+  @@index([validUntil])
+  @@map("sales_quotation_revisions")
+}
+
+model SalesQuotationItem {
+  id                 String                    @id @default(cuid())
+  revisionId         String                    @map("revision_id")
+  quotationProductId String?                   @map("quotation_product_id")
+  productId          String?                   @map("product_id")
+  sortOrder          Int                       @default(0) @map("sort_order")
+  nameZh             String?                   @map("name_zh")
+  nameEn             String?                   @map("name_en")
+  model              String?
+  sku                String?
+  specifications     Json?
+  unit               String                    @default("pcs")
+  quantity           Decimal                   @db.Decimal(18, 4)
+  unitPrice          Decimal                   @map("unit_price") @db.Decimal(18, 6)
+  discountAmount     Decimal                   @default(0) @map("discount_amount") @db.Decimal(18, 6)
+  discountPercent    Decimal?                  @map("discount_percent") @db.Decimal(9, 6)
+  lineTotal          Decimal                   @map("line_total") @db.Decimal(18, 6)
+  unitCost           Decimal?                  @map("unit_cost") @db.Decimal(18, 6)
+  costCurrency       String?                   @map("cost_currency") @db.VarChar(3)
+  exchangeRate       Decimal?                  @map("exchange_rate") @db.Decimal(18, 8)
+  lineCost           Decimal?                  @map("line_cost") @db.Decimal(18, 6)
+  internalNotes      String?                   @map("internal_notes") @db.Text
+  createdAt          DateTime                  @default(now()) @map("created_at")
+  updatedAt          DateTime                  @updatedAt @map("updated_at")
+  revision           SalesQuotationRevision    @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  quotationProduct   QuotationProduct?         @relation(fields: [quotationProductId], references: [id], onDelete: Restrict)
+  product            Product?                  @relation(fields: [productId], references: [id], onDelete: SetNull)
+  assets             SalesQuotationItemAsset[]
+
+  @@index([revisionId, sortOrder])
+  @@index([quotationProductId])
+  @@index([productId])
+  @@index([nameZh])
+  @@index([nameEn])
+  @@map("sales_quotation_items")
+}
+
+model SalesQuotationItemAsset {
+  id           String               @id @default(cuid())
+  itemId       String               @map("item_id")
+  sourceFileId String?              @map("source_file_id")
+  assetType    QuotationAssetType   @default(PRODUCT_IMAGE) @map("asset_type")
+  displayName  String?              @map("display_name")
+  objectKey    String               @map("object_key")
+  contentType  String               @map("content_type")
+  sizeBytes    Int                  @map("size_bytes")
+  sha256       String
+  sortOrder    Int                  @default(0) @map("sort_order")
+  createdAt    DateTime             @default(now()) @map("created_at")
+  item         SalesQuotationItem   @relation(fields: [itemId], references: [id], onDelete: Restrict)
+  sourceFile   QuotationSourceFile? @relation(fields: [sourceFileId], references: [id], onDelete: Restrict)
+
+  @@index([itemId, sortOrder])
+  @@index([sourceFileId])
+  @@index([sha256])
+  @@map("sales_quotation_item_assets")
+}
+
+model SalesQuotationDocument {
+  id              String                       @id @default(cuid())
+  revisionId      String                       @map("revision_id")
+  attemptId       String                       @map("attempt_id")
+  documentType    QuotationDocumentType        @map("document_type")
+  language        QuotationDocumentLanguage
+  templateVersion String                       @map("template_version")
+  filename        String
+  contentType     String                       @map("content_type")
+  sizeBytes       Int                          @map("size_bytes")
+  storageProvider String                       @map("storage_provider")
+  objectKey       String                       @unique @map("object_key")
+  sha256          String
+  createdAt       DateTime                     @default(now()) @map("created_at")
+  revision        SalesQuotationRevision       @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  attempt         QuotationFinalizationAttempt @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+
+  @@unique([revisionId, documentType])
+  @@index([revisionId])
+  @@index([attemptId])
+  @@index([sha256])
+  @@map("sales_quotation_documents")
+}
+
+model QuotationAuditLog {
+  id               String               @id @default(cuid())
+  salesQuotationId String?              @map("sales_quotation_id")
+  entityType       String               @map("entity_type")
+  entityId         String               @map("entity_id")
+  action           QuotationAuditAction
+  actorId          String               @map("actor_id")
+  metadata         Json?
+  createdAt        DateTime             @default(now()) @map("created_at")
+  salesQuotation   SalesQuotation?      @relation(fields: [salesQuotationId], references: [id], onDelete: Restrict)
+
+  @@index([salesQuotationId])
+  @@index([entityType, entityId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("quotation_audit_logs")
+}
+
+model QuotationBrandAsset {
+  id             String                      @id @default(cuid())
+  assetType      QuotationAssetType          @map("asset_type")
+  displayName    String                      @map("display_name")
+  objectKey      String                      @unique @map("object_key")
+  contentType    String                      @map("content_type")
+  sizeBytes      Int                         @map("size_bytes")
+  sha256         String
+  securityStatus QuotationFileSecurityStatus @default(PENDING) @map("security_status")
+  isActive       Boolean                     @default(true) @map("is_active")
+  uploadedBy     String                      @map("uploaded_by")
+  createdAt      DateTime                    @default(now()) @map("created_at")
+  updatedAt      DateTime                    @updatedAt @map("updated_at")
+
+  @@index([assetType, isActive])
+  @@index([sha256])
+  @@map("quotation_brand_assets")
+}
+
+model QuotationSourceFile {
+  id               String                      @id @default(cuid())
+  salesQuotationId String?                     @map("sales_quotation_id")
+  displayName      String                      @map("display_name")
+  originalFilename String                      @map("original_filename")
+  contentType      String                      @map("content_type")
+  sizeBytes        Int                         @map("size_bytes")
+  storageProvider  String                      @map("storage_provider")
+  objectKey        String                      @unique @map("object_key")
+  sha256           String
+  securityStatus   QuotationFileSecurityStatus @default(PENDING) @map("security_status")
+  uploadedBy       String                      @map("uploaded_by")
+  createdAt        DateTime                    @default(now()) @map("created_at")
+  deletedAt        DateTime?                   @map("deleted_at")
+  salesQuotation   SalesQuotation?             @relation(fields: [salesQuotationId], references: [id], onDelete: Restrict)
+  productImages    QuotationProductImage[]
+  productSources   QuotationProductSource[]
+  itemAssets       SalesQuotationItemAsset[]
+
+  @@index([salesQuotationId])
+  @@index([sha256])
+  @@index([securityStatus, createdAt])
+  @@map("quotation_source_files")
+}
+
+model QuotationNumberCounter {
+  period    String   @id
+  value     Int      @default(0)
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("quotation_number_counters")
+}
+
+model QuotationFinalizationAttempt {
+  id             String                      @id @default(cuid())
+  revisionId     String                      @map("revision_id")
+  idempotencyKey String                      @unique @map("idempotency_key")
+  status         QuotationFinalizationStatus @default(PENDING)
+  leaseOwner     String?                     @map("lease_owner")
+  leaseExpiresAt DateTime?                   @map("lease_expires_at")
+  heartbeatAt    DateTime?                   @map("heartbeat_at")
+  failureCode    String?                     @map("failure_code")
+  failureSummary String?                     @map("failure_summary") @db.Text
+  createdAt      DateTime                    @default(now()) @map("created_at")
+  updatedAt      DateTime                    @updatedAt @map("updated_at")
+  revision       SalesQuotationRevision      @relation(fields: [revisionId], references: [id], onDelete: Restrict)
+  documents      SalesQuotationDocument[]
+
+  @@index([revisionId, status])
+  @@index([status, leaseExpiresAt])
+  @@map("quotation_finalization_attempts")
+}
+
+enum QuotationProductStatus {
+  DRAFT
+  ACTIVE
+  INACTIVE
+}
+
+enum SalesQuotationOutcomeStatus {
+  OPEN
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}
+
+enum SalesQuotationRevisionState {
+  DRAFT
+  READY
+  FINALIZING
+  FINALIZED
+  ISSUED
+  SUPERSEDED
+  VOID
+}
+
+enum QuotationDocumentType {
+  SNAPSHOT_JSON
+  CUSTOMER_PDF
+  CUSTOMER_EXCEL
+  INTERNAL_EXCEL
+}
+
+enum QuotationDocumentLanguage {
+  CHINESE
+  ENGLISH
+  BILINGUAL
+}
+
+enum QuotationRoundingMode {
+  HALF_UP
+  HALF_EVEN
+  DOWN
+  UP
+}
+
+enum QuotationAssetType {
+  PRODUCT_IMAGE
+  LOGO
+  SIGNATURE
+  SEAL
+}
+
+enum QuotationAuditAction {
+  CREATE
+  UPDATE
+  STATE_CHANGE
+  FINALIZE
+  ISSUE
+  VOID
+  ARCHIVE
+  DOWNLOAD
+}
+
+enum QuotationFileSecurityStatus {
+  PENDING
+  CLEAN
+  REJECTED
+  SCAN_FAILED
+}
+
+enum QuotationFinalizationStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
 }
