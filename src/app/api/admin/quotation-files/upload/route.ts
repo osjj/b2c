@@ -8,8 +8,6 @@ import { requireAdmin } from '@/lib/auth-utils'
 import { prisma } from '@/lib/prisma'
 import { QuotationError } from '@/lib/quotation/errors'
 import { assertQuotationWorkbenchEnabled } from '@/lib/quotation/feature'
-import { canAcceptQuotationUpload } from '@/lib/quotation/file-security'
-import { scanQuotationUpload } from '@/lib/quotation/scan-upload'
 import { MAX_QUOTATION_IMAGE_BYTES, validateQuotationImage } from '@/lib/quotation/file-validation'
 import { quotationQuarantineKey } from '@/lib/quotation/object-keys'
 import { getQuotationPrivateStorage } from '@/lib/quotation/private-storage'
@@ -21,12 +19,6 @@ export async function POST(request: Request): Promise<NextResponse> {
   try {
     assertQuotationWorkbenchEnabled()
     const actor = await requireAdmin()
-    if (!canAcceptQuotationUpload()) {
-      return NextResponse.json(
-        { success: false, reason: '服务器尚未配置图片安全扫描器 QUOTATION_CLAMSCAN_PATH', code: 'FEATURE_DISABLED' },
-        { status: 503 },
-      )
-    }
     const contentLength = Number(request.headers.get('content-length'))
     if (Number.isFinite(contentLength) && contentLength > MAX_QUOTATION_IMAGE_BYTES + 1024 * 1024) {
       return NextResponse.json(
@@ -57,7 +49,6 @@ export async function POST(request: Request): Promise<NextResponse> {
       contentType: file.type,
       bytes: Buffer.from(await file.arrayBuffer()),
     })
-    await scanQuotationUpload(validated.bytes)
     const duplicate = await prisma.quotationSourceFile.findFirst({
       where: { sha256: validated.sha256, deletedAt: null, salesQuotationId, securityStatus: 'CLEAN' },
       select: { id: true, displayName: true, contentType: true, sizeBytes: true, securityStatus: true },
@@ -86,6 +77,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             storageProvider: storage.provider,
             objectKey,
             sha256: validated.sha256,
+            // CLEAN means accepted by the image validator, not antivirus-scanned.
             securityStatus: 'CLEAN',
             uploadedBy: actor.id,
           },

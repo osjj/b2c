@@ -18,7 +18,8 @@
 
 ## 验证范围
 
-- 报价单元测试：`node node_modules/tsx/dist/cli.mjs --test src/lib/quotation/*.test.ts`，39 项通过；8 项写入边界测试通过。所有本轮新增/修改的 TS、TSX、MJS 文件 ESLint 通过。
+- 报价单元测试：`node node_modules/tsx/dist/cli.mjs --test src/lib/quotation/*.test.ts`，移除扫描器相关 3 项旧断言后，36 项通过；初次重构的 8 项写入边界测试通过。改动文件 ESLint 通过。
+- 移除扫描器后的上传回归：`node scripts/test-quotation-upload.mjs`，10 项通过。真实上传接口搭配隔离权限/数据库/存储替身，覆盖生产环境未配置扫描器、无效旧配置、权限、功能开关、扩展名、损坏图片、MIME、大小、去重及数据库写入失败后的文件补偿。没有连接真实数据库或 R2。
 - 真实 Action 写入边界＋内存事务替身：`node scripts/test-quotation-write-boundaries.mjs`；覆盖授权、新建、改名不泄露旧联系人、精确金额、过期版本、外来图片 ID、回滚、正式版不可编辑。**不是 PostgreSQL 集成测试**。
 - 实际 React 编辑器隔离浏览器：`node scripts/test-simple-quotation-ui.mjs`；不读取 .env、不调用真实 Server Actions、数据库或 R2。已验证必填错误、常用产品填充、金额显示、PDF 预览、R2 失败反馈与禁止直接重试、390px 窄屏布局。取消确认时保存/生成次数均为 0；模拟成功时保存/生成/刷新各 1 次。真实后端生成及文件下载仍须隔离数据库集成验收。
 - 样例 PDF：`node node_modules/tsx/dist/cli.mjs scripts/preview-simple-quotation.ts`，输出 `output/pdf/quotation-v2-preview.pdf`。使用合成产品与示例数据，不是客户报价。两页均已渲染检查。
@@ -28,8 +29,8 @@
 
 1. 在隔离测试数据库运行真实创建、保存、上传、预览、生成、下载、复制/修订流程；检查并发版本冲突与回滚。不要让本地调试指向生产 DATABASE_URL。
 2. 保留已验证的 `QUOTATION_PRIVATE_STORAGE_PROVIDER=r2-private` 及 `QUOTATION_PRIVATE_R2_*`，目标 bucket 必须私有。此次未改动或验证服务器凭据。
-3. 图片上传新增本机 ClamAV 适配器：设置 `QUOTATION_CLAMSCAN_PATH` 为实际 `clamscan` 绝对路径。保持病毒库更新，7 天以上的病毒库、扫描非零退出或超时都会拒绝上传。每应用进程最多一个扫描任务，45 秒超时。需评估服务器内存及 PM2 实例数量后启用；本轮未安装或测试真实扫描器。
-4. 本地 ClamAV 使用方式参见 [ClamAV 官方手册](https://github.com/Cisco-Talos/clamav/blob/main/docs/man/clamscan.1.in)。旧的 `QUOTATION_PRIVATE_UPLOADS_SCANNER_ENABLED=true` 不能跳过检查。
+3. 按用户后续要求，已移除图片上传的 ClamAV 依赖。无需安装扫描器或设置 `QUOTATION_CLAMSCAN_PATH`；已有扫描器环境变量不会再被读取。
+4. 上传保留管理员权限、功能开关、文件大小、扩展名/MIME/文件头一致性、图片元数据解码及像素限制。没有病毒扫描能力；数据库沿用的 `CLEAN` 状态表示通过应用图片校验，不代表已通过杀毒扫描。私有存储、审计及失败补偿仍保留。
 5. 中文文件继续使用服务器可用的中文 TTF 或 `QUOTATION_PDF_FONT_PATH`。不能依靠浏览器安装的字体。
 6. 单张产品图最多 5 MiB，每条 8 张，正式文件全部产品图总计 20 MiB；Logo/印章分别最多 1 MiB。现有公共图库配置不代替报价私有存储。
 7. 解决/确认现有全项目类型错误后，运行生产构建及商城首页、商品详情、购物车、询价/结账只读回归。由用户确认后再发布，并验证远端 commit 与实际运行版本。

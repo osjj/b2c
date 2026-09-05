@@ -3,8 +3,6 @@ import test from 'node:test'
 import { blankQuotation, simpleTotals, toQuotationInput, simpleQuotationSchema, commonProductSchema } from './simple-input'
 import { defaultWorkbenchSettings, workbenchSettingsSchema } from './workbench-config'
 import { calculateQuotationMoney } from './money'
-import { scanQuotationUpload } from './scan-upload'
-import { canAcceptQuotationUpload } from './file-security'
 
 function fixture() {
   const value = blankQuotation(defaultWorkbenchSettings)
@@ -46,10 +44,4 @@ test('common products are minimal; settings never accept storage credentials or 
   const settings = workbenchSettingsSchema.parse({ secretAccessKey: 'do-not-persist', remoteLogo: 'https://invalid.test' })
   assert.equal('secretAccessKey' in settings, false)
   assert.equal(settings.useSeal, false)
-})
-test('production image scanning fails closed when missing, relative or not executable', async () => {
-  assert.equal(canAcceptQuotationUpload({ NODE_ENV: 'production', QUOTATION_CLAMSCAN_PATH: 'clamscan' }), false)
-  await assert.rejects(scanQuotationUpload(Buffer.from('x'), { NODE_ENV: 'production' }), /扫描器/)
-  await assert.rejects(scanQuotationUpload(Buffer.from('x'), { NODE_ENV: 'production', QUOTATION_CLAMSCAN_PATH: process.platform === 'win32' ? 'C:\\missing-quotation-scanner.exe' : '/missing-quotation-scanner' }), /扫描未通过/)
-  await scanQuotationUpload(Buffer.from('x'), { NODE_ENV: 'test' })
 })
