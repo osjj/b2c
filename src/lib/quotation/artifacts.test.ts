@@ -1,12 +1,15 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 import { test } from 'node:test'
+import { existsSync } from 'node:fs'
+import { jsPDF } from 'jspdf'
 
 import ExcelJS from 'exceljs'
 import sharp from 'sharp'
 
 import { generateCustomerExcel, generateInternalValuationExcel } from './artifacts/excel'
 import { generateCustomerPdf } from './artifacts/pdf'
+import { configureQuotationPdfFont, systemQuotationFontPaths } from './artifacts/pdf-font'
 import { stableSnapshotJson, type QuotationSnapshot } from './artifacts/snapshot'
 import { validateGeneratedArtifacts } from './artifacts/validate'
 
@@ -20,6 +23,57 @@ function fixture(image: { dataUrl: string; sha256: string }): QuotationSnapshot 
     items: [{ position: 1, nameZh: null, nameEn: '=Unsafe spreadsheet name', model: 'MODEL-1', sku: null, specifications: ['One specification'], unit: 'pcs', quantity: '2', unitPrice: '10.00', lineTotal: '20.00', images: [{ contentType: 'image/png', sha256: image.sha256, dataUrl: image.dataUrl }] }],
   }
 }
+
+function textFixture(): QuotationSnapshot {
+  const snapshot = fixture({ dataUrl: 'data:image/png;base64,', sha256: '0'.repeat(64) })
+  snapshot.items[0].images = []
+  snapshot.items[0].nameEn = 'Safety helmet'
+  snapshot.items[0].nameZh = '安全帽'
+  snapshot.customer.address = '未在 PDF 显示的地址'
+  return snapshot
+}
+
+test('English PDF ignores hidden Chinese fields and needs no external font, including specification bullets', async () => {
+  const pdf = await generateCustomerPdf(textFixture(), { configuredPath: '', systemPaths: [] })
+  assert.equal(pdf.subarray(0, 4).toString(), '%PDF')
+  assert.ok(!pdf.toString('latin1').includes('/FontFile2'))
+})
+
+test('visible customer names, fallback product names, specifications, terms and bilingual headings require a covering font', async () => {
+  const variants = [
+    (s: QuotationSnapshot) => { s.customer.companyName = '示例公司' },
+    (s: QuotationSnapshot) => { if (s.customer.contact) s.customer.contact.name = '张三' },
+    (s: QuotationSnapshot) => { s.items[0].nameEn = null },
+    (s: QuotationSnapshot) => { s.items[0].specifications = ['防冲击'] },
+    (s: QuotationSnapshot) => { s.terms.payment = '预付款' },
+    (s: QuotationSnapshot) => { s.language = 'BILINGUAL' },
+  ]
+  await Promise.all(variants.map(async (change) => {
+    const snapshot = textFixture()
+    change(snapshot)
+    await assert.rejects(generateCustomerPdf(snapshot, { configuredPath: '', systemPaths: [] }), /No usable system font/)
+  }))
+})
+
+test('system Chinese TrueType font is found and embedded when no explicit font is configured', async (context) => {
+  if (!systemQuotationFontPaths().some(existsSync)) { context.skip('No system Chinese TTF installed'); return }
+  const snapshot = textFixture()
+  snapshot.language = 'BILINGUAL'
+  const pdf = await generateCustomerPdf(snapshot, { configuredPath: '' })
+  assert.ok(pdf.toString('latin1').includes('/FontFile2'))
+})
+
+test('unreadable configured font falls back, and unsupported glyphs fail instead of silently disappearing', async (context) => {
+  const path = systemQuotationFontPaths().find(existsSync)
+  if (!path) { context.skip('No system Chinese TTF installed'); return }
+  const font = await configureQuotationPdfFont(new jsPDF(), '安全帽', {
+    configuredPath: '/missing/quotation-font.ttf', systemPaths: [path],
+  })
+  assert.match(font, /^QuotationUnicode/)
+  await assert.rejects(configureQuotationPdfFont(new jsPDF(), '安全帽😀', {
+    configuredPath: '', systemPaths: [path],
+  }), /No usable system font/)
+})
 
 test('customer PDF and Excel share one safe snapshot with embedded images', async () => {
   const imageBytes = await sharp({ create: { width: 2, height: 2, channels: 3, background: '#ffffff' } }).png().toBuffer()
