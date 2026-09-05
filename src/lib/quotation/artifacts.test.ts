@@ -12,6 +12,7 @@ import { generateCustomerPdf } from './artifacts/pdf'
 import { configureQuotationPdfFont, systemQuotationFontPaths } from './artifacts/pdf-font'
 import { stableSnapshotJson, type QuotationSnapshot } from './artifacts/snapshot'
 import { validateGeneratedArtifacts } from './artifacts/validate'
+import { atFinalizationStage } from './finalization-error'
 
 function fixture(image: { dataUrl: string; sha256: string }): QuotationSnapshot {
   return {
@@ -60,6 +61,21 @@ test('system Chinese TrueType font is found and embedded when no explicit font i
   const snapshot = textFixture()
   snapshot.language = 'BILINGUAL'
   const pdf = await generateCustomerPdf(snapshot, { configuredPath: '' })
+  assert.ok(pdf.toString('latin1').includes('/FontFile2'))
+})
+
+test('English quotation with a visible Chinese customer reproduces the font failure and succeeds with a system font', async (context) => {
+  const snapshot = textFixture()
+  snapshot.customer.companyName = '示例劳保用品有限公司'
+  await assert.rejects(atFinalizationStage('pdf', () => generateCustomerPdf(snapshot, { configuredPath: '', systemPaths: [] })),
+    /PDF generation: No usable system font/)
+  if (!systemQuotationFontPaths().some(existsSync)) { context.diagnostic('System-font success branch not available on this host'); return }
+  const [pdf, excel, internalExcel] = await Promise.all([
+    atFinalizationStage('pdf', () => generateCustomerPdf(snapshot, { configuredPath: '' })),
+    generateCustomerExcel(snapshot),
+    generateInternalValuationExcel({ quotationNumber: snapshot.quotation.number, revisionNumber: 1, currency: 'USD', total: '20.00', totalCost: null, profit: null, items: [] }),
+  ])
+  await validateGeneratedArtifacts({ snapshot, snapshotJson: stableSnapshotJson(snapshot), pdf, excel, internalExcel })
   assert.ok(pdf.toString('latin1').includes('/FontFile2'))
 })
 

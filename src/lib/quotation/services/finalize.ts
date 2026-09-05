@@ -9,6 +9,7 @@ import { generateCustomerPdf } from '../artifacts/pdf'
 import { buildCanonicalSnapshot, stableSnapshotJson } from '../artifacts/snapshot'
 import { sha256, validateGeneratedArtifacts } from '../artifacts/validate'
 import { QuotationError } from '../errors'
+import { atFinalizationStage, finalizationError, type FinalizationStage } from '../finalization-error'
 import { calculateQuotationMoney } from '../money'
 import { quotationFinalAssetKey, quotationFinalKey, quotationStagingKey } from '../object-keys'
 import { getQuotationPrivateStorage } from '../private-storage'
@@ -97,6 +98,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
   })
 
   const storedKeys = new Set<string>()
+  let stage: FinalizationStage = 'prepare'
   const heartbeat = async (): Promise<void> => {
     const updated = await prisma.quotationFinalizationAttempt.updateMany({
       where: { id: attemptId, status: 'RUNNING', leaseOwner },
@@ -184,6 +186,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
     if (!revision || revision.state !== 'FINALIZING') {
       throw new QuotationError('INVALID_STATE_TRANSITION', 'Finalizing revision changed during recalculation')
     }
+    stage = 'images'
     const immutableAssets: Array<{
       id: string
       itemId: string
@@ -232,9 +235,10 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
       }
     }
     await heartbeat()
+    stage = 'snapshot'
     const snapshot = buildCanonicalSnapshot(revision, immutableAssets)
     const snapshotJson = stableSnapshotJson(snapshot)
-    const internalExcelPromise = generateInternalValuationExcel({
+    const internalExcelPromise = atFinalizationStage('excel', () => generateInternalValuationExcel({
       quotationNumber: revision.salesQuotation.quotationNumber,
       revisionNumber: revision.revisionNumber,
       currency: revision.currency,
@@ -253,12 +257,13 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
         lineCost: item.lineCost?.toString() ?? null,
         internalNotes: item.internalNotes,
       })),
-    })
+    }))
     const [pdf, excel, internalExcel] = await Promise.all([
-      generateCustomerPdf(snapshot),
-      generateCustomerExcel(snapshot),
+      atFinalizationStage('pdf', () => generateCustomerPdf(snapshot)),
+      atFinalizationStage('excel', () => generateCustomerExcel(snapshot)),
       internalExcelPromise,
     ])
+    stage = 'validation'
     await validateGeneratedArtifacts({ snapshot, snapshotJson, pdf, excel, internalExcel })
     await heartbeat()
 
@@ -275,6 +280,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
       { id: randomUUID(), type: 'INTERNAL_EXCEL', filename: `INTERNAL-${snapshot.quotation.number}-R${snapshot.quotation.revision}.xlsx`, contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', bytes: internalExcel },
     ]
 
+    stage = 'storage'
     const storeResults = await Promise.allSettled(artifacts.map(async (artifact) => {
       const stagingKey = quotationStagingKey(claimed.quotationId, claimed.revisionId, attemptId, artifact.filename)
       storedKeys.add(stagingKey)
@@ -289,6 +295,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
     if (failedStore?.status === 'rejected') throw failedStore.reason
     const stored = storeResults.flatMap((result) => result.status === 'fulfilled' ? [result.value] : [])
 
+    stage = 'database'
     const result = await prisma.$transaction(async (transaction) => {
       const updated = await transaction.salesQuotationRevision.updateMany({
         where: { id: claimed.revisionId, version: claimed.workingVersion, state: 'FINALIZING' },
@@ -341,6 +348,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
     })
     return result
   } catch (error) {
+    const failure = finalizationError(error, stage)
     await Promise.allSettled([...storedKeys].map((key) => storage.delete(key)))
     await prisma.$transaction(async (transaction) => {
       await transaction.salesQuotationRevision.updateMany({
@@ -353,12 +361,11 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
           status: 'FAILED',
           leaseOwner: null,
           leaseExpiresAt: null,
-          failureCode: error instanceof QuotationError ? error.code : 'DOCUMENT_GENERATION_FAILED',
-          failureSummary: 'Formal quotation artifacts could not be generated',
+          failureCode: failure.code,
+          failureSummary: failure.message,
         },
       })
     })
-    if (error instanceof QuotationError) throw error
-    throw new QuotationError('DOCUMENT_GENERATION_FAILED', 'Formal quotation artifacts could not be generated')
+    throw new QuotationError(failure.code, `${failure.message} Reference: ${attemptId}`)
   }
 }

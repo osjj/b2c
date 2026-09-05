@@ -56,6 +56,25 @@ download occurs. If no candidate is usable, generation returns `DOCUMENT_GENERAT
 with a font installation/configuration message. Minimal Linux containers may have no Chinese
 TTF; install one or include a compatible font in the deployment and set its runtime path.
 
+## Finalization troubleshooting
+
+Revision action results are displayed inline, including pending, failed and successful requests;
+they do not depend on a global toast provider. Failed requests refresh revision state/version,
+since a failed finalization can increment the version while restoring READY. Lost network
+responses never trigger automatic retries; check current status and formal documents first.
+
+Generation errors identify the failed step (PDF, Excel, images, storage, validation or database).
+R2 credential, permission, missing-bucket/file and timeout failures use fixed safe messages.
+Failures after claiming the revision include an attempt reference and store the safe explanation
+in the existing attempt record. Raw SDK messages, secrets and object keys are never exposed.
+
+For an isolated frontend regression check, run `node scripts/test-quotation-revision-actions.mjs`
+and open its printed loopback URL. This harness bundles the real revision-actions component with
+mock Server Actions and navigation; it reads no `.env` and performs no database/R2 operations.
+Test pending/disabled buttons, font and R2 failures, failed-request version refresh, network
+rejection without auto-retry, and successful transition to FINALIZED. Harness styling is minimal;
+it is an interaction test, not a full production page or storage integration test.
+
 ## Production upload safety
 
 Stage A production uploads intentionally fail closed until an approved malware-scanner adapter is implemented and verified. Enabling the workbench or configuring R2 does not override that safeguard.
