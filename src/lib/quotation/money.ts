@@ -113,6 +113,12 @@ export function calculateQuotationMoney(input: QuotationMoneyInput): CalculatedQ
     ? profit.dividedBy(total).times(100).toDecimalPlaces(4, ROUNDING_MODE[input.roundingMode])
     : null
 
+  const monetaryValues = [subtotal, boundedDiscount, shipping, other, tax, adjustment, total, totalCost, profit,
+    ...items.flatMap((item) => [decimal(item.lineTotal), ...(item.lineCost ? [decimal(item.lineCost)] : [])])]
+  if (monetaryValues.some((value) => value && (!value.isFinite() || value.abs().gte('1000000000000')))) {
+    throw new QuotationError('VALIDATION_FAILED', '报价金额超出系统支持范围，请检查数量和单价')
+  }
+
   return {
     items,
     subtotal: fixed(subtotal, precision),

@@ -3,6 +3,7 @@ import autoTable from 'jspdf-autotable'
 
 import { configureQuotationPdfFont, type PdfFontOptions } from './pdf-font'
 import type { QuotationSnapshot } from './snapshot'
+import { generatePresentationPdf } from './presentation-pdf'
 
 function displayName(snapshot: QuotationSnapshot, item: QuotationSnapshot['items'][number]): string {
   if (snapshot.language === 'CHINESE') return item.nameZh ?? item.nameEn ?? ''
@@ -16,7 +17,8 @@ function label(snapshot: QuotationSnapshot, chinese: string, english: string): s
   return english
 }
 
-export async function generateCustomerPdf(snapshot: QuotationSnapshot, fontOptions?: PdfFontOptions): Promise<Buffer> {
+export async function generateCustomerPdf(snapshot: QuotationSnapshot, fontOptions?: PdfFontOptions, preview = false): Promise<Buffer> {
+  if (snapshot.templateVersion === 'presentation-v2') return generatePresentationPdf(snapshot, fontOptions, preview)
   // These exact strings are both inspected for glyph coverage and rendered below.
   const heading = [
     { text: label(snapshot, '报价单', 'QUOTATION'), x: 40, y: 48, size: 18 },

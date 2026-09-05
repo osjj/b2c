@@ -1,12 +1,14 @@
 import { z } from 'zod'
 
 import { assertCustomerProjectionSafe } from '../visibility'
+import { quotationBrandSchema } from '../workbench-config'
 
 const nullableText = z.string().nullable()
 
 export const quotationSnapshotSchema = z.object({
   schemaVersion: z.literal('1.0'),
   templateVersion: z.string(),
+  brand: quotationBrandSchema.optional(),
   language: z.enum(['CHINESE', 'ENGLISH', 'BILINGUAL']),
   quotation: z.object({
     number: z.string(),
@@ -93,6 +95,7 @@ type RevisionForSnapshot = {
 }
 
 const customerSourceSchema = z.object({
+  quotationBrand: quotationBrandSchema.optional(),
   companyName: z.string(),
   countryCode: z.string().nullable().optional(),
   email: z.string().nullable().optional(),
@@ -124,6 +127,7 @@ export function buildCanonicalSnapshot(
   const snapshot: QuotationSnapshot = {
     schemaVersion: '1.0',
     templateVersion: revision.templateVersion,
+    brand: customer.quotationBrand,
     language: revision.documentLanguage,
     quotation: {
       number: revision.salesQuotation.quotationNumber,

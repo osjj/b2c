@@ -147,6 +147,33 @@ export async function copyIssuedQuotationRevision(input: unknown, actorId: strin
   })
 }
 
+// Simplified workbench: keep prior formal files intact, then edit a new draft.
+export async function copyWorkbenchQuotation(input: unknown, actorId: string, newNumber: boolean) {
+  const data = copyQuotationRevisionInputSchema.parse(input)
+  return prisma.$transaction(async (transaction) => {
+    const source = await loadRevision(transaction, data.revisionId)
+    await lockQuotation(transaction, source.salesQuotationId)
+    const current = await loadRevision(transaction, data.revisionId)
+    if (current.version !== data.expectedVersion) throw new QuotationError('VERSION_CONFLICT', '报价已变更，请刷新后重试')
+    if (current.state === 'FINALIZING') throw new QuotationError('INVALID_STATE_TRANSITION', '请等待文件生成结束')
+    if (!newNumber) {
+      if (current.salesQuotation.outcomeStatus !== 'OPEN') throw new QuotationError('INVALID_STATE_TRANSITION', '已关闭报价不能创建修订版，请复制为新报价')
+      if (!['FINALIZED', 'ISSUED', 'SUPERSEDED'].includes(current.state)) throw new QuotationError('INVALID_STATE_TRANSITION', '仅正式报价可以创建修订版')
+      const working = await transaction.salesQuotationRevision.findFirst({ where: { salesQuotationId: current.salesQuotationId, state: { in: ['DRAFT', 'READY', 'FINALIZING'] } }, select: { id: true } })
+      if (working) throw new QuotationError('INVALID_STATE_TRANSITION', '已有草稿修订版，请先编辑该版本')
+    }
+    const quotation = newNumber ? await transaction.salesQuotation.create({ data: { quotationNumber: await allocateQuotationNumber(transaction), customerId: current.salesQuotation.customerId, createdBy: actorId } }) : { id: current.salesQuotationId }
+    const copyData = revisionCreateData(current, actorId)
+    const revision = await transaction.salesQuotationRevision.create({ data: {
+      ...copyData, salesQuotationId: quotation.id, revisionNumber: newNumber ? 1 : await nextRevisionNumber(transaction, quotation.id), state: 'DRAFT',
+      ...(newNumber ? { quotationDate: new Date(), validUntil: null, internalNotes: null } : {}),
+    } })
+    await writeQuotationAudit(transaction, { salesQuotationId: quotation.id, entityType: 'SalesQuotationRevision', entityId: revision.id, action: 'CREATE', actorId, metadata: { copiedFrom: current.id, newNumber } })
+    await transaction.salesQuotation.update({ where: { id: quotation.id }, data: { updatedAt: new Date() } })
+    return { quotationId: quotation.id, revisionId: revision.id, version: revision.version }
+  })
+}
+
 export async function voidAndCopyFinalizedQuotationRevision(input: unknown, actorId: string) {
   const data = voidAndCopyQuotationRevisionInputSchema.parse(input)
   return prisma.$transaction(async (transaction) => {

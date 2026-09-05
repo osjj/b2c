@@ -24,15 +24,29 @@ import { attachCleanSourceImageToQuotationItem } from '@/lib/quotation/services/
 import { reconcileExpiredFinalizationAttempts } from '@/lib/quotation/services/reconcile-finalization'
 import {
   copyIssuedQuotationRevision,
+  copyWorkbenchQuotation,
   copyQuotationToNewCustomer,
   setQuotationOutcome,
   voidAndCopyFinalizedQuotationRevision,
 } from '@/lib/quotation/services/revision-operations'
 import { assertEditableRevision, assertRevisionTransition } from '@/lib/quotation/state-machine'
+import { readWorkbenchSettings, readBrandForSnapshot } from '@/lib/quotation/services/workbench-settings'
+import { attachEditorImages } from '@/lib/quotation/services/editor-images'
 
 async function authorize(): Promise<{ id: string }> {
   assertQuotationWorkbenchEnabled()
   return requireAdmin()
+}
+
+export async function copySimpleQuotation(input: unknown): Promise<QuotationActionResult> {
+  try {
+    const actor = await authorize()
+    const data = z.object({ revisionId: z.string().cuid(), expectedVersion: z.number().int().positive(), newNumber: z.boolean() }).parse(input)
+    const result = await copyWorkbenchQuotation(data, actor.id, data.newNumber)
+    revalidatePath('/admin/sales-quotations')
+    revalidatePath(`/admin/sales-quotations/${result.quotationId}`)
+    return { success: true, reason: data.newNumber ? '已复制为新报价' : '已创建修订草稿，原文件保持不变', data: result }
+  } catch (error) { return toQuotationActionError(error) }
 }
 
 function json(value: unknown): Prisma.InputJsonValue {
@@ -117,11 +131,13 @@ export async function createSalesQuotation(input: unknown): Promise<QuotationAct
     const actor = await authorize()
     const data = createSalesQuotationInputSchema.parse(input)
     const money = calculatedMoney(data)
+    const settings = await readWorkbenchSettings()
+    const brand = await readBrandForSnapshot(settings)
     const created = await prisma.$transaction(async (transaction) => {
-      const customer = await transaction.businessCustomer.findUnique({
+      const customer = data.customerId ? await transaction.businessCustomer.findUnique({
         where: { id: data.customerId },
         include: { contacts: { orderBy: [{ isPrimary: 'desc' }, { createdAt: 'asc' }] } },
-      })
+      }) : await transaction.businessCustomer.create({ data: { companyName: z.string().min(1).parse(data.customerName) }, include: { contacts: true } })
       if (!customer) throw new QuotationError('NOT_FOUND', 'Business customer not found')
       const quotationNumber = await allocateQuotationNumber(transaction)
       const quotation = await transaction.salesQuotation.create({
@@ -135,13 +151,14 @@ export async function createSalesQuotation(input: unknown): Promise<QuotationAct
         data: {
           salesQuotationId: quotation.id,
           revisionNumber: 1,
+          templateVersion: 'presentation-v2',
           documentLanguage: data.documentLanguage,
           quotationDate: data.quotationDate,
           validUntil: data.validUntil,
           currency: data.currency,
           currencyMinorUnit: data.currencyMinorUnit,
           roundingMode: data.roundingMode,
-          customerSnapshot: json(customer),
+          customerSnapshot: json(data.customerName ? { companyName: data.customerName, contacts: [], quotationBrand: brand } : { ...customer, quotationBrand: brand }),
           publicTerms: json(data.publicTerms),
           internalNotes: data.internalNotes,
           subtotal: money.subtotal,
@@ -159,6 +176,8 @@ export async function createSalesQuotation(input: unknown): Promise<QuotationAct
         },
       })
       await transaction.salesQuotationItem.createMany({ data: itemCreateData(revision.id, money.items) })
+      if (data.items.some((item) => item.imageAssetIds?.length)) throw new QuotationError('VALIDATION_FAILED', 'Existing line images cannot be attached to a new quotation')
+      await attachEditorImages(transaction, quotation.id, revision.id, data.items)
       await writeQuotationAudit(transaction, {
         salesQuotationId: quotation.id,
         entityType: 'SalesQuotation',
@@ -167,7 +186,8 @@ export async function createSalesQuotation(input: unknown): Promise<QuotationAct
         actorId: actor.id,
         metadata: json({ revisionId: revision.id }),
       })
-      return { quotationId: quotation.id, revisionId: revision.id, quotationNumber }
+      const items = await transaction.salesQuotationItem.findMany({ where: { revisionId: revision.id }, orderBy: { sortOrder: 'asc' }, select: { id: true, assets: { orderBy: { sortOrder: 'asc' }, select: { id: true, displayName: true } } } })
+      return { quotationId: quotation.id, revisionId: revision.id, quotationNumber, version: 1, items }
     })
     revalidatePath('/admin/sales-quotations')
     return { success: true, reason: 'Sales quotation created', data: created }
@@ -181,6 +201,8 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
     const actor = await authorize()
     const data = updateSalesQuotationInputSchema.parse(input)
     const money = calculatedMoney(data)
+    const settings = await readWorkbenchSettings()
+    const currentBrand = await readBrandForSnapshot(settings)
     const result = await prisma.$transaction(async (transaction) => {
       const existing = await transaction.salesQuotationRevision.findUnique({
         where: { id: data.revisionId },
@@ -189,6 +211,7 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
           salesQuotationId: true,
           state: true,
           version: true,
+          customerSnapshot: true,
           salesQuotation: { select: { customerId: true } },
         },
       })
@@ -197,7 +220,7 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
       if (existing.version !== data.expectedVersion) {
         throw new QuotationError('VERSION_CONFLICT', 'Quotation revision was changed by another editor')
       }
-      if (existing.salesQuotation.customerId !== data.customerId) {
+      if (data.customerId && existing.salesQuotation.customerId !== data.customerId) {
         throw new QuotationError(
           'INVALID_STATE_TRANSITION',
           'Changing the customer requires copying to a new quotation number',
@@ -205,7 +228,7 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
       }
 
       const customer = await transaction.businessCustomer.findUnique({
-        where: { id: data.customerId }, include: { contacts: true },
+        where: { id: existing.salesQuotation.customerId }, include: { contacts: true },
       })
       if (!customer) throw new QuotationError('NOT_FOUND', 'Business customer not found')
       const existingItems = await transaction.salesQuotationItem.findMany({
@@ -217,20 +240,29 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
       if (new Set(submittedIds).size !== submittedIds.length || submittedIds.some((id) => !existingItemIds.has(id))) {
         throw new QuotationError('VALIDATION_FAILED', 'Quotation item identifiers do not belong to this revision')
       }
-      const preservedAssets = existingItems.flatMap((item) => (
-        submittedIds.includes(item.id) ? item.assets : []
-      ))
+      const preservedAssets = existingItems.flatMap((item) => {
+        const submitted = data.items.find((entry) => entry.id === item.id)
+        if (!submitted) return []
+        if (submitted.imageAssetIds === undefined) return item.assets
+        if (new Set(submitted.imageAssetIds).size !== submitted.imageAssetIds.length || submitted.imageAssetIds.some((id) => !item.assets.some((asset) => asset.id === id))) {
+          throw new QuotationError('VALIDATION_FAILED', 'Image identifiers do not belong to this quotation line')
+        }
+        if (submitted.imageAssetIds.length + (submitted.imageSourceIds?.length ?? 0) > 8) throw new QuotationError('VALIDATION_FAILED', '每个产品最多 8 张图片')
+        return item.assets.filter((asset) => submitted.imageAssetIds?.includes(asset.id))
+      })
+      if (data.items.some((item) => !item.id && item.imageAssetIds?.length)) throw new QuotationError('VALIDATION_FAILED', 'New lines cannot reuse another line image identifier')
       const updated = await transaction.salesQuotationRevision.updateMany({
         where: { id: data.revisionId, version: data.expectedVersion, state: { in: ['DRAFT', 'READY'] } },
         data: {
           version: { increment: 1 },
+          templateVersion: 'presentation-v2',
           documentLanguage: data.documentLanguage,
           quotationDate: data.quotationDate,
           validUntil: data.validUntil,
           currency: data.currency,
           currencyMinorUnit: data.currencyMinorUnit,
           roundingMode: data.roundingMode,
-          customerSnapshot: json(customer),
+          customerSnapshot: json(data.customerName ? { companyName: data.customerName, contacts: [], quotationBrand: currentBrand } : { ...customer, quotationBrand: currentBrand }),
           publicTerms: json(data.publicTerms),
           internalNotes: data.internalNotes,
           subtotal: money.subtotal,
@@ -276,7 +308,10 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
         actorId: actor.id,
         metadata: json({ fromVersion: data.expectedVersion, toVersion: data.expectedVersion + 1 }),
       })
-      return { quotationId: existing.salesQuotationId, revisionId: data.revisionId, version: data.expectedVersion + 1 }
+      await attachEditorImages(transaction, existing.salesQuotationId, data.revisionId, data.items)
+      await transaction.salesQuotation.update({ where: { id: existing.salesQuotationId }, data: { updatedAt: new Date() } })
+      const items = await transaction.salesQuotationItem.findMany({ where: { revisionId: data.revisionId }, orderBy: { sortOrder: 'asc' }, select: { id: true, assets: { orderBy: { sortOrder: 'asc' }, select: { id: true, displayName: true } } } })
+      return { quotationId: existing.salesQuotationId, revisionId: data.revisionId, version: data.expectedVersion + 1, items }
     })
     revalidatePath('/admin/sales-quotations')
     revalidatePath(`/admin/sales-quotations/${result.quotationId}`)

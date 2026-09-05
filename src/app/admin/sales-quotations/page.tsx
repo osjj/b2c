@@ -1,51 +1,26 @@
 import Link from 'next/link'
-import type { Prisma, SalesQuotationOutcomeStatus, SalesQuotationRevisionState } from '@prisma/client'
-import { FileText, Plus, Search } from 'lucide-react'
 import { notFound } from 'next/navigation'
-
-import { Pagination } from '@/components/admin/pagination'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
 import { requireAdmin } from '@/lib/auth-utils'
 import { prisma } from '@/lib/prisma'
 import { isQuotationWorkbenchEnabled } from '@/lib/quotation/feature'
+import { revisionStatusLabel } from '@/lib/quotation/workbench-config'
+import { WorkbenchHeader } from '@/components/admin/quotation/workbench-header'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Pagination } from '@/components/admin/pagination'
 
-export default async function SalesQuotationsPage({ searchParams }: { searchParams: Promise<{ page?: string; search?: string; outcome?: string; state?: string }> }) {
+export default async function QuotationsPage({ searchParams }: { searchParams: Promise<{ page?: string; search?: string }> }) {
   if (!isQuotationWorkbenchEnabled()) notFound()
   await requireAdmin()
   const params = await searchParams
-  const page = Math.max(Number(params.page) || 1, 1)
-  const search = params.search?.trim() ?? ''
-  const outcome = outcomeValues.includes(params.outcome as SalesQuotationOutcomeStatus) ? params.outcome as SalesQuotationOutcomeStatus : undefined
-  const state = stateValues.includes(params.state as SalesQuotationRevisionState) ? params.state as SalesQuotationRevisionState : undefined
-  const pageSize = 20
-  const where: Prisma.SalesQuotationWhereInput = {
-    ...(search ? { OR: [
-      { quotationNumber: { contains: search, mode: 'insensitive' as const } },
-      { customer: { companyName: { contains: search, mode: 'insensitive' as const } } },
-    ] } : {}),
-    ...(outcome ? { outcomeStatus: outcome } : {}),
-    ...(state ? { revisions: { some: { state } } } : {}),
-  }
-  const [quotations, total] = await Promise.all([
-    prisma.salesQuotation.findMany({ where, include: { customer: true, revisions: { include: { items: { orderBy: { sortOrder: 'asc' } } }, orderBy: { revisionNumber: 'desc' }, take: 1 } }, orderBy: { updatedAt: 'desc' }, skip: (page - 1) * pageSize, take: pageSize }),
+  const page = z.coerce.number().int().min(1).max(100000).catch(1).parse(params.page)
+  const search = (params.search || '').trim().slice(0, 200)
+  const where: Prisma.SalesQuotationWhereInput = search ? { OR: [{ quotationNumber: { contains: search, mode: 'insensitive' } }, { revisions: { some: { customerSnapshot: { path: ['companyName'], string_contains: search, mode: 'insensitive' } } } }] } : {}
+  const [quotations, count] = await Promise.all([
+    prisma.salesQuotation.findMany({ where, orderBy: { updatedAt: 'desc' }, skip: (page - 1) * 20, take: 20, include: { revisions: { orderBy: { revisionNumber: 'desc' }, take: 1, include: { _count: { select: { items: true } } } } } }),
     prisma.salesQuotation.count({ where }),
   ])
-
-  return (
-    <div className="space-y-6">
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Quote workbench</p><h1 className="mt-1 font-serif text-3xl">Sales quotations</h1><p className="mt-1 text-sm text-muted-foreground">Manual drafts, controlled revisions and immutable customer files.</p></div><Button asChild><Link href="/admin/sales-quotations/new"><Plus className="mr-2 h-4 w-4" />Create quotation</Link></Button></header>
-      <form className="flex max-w-4xl flex-wrap gap-3"><div className="relative min-w-72 flex-1"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input name="search" defaultValue={search} placeholder="Search quotation number or customer…" className="pl-10" /></div><select name="state" defaultValue={state ?? ''} className="h-9 rounded-md border bg-background px-3 text-sm"><option value="">All revision states</option>{stateValues.map((value) => <option key={value} value={value}>{value}</option>)}</select><select name="outcome" defaultValue={outcome ?? ''} className="h-9 rounded-md border bg-background px-3 text-sm"><option value="">All outcomes</option>{outcomeValues.map((value) => <option key={value} value={value}>{value}</option>)}</select><Button type="submit" variant="secondary">Apply filters</Button></form>
-      <Card className="py-0"><CardContent className="p-0">
-        {quotations.length === 0 ? <div className="flex min-h-64 flex-col items-center justify-center gap-3 p-8 text-center"><FileText className="h-9 w-9 text-muted-foreground" /><p className="font-medium">No quotations found</p><p className="text-sm text-muted-foreground">Start with a customer and at least one manual line.</p></div> : <Table><TableHeader><TableRow><TableHead>Quotation</TableHead><TableHead>Customer / date</TableHead><TableHead>Revision</TableHead><TableHead>Line history</TableHead><TableHead>Total</TableHead><TableHead>Outcome</TableHead><TableHead className="text-right">Updated</TableHead></TableRow></TableHeader><TableBody>{quotations.map((quotation) => { const latest = quotation.revisions[0]; return <TableRow key={quotation.id}><TableCell><Link href={`/admin/sales-quotations/${quotation.id}`} className="font-mono text-xs font-semibold hover:underline">{quotation.quotationNumber}</Link></TableCell><TableCell>{quotation.customer.companyName}<p className="text-xs text-muted-foreground">{latest?.quotationDate.toLocaleDateString('en-CA') ?? '—'}</p></TableCell><TableCell>{latest ? <><p>R{latest.revisionNumber}</p><Badge variant={latest.state === 'FINALIZED' || latest.state === 'ISSUED' ? 'default' : 'secondary'}>{latest.state}</Badge></> : '—'}</TableCell><TableCell>{latest?.items.slice(0, 2).map((item) => <p key={item.id} className="text-xs">{item.quantity.toString()} {item.unit} · {latest.currency} {item.unitPrice.toString()} · {item.quotationProductId ? 'Quote product' : item.productId ? 'Catalog' : 'One-off'}</p>)}{latest && latest.items.length > 2 ? <p className="text-xs text-muted-foreground">+{latest.items.length - 2} more lines</p> : null}</TableCell><TableCell className="font-medium tabular-nums">{latest ? `${latest.currency} ${latest.total.toString()}` : '—'}</TableCell><TableCell>{quotation.outcomeStatus}</TableCell><TableCell className="text-right text-muted-foreground">{quotation.updatedAt.toLocaleDateString('en-CA')}</TableCell></TableRow> })}</TableBody></Table>}
-      </CardContent></Card>
-      <Pagination page={page} total={total} totalPages={Math.ceil(total / pageSize)} />
-    </div>
-  )
+  return <div className="space-y-8"><WorkbenchHeader title="报价单" description="录入、预览、生成。从一份简单的报价开始。"><Button asChild className="bg-slate-900 text-white"><Link href="/admin/sales-quotations/new">＋ 新建报价</Link></Button></WorkbenchHeader><form className="flex max-w-xl gap-3"><Input name="search" aria-label="搜索报价" placeholder="搜索客户名称或报价编号" defaultValue={search} /><Button variant="secondary">搜索</Button></form><div className="overflow-x-auto rounded-2xl border bg-white">{quotations.length ? <table className="w-full text-sm"><thead className="border-b bg-slate-50 text-left text-slate-500"><tr><th className="p-5">客户 / 报价编号</th><th>日期</th><th>产品</th><th>状态</th><th className="p-5 text-right">报价金额</th></tr></thead><tbody>{quotations.map((quotation) => { const revision = quotation.revisions[0]; if (!revision) return null; const customer = z.object({ companyName: z.string() }).parse(revision.customerSnapshot); return <tr key={quotation.id} className="border-b last:border-0 hover:bg-slate-50"><td className="p-5"><Link className="font-semibold hover:underline" href={`/admin/sales-quotations/${quotation.id}`}>{customer.companyName}</Link><p className="mt-1 font-mono text-xs text-slate-500">{quotation.quotationNumber} · R{revision.revisionNumber}</p></td><td>{revision.quotationDate.toISOString().slice(0, 10)}</td><td>{revision._count.items} 项</td><td><span className="rounded-full bg-teal-50 px-3 py-1 text-xs text-teal-800">{revisionStatusLabel(revision.state)}</span></td><td className="p-5 text-right font-semibold tabular-nums">{revision.currency} {revision.total.toString()}</td></tr> })}</tbody></table> : <div className="p-16 text-center"><h2 className="text-lg font-semibold">{search ? '没有找到匹配的报价' : '开始你的第一份报价'}</h2><p className="mt-2 text-sm text-slate-500">填写客户名称和产品明细即可，不用先维护客户库或产品库。</p></div>}</div><Pagination page={page} total={count} totalPages={Math.ceil(count / 20)} /></div>
 }
-
-const stateValues: SalesQuotationRevisionState[] = ['DRAFT', 'READY', 'FINALIZING', 'FINALIZED', 'ISSUED', 'VOID']
-const outcomeValues: SalesQuotationOutcomeStatus[] = ['OPEN', 'ACCEPTED', 'REJECTED', 'CANCELLED']

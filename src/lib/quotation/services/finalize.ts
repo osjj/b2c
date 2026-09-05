@@ -76,10 +76,10 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
       select: { id: true, salesQuotationId: true, state: true, version: true },
     })
     if (!revision) throw new QuotationError('NOT_FOUND', 'Quotation revision not found')
-    if (revision.state !== 'READY') throw new QuotationError('INVALID_STATE_TRANSITION', 'Only READY revisions can be finalized')
+    if (revision.state !== 'READY' && revision.state !== 'DRAFT') throw new QuotationError('INVALID_STATE_TRANSITION', 'Only editable drafts can be finalized')
     if (revision.version !== data.expectedVersion) throw new QuotationError('VERSION_CONFLICT', 'Quotation revision changed')
     const updated = await transaction.salesQuotationRevision.updateMany({
-      where: { id: revision.id, version: data.expectedVersion, state: 'READY' },
+      where: { id: revision.id, version: data.expectedVersion, state: { in: ['DRAFT', 'READY'] } },
       data: { state: 'FINALIZING', version: { increment: 1 } },
     })
     if (updated.count !== 1) throw new QuotationError('VERSION_CONFLICT', 'Quotation revision changed while finalizing')

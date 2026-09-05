@@ -27,11 +27,11 @@ function isZeroDecimal(value: string): boolean {
 const quantityDecimalStringSchema = positiveDecimalStringSchema.refine(
   (value) => hasMaximumScale(value, 4),
   'Quantity supports at most 4 decimal places',
-)
+).refine((value) => value.split('.')[0].length <= 14, 'Quantity exceeds the supported range')
 const moneyDecimalStringSchema = nonNegativeDecimalStringSchema.refine(
   (value) => hasMaximumScale(value, 6),
   'Money supports at most 6 decimal places',
-)
+).refine((value) => value.split('.')[0].length <= 12, 'Money exceeds the supported range')
 const signedMoneyDecimalStringSchema = decimalStringSchema.refine(
   (value) => hasMaximumScale(value, 6),
   'Money supports at most 6 decimal places',
@@ -148,6 +148,8 @@ export const quotationItemInputSchema = z
   .object({
     id: z.string().cuid().optional(),
     quotationProductId: z.string().cuid().nullish(),
+    imageSourceIds: z.array(z.string().uuid()).max(8).optional(),
+    imageAssetIds: z.array(z.string().cuid()).max(8).optional(),
     productId: z.string().cuid().nullish(),
     sortOrder: z.number().int().min(0).max(10000),
     nameZh: z.string().trim().max(500).nullish(),
@@ -197,7 +199,8 @@ export const quotationItemInputSchema = z
   })
 
 export const createSalesQuotationInputSchema = z.object({
-  customerId: z.string().cuid(),
+  customerId: z.string().cuid().optional(),
+  customerName: z.string().trim().min(1).max(240).optional(),
   quotationDate: z.coerce.date(),
   validUntil: z.coerce.date().nullish(),
   documentLanguage: quotationLanguageSchema.default('ENGLISH'),
@@ -215,6 +218,12 @@ export const createSalesQuotationInputSchema = z.object({
   items: z.array(quotationItemInputSchema).min(1).max(500),
 })
 .superRefine((value, context) => {
+  if (!value.customerId && !value.customerName) {
+    context.addIssue({ code: 'custom', path: ['customerName'], message: '请输入客户名称' })
+  }
+  if (new Set(value.items.map((item) => item.sortOrder)).size !== value.items.length) {
+    context.addIssue({ code: 'custom', path: ['items'], message: '产品明细的排序编号不能重复' })
+  }
   if (value.discountPercent && !isZeroDecimal(value.discountAmount)) {
     context.addIssue({
       code: 'custom',

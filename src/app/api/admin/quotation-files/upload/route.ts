@@ -9,6 +9,7 @@ import { prisma } from '@/lib/prisma'
 import { QuotationError } from '@/lib/quotation/errors'
 import { assertQuotationWorkbenchEnabled } from '@/lib/quotation/feature'
 import { canAcceptQuotationUpload } from '@/lib/quotation/file-security'
+import { scanQuotationUpload } from '@/lib/quotation/scan-upload'
 import { MAX_QUOTATION_IMAGE_BYTES, validateQuotationImage } from '@/lib/quotation/file-validation'
 import { quotationQuarantineKey } from '@/lib/quotation/object-keys'
 import { getQuotationPrivateStorage } from '@/lib/quotation/private-storage'
@@ -22,7 +23,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const actor = await requireAdmin()
     if (!canAcceptQuotationUpload()) {
       return NextResponse.json(
-        { success: false, reason: 'Quotation uploads require an approved malware scanner', code: 'FEATURE_DISABLED' },
+        { success: false, reason: '服务器尚未配置图片安全扫描器 QUOTATION_CLAMSCAN_PATH', code: 'FEATURE_DISABLED' },
         { status: 503 },
       )
     }
@@ -56,8 +57,9 @@ export async function POST(request: Request): Promise<NextResponse> {
       contentType: file.type,
       bytes: Buffer.from(await file.arrayBuffer()),
     })
+    await scanQuotationUpload(validated.bytes)
     const duplicate = await prisma.quotationSourceFile.findFirst({
-      where: { sha256: validated.sha256, deletedAt: null, salesQuotationId },
+      where: { sha256: validated.sha256, deletedAt: null, salesQuotationId, securityStatus: 'CLEAN' },
       select: { id: true, displayName: true, contentType: true, sizeBytes: true, securityStatus: true },
     })
     if (duplicate) {
@@ -84,7 +86,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             storageProvider: storage.provider,
             objectKey,
             sha256: validated.sha256,
-            securityStatus: process.env.NODE_ENV === 'production' ? 'PENDING' : 'CLEAN',
+            securityStatus: 'CLEAN',
             uploadedBy: actor.id,
           },
           select: { id: true, displayName: true, contentType: true, sizeBytes: true, securityStatus: true },
