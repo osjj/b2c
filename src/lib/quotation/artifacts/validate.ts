@@ -40,7 +40,9 @@ export async function validateGeneratedArtifacts(input: {
   if (!quotationSheet) {
     throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated Excel quotation sheet is missing')
   }
-  const customerWorkbookText = JSON.stringify(quotationSheet.getSheetValues())
+  const customerCells: string[] = []
+  quotationSheet.eachRow((row) => row.eachCell((cell) => { if (cell.value != null) customerCells.push(cell.text) }))
+  const customerWorkbookText = customerCells.join('\n')
   for (const expected of [
     input.snapshot.quotation.number,
     input.snapshot.customer.companyName,
@@ -51,7 +53,8 @@ export async function validateGeneratedArtifacts(input: {
       throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated Excel is missing locked quotation data')
     }
   }
-  const expectedImageCount = input.snapshot.items.reduce((count, item) => count + item.images.length, 0)
+  const brandedExcel = ['jordan-ai-v1', 'presentation-v2'].includes(input.snapshot.templateVersion)
+  const expectedImageCount = input.snapshot.items.reduce((count, item) => count + item.images.length, 0) + (brandedExcel && input.snapshot.brand?.seal ? 1 : 0)
   if (quotationSheet.getImages().length !== expectedImageCount) {
     throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated Excel is missing approved customer images')
   }

@@ -30,7 +30,7 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
     ? [item.nameEn, item.nameZh].filter(Boolean).join(' / ')
     : snapshot.language === 'CHINESE' ? item.nameZh || item.nameEn || '' : item.nameEn || item.nameZh || ''
   const document = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'a4', compress: true })
-  const visible = [brand.companyName, brand.contactLine, brand.tagline, snapshot.customer.companyName,
+  const visible = [brand.companyName, brand.contactLine, brand.address || '', brand.website || '', brand.email || '', brand.tagline, snapshot.customer.companyName,
     snapshot.quotation.number, ...Object.keys(snapshot.terms), ...Object.values(snapshot.terms),
     ...snapshot.items.flatMap((item) => [name(item), item.unit, item.model || '', item.sku || '', ...item.specifications])].join('\n')
   const unicodeFont = await configureQuotationPdfFont(document, visible, options)
@@ -76,13 +76,15 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
       text('QUOTATION', R - 14, 48, 19, NAVY, true, 'right')
       text('PPE Supply Quotation', R - 14, 65, 8.5, MUTED, false, 'right')
       document.setFillColor('#F5F8FB'); document.setDrawColor(BORDER)
-      document.roundedRect(L, 98, W, 38, 5, 5, 'FD')
-      text('COMPANY / CONTACT', L + 10, 111, 6.5, NAVY, true)
-      const contact = fit(brand.contactLine, W - 125, 27, 8)
-      text(contact.lines, L + 120, 111, contact.size, MUTED)
+      const contact = wrap(brand.contactLine, W * .44 - 22, 8)
+      const address = [brand.address, brand.website, brand.email].filter((value): value is string => Boolean(value)).flatMap((value) => wrap(value, W * .52 - 22, 8))
+      const contactHeight = Math.max(38, 22 + Math.max(contact.length, address.length) * 10)
+      document.roundedRect(L, 98, W, contactHeight, 5, 5, 'FD')
+      text(contact, L + 10, 112, 8, MUTED)
+      if (address.length) text(address, R - 10, 112, 8, MUTED, false, 'right')
       const customerLines = wrap(snapshot.customer.companyName, W - 24, 8)
       const longCustomer = wrap(snapshot.customer.companyName, (W - 40) / 5 - 14, 6).length > 2
-      let fieldsY = 144
+      let fieldsY = 106 + contactHeight
       if (longCustomer) {
         const customerHeight = 17 + customerLines.length * 10
         document.setFillColor(LIGHT); document.roundedRect(L, fieldsY, W, customerHeight, 4, 4, 'F')
@@ -117,7 +119,7 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
   const fees = [['Subtotal', snapshot.money.subtotal], ['Discount', snapshot.money.discount], ['Shipping', snapshot.money.shipping], ['Other charges', snapshot.money.otherFee], ['Tax', snapshot.money.tax], ['Rounding adjustment', snapshot.money.roundingAdjustment]]
     .filter(([label, amount]) => label === 'Subtotal' || !/^0(?:\.0+)?$/.test(amount))
   const termLines = Object.entries(snapshot.terms).filter(([, value]) => value.trim()).flatMap(([key, value]) => [...wrap(key === 'Terms' ? value : `${key}: ${value}`, W - 8, 7), ''])
-  const summaryHeight = fees.length * 22 + 34 + termLines.length * 9 + (brand.seal && !preview ? 86 : 0) + 10
+  const summaryHeight = fees.length * 22 + 34 + termLines.length * 9 + (brand.seal && !preview ? 98 : 0) + 10
   let summaryY: number | undefined
 
   for (const [itemIndex, item] of snapshot.items.entries()) {
@@ -210,12 +212,17 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
     text(label, L + 10, y + 12, 7.5, NAVY, true)
     text(`${snapshot.money.currency} ${number(amount)}`, L + summaryWidth - 10, y + 12, 7.5, NAVY, true, 'right'); y += 22
   }
-  ensure(brand.seal && !preview ? 112 : 34)
+  ensure(brand.seal && !preview ? 132 : 34)
   document.setFillColor(NAVY); document.roundedRect(L, y, summaryWidth, 27, 5, 5, 'F')
   text('GRAND TOTAL', L + 10, y + 17, 9, '#FFFFFF', true)
   text(`${snapshot.money.currency} ${number(snapshot.money.total)}`, L + summaryWidth - 10, y + 17, 9, '#FFFFFF', true, 'right')
   y += 35
-  if (brand.seal && !preview) { image(brand.seal.dataUrl, brand.seal.sha256, R - 80, y, 76, 76); y += 82 }
+  if (brand.seal && !preview) {
+    text(snapshot.quotation.date, R - 42, y + 43, 9, MUTED, false, 'center')
+    image(brand.seal.dataUrl, brand.seal.sha256, R - 80, y, 76, 76)
+    text(`Date: ${snapshot.quotation.date}`, R, y + 85, 7, MUTED, false, 'right')
+    y += 94
+  }
   for (const line of termLines) { ensure(10); text(line, L + 4, y, 7, MUTED); y += 9 }
 
   const pages = document.getNumberOfPages()

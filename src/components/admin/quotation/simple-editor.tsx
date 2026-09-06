@@ -8,7 +8,7 @@ import { createSalesQuotation, updateSalesQuotation, finalizeSalesQuotation } fr
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { blankLine, blankQuotation, simpleTotals, toQuotationInput, type CommonProductOption, type SimpleLine, type SimpleQuotation } from '@/lib/quotation/simple-input'
+import { blankLine, blankQuotation, commonProductDescription, simpleTotals, toQuotationInput, type CommonProductOption, type SimpleLine, type SimpleQuotation } from '@/lib/quotation/simple-input'
 import type { WorkbenchSettings } from '@/lib/quotation/workbench-config'
 import { SimpleImagePicker } from './simple-image-picker'
 import { useQuotationConfirm } from './use-quotation-confirm'
@@ -89,7 +89,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
     if (value.items[index].name && !confirmed) { confirmation.ask('填充常用产品', '将替换本行的名称、描述、价格和图片。', () => chooseProduct(index, id, true)); return }
     const sameCurrency = product.currency === value.currency
     if (!sameCurrency) setError(`产品默认币种为 ${product.currency}，与当前 ${value.currency} 不同，请手动填写单价。`)
-    line(index, { quotationProductId: product.id, name: product.name, description: product.description, unit: product.unit, unitPrice: sameCurrency ? product.unitPrice : '0', images: product.images })
+    line(index, { quotationProductId: product.id, name: product.name, description: commonProductDescription(product), unit: product.unit, unitPrice: sameCurrency ? product.unitPrice : '0', unitCost: sameCurrency ? product.unitCost : null, images: product.images })
   }
   return <div className="space-y-6">
     {confirmation.dialog}
@@ -107,7 +107,8 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
           <SimpleImagePicker images={item.images} onChange={(images) => line(index, { images })} onBusy={setUploading} disabled={busy} />
           <div className="space-y-4"><label className="block space-y-2 text-sm font-medium">产品名称<Input value={item.name} maxLength={500} onChange={(e) => line(index, { name: e.target.value })} placeholder="填写对客户展示的名称，中英文均可" /></label>
             {products.length > 0 && <label className="block text-xs text-slate-500">从常用产品填充<select aria-label={`选择常用产品 ${index + 1}`} className="mt-1 block w-full rounded-md border bg-white px-3 py-2 text-sm text-slate-700" value="" onChange={(e) => chooseProduct(index, e.target.value)}><option value="">选择产品（可选）</option>{products.map((product) => <option key={product.id} value={product.id}>{product.name} · {product.currency} {product.unitPrice}</option>)}</select></label>}
-            <label className="block space-y-2 text-sm font-medium">规格 / 描述<Textarea rows={5} value={item.description} onChange={(e) => line(index, { description: e.target.value })} placeholder={'每行一条，例如：\nMaterial: Cotton\nColor: Navy\nSizes: S-3XL'} /></label>
+            <label className="block space-y-2 text-sm font-medium">规格 / 描述 / 包装<Textarea rows={5} value={item.description} onChange={(e) => line(index, { description: e.target.value })} placeholder={'每行一条，例如：\nMaterial: Cotton\nColor: Navy\nSizes: S-3XL'} /></label>
+            <details><summary className="cursor-pointer text-xs text-slate-500">内部核价（客户不可见）</summary><label className="mt-3 block max-w-xs space-y-2 text-sm">成本单价 · {value.currency}<Input inputMode="decimal" value={item.unitCost ?? ''} onChange={(e) => line(index, { unitCost: e.target.value || null })} placeholder="可留空" /></label></details>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4"><label className="space-y-2 text-sm">数量<Input inputMode="decimal" value={item.quantity} onChange={(e) => line(index, { quantity: e.target.value })} /></label><label className="space-y-2 text-sm">单位<Input value={item.unit} onChange={(e) => line(index, { unit: e.target.value })} /></label><label className="space-y-2 text-sm">单价 · {value.currency}<Input inputMode="decimal" value={item.unitPrice} onChange={(e) => line(index, { unitPrice: e.target.value })} /></label><div className="space-y-2 text-sm"><p>金额</p><output className="block py-2 font-semibold tabular-nums">{totals?.lines[index] ?? '—'}</output></div></div>
           </div>
         </div>

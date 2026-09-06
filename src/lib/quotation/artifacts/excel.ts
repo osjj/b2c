@@ -1,6 +1,7 @@
 import ExcelJS from 'exceljs'
 
 import type { QuotationSnapshot } from './snapshot'
+import { generateStudioExcel } from './excel-template'
 
 function cellText(value: string | null): string {
   if (!value) return ''
@@ -26,6 +27,7 @@ function styleHeader(row: ExcelJS.Row): void {
 }
 
 export async function generateCustomerExcel(snapshot: QuotationSnapshot): Promise<Buffer> {
+  if (snapshot.templateVersion === 'jordan-ai-v1' || snapshot.templateVersion === 'presentation-v2') return generateStudioExcel(snapshot)
   const workbook = new ExcelJS.Workbook()
   workbook.creator = 'LAIFAPPE Quotation Workbench'
   const sheet = workbook.addWorksheet('Quotation', { views: [{ state: 'frozen', ySplit: 8 }] })

@@ -4,12 +4,15 @@ export const WORKBENCH_SETTINGS_KEY = 'quotation.workbench.v2'
 export const quotationBrandSchema = z.object({
   companyName: z.string().trim().max(160).default('LAIFAPPE'),
   contactLine: z.string().trim().max(500).default(''),
+  address: z.string().trim().max(500).optional(),
+  website: z.string().trim().max(200).optional(),
+  email: z.union([z.literal(''), z.string().trim().email().max(320)]).optional(),
   tagline: z.string().trim().max(160).default('PERSONAL PROTECTIVE EQUIPMENT'),
   logo: z.object({ dataUrl: z.string().max(1_500_000).regex(/^data:image\/(png|jpeg);base64,/), sha256: z.string().length(64) }).optional(),
   seal: z.object({ dataUrl: z.string().max(1_500_000).regex(/^data:image\/(png|jpeg);base64,/), sha256: z.string().length(64) }).optional(),
 })
 export const workbenchSettingsSchema = z.object({
-  brand: quotationBrandSchema.pick({ companyName: true, contactLine: true, tagline: true }).default({ companyName: 'LAIFAPPE', contactLine: '', tagline: 'PERSONAL PROTECTIVE EQUIPMENT' }),
+  brand: quotationBrandSchema.pick({ companyName: true, contactLine: true, address: true, website: true, email: true, tagline: true }).default({ companyName: 'LAIFAPPE', contactLine: '', tagline: 'PERSONAL PROTECTIVE EQUIPMENT' }),
   logoSourceId: z.string().uuid().nullable().default(null),
   sealSourceId: z.string().uuid().nullable().default(null),
   useSeal: z.boolean().default(false),

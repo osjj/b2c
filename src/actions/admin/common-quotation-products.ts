@@ -16,7 +16,7 @@ export async function saveCommonQuotationProduct(input: unknown) {
     const actor = await requireAdmin()
     const data = commonProductSchema.parse(input)
     const product = await prisma.$transaction(async (tx) => {
-      const fields = { nameEn: data.name, nameZh: null, unit: data.unit, specifications: data.description.split(/\r?\n/).map((line) => line.trim()).filter(Boolean), status: data.active ? 'ACTIVE' as const : 'INACTIVE' as const }
+      const fields = { nameEn: data.name, nameZh: null, unit: data.unit, specifications: (data.specifications ?? data.description).split(/\r?\n/).map((line) => line.trim()).filter(Boolean), status: data.active ? 'ACTIVE' as const : 'INACTIVE' as const }
       let id: string
       if (data.id) {
         if (!data.expectedUpdatedAt) throw new QuotationError('VERSION_CONFLICT', '请刷新产品后再修改')
@@ -28,7 +28,7 @@ export async function saveCommonQuotationProduct(input: unknown) {
         id = created.id
       }
       const key = `quotation.product-defaults.${id}`
-      const value = { unitPrice: data.unitPrice, currency: data.currency }
+      const value = { unitPrice: data.unitPrice, currency: data.currency, unitCost: data.unitCost ?? null, description: data.specifications === undefined ? '' : data.description, packaging: data.packaging ?? '' }
       await tx.setting.upsert({ where: { key }, create: { key, value }, update: { value } })
       await writeQuotationAudit(tx, { entityType: 'QuotationProduct', entityId: id, action: data.id ? 'UPDATE' : 'CREATE', actorId: actor.id })
       return { id }
@@ -60,6 +60,7 @@ export async function saveCommonProductImages(input: unknown) {
       await writeQuotationAudit(tx, { entityType: 'QuotationProduct', entityId: data.id, action: 'UPDATE', actorId: actor.id, metadata: { field: 'images' } })
     })
     revalidatePath(`/admin/quotation-products/${data.id}`)
+    revalidatePath('/admin/quotation-products')
     return { success: true as const, reason: '产品图片已保存' }
   } catch (error) { return toQuotationActionError(error) }
 }

@@ -12,6 +12,7 @@ export const simpleLineSchema = z.object({
   quantity: quotationItemInputSchema.shape.quantity,
   unit: z.string().trim().min(1).max(40),
   unitPrice: quotationItemInputSchema.shape.unitPrice,
+  unitCost: quotationItemInputSchema.shape.unitCost.optional(),
   images: z.array(simpleImageSchema).max(8),
 })
 export const simpleQuotationSchema = z.object({
@@ -30,6 +31,8 @@ export type SimpleQuotation = z.infer<typeof simpleQuotationSchema>
 export type SimpleLine = z.infer<typeof simpleLineSchema>
 export type SimpleImage = z.infer<typeof simpleImageSchema>
 export const commonProductSchema = simpleLineSchema.omit({ quantity: true, images: true, quotationProductId: true }).extend({
+  specifications: z.string().max(20000).optional(),
+  packaging: z.string().max(5000).optional(),
   currency: currencySchema,
   active: z.boolean(),
   expectedUpdatedAt: z.string().datetime().optional(),
@@ -52,6 +55,7 @@ export function toQuotationInput(value: SimpleQuotation) {
       id: item.id, quotationProductId: item.quotationProductId, sortOrder: index, nameEn: item.name,
       specifications: item.description.split(/\r?\n/).map((line) => line.trim()).filter(Boolean),
       quantity: item.quantity, unit: item.unit, unitPrice: item.unitPrice,
+      unitCost: item.unitCost, costCurrency: item.unitCost != null ? data.currency : undefined,
       imageSourceIds: item.images.filter((image) => image.kind === 'source').map((image) => image.id),
       imageAssetIds: item.images.filter((image) => image.kind === 'asset').map((image) => image.id),
     })),
@@ -59,6 +63,15 @@ export function toQuotationInput(value: SimpleQuotation) {
 }
 
 // BigInt fixed-point arithmetic mirrors the simple HALF_UP line rounding used by the server.
+export const commonProductDefaultsSchema = z.object({
+  unitPrice: quotationItemInputSchema.shape.unitPrice.default('0'), currency: currencySchema.default('USD'),
+  unitCost: quotationItemInputSchema.shape.unitCost.optional(),
+  description: z.string().max(30000).optional(), packaging: z.string().max(5000).optional(),
+})
+export function commonProductDescription(product: Pick<CommonProductInput, 'description' | 'specifications' | 'packaging'>): string {
+  return [product.specifications, product.description, product.packaging ? `Packaging: ${product.packaging}` : ''].filter(Boolean).join('\n')
+}
+
 export function simpleTotals(value: SimpleQuotation): { lines: string[]; total: string } | null {
   try {
     const scale = quotationCurrencyMinorUnit(value.currency)

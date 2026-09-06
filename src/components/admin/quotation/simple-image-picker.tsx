@@ -7,13 +7,13 @@ import { Button } from '@/components/ui/button'
 import type { SimpleImage } from '@/lib/quotation/simple-input'
 
 const uploadResult = z.object({ success: z.boolean(), reason: z.string(), data: z.object({ id: z.string().uuid(), securityStatus: z.string() }).optional() })
-export function SimpleImagePicker({ images, onChange, onBusy, disabled }: { images: SimpleImage[]; onChange: (images: SimpleImage[]) => void; onBusy?: (busy: boolean) => void; disabled?: boolean }) {
+export function SimpleImagePicker({ images, onChange, onBusy, disabled, maxImages = 8, maxSizeMb = 5, label = '添加产品图片' }: { images: SimpleImage[]; onChange: (images: SimpleImage[]) => void; onBusy?: (busy: boolean) => void; disabled?: boolean; maxImages?: number; maxSizeMb?: number; label?: string }) {
   const id = useId()
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   async function upload(file: File) {
     setError('')
-    if (!['image/png', 'image/jpeg'].includes(file.type) || file.size > 5 * 1024 * 1024) { setError('请选择不超过 5 MB 的 PNG 或 JPEG 图片'); return }
+    if (!['image/png', 'image/jpeg'].includes(file.type) || file.size > maxSizeMb * 1024 * 1024) { setError(`请选择不超过 ${maxSizeMb} MB 的 PNG 或 JPEG 图片`); return }
     setBusy(true); onBusy?.(true)
     try {
       const form = new FormData(); form.set('file', file)
@@ -33,7 +33,7 @@ export function SimpleImagePicker({ images, onChange, onBusy, disabled }: { imag
       <Image unoptimized width={96} height={80} src={`/api/admin/quotation-images/${image.id}?kind=${image.kind}`} alt={image.name} className="h-20 w-full object-contain" />
       <Button type="button" size="sm" variant="ghost" disabled={busy || disabled} onClick={() => onChange(images.filter((_, i) => i !== index))} aria-label={`移除图片 ${index + 1}`} className="mt-1 h-11 w-full text-xs">移除</Button>
     </div>)}</div>
-    {images.length < 8 && <div><label htmlFor={id} className="mb-1 block text-xs text-slate-500">{busy ? '正在上传图片…' : '添加产品图片 · PNG / JPEG，单张 5 MB，最多 8 张'}</label><input id={id} type="file" accept="image/png,image/jpeg" disabled={busy || disabled} className="max-w-full text-sm file:mr-3 file:rounded-md file:border file:bg-white file:px-3 file:py-2" onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ''; if (file) void upload(file) }} /></div>}
+    {images.length < maxImages && <div><label htmlFor={id} className="mb-1 block text-xs text-slate-500">{busy ? '正在上传图片…' : `${label} · PNG / JPEG，单张 ${maxSizeMb} MB，最多 ${maxImages} 张`}</label><input id={id} type="file" accept="image/png,image/jpeg" disabled={busy || disabled} className="max-w-full text-sm file:mr-3 file:rounded-md file:border file:bg-white file:px-3 file:py-2" onChange={(event) => { const file = event.target.files?.[0]; event.target.value = ''; if (file) void upload(file) }} /></div>}
     {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
   </div>
 }
