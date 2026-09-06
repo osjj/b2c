@@ -30,7 +30,7 @@ export async function generateCustomerExcel(snapshot: QuotationSnapshot): Promis
   if (snapshot.templateVersion === 'jordan-ai-v1' || snapshot.templateVersion === 'presentation-v2') return generateStudioExcel(snapshot)
   const workbook = new ExcelJS.Workbook()
   workbook.creator = 'LAIFAPPE Quotation Workbench'
-  const sheet = workbook.addWorksheet('Quotation', { views: [{ state: 'frozen', ySplit: 8 }] })
+  const sheet = workbook.addWorksheet('Quotation', { views: [{ state: 'normal' }] })
   const contact = snapshot.customer.contact
   sheet.addRows([
     [label(snapshot, '报价单', 'QUOTATION'), snapshot.quotation.number],

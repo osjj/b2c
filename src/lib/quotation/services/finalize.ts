@@ -16,6 +16,7 @@ import { getQuotationPrivateStorage } from '../private-storage'
 import { finalizeQuotationInputSchema, quotationItemInputSchema } from '../schemas'
 import { writeQuotationAudit } from './audit'
 import { applyQuotationAiLayout } from './ai-layout'
+import { refreshFinalizationBrand } from './workbench-settings'
 
 type FinalizationResult = {
   quotationId: string
@@ -237,7 +238,8 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
     }
     await heartbeat()
     stage = 'snapshot'
-    const snapshot = await atFinalizationStage('ai', () => applyQuotationAiLayout(buildCanonicalSnapshot(revision, immutableAssets)))
+    const brandedSnapshot = await refreshFinalizationBrand(buildCanonicalSnapshot(revision, immutableAssets))
+    const snapshot = await atFinalizationStage('ai', () => applyQuotationAiLayout(brandedSnapshot))
     const snapshotJson = stableSnapshotJson(snapshot)
     const internalExcelPromise = atFinalizationStage('excel', () => generateInternalValuationExcel({
       quotationNumber: revision.salesQuotation.quotationNumber,

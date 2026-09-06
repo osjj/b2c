@@ -29,9 +29,10 @@ tables are never written. Formal prior versions and files remain unchanged.
   committed together; failed/duplicate attempts clean their new private objects. Quote-only advisory
   lock serializes imports for the same catalog product; repeat import opens existing record, never
   overwrites manual edits. Does not update catalog data, variants, stock, or pricing.
-- Brand: contactLine (left), address/website/email (right), separate validated fields. Uploaded seal
+- Brand: address (left), contactLine/website/email (right), separate validated fields. Uploaded seal
   auto-selects useSeal, explicit checkbox can disable it. Existing disabled seals remain disabled
-  with a warning. Snapshot on draft save; preview still omits seal, formal PDF/Excel include seal and
+  with a warning. Snapshot on draft save; new formal generation refreshes saved brand settings once.
+  Preview still omits seal, formal PDF/Excel include seal and
   quote date under the image plus a readable date caption. Transparent PNG recommended. Settings
   changes do not mutate finalized files.
 - Excel studio template: landscape A4, company header, customer/quote metadata, photo/specification
@@ -81,3 +82,27 @@ user workbooks. Production remains a separate, explicitly authorized deployment.
 
 Brand image upload now shows/enforces the existing one-image / 1 MiB server snapshot contract;
 ordinary product uploads retain their existing eight-image / 5 MiB-per-image limits.
+
+## Brand export correction
+
+New studio finalizations refresh brand assets from saved workbench settings once, after the
+idempotency/state claim and before AI/PDF/Excel generation. `refreshFinalizationBrand(snapshot)`
+returns a new snapshot with the current validated brand; no settings row preserves the draft brand,
+and legacy stage-a snapshots bypass the refresh. All renderers consume that one frozen snapshot.
+Explicit useSeal=false removes the seal; enabled but missing/invalid assets fail and restore READY.
+Successful idempotent replays and downloads never refresh brand or rewrite existing formal files.
+No changes to customer/product/money snapshots, environment configuration or database schema.
+
+Excel embeds the current Logo and seal as real image drawings, validates both alongside product
+images, and uses a normal worksheet view (no frozen/split rows). Print-title rows are independent
+of scrolling and remain for printed multipage readability. PDF image validation includes brand
+assets. UI explicitly says previews omit seals; use formal generation for customer delivery.
+
+Regression cases: old draft without seal + newly saved enabled seal; disabled seal; missing image;
+corrupt image hash; unchanged idempotent replay after settings edits; no settings row; Excel Logo,
+seal, exact monetary strings and absence of frozen panes. External I/O remains mocked in tests.
+
+Verified correction: 47 quotation tests and expanded isolated finalization tests pass. Real form
+browser harness passes. Native Excel read-only inspection reports FreezePanes=False and five
+drawings in the synthetic review (three product photos + Logo + seal). Both printed Excel pages
+and PDF seal page visually inspected. No live customer data, production API, DB or R2 calls.

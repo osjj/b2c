@@ -30,7 +30,9 @@ export async function validateGeneratedArtifacts(input: {
   if ((pdfSource.match(/\/Type\s*\/Page\b/g) ?? []).length < 1) {
     throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated PDF has no pages')
   }
-  const uniqueApprovedImages = new Set(input.snapshot.items.flatMap((item) => item.images.map((image) => image.sha256))).size
+  const brandedExcel = ['jordan-ai-v1', 'presentation-v2'].includes(input.snapshot.templateVersion)
+  const brandImages = brandedExcel ? [input.snapshot.brand?.logo, input.snapshot.brand?.seal].filter((image) => image !== undefined) : []
+  const uniqueApprovedImages = new Set([...input.snapshot.items.flatMap((item) => item.images.map((image) => image.sha256)), ...brandImages.map((image) => image.sha256)]).size
   if ((pdfSource.match(/\/Subtype\s*\/Image\b/g) ?? []).length < uniqueApprovedImages) {
     throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated PDF is missing approved customer images')
   }
@@ -53,10 +55,17 @@ export async function validateGeneratedArtifacts(input: {
       throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated Excel is missing locked quotation data')
     }
   }
-  const brandedExcel = ['jordan-ai-v1', 'presentation-v2'].includes(input.snapshot.templateVersion)
-  const expectedImageCount = input.snapshot.items.reduce((count, item) => count + item.images.length, 0) + (brandedExcel && input.snapshot.brand?.seal ? 1 : 0)
+  const expectedImageCount = input.snapshot.items.reduce((count, item) => count + item.images.length, 0) + brandImages.length
   if (quotationSheet.getImages().length !== expectedImageCount) {
     throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated Excel is missing approved customer images')
+  }
+  for (const brandImage of brandImages) {
+    const found = quotationSheet.getImages().some((drawing) => {
+      const embedded = workbook.getImage(Number(drawing.imageId))
+      const bytes = embedded.buffer ? Buffer.from(embedded.buffer) : embedded.base64 ? Buffer.from(embedded.base64.replace(/^data:[^;]+;base64,/, ''), 'base64') : undefined
+      return bytes && sha256(bytes) === brandImage.sha256
+    })
+    if (!found) throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'Generated Excel is missing the configured company Logo or seal')
   }
   const internalWorkbook = new ExcelJS.Workbook()
   await internalWorkbook.xlsx.load(input.internalExcel as unknown as ExcelJS.Buffer)

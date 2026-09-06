@@ -84,7 +84,7 @@ try {
   const product = await page.evaluate(() => window.__product)
   assert.equal(product.unitCost, '7.25'); assert.equal(product.packaging, '20 pcs/carton'); assert.equal(product.description, 'Customer description')
   await page.getByRole('button', { name: '设置', exact: true }).click()
-  for (const [label, value] of [['联系方式（左侧）', 'Contact fixture'], ['地址（右侧）', 'Address fixture'], ['网站（右侧）', 'https://example.com'], ['邮箱（右侧）', 'fixture@example.com']]) await page.getByLabel(label, { exact: true }).fill(value)
+  for (const [label, value] of [['联系方式（右侧）', 'Contact fixture'], ['地址（左侧）', 'Address fixture'], ['网站（右侧）', 'https://example.com'], ['邮箱（右侧）', 'fixture@example.com']]) await page.getByLabel(label, { exact: true }).fill(value)
   assert.equal(await page.getByLabel('正式 PDF 和 Excel 使用印章，并叠加报价日期').isChecked(), false)
   await page.locator('input[type=file]').nth(1).setInputFiles({ name: 'oversize-seal.png', mimeType: 'image/png', buffer: Buffer.alloc(1024 * 1024 + 1) })
   await page.getByRole('alert').filter({ hasText: '请选择不超过 1 MB' }).waitFor()

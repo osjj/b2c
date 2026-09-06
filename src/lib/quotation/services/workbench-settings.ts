@@ -3,12 +3,22 @@ import { defaultWorkbenchSettings, WORKBENCH_SETTINGS_KEY, workbenchSettingsSche
 import type { WorkbenchSettings } from '../workbench-config'
 import { QuotationError } from '../errors'
 import { getQuotationPrivateStorage } from '../private-storage'
+import type { QuotationSnapshot } from '../artifacts/snapshot'
 
 // Server-only persistence; callers must authorize before reading this configuration.
 export async function readWorkbenchSettings() {
   const stored = await prisma.setting.findUnique({ where: { key: WORKBENCH_SETTINGS_KEY } })
   if (!stored) return defaultWorkbenchSettings
   return workbenchSettingsSchema.parse(stored.value)
+}
+
+// Call only for a newly claimed finalization; never when replaying/downloading formal files.
+export async function refreshFinalizationBrand(snapshot: QuotationSnapshot): Promise<QuotationSnapshot> {
+  if (!['jordan-ai-v1', 'presentation-v2'].includes(snapshot.templateVersion)) return snapshot
+  const stored = await prisma.setting.findUnique({ where: { key: WORKBENCH_SETTINGS_KEY } })
+  if (!stored) return snapshot
+  const brand = await readBrandForSnapshot(workbenchSettingsSchema.parse(stored.value))
+  return { ...snapshot, brand }
 }
 
 export async function readBrandForSnapshot(settings: WorkbenchSettings) {

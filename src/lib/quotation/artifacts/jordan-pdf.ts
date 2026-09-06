@@ -76,12 +76,12 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
       text('QUOTATION', R - 14, 48, 19, NAVY, true, 'right')
       text('PPE Supply Quotation', R - 14, 65, 8.5, MUTED, false, 'right')
       document.setFillColor('#F5F8FB'); document.setDrawColor(BORDER)
-      const contact = wrap(brand.contactLine, W * .44 - 22, 8)
-      const address = [brand.address, brand.website, brand.email].filter((value): value is string => Boolean(value)).flatMap((value) => wrap(value, W * .52 - 22, 8))
+      const address = wrap(brand.address || '', W * .44 - 22, 8)
+      const contact = [brand.contactLine, brand.website, brand.email].filter((value): value is string => Boolean(value)).flatMap((value) => wrap(value, W * .52 - 22, 8))
       const contactHeight = Math.max(38, 22 + Math.max(contact.length, address.length) * 10)
       document.roundedRect(L, 98, W, contactHeight, 5, 5, 'FD')
-      text(contact, L + 10, 112, 8, MUTED)
-      if (address.length) text(address, R - 10, 112, 8, MUTED, false, 'right')
+      if (address.length) text(address, L + 10, 112, 8, MUTED)
+      if (contact.length) text(contact, R - 10, 112, 8, MUTED, false, 'right')
       const customerLines = wrap(snapshot.customer.companyName, W - 24, 8)
       const longCustomer = wrap(snapshot.customer.companyName, (W - 40) / 5 - 14, 6).length > 2
       let fieldsY = 106 + contactHeight

@@ -14,7 +14,7 @@ export async function generateStudioExcel(snapshot: QuotationSnapshot): Promise<
   const book = new ExcelJS.Workbook()
   book.creator = 'LAIFAPPE Quotation Studio'
   const sheet = book.addWorksheet('Quotation', {
-    views: [{ state: 'frozen', ySplit: 11, showGridLines: false }],
+    views: [{ state: 'normal', showGridLines: false }],
     pageSetup: { paperSize: 9, orientation: 'landscape', fitToPage: true, fitToWidth: 1, fitToHeight: 0, horizontalCentered: true, margins: { left: .3, right: .3, top: .4, bottom: .4, header: .15, footer: .15 }, printTitlesRow: '11:11' },
     headerFooter: { oddFooter: '&LQuotation Studio &RPage &P of &N' },
   })
@@ -29,9 +29,10 @@ export async function generateStudioExcel(snapshot: QuotationSnapshot): Promise<
     return cell
   }
   const brand = snapshot.brand
-  band(1, 1, 8, brand?.companyName || 'LAIFAPPE', { fill: NAVY, color: 'FFFFFFFF', size: 20, bold: true }); sheet.getRow(1).height = 42
-  band(2, 1, 4, brand?.contactLine || '', { color: TEAL })
-  band(2, 5, 8, brand?.address || '', { right: true })
+  if (brand?.logo) band(1, 1, 2, '', { fill: 'FFFFFFFF' })
+  band(1, brand?.logo ? 3 : 1, 8, brand?.companyName || 'LAIFAPPE', { fill: NAVY, color: 'FFFFFFFF', size: brand?.logo ? 18 : 20, bold: true }); sheet.getRow(1).height = brand?.logo ? 56 : 42
+  band(2, 1, 4, brand?.address || '', { color: TEAL })
+  band(2, 5, 8, brand?.contactLine || '', { right: true })
   band(3, 1, 4, brand?.tagline || '', { color: TEAL, size: 10 })
   band(3, 5, 8, brand?.website || '', { right: true })
   band(4, 5, 8, brand?.email || '', { right: true })
@@ -64,6 +65,7 @@ export async function generateStudioExcel(snapshot: QuotationSnapshot): Promise<
       anchor.nativeRowOff = Math.round((row % 1) * (sheet.getRow(Math.floor(row) + 1).height || 22) / .75 * 9525)
     }
   }
+  if (brand?.logo) await addImage(brand.logo.dataUrl, .25, .12, 200, 52)
   const wrapped = (text: string, width = 60) => {
     const result: string[] = []
     for (const paragraph of text.split(/\r?\n/)) {

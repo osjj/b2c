@@ -3,6 +3,9 @@
 import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
 import { build } from 'esbuild'
+import { createHash, randomUUID } from 'node:crypto'
+import sharp from 'sharp'
+import ExcelJS from 'exceljs'
 
 const nodeRequire = createRequire(import.meta.url)
 const initialRevision = () => ({
@@ -19,12 +22,17 @@ let documents = []
 const objects = new Map()
 let apiCalls = 0
 let failAi = false
+let settings = null
+let settingsReads = 0
+const brandFiles = new Map()
 const applyUpdate = (row, data) => {
   for (const [key, value] of Object.entries(data)) row[key] = value && typeof value === 'object' && 'increment' in value ? row[key] + value.increment : value
   return row
 }
 const matches = (row, where) => Object.entries(where).every(([key, value]) => value && typeof value === 'object' && 'in' in value ? value.in.includes(row[key]) : row[key] === value)
 const db = {
+  setting: { findUnique: async () => { settingsReads++; return settings ? { value: structuredClone(settings) } : null } },
+  quotationSourceFile: { findFirst: async ({ where }) => brandFiles.get(where.id)?.metadata ?? null },
   salesQuotationRevision: {
     findUnique: async () => structuredClone(revision),
     update: async ({ data }) => applyUpdate(revision, data),
@@ -48,7 +56,7 @@ const db = {
     try { return await work(db) } catch (error) { ({ revision, attempts, documents } = backup); throw error }
   },
 }
-const storage = { provider: 'r2-private', put: async (key, bytes) => { objects.set(key, bytes) }, move: async (from, to) => { objects.set(to, objects.get(from)); objects.delete(from) }, delete: async (key) => { objects.delete(key) } }
+const storage = { provider: 'r2-private', get: async (key) => { const file = [...brandFiles.values()].find(file => file.metadata.objectKey === key); assert.ok(file); return { bytes: file.bytes, sha256: createHash('sha256').update(file.bytes).digest('hex'), sizeBytes: file.bytes.length, contentType: 'image/png' } }, put: async (key, bytes) => { objects.set(key, bytes) }, move: async (from, to) => { objects.set(to, objects.get(from)); objects.delete(from) }, delete: async (key) => { objects.delete(key) } }
 const mocks = {
   '@/lib/prisma': 'export const prisma=require("quotation-finalize-test-state").db;',
   '../private-storage': 'export function getQuotationPrivateStorage(){return require("quotation-finalize-test-state").storage;}',
@@ -95,4 +103,39 @@ assert.equal(revision.state, 'READY')
 assert.equal(attempts[0].status, 'FAILED')
 assert.equal(documents.length, 0)
 assert.equal(objects.size, 0)
-process.stdout.write('PASS: real finalizer stores AI layout in immutable snapshot, idempotent replay calls AI once, and AI failure restores draft without formal files. All external I/O mocked.\n')
+// Reproduce a saved draft without a seal, followed by newly saved company assets.
+for (const [id, color] of [['11111111-1111-4111-8111-111111111111', '#123456'], ['22222222-2222-4222-8222-222222222222', '#b22']]) {
+  const bytes = await sharp({ create: { width: 80, height: 40, channels: 3, background: color } }).png().toBuffer()
+  brandFiles.set(id, { bytes, metadata: { objectKey: id, contentType: 'image/png', sizeBytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex') } })
+}
+settings = { brand: { companyName: 'Current company', address: 'Current address' }, logoSourceId: '11111111-1111-4111-8111-111111111111', sealSourceId: '22222222-2222-4222-8222-222222222222', useSeal: true }
+const resetDraft = () => { revision = initialRevision(); attempts = []; documents = []; objects.clear(); failAi = false }
+const storedSnapshot = () => JSON.parse(objects.get(documents.find(doc => doc.documentType === 'SNAPSHOT_JSON').objectKey).toString())
+const finalizeNew = () => finalizerModule.exports.finalizeQuotationRevision({ ...input, idempotencyKey: randomUUID() }, 'isolated-admin')
+resetDraft()
+const brandInput = { ...input, idempotencyKey: randomUUID() }
+await finalizerModule.exports.finalizeQuotationRevision(brandInput, 'isolated-admin')
+const branded = storedSnapshot()
+assert.equal(branded.brand.companyName, 'Current company')
+assert.ok(branded.brand.logo); assert.ok(branded.brand.seal)
+assert.equal(branded.customer.companyName, 'Isolated Buyer'); assert.equal(branded.money.total, '3.00')
+const customerExcel = new ExcelJS.Workbook(); await customerExcel.xlsx.load(objects.get(documents.find(doc => doc.documentType === 'CUSTOMER_EXCEL').objectKey))
+assert.equal(customerExcel.getWorksheet('Quotation').getImages().length, 2)
+assert.equal(customerExcel.getWorksheet('Quotation').views[0].state, 'normal')
+const formalPdf = objects.get(documents.find(doc => doc.documentType === 'CUSTOMER_PDF').objectKey).toString('latin1')
+assert.equal((formalPdf.match(/\/Subtype\s*\/Image\b/g) || []).length, 2)
+const beforeReplay = { reads: settingsReads, ai: apiCalls, files: [...objects.entries()].map(([key, bytes]) => [key, bytes.toString('base64')]) }
+settings.useSeal = false
+await finalizerModule.exports.finalizeQuotationRevision(brandInput, 'isolated-admin')
+assert.equal(settingsReads, beforeReplay.reads); assert.equal(apiCalls, beforeReplay.ai)
+assert.deepEqual([...objects.entries()].map(([key, bytes]) => [key, bytes.toString('base64')]), beforeReplay.files)
+resetDraft(); await finalizeNew(); assert.equal(storedSnapshot().brand.seal, undefined)
+resetDraft(); settings.useSeal = true; settings.sealSourceId = '33333333-3333-4333-8333-333333333333'
+const callsBeforeFailure = apiCalls
+await assert.rejects(finalizeNew(), /Logo \/ 印章不可用/)
+assert.equal(revision.state, 'READY'); assert.equal(objects.size, 0); assert.equal(documents.length, 0); assert.equal(apiCalls, callsBeforeFailure)
+resetDraft(); settings.sealSourceId = '22222222-2222-4222-8222-222222222222'
+brandFiles.get(settings.sealSourceId).metadata.sha256 = '0'.repeat(64)
+await assert.rejects(finalizeNew(), /品牌图片完整性校验失败/)
+assert.equal(revision.state, 'READY'); assert.equal(objects.size, 0); assert.equal(apiCalls, callsBeforeFailure)
+process.stdout.write('PASS: real finalizer, current Logo/seal on stale drafts, unfrozen Excel, disabled/missing/corrupt seal, immutable replay and AI failure recovery. All external I/O mocked.\n')

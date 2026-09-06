@@ -47,7 +47,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
   }
   function run(mode: 'save' | 'preview' | 'finalize', confirmed = false) {
     if (submitLock.current || uploading || needsRefresh) return
-    if (mode === 'finalize' && !confirmed) { confirmation.ask('AI 排版并生成正式报价', '将使用现有 AI 接口整理 Jordan 模板排版，发送产品名称和规格文字，可能产生 API 费用。不会发送客户信息、报价金额、图片或内部备注。随后生成 PDF 和 Excel 并锁定当前版本。', () => run(mode, true)); return }
+    if (mode === 'finalize' && !confirmed) { confirmation.ask('AI 排版并生成正式报价', '将使用现有 AI 接口整理 Jordan 模板排版，发送产品名称和规格文字，可能产生 API 费用。不会发送客户信息、报价金额、图片或内部备注。随后使用当前已保存的 Logo / 盖章设置生成 PDF 和 Excel 并锁定当前版本。', () => run(mode, true)); return }
     submitLock.current = true
     startTransition(async () => {
       setError(''); setFeedback('')
@@ -66,7 +66,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
           if (!response.ok) { const body = z.object({ reason: z.string() }).parse(await response.json()); throw new Error(body.reason) }
           if (previewRef.current) URL.revokeObjectURL(previewRef.current)
           previewRef.current = URL.createObjectURL(await response.blob()); setPreview(previewRef.current)
-          setFeedback('Jordan 模板预览已生成，未调用 AI。正式生成时 AI 会优化规格标签、图片分栏和备注框，原始报价内容保持不变。')
+          setFeedback('Jordan 模板预览已生成，未调用 AI、不盖章。需要盖章请点击“生成正式文件”。正式生成时 AI 会优化规格标签、图片分栏和备注框，原始报价内容保持不变。')
         } else if (mode === 'finalize') {
           setFeedback('草稿已保存，正在调用 AI 排版并生成正式文件，请勿关闭页面…')
           // A failed request may already have advanced the version; require explicit refresh.
@@ -93,7 +93,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
   }
   return <div className="space-y-6">
     {confirmation.dialog}
-    <p className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm text-teal-900">内置 Jordan 报价模板。预览不调用 AI；正式生成时使用现有 AI 接口辅助排版，可能产生调用费用。产品文字和金额保持原值。</p>
+    <p className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm text-teal-900">内置 Jordan 报价模板。预览不调用 AI、也不盖章，不能作为正式文件发送；正式生成时使用现有 AI 接口辅助排版，可能产生调用费用。产品文字和金额保持原值。</p>
     <fieldset disabled={busy || uploading || needsRefresh} className="space-y-6 disabled:opacity-75">
       <section className="grid gap-5 rounded-2xl border bg-white p-6 md:grid-cols-[2fr_1fr_1fr]">
         <label className="space-y-2 text-sm font-medium">客户名称 <span className="text-red-600">*</span><Input list="quote-customers" value={value.customerName} onChange={(e) => change({ ...value, customerName: e.target.value })} placeholder="直接输入客户或公司名称" maxLength={240} /><datalist id="quote-customers">{customers.map((customer) => <option key={customer.id} value={customer.companyName} />)}</datalist></label>
@@ -117,6 +117,6 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
       <section className="grid gap-6 rounded-2xl border bg-white p-6 lg:grid-cols-[2fr_1fr]"><div className="space-y-5"><label className="block space-y-2 text-sm font-medium">报价条款<Textarea rows={6} value={value.terms} onChange={(e) => change({ ...value, terms: e.target.value })} placeholder="付款方式、交货时间、有效期等，按需要填写" /></label><details><summary className="cursor-pointer text-sm text-slate-500">内部备注（不会出现在客户文件中）</summary><Textarea aria-label="内部备注" className="mt-3" rows={3} value={value.internalNotes} onChange={(e) => change({ ...value, internalNotes: e.target.value })} /></details></div><div className="space-y-4"><details open={value.shippingFee !== '0' || value.discountAmount !== '0' || value.otherFee !== '0'}><summary className="cursor-pointer text-sm font-medium">运费、折扣及其他费用（可选）</summary><div className="mt-4 space-y-3">{([['shippingFee', '运费'], ['discountAmount', '折扣金额'], ['otherFee', '其他费用']] as const).map(([key, label]) => <label key={key} className="flex items-center justify-between gap-3 text-sm">{label}<Input className="w-36 text-right" inputMode="decimal" value={value[key]} onChange={(e) => change({ ...value, [key]: e.target.value })} /></label>)}</div></details><div className="rounded-xl bg-slate-900 p-5 text-white"><p className="text-xs tracking-widest text-slate-300">QUOTATION TOTAL</p><p className="mt-3 text-2xl font-semibold tabular-nums">{value.currency} {totals?.total ?? '—'}</p></div></div></section>
     </fieldset>
     <div className="sticky bottom-0 z-10 rounded-xl border bg-white/95 p-4 shadow-lg backdrop-blur"><div aria-live="polite">{feedback && <p className="mb-3 text-sm text-teal-800">{feedback}</p>}{error && <p role="alert" className="mb-3 whitespace-pre-wrap text-sm text-red-700">{error}</p>}</div><div className="flex flex-wrap items-center justify-end gap-3"><span className="mr-auto text-xs text-slate-500">{busy ? '正在处理…' : dirty ? '有未保存的修改' : '填写完成后可保存或预览'}</span>{needsRefresh ? <Button onClick={refresh} disabled={busy}>刷新状态后继续</Button> : <><Button variant="outline" disabled={busy || uploading} onClick={() => run('save')}>保存草稿</Button><Button variant="secondary" disabled={busy || uploading} onClick={() => run('preview')}>预览 PDF</Button><Button className="bg-slate-900 text-white hover:bg-slate-700" disabled={busy || uploading} onClick={() => run('finalize')}>生成正式文件</Button></>}</div></div>
-    {preview && <section className="space-y-3 rounded-xl border bg-white p-4"><div className="flex justify-between"><h2 className="font-semibold">报价预览 · {dirty ? '内容已修改，请重新预览' : '仅供检查'}</h2><Button variant="ghost" onClick={() => setPreview('')}>关闭预览</Button></div><iframe title="报价 PDF 预览" src={preview} className="h-[75vh] w-full rounded-lg border" /></section>}
+    {preview && <section className="space-y-3 rounded-xl border bg-white p-4"><div className="flex justify-between"><h2 className="font-semibold">报价预览 · {dirty ? '内容已修改，请重新预览' : '仅供检查 · 不盖章'}</h2><Button variant="ghost" onClick={() => setPreview('')}>关闭预览</Button></div><iframe title="报价 PDF 预览" src={preview} className="h-[75vh] w-full rounded-lg border" /></section>}
   </div>
 }

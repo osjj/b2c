@@ -45,15 +45,21 @@ test('studio formal Excel embeds photos and seal, keeps exact total and print la
   const image = { contentType: 'image/png' as const, dataUrl: `data:image/png;base64,${bytes.toString('base64')}`, sha256: createHash('sha256').update(bytes).digest('hex') }
   const snapshot = quotationSnapshotSchema.parse({ schemaVersion: '1.0', templateVersion: 'jordan-ai-v1', language: 'ENGLISH', brand: { companyName: 'Sample', contactLine: 'Phone: 123', address: 'Sample address', website: 'www.example.com', email: 'sales@example.com', seal: image }, quotation: { number: 'QT-TEST', revision: 1, date: '2026-09-06', validUntil: null }, customer: { companyName: '=HYPERLINK("bad")', countryCode: null, email: null, phone: null, address: null, contact: null }, money: { currency: 'USD', minorUnit: 2, roundingMode: 'HALF_UP', subtotal: '7.00', discount: '0', shipping: '0', otherFee: '0', taxRate: '0', tax: '0', roundingAdjustment: '0', total: '7.00' }, terms: { Terms: 'Sample only' }, items: [{ position: 1, nameEn: '=2+2', nameZh: null, model: null, sku: null, specifications: ['Material: Cotton'], unit: 'pcs', quantity: '2', unitPrice: '3.50', lineTotal: '7.00', images: [image] }] })
   snapshot.layout = { version: '1', model: 'fixture', inputHash: quotationLayoutHash(snapshot), items: [{ position: 1, imageColumns: 1, labelLengths: [9], noteIndices: [] }] }
+  assert.ok(snapshot.brand); snapshot.brand.logo = image
   const excel = await generateCustomerExcel(snapshot)
   const book = new ExcelJS.Workbook(); await book.xlsx.load(excel as unknown as ExcelJS.Buffer)
   const sheet = book.getWorksheet('Quotation'); assert.ok(sheet)
-  assert.equal(sheet.getImages().length, 2); assert.equal(sheet.pageSetup.orientation, 'landscape'); assert.equal(sheet.pageSetup.fitToWidth, 1)
+  assert.equal(sheet.getImages().length, 3); assert.equal(sheet.pageSetup.orientation, 'landscape'); assert.equal(sheet.pageSetup.fitToWidth, 1)
+  assert.equal(sheet.views[0].state, 'normal')
   assert.equal(sheet.getCell('C12').value, "'=2+2")
-  assert.equal(sheet.getCell('A2').value, 'Phone: 123'); assert.equal(sheet.getCell('E2').value, 'Sample address'); assert.equal(sheet.getCell('E2').alignment.horizontal, 'right')
+  assert.equal(sheet.getCell('A2').value, 'Sample address'); assert.equal(sheet.getCell('A2').alignment.horizontal, 'left')
+  assert.equal(sheet.getCell('E2').value, 'Phone: 123'); assert.equal(sheet.getCell('E2').alignment.horizontal, 'right')
   const values = JSON.stringify(sheet.getSheetValues()); assert.ok(values.includes('Date: 2026-09-06')); assert.ok(values.includes('7.00')); assert.ok(!values.includes('unitCost'))
   sheet.eachRow((row) => row.eachCell((cell) => assert.equal(cell.type === ExcelJS.ValueType.Formula || cell.type === ExcelJS.ValueType.Error, false)))
   const pdf = await generateCustomerPdf(snapshot, { configuredPath: '' })
   const internalExcel = await generateInternalValuationExcel({ quotationNumber: 'QT-TEST', revisionNumber: 1, currency: 'USD', total: '7.00', totalCost: null, profit: null, items: [] })
   await validateGeneratedArtifacts({ snapshot, snapshotJson: stableSnapshotJson(snapshot), excel, pdf, internalExcel })
+  const withoutBrand = { ...snapshot, brand: { ...snapshot.brand, logo: undefined, seal: undefined } }
+  const missingBrandExcel = await generateCustomerExcel(withoutBrand)
+  await assert.rejects(validateGeneratedArtifacts({ snapshot, snapshotJson: stableSnapshotJson(snapshot), excel: missingBrandExcel, pdf, internalExcel }), /missing approved customer images/)
 })
