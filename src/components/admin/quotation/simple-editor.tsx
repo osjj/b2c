@@ -47,7 +47,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
   }
   function run(mode: 'save' | 'preview' | 'finalize', confirmed = false) {
     if (submitLock.current || uploading || needsRefresh) return
-    if (mode === 'finalize' && !confirmed) { confirmation.ask('生成正式报价文件', '将保存当前内容并生成 PDF 和 Excel。当前版本会锁定，后续修改将创建新的修订版。', () => run(mode, true)); return }
+    if (mode === 'finalize' && !confirmed) { confirmation.ask('AI 排版并生成正式报价', '将使用现有 AI 接口整理 Jordan 模板排版，发送产品名称和规格文字，可能产生 API 费用。不会发送客户信息、报价金额、图片或内部备注。随后生成 PDF 和 Excel 并锁定当前版本。', () => run(mode, true)); return }
     submitLock.current = true
     startTransition(async () => {
       setError(''); setFeedback('')
@@ -66,9 +66,9 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
           if (!response.ok) { const body = z.object({ reason: z.string() }).parse(await response.json()); throw new Error(body.reason) }
           if (previewRef.current) URL.revokeObjectURL(previewRef.current)
           previewRef.current = URL.createObjectURL(await response.blob()); setPreview(previewRef.current)
-          setFeedback('预览已生成。此文件带预览标识，不是正式文件。')
+          setFeedback('Jordan 模板预览已生成，未调用 AI。正式生成时 AI 会优化规格标签、图片分栏和备注框，原始报价内容保持不变。')
         } else if (mode === 'finalize') {
-          setFeedback('草稿已保存，正在生成并存储正式文件，请勿关闭页面…')
+          setFeedback('草稿已保存，正在调用 AI 排版并生成正式文件，请勿关闭页面…')
           // A failed request may already have advanced the version; require explicit refresh.
           setNeedsRefresh(true)
           const finalized = await finalizeSalesQuotation({ revisionId: data.revisionId, expectedVersion: data.version, idempotencyKey: crypto.randomUUID() })
@@ -93,6 +93,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
   }
   return <div className="space-y-6">
     {confirmation.dialog}
+    <p className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm text-teal-900">内置 Jordan 报价模板。预览不调用 AI；正式生成时使用现有 AI 接口辅助排版，可能产生调用费用。产品文字和金额保持原值。</p>
     <fieldset disabled={busy || uploading || needsRefresh} className="space-y-6 disabled:opacity-75">
       <section className="grid gap-5 rounded-2xl border bg-white p-6 md:grid-cols-[2fr_1fr_1fr]">
         <label className="space-y-2 text-sm font-medium">客户名称 <span className="text-red-600">*</span><Input list="quote-customers" value={value.customerName} onChange={(e) => change({ ...value, customerName: e.target.value })} placeholder="直接输入客户或公司名称" maxLength={240} /><datalist id="quote-customers">{customers.map((customer) => <option key={customer.id} value={customer.companyName} />)}</datalist></label>

@@ -4,6 +4,7 @@ const stageLabels = {
   prepare: 'Quotation preparation',
   images: 'Private image preparation',
   snapshot: 'Quotation snapshot',
+  ai: 'AI quotation layout',
   pdf: 'PDF generation',
   excel: 'Excel generation',
   validation: 'Document validation',

@@ -32,6 +32,7 @@ import {
 import { assertEditableRevision, assertRevisionTransition } from '@/lib/quotation/state-machine'
 import { readWorkbenchSettings, readBrandForSnapshot } from '@/lib/quotation/services/workbench-settings'
 import { attachEditorImages } from '@/lib/quotation/services/editor-images'
+import { JORDAN_TEMPLATE_VERSION } from '@/lib/quotation/jordan-layout'
 
 async function authorize(): Promise<{ id: string }> {
   assertQuotationWorkbenchEnabled()
@@ -151,7 +152,7 @@ export async function createSalesQuotation(input: unknown): Promise<QuotationAct
         data: {
           salesQuotationId: quotation.id,
           revisionNumber: 1,
-          templateVersion: 'presentation-v2',
+          templateVersion: JORDAN_TEMPLATE_VERSION,
           documentLanguage: data.documentLanguage,
           quotationDate: data.quotationDate,
           validUntil: data.validUntil,
@@ -255,7 +256,7 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
         where: { id: data.revisionId, version: data.expectedVersion, state: { in: ['DRAFT', 'READY'] } },
         data: {
           version: { increment: 1 },
-          templateVersion: 'presentation-v2',
+          templateVersion: JORDAN_TEMPLATE_VERSION,
           documentLanguage: data.documentLanguage,
           quotationDate: data.quotationDate,
           validUntil: data.validUntil,

@@ -2,12 +2,14 @@ import { z } from 'zod'
 
 import { assertCustomerProjectionSafe } from '../visibility'
 import { quotationBrandSchema } from '../workbench-config'
+import { jordanLayoutSchema } from '../jordan-layout'
 
 const nullableText = z.string().nullable()
 
 export const quotationSnapshotSchema = z.object({
   schemaVersion: z.literal('1.0'),
   templateVersion: z.string(),
+  layout: jordanLayoutSchema.optional(),
   brand: quotationBrandSchema.optional(),
   language: z.enum(['CHINESE', 'ENGLISH', 'BILINGUAL']),
   quotation: z.object({

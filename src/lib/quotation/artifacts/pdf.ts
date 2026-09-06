@@ -4,6 +4,8 @@ import autoTable from 'jspdf-autotable'
 import { configureQuotationPdfFont, type PdfFontOptions } from './pdf-font'
 import type { QuotationSnapshot } from './snapshot'
 import { generatePresentationPdf } from './presentation-pdf'
+import { generateJordanPdf } from './jordan-pdf'
+import { JORDAN_TEMPLATE_VERSION } from '../jordan-layout'
 
 function displayName(snapshot: QuotationSnapshot, item: QuotationSnapshot['items'][number]): string {
   if (snapshot.language === 'CHINESE') return item.nameZh ?? item.nameEn ?? ''
@@ -18,6 +20,7 @@ function label(snapshot: QuotationSnapshot, chinese: string, english: string): s
 }
 
 export async function generateCustomerPdf(snapshot: QuotationSnapshot, fontOptions?: PdfFontOptions, preview = false): Promise<Buffer> {
+  if (snapshot.templateVersion === JORDAN_TEMPLATE_VERSION) return generateJordanPdf(snapshot, fontOptions, preview)
   if (snapshot.templateVersion === 'presentation-v2') return generatePresentationPdf(snapshot, fontOptions, preview)
   // These exact strings are both inspected for glyph coverage and rendered below.
   const heading = [

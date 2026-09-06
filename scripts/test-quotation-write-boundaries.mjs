@@ -66,7 +66,7 @@ const created = await actions.createSalesQuotation(input)
 assert.equal(created.success, true, JSON.stringify(created))
 assert.equal(state.customers.length, 1)
 assert.equal(state.revisions[0].total, '1.01')
-assert.equal(state.revisions[0].templateVersion, 'presentation-v2')
+assert.equal(state.revisions[0].templateVersion, 'jordan-ai-v1')
 assert.equal(created.data.items.length, 1)
 const update = { ...input, revisionId: created.data.revisionId, expectedVersion: 1, customerId: state.customers[0].id, customerName: 'Different Buyer', items: [{ ...input.items[0], id: created.data.items[0].id }] }
 state.customers[0].contacts = [{ name: 'Old customer contact', email: 'private@old.test' }]
