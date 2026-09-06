@@ -1,6 +1,7 @@
 import ExcelJS from 'exceljs'
 import sharp from 'sharp'
 import type { QuotationSnapshot } from './snapshot'
+import { brandFieldLabel } from './brand-labels'
 
 const NAVY = 'FF193F66'
 const TEAL = 'FF157E86'
@@ -31,13 +32,18 @@ export async function generateStudioExcel(snapshot: QuotationSnapshot): Promise<
   const brand = snapshot.brand
   if (brand?.logo) band(1, 1, 2, '', { fill: 'FFFFFFFF' })
   band(1, brand?.logo ? 3 : 1, 8, brand?.companyName || 'LAIFAPPE', { fill: NAVY, color: 'FFFFFFFF', size: brand?.logo ? 18 : 20, bold: true }); sheet.getRow(1).height = brand?.logo ? 56 : 42
-  band(2, 1, 4, brand?.address || '', { color: TEAL })
-  band(2, 5, 8, brand?.contactLine || '', { right: true })
+  const address = brandFieldLabel('Address', brand?.address)
+  const contact = brandFieldLabel('Contact', brand?.contactLine)
+  const website = brandFieldLabel('Website', brand?.website)
+  const email = brandFieldLabel('Email', brand?.email)
+  band(2, 1, 4, address, { color: TEAL })
+  band(2, 5, 8, contact, { right: true })
   band(3, 1, 4, brand?.tagline || '', { color: TEAL, size: 10 })
-  band(3, 5, 8, brand?.website || '', { right: true })
-  band(4, 5, 8, brand?.email || '', { right: true })
-  sheet.getRow(2).height = Math.max(30, Math.ceil(Math.max(brand?.contactLine.length || 0, brand?.address?.length || 0) / 55) * 15)
-  sheet.getRow(3).height = 27; sheet.getRow(4).height = 25; sheet.getRow(5).height = 12
+  band(3, 5, 8, website, { right: true })
+  band(4, 5, 8, email, { right: true })
+  const headerHeight = (value: string) => value.split(/\r?\n/).reduce((height, line) => height + Math.max(1, Math.ceil([...line].reduce((length, char) => length + (char.charCodeAt(0) > 255 ? 2 : 1), 0) / 55)) * 15, 0)
+  sheet.getRow(2).height = Math.max(30, headerHeight(address), headerHeight(contact))
+  sheet.getRow(3).height = Math.max(27, headerHeight(website)); sheet.getRow(4).height = Math.max(25, headerHeight(email)); sheet.getRow(5).height = 12
   band(6, 1, 4, 'QUOTATION', { size: 24, bold: true, color: NAVY })
   band(6, 5, 8, `${snapshot.quotation.number}  /  R${snapshot.quotation.revision}`, { bold: true, right: true }); sheet.getRow(6).height = 42
   band(7, 1, 4, `TO  ${snapshot.customer.companyName}`, { fill: LIGHT, bold: true })
@@ -97,7 +103,7 @@ export async function generateStudioExcel(snapshot: QuotationSnapshot): Promise<
         cell.font = { name: 'Calibri', size: 11, color: { argb: INK } }
         cell.border = { left: { style: 'hair', color: { argb: 'FFD4DFE9' } }, bottom: row === last ? { style: 'thin', color: { argb: 'FFD4DFE9' } } : undefined }
       }
-      band(row, 3, 4, lines[row - first] || '', { bold: row - first < nameLines.length, color: row - first < nameLines.length ? NAVY : INK })
+      band(row, 3, 4, lines[row - first] || '', { bold: row - first < nameLines.length, color: NAVY })
     }
     for (const [col, value] of [[1, String(item.position)], [2, ''], [5, item.quantity], [6, item.unit], [7, item.unitPrice], [8, item.lineTotal]] as const) {
       sheet.mergeCells(first, col, last, col)
@@ -117,7 +123,7 @@ export async function generateStudioExcel(snapshot: QuotationSnapshot): Promise<
   }
   cursor += 1
   band(cursor, 1, 8, 'TERMS & CONDITIONS', { color: TEAL, bold: true }); sheet.getRow(cursor++).height = 28
-  for (const [key, value] of Object.entries(snapshot.terms)) for (const line of wrapped(key === 'Terms' ? value : `${key}: ${value}`, 130)) { band(cursor, 1, 8, line, { size: 10 }); sheet.getRow(cursor++).height = 19 }
+  for (const [key, value] of Object.entries(snapshot.terms)) for (const line of wrapped(key === 'Terms' ? value : `${key}: ${value}`, 130)) { band(cursor, 1, 8, line, { size: 10, color: NAVY }); sheet.getRow(cursor++).height = 19 }
   if (brand?.seal) {
     cursor++
     band(cursor, 6, 8, 'AUTHORIZED COMPANY SEAL', { color: TEAL, right: true, bold: true }); sheet.getRow(cursor++).height = 24

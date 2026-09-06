@@ -106,3 +106,17 @@ Verified correction: 47 quotation tests and expanded isolated finalization tests
 browser harness passes. Native Excel read-only inspection reports FreezePanes=False and five
 drawings in the synthetic review (three product photos + Logo + seal). Both printed Excel pages
 and PDF seal page visually inspected. No live customer data, production API, DB or R2 calls.
+
+## Text styling refinement
+
+Product names, visible description/specification notes and public quotation terms use the navy
+theme color (#193F66) in studio PDF/Excel. Brand values receive display-only Address:, Contact:,
+Website: and Email: prefixes; blank values are omitted and existing matching prefixes are not
+duplicated. Address stays left, contact/site/email stay right. Labels participate in wrapping and
+Excel header height calculations. Stored field values, monetary data and formal history are unchanged.
+`preview-simple-quotation.ts --studio-review --text-review` adds synthetic Chinese name/terms and
+a long address for visual regression; no real customer or external API is used.
+
+Verified refinement: all 48 quotation tests and scoped ESLint pass. Both PDF pages and both
+native Excel print-export pages were visually inspected, including Chinese names/terms and
+long labeled addresses. PDF text-color readback confirms Chinese text uses #193F66.

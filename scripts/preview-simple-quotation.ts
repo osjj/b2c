@@ -28,6 +28,12 @@ async function main() {
   if (studio) {
     const stampBytes = await sharp(Buffer.from('<svg width="220" height="220"><circle cx="110" cy="110" r="96" fill="none" stroke="#b5252b" stroke-width="5"/><circle cx="110" cy="110" r="86" fill="none" stroke="#b5252b" stroke-width="2"/><text x="110" y="85" text-anchor="middle" fill="#b5252b" font-size="23">SAMPLE</text><text x="110" y="150" text-anchor="middle" fill="#b5252b" font-size="16">NOT VALID</text></svg>')).png().toBuffer()
     snapshot.brand = { companyName: 'YUELAIFA LABOR PROTECTION PRODUCTS CO., LTD.', contactLine: 'Contact: Sample representative\nTel / WhatsApp: +00 123 456 789', address: 'Sample business address, Foshan, China', website: 'www.example.com', email: 'sales@example.com', tagline: 'PPE SUPPLY QUOTATION - SAMPLE ONLY', logo, seal: { dataUrl: `data:image/png;base64,${stampBytes.toString('base64')}`, sha256: createHash('sha256').update(stampBytes).digest('hex') } }
+    if (process.argv.includes('--text-review')) {
+      snapshot.items[1].nameEn = '测试产品2 / Sample product'
+      snapshot.terms = { Terms: '1、示例报价条款：价格及交期以确认文件为准。\n2、此文件仅用于模板效果检查，不是正式客户报价。' }
+      snapshot.brand.address = 'Sample business address, Building A, Industrial Park, Nanhai District, Foshan City, Guangdong Province, China'
+      if (snapshot.layout) snapshot.layout.inputHash = quotationLayoutHash(snapshot)
+    }
     await mkdir(directory, { recursive: true })
     await writeFile(resolve(directory, 'quotation-studio-review.pdf'), await generateCustomerPdf(snapshot, { configuredPath: '' }, false))
     await writeFile(resolve(directory, 'quotation-studio-review.xlsx'), await generateCustomerExcel(snapshot))

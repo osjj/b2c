@@ -12,6 +12,17 @@ import { generateCustomerPdf } from './artifacts/pdf'
 import { quotationSnapshotSchema, stableSnapshotJson } from './artifacts/snapshot'
 import { validateGeneratedArtifacts } from './artifacts/validate'
 import { quotationLayoutHash } from './services/ai-layout'
+import { brandFieldLabel } from './artifacts/brand-labels'
+
+test('company labels are display-only, omit blanks and avoid duplicate keys', () => {
+  assert.equal(brandFieldLabel('Address', ' Main Street '), 'Address: Main Street')
+  assert.equal(brandFieldLabel('Contact', '+123'), 'Contact: +123')
+  assert.equal(brandFieldLabel('Website', 'https://example.com'), 'Website: https://example.com')
+  assert.equal(brandFieldLabel('Email', 'sales@example.com'), 'Email: sales@example.com')
+  assert.equal(brandFieldLabel('Contact', 'Contact: Jane\nTel: 123'), 'Contact: Jane\nTel: 123')
+  assert.equal(brandFieldLabel('Address', 'address：Main Street'), 'address：Main Street')
+  assert.equal(brandFieldLabel('Email', '   '), '')
+})
 
 test('customer directory requires only name, validates optional email, preserves optional profile', () => {
   assert.equal(customerDirectorySchema.parse({ name: 'Jordan' }).company, '')
@@ -52,8 +63,11 @@ test('studio formal Excel embeds photos and seal, keeps exact total and print la
   assert.equal(sheet.getImages().length, 3); assert.equal(sheet.pageSetup.orientation, 'landscape'); assert.equal(sheet.pageSetup.fitToWidth, 1)
   assert.equal(sheet.views[0].state, 'normal')
   assert.equal(sheet.getCell('C12').value, "'=2+2")
-  assert.equal(sheet.getCell('A2').value, 'Sample address'); assert.equal(sheet.getCell('A2').alignment.horizontal, 'left')
-  assert.equal(sheet.getCell('E2').value, 'Phone: 123'); assert.equal(sheet.getCell('E2').alignment.horizontal, 'right')
+  assert.equal(sheet.getCell('A2').value, 'Address: Sample address'); assert.equal(sheet.getCell('A2').alignment.horizontal, 'left')
+  assert.equal(sheet.getCell('E2').value, 'Contact: Phone: 123'); assert.equal(sheet.getCell('E2').alignment.horizontal, 'right')
+  assert.equal(sheet.getCell('E3').value, 'Website: www.example.com'); assert.equal(sheet.getCell('E4').value, 'Email: sales@example.com')
+  assert.equal(sheet.getCell('C12').font.color?.argb, 'FF193F66'); assert.equal(sheet.getCell('C13').font.color?.argb, 'FF193F66')
+  sheet.eachRow(row => row.eachCell(cell => { if (cell.value === 'Sample only') assert.equal(cell.font.color?.argb, 'FF193F66') }))
   const values = JSON.stringify(sheet.getSheetValues()); assert.ok(values.includes('Date: 2026-09-06')); assert.ok(values.includes('7.00')); assert.ok(!values.includes('unitCost'))
   sheet.eachRow((row) => row.eachCell((cell) => assert.equal(cell.type === ExcelJS.ValueType.Formula || cell.type === ExcelJS.ValueType.Error, false)))
   const pdf = await generateCustomerPdf(snapshot, { configuredPath: '' })

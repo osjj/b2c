@@ -4,6 +4,7 @@ import { validateJordanLayout } from '../services/ai-layout'
 import { QuotationError } from '../errors'
 import { configureQuotationPdfFont, type PdfFontOptions } from './pdf-font'
 import { quotationSnapshotSchema, type QuotationSnapshot } from './snapshot'
+import { brandFieldLabel } from './brand-labels'
 
 const L = 68
 const R = 774
@@ -76,8 +77,8 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
       text('QUOTATION', R - 14, 48, 19, NAVY, true, 'right')
       text('PPE Supply Quotation', R - 14, 65, 8.5, MUTED, false, 'right')
       document.setFillColor('#F5F8FB'); document.setDrawColor(BORDER)
-      const address = wrap(brand.address || '', W * .44 - 22, 8)
-      const contact = [brand.contactLine, brand.website, brand.email].filter((value): value is string => Boolean(value)).flatMap((value) => wrap(value, W * .52 - 22, 8))
+      const address = wrap(brandFieldLabel('Address', brand.address), W * .44 - 22, 8)
+      const contact = [brandFieldLabel('Contact', brand.contactLine), brandFieldLabel('Website', brand.website), brandFieldLabel('Email', brand.email)].filter(Boolean).flatMap((value) => wrap(value, W * .52 - 22, 8))
       const contactHeight = Math.max(38, 22 + Math.max(contact.length, address.length) * 10)
       document.roundedRect(L, 98, W, contactHeight, 5, 5, 'FD')
       if (address.length) text(address, L + 10, 112, 8, MUTED)
@@ -186,18 +187,18 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
         if (block.bullet) { document.setFillColor(TEAL); document.circle(starts[2] + 12, y - 2, 1.6, 'F') }
         if (block.prefix) {
           const prefix = block.value.slice(0, block.prefix)
-          text(prefix, x, y, block.size, INK, true)
+          text(prefix, x, y, block.size, NAVY, true)
           font(prefix, block.size, true)
           const width = document.getTextWidth(prefix)
-          text(block.value.slice(block.prefix), x + width, y, block.size)
-        } else text(block.value, x, y, block.size, block.title ? NAVY : INK, Boolean(block.title))
+          text(block.value.slice(block.prefix), x + width, y, block.size, NAVY)
+        } else text(block.value, x, y, block.size, NAVY, Boolean(block.title))
         y += block.height
       }
       const noteY = bottom - noteHeight - 7
       document.setDrawColor('#CAE4E8'); document.setFillColor('#EEF7F9')
       document.roundedRect(starts[2] + 8, noteY, columns[2] - 16, noteHeight, 4, 4, 'FD')
       text('ORDER QUANTITY / SIZE NOTE', starts[2] + 15, noteY + 10, 6.5, NAVY, true)
-      text(noteLines, starts[2] + 15, noteY + 20, 6.5)
+      text(noteLines, starts[2] + 15, noteY + 20, 6.5, NAVY)
       if (canInline) summaryY = bottom + 14
       part++
     } while (blockIndex < blocks.length || imageIndex < item.images.length)
@@ -223,7 +224,7 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
     text(`Date: ${snapshot.quotation.date}`, R, y + 85, 7, MUTED, false, 'right')
     y += 94
   }
-  for (const line of termLines) { ensure(10); text(line, L + 4, y, 7, MUTED); y += 9 }
+  for (const line of termLines) { ensure(10); text(line, L + 4, y, 7, NAVY); y += 9 }
 
   const pages = document.getNumberOfPages()
   for (let page = 1; page <= pages; page++) {
