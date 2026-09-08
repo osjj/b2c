@@ -33,7 +33,8 @@ const db = {
   quotationSourceFile: { createMany: async ({ data }) => state.sources.push(...data) },
   quotationProductImage: { createMany: async ({ data }) => state.images.push(...data) },
   quotationAuditLog: { create: async ({ data }) => { if (state.failAudit) throw new Error('Mock database failure'); state.audits.push(data) } },
-  $queryRaw: async () => [],
+  $executeRaw: async () => 1,
+  $queryRaw: async () => { throw new Error('Catalog advisory locks must not deserialize PostgreSQL void results') },
   $transaction: async (work) => { state.dbCalls++; const backup = structuredClone(state); try { return await work(db) } catch (error) { Object.assign(state, backup); throw error } },
 }
 const bytes = await sharp({ create: { width: 20, height: 30, channels: 3, background: '#789' } }).png().toBuffer()

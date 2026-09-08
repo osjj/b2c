@@ -63,7 +63,7 @@ export async function importQuotationCatalogProduct(input: unknown) {
         importedImages.push({ id: randomUUID(), objectKey, displayName: file.filename, contentType: file.contentType, sizeBytes: file.sizeBytes, sha256: file.sha256 })
       }
       const result = await prisma.$transaction(async (tx) => {
-        await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtext(${`quotation.catalog.${product.id}`}))`
+        await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtext(${`quotation.catalog.${product.id}`})::bigint)`
         const existing = await tx.quotationProduct.findFirst({ where: { productId: product.id }, select: { id: true } })
         if (existing) return { id: existing.id, reused: true }
         const current = await tx.product.findUnique({ where: { id: product.id }, select: { updatedAt: true, isActive: true } })
