@@ -79,6 +79,8 @@ Underground PPE must work in a low-light, restricted environment where roof or r
 - Confirm reflective material remains visible under cap lamps and machine lighting without creating excessive glare or being covered by outer garments and equipment.
 - For U.S. underground metal and nonmetal mines, [30 CFR 57.17010](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-P/section-57.17010) requires individual electric lamps for persons underground. The site must still provide and maintain the broader illumination needed for safe work.
 
+For the dedicated helmet workflow—including model evidence, retention, cap-lamp mounts, cable and battery routing, accessory interfaces, sample approval, spare parts, and RFQ change control—use the [Mining Safety Helmet Buyer Guide](/blog/mining-safety-helmet-buyer-guide).
+
 ### Ventilation, contaminants, hearing, and garments
 
 - Do not choose a respirator because the work is underground. Use ventilation status, contaminant identification, oxygen conditions, personal exposure data, the complete approved configuration, and the written program.

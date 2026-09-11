@@ -182,6 +182,11 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
     'compliance-checker',
     'ppe-calculator',
   ],
+  'mining-safety-helmet-buyer-guide': [
+    'hard-hat-class-decoder',
+    'ppe-calculator',
+    'ai-quote',
+  ],
   'open-pit-vs-underground-mining-ppe': [
     'ppe-calculator',
     'ai-quote',
@@ -209,6 +214,7 @@ const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
   'mining-hearing-protection-guide',
   'mining-silica-dust-controls-respirator-selection',
   'mining-quarry-safety-boots-guide',
+  'mining-safety-helmet-buyer-guide',
   'open-pit-vs-underground-mining-ppe',
 ])
 

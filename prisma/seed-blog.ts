@@ -26,6 +26,7 @@
  *   - mining-hearing-protection-guide
  *   - mining-silica-dust-controls-respirator-selection
  *   - mining-quarry-safety-boots-guide
+ *   - mining-safety-helmet-buyer-guide
  *   - open-pit-vs-underground-mining-ppe
  *
  * Idempotent: safe to re-run via `npm run db:seed:blog` because each post is
@@ -1921,6 +1922,51 @@ const BLOG_POSTS: BlogSeedConfig[] = [
         url: 'https://shop.laifappe.com/blog/bulk-construction-ppe-procurement/a-practical-bulk-ppe-request-for-quote-template-1777562345610.webp',
         caption:
           'The RFQ should define hazards, standards, sizes, model evidence, sample approval, commercial terms, and lifecycle needs.',
+      },
+    },
+  },
+  {
+    slug: 'mining-safety-helmet-buyer-guide',
+    markdownPath: join(process.cwd(), 'mining-safety-helmet-buyer-guide.md'),
+    generatedImagesPath: join(
+      __dirname,
+      'blog-images.mining-safety-helmet-buyer-guide.generated.json',
+    ),
+    title: 'Mining Safety Helmet Buyer Guide: Fit, Cap-Lamp Mounts and PPE Compatibility',
+    excerpt:
+      'Select mining safety helmets as complete worn systems by hazard, fit, cap-lamp interface, accessory compatibility, model evidence, sample approval, and bulk RFQ controls.',
+    seoTitle: 'Mining Safety Helmet Buyer Guide | Lamps, Fit & PPE',
+    seoDescription:
+      'Select a mining safety helmet by hazard, fit, cap-lamp mount, retention and PPE compatibility, then verify documents and samples before bulk orders.',
+    seoKeywords:
+      'mining safety helmet, mining helmet with lamp, mine hard hat, cap lamp helmet, underground mining helmet, mining helmet PPE compatibility, bulk mining helmets',
+    heroFallback:
+      'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+    sectionImages: {
+      'Quick Answer: Approve the Helmet as a Complete Worn System': {
+        url: 'https://shop.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying-cover-1772443454027.webp',
+        caption:
+          'A mining helmet approval covers the hazard, shell, suspension, retention, lamp system, accessories, documents, and final worn configuration.',
+      },
+      'Treat the Cap-Lamp Mount as an Interface, Not a Claim': {
+        url: 'https://shop.laifappe.com/blog/open-pit-vs-underground-mining-ppe/underground-mining-ppe-clearance-lighting-ventilation-and-escape-1786694297008.webp',
+        caption:
+          'The exact lamp, bracket, cable, battery, beam, approval, and helmet interface need separate checks before bulk approval.',
+      },
+      'Build a Helmet and PPE Compatibility Matrix': {
+        url: 'https://shop.laifappe.com/blog/mining-hearing-protection-guide/fit-compatibility-communication-and-warning-signals-1786876260524.webp',
+        caption:
+          'Helmet, earmuff, eyewear, visor, respirator, communication, lamp, cable, and retention interfaces should be tested together.',
+      },
+      'Run a Controlled Sample Approval Before Bulk Ordering': {
+        url: 'https://shop.laifappe.com/blog/fiberglass-vs-abs-vs-hdpe-safety-helmets/run-a-jobsite-sample-approval-before-bulk-ordering-1788317469198.webp',
+        caption:
+          'Representative users should evaluate the exact assembled system against documented pass, conditional-pass, and fail criteria.',
+      },
+      'Write a Quote-Ready Mining Safety Helmet RFQ': {
+        url: 'https://shop.laifappe.com/blog/bulk-construction-ppe-procurement/a-practical-bulk-ppe-request-for-quote-template-1777562345610.webp',
+        caption:
+          'The RFQ controls work areas, hazards, standards, lamp identity, interfaces, documents, samples, spares, and substitutions.',
       },
     },
   },

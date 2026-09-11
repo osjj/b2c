@@ -108,6 +108,8 @@ Electronic or communications-enabled protectors can support radio use or situati
 
 ## Fit, Compatibility, Communication, and Warning Signals
 
+When earmuffs, a cap lamp, eye protection, communication equipment, and helmet retention share the same head-worn system, use the [Mining Safety Helmet Buyer Guide](/blog/mining-safety-helmet-buyer-guide) to document the exact interfaces and sample approval.
+
 The best protector is one that delivers adequate real-world attenuation and can be worn correctly for the entire required period.
 
 ### Fit and individual choice

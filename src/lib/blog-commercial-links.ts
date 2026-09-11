@@ -1134,6 +1134,38 @@ const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
       },
     ],
   },
+  'mining-safety-helmet-buyer-guide': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection' },
+      {
+        href: '/categories/head-protection/safety-helmets',
+        label: 'Safety helmets',
+      },
+      {
+        href: '/categories/head-protection/hearing-protection',
+        label: 'Hearing protection',
+      },
+    ],
+    products: [],
+    cta: {
+      href: '/quote',
+      label: 'Request mining helmet and accessory options',
+    },
+    resources: [
+      {
+        href: '/tools/hard-hat-class-decoder',
+        label: 'Hard hat class decoder',
+      },
+      {
+        href: '/tools/ppe-calculator',
+        label: 'PPE quantity calculator',
+      },
+    ],
+  },
   'open-pit-vs-underground-mining-ppe': {
     solution: {
       href: '/solutions/ppe-safety-equipment-for-mining-quarrying',

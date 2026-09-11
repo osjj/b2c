@@ -19,6 +19,13 @@ const GUIDE_CATALOG = {
       'Turn mine hazards, standards evidence, fit trials, size curves, and replacement stock into a footwear RFQ.',
     eyebrow: 'Mining footwear',
   },
+  'mining-safety-helmet-buyer-guide': {
+    href: '/blog/mining-safety-helmet-buyer-guide',
+    title: 'Mining Safety Helmet Buyer Guide',
+    description:
+      'Control helmet fit, cap-lamp interfaces, PPE compatibility, model evidence, samples, spare parts, and substitutions before a bulk order.',
+    eyebrow: 'Mining head protection',
+  },
   'construction-gloves-selection-guide': {
     href: '/blog/construction-gloves-selection-guide',
     title: 'Construction Gloves Guide',
@@ -164,6 +171,7 @@ export const TOOL_RELATED_GUIDES = {
     'osha-ppe-requirements-construction',
     'mining-hearing-protection-guide',
     'mining-quarry-safety-boots-guide',
+    'mining-safety-helmet-buyer-guide',
   ]),
   'ppe-calculator': pickGuides([
     'bulk-construction-ppe-procurement',
@@ -175,6 +183,7 @@ export const TOOL_RELATED_GUIDES = {
     'construction-hearing-protection',
     'mining-hearing-protection-guide',
     'mining-quarry-safety-boots-guide',
+    'mining-safety-helmet-buyer-guide',
     'construction-ppe-checklist',
   ]),
   'size-guide': pickGuides([
@@ -200,6 +209,7 @@ export const TOOL_RELATED_GUIDES = {
     'type-1-vs-type-2-hard-hats',
     'construction-hard-hat-types',
     'construction-safety-helmet-vs-hard-hat',
+    'mining-safety-helmet-buyer-guide',
     'bulk-construction-ppe-procurement',
   ]),
 } satisfies Record<string, ToolRelatedGuide[]>

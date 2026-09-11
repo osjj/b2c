@@ -41,6 +41,8 @@ Run these six checks before selecting the task module:
 5. **Inspect before issue.** Remove damaged, contaminated, expired, incomplete, badly fitting, or unauthorized equipment from service. Include replaceable parts and consumables in the check.
 6. **Define the change trigger.** Tell the crew when the checklist must be repeated: a new bench, different rock, dry instead of wet operation, a failed dust control, changed traffic route, night work, maintenance entry, spill, misfire, or unexpected ground condition.
 
+For a complete head-protection compatibility and sample-approval workflow, use the [Mining Safety Helmet Buyer Guide](/blog/mining-safety-helmet-buyer-guide).
+
 For U.S. surface and underground metal and nonmetal mines, the current [30 CFR Parts 56 and 57](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K) organize requirements by hazards such as explosives, drilling, haulage, machinery, electricity, and personal protection. Other jurisdictions use different rules, so treat the U.S. references in this guide as examples rather than a global compliance list.
 
 ## Drilling PPE Checklist
