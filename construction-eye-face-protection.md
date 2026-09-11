@@ -34,6 +34,19 @@ Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template
 
 ---
 
+## Two Paths: Quick Answers or Buyer Checks
+
+Use this page differently depending on the decision you need to make:
+
+| If you need to... | Start here | What you will get |
+|---|---|---|
+| answer a task or training question | [Go to the task-based selection table](#what-to-choose-by-construction-task), then use the FAQ for a short answer | the difference between safety glasses, goggles, face shields, and welding protection for a named hazard |
+| prepare a site purchase or supplier request | [Go to the buyer verification checklist](#buyer-path-verify-eye-and-face-ppe-before-ordering) | the task, document, fit, compatibility, sample, and replacement information to confirm before approving a model |
+
+The quick-answer path explains the protection category. The buyer path turns that category into an auditable request for a specific jobsite and product model. Neither path replaces the employer's hazard assessment or the applicable site requirements.
+
+---
+
 ## Why Construction Eye and Face Protection Is Often Misselected
 
 Construction eye and face hazards come from several directions at once:
@@ -476,16 +489,42 @@ The professional point is simple: a dirty, scratched, or unstable protector may 
 
 ---
 
+## Buyer Path: Verify Eye and Face PPE Before Ordering
+
+Do not start a bulk order with a product name alone. Start with the jobsite decision, then require the supplier's offered model and documents to match it. This keeps general education separate from approval of a specific product.
+
+| Buyer decision to record | Information to collect | Evidence to review before approval |
+|---|---|---|
+| Market and project basis | destination country, customer or contractor requirements, named standard and version where specified | project PPE specification and the exact regulatory or customer requirement being applied |
+| Task and hazard | work activity, flying-particle direction, dust entry, splash, radiant energy, face exposure, and surrounding controls | hazard assessment, task method, chemical information where relevant, and the site's selected protection category |
+| Protector combination | safety glasses, goggles, face shield, welding protection, or an approved combination | a written configuration showing which item is primary eye protection and which item adds face or radiant-energy protection |
+| Exact offered model | manufacturer, model or SKU, markings, lens and frame options, side protection, ventilation or sealing design | model-specific data sheet and the conformity, test, or approval documents required for the destination market; the identifiers should match the offered model |
+| Fit and compatibility | prescription eyewear, face shape, hard hat, respirator, hearing PPE, heat, fogging, and task movement | sample trial using the actual PPE combination, with acceptance results recorded by user group or job role |
+| Order and replacement plan | crew count, issue quantity, spare ratio, replacement lenses or shields, cleaning items, storage, and replenishment timing | approved bill of materials, packaging details, replacement-part list, and a repeat-order reference |
+
+Before approving the order:
+
+1. Separate the list by task and hazard instead of using one eyewear model for every worker.
+2. Request the exact model identifier and required documents; a catalog category or product title is not model-specific evidence.
+3. Confirm whether the face shield or welding setup still needs primary safety glasses or goggles for the task.
+4. Test the complete combination with hard hats, respirators, hearing PPE, and prescription eyewear where applicable.
+5. Record sample acceptance, rejected combinations, and the reason for the decision.
+6. Put spare parts, cleaning, storage, and replacement stock into the same RFQ as the initial issue quantity.
+
+Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-construction-eye-face-protection) to collect these fields, or [request eye and face PPE options](/quote?source=blog-construction-eye-face-protection) after the task and documentation requirements are defined.
+
+---
+
 ## Product and Category Path for Eye and Face PPE
 
-For product browsing, start with [Eye Protection](/categories/eye-protection), then split the buying path by task: [Safety Glasses](/categories/eye-protection/safety-glasses) for side-protected routine impact work, [Safety Goggles](/categories/eye-protection/safety-goggles) for dust or splash entry control, and [Face Shields](/categories/head-protection/face-shields) when broader face coverage is needed over primary eye protection.
+After the task, protection category, and document fields are defined, browse [Eye Protection](/categories/eye-protection), then narrow the shortlist through [Safety Glasses](/categories/eye-protection/safety-glasses), [Safety Goggles](/categories/eye-protection/safety-goggles), or [Face Shields](/categories/head-protection/face-shields). These category paths help discovery; they do not prove that every listed model is suitable for the same hazard or destination market.
 
 Common shortlist paths:
 
-- [EN166F anti-fog safety glasses](/products/en166f-anti-fog-anti-scratch-dustproof-safety-glasses) for clear-lens impact protection and side coverage.
-- [Anti-fog transparent safety goggles](/products/anti-fog-anti-scratch-transparent-safety-goggles) for sealed eye coverage in dust or splash-prone work.
-- [Clear PC full face shield](/products/clear-pc-full-face-shield-anti-impact-anti-splash) for face-level debris or splash tasks when worn with primary eye protection.
-- [Flip-up welding helmet](/products/direct-adhesive-available-welding-helmet-flip-up-design) for welding and cutting workflows that need filter-lens protection.
+- Review the [EN166F anti-fog safety glasses](/products/en166f-anti-fog-anti-scratch-dustproof-safety-glasses) listing as a possible safety-glasses shortlist, then verify the exact offered model, markings, side protection, fit, and required documents.
+- Review the [anti-fog transparent safety goggles](/products/anti-fog-anti-scratch-transparent-safety-goggles) listing as a possible goggle shortlist, then verify whether the offered configuration matches the site's dust-entry or splash requirement.
+- Review the [clear PC full face shield](/products/clear-pc-full-face-shield-anti-impact-anti-splash) listing as a possible face-shield shortlist, then confirm the exact model and the primary eye protection required underneath it for the task.
+- Review the [flip-up welding helmet](/products/direct-adhesive-available-welding-helmet-flip-up-design) listing as a possible hot-work shortlist, then verify the operation, filter-lens requirements, markings, and model documents before approval.
 
 For the full construction kit context, use [Complete PPE Solution for Construction Sites](/solutions/construction-site-ppe-solution). For high-dust cutting, grinding, and demolition tasks, use [PPE for Demolition and Concrete Cutting Work](/solutions/ppe-for-demolition-and-concrete-cutting-work). To turn this into a buying request, use [Request eye and face PPE options](/quote?source=blog-construction-eye-face-protection).
 

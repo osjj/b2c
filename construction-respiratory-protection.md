@@ -7,7 +7,7 @@
 
 ---
 
-Construction dust respirator selection starts with the airborne hazard, not the mask name. For concrete dust, silica dust, demolition dust, grinding, and cutting, the buyer needs to compare N95, P100, and reusable half-face respirators against the task, controls, duration, fit, and OSHA requirements. **N95 respirators may fit some lower-exposure dust tasks**, while **P100 filters or reusable half-face respirators are often better for heavier or recurring silica tasks**.
+Construction dust respirator selection starts with the airborne hazard and required protection, not the mask name. For concrete cutting, drilling, grinding, demolition, and silica cleanup, first document the exact task, material, engineering controls, work area, duration, and applicable OSHA Table 1 entry or exposure assessment. Then select a respirator configuration that meets the required assigned protection factor (APF) and a filter or cartridge approved for the contaminant. **N95 and P100 describe particulate filter classes; half-face, full-face, and powered air-purifying respirator describe respirator configurations. Higher filter efficiency does not by itself establish a higher APF.**
 
 Silica dust, demolition dust, wood dust, gypsum dust, welding fumes, coating vapors, asbestos, lead, and mixed renovation dust can require different controls. The wrong respirator may look protective and still fail the task.
 
@@ -17,13 +17,14 @@ For drilling, crushing, screening, haul-road dust, and quarry silica exposure ou
 
 ## Quick Answer: Construction Dust Respirator, N95, P100 Or Half-Face?
 
-For construction dust, the right respirator depends on the task, exposure level, work controls, fit, and whether OSHA requires respiratory protection. **N95** can be a starting point for some lower-exposure non-oil dust tasks. **P100** provides higher particulate filtration and is often used for heavier dust or recurring silica work. **Reusable half-face respirators** make more sense when crews need replaceable filters, better fit control, cleaning, storage, and repeat use.
+For concrete or construction dust, do not select a respirator from the job name or visible dust level alone. First identify the contaminant and task, confirm the engineering controls, indoor or outdoor conditions, work duration, and applicable OSHA Table 1 requirement or exposure assessment. Then select the respirator type and APF, followed by a compatible filter or cartridge. **N95 filters capture at least 95% of the NIOSH test aerosol and are not resistant to oil. P100 filters capture at least 99.97% and are oil proof. Under OSHA's APF table, a negative-pressure filtering facepiece and a negative-pressure elastomeric half mask are both in the APF 10 half-mask category when the required respiratory protection program is implemented.**
 
 | Buyer question | Short answer | RFQ note |
 |---|---|---|
-| Is N95 enough for construction dust? | Sometimes, for lower-exposure dust where the task and controls support it. | Ask for NIOSH approval, model, sizes, and fit-test support where required. |
-| Is P100 better than N95 for concrete dust? | P100 has higher particulate filtration, but it still must match the task, exposure, and facepiece. | Specify filter class, facepiece type, replacement schedule, and compatible eye PPE. |
-| When should I buy half-face respirators? | Use them for repeated high-dust work, silica-heavy tasks, or crews needing replaceable filters. | Include facepiece sizes, filters, cleaning wipes, storage bags, and spare parts. |
+| What respirator should be used for concrete dust? | There is no task-independent answer. Match the exact operation and controls to OSHA Table 1, or use the applicable exposure assessment, then select the required APF and filter or cartridge. | State the tool, material, control method, indoor or outdoor location, shift duration, and required APF. |
+| Is N95 enough for construction dust or silica? | Only when the applicable rule or exposure assessment supports an APF 10 particulate respirator and an N-series filter is appropriate for the aerosol. | Ask for the NIOSH approval, exact model and configuration, sizes, and fit-test support where required. |
+| Is P100 better than N95 for concrete dust? | P100 has higher particulate filtration and oil resistance, but changing the filter class does not automatically increase the APF of the respirator. | Specify the required APF first, then the approved facepiece-filter combination and replacement criteria. |
+| When should I buy reusable half-face respirators? | Consider them when the selected program needs replaceable filters or cartridges, reusable facepieces, multiple sizes, cleaning, and spare parts. Do not select them only because a task is frequent or dusty. | Include the required APF, facepiece models and sizes, approved filters or cartridges, cleaning, storage, and replacement parts. |
 | Does P100 protect against paint fumes? | Not by itself. Vapors need the correct vapor or combination cartridge. | Ask suppliers to name the cartridge type and change-out logic. |
 | What should a bulk respirator order include? | Respirators, filters/cartridges, fit-test support, cleaning, storage, training, and replacement stock. | Use a structured RFQ instead of buying masks by unit price only. |
 
@@ -33,13 +34,13 @@ Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template
 
 ## Quick Respirator Selection Table
 
-| Task or hazard | Likely starting point | When to escalate | RFQ / compliance note |
+| Task or hazard | Confirm before selecting | Rule or evidence to check | Procurement information to collect |
 |---|---|---|---|
-| General non-oil construction dust | NIOSH-approved N95 or equivalent level where exposure supports it | Longer duration, poor seal, heavy dust, or exposure data showing more protection is needed | If required, include fit testing, facial-hair policy, training, and spare stock. |
-| Concrete cutting, drilling, grinding, masonry, silica cleanup | Review OSHA silica Table 1 or exposure assessment first | Use reusable half-face respirator with P100 filters where heavier or recurring silica exposure requires stronger protection | Do not buy respirators before defining water/dust collection controls and filter replacement. |
-| Demolition or renovation with unknown dust | Identify contaminants before selecting PPE | Asbestos, lead, mold, or mixed hazardous dust may require a specialized program | Never treat unknown demolition dust as ordinary nuisance dust. |
-| Welding fumes, coatings, solvents, adhesives | Hazard-specific filter or cartridge selection | P100 alone does not protect against organic vapors unless paired with the correct cartridge | Ask suppliers to specify cartridge type, change-out logic, and compatibility with eye/face PPE. |
-| Repeated high-dust tasks across crews | Reusable half-face or full-face program | PAPR may be needed for long-duration work, heat, comfort, or special fit needs | Plan facepiece sizes, cleaning, storage, replacement parts, and worker training. |
+| General construction dust | Material and contaminants, whether oil aerosol is present, work controls, duration, and whether use is required or voluntary | Hazard assessment, exposure information, OSHA 29 CFR 1910.134, and any substance-specific standard | Required APF, NIOSH approval and exact configuration, facepiece size, filter class, fit-test support, and replacement criteria |
+| Concrete cutting, drilling, grinding, masonry, or silica cleanup | Exact tool and task, material, control method, indoor or outdoor location, and time per shift | The matching OSHA 29 CFR 1926.1153 Table 1 entry, or an exposure assessment under the alternative compliance path | Table 1 task and controls, required APF, approved model and filter combination, sizes, fit-test support, and replacement stock |
+| Demolition or renovation with unknown dust | Pre-work contaminant survey, building age and materials, and possible asbestos, lead, mold, or mixed dust | Hazard assessment and the applicable substance-specific requirements before ordinary dust selection | Survey or assessment results, required respirator class and APF, approved configuration, decontamination, cleaning, and disposal needs |
+| Welding, coatings, solvents, or adhesives | Process, consumables, coating or chemical identity, safety data, ventilation, and particulate, gas, or vapor hazards | Exposure assessment, safety data, OSHA 29 CFR 1910.134, and any applicable substance-specific requirement | Required APF, approved cartridge or combination cartridge, end-of-service-life indicator or documented change schedule, and eye/face compatibility |
+| Repeated use across multiple crews | Hazard and required APF for each task, worker fit, cleaning capacity, storage, heat burden, and compatibility with other PPE | Written respiratory protection program, respirator selection records, medical evaluation, and fit testing where required | Facepiece types and sizes, approved filters or cartridges, cleaning and storage supplies, spare parts, training, and replacement quantities |
 
 ---
 
@@ -109,32 +110,31 @@ The same worker may face multiple airborne hazards in one day. A concrete cutter
 
 ## N95, P100, Half-Face, Full-Face, And PAPR: What Each One Does
 
-Respirator names can be confusing because some describe filter efficiency, some describe facepiece design, and some describe powered airflow.
+Respirator names can be confusing because some describe filter efficiency, some describe facepiece design, and some describe powered airflow. Keep these decisions separate: first determine the required APF and respirator class, then select an approved filter or cartridge for the contaminant. OSHA lists negative-pressure filtering facepieces and negative-pressure elastomeric half masks in the same APF 10 half-mask category. A negative-pressure full facepiece has a different APF under the conditions in OSHA's table, and PAPR APFs vary by facepiece and tested configuration.
 
 ### N95 filtering facepiece respirators
 
-An N95 filters at least 95% of airborne particles under NIOSH test conditions and is not resistant to oil. It is often used for general construction dust and some silica tasks when exposure level and OSHA requirements allow it.
+An N95 filtering facepiece respirator uses an N95 filter that captures at least 95% of the NIOSH test aerosol and is not resistant to oil. The filter class alone does not determine whether the complete respirator is suitable for a task.
 
 Best fit:
 
-- lower-exposure dust tasks
-- short-duration work where a disposable respirator is appropriate
-- tasks where Table 1 or exposure assessment supports that level of protection
+- particulate-only hazards without oil aerosol, gas, or vapor exposure
+- tasks where the required APF and applicable rule or exposure assessment support an APF 10 filtering facepiece
+- programs where a disposable design is appropriate and the selected model passes the required fit test
 
 Main risk:
 
-- poor seal, facial hair interference, and using N95s where higher protection is required
+- poor seal, facial hair interference, confusing filter efficiency with APF, and using an N95 configuration where another respirator class or contaminant-specific cartridge is required
 
 ### P100 filters
 
-P100 filters provide at least 99.97% filtration efficiency and are oil proof. They are commonly used with reusable half-face or full-face respirators for higher particulate exposure.
+P100 filters provide at least 99.97% filtration efficiency under NIOSH test conditions and are oil proof. P100 is a filter class, not a facepiece type or an APF. It must be used only in the approved respirator configuration and within the manufacturer's limitations.
 
 Best fit:
 
-- heavier dust tasks
-- silica exposure where higher protection is needed
-- tasks with possible oil mist
-- reusable respirator programs
+- particulate hazards where the selection process calls for 99.97% filter efficiency
+- applications with oil aerosol where a P-series filter is appropriate
+- approved elastomeric or powered respirator configurations that use replaceable particulate filters
 
 Main risk:
 
@@ -142,13 +142,13 @@ Main risk:
 
 ### Half-face elastomeric respirators
 
-Reusable half-face respirators use replaceable filters or cartridges. They usually provide a higher assigned protection factor than filtering facepiece respirators when correctly selected, fit tested, and maintained.
+Reusable elastomeric half-face respirators use replaceable filters or cartridges. Under OSHA's APF table, a negative-pressure elastomeric half mask and a negative-pressure filtering facepiece are both assigned APF 10 when the required program is implemented. The reusable half-face design can add filter and cartridge options, cleanability, replaceable parts, and size choices, but it does not automatically raise the APF.
 
 Best fit:
 
-- recurring silica tasks
-- demolition and grinding work where disposable respirators wear out quickly
-- tasks requiring particulate filters, vapor cartridges, or combination cartridges
+- tasks where an approved replaceable filter, vapor cartridge, or combination cartridge is required
+- programs that can support cleaning, inspection, storage, and replacement parts
+- workers for whom an available model and size passes the required fit test
 
 Main risk:
 
@@ -193,9 +193,9 @@ NIOSH particulate filters are grouped by oil resistance:
 |---|---|---|
 | N-series | Not resistant to oil | Suitable for many non-oil dusts such as silica when no oil mist is present |
 | R-series | Some oil resistance | Limited-use option where oil mist may be present |
-| P-series | Oil proof | Preferred where oil mist or unknown aerosol mix may be present |
+| P-series | Oil proof | Can be considered when oil aerosol is present, subject to the approval label and manufacturer instructions |
 
-For mineral dusts such as silica, N, R, or P filters can work if there is no oil mist issue and the respirator has enough protection for the exposure. NIOSH notes that oil mist sources in construction can include percussion drills. That means buyers should not assume N95 is always the right construction dust answer.
+For mineral dusts such as silica, select the filter series from the aerosol conditions and the approval label, then select efficiency and respirator class from the required protection. When oil aerosol is absent, N-, R-, or P-series filters may remain candidates; when oil aerosol is present, N-series filters are not appropriate. Filter selection still does not replace APF, fit, and task-control decisions.
 
 Filter efficiency and oil resistance are only part of selection. Assigned protection factor, facepiece type, fit, exposure level, and task duration also matter.
 
@@ -229,20 +229,19 @@ Do not use Table 1 casually. The control method has to match the task. If the ta
 
 ## Respirator Selection By Construction Task
 
-The table below is a practical selection starting point. It is not a substitute for exposure assessment, Table 1 review, or a competent respiratory protection program.
+The table below is a documentation checklist for respirator selection. It deliberately does not assign a respirator model from the job name alone.
 
-| Construction task | Common airborne hazard | Respiratory PPE direction |
-|---|---|---|
-| Dry sweeping and cleanup | mixed nuisance dust, silica if concrete/masonry dust is present | Avoid dry sweeping where possible; use wet methods or HEPA vacuum; choose respirator by exposure |
-| Concrete cutting | respirable crystalline silica | Use water or dust collection controls; respirator choice depends on Table 1 or exposure assessment |
-| Masonry drilling | silica dust | N95 may be enough for some controlled tasks; heavier exposure may need half-face P100 |
-| Mortar grinding | high silica dust | Often needs stronger controls and higher-level respiratory protection |
-| Demolition | mixed dust, silica, asbestos/lead risk in older structures | Do not assume ordinary dust protection; identify contaminants first |
-| Drywall sanding | fine dust | Disposable respirator or reusable particulate filter may be used based on exposure and work conditions |
-| Wood cutting | wood dust | Particulate respirator where ventilation and controls are not enough |
-| Welding and cutting | metal fumes, gases depending on process | Filter/cartridge choice depends on fume and gas hazard; ventilation is critical |
-| Painting and coating | organic vapors and particulates | Particulate-only filters are not enough for vapor exposure; use proper vapor cartridges where required |
-| Asphalt or roadwork | dust, fumes, heat, traffic exposure | Respiratory PPE depends on material, operation, and exposure assessment |
+| Construction task | Conditions to document | Rule or evidence to review | Information needed for the RFQ |
+|---|---|---|---|
+| Dust cleanup | Material being cleaned, whether silica is present, cleanup method, enclosure, duration, and other aerosols | Hazard assessment, exposure information, and controls required by the applicable standard | Contaminant, selected controls, required APF, approved respirator configuration, filter class, use pattern, and quantity |
+| Concrete cutting | Saw type and blade, material, integrated water or dust collection, indoor or outdoor work, and time per shift | The exact OSHA silica Table 1 task entry or the employer's exposure assessment | Tool and control method, work location and duration, required APF, approved respirator-filter combination, sizes, and replacement filters |
+| Masonry drilling | Drill type, dust collection or water control, material, location, and time per shift | The matching OSHA silica Table 1 entry or exposure assessment | Control equipment, work conditions, required APF, exact approval and configuration, facepiece sizes, and fit-test support |
+| Mortar grinding | Whether the task is mortar removal, shroud and dust-collector specifications, location, and time per shift | The specific Table 1 entry for mortar removal, including its control and APF conditions | Grinder and collection system, work duration, required APF, approved configuration, filter replacement, and cleaning supplies |
+| Demolition or renovation | Pre-work contaminant findings, materials disturbed, ventilation, enclosure, and decontamination plan | Hazard assessment plus silica, asbestos, lead, or other substance-specific requirements as applicable | Assessment results, selected respirator class and APF, approved filters or cartridges, sizes, cleaning, storage, and disposal needs |
+| Drywall sanding or wood cutting | Material and coatings, dust controls, ventilation, duration, and measured or objective exposure information | Hazard assessment, exposure information, safety data where applicable, and OSHA 29 CFR 1910.134 if respirators are required | Identified particulate hazard, required APF, approved configuration and filter, sizes, use duration, and replacement quantity |
+| Welding and thermal cutting | Base metal, coatings, consumables, process, ventilation, confined-space conditions, and fume or gas data | Exposure assessment, safety data, ventilation requirements, and applicable substance-specific rules | Contaminants, required APF, approved filter or cartridge, change schedule where applicable, facepiece type, and eye/face compatibility |
+| Painting, coating, or adhesive work | Product safety data, application method, ventilation, enclosure, duration, and particulate or vapor exposure | Exposure assessment, safety data, OSHA 29 CFR 1910.134, and relevant substance-specific requirements | Contaminants, required APF, approved cartridge or combination cartridge, change schedule, sizes, and storage |
+| Asphalt or roadwork | Material, operation, temperature, emissions, traffic-dust controls, work location, and duration | Hazard assessment, exposure information, safety data, and applicable task-specific requirements | Identified contaminants, required APF, approved respirator and cartridge or filter, heat considerations, and replacement quantities |
 
 For tasks that also generate eye, face, and noise hazards, use the [eye and face protection guide](/blog/construction-eye-face-protection) and [hearing protection guide](/blog/construction-hearing-protection) together with this page.
 
@@ -377,15 +376,15 @@ This checklist is especially important for concrete cutting, drilling, grinding,
 
 ### What respirator should be used for concrete dust?
 
-For concrete dust, start by reviewing silica exposure, OSHA Table 1 controls, task duration, and whether water delivery or dust collection is being used. Some controlled lower-exposure tasks may use an N95, while heavier or recurring concrete dust work may need a reusable half-face respirator with P100 filters.
+For concrete dust, identify the exact cutting, drilling, grinding, cleanup, or demolition task and the controls in use. Match the task to OSHA silica Table 1 or use the applicable exposure assessment, determine the required APF, and then select an approved respirator configuration and particulate filter. The job name alone cannot determine whether an N95 filtering facepiece, an elastomeric half mask, a full facepiece, or another respirator class is appropriate.
 
 ### What respirator is best for construction dust?
 
-There is no single best respirator for all construction dust. For some lower-exposure dust tasks, a NIOSH-approved N95 may be appropriate. For heavier silica dust or repeated exposure, a reusable half-face respirator with P100 filters may be more suitable. The right choice depends on the hazard, exposure level, controls, fit, and OSHA requirements.
+There is no single best respirator for all construction dust. Selection depends on the contaminant, task, engineering controls, exposure information, required APF, oil aerosol, gas or vapor hazards, fit, and the applicable rule. Reuse frequency and visible dust do not determine the respirator class.
 
 ### Is an N95 enough for silica dust?
 
-Sometimes, but not always. OSHA's silica standard and Table 1 requirements must be reviewed by task, duration, and control method. Some tasks require no respirator when controls are used correctly, while others require respiratory protection depending on conditions and duration.
+An N95 filtering facepiece is one possible APF 10 particulate-respirator configuration, but it is suitable only when the applicable Table 1 entry or exposure assessment supports that class of respirator, the N-series filter matches the aerosol conditions, and the complete OSHA respiratory protection program requirements are met. Some Table 1 conditions require no respirator; others specify a minimum APF based on the exact task, controls, location, and duration.
 
 ### Does OSHA require fit testing for N95 respirators in construction?
 
@@ -393,7 +392,7 @@ If an N95 is required by OSHA or required by the employer as respiratory protect
 
 ### What is better for concrete dust, N95 or P100?
 
-P100 provides higher filtration efficiency than N95 and may be preferred for heavier dust or reusable respirator programs. But selection still depends on exposure level, fit, work duration, and whether other contaminants such as oil mist or vapors are present.
+P100 provides higher particulate filtration efficiency and oil resistance than N95, but it does not automatically give the respirator a higher APF. Under OSHA's APF table, negative-pressure filtering facepieces and negative-pressure elastomeric half masks are both in the APF 10 half-mask category. Determine the required respirator class and APF first, then choose an approved filter or cartridge for the contaminant and aerosol conditions.
 
 ### Can a P100 filter protect against paint fumes?
 
@@ -434,4 +433,4 @@ For procurement, use the [Construction PPE RFQ Template](/downloads/construction
 
 ---
 
-*Sources: OSHA 29 CFR 1926.103, OSHA 29 CFR 1910.134, OSHA 29 CFR 1926.1153, OSHA respiratory protection standards, OSHA respirable crystalline silica construction guidance, NIOSH respirator guidance for dust in construction, and NIOSH respirator selection and approval guidance.*
+*Sources: [OSHA 29 CFR 1926.103](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.103), [OSHA 29 CFR 1910.134 and Table 1 assigned protection factors](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.134), [OSHA 29 CFR 1926.1153 respirable crystalline silica](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.1153), [NIOSH respirator filter classes](https://www.cdc.gov/niosh/media/pdfs/2024/12/NPPTL_INFO_RespiratorFilterClasses_2018.pdf), and [NIOSH Respirator Selection Logic](https://www.cdc.gov/niosh/docs/2005-100/pdfs/2005-100.pdf).*
