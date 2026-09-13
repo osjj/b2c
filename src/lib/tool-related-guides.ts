@@ -6,6 +6,18 @@ export interface ToolRelatedGuide {
 }
 
 const GUIDE_CATALOG = {
+  'quarry-eye-face-protection-guide': {
+    href: '/blog/quarry-eye-face-protection-guide',
+    title: 'Quarry Eye and Face Protection Guide',
+    description: 'Plan task-specific eye protection, compatible face shields, sample approval and replacement quantities for quarry crews.',
+    eyebrow: 'Quarry eye protection',
+  },
+  'mining-work-gloves-maintenance-material-handling': {
+    href: '/blog/mining-work-gloves-maintenance-material-handling',
+    title: 'Mining Work Gloves Guide',
+    description: 'Plan task-specific glove models, evidence, fit trials, sizes and replenishment for mine maintenance and handling crews.',
+    eyebrow: 'Mining hand protection',
+  },
   'construction-safety-footwear-guide': {
     href: '/blog/construction-safety-footwear-guide',
     title: 'Safety Footwear Guide',
@@ -174,6 +186,8 @@ export const TOOL_RELATED_GUIDES = {
     'mining-safety-helmet-buyer-guide',
   ]),
   'ppe-calculator': pickGuides([
+    'quarry-eye-face-protection-guide',
+    'mining-work-gloves-maintenance-material-handling',
     'bulk-construction-ppe-procurement',
     'contractor-ppe-kit-checklist',
     'contractor-ppe-supplier-bulk-checklist',

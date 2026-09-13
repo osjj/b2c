@@ -1,0 +1,41 @@
+{
+  "slug": "quarry-eye-face-protection-guide",
+  "mode": "local-review",
+  "images": [
+    {
+      "key": "hero",
+      "title": "Eye and Face Protection for Quarry and Crusher Work",
+      "role": "hero",
+      "aspect": "16:9",
+      "prompt": "Photorealistic professional industrial safety editorial photograph, natural restrained colors, realistic materials and geometry, no logos, no text, no labels, no invented certification markings, no collage. Wide 16:9 landscape. Sheltered clean PPE issue station at a quarry, viewed at a low three-quarter angle. In sharp foreground an unbranded clear face shield with dark headband stands upright beside one pair of clear safety spectacles and one pair of sealed safety goggles on an orderly work counter. Soft distant pale stone quarry terraces visible through the open side, no machinery or people working, no airborne dust. Strong daylight and generous uncluttered composition. All three devices are complete and separate, coherent transparent lenses."
+    },
+    {
+      "key": "compare-safety-glasses-goggles-and-face-shields",
+      "title": "Compare Safety Glasses, Goggles and Face Shields",
+      "role": "comparison",
+      "aspect": "4:3",
+      "prompt": "Photorealistic professional industrial safety editorial photograph, natural restrained colors, realistic materials and geometry, no logos, no text, no labels, no invented certification markings, no collage. 4:3 directly overhead studio flat lay on light gray clean background: precisely three complete separate eye protection devices spaced generously in a triangular composition, transparent wraparound safety spectacles with slim black arms at upper left, blue gray enclosed clear goggles with attached elastic strap at upper right, broad transparent face shield with dark adjustable headband at bottom. Clearly distinct silhouettes, clear lens edges, soft controlled shadow. No other objects, no arrows, no lettering."
+    },
+    {
+      "key": "separate-fine-dust-liquid-splash-and-fogging",
+      "title": "Separate Fine Dust, Liquid Splash and Fogging",
+      "role": "detail",
+      "aspect": "4:3",
+      "prompt": "Photorealistic professional industrial safety editorial photograph, natural restrained colors, realistic materials and geometry, no logos, no text, no labels, no invented certification markings, no collage. 4:3 macro product editorial close-up of a single intact unbranded blue-gray safety goggle resting on a white laboratory inspection tray in a clean indoor room. Side three-quarter profile reveals the supple face-contact gasket, clear curved lens and elastic strap connection. Focus on seal construction and optical clarity, small side details realistic. Plain softly blurred background, no dust, no liquids, no simulated test, no hands, no disassembled parts. The photograph is illustrative and shows no claimed rating."
+    },
+    {
+      "key": "check-the-complete-helmet-hearing-and-respirator-setup",
+      "title": "Check the Complete Helmet, Hearing and Respirator Setup",
+      "role": "fit-check",
+      "aspect": "4:3",
+      "prompt": "Photorealistic professional industrial safety editorial photograph, natural restrained colors, realistic materials and geometry, no logos, no text, no labels, no invented certification markings, no collage. 4:3 calm documentary side portrait in a clean indoor PPE fitting room. One adult quarry worker with a plain white industrial hard hat, dark helmet-mounted ear defenders fully covering the ears, clear slim-arm safety glasses correctly over the eyes, and plain navy workwear. Worker stationary facing right. Focus on the temple area where glasses pass beneath earmuff cushions, showing actual compatibility inspection without asserting approval. A complete clean half-mask respirator rests unused on a small bench in soft background, not attached to the worker. No operating equipment, no dust exposure, no tools in hands, no extra people, realistic anatomy and accessory connections."
+    },
+    {
+      "key": "run-a-controlled-sample-trial-and-inspect-the-lenses",
+      "title": "Run a Controlled Sample Trial and Inspect the Lenses",
+      "role": "inspection",
+      "aspect": "4:3",
+      "prompt": "Photorealistic professional industrial safety editorial photograph, natural restrained colors, realistic materials and geometry, no logos, no text, no labels, no invented certification markings, no collage. 4:3 close documentary photograph in a clean PPE inspection room, just two anatomically correct bare adult hands gently holding a complete unbranded clear safety spectacle by its outer frame, looking through lenses toward a broad softly glowing inspection light in background. The spectacles have two normal arms attached, both clear lenses transparent with subtle reflections and no obvious damage. Hands away from optical viewing area, cuff of plain navy shirt. Warm wood inspection desk at bottom with microfiber cloth neatly folded. No hazardous operation, no text, no numbers, no magnification graphics. Distinct intimate close-up composition."
+    }
+  ]
+}

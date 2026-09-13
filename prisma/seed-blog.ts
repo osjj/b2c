@@ -1926,6 +1926,64 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     },
   },
   {
+    slug: 'quarry-eye-face-protection-guide',
+    markdownPath: join(process.cwd(), 'quarry-eye-face-protection-guide.md'),
+    generatedImagesPath: join(__dirname, 'blog-images.quarry-eye-face-protection-guide.generated.json'),
+    title: 'Eye and Face Protection for Quarry and Crusher Work',
+    excerpt: 'Compare quarry eye and face protection by exposure, model evidence and complete PPE fit, then build a clear sample approval and bulk RFQ schedule.',
+    seoTitle: 'Quarry Eye & Face Protection | Crusher Work Guide',
+    seoDescription: 'Choose eye and face protection for quarry dust, crusher debris, maintenance and liquid splash. Check ratings, PPE compatibility, fit trials and bulk RFQs.',
+    seoKeywords: 'quarry eye protection, crusher eye protection, quarry safety goggles, mining face protection, face shield for grinding, quarry PPE, bulk safety eyewear',
+    heroFallback: '/blog/quarry-eye-face-protection-guide/hero.webp',
+    sectionImages: {
+      "Compare Safety Glasses, Goggles and Face Shields": {
+        "url": "/blog/quarry-eye-face-protection-guide/compare-safety-glasses-goggles-and-face-shields.webp",
+        "caption": "Compare the exact models and documented properties; appearance alone does not establish impact, dust or splash performance."
+      },
+      "Separate Fine Dust, Liquid Splash and Fogging": {
+        "url": "/blog/quarry-eye-face-protection-guide/separate-fine-dust-liquid-splash-and-fogging.webp",
+        "caption": "Seal and lens details are illustrative. Verify the complete goggle model's required dust or splash designation."
+      },
+      "Check the Complete Helmet, Hearing and Respirator Setup": {
+        "url": "/blog/quarry-eye-face-protection-guide/check-the-complete-helmet-hearing-and-respirator-setup.webp",
+        "caption": "Check eyewear and earmuff interfaces in a clean fitting area. This illustrative setup does not establish compatibility or hearing attenuation."
+      },
+      "Run a Controlled Sample Trial and Inspect the Lenses": {
+        "url": "/blog/quarry-eye-face-protection-guide/run-a-controlled-sample-trial-and-inspect-the-lenses.webp",
+        "caption": "Inspect clarity and sample condition in a controlled area; visual inspection does not establish a protection rating."
+      }
+    },
+  },
+  {
+    slug: 'mining-work-gloves-maintenance-material-handling',
+    markdownPath: join(process.cwd(), 'mining-work-gloves-maintenance-material-handling.md'),
+    generatedImagesPath: join(__dirname, 'blog-images.mining-work-gloves-maintenance-material-handling.generated.json'),
+    title: 'Mining Work Gloves for Maintenance and Material Handling',
+    excerpt: 'Build mining glove specifications by task, mechanical and chemical exposure, model evidence, controlled fit trials, replacement planning and bulk RFQ requirements.',
+    seoTitle: 'Mining Work Gloves | Maintenance & Material Handling',
+    seoDescription: 'Choose mining work gloves for material handling, sharp parts, oily maintenance and chemical contact. Compare evidence, fit trials and bulk RFQ requirements.',
+    seoKeywords: 'mining work gloves, mining maintenance gloves, quarry work gloves, material handling gloves, mining impact gloves, bulk mining gloves',
+    heroFallback: '/blog/mining-work-gloves-maintenance-material-handling/hero.webp',
+    sectionImages: {
+  "Compare Mechanical Protection and Glove Construction": {
+    "url": "/blog/mining-work-gloves-maintenance-material-handling/compare-mechanical-protection-and-glove-construction.webp",
+    "caption": "Compare liner, palm, reinforcement and cuff construction alongside the exact model's test information."
+  },
+  "Match Mining Gloves to the Handling Task": {
+    "url": "/blog/mining-work-gloves-maintenance-material-handling/match-mining-gloves-to-the-handling-task.webp",
+    "caption": "Controlled component handling illustrates a task trial; it does not establish cut or impact performance."
+  },
+  "Separate Oily Grip From Chemical Protection": {
+    "url": "/blog/mining-work-gloves-maintenance-material-handling/separate-oily-grip-from-chemical-protection.webp",
+    "caption": "Chemical-use approval requires exposure-specific model information; glove appearance cannot establish compatibility."
+  },
+  "Run a Controlled Fit and Handling Trial": {
+    "url": "/blog/mining-work-gloves-maintenance-material-handling/run-a-controlled-fit-and-handling-trial.webp",
+    "caption": "Approve the model and size allocation with representative users before committing to bulk quantities."
+  }
+},
+  },
+  {
     slug: 'mining-safety-helmet-buyer-guide',
     markdownPath: join(process.cwd(), 'mining-safety-helmet-buyer-guide.md'),
     generatedImagesPath: join(

@@ -108,6 +108,8 @@ Electronic or communications-enabled protectors can support radio use or situati
 
 ## Fit, Compatibility, Communication, and Warning Signals
 
+The [Quarry Eye and Face Protection guide](/blog/quarry-eye-face-protection-guide) includes an eyewear and earmuff interface checklist. Trial the actual combination so spectacle arms or goggle straps do not displace the hearing protector.
+
 When earmuffs, a cap lamp, eye protection, communication equipment, and helmet retention share the same head-worn system, use the [Mining Safety Helmet Buyer Guide](/blog/mining-safety-helmet-buyer-guide) to document the exact interfaces and sample approval.
 
 The best protector is one that delivers adequate real-world attenuation and can be worn correctly for the entire required period.

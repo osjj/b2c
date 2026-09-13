@@ -15,6 +15,42 @@ export interface BlogCommercialLinks {
 }
 
 const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
+  'quarry-eye-face-protection-guide': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/eye-protection', label: 'Eye protection' },
+      { href: '/categories/eye-protection/safety-glasses', label: 'Safety glasses' },
+      { href: '/categories/eye-protection/safety-goggles', label: 'Safety goggles' },
+      { href: '/categories/head-protection/face-shields', label: 'Face shields' },
+    ],
+    products: [],
+    cta: { href: '/quote', label: 'Request quarry eye and face protection options' },
+    resources: [
+      { href: '/blog/mining-ppe-checklist-by-task', label: 'Mining task checklist' },
+      { href: '/blog/mining-hearing-protection-guide', label: 'Mining hearing protection guide' },
+    ],
+  },
+  'mining-work-gloves-maintenance-material-handling': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/hand-protection', label: 'Hand protection' },
+      { href: '/categories/hand-protection/cut-resistant-gloves', label: 'Cut resistant glove options' },
+      { href: '/categories/hand-protection/nitrile-coated-gloves', label: 'Nitrile coated glove options' },
+      { href: '/categories/hand-protection/leather-work-gloves', label: 'Leather work glove options' },
+    ],
+    products: [],
+    cta: { href: '/quote', label: 'Request mining glove options and documents' },
+    resources: [
+      { href: '/blog/mining-ppe-checklist-by-task', label: 'Mining task checklist' },
+      { href: '/blog/mining-quarry-safety-boots-guide', label: 'Mining safety boots guide' },
+    ],
+  },
   'construction-gloves-selection-guide': {
     solution: {
       href: '/solutions/construction-site-ppe-solution',

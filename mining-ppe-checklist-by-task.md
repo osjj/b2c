@@ -97,6 +97,8 @@ MSHA's [explosives and blasting safety alert](https://www.msha.gov/sites/default
 
 ## Crushing PPE Checklist
 
+Use the [Quarry Eye and Face Protection guide](/blog/quarry-eye-face-protection-guide) to separate flying-fragment, dust and splash requirements and check the complete eyewear, shield and other PPE combination.
+
 Crusher work changes by position. A control-room operator, feeder attendant, loader operator, cleanup worker, sampler, and mechanic do not share the same exposure. Define whether the worker is operating, observing, sampling, cleaning, clearing a blockage, or maintaining equipment.
 
 ### Controls and access
@@ -171,6 +173,8 @@ For the dedicated toe, metatarsal, puncture, wet-work, fit, documentation, and b
 MSHA's [Powered Haulage Equipment Safety Guidance](https://www.msha.gov/sites/default/files/events/Powered%20Haulage%20Guidance.pdf) treats visibility, communication, traffic management, road condition, seat belts, and pre-operational examination as connected controls. Use that systems view rather than reducing haul-road safety to a reflective vest.
 
 ## Maintenance PPE Checklist
+
+For hand-protection specifications, use the [Mining Work Gloves for Maintenance and Material Handling guide](/blog/mining-work-gloves-maintenance-material-handling). It separates mechanical handling, oily grip, chemical contact, controlled fit trials and supplier evidence.
 
 Maintenance includes inspections, lubrication, belt work, liner changes, welding, grinding, electrical troubleshooting, tyre or wheel work, hydraulic repair, elevated access, confined spaces, and chemical cleaning. Do not start with a generic mechanic kit; start with the work scope and every energy source.
 

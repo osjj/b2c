@@ -192,6 +192,8 @@ Do not use one fixed number. Choose enough sizes, widths, workers, roles, routes
 
 ## Related Mining Guides and Sources
 
+Pair the footwear brief with the [Mining Work Gloves for Maintenance and Material Handling guide](/blog/mining-work-gloves-maintenance-material-handling) when planning task-specific hand protection, size trials and replacement stock for the same crew.
+
 - [Mining Safety Equipment and PPE for Quarry Operations](/solutions/ppe-safety-equipment-for-mining-quarrying)
 - [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task)
 - [Open-Pit vs Underground Mining PPE](/blog/open-pit-vs-underground-mining-ppe)

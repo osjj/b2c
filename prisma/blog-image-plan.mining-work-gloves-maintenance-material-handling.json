@@ -1,0 +1,41 @@
+{
+  "slug": "mining-work-gloves-maintenance-material-handling",
+  "mode": "local review; built-in image generation; no uploads",
+  "images": [
+    {
+      "key": "hero",
+      "title": "Mining Work Gloves for Maintenance and Material Handling",
+      "role": "hero",
+      "aspect": "16:9",
+      "prompt": "Photorealistic editorial industrial PPE photography for a factual mining procurement guide. Realistic gloves, five fingers per glove, correct anatomy, no labels, no text, no logos, no brand marks, no certification symbols, no watermark, no injury, no hazards being demonstrated, no active machinery. Gloves are generic illustrative samples, not an identifiable commercial product. Natural neutral color grading. Wide horizontal 16:9 hero. In a sheltered quarry maintenance issue bay, a sturdy clean inspection table holds three distinct pairs of work gloves: charcoal gray knitted palm-coated gloves, tan leather handling gloves, and navy gloves with understated orange flexible back-of-hand guards. Each pair neatly arranged with both gloves complete and visible. A stationary replacement metal bracket sits in a separate shallow tray. Out-of-focus distant quarry terraces visible through the open bay, no people, no operating machinery. Three-quarter view at table height, gloves dominate foreground, soft morning daylight, sophisticated documentary realism."
+    },
+    {
+      "key": "compare-mechanical-protection-and-glove-construction",
+      "title": "Compare Mechanical Protection and Glove Construction",
+      "role": "comparison",
+      "aspect": "4:3",
+      "prompt": "Photorealistic editorial industrial PPE photography for a factual mining procurement guide. Realistic gloves, five fingers per glove, correct anatomy, no labels, no text, no logos, no brand marks, no certification symbols, no watermark, no injury, no hazards being demonstrated, no active machinery. Gloves are generic illustrative samples, not an identifiable commercial product. Natural neutral color grading. Horizontal 4:3 close product comparison photograph, top-down on warm pale gray inspection tabletop. Four separate complete single sample gloves evenly spaced and fully visible: gray knitted glove with black coated palm facing up; tan leather work glove palm up; navy textile glove with segmented orange flexible impact-style pads back facing up; dark green long-cuff liquid-barrier glove palm up. All realistic standard five-finger shape. Fine knit and coating textures, clean intact seams. No tools or people or paperwork. Clear differences in construction, understated neutral studio light, no ratings implied."
+    },
+    {
+      "key": "match-mining-gloves-to-the-handling-task",
+      "title": "Match Mining Gloves to the Handling Task",
+      "role": "scenario",
+      "aspect": "4:3",
+      "prompt": "Photorealistic editorial industrial PPE photography for a factual mining procurement guide. Realistic gloves, five fingers per glove, correct anatomy, no labels, no text, no logos, no brand marks, no certification symbols, no watermark, no injury, no hazards being demonstrated, no active machinery. Gloves are generic illustrative samples, not an identifiable commercial product. Natural neutral color grading. Horizontal 4:3 documentary close-up framed only from chest to hands of one maintenance technician in plain navy long-sleeve coveralls, wearing fitted gray knit gloves with dark textured palms, gently positioning a small lightweight blunt replacement bracket flat inside a stable tray on a waist-high inspection bench in an orderly mine workshop. Both hands clearly visible with natural five-finger anatomy, fingertips away from pinch points, no suspended loads, no machinery, no tools running, no sharp blades or exposed needles, no electrical equipment. Side-angle natural window light. The selected task is controlled sample handling, not a protection test."
+    },
+    {
+      "key": "separate-oily-grip-from-chemical-protection",
+      "title": "Separate Oily Grip From Chemical Protection",
+      "role": "product-detail",
+      "aspect": "4:3",
+      "prompt": "Photorealistic editorial industrial PPE photography for a factual mining procurement guide. Realistic gloves, five fingers per glove, correct anatomy, no labels, no text, no logos, no brand marks, no certification symbols, no watermark, no injury, no hazards being demonstrated, no active machinery. Gloves are generic illustrative samples, not an identifiable commercial product. Natural neutral color grading. Horizontal 4:3 macro three-quarter view in a clean PPE sample inspection room. One pair of unused dark teal long-cuff chemical-style gloves arranged flat on a clean white tray, both complete gloves with cuffs and five fingers visible, next to an entirely blank closed document folder and a plain caliper placed flat on table, no people. Focus on intact liquid-barrier surface and cuff coverage, soft diffuse daylight. No chemicals, no bottles, no spills, no droplets, no gauges, no text or markings. Illustration of requesting glove-specific documents, not proof of chemical compatibility."
+    },
+    {
+      "key": "run-a-controlled-fit-and-handling-trial",
+      "title": "Run a Controlled Fit and Handling Trial",
+      "role": "procurement",
+      "aspect": "4:3",
+      "prompt": "Photorealistic editorial industrial PPE photography for a factual mining procurement guide. Realistic gloves, five fingers per glove, correct anatomy, no labels, no text, no logos, no brand marks, no certification symbols, no watermark, no injury, no hazards being demonstrated, no active machinery. Gloves are generic illustrative samples, not an identifiable commercial product. Natural neutral color grading. Horizontal 4:3 natural professional photograph in an uncluttered mine PPE fitting and issue room. Foreground a worker shown from elbows to hands wearing clean fitted burgundy knit gloves with dark palms, slowly opening both hands to check finger fit over a clean wooden counter. Background counter has three neatly separated pairs of the same glove model in visibly different sizes and plain unmarked cardboard cartons, a blank closed notebook. No tools, no machinery, no chemicals, no labels or text, no logos. Front oblique view, realistic human hands with five fingers each, soft daylight and warm shelving. Focus on fit and procurement size allocation."
+    }
+  ]
+}
