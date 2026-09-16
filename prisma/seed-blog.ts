@@ -1926,6 +1926,35 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     },
   },
   {
+    slug: 'mining-high-visibility-workwear-guide',
+    markdownPath: join(process.cwd(), 'mining-high-visibility-workwear-guide.md'),
+    generatedImagesPath: join(__dirname, 'blog-images.mining-high-visibility-workwear-guide.generated.json'),
+    title: "High-Visibility Workwear for Mining and Quarry Crews",
+    excerpt: "Build a mining and quarry workwear order around task exposure, documented visibility performance, seasonal layers, size trials, cleaning and reliable replenishment.",
+    seoTitle: "Mining Hi-Vis Workwear | Quarry Procurement Guide",
+    seoDescription: "Choose high-visibility workwear for mining and quarry crews. Compare garment types, standards, layering, size trials, cleaning and bulk procurement requirements.",
+    seoKeywords: "mining high visibility workwear, quarry hi vis clothing, reflective mining workwear, mining safety vest, hi vis mining coveralls, bulk quarry workwear",
+    heroFallback: "/blog/mining-high-visibility-workwear-guide/hero.webp",
+    sectionImages: {
+      "Compare Vests, Shirts, Jackets and Coveralls": {
+        url: "/blog/mining-high-visibility-workwear-guide/compare-vests-shirts-jackets-and-coveralls.webp",
+        caption: "Compare garment formats using the actual model documents and task requirements; the illustration does not establish a performance class."
+      },
+      "Check the Outer Layer and Complete Worn Kit": {
+        url: "/blog/mining-high-visibility-workwear-guide/check-the-outer-layer-and-complete-worn-kit.webp",
+        caption: "Trial closure, reach and seasonal layers in a controlled fitting area before approving the complete clothing configuration."
+      },
+      "Inspect, Clean and Replace by Condition": {
+        url: "/blog/mining-high-visibility-workwear-guide/inspect-clean-and-replace-by-condition.webp",
+        caption: "Inspect fabric, reflective bands and seams against the manufacturer's rejection criteria; appearance is not a laboratory reflectivity test."
+      },
+      "Build a Size and Replenishment Plan": {
+        url: "/blog/mining-high-visibility-workwear-guide/build-a-size-and-replenishment-plan.webp",
+        caption: "Allocate workwear by approved model, color and size, with cleaning rotation and reserve quantities based on site records."
+      }
+    }
+  },
+  {
     slug: 'quarry-eye-face-protection-guide',
     markdownPath: join(process.cwd(), 'quarry-eye-face-protection-guide.md'),
     generatedImagesPath: join(__dirname, 'blog-images.quarry-eye-face-protection-guide.generated.json'),

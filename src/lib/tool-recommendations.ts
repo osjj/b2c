@@ -193,6 +193,9 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
   'quarry-eye-face-protection-guide': [
     'ppe-calculator',
   ],
+  'mining-high-visibility-workwear-guide': [
+    'ppe-calculator',
+  ],
   'open-pit-vs-underground-mining-ppe': [
     'ppe-calculator',
     'ai-quote',
@@ -200,6 +203,7 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
 }
 
 const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
+  'mining-high-visibility-workwear-guide',
   'quarry-eye-face-protection-guide',
   'construction-safety-footwear-guide',
   'construction-gloves-selection-guide',

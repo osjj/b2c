@@ -1,0 +1,42 @@
+{
+  "slug": "mining-high-visibility-workwear-guide",
+  "mode": "local-review",
+  "images": [
+    {
+      "key": "hero",
+      "title": "High-Visibility Workwear for Mining and Quarry Crews",
+      "role": "hero",
+      "aspect": "16:9",
+      "prompt": "Photorealistic natural professional industrial apparel editorial photography, believable garment construction and silver retroreflective bands, no readable text, no logos, no certification labels, no watermarks, no graphic overlays, no dangerous work, no glowing or self-luminous tape. Wide 16:9 horizontal composition in a clean sheltered quarry workwear issue bay. A simple freestanding garment rail holds three spaced complete unbranded garments on hangers: fluorescent yellow-green sleeveless zipped vest, orange-red long-sleeve work shirt, fluorescent yellow-green weather jacket with navy lower panels. Realistic horizontal silver torso bands and shoulder bands, long sleeves with encircling silver bands. An orderly bench below holds folded orange trousers and safety boots. In the far soft background pale stone quarry terraces through the doorway, no active machinery, no workers. Daylight, garments are hero subject, premium natural muted setting.",
+      "revisionPrompt": "Preserve the three hanging garments, quarry background, lighting and 16:9 composition. Remove boots, gloves, drink bottle, black equipment cases and neck label. Leave only folded orange trousers on the bench; no text, logos, labels or brand marks."
+    },
+    {
+      "key": "compare-vests-shirts-jackets-and-coveralls",
+      "title": "Compare Vests, Shirts, Jackets and Coveralls",
+      "role": "comparison",
+      "aspect": "4:3",
+      "prompt": "Photorealistic natural professional industrial apparel editorial photography, believable garment construction and silver retroreflective bands, no readable text, no logos, no certification labels, no watermarks, no graphic overlays, no dangerous work, no glowing or self-luminous tape. 4:3 editorial overhead flat lay on a large matte gray inspection table. Three distinct garments laid separately without overlapping: compact fluorescent orange-red sleeveless vest at left, long-sleeve fluorescent yellow-green work shirt in center with navy cuffs, folded orange rain jacket with navy lower panels at right. Silver horizontal torso bands and tidy shoulder band geometry on all, long sleeve bands on sleeves; front closures closed. Sleeves arranged neatly. No human, no props or printed text, enough clean spacing, crisp material detail."
+    },
+    {
+      "key": "check-the-outer-layer-and-complete-worn-kit",
+      "title": "Check the Outer Layer and Complete Worn Kit",
+      "role": "fit-trial",
+      "aspect": "4:3",
+      "prompt": "Photorealistic natural professional industrial apparel editorial photography, believable garment construction and silver retroreflective bands, no readable text, no logos, no certification labels, no watermarks, no graphic overlays, no dangerous work, no glowing or self-luminous tape. 4:3 waist-up three-quarter side view in a clean indoor mining PPE fitting room. One adult woman worker in properly sized fully fastened fluorescent orange-red long-sleeve weather jacket with silver shoulder and encircling torso and sleeve bands, dark work trousers. Navy midlayer visible only at collar, no outer layer hiding the high visibility fabric. Plain blue hard hat, clear safety spectacles, no respirator, no harness. She calmly extends both arms forward to check reach; realistic hands empty and separate. Plain lockers and unmarked size samples in soft background. No active equipment, no dust, no certificates. Natural documentary photograph, fit and jacket silhouette in focus."
+    },
+    {
+      "key": "inspect-clean-and-replace-by-condition",
+      "title": "Inspect, Clean and Replace by Condition",
+      "role": "detail-inspection",
+      "aspect": "4:3",
+      "prompt": "Photorealistic natural professional industrial apparel editorial photography, believable garment construction and silver retroreflective bands, no readable text, no logos, no certification labels, no watermarks, no graphic overlays, no dangerous work, no glowing or self-luminous tape. 4:3 macro close-up of two normal human hands inspecting the silver sewn-on reflective band of a fluorescent yellow-green work jacket on a laundry inspection bench. One hand supports the garment, another gently holds the hem by the stitching. Visible realistic textile weave, slight everyday surface dirt and a small naturally frayed seam in one spot, not torn into pieces. A folded clean orange garment in distant soft focus. Neutral daylight, no light beam demonstration, no test equipment, no printed instructions. Focus on inspection and seam detail, not a claim of measured reflectivity."
+    },
+    {
+      "key": "build-a-size-and-replenishment-plan",
+      "title": "Build a Size and Replenishment Plan",
+      "role": "procurement",
+      "aspect": "4:3",
+      "prompt": "Photorealistic natural professional industrial apparel editorial photography, believable garment construction and silver retroreflective bands, no readable text, no logos, no certification labels, no watermarks, no graphic overlays, no dangerous work, no glowing or self-luminous tape. 4:3 wide oblique view across a clean workwear warehouse packing bench. Orderly separate stacks of folded fluorescent orange-red jackets, fluorescent yellow-green shirts and dark navy trousers with silver lower-leg bands. Unbranded plain cartons and open empty garment bags at back. One pair of normal hands in navy sleeves checks a folded orange jacket at the edge of frame. No faces, no forms, no numbers, no barcode labels, no words on cartons. Warm practical warehouse lighting, realistic fabrics and packing materials, calm procurement scene."
+    }
+  ]
+}

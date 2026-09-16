@@ -6,6 +6,12 @@ export interface ToolRelatedGuide {
 }
 
 const GUIDE_CATALOG = {
+  'mining-high-visibility-workwear-guide': {
+    href: '/blog/mining-high-visibility-workwear-guide',
+    title: 'Mining High-Visibility Workwear Guide',
+    description: 'Plan approved clothing configurations, sizes, cleaning rotation and replenishment for mine and quarry crews.',
+    eyebrow: 'Mining workwear',
+  },
   'quarry-eye-face-protection-guide': {
     href: '/blog/quarry-eye-face-protection-guide',
     title: 'Quarry Eye and Face Protection Guide',
@@ -186,6 +192,7 @@ export const TOOL_RELATED_GUIDES = {
     'mining-safety-helmet-buyer-guide',
   ]),
   'ppe-calculator': pickGuides([
+    'mining-high-visibility-workwear-guide',
     'quarry-eye-face-protection-guide',
     'mining-work-gloves-maintenance-material-handling',
     'bulk-construction-ppe-procurement',

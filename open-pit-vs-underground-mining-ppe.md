@@ -44,6 +44,8 @@ For U.S. metal and nonmetal mines, [30 CFR Part 56](https://www.ecfr.gov/current
 
 ## Open-Pit Mining PPE: Visibility, Weather, Traffic, and Travel Distance
 
+For the clothing order, use the [High-Visibility Workwear for Mining and Quarry Crews guide](/blog/mining-high-visibility-workwear-guide). It covers garment evidence, surface and underground selection boundaries, seasonal fit and replacement planning.
+
 Open-pit work is dominated by scale. A haul truck may have blind areas much larger than a pedestrian work zone, and a worker can move from a clean cab to a dusty inspection point, fuel area, pump station, drill pattern, or wet haul road during one shift. PPE must support the traffic plan and environmental conditions without creating false confidence.
 
 ### Head, eyes, and face

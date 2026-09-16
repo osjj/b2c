@@ -147,6 +147,8 @@ For a dedicated workflow covering exposure sampling, engineering controls, resid
 
 ## Haul Roads and Transport PPE Checklist
 
+Use the [Mining High-Visibility Workwear guide](/blog/mining-high-visibility-workwear-guide) to specify clothing by exposure, seasonal layers, approved sizes and cleaning arrangements. Garment selection does not replace traffic separation or authorized access.
+
 High-visibility clothing is useful around mobile equipment, but visibility apparel cannot replace traffic separation, blind-area controls, communication, road maintenance, berms, safe speeds, and seat-belt use. Separate the in-cab operator check from the outside-cab and pedestrian check.
 
 ### Route, vehicle, and communication check

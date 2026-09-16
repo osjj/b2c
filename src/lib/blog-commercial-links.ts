@@ -15,6 +15,22 @@ export interface BlogCommercialLinks {
 }
 
 const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
+  'mining-high-visibility-workwear-guide': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/body-protection/hi-vis-workwear', label: 'High-visibility workwear' },
+      { href: '/categories/body-protection', label: 'Protective workwear options' },
+    ],
+    products: [],
+    cta: { href: '/quote', label: 'Request mining workwear options and documents' },
+    resources: [
+      { href: '/blog/mining-ppe-checklist-by-task', label: 'Mining task checklist' },
+      { href: '/blog/open-pit-vs-underground-mining-ppe', label: 'Surface and underground PPE guide' },
+    ],
+  },
   'quarry-eye-face-protection-guide': {
     solution: {
       href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
