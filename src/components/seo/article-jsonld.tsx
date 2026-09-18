@@ -1,3 +1,5 @@
+import { COMPANY_NAME } from '@/lib/company'
+
 interface ArticleJsonLdProps {
   type?: 'Article' | 'BlogPosting' | 'TechArticle'
   headline: string
@@ -20,7 +22,7 @@ export function ArticleJsonLd({
   datePublished,
   dateModified,
   authorName = 'Laifappe Team',
-  publisherName = 'Laifappe',
+  publisherName = COMPANY_NAME,
   publisherLogoUrl,
 }: ArticleJsonLdProps) {
   const jsonLd = {

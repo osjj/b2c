@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { getSiteUrl } from "@/lib/site-url";
+import { COMPANY_NAME } from "@/lib/company";
 import "./globals.css";
 
 const baseUrl = getSiteUrl()
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
     "Laifappe",
   ],
   authors: [{ name: "Laifappe Team" }],
-  creator: "Laifappe Industry",
-  publisher: "Laifappe Industry",
+  creator: COMPANY_NAME,
+  publisher: COMPANY_NAME,
   openGraph: {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "Laifappe Industry",
+    siteName: "Laifappe",
     title: "Laifappe | Certified PPE Manufacturer & Supplier",
     description:
       "ISO9001 Certified factory for safety gloves, shoes, and workwear. Competitive wholesale prices for global distributors.",

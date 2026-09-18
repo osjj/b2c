@@ -1,3 +1,5 @@
+import { COMPANY_NAME } from "@/lib/company"
+
 export const aboutImageUrls = {
   baozhuang: "https://shop.laifappe.com/homepage/baozhuang-a7e56df140.webp",
   canku02: "https://shop.laifappe.com/homepage/canku02-5cbd18a7cb.webp",
@@ -33,7 +35,7 @@ export const auditPills = [
 ]
 
 export const supplierFacts = [
-  { label: "Business", value: "Foshan Yuelaifa Labor Protection Products Co., Ltd." },
+  { label: "Business", value: COMPANY_NAME },
   { label: "Founded", value: "2003" },
   { label: "Location", value: "Foshan, Guangdong, China" },
   { label: "Focus", value: "Industrial PPE manufacturing and sourcing" },

@@ -1,3 +1,5 @@
+import { COMPANY_NAME } from '@/lib/company'
+
 interface OrganizationJsonLdProps {
   baseUrl: string
 }
@@ -6,8 +8,9 @@ export function OrganizationJsonLd({ baseUrl }: OrganizationJsonLdProps) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Laifappe',
-    alternateName: 'YUELAIFA PPE',
+    name: COMPANY_NAME,
+    legalName: COMPANY_NAME,
+    alternateName: ['Laifappe', 'YUELAIFA PPE'],
     url: baseUrl,
     logo: `${baseUrl}/logo.png`,
     description:

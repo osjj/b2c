@@ -14,6 +14,7 @@ import {
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { QuoteDrawer, QuoteRequestForm } from "@/modules/home-new/components"
+import { COMPANY_NAME } from "@/lib/company"
 import {
   auditPills,
   aboutImageUrls,
@@ -126,7 +127,7 @@ function HeroSection() {
 
         <aside className={styles.heroPanel} aria-label="Laifappe supplier summary">
           <span>Supplier Profile</span>
-          <h2>Foshan Yuelaifa Labor Protection Products Co., Ltd.</h2>
+          <h2>{COMPANY_NAME}</h2>
           <dl>
             {supplierFacts.map((fact) => (
               <div key={fact.label}>

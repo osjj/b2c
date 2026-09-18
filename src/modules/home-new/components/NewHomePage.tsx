@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { COMPANY_NAME } from "@/lib/company"
 import type { ReactNode } from "react"
 import { CheckCircle2, Clock3, Mail, MapPin, Monitor, MoveRight, Phone, Shield } from "lucide-react"
 import { getCollectionProducts } from "@/actions/collections"
@@ -1002,7 +1003,7 @@ export function NewHomeFooter() {
                 <small>YUELAIFA PPE · EST. 2003</small>
               </span>
             </Link>
-            <p>Yuelaifa Industry Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.</p>
+            <p>{COMPANY_NAME} manufactures certified personal protective equipment for global buyers since 2003.</p>
             <div className={styles.footerBadges}>
               {["CE EN", "ISO 9001", "ANSI", "BSCI"].map((badge) => (
                 <span key={badge}>{badge}</span>

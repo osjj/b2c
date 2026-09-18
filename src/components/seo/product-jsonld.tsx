@@ -2,6 +2,7 @@ import type { Category, ProductImage } from '@prisma/client'
 import type { JSX } from 'react'
 
 import { getProductAvailability } from '@/lib/product-seo'
+import { COMPANY_NAME } from '@/lib/company'
 
 interface ProductForJsonLd {
   name: string
@@ -38,7 +39,7 @@ export function buildProductJsonLd(
     availability: getProductAvailability(product),
     seller: {
       '@type': 'Organization',
-      name: 'Laifappe',
+      name: COMPANY_NAME,
     },
   }
 
