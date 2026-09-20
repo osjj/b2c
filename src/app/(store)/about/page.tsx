@@ -2,6 +2,9 @@ import type { Metadata } from "next"
 import { AboutNewPage } from "@/modules/about-new"
 import { buildPageTitle } from "@/lib/seo-title"
 
+// Refresh the shared company identity along with this otherwise static page.
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: {
     absolute: buildPageTitle("About Laifappe PPE Manufacturer"),

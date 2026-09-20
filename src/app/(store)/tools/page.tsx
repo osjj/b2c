@@ -24,6 +24,9 @@ import { ToolRelatedGuidesSection } from '@/components/store/tool-related-guides
 import { getSiteUrl } from '@/lib/site-url'
 import { TOOLS_HUB_RELATED_GUIDES } from '@/lib/tool-related-guides'
 
+// Refresh the shared company identity along with this otherwise static page.
+export const revalidate = 3600
+
 const HUB_TITLE =
   'Free PPE Tools - Quote Generator, Quantity Calculator, Size and Hard Hat Decoders'
 const HUB_DESCRIPTION =
