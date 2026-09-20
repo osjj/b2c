@@ -18,7 +18,7 @@
 /out/
 /output/
 /tmp/pdfs/
-
+/outputs/
 # production
 /build
 

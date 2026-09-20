@@ -1,0 +1,298 @@
+{
+  "entity": "Product",
+  "target": {
+    "id": "cmr5sxb12000aumm85t99ped5",
+    "slug": "wire-mesh-grass-trimmer-face-shield"
+  },
+  "guard": {
+    "updatedAt": "2026-07-04T15:17:17.443Z"
+  },
+  "data": {
+    "description": "Wire mesh face shield for grass trimming and yard-debris work, with a painted mesh visor and adjustable ratchet headgear. Choose a yellow or orange top. Review the use limits, eye-protection requirements and replacement fit before ordering.",
+    "metaTitle": "Mesh Face Shield for Grass Trimming | LAIFAPPE",
+    "metaDescription": "Choose a wire mesh face shield for grass trimming: adjustable ratchet headgear, two colors and replacement visor details. MOQ 100 pieces. Request a bulk quote.",
+    "metaKeywords": "mesh face shield, grass trimmer face protection, wire mesh face shield, grass trimmer face shield, replacement mesh visor",
+    "ogTitle": "Mesh Face Shield for Grass Trimming | LAIFAPPE",
+    "ogDescription": "Compare color options, ratchet fit and replacement visor details for bulk mesh face shield orders. Review use limits and request a quote from 100 pieces.",
+    "specifications": [
+      {
+        "name": "Product type",
+        "value": "Wire mesh face shield"
+      },
+      {
+        "name": "SKU option",
+        "value": "Yellow top / Orange top"
+      },
+      {
+        "name": "Minimum order",
+        "value": "100 pcs"
+      },
+      {
+        "name": "Visor material",
+        "value": "Painted wire mesh visor"
+      },
+      {
+        "name": "Headgear",
+        "value": "Adjustable plastic headband with ratchet knob"
+      },
+      {
+        "name": "Product size",
+        "value": "Approx. 25 x 28 x 24 cm"
+      },
+      {
+        "name": "Replacement visor size",
+        "value": "Approx. 393 x 200 mm"
+      },
+      {
+        "name": "Product weight",
+        "value": "215 g"
+      },
+      {
+        "name": "Package size",
+        "value": "30 x 13.5 x 21 cm"
+      },
+      {
+        "name": "Package gross weight",
+        "value": "To be confirmed for the quoted configuration before quotation and freight planning."
+      },
+      {
+        "name": "Origin",
+        "value": "China"
+      }
+    ],
+    "content": {
+      "time": 1783178237428,
+      "blocks": [
+        {
+          "id": "mesh-p1-configuration-heading",
+          "type": "header",
+          "data": {
+            "text": "Choose your mesh face shield configuration",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-configuration-list",
+          "type": "list",
+          "data": {
+            "style": "unordered",
+            "items": [
+              "<strong>Color:</strong> yellow-top and orange-top options are listed with the same framed mesh visor and ratchet headgear structure. State the quantity of each color in your inquiry.",
+              "<strong>Fit:</strong> the plastic headband adjusts with a ratchet knob. Check comfort, stability and clearance with the eye and hearing protection used for the task.",
+              "<strong>Dimensions:</strong> the assembled product is listed at approximately 25 × 28 × 24 cm; the replacement mesh visor is approximately 393 × 200 mm.",
+              "<strong>Order basis:</strong> the listed minimum order is 100 pieces. Ask us to confirm the color split, complete-unit contents and replacement visor availability in the quotation."
+            ]
+          }
+        },
+        {
+          "id": "mesh-p1-use-limits-heading",
+          "type": "header",
+          "data": {
+            "text": "Grass trimmer face protection: use limits",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-use-limits",
+          "type": "paragraph",
+          "data": {
+            "text": "The open mesh is not a sealed barrier against liquid splashes or fine dust and does not provide respiratory protection. Wear appropriate safety glasses or goggles underneath a face shield. Select the complete eye and face protection arrangement from the task hazard assessment and the trimmer manufacturer's instructions; keep the specified guards and work-area controls in place."
+          }
+        },
+        {
+          "id": "mesh-p1-markings",
+          "type": "paragraph",
+          "data": {
+            "text": "No impact rating, splash rating or product certification is stated for this item here. Before approving it for a task, request the exact model's markings, instructions and applicable documentation. Do not infer performance from the mesh material, product photographs or the ratings of a different visor."
+          }
+        },
+        {
+          "id": "mesh-p1-compare-heading",
+          "type": "header",
+          "data": {
+            "text": "Mesh or clear face shield?",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-compare",
+          "type": "paragraph",
+          "data": {
+            "text": "Mesh and solid clear visors have different structures. When assessing a solid visor, check the exact model's marked performance and instructions; transparency alone does not establish impact or splash protection. See the <a href=\"/products/clear-pc-grass-trimmer-face-shield\">clear PC grass trimmer face shield</a> for a separate product configuration, or use our <a href=\"/blog/construction-eye-face-protection\">eye and face protection selection guide</a> to frame the buying questions."
+          }
+        },
+        {
+          "id": "mesh-p1-replacement-heading",
+          "type": "header",
+          "data": {
+            "text": "Replacement visor and pre-use checks",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-replacement-list",
+          "type": "list",
+          "data": {
+            "style": "unordered",
+            "items": [
+              "Match the visor outline, attachment points and headgear model before ordering a replacement. The stated dimensions do not establish universal compatibility.",
+              "Before use, check the mesh, frame, attachment points and adjustment mechanism for damage or looseness. Remove damaged equipment from service and follow the product instructions for replacement.",
+              "Check visibility and the fit of the complete PPE combination after adjustment. Follow the supplied cleaning and storage instructions."
+            ]
+          }
+        },
+        {
+          "id": "mesh-p1-faq-heading",
+          "type": "header",
+          "data": {
+            "text": "Buyer questions",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-faq-eyes",
+          "type": "paragraph",
+          "data": {
+            "text": "<strong>Can a mesh face shield replace safety glasses?</strong><br>No. Use the appropriate primary eye protection beneath the shield. Mesh does not seal the eye area. OSHA's <a href=\"https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartIAppB\">eye and face protection selection guidance</a> also distinguishes face shields from primary eye protection."
+          }
+        },
+        {
+          "id": "mesh-p1-faq-visor",
+          "type": "paragraph",
+          "data": {
+            "text": "<strong>Can I order spare mesh visors?</strong><br>Include the required spare quantity in your inquiry. The listed replacement visor size is approximately 393 × 200 mm; confirm its mounting pattern and availability for your headgear before ordering."
+          }
+        },
+        {
+          "id": "mesh-p1-faq-moq",
+          "type": "paragraph",
+          "data": {
+            "text": "<strong>What should I confirm for a bulk order?</strong><br>Start with the listed 100-piece minimum and specify the color quantities, complete shields or replacement visors, destination and required delivery date. Request a sample and confirm the final specification before approving the order."
+          }
+        },
+        {
+          "id": "mesh-p1-rfq-heading",
+          "type": "header",
+          "data": {
+            "text": "Request a bulk mesh face shield quote",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-rfq",
+          "type": "paragraph",
+          "data": {
+            "text": "Use Add to Quote and include your task, quantity per color, replacement visor needs and delivery location. Ask for the exact configuration's instructions and documentation, sample terms, packing quantity, confirmed net and gross weights, lead time and shipping terms."
+          }
+        },
+        {
+          "id": "mesh-p1-weight-heading",
+          "type": "header",
+          "data": {
+            "text": "Product weight and packing",
+            "level": 2
+          }
+        },
+        {
+          "id": "mesh-p1-weight-note",
+          "type": "paragraph",
+          "data": {
+            "text": "Net product weight is 215 g. Confirm the packed gross weight and packing quantity for the quoted configuration before quotation and freight planning. Product weight and packed shipping weight are different measurements."
+          }
+        },
+        {
+          "id": "detail-1",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/wire-mesh-yellow-product.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        },
+        {
+          "id": "detail-2",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/wire-mesh-orange-product.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        },
+        {
+          "id": "detail-3",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/wire-mesh-yellow-dimensions.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        },
+        {
+          "id": "detail-4",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/wire-mesh-orange-dimensions.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        },
+        {
+          "id": "detail-5",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/wire-mesh-replacement-visor-dimensions.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        },
+        {
+          "id": "detail-6",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/wire-mesh-material-detail.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        },
+        {
+          "id": "detail-7",
+          "data": {
+            "file": {
+              "url": "https://shop.laifappe.com/products/861372618991-wire-mesh-face-shield-v5/headgear-detail.webp"
+            },
+            "caption": "",
+            "stretched": true,
+            "withBorder": false,
+            "withBackground": false
+          },
+          "type": "image"
+        }
+      ],
+      "version": "2.31.0"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 # OSHA PPE Requirements for Construction: Complete Compliance Guide
 
 **Meta Title:** OSHA Construction PPE Requirements | 2026 Compliance Guide
-**Meta Description:** 2026 guide to OSHA construction PPE requirements: 29 CFR 1926 Subpart E, proper fit, heat enforcement, hazard assessment, training, and inspections.
+**Meta Description:** Navigate OSHA construction PPE requirements in 29 CFR 1926 Subpart E, site PPE notices, proper fit, employer duties, training and practical procurement checks.
 **Target URL:** /blog/osha-ppe-requirements-construction
-**Target Keywords:** OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2026
+**Target Keywords:** OSHA PPE requirements construction, 29 CFR 1926 Subpart E, OSHA Subpart E, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, worksite minimum PPE requirements, OSHA construction safety regulations 2026
 
 ---
 
@@ -12,6 +12,8 @@
 OSHA does not prescribe one universal PPE kit for every construction site. Under [29 CFR 1926.95](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95) and [29 CFR 1926.28](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.28), employers must match PPE to the hazards of the operation, require its use where needed, select equipment that is safe for the work and properly fits each affected employee, and keep it sanitary and reliable. Required employer-paid PPE is subject to the specific exceptions in 1926.95(d), and task-specific standards still apply to areas such as head, eye and face, hearing, respiratory, foot, electrical, and fall protection.
 
 For a practical workflow, start with the [construction PPE solution](/solutions/construction-site-ppe-solution), use the [construction PPE checklist](/blog/construction-ppe-checklist) for field execution, and check individual equipment requirements with the [PPE standards compliance checker](/tools/compliance-checker).
+
+Use the [Subpart E navigation table](#the-legal-framework-where-construction-ppe-requirements-come-from) to find the relevant equipment section. If your immediate question is where site rules should appear, see [Where Are a Worksite's Minimum PPE Requirements Posted?](#where-are-a-worksites-minimum-ppe-requirements-posted).
 
 ---
 
@@ -29,20 +31,39 @@ If you are turning OSHA requirements into a purchasing or site-issue workflow, u
 
 ---
 
+## Where Are a Worksite's Minimum PPE Requirements Posted?
+
+Look first for the project's PPE notice at the site entrance or induction/check-in point, then check signs at the entrance to your work area and the instructions given by your supervisor. **Those are practical places to communicate project rules, not one universal posting location prescribed by OSHA for every construction site's minimum PPE list.** If the rule is unclear, confirm the task-specific requirements before entering the exposed area.
+
+Keep three different requirements separate:
+
+| Information | Rule or practical use |
+|---|---|
+| Site-entry and task-specific PPE rules | The employer must require appropriate PPE under [1926.28](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.28) and instruct employees about hazards and applicable rules under [1926.21(b)(2)](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.21). A notice supports that instruction; it does not replace it. |
+| Accident-prevention signs | [1926.200(a)](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.200) requires signs and symbols covered by that subpart to remain visible during work and to be removed or covered when the hazard ends. Check the applicable sign and task requirements for the area. |
+| The OSHA worker-rights notice | [1903.2](https://www.osha.gov/laws-regs/regulations/standardnumber/1903/1903.2) specifies conspicuous posting where employee notices normally appear; for dispersed construction activities, it addresses the location where employees report each day. This notice explains rights and obligations, rather than listing your project's PPE kit. |
+
+For a usable project notice, show the area covered, baseline entry PPE, task-specific additions, where to obtain correctly fitted replacements, and the responsible contact. Review the notice when the work changes and communicate the changes to the crew. These are suggested site-management steps; the relevant hazard and task standards determine the actual duties.
+
+---
+
 ## The Legal Framework: Where Construction PPE Requirements Come From
 
-OSHA's construction rules live in **29 CFR Part 1926**. For PPE, the center of gravity is **29 CFR 1926 Subpart E**, but construction employers usually need to read several related standards together:
+OSHA's construction rules live in **29 CFR Part 1926**. [29 CFR 1926 Subpart E](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartE) covers personal protective and life saving equipment. Use its sections as a navigation starting point, then read the applicable task standards:
 
-- **29 CFR 1926.95** - criteria for personal protective equipment
-- **29 CFR 1926.28** - requiring appropriate PPE where exposure exists
-- **29 CFR 1926.21(b)** - safety training and education
-- **29 CFR 1926.96** - foot protection
-- **29 CFR 1926.100** - head protection
-- **29 CFR 1926.101** - hearing protection
-- **29 CFR 1926.102** - eye and face protection
-- **29 CFR 1926.103** - respiratory protection, incorporating **29 CFR 1910.134**
-- **29 CFR 1926 Subpart M** - fall protection
-- **29 CFR 1926 Subpart K** - electrical safety
+| Selection or purchasing question | Subpart E section |
+|---|---|
+| General selection, fit, employee-owned equipment and payment | [1926.95 - PPE criteria](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95) |
+| Protective footwear | [1926.96 - Occupational foot protection](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.96) |
+| Electrical protective equipment | [1926.97](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.97) |
+| Head protection | [1926.100](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.100) |
+| Hearing protection | [1926.101](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.101) |
+| Eye and face protection | [1926.102](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.102) |
+| Respiratory protection | [1926.103](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.103), which applies the requirements of [1910.134](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.134) |
+| Listed provisions for belts, lifelines, lanyards and nets | [1926.104](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.104) and [1926.105](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.105); also check the applicable fall-protection rules |
+| Work over or near water | [1926.106](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.106) |
+
+Subpart E also contains [1926.107 definitions](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.107); 1926.98 is reserved. Related provisions outside Subpart E include **1926.28** for requiring PPE use, **1926.21(b)** for instruction, **Subpart K** for electrical safety, and **Subpart M** for fall protection. For fall protection, start with [1926.500](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.500) to check scope and the rules applicable to the activity; Subpart E alone is not a complete fall-protection specification.
 
 That structure matters because construction PPE compliance is not one rule. A site may be compliant on hard hats but non-compliant on respiratory protection, fall protection, or training records at the same time.
 
@@ -120,14 +141,26 @@ Under **29 CFR 1926.95(d)**, employers generally must provide required PPE at no
 
 - non-specialty safety-toe footwear when off-site wear is permitted
 - non-specialty prescription safety eyewear when off-site wear is permitted
-- logging boots
 - ordinary clothing and weather-protection items
+- adequate employee-owned equipment voluntarily used under 1926.95(d)(6), without requiring employees to supply PPE outside the permitted exceptions
 
-Everything else should be treated as employer-funded unless a more specific OSHA standard says otherwise.
+Check the full exceptions and replacement-payment rules in [1926.95(d)](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95) before assigning costs. Where another OSHA standard contains a specific equipment-payment provision, that provision controls.
 
 ### 4. Enforce actual use
 
 OSHA does not treat "we had PPE on site" as a defense when workers are observed without required protection. If the hazard exists and the worker is unprotected, enforcement risk exists.
+
+### Turn the employer's duties into purchasing checkpoints
+
+The employer's selection, fit and use duties remain in place when a supplier helps prepare the order. A supplier quotation or certificate does not determine what every worker on your site must wear.
+
+| Suggested handoff | Information to carry into purchasing and issue |
+|---|---|
+| Site assessment to purchasing | Task, hazard, applicable requirement, selected protection, worker size needs and compatible equipment |
+| Purchasing to supplier | Exact model, size range, supporting documents, trial samples, quantities, replacement parts and permitted substitutions |
+| Delivery to supervisor and worker | Approved item and size, fitting/use instruction, replacement access and any task-specific additions |
+
+This is an organizational workflow, not a list of job titles mandated by OSHA. Attach the reviewed requirements to the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-osha-ppe-requirements-construction), then [request model documents and bulk PPE pricing](/quote?source=blog-osha-ppe-requirements-construction). For respirators, include the [NIOSH model and configuration checks](/blog/construction-respiratory-protection#check-the-niosh-approval-before-ordering) as part of supplier review.
 
 ---
 
@@ -297,6 +330,12 @@ That sequence is what turns PPE from a purchase list into a compliance program.
 ---
 
 ## Frequently Asked Questions
+
+**Where are a worksite's minimum PPE requirements usually posted?**
+Check the project's entrance or induction notice, the relevant work-area signs, and supervisor instructions. These are practical communication points, not a single OSHA-prescribed location for every minimum PPE list. Required hazard signs and the OSHA worker-rights poster have their own rules; a posted list does not replace hazard-specific instruction or proper equipment selection.
+
+**Does 29 CFR 1926 Subpart E contain every construction PPE obligation?**
+No. Subpart E is the core equipment section, but requirements also arise in training, fall protection, electrical work, silica and other task or exposure standards. Use the navigation table above to find the equipment section, then check the rules governing the actual work.
 
 **Does OSHA require construction PPE to fit each worker?**
 Yes. OSHA's revision to **29 CFR 1926.95(c)** became effective on **January 13, 2025** and explicitly requires PPE to be selected so that it properly fits each affected employee.

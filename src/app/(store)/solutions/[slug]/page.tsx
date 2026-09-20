@@ -95,6 +95,7 @@ type ProcurementResources = {
   eyebrow: string
   title: string
   description: string
+  quoteHref?: string
   assets: ProcurementResource[]
   relatedLinks: Array<{
     href: string
@@ -195,7 +196,51 @@ const MINING_PROCUREMENT_RESOURCES: ProcurementResources = {
   ],
 }
 
+const WAREHOUSE_PROCUREMENT_RESOURCES: ProcurementResources = {
+  eyebrow: 'Warehouse PPE resources',
+  title: 'Prepare your warehouse PPE order and issue plan',
+  quoteHref: '/contact',
+  description:
+    'Record task-specific PPE, approved models, sizes, issue quantities, and supplier documents before requesting a warehouse or logistics quote.',
+  assets: [
+    {
+      id: 'warehouse-ppe-checklist',
+      href: '/downloads/warehouse-ppe-checklist.csv',
+      label: 'Warehouse PPE checklist',
+      description: 'Editable CSV for task selection, issue records, and product-document checks.',
+      action: 'Download CSV',
+      isDownload: true,
+    },
+    {
+      id: 'ppe-size-standards-planning-sheet',
+      href: '/downloads/ppe-size-standards-planning-sheet.xlsx',
+      label: 'Size and standards sheet',
+      description: 'Record approved sizes, standards, and replacement requirements for each item.',
+      action: 'Download spreadsheet',
+      isDownload: true,
+    },
+    {
+      id: 'ppe-calculator',
+      href: '/tools/ppe-calculator',
+      label: 'PPE quantity calculator',
+      description: 'Estimate quantities, then check the assumptions against your site issue and replacement records.',
+      action: 'Open calculator',
+      isDownload: false,
+    },
+  ],
+  relatedLinks: [
+    { href: '/categories/hand-protection', label: 'Handling gloves' },
+    { href: '/categories/foot-protection', label: 'Safety footwear' },
+    { href: '/categories/body-protection', label: 'Workwear and visibility' },
+    { href: '/tools/size-guide', label: 'Safety footwear sizing' },
+  ],
+}
+
 function getProcurementResources(solutionSlug: string): ProcurementResources {
+  if (solutionSlug === 'ppe-safety-equipment-for-warehouse-logistics') {
+    return WAREHOUSE_PROCUREMENT_RESOURCES
+  }
+
   return solutionSlug === 'ppe-safety-equipment-for-mining-quarrying'
     ? MINING_PROCUREMENT_RESOURCES
     : DEFAULT_PROCUREMENT_RESOURCES
@@ -525,7 +570,7 @@ function SolutionProcurementDownloads({ source, solutionSlug }: { source: string
           <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">{resources.description}</p>
         </div>
         <Link
-          href="/quote"
+          href={resources.quoteHref ?? '/quote'}
           data-source={source}
           className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
         >

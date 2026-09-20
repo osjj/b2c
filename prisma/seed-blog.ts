@@ -204,12 +204,12 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     ),
     title: 'OSHA PPE Requirements for Construction: Complete Compliance Guide',
     excerpt:
-      'A regulation-first 2026 guide to OSHA PPE requirements for construction covering 29 CFR 1926 Subpart E, the proper-fit rule, heat enforcement context, hazard assessment, training, inspections, and citation risk.',
+      'Navigate OSHA construction PPE requirements in 29 CFR 1926 Subpart E, site PPE notices, proper fit, employer duties, training and practical procurement checks.',
     seoTitle: 'OSHA Construction PPE Requirements | 2026 Compliance Guide',
     seoDescription:
-      '2026 guide to OSHA construction PPE requirements: 29 CFR 1926 Subpart E, proper fit, heat enforcement, hazard assessment, training, and inspections.',
+      'Navigate OSHA construction PPE requirements in 29 CFR 1926 Subpart E, site PPE notices, proper fit, employer duties, training and practical procurement checks.',
     seoKeywords:
-      'OSHA PPE requirements construction, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, OSHA construction safety regulations 2026',
+      'OSHA PPE requirements construction, 29 CFR 1926 Subpart E, OSHA Subpart E, 29 CFR 1926 PPE, OSHA construction PPE standards, construction PPE compliance, OSHA 1926.95, PPE hazard assessment construction, worksite minimum PPE requirements, OSHA construction safety regulations 2026',
     heroFallback:
       'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1600&q=80',
     sectionImages: {
@@ -675,13 +675,13 @@ const BLOG_POSTS: BlogSeedConfig[] = [
     ),
     title: 'Construction Dust Respirator Guide: N95 vs P100 vs Half-Face',
     excerpt:
-      'Compare N95, P100 and half-face respirators for construction dust, silica, concrete dust, demolition, grinding, welding fumes, fit testing, and bulk RFQs.',
+      'Compare N95, P100 and half-face respirators for concrete dust. Check task requirements, NIOSH approval labels, approved configurations, fit testing and RFQs.',
     seoTitle:
       'Construction Dust Respirator | N95 vs P100 Guide',
     seoDescription:
-      'Compare N95, P100 and half-face respirators for construction dust, silica, concrete dust, demolition, grinding, welding fumes, fit testing, and bulk RFQs.',
+      'Compare N95, P100 and half-face respirators for concrete dust. Check task requirements, NIOSH approval labels, approved configurations, fit testing and RFQs.',
     seoKeywords:
-      'construction dust respirator, respirator for concrete dust, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respiratory protection construction, construction respiratory PPE',
+      'construction dust respirator, concrete dust respirator, concrete dust mask, respirator for concrete dust, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respiratory protection construction, construction respiratory PPE, NIOSH respirator approval check',
     heroFallback:
       'https://images.unsplash.com/photo-1581092160607-ee22731d8db8?w=1600&q=80',
     sectionImages: {
@@ -2184,7 +2184,9 @@ function inlineMarkdownToHtml(raw: string): string {
   text = text.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,
     (_, label: string, url: string) =>
-      `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`,
+      url.startsWith('#')
+        ? `<a href="${url}">${label}</a>`
+        : `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`,
   )
 
   text = text.replace(/`([^`]+)`/g, '<code>$1</code>')

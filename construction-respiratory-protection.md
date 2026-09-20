@@ -1,9 +1,9 @@
 # Construction Dust Respirator Guide: N95 vs P100 vs Half-Face
 
 **Meta Title:** Construction Dust Respirator | N95 vs P100 Guide
-**Meta Description:** Compare N95, P100 and half-face respirators for construction dust, silica, concrete dust, demolition, grinding, welding fumes, fit testing, and bulk RFQs.
+**Meta Description:** Compare N95, P100 and half-face respirators for concrete dust. Check task requirements, NIOSH approval labels, approved configurations, fit testing and RFQs.
 **Target URL:** /blog/construction-respiratory-protection
-**Target Keywords:** construction dust respirator, respirator for concrete dust, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respiratory protection construction, construction respiratory PPE
+**Target Keywords:** construction dust respirator, concrete dust respirator, concrete dust mask, respirator for concrete dust, silica dust respirator construction, N95 construction dust, P100 respirator construction, half face respirator construction, respiratory protection construction, construction respiratory PPE, NIOSH respirator approval check
 
 ---
 
@@ -29,6 +29,8 @@ For concrete or construction dust, do not select a respirator from the job name 
 | What should a bulk respirator order include? | Respirators, filters/cartridges, fit-test support, cleaning, storage, training, and replacement stock. | Use a structured RFQ instead of buying masks by unit price only. |
 
 Use the [Construction PPE RFQ Template](/downloads/construction-ppe-rfq-template?source=blog-construction-respiratory-protection) to request respirator models, filter classes, cartridge types, NIOSH or EN approval details, facepiece sizes, fit-test support, and replacement parts in one supplier-ready format.
+
+Already comparing supplier offers? Go to [Check the NIOSH Approval Before Ordering](#check-the-niosh-approval-before-ordering) for official label references, a database lookup workflow, and the evidence to match to each quoted model.
 
 ---
 
@@ -358,7 +360,7 @@ Use this checklist before placing a respiratory PPE order:
 3. Decide whether exposure assessment or objective data is needed.
 4. Confirm whether respirators are required or voluntary.
 5. Select respirator type by hazard, exposure level, and assigned protection factor.
-6. Confirm NIOSH, CE/EN, or other required certification.
+6. Confirm the required approval for the destination and task. For required respirators under US OSHA rules, verify the NIOSH approval and its conditions; a CE/EN claim does not establish that approval.
 7. Plan medical evaluations where required.
 8. Plan fit testing for tight-fitting respirators.
 9. Stock more than one model or size where fit may vary.
@@ -369,6 +371,39 @@ Use this checklist before placing a respiratory PPE order:
 14. Keep replacement stock at the point of use.
 
 This checklist is especially important for concrete cutting, drilling, grinding, demolition, renovation, and coating work.
+
+---
+
+## Check the NIOSH Approval Before Ordering
+
+For US construction, [1926.103](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.103) applies the respiratory requirements in [1910.134](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.134). Section 1910.134(d)(1)(ii) requires selection of a NIOSH-certified respirator and use within its certification conditions. Check the offered model and assembly before comparing price.
+
+### Read the official label example
+
+Open the [NIOSH annotated filtering-facepiece label diagram](https://www.cdc.gov/niosh/media/images/2024/12/NPPTL_INFO_RequiredLabelN95FFR_2014.jpg) alongside the supplier's sample photographs. NIOSH's [current identification guidance](https://www.cdc.gov/niosh/ppe/niosh-approved-respirators/index.html) explains the required FFR markings and the approval label supplied with the packaging. An N95 claim alone is insufficient.
+
+| Evidence to request | What to compare |
+|---|---|
+| Clear facepiece and packaging photographs | Approval holder or manufacturer, part/model identifier, NIOSH marking, filter designation and TC approval number |
+| Full approval label and user instructions | The offered product identity, approved assembly and applicable cautions and limitations |
+| Lot identification | The lot shown on the facepiece or packaging and the goods being delivered |
+
+The diagram is an official teaching reference. Any placeholder number shown there is not an approval for a product offered by LAIFAPPE.
+
+### Look up the exact product, then check the configuration
+
+1. Copy the TC approval number from the offered product's label, then open the [NIOSH Certified Equipment List](https://wwwn.cdc.gov/niosh-cel/). NIOSH also provides a [step-by-step FFR lookup guide](https://www.cdc.gov/niosh/ppe/niosh-approved-respirators/ffr-cel.html).
+2. Compare the returned approval holder and product identity with the sample and documentation. Resolve any brand, private-label or model mismatch before accepting an offer; a matching number alone does not authenticate the delivered goods.
+3. For reusable respirators, obtain the full approval label and identify the exact facepiece, size, filters/cartridges and required connecting parts in the approved assembly. Physical fit between parts is insufficient. NIOSH explains that [approval applies to the complete respirator](https://www.cdc.gov/niosh/docs/2016-107/default.html), including when replacement parts come from the original manufacturer.
+4. Keep the lookup date, label, instructions, quoted part numbers and reviewer decision with the purchase specification. Recheck substitutions before accepting them. This is a purchasing control, not a replacement for the employer's exposure assessment, fit testing or respiratory program.
+
+**A documented example of why the number is not enough:** In its July 10, 2020 example, [NIOSH recorded counterfeit packaging using TC-84A-8125](https://www.cdc.gov/niosh/ppe/counterfeit_respirators/ffr.html), the number associated in that notice with Shining Star model SS6001-N95. The counterfeit used the approval without permission. This is a historical identification example, not a statement about that model's current status or a LAIFAPPE supply claim.
+
+### Put the verified assembly into the RFQ
+
+Use one line per proposed assembly: task and contaminant; required APF; approval holder; exact model and size; TC number; filter/cartridge and connector part numbers; label and instructions; quantities; replacement parts; and sample-review outcome. Ask the supplier to identify any missing evidence instead of substituting a generic certificate or a visually similar component.
+
+Use the [respiratory protection category](/categories/respiratory-protection) to identify possible product types, then [request model-specific respirator documents and a quote](/quote?source=blog-construction-respiratory-protection). A category listing or an example in this guide does not establish a product's NIOSH approval. Accept a proposed model only after its own evidence and the complete configuration have been checked.
 
 ---
 
@@ -389,6 +424,10 @@ An N95 filtering facepiece is one possible APF 10 particulate-respirator configu
 ### Does OSHA require fit testing for N95 respirators in construction?
 
 If an N95 is required by OSHA or required by the employer as respiratory protection, it is a tight-fitting respirator and fit testing is generally required under OSHA's respiratory protection standard.
+
+### How do I check a supplier's NIOSH approval claim?
+
+Compare the exact approval holder, product identity and TC number with the NIOSH Certified Equipment List, then review the full approval label, instructions and approved component configuration. Check the sample and delivered packaging as well: a copied valid number does not authenticate a product. Use the [approval-check workflow above](#check-the-niosh-approval-before-ordering) before releasing a bulk order.
 
 ### What is better for concrete dust, N95 or P100?
 
