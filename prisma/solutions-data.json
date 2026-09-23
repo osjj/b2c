@@ -3685,7 +3685,7 @@
   {
     "slug": "ppe-safety-equipment-for-mining-quarrying",
     "title": "Mining Safety Equipment and PPE for Quarry Operations",
-    "excerpt": "Select mining safety equipment by task, exposure and work area. This guide connects mine and quarry hazards to PPE documentation, sizing and bulk RFQ decisions.",
+    "excerpt": "Compare mining safety equipment for surface mines, underground work and quarries. Build a PPE shortlist, separate specialist systems and prepare a documented RFQ.",
     "usageScenes": [
       "heavy-duty",
       "impact-resistant",
@@ -3698,7 +3698,7 @@
     "isActive": true,
     "sortOrder": 4,
     "seoTitle": "Mining Safety Equipment & Quarry PPE Supplier Guide",
-    "seoDescription": "Plan mining PPE for drilling, crushing, haul roads and processing. Compare helmets, respirators, hearing protection, boots and bulk RFQ requirements.",
+    "seoDescription": "Compare surface and underground mining safety equipment, PPE and specialist systems. Review product options, buyer checks and a mining PPE RFQ worksheet.",
     "seoKeywords": "mining safety equipment, mining PPE, quarry safety equipment, mining PPE supplier, mine safety helmet, mining respirator, quarry dust PPE, MSHA silica rule, mining hearing protection, mining safety boots, bulk mining PPE",
     "sections": [
       {
@@ -3707,7 +3707,7 @@
         "title": "Mining Safety Equipment by Task, Exposure and Work Area",
         "enabled": true,
         "data": {
-          "intro": "Mining safety equipment should be selected from documented hazards, measured dust and noise exposure, vehicle routes, work area conditions, and the mine operator's procedures. There is no single PPE kit for every underground mine, surface mine, quarry, haul road, crusher, or processing plant. Start the RFQ with these decision areas:",
+          "intro": "A helmet, a gas detector and an escape device can all appear on an underground mine equipment list, but they solve different problems and need different suppliers. This guide helps buyers specify everyday PPE for the job and flag the lighting, monitoring and emergency systems the mine must source separately.",
           "bullets": [
             "Head protection selected for falling objects, impact, low clearances, cap-lamp mounting, and retention needs",
             "Respiratory protection selected from the contaminant, measured exposure, required assigned protection factor, and applicable respiratory protection program",
@@ -3715,26 +3715,6 @@
             "Hearing protection selected from measured noise exposure, fit, compatibility, and required attenuation",
             "Gloves and footwear matched to cut, impact, vibration, puncture, slip, metatarsal, and chemical hazards",
             "High-visibility apparel and lighting selected for haul roads, mobile equipment, night work, and pedestrian routes"
-          ]
-        }
-      },
-      {
-        "key": "guide-overview",
-        "type": "paragraphs",
-        "title": null,
-        "enabled": true,
-        "data": {
-          "paragraphs": [
-            "Use this page as the commercial hub for mining PPE and quarry safety equipment. It helps mine operators, safety managers, and procurement teams map hazards to specifications, compare documentation, plan sizes and replacement stock, and prepare a role-based bulk RFQ.",
-            "For a field-ready pre-task routine, use the [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task). It separates drilling, blasting, crushing, screening and processing, haul roads, and maintenance without repeating this hub's category and RFQ guidance.",
-            "For noise exposure groups, MSHA Part 62 thresholds, earplug and earmuff choice, dual protection, fit, communication, and purchasing requirements, use the [Mining Hearing Protection Guide](/blog/mining-hearing-protection-guide).",
-            "For respirable crystalline silica, use the [Silica Dust Controls and Respirator Selection for Mining and Quarrying guide](/blog/mining-silica-dust-controls-respirator-selection). It covers exposure monitoring, engineering controls, APF calculations, fit testing, written program elements, and the current judicial stay affecting the 2024 rule's compliance deadlines.",
-            "To compare environment-specific equipment decisions, use the [Open-Pit vs Underground Mining PPE guide](/blog/open-pit-vs-underground-mining-ppe). It separates open-pit weather and traffic, underground lighting and escape needs, compact quarry transitions, and processing-area machinery or reagent work without repeating the task checklist.",
-            "For head protection, use the [Mining Safety Helmet Buyer Guide](/blog/mining-safety-helmet-buyer-guide). It covers helmet evidence, fit, retention, cap-lamp interfaces, accessory compatibility, sample approval, replacement parts and controlled bulk RFQs without treating a lamp bracket as mine-equipment approval.",
-            "For maintenance and material handling, use the [Mining Work Gloves guide](/blog/mining-work-gloves-maintenance-material-handling). It separates mechanical protection, oily grip and chemical contact, then connects model evidence and controlled fit trials to glove RFQ requirements.",
-            "For dust, flying fragments and maintenance splash, use the [Quarry Eye and Face Protection guide](/blog/quarry-eye-face-protection-guide). It connects model performance markings, complete PPE compatibility and controlled sample trials to a task-based eyewear RFQ.",
-            "For visible clothing selection and replacement planning, use the [Mining High-Visibility Workwear guide](/blog/mining-high-visibility-workwear-guide). It separates garment classification, task exposure, seasonal layering, sample approval and cleaning rotation before the bulk RFQ.",
-            "Build category shortlists from [safety helmets](/categories/head-protection/safety-helmets), [half-face respirators](/categories/respiratory-protection/half-face-respirators), [safety goggles](/categories/eye-protection/safety-goggles), [hearing protection](/categories/head-protection/hearing-protection), [cut-resistant gloves](/categories/hand-protection/cut-resistant-gloves), [safety boots](/categories/foot-protection/safety-boots), and [hi-vis workwear](/categories/body-protection/hi-vis-workwear). Product availability does not replace the mine operator's hazard assessment or product-specific document review."
           ]
         }
       },
@@ -3828,6 +3808,83 @@
             "Surface mining and quarry PPE decisions often give more weight to haul-road visibility, weather and UV exposure, long travel distances, loose terrain, mobile-equipment interaction, drilling and blasting zones, and transitions into crushers or workshops. The traffic plan, dust suppression, warning systems and equipment exclusion zones are controls outside the PPE specification.",
             "Underground mining PPE decisions add low-clearance head protection, cap-lamp and accessory compatibility, restricted visibility, ventilation conditions, travel-route rules, ground-control exposure and site-specific escape requirements. Self-rescue, gas detection, communications, ventilation and emergency equipment must be selected under the mine's separate safety and emergency systems, not treated as generic routine PPE.",
             "Both environments still require task and exposure data before specifying products. Compare the full decision factors in the [Open-Pit vs Underground Mining PPE guide](/blog/open-pit-vs-underground-mining-ppe), then use this hub to prepare model, size, document and RFQ requirements without assuming one kit suits every mine or jurisdiction."
+          ]
+        }
+      },
+      {
+        "key": "underground-mining-safety-equipment",
+        "type": "table",
+        "title": "Underground Mining Safety Equipment Checklist",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Equipment",
+            "Decision to make",
+            "Check before ordering",
+            "Who handles it"
+          ],
+          "rows": [
+            [
+              "Helmets and other worn PPE",
+              "Which tasks expose this crew to falling material, dust, noise, poor grip or vehicle traffic?",
+              "The exact model, size range, instructions and how the items fit together.",
+              "LAIFAPPE PPE enquiry; the mine approves the final selection."
+            ],
+            [
+              "Cap lamps and work lighting",
+              "How will crews see their route and work area, and where will the lamp and battery sit?",
+              "Lamp approval where required, charging plan and the fit of lamp, bracket and helmet.",
+              "Mine lighting supplier. A helmet mount is not a lamp approval."
+            ],
+            [
+              "Gas detection",
+              "Which gases or oxygen conditions must be monitored, and where?",
+              "Sensor range, alarm settings, calibration, bump testing and applicable approvals.",
+              "Mine ventilation team and gas-detection supplier."
+            ],
+            [
+              "Self-rescuers and escape respirators",
+              "What does the mine emergency plan require each worker to carry or reach?",
+              "Approved configuration where required, service life, access, inspection and training.",
+              "Emergency-equipment supplier; order separately from routine dust respirators."
+            ],
+            [
+              "Communications and tracking",
+              "Will crews remain reachable along travelways, at the face and during an evacuation?",
+              "Coverage tests, power supply, maintenance and compatibility with worn PPE.",
+              "Mine communications team and system provider."
+            ],
+            [
+              "Vehicle proximity controls",
+              "Where can pedestrians and machines meet, and how will warnings be acted on?",
+              "Machine compatibility, site trial and the traffic plan.",
+              "Mine operator, equipment manufacturer and system provider."
+            ],
+            [
+              "Refuge and rescue equipment",
+              "Where can people shelter or exit if their normal route is blocked?",
+              "Capacity, location, inspection schedule and rescue training.",
+              "Mine emergency team and refuge or rescue supplier."
+            ],
+            [
+              "Ventilation, dust and noise controls",
+              "Which hazards can the mine reduce before relying on PPE?",
+              "Control performance, exposure results and maintenance ownership.",
+              "Mine engineers and specialist contractors."
+            ]
+          ]
+        }
+      },
+      {
+        "key": "mining-supply-scope",
+        "type": "paragraphs",
+        "title": "What to Include in a LAIFAPPE Mining PPE Enquiry",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "LAIFAPPE can discuss [safety helmets](/categories/head-protection/safety-helmets), [safety goggles](/categories/eye-protection/safety-goggles), [hearing protection](/categories/head-protection/hearing-protection) and [work gloves](/categories/hand-protection/cut-resistant-gloves) for the tasks on your list. [Safety footwear](/categories/foot-protection/safety-boots), [hi-vis workwear](/categories/body-protection/hi-vis-workwear) and [half-face respirators](/categories/respiratory-protection/half-face-respirators) need the same model-by-model check.",
+            "Put gas detectors, lamps, self-rescuers, tracking, refuge and ventilation on a separate specialist order. Their interfaces still matter: a lamp and earmuffs must fit the selected helmet, and a respirator cannot obstruct emergency equipment.",
+            "A bump cap cannot replace a safety helmet where falling objects are a hazard. A lamp bracket on a helmet does not prove that the lamp or the assembled setup is approved for an underground mine."
           ]
         }
       },
@@ -4069,6 +4126,36 @@
         }
       },
       {
+        "key": "mining-product-review",
+        "type": "table",
+        "title": "Product Shortlist: What to Verify Before Ordering",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Product page",
+            "Buyer question",
+            "Ask for before approval"
+          ],
+          "rows": [
+            [
+              "[Mining safety helmet with headlamp mount](/products/mining-safety-helmet-headlamp-mount)",
+              "Will this helmet, the chosen lamp, eyewear and earmuffs fit the same worker?",
+              "Helmet model documents, separate lamp approval where required, and a sample of the complete setup. A mount alone proves none of these."
+            ],
+            [
+              "[HPPE nitrile palm-coated work gloves](/products/hppe-cut-resistant-nitrile-palm-coated-anti-slip-work)",
+              "Can workers handle the actual material and controls with these gloves on?",
+              "Exact model ratings, label photos and size samples. Check chemical or impact protection separately if the task requires it."
+            ],
+            [
+              "[S3 SR antistatic safety shoes](/products/s3-sr-slip-resistant-steel-toe-antistatic-safety-shoes)",
+              "Does this sole and fit work on the mine's ground conditions?",
+              "Model marking, standard edition and size samples. Antistatic footwear is not electrical insulating footwear."
+            ]
+          ]
+        }
+      },
+      {
         "key": "recommended-ppe",
         "type": "paragraphs",
         "title": "Procurement Guidance for Mining PPE",
@@ -4127,6 +4214,18 @@
         }
       },
       {
+        "key": "mining-rfq-worksheet",
+        "type": "paragraphs",
+        "title": "Prepare a Mining PPE RFQ and Sample Review",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Use the [mining PPE RFQ worksheet](/downloads/mining-ppe-rfq-worksheet.txt) to record each product, quantity and size split. It keeps buyer requirements, sample decisions and supplier answers in separate fields.",
+            "Attach the model and label photos you receive, note any missing documents, and record what happened in the fit trial. Leave MOQ, lead time and delivery dates blank until the supplier confirms them. Estimate quantities with the [PPE calculator](/tools/ppe-calculator), then [send the brief](/quote)."
+          ]
+        }
+      },
+      {
         "key": "safety-standards",
         "type": "list",
         "title": "Mining Safety Standards and Regulations",
@@ -4174,6 +4273,19 @@
         }
       },
       {
+        "key": "guide-overview",
+        "type": "paragraphs",
+        "title": "Mining PPE Guides by Buying Decision",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Need a task list first? Use the [Mining PPE Checklist](/blog/mining-ppe-checklist-by-task). The [open-pit and underground comparison](/blog/open-pit-vs-underground-mining-ppe) shows what changes between those work areas.",
+            "For worn equipment, see the [helmet](/blog/mining-safety-helmet-buyer-guide), [boot](/blog/mining-quarry-safety-boots-guide), [work-glove](/blog/mining-work-gloves-maintenance-material-handling) and [eye and face protection](/blog/quarry-eye-face-protection-guide) guides.",
+            "Noise and airborne hazards need their own exposure work. The [hearing](/blog/mining-hearing-protection-guide) and [silica and respirator](/blog/mining-silica-dust-controls-respirator-selection) guides explain those decisions. The [hi-vis workwear guide](/blog/mining-high-visibility-workwear-guide) covers visibility around vehicles."
+          ]
+        }
+      },
+      {
         "key": "mining-selection-sources",
         "type": "paragraphs",
         "title": "Primary Sources for Mining PPE and Safety Decisions",
@@ -4184,7 +4296,8 @@
             "For mine noise programs, consult the current [30 CFR Part 62 occupational noise exposure requirements](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-M/part-62). Use the mine's exposure measurements and program decisions when evaluating hearing-protection fit, attenuation, compatibility and communication needs.",
             "For U.S. respirable crystalline silica requirements, use the current [30 CFR Part 60 text](https://www.ecfr.gov/current/title-30/chapter-I/subchapter-M/part-60) together with [MSHA's silica rulemaking resources](https://www.msha.gov/regulations/rulemaking/silica). Confirm the rule's current scope, effective or compliance dates and mine-specific obligations directly from MSHA before changing a program or product specification.",
             "Use [NIOSH guidance on machinery and struck-by injuries in mining](https://www.cdc.gov/niosh/mining/topics/machinery-struck-by-injuries.html) to inform visibility and mobile-equipment risk discussions. Hi-vis apparel is only one possible worker-level measure and does not replace traffic plans, separation, equipment visibility aids or other mine controls.",
-            "Use [NIOSH respiratory protection resources for mine workers](https://www.cdc.gov/niosh/mining/tools/respiratory-protection.html) when reviewing respirator selection and approved configurations. The mine's contaminant assessment, measured exposure, required protection, medical evaluation, fit testing, training and written program determine whether a specific respirator is appropriate."
+            "Use [NIOSH respiratory protection resources for mine workers](https://www.cdc.gov/niosh/mining/tools/respiratory-protection.html) when reviewing respirator selection and approved configurations. The mine's contaminant assessment, measured exposure, required protection, medical evaluation, fit testing, training and written program determine whether a specific respirator is appropriate.",
+            "For escape equipment, [NIOSH mine-worker respiratory resources](https://www.cdc.gov/niosh/mining/tools/respiratory-protection.html) distinguish self-rescuers from routine respirators. The [3M bump-cap datasheet](https://multimedia.3m.com/mws/media/1731348O/3m-first-base-bump-cap-technical-datasheet-english-online-version.pdf) explains why bump caps do not replace safety helmets for falling-object hazards."
           ]
         }
       },
@@ -4195,6 +4308,14 @@
         "enabled": true,
         "data": {
           "items": [
+            {
+              "q": "What is included in underground mining safety equipment?",
+              "a": "An underground list may cover helmets and other worn PPE, cap lamps, gas detection, communications, tracking, escape devices and refuge equipment. What belongs on your list depends on the mine and the job; the checklist above shows which items need a separate specialist order."
+            },
+            {
+              "q": "Does LAIFAPPE supply every item in the underground equipment checklist?",
+              "a": "We handle PPE enquiries. Lamps, gas detection, self-rescuers, tracking, refuge and ventilation need the mine team and specialist suppliers. Send us the worn-PPE requirements and the interfaces those systems create, such as a lamp mounting on a helmet."
+            },
             {
               "a": "The required PPE depends on the mine type, task, measured exposures, equipment routes, emergency plan, and applicable rules. A role specification may address head protection and cap-lamp compatibility, eye and hearing protection, gloves, footwear, hi-vis apparel, respiratory protection, and approved escape equipment where required; it should not begin with one universal underground kit.",
               "q": "What PPE is required for underground mining operations?"

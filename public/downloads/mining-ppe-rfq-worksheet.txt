@@ -1,0 +1,96 @@
+LAIFAPPE | MINING PPE RFQ AND SAMPLE REVIEW WORKSHEET
+Revision: 2026-09-22
+Guide: https://www.laifappe.com/solutions/ppe-safety-equipment-for-mining-quarrying
+Quote: https://www.laifappe.com/quote
+
+Save or copy this form. Repeat section B for every PPE line item.
+Blank fields are not confirmations of product suitability, stock or compliance.
+This worksheet supports procurement; it does not replace the mine's assessment,
+exposure programme, emergency plan or model-specific instructions.
+
+A. SITE AND ORDER BRIEF — BUYER TO COMPLETE
+Company / contact:
+Enquiry reference / date:
+Destination country / delivery location:
+Mine type (surface / underground / quarry / processing; coal / metal / nonmetal):
+Work areas / roles / operating tasks:
+Hazards and exposure results relevant to the PPE specification:
+Applicable jurisdiction / site rules / required standard editions:
+Site reviewer and approval responsibility:
+Required arrival date / shipment splits:
+Document deadline / sample decision date:
+
+B. PPE LINE ITEM — REPEAT AS NEEDED
+Line number / product category:
+Buyer-required features and limitations:
+Proposed manufacturer / model / replacement SKU:
+Quantity / unit:
+Size-by-size quantity breakdown:
+Spare and replacement quantity (avoid counting twice):
+Required standard / edition / performance marking:
+Existing equipment that must remain compatible:
+Required model documents and label photos:
+Required sample quantities and sizes:
+Branding location / method (subject to model instructions):
+Packaging / unit and carton identification:
+
+C. SPECIALIST SYSTEM INTERFACES — SEPARATE PROCUREMENT
+The items below are not confirmed LAIFAPPE supply items or routine PPE bundles.
+Record the responsible specialist provider and mine reviewer for each.
+
+Cap lamp / charger / helmet mount / cable and battery interfaces:
+Gas detection / atmospheric monitoring / calibration arrangements:
+Escape respirator or self-rescuer / access / training / inspection:
+Communications / tracking / radio and hearing-protection interface:
+Vehicle proximity systems / traffic controls:
+Refuge / rescue / ventilation / other engineered systems:
+Applicable equipment approval or permissibility to verify:
+Responsible provider / mine reviewer:
+
+D. DOCUMENT REGISTER — COMPLETE FOR EACH EXACT MODEL
+Document or photo requested:
+Received filename / reference / date / issuer:
+Model and marking match checked by:
+Approval verified with issuing body where applicable:
+Instructions and use limitations reviewed:
+Status (pending / accepted / rejected):
+Missing evidence / action owner / due date:
+
+E. CONTROLLED SAMPLE REVIEW — SITE TO DEFINE AND APPROVE
+Sample model / size / batch or other identifier:
+Review conditions / role / reviewer / date:
+Fit, retention, movement, grip and dexterity observations:
+Helmet / lamp / eyewear / hearing / respirator interference checks:
+Visibility, communication and access to emergency equipment checks:
+Required model-specific performance evidence reviewed:
+Acceptance criteria / observations / decision:
+Approved configuration and permitted substitutions:
+Cleaning, inspection, rejection and replacement instructions:
+Do not expose a wearer to uncontrolled hazards to test a product. Sample fit
+checks do not replace certification, exposure assessment or required fit testing.
+
+F. SUPPLIER CONFIRMATION — LEAVE BLANK UNTIL QUOTED
+Confirmed manufacturer / model / size availability:
+Confirmed quantity / unit / MOQ:
+Currency / unit price / quotation validity:
+Sample price / sample dispatch estimate:
+Production lead time and event that starts it:
+Dispatch date / transport estimate / delivery terms:
+Freight / duties / taxes and exclusions:
+Documents available / documents unavailable or pending:
+Packaging, marking and branding agreement:
+Replacement SKU and repeat-order arrangements:
+Supplier name / reference / confirmation date:
+
+G. BUYER RELEASE
+Outstanding document or compatibility issues:
+Sample approval reference:
+Approved quantities / sizes / models:
+Authorised purchaser / site reviewer / release date:
+
+Important distinctions:
+- Bump caps do not replace safety helmets for falling-object protection.
+- A helmet lamp mount is not lamp approval or assembled-system certification.
+- Antistatic footwear is not electrical insulating footwear.
+- Routine dust respirators do not replace mine-specific escape equipment.
+- Equipment requirements depend on the mine, task and jurisdiction.
