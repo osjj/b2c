@@ -165,6 +165,8 @@ If an operation uses the Part 60 framework as its readiness specification, an N9
 - Work rate, temperature, communication, eyewear, helmet, and hearing-protection compatibility
 - Cleaning, storage, filter replacement, battery, airflow, and spare-parts plan
 
+For crushing and screening crews, check goggles and face shields against the selected respirator as a worn combination. The [Quarry Eye and Face Protection guide](/blog/quarry-eye-face-protection-guide) covers fragment, dust and splash exposure, fit, and fogging checks.
+
 Use the [respiratory protection category](/categories/respiratory-protection) and [half-face respirator category](/categories/respiratory-protection/half-face-respirators) only to build an initial supplier shortlist. Require approval documents and program review before accepting any model for mine use.
 
 ## Fit Testing, Seal Checks, and Facial Hair

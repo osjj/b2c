@@ -74,6 +74,8 @@ For the footwear-specific workflow - from toe, metatarsal, and puncture protecti
 
 Underground PPE must work in a low-light, restricted environment where roof or rib conditions, equipment clearances, wet ground, ventilation, contaminants, communication, and emergency egress influence the specification. Small compatibility failures - a lamp bracket that loosens retention, earmuffs that block a radio, eyewear that fogs, or a self-rescuer that cannot be reached - can matter more underground than product appearance.
 
+For the wider equipment list, use the [underground mining safety equipment checklist](/solutions/ppe-safety-equipment-for-mining-quarrying) to separate worn PPE from lighting, gas detection, escape equipment and other mine systems.
+
 ### Head protection, lamps, and visibility
 
 - Specify the helmet, suspension, retention, cap-lamp bracket, cable routing, battery location, hearing protection, eyewear, and communication equipment as one wearable system.
