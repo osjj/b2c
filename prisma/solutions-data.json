@@ -2260,13 +2260,53 @@
       {
         "key": "recommended-ppe",
         "type": "paragraphs",
-        "title": "Choose Models Before Finalizing the Kit",
+        "title": "Shortlist Actual Models Before Finalizing the Kit",
         "enabled": true,
         "data": {
           "mode": "manual",
           "paragraphs": [
-            "Use the product categories below to prepare a shortlist. Category labels and product photos do not establish that a model meets your site requirements. Confirm the exact model, supporting documents, available sizes and sample before issuing an order.",
-            "Keep a separate specification line for each approved model and size. Confirm current availability, packing arrangements and lead time with the supplier rather than assuming every category is supplied as one standard kit."
+            "The linked catalog models below are candidates for a warehouse trial, not a pre-approved kit. The task-to-model table explains where each could fit. Confirm the exact model, supporting documents, available sizes, current availability and sample before issuing an order.",
+            "Keep a separate specification line for each approved model and size. Request current minimum order, packing arrangement and lead time in the quotation; do not assume a catalog model or a general product photo proves suitability for every warehouse."
+          ]
+        }
+      },
+      {
+        "key": "warehouse-role-model-shortlist",
+        "type": "table",
+        "title": "Warehouse Tasks and Catalog Models to Trial",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Task and team",
+            "Catalog model to evaluate",
+            "Why it is on the shortlist",
+            "Approval check before an RFQ"
+          ],
+          "rows": [
+            [
+              "Carton, pallet and approved cutter handling",
+              "[CR-PU-GRY cut-resistant PU-coated gloves](/products/cut-resistant-pu-coated-work-gloves)",
+              "Palm-coated HPPE composite glove; the catalog lists sizes S-2XL and an EN 388:2016 4X42D marking.",
+              "Trial grip, scanner use and dexterity on the actual task. Request model-matched performance evidence; cut-resistant does not mean cut-proof."
+            ],
+            [
+              "Receiving, picking and dock footwear",
+              "[LD-005-BLK cowhide steel-toe shoes](/products/cowhide-steel-toe-puncture-resistant-safety-shoes)",
+              "Low-cut cowhide model with a steel toe and steel midsole; catalog size range EU 35-47 and listed minimum order of 100 pairs.",
+              "Trial fit and floor grip with work socks. Confirm the required standard and exact-model documents; the product listing alone does not prove slip performance."
+            ],
+            [
+              "Vehicle-facing receiving and loading zones",
+              "[R-001 reflective zip-front vest](/products/mens-reflective-safety-work-vest-v-neck-zipper-front)",
+              "A 120 g polyester, zip-front reflective vest shown in the catalog as a model candidate.",
+              "Confirm the site's visibility class, garment markings, inclusive size range and current availability. This men's cut may not fit every wearer."
+            ],
+            [
+              "Packaging debris and strapping tasks, if assessed",
+              "[EY02 clear PC safety glasses](/products/en166f-anti-fog-anti-scratch-dustproof-safety-glasses)",
+              "Clear polycarbonate eyewear listed as anti-fog and anti-scratch; the catalog states EN 166F.",
+              "Check actual lens markings, model documents, coverage and fit with other issued PPE; confirm current availability."
+            ]
           ]
         }
       },
@@ -2371,6 +2411,101 @@
         }
       },
       {
+        "key": "africa-warehouse-planning-example",
+        "type": "paragraphs",
+        "title": "African Warehouse Supporting a UN Project: PPE Procurement Plan",
+        "enabled": true,
+        "data": {
+          "paragraphs": [
+            "Project background provided by Laifappe: PPE procurement for an African warehouse supporting a United Nations project. Customer identity and original order figures are not disclosed here. The 100-person staffing model, product allocation, quantities and RFQ steps below are proposed planning details created for this guide, not a transcription of the shipped order. No UN endorsement is implied.",
+            "For the proposed plan, allocate 60 people to picking and packing, 25 to receiving and putaway, and 15 to the loading dock. The 40 receiving and dock staff are assumed to work near vehicle routes. Plan footwear and handling gloves for all 100 workers, visibility garments for those 40, and eyewear for 25 people handling packaging debris or straps, subject to the project's site assessment."
+          ]
+        }
+      },
+      {
+        "key": "africa-warehouse-quantity-example",
+        "type": "table",
+        "title": "Proposed Initial Issue and RFQ Quantities",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Candidate PPE line",
+            "Initial issue calculation",
+            "Planning allowance",
+            "Proposed RFQ quantity",
+            "Final check"
+          ],
+          "rows": [
+            [
+              "[LD-005-BLK footwear](/products/cowhide-steel-toe-puncture-resistant-safety-shoes)",
+              "100 wearers x 1 pair = 100 pairs",
+              "5 pairs for new starters or fit exchanges",
+              "105 pairs",
+              "Allocate EU sizes after a sample fit trial; confirm floor performance, model documents and the listed 100-pair minimum."
+            ],
+            [
+              "[CR-PU-GRY handling gloves](/products/cut-resistant-pu-coated-work-gloves)",
+              "100 wearers x 2 pairs = 200 pairs",
+              "30 pairs for the first issue period, pending site usage data",
+              "230 pairs",
+              "Split S-2XL by trial results. Replace the planning allowance with measured wear and replacement records."
+            ],
+            [
+              "[R-001 reflective vest](/products/mens-reflective-safety-work-vest-v-neck-zipper-front)",
+              "40 vehicle-zone wearers x 1 vest = 40 pieces",
+              "5 pieces for fit exchanges or new starters",
+              "45 pieces",
+              "Confirm the required visibility class, fit for every wearer and supply availability; specify another approved cut if needed."
+            ],
+            [
+              "[EY02 safety glasses](/products/en166f-anti-fog-anti-scratch-dustproof-safety-glasses)",
+              "25 assessed wearers x 1 pair = 25 pairs",
+              "5 pairs for replacement or new starters",
+              "30 pairs",
+              "Only include for assessed tasks. Confirm markings, documents, fit and supply availability."
+            ]
+          ]
+        }
+      },
+      {
+        "key": "africa-warehouse-rfq-workflow",
+        "type": "group",
+        "title": "Proposed RFQ Process for This Project",
+        "enabled": true,
+        "data": {
+          "groups": [
+            {
+              "title": "1. Separate roles and hazards",
+              "description": "Map picking, receiving and loading zones, then record which workers actually need each protection type.",
+              "items": [
+                "Keep the vehicle-zone and packaging-debris assumptions in the assessment record; do not issue the same kit automatically to all 100 people."
+              ]
+            },
+            {
+              "title": "2. Trial the proposed models",
+              "description": "Request samples in representative glove and footwear sizes, plus visibility and eyewear options.",
+              "items": [
+                "Check carton grip, scanner use, shoe fit and floor behavior, vest fit over normal workwear, and eyewear coverage during the real tasks."
+              ]
+            },
+            {
+              "title": "3. Approve evidence and issue quantities",
+              "description": "Match the proposed model and markings to the destination's required documents, then record approved sizes and units.",
+              "items": [
+                "Use 105 shoe pairs, 230 glove pairs, 45 vests and 30 eyewear pairs as proposed RFQ starting quantities; revise after fit trials, usable-stock counts and supplier minimums."
+              ]
+            },
+            {
+              "title": "4. Request the quote and control repeat orders",
+              "description": "Send model-by-size quantities, packing labels, destination and requested date; ask the supplier to confirm price, availability and lead time.",
+              "items": [
+                "Record approved substitutes and actual issue or replacement rates before replenishment. Do not treat this planning model as a record of the delivered order."
+              ]
+            }
+          ]
+        }
+      },
+      {
         "key": "safety-standards",
         "type": "list",
         "title": "Documents to Check Before Bulk Approval",
@@ -2458,7 +2593,18 @@
         }
       }
     ],
-    "productLinks": []
+    "productLinks": [
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmru2iqh00005umtg30pq73c7",
+        "sort": 0
+      },
+      {
+        "blockKey": "recommended-ppe",
+        "productId": "cmsipw0pa000rumr084irqwwi",
+        "sort": 1
+      }
+    ]
   },
   {
     "slug": "ppe-for-solar-panel-installation-teams",
