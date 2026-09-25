@@ -6,6 +6,12 @@ export interface ToolRelatedGuide {
 }
 
 const GUIDE_CATALOG = {
+  'mining-maintenance-welding-cutting-grinding-ppe': {
+    href: '/blog/mining-maintenance-welding-cutting-grinding-ppe',
+    title: 'Mine Maintenance Welding, Cutting and Grinding PPE',
+    description: 'Allocate task-specific equipment and spares across handling, grinding, welding and thermal cutting crews.',
+    eyebrow: 'Mining maintenance',
+  },
   'mining-high-visibility-workwear-guide': {
     href: '/blog/mining-high-visibility-workwear-guide',
     title: 'Mining High-Visibility Workwear Guide',
@@ -192,6 +198,7 @@ export const TOOL_RELATED_GUIDES = {
     'mining-safety-helmet-buyer-guide',
   ]),
   'ppe-calculator': pickGuides([
+    'mining-maintenance-welding-cutting-grinding-ppe',
     'mining-high-visibility-workwear-guide',
     'quarry-eye-face-protection-guide',
     'mining-work-gloves-maintenance-material-handling',

@@ -41,6 +41,8 @@ Describe the actual contact and handling method before comparing samples. Simila
 
 Keep the completed table with the work order or purchasing brief. For the other equipment issued to each role, use the [Mining PPE Checklist by Task](/blog/mining-ppe-checklist-by-task).
 
+When a repair includes hot work, use the [mine maintenance welding, cutting and grinding PPE guide](/blog/mining-maintenance-welding-cutting-grinding-ppe) to separate handling gloves, welding gloves and hot-contact requirements across the task sequence.
+
 ## Resolve Machinery and Stored-Energy Hazards First
 
 A glove order does not authorize access to a conveyor nip point, rotating shaft, unstable load or pressurized system. Stop the selection exercise if the planned job still exposes hands to uncontrolled movement. The responsible site team must establish the safe method, including the applicable isolation and verification steps.

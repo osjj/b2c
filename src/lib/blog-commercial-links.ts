@@ -15,6 +15,23 @@ export interface BlogCommercialLinks {
 }
 
 const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
+  'mining-maintenance-welding-cutting-grinding-ppe': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE solution',
+    },
+    categories: [
+      { href: '/categories/hand-protection', label: 'Hand protection options' },
+      { href: '/categories/eye-protection', label: 'Primary eye protection' },
+      { href: '/categories/body-protection', label: 'Protective clothing options' },
+    ],
+    products: [],
+    cta: { href: '/quote', label: 'Request maintenance PPE options and model documents' },
+    resources: [
+      { href: '/blog/mining-ppe-checklist-by-task', label: 'Mining task checklist' },
+      { href: '/downloads/mining-ppe-rfq-worksheet.txt', label: 'Mining PPE RFQ worksheet' },
+    ],
+  },
   'mining-high-visibility-workwear-guide': {
     solution: {
       href: '/solutions/ppe-safety-equipment-for-mining-quarrying',

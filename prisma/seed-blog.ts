@@ -76,6 +76,27 @@ interface BlogSeedConfig {
 
 const BLOG_POSTS: BlogSeedConfig[] = [
   {
+    slug: 'mining-maintenance-welding-cutting-grinding-ppe',
+    markdownPath: join(process.cwd(), 'mining-maintenance-welding-cutting-grinding-ppe.md'),
+    generatedImagesPath: join(__dirname, 'blog-images.mining-maintenance-welding-cutting-grinding-ppe.generated.json'),
+    title: 'Welding, Cutting and Grinding PPE for Mine and Quarry Maintenance',
+    excerpt: 'Plan PPE changes through mine repairs, from handling and grinding to welding, thermal cutting and hot-part handling, with sample and RFQ checks.',
+    seoTitle: 'Mining Maintenance PPE: Welding, Cutting & Grinding',
+    seoDescription: 'Plan mining maintenance PPE for welding, cutting and grinding. Compare task changes, eye protection, gloves, clothing, respirator checks and bulk RFQ details.',
+    seoKeywords: 'mining maintenance PPE, quarry welding PPE, welding cutting grinding PPE, mine maintenance welding gloves, grinding face protection, mining hot work PPE',
+    heroFallback: 'https://shop.laifappe.com/solutions/ppe-for-metal-fabrication-and-welding-workshops-cover-1772011438702.webp',
+    sectionImages: {
+      'Separate Welding Gloves From Handling and Hot-Part Gloves': {
+        url: '/blog/mining-work-gloves-maintenance-material-handling/compare-mechanical-protection-and-glove-construction.webp',
+        caption: 'Mechanical glove constructions illustrate the handling comparison; welding and hot-contact suitability require separate model evidence.',
+      },
+      'Trial the Complete Setup and the Task Changeover': {
+        url: '/blog/quarry-eye-face-protection-guide/check-the-complete-helmet-hearing-and-respirator-setup.webp',
+        caption: 'Review eyewear, head, hearing and respiratory equipment together, then assess the additional welding or grinding face protection.',
+      },
+    },
+  },
+  {
     slug: 'construction-safety-footwear-guide',
     markdownPath: join(process.cwd(), 'construction-safety-footwear-guide.md'),
     generatedImagesPath: join(__dirname, 'blog-images.generated.json'),

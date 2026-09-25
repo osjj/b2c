@@ -176,6 +176,8 @@ MSHA's [Powered Haulage Equipment Safety Guidance](https://www.msha.gov/sites/de
 
 ## Maintenance PPE Checklist
 
+For repairs that move between grinding, welding, thermal cutting and slag removal, use the [mine maintenance welding, cutting and grinding PPE guide](/blog/mining-maintenance-welding-cutting-grinding-ppe) to plan equipment changes and sample checks across the job.
+
 For hand-protection specifications, use the [Mining Work Gloves for Maintenance and Material Handling guide](/blog/mining-work-gloves-maintenance-material-handling). It separates mechanical handling, oily grip, chemical contact, controlled fit trials and supplier evidence.
 
 Maintenance includes inspections, lubrication, belt work, liner changes, welding, grinding, electrical troubleshooting, tyre or wheel work, hydraulic repair, elevated access, confined spaces, and chemical cleaning. Do not start with a generic mechanic kit; start with the work scope and every energy source.

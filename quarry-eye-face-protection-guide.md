@@ -97,6 +97,8 @@ For cleaners, lubricants or process liquids, obtain the product identity and saf
 
 ## Check the Complete Helmet, Hearing and Respirator Setup
 
+For maintenance that switches between abrasive work and hot work, the [mine welding, cutting and grinding PPE guide](/blog/mining-maintenance-welding-cutting-grinding-ppe) covers filter modes, primary eyewear and the changeover to task-specific face protection.
+
 Trial the actual combination, not the eye protector alone. Record the helmet, visor carrier, eyewear, earmuffs, respiratory equipment and prescription arrangement as a configuration that can be reordered.
 
 NIOSH's [respirator fit-testing guidance](https://www.cdc.gov/niosh/ppe/respirators/fit-testing.html) explains the importance of a properly fitting tight-fitting facepiece. An eyewear comfort trial does not replace required respirator fit testing. Resolve any interference through the respiratory-protection program and the equipment instructions.
