@@ -120,7 +120,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       'OSHA Safety Footwear Requirements for Construction': {
         url: 'https://images.unsplash.com/photo-1590496793929-36417d3117de?w=1200&q=80',
         caption:
-          'OSHA 29 CFR 1926.95/96 mandates protective footwear wherever falling objects, punctures or electrical hazards are possible.',
+          'Check OSHA construction requirements separately from the standard and protective properties specified for the offered footwear.',
       },
       'Understanding ASTM F2413: The US Safety Footwear Standard': {
         url: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=1200&q=80',
@@ -130,7 +130,7 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       'Understanding EN ISO 20345: The European Safety Footwear Standard': {
         url: 'https://images.unsplash.com/photo-1521334884684-d80222895322?w=1200&q=80',
         caption:
-          'EN ISO 20345 uses S1–S5 classes to bundle common feature sets for European safety boots.',
+          'Check the EN ISO 20345 edition, category, penetration-resistance suffix, and additional markings on the exact offered model.',
       },
       'Steel Toe vs Composite Toe vs Aluminium Toe: Which to Choose': {
         url: 'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=1200&q=80',

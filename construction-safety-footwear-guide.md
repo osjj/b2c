@@ -76,31 +76,29 @@ Cement is alkaline and causes severe skin burns on prolonged contact — a hazar
 
 ## OSHA Safety Footwear Requirements for Construction
 
-OSHA's construction footwear requirements are set out in **29 CFR 1926.95** (general PPE criteria) and **29 CFR 1926.96** (occupational foot protection). Under these standards:
+For construction work, distinguish the OSHA rule from the performance standard used in a footwear purchase specification:
 
-- Employers must ensure that workers wear protective footwear wherever there is a danger of foot injuries from falling or rolling objects, objects piercing the sole, or electrical hazards
-- Protective footwear must comply with ASTM F2412 (test methods) and ASTM F2413 (performance requirements), or equivalent consensus standards
-- Under the January 2025 update to 29 CFR 1926.95(c), all PPE — including safety footwear — must **properly fit** each worker
+- [29 CFR 1926.95](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95) requires appropriate PPE to be provided, used, and maintained where necessary for the hazards. Its current selection provisions require safe design and construction for the work and **proper fit** for each affected employee.
+- [29 CFR 1926.96](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.96) still names **ANSI Z41.1-1967** in its safety-toe footwear requirement. It does not literally specify ASTM F2413-24.
+- ASTM F2413 is a modern protective-footwear performance specification used in purchasing, with ASTM F2412 providing test methods. Record the edition and required protective properties, and have the responsible safety professional confirm the applicable construction compliance basis. Do not treat a supplier's ASTM claim as automatic proof of compliance for every jobsite.
+
+The separate general-industry rule, [29 CFR 1910.136](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.136), expressly lists ASTM F2412-2005/F2413-2005 and specified ANSI editions, with an alternative for footwear demonstrated to be at least as effective. Do not quote that provision as the wording of the construction rule.
 
 A compliant footwear program does not stop at purchasing a certified model. Employers still need to select footwear for the actual foot and electrical hazards, provide sizes that properly fit, maintain the footwear, and enforce use. Because OSHA penalty amounts and policy-based minimums can change, buyers and safety teams should verify the [current OSHA penalty schedule](https://www.osha.gov/penalties) instead of relying on an older fixed range.
+
+For US construction, the payment rule includes an exception for non-specialty safety-toe footwear that the employer allows workers to wear off the jobsite. Check [1926.95(d)](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95) rather than assuming every footwear purchase has the same payment obligation.
 
 ---
 
 ## Understanding ASTM F2413: The US Safety Footwear Standard
 
-**ASTM F2413** is the performance specification for protective footwear in the United States. It works alongside **ASTM F2412**, which sets the test methods. When a boot is labelled ASTM F2413, it means it has been independently tested to meet specific protective performance thresholds.
+**ASTM F2413** is a performance specification for protective safety-toe footwear. It works alongside **ASTM F2412**, which sets the test methods. Check the complete footwear marking against model-specific test documentation; the standard name alone does not establish every optional protective property or prove independent certification.
 
-The most current version is **ASTM F2413-24** (2024 revision), which updated testing methods and added slip resistance requirements. Boots marked F2413-18 (2018 version) remain valid and widely available.
+The ASTM catalog lists **ASTM F2413-24** as the active edition. Check the edition on the offered model rather than assuming every shoe uses the latest one. For a US slip-resistance claim, request the applicable **ASTM F3445** performance evidence using **ASTM F2913** testing; do not infer slip performance from an F2413 toe-protection marking alone.
 
 ### How to read an ASTM F2413 label
 
-A compliant boot carries a label inside the shaft reading something like:
-
-```
-ASTM F2413-24  M  I/75  C/75  PR  EH
-```
-
-Each element means:
+Read the manufacturer's actual label and report for the stated edition. The terms below explain common purchasing shorthand; they are not a label template to copy onto footwear, and marking formats can differ by edition.
 
 **ASTM F2413-24** — the standard version the boot was tested to
 
@@ -130,23 +128,25 @@ All EN ISO 20345 footwear shares a mandatory baseline: a toe cap that resists a 
 
 ### EN ISO 20345 S-class ratings explained
 
-**SB (Safety Basic)** — toe cap only, no additional requirements. Open heel permitted. The bare minimum and generally insufficient for outdoor construction.
+**SB (Safety Basic)** — the basic safety-footwear requirements, including protective toe performance. It does not mean only a toe cap has been assessed. Check additional properties against the actual task.
 
-**S1** — adds: closed heel, antistatic properties, fuel oil resistant outsole, energy absorption in the heel seat. Suitable for dry indoor environments only.
+**S1** — adds a closed heel region, antistatic properties, and heel energy absorption. It does not by itself specify a water-resistant upper or penetration resistance. Under the 2022 edition, fuel-oil resistance is an optional **FO** claim, not a default S1 feature.
 
-**S1P** — adds puncture-resistant midsole (steel plate, resistance ≥ 1,100 N) to S1 features. Suitable for light construction but without water resistance.
+**S1P / S1PL / S1PS** — add penetration resistance to S1. Under the 2022 edition, **P** identifies a metallic insert; **PL** and **PS** identify non-metallic inserts assessed with 4.5 mm and 3 mm test nails respectively. These codes are not interchangeable and do not by themselves add water resistance.
 
 **S2** — adds water-resistant upper (WPA marking under 2022 standard) to S1 features. Suitable for damp or intermittently wet conditions.
 
-**S3** — the recommended minimum for most outdoor construction in Europe. Combines S2 features with: puncture-resistant midsole and a cleated outsole for grip on uneven, muddy, or wet terrain. This is the most widely specified rating for general construction and civil engineering.
+**S3 / S3L / S3S** — combine S2 features with penetration resistance and a cleated outsole. The suffix distinguishes P, PL, or PS insert performance. These can be useful starting points for outdoor construction specifications, but the selected category and additional markings must match the site hazards.
 
 **S4** — all-rubber or all-polymer boot (wellington boot construction), inherently waterproof. Equivalent to S1 features but fully waterproof. For agriculture and extremely wet environments.
 
-**S5** — adds puncture-resistant midsole and cleated outsole to S4. The highest rating for all-rubber footwear.
+**S5 / S5L / S5S** — add penetration resistance and a cleated outsole to S4. Check the exact suffix and any additional properties; a category is not a universal ranking of protection against every hazard.
+
+**S6 / S7 / S7L / S7S** — add whole-footwear water resistance to the corresponding S2 or S3-family category. Distinguish this from the water-resistant upper alone. See the [2022 marking changes explained by Safety Jogger](https://www.safetyjogger.com/en/cd/technical/iso_20345_2022) when comparing old and new labels.
 
 ### Key additional EN ISO 20345 markings for construction
 
-**HI** — heat insulation: outsole protects against contact with surfaces up to 150°C. Essential for road surfacing workers, those working near hot concrete pours, and hot-works environments.
+**HI** — heat insulation of the sole complex under specified test conditions. Distinguish it from **HRO**, resistance of the outsole to hot contact. A laboratory test temperature is not a safe working-temperature limit; check both properties and the manufacturer's limitations for hot-work exposure.
 
 **CI** — cold insulation: insulation tested at -17°C. Essential for winter construction in northern climates, cold store work, and high-altitude sites.
 
@@ -154,7 +154,9 @@ All EN ISO 20345 footwear shares a mandatory baseline: a toe cap that resists a 
 
 **WR** — water resistance of the complete footwear (not just the upper). The whole boot resists water penetration. Distinct from WPA (water-resistant upper only).
 
-**SR** — slip resistance: under the 2022 standard, replaces SRA/SRB/SRC. The boot passes specified slip tests, but laboratory markings do not cover every jobsite surface. SR is commonly specified where wet or contaminated surfaces are part of the assessed risk, alongside a tread and outsole compound suited to the real surface.
+**SR** — an additional slip-resistance test on ceramic tile with glycerine under the 2022 edition. Distinguish this optional marking from the basic slip test on ceramic tile with a soap solution. The old SRA/SRB/SRC markings belong to the earlier test scheme; they are not directly interchangeable with SR. Laboratory results do not cover every jobsite surface.
+
+**FO** — optional resistance of the outsole to fuel oil under the 2022 edition. Specify and verify it where required; do not assume an S1, S2, or S3 category includes it or that FO proves resistance to all chemicals.
 
 **ESD** — electrostatic dissipative: contact resistance under 100 MΩ. For sensitive electronics environments or areas with flammable vapour risk. Distinct from EH (electrical hazard insulation).
 
@@ -164,12 +166,12 @@ All EN ISO 20345 footwear shares a mandatory baseline: a toe cap that resists a 
 |---|---|---|
 | Toe cap impact | 75 ft-lb (~102 J) | 200 J |
 | Toe cap compression | 2,500 lb | 15,000 N (~3,370 lb) |
-| Puncture resistance | 270 lbf (PR marking) | ≥1,100 N midsole test |
+| Puncture resistance | Verify PR marking and edition-specific test evidence | Verify P, PL, or PS and the corresponding category suffix |
 | Ladder grip | Not covered | LG marking (2022) |
-| Slip resistance | SR marking (F2413-24) | SR mandatory for S2/S3 |
+| Slip resistance | Request ASTM F3445/F2913 evidence separately from the toe-protection claim | Basic slip requirement plus optional SR test; verify the edition |
 | Water resistance | Not a standard feature | S2/S3 WPA; WR full boot |
 
-For global procurement, EN ISO 20345 S3 SR generally represents a higher all-round protection level than ASTM F2413 I/75 C/75 PR, particularly for outdoor construction in wet conditions.
+ASTM and EN use different test methods and classification systems. Do not treat a higher value in one test as proof of better overall protection or assume one marking establishes compliance with the other. Compare the complete model's documented properties against the destination market and jobsite specification.
 
 ---
 
@@ -257,25 +259,39 @@ When evaluating safety footwear for a construction procurement, check the follow
 
 **For US (ASTM) footwear:**
 - Standard version (F2413-18 or F2413-24)
-- Sizing mark (M or F)
-- Impact rating (I/75 minimum for general construction)
-- Compression rating (C/75 minimum)
-- Puncture resistance (PR) — check this is present for construction use
+- Impact and compression markings in the format required by the stated edition
+- Fit information and available sizes and widths; a test-category marking is not a substitute for a fit trial
+- Puncture resistance (PR) where the site assessment requires it
 - Electrical rating (EH) if electrical work is involved
 - Metatarsal (Mt) if heavy crushing risk is present
 
 **For European (EN ISO 20345) footwear:**
-- S-class rating (S3 minimum for most outdoor construction)
-- SR (slip resistance) — essential
-- Additional markings matching the environment: HI, CI, LG, WR as relevant
-- CE marking with Notified Body number (4-digit number after "CE")
-- Standard version (2011 or 2022) — both valid until certificates expire
-- Declaration of Conformity available from manufacturer
+- S-class category and exact P/PL/PS suffix matching the required protection
+- Basic slip performance and any additional SR claim under the stated edition
+- Additional markings matching the environment: FO, HI/HRO, CI, LG, WR as relevant
+- CE marking and conformity documents appropriate to the exact model and PPE risk category; do not use a four-digit number alone as the acceptance test
+- Standard edition, certificate validity, and destination-market requirements
+- EU Declaration of Conformity identifying the offered model
 
 **For both standards:**
-- Date of manufacture stamped inside the boot (check shell age)
+- Manufacturing/batch identification and the manufacturer's storage and service-life instructions
 - Manufacturer's recommended replacement interval
 - Correct sizing — under both OSHA's 2025 proper-fit rule and EN requirements, footwear must fit the individual worker
+
+### Bulk-order evidence and sample acceptance
+
+Before approving an order, match the proposed model, supporting documents, sample, and purchase specification. A generic certificate or a label photograph from a different boot is not enough.
+
+| Request from the supplier | What the buyer should verify | Record before approval |
+|---|---|---|
+| Exact model/SKU and footwear specification | The quoted upper, sole, toe cap, insert, and claimed properties match the offered construction | Agreed model, specification revision, and permitted substitutions |
+| Model-specific reports and conformity documents | Model identity, standard edition, tests performed, issuing organization, and applicable certificate validity; check that documents cover the offered size range | Document references and any unresolved gaps |
+| Clear photographs of the shoe label and packaging | Markings and model/batch identity agree with the documents and quotation | Approved label and packaging references |
+| Representative size and width samples | Workers can achieve a suitable fit with normal work socks and any manufacturer-approved inserts | Trial sizes, fit feedback, and accepted size curve |
+| Inspection and care instructions | Limitations, storage, replacement criteria, and permitted cleaning or accessories are suitable for the intended use | Agreed instructions supplied with the order |
+| Approved reference sample and delivery inspection plan | Delivered model, labels, size quantities, workmanship, and packaging match the agreed reference | Sample approval record and discrepancy-handling process |
+
+A fit trial and incoming inspection do not replace laboratory testing or the employer's hazard assessment. Put unresolved documentation or sample differences on hold before bulk approval. Record the agreed sizes in the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-construction-safety-footwear-guide) and attach the approved specification to the RFQ.
 
 ---
 
@@ -318,20 +334,20 @@ The protective performance of safety boots depends on their condition. Proper ma
 | Requirement | OSHA (US) | EU / European Markets |
 |---|---|---|
 | Governing standard | 29 CFR 1926.95 / 1926.96 | EU Regulation 2016/425 |
-| Performance standard | ASTM F2413 | EN ISO 20345:2022 |
-| Minimum toe protection | I/75 (75 ft-lb) | 200 J |
-| Puncture resistance | PR marking | Included in S1P/S3/S5 |
+| Rule versus purchase specification | 1926.96 names ANSI Z41.1-1967; confirm the applicable basis when specifying modern ASTM footwear | PPE Regulation conformity requirements; confirm the applicable EN edition and model documents |
+| Toe protection | Verify the offered ASTM edition, marking, and test evidence | EN safety-footwear baseline includes 200 J toe impact performance |
+| Puncture resistance | Verify PR where required | Check P/PL/PS and the exact category suffix |
 | Proper fit requirement | Required (since Jan 2025) | Required (EU Reg 2016/425) |
-| Employer obligation | Provide and pay for PPE | Provide appropriate PPE |
-| CE marking required | No (ASTM certification) | Yes (Category II PPE) |
-| Slip resistance | SR (in F2413-24) | SR (EN ISO 20345:2022) |
+| Employer obligation | Select suitable, properly fitting PPE; payment exceptions exist under 1926.95(d) | Follow applicable workplace PPE rules as well as product conformity requirements |
+| CE marking required | CE does not establish OSHA compliance | Check CE and conformity documents for the model and risk category |
+| Slip resistance | Verify the separate slip claim and test evidence | Distinguish basic slip performance from optional SR |
 
 ---
 
 ## Frequently Asked Questions
 
 **What is the minimum safety footwear for a general construction labourer?**  
-In the US: ASTM F2413 with I/75, C/75, and PR markings. In Europe: EN ISO 20345 S3 SR. Both provide toe cap protection, puncture-resistant midsole, and slip-resistant outsole - the three core requirements for most construction work.
+There is no single specification suitable for every construction task. Start with the assessed impact, compression, penetration, slip, and fit requirements. For US purchasing, verify the ASTM edition and required markings alongside the applicable OSHA construction requirements. For EN purchasing, an S3-family category may be a starting point for outdoor work; specify the insert type and any additional SR, FO, electrical, or other task-specific evidence separately.
 
 **What safety footwear is needed on a construction site?**  
 Most construction sites need safety footwear with toe impact/compression protection, puncture resistance, slip resistance, durable uppers, and a size range that actually fits the workforce. Add EH protection for electrical exposure, metatarsal protection for heavy material handling, waterproofing for wet sites, and heat or cold features where the surface or climate requires it.
@@ -352,7 +368,7 @@ Most manufacturers recommend replacement every 6 to 12 months under heavy constr
 Yes. The January 2025 revision to 29 CFR 1926.95(c) requires PPE, including footwear, to properly fit each affected worker. OSHA does not prescribe one product label called a "women's construction boot," but employers must provide the sizes, widths, lasts, or designs needed for real fit instead of assuming a smaller men's size will work for everyone.
 
 **What does EN ISO 20345 S3 mean?**  
-S3 is the most widely specified rating for outdoor construction in Europe. It includes: 200-joule toe cap, antistatic properties, heel energy absorption, water-resistant upper (WPA), puncture-resistant midsole, and a cleated outsole. SR (slip resistance) should also be present for construction use.
+Under the 2022 edition, S3 combines the basic safety-footwear requirements with antistatic properties, heel energy absorption, a water-resistant upper, penetration resistance, and a cleated outsole. S3, S3L, and S3S distinguish the insert test category. Additional SR slip testing and FO fuel-oil resistance are separate claims; whole-footwear water resistance is also distinct from upper water resistance.
 
 **What is the LG marking on safety boots?**  
 LG (Ladder Grip) is a marking introduced in EN ISO 20345:2022. It certifies that the outsole provides secure grip on ladder rungs - directly relevant for scaffolders, roofers, and any worker who regularly climbs ladders. It has no equivalent in the current ASTM F2413 standard.
@@ -363,7 +379,7 @@ LG (Ladder Grip) is a marking introduced in EN ISO 20345:2022. It certifies that
 
 Selecting the right safety footwear for a construction workforce requires matching certified performance levels to the actual hazards each worker faces. A one-size-fits-all boot specification will inevitably leave some workers under-protected and others in heavier, more expensive footwear than their role requires.
 
-We supply ASTM F2413 and EN ISO 20345 certified safety footwear for construction across all trades - from general site operatives to specialist electricians and scaffolders - with full size ranges to meet OSHA's 2025 proper-fit requirements.
+Send your destination market, task hazards, required standard and edition, size curve, quantity, and delivery schedule with your footwear inquiry. Before approving a model, confirm its specific markings, supporting test reports or conformity documents, available sizes, and sample fit. Certification and protective properties must be verified for the exact offered model; this guide does not establish them for every product in the range.
 
 [Browse our construction safety footwear range](/categories/foot-protection/safety-shoes)  
 [View the complete PPE solution for construction sites](/solutions/construction-site-ppe-solution)
@@ -386,4 +402,13 @@ Related construction PPE guides:
 
 ---
 
-*Sources: OSHA 29 CFR 1926.95 and 1926.96, ASTM F2413-24, EN ISO 20345:2022+A1:2024, National Safety Council Injury Facts, Bureau of Labor Statistics foot injury data, EU Regulation 2016/425, OSHA Final Rule 29 CFR 1926.95(c) effective January 13 2025, TRADESAFE OSHA foot protection analysis, HexArmor ASTM footwear standards guide, RefrigiWear ASTM F2413-24 guide*
+Standards and procurement references:
+
+- [OSHA construction PPE criteria: 29 CFR 1926.95](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95)
+- [OSHA construction foot protection: 29 CFR 1926.96](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.96)
+- [OSHA general-industry foot protection: 29 CFR 1910.136](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.136)
+- [ASTM F2413-24 protective safety-toe footwear specification](https://store.astm.org/f2413-24.html)
+- [ASTM F3445-24 footwear slip-resistance specification](https://store.astm.org/f3445-24.html)
+- [Safety Jogger: EN ISO 20345:2022 marking changes](https://www.safetyjogger.com/en/cd/technical/iso_20345_2022)
+
+Additional background: EN ISO 20345:2022+A1:2024, EU Regulation 2016/425, National Safety Council Injury Facts, and Bureau of Labor Statistics foot injury data. Always verify the documents applicable to the offered model and destination market.
