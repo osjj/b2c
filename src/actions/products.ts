@@ -12,8 +12,10 @@ import {
 import { generateUniqueProductSlug, saveLegacyProductSlug } from '@/lib/product-slug.server'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
+import { productSourceSchema } from '@/lib/product-source'
 
 const productSchema = z.object({
+  productSource: productSourceSchema,
   name: z.string().min(1, 'Name is required'),
   slug: z.string().optional().nullable(),
   description: z.string().optional(),
@@ -167,9 +169,11 @@ export async function getProducts({
 
 // Get single product by ID
 export async function getProduct(id: string) {
+  await requireAdmin()
   const product = await prisma.product.findUnique({
     where: { id },
     include: {
+      source: true,
       category: true,
       images: { orderBy: { sortOrder: 'asc' } },
       variants: true,
@@ -186,8 +190,10 @@ export async function getProduct(id: string) {
   if (!product) return null
 
   // Convert Decimal to number for client component serialization
+  const { source, ...adminProduct } = product
   return {
-    ...product,
+    ...adminProduct,
+    productSource: source?.value ?? null,
     price: Number(product.price),
     comparePrice: product.comparePrice ? Number(product.comparePrice) : null,
     cost: product.cost ? Number(product.cost) : null,
@@ -308,6 +314,7 @@ export async function createProduct(
   }
 
   const rawData = {
+    productSource: formData.has('productSource') ? formData.get('productSource') : undefined,
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
@@ -346,7 +353,7 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
+  const { productSource, images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
   const normalizedSlug = await generateUniqueProductSlug(prisma, {
     name: productData.name,
     preferredSlug: productData.slug,
@@ -358,6 +365,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
+        source: productSource === undefined ? undefined : { create: { value: productSource } },
         slug: normalizedSlug,
         category: categoryId ? { connect: { id: categoryId } } : undefined,
         content: validatedContent ?? undefined,
@@ -528,6 +536,7 @@ export async function updateProduct(
   }
 
   const rawData = {
+    productSource: formData.has('productSource') ? formData.get('productSource') : undefined,
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
@@ -566,7 +575,7 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
+  const { productSource, images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
   const currentProduct = await prisma.product.findUnique({
     where: { id },
     select: { slug: true, isActive: true },
@@ -601,6 +610,9 @@ export async function updateProduct(
       where: { id },
       data: {
         ...productData,
+        source: productSource === undefined ? undefined : {
+          upsert: { create: { value: productSource }, update: { value: productSource } },
+        },
         slug: normalizedSlug,
         category: categoryId ? { connect: { id: categoryId } } : { disconnect: true },
         content: validatedContent ?? undefined,

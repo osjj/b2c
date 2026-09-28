@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { productSourceSchema } from '@/lib/product-source'
 import { createSalesQuotationInputSchema, currencySchema, quotationItemInputSchema } from './schemas'
 import type { WorkbenchSettings } from './workbench-config'
 import { quotationCurrencyMinorUnit } from './workbench-config'
@@ -31,6 +32,7 @@ export type SimpleQuotation = z.infer<typeof simpleQuotationSchema>
 export type SimpleLine = z.infer<typeof simpleLineSchema>
 export type SimpleImage = z.infer<typeof simpleImageSchema>
 export const commonProductSchema = simpleLineSchema.omit({ quantity: true, images: true, quotationProductId: true }).extend({
+  productSource: productSourceSchema,
   specifications: z.string().max(20000).optional(),
   packaging: z.string().max(5000).optional(),
   currency: currencySchema,
@@ -38,7 +40,7 @@ export const commonProductSchema = simpleLineSchema.omit({ quantity: true, image
   expectedUpdatedAt: z.string().datetime().optional(),
 })
 export type CommonProductInput = z.infer<typeof commonProductSchema>
-export type CommonProductOption = CommonProductInput & { id: string; images: SimpleImage[] }
+export type CommonProductOption = Omit<CommonProductInput, 'productSource'> & { id: string; images: SimpleImage[] }
 
 export function blankLine(): SimpleLine { return { name: '', description: '', quantity: '1', unit: 'pcs', unitPrice: '0', images: [] } }
 export function blankQuotation(settings: WorkbenchSettings): SimpleQuotation {

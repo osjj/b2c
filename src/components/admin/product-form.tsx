@@ -53,6 +53,7 @@ type ProductWithImages = {
   name: string
   slug: string
   description: string | null
+  productSource?: string | null
   content?: unknown
   specifications?: unknown
   price: number
@@ -592,6 +593,21 @@ export function ProductForm({ product, categories, collections = [], productColl
                 maxImages={MAX_PRODUCT_GALLERY_IMAGES}
                 productName={name}
               />
+              <div className="mt-4 space-y-2">
+                <Label htmlFor="productSource">商品来源（仅内部）</Label>
+                <Textarea
+                  id="productSource"
+                  name="productSource"
+                  defaultValue={product?.productSource ?? ''}
+                  maxLength={2000}
+                  rows={3}
+                  placeholder="供应商名称、采购链接或来源备注，可留空"
+                  aria-describedby="product-source-help product-source-error"
+                  aria-invalid={Boolean(state.errors?.productSource)}
+                />
+                <p id="product-source-help" className="text-sm text-muted-foreground">仅后台可见，不会展示在商城或客户报价文件中。</p>
+                {state.errors?.productSource && <p id="product-source-error" role="alert" className="text-sm text-red-500">{state.errors.productSource.join('；')}</p>}
+              </div>
             </CardContent>
           </Card>
 

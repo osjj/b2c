@@ -9,6 +9,7 @@ const FORBIDDEN_CUSTOMER_KEYS = new Set([
   'supplierName',
   'supplierUrl',
   'sourceUrl',
+  'productSource',
   'internalNotes',
   'objectKey',
   'storageKey',

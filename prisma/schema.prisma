@@ -150,6 +150,7 @@ model Product {
   collections         ProductCollection[]
   images              ProductImage[]
   slugRedirects       ProductSlugRedirect[]
+  source              ProductSource?
   variants            ProductVariant[]
   category            Category?                    @relation(fields: [categoryId], references: [id])
   quoteItems          QuoteItem[]
@@ -160,6 +161,14 @@ model Product {
   @@index([categoryId])
   @@index([isActive, isFeatured])
   @@map("products")
+}
+
+model ProductSource {
+  productId String  @id @map("product_id")
+  value     String? @db.Text
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_sources")
 }
 
 model ProductSlugRedirect {
@@ -697,6 +706,7 @@ model QuotationProduct {
   standards      Json?
   certificates   Json?
   internalNotes  String?                      @map("internal_notes") @db.Text
+  productSource  String?                      @map("product_source") @db.Text
   status         QuotationProductStatus       @default(DRAFT)
   createdAt      DateTime                     @default(now()) @map("created_at")
   updatedAt      DateTime                     @updatedAt @map("updated_at")
