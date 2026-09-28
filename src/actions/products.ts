@@ -12,10 +12,11 @@ import {
 import { generateUniqueProductSlug, saveLegacyProductSlug } from '@/lib/product-slug.server'
 import { z } from 'zod'
 import { requireAdmin } from '@/lib/auth-utils'
-import { productSourceSchema } from '@/lib/product-source'
+import { costPriceTextSchema, productSourceSchema } from '@/lib/product-source'
 
 const productSchema = z.object({
   productSource: productSourceSchema,
+  costPriceText: costPriceTextSchema,
   name: z.string().min(1, 'Name is required'),
   slug: z.string().optional().nullable(),
   description: z.string().optional(),
@@ -194,6 +195,7 @@ export async function getProduct(id: string) {
   return {
     ...adminProduct,
     productSource: source?.value ?? null,
+    costPriceText: source?.costPriceText ?? null,
     price: Number(product.price),
     comparePrice: product.comparePrice ? Number(product.comparePrice) : null,
     cost: product.cost ? Number(product.cost) : null,
@@ -315,6 +317,7 @@ export async function createProduct(
 
   const rawData = {
     productSource: formData.has('productSource') ? formData.get('productSource') : undefined,
+    costPriceText: formData.has('costPriceText') ? formData.get('costPriceText') : undefined,
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
@@ -353,7 +356,11 @@ export async function createProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { productSource, images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
+  const { productSource, costPriceText, images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
+  const sourceData = {
+    ...(productSource !== undefined ? { value: productSource } : {}),
+    ...(costPriceText !== undefined ? { costPriceText } : {}),
+  }
   const normalizedSlug = await generateUniqueProductSlug(prisma, {
     name: productData.name,
     preferredSlug: productData.slug,
@@ -365,7 +372,7 @@ export async function createProduct(
     const product = await tx.product.create({
       data: {
         ...productData,
-        source: productSource === undefined ? undefined : { create: { value: productSource } },
+        source: productSource === undefined && costPriceText === undefined ? undefined : { create: sourceData },
         slug: normalizedSlug,
         category: categoryId ? { connect: { id: categoryId } } : undefined,
         content: validatedContent ?? undefined,
@@ -537,6 +544,7 @@ export async function updateProduct(
 
   const rawData = {
     productSource: formData.has('productSource') ? formData.get('productSource') : undefined,
+    costPriceText: formData.has('costPriceText') ? formData.get('costPriceText') : undefined,
     name: formData.get('name'),
     slug: formData.get('slug'),
     description: formData.get('description'),
@@ -575,7 +583,11 @@ export async function updateProduct(
     return { errors: result.error.flatten().fieldErrors }
   }
 
-  const { productSource, images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
+  const { productSource, costPriceText, images, specifications: validatedSpecs, content: validatedContent, categoryId, priceTiers: _priceTiers, metaTitle, metaDescription, metaKeywords, ogTitle, ogDescription, ogImage, usageScenes: validatedUsageScenes, ...productData } = result.data
+  const sourceData = {
+    ...(productSource !== undefined ? { value: productSource } : {}),
+    ...(costPriceText !== undefined ? { costPriceText } : {}),
+  }
   const currentProduct = await prisma.product.findUnique({
     where: { id },
     select: { slug: true, isActive: true },
@@ -610,8 +622,8 @@ export async function updateProduct(
       where: { id },
       data: {
         ...productData,
-        source: productSource === undefined ? undefined : {
-          upsert: { create: { value: productSource }, update: { value: productSource } },
+        source: productSource === undefined && costPriceText === undefined ? undefined : {
+          upsert: { create: sourceData, update: sourceData },
         },
         slug: normalizedSlug,
         category: categoryId ? { connect: { id: categoryId } } : { disconnect: true },

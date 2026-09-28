@@ -16,7 +16,7 @@ export async function saveCommonQuotationProduct(input: unknown) {
     const actor = await requireAdmin()
     const data = commonProductSchema.parse(input)
     const product = await prisma.$transaction(async (tx) => {
-      const fields = { nameEn: data.name, nameZh: null, unit: data.unit, specifications: (data.specifications ?? data.description).split(/\r?\n/).map((line) => line.trim()).filter(Boolean), status: data.active ? 'ACTIVE' as const : 'INACTIVE' as const, ...(data.productSource !== undefined ? { productSource: data.productSource } : {}) }
+      const fields = { nameEn: data.name, nameZh: null, unit: data.unit, specifications: (data.specifications ?? data.description).split(/\r?\n/).map((line) => line.trim()).filter(Boolean), status: data.active ? 'ACTIVE' as const : 'INACTIVE' as const, ...(data.productSource !== undefined ? { productSource: data.productSource } : {}), ...(data.costPriceText !== undefined ? { costPriceText: data.costPriceText } : {}) }
       let id: string
       if (data.id) {
         if (!data.expectedUpdatedAt) throw new QuotationError('VERSION_CONFLICT', '请刷新产品后再修改')

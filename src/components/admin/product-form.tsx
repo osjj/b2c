@@ -54,6 +54,7 @@ type ProductWithImages = {
   slug: string
   description: string | null
   productSource?: string | null
+  costPriceText?: string | null
   content?: unknown
   specifications?: unknown
   price: number
@@ -607,6 +608,21 @@ export function ProductForm({ product, categories, collections = [], productColl
                 />
                 <p id="product-source-help" className="text-sm text-muted-foreground">仅后台可见，不会展示在商城或客户报价文件中。</p>
                 {state.errors?.productSource && <p id="product-source-error" role="alert" className="text-sm text-red-500">{state.errors.productSource.join('；')}</p>}
+              </div>
+              <div className="mt-4 space-y-2">
+                <Label htmlFor="costPriceText">成本价（多行文本，仅内部）</Label>
+                <Textarea
+                  id="costPriceText"
+                  name="costPriceText"
+                  defaultValue={product?.costPriceText ?? ''}
+                  maxLength={2000}
+                  rows={3}
+                  placeholder="可分行记录供应商报价、数量阶梯或价格备注"
+                  aria-describedby="cost-price-text-help cost-price-text-error"
+                  aria-invalid={Boolean(state.errors?.costPriceText)}
+                />
+                <p id="cost-price-text-help" className="text-sm text-muted-foreground">仅后台可见，不参与价格计算。</p>
+                {state.errors?.costPriceText && <p id="cost-price-text-error" role="alert" className="text-sm text-red-500">{state.errors.costPriceText.join('；')}</p>}
               </div>
             </CardContent>
           </Card>

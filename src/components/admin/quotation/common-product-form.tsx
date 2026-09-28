@@ -33,6 +33,11 @@ export function CommonProductForm({ initialValue }: { initialValue?: CommonProdu
       <Textarea id="productSource" rows={3} maxLength={2000} value={value.productSource ?? ''} onChange={(e) => setValue({ ...value, productSource: e.target.value })} placeholder="供应商名称、采购链接或来源备注，可留空" aria-describedby="product-source-help" />
       <p id="product-source-help" className="text-xs text-slate-500">仅后台可见，不会展示在商城或客户报价文件中。</p>
     </div>
+    <div className="space-y-2">
+      <label htmlFor="costPriceText" className="block text-sm font-medium">成本价（多行文本，仅内部）</label>
+      <Textarea id="costPriceText" rows={3} maxLength={2000} value={value.costPriceText ?? ''} onChange={(e) => setValue({ ...value, costPriceText: e.target.value })} placeholder="可分行记录供应商报价、数量阶梯或价格备注" aria-describedby="cost-price-text-help" />
+      <p id="cost-price-text-help" className="text-xs text-slate-500">仅后台可见，不参与价格计算。</p>
+    </div>
     <label className="block space-y-2 text-sm font-medium">规格<Textarea rows={6} value={value.specifications ?? ''} onChange={(e) => setValue({ ...value, specifications: e.target.value })} placeholder="每行一条，例如 Material: Cotton" /></label>
     <label className="block space-y-2 text-sm font-medium">描述备注<Textarea rows={3} value={value.description} onChange={(e) => setValue({ ...value, description: e.target.value })} placeholder="可随产品填充到报价中，对客户展示" /></label>
     <label className="block space-y-2 text-sm font-medium">包装信息<Textarea rows={3} value={value.packaging ?? ''} onChange={(e) => setValue({ ...value, packaging: e.target.value })} placeholder="单件包装、装箱数量、箱规等；未知可留空" /></label>

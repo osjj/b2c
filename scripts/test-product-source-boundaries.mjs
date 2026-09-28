@@ -15,7 +15,7 @@ function writeProduct(data) {
   assignDefined(state.product, fields)
   // Relation mutations mirror Prisma's create/upsert semantics, without returning unrequested relations.
   if (source?.create) state.source = { productId, ...source.create }
-  if (source?.upsert) state.source = { productId, ...(state.source ? source.upsert.update : source.upsert.create) }
+  if (source?.upsert) state.source = assignDefined(state.source ?? { productId }, state.source ? source.upsert.update : source.upsert.create)
   return { ...state.product }
 }
 function readProduct(args = {}) {
@@ -80,30 +80,50 @@ const built = await build({
 const actionModule = { exports: {} }
 new Function('require', 'module', 'exports', built.outputFiles[0].text)((name) => name === 'source-test-state' ? { state, db } : nodeRequire(name), actionModule, actionModule.exports)
 const actions = actionModule.exports
-function form(source) {
+function form(source, costPriceText) {
   const data = new FormData()
-  for (const [key, value] of Object.entries({ name: 'Test product', slug: 'test-product', description: '', price: '1', isActive: 'true' })) data.set(key, value)
+  for (const [key, value] of Object.entries({ name: 'Test product', slug: 'test-product', description: '', price: '1', cost: '7.25', isActive: 'true' })) data.set(key, value)
   if (source !== undefined) data.set('productSource', source)
+  if (costPriceText !== undefined) data.set('costPriceText', costPriceText)
   return data
 }
 const saved = (promise) => assert.rejects(promise, /TEST_REDIRECT/)
-await saved(actions.createProduct({}, form('  https://supplier.example/item  ')))
+const costs = '100件：￥12/件\n500件：￥10/件（不含运费）'
+await saved(actions.createProduct({}, form('  https://supplier.example/item  ', `  ${costs}\n `)))
 assert.equal((await actions.getProduct(productId)).productSource, 'https://supplier.example/item')
+assert.equal((await actions.getProduct(productId)).costPriceText, costs)
 await saved(actions.updateProduct(productId, {}, form()))
 assert.equal((await actions.getProduct(productId)).productSource, 'https://supplier.example/item', 'omitted source must preserve')
 await saved(actions.updateProduct(productId, {}, form('供应商 A / 型号 B')))
 assert.equal((await actions.getProduct(productId)).productSource, '供应商 A / 型号 B')
+assert.equal((await actions.getProduct(productId)).costPriceText, costs, 'source-only edit preserves cost text')
+await saved(actions.updateProduct(productId, {}, form(undefined, `${costs}\n含税`)))
+assert.equal((await actions.getProduct(productId)).productSource, '供应商 A / 型号 B', 'cost-only edit preserves source')
+assert.equal((await actions.getProduct(productId)).costPriceText, `${costs}\n含税`)
+assert.equal((await actions.getProduct(productId)).cost, 7.25, 'text does not replace numeric cost')
 for (const result of [await actions.getProductBySlug('test-product'), await actions.getProducts(), await actions.getFeaturedProducts()]) {
   const payload = JSON.stringify(result)
   assert.equal(payload.includes('供应商 A'), false)
   assert.equal(payload.includes('productSource'), false)
+  assert.equal(payload.includes('costPriceText'), false)
+  assert.equal(payload.includes('100件'), false)
   assert.equal(payload.includes('"source"'), false)
 }
 const beforeInvalid = state.writes
 assert.ok((await actions.updateProduct(productId, {}, form('x'.repeat(2001)))).errors.productSource)
 assert.ok((await actions.createProduct({}, form(new Blob(['not text'])))).errors.productSource)
+assert.ok((await actions.updateProduct(productId, {}, form(undefined, 'x'.repeat(2001)))).errors.costPriceText)
+assert.ok((await actions.createProduct({}, form(undefined, new Blob(['not text'])))).errors.costPriceText)
 assert.equal(state.writes, beforeInvalid)
 await saved(actions.updateProduct(productId, {}, form(' \n ')))
+assert.equal((await actions.getProduct(productId)).productSource, null)
+assert.equal((await actions.getProduct(productId)).costPriceText, `${costs}\n含税`)
+await saved(actions.updateProduct(productId, {}, form(undefined, ' \n ')))
+assert.equal((await actions.getProduct(productId)).costPriceText, null)
+// Existing products can receive cost text even if no private relation exists yet.
+state.source = null
+await saved(actions.updateProduct(productId, {}, form(undefined, costs)))
+assert.equal((await actions.getProduct(productId)).costPriceText, costs)
 assert.equal((await actions.getProduct(productId)).productSource, null)
 state.authorized = false
 const beforeDenied = [state.reads, state.writes]
@@ -113,22 +133,38 @@ await assert.rejects(actions.updateProduct(productId, {}, form('secret')), /Deni
 assert.deepEqual([state.reads, state.writes], beforeDenied)
 state.authorized = true
 
-const common = { name: 'Common product', description: '', specifications: '', unit: 'pcs', unitPrice: '1', currency: 'USD', active: true }
-assert.equal((await actions.saveCommonQuotationProduct({ ...common, productSource: '  private supplier  ' })).success, true)
+const common = { name: 'Common product', description: '', specifications: '', unit: 'pcs', unitPrice: '1', unitCost: '7.25', currency: 'USD', active: true }
+assert.equal((await actions.saveCommonQuotationProduct({ ...common, productSource: '  private supplier  ', costPriceText: ` ${costs}\n ` })).success, true)
 assert.equal(state.quotation.productSource, 'private supplier')
+assert.equal(state.quotation.costPriceText, costs)
 const update = { ...common, id: quotationId, expectedUpdatedAt: stamp }
 assert.equal((await actions.saveCommonQuotationProduct(update)).success, true)
 assert.equal(state.quotation.productSource, 'private supplier')
+assert.equal(state.quotation.costPriceText, costs)
+assert.equal((await actions.saveCommonQuotationProduct({ ...update, costPriceText: `${costs}\n含税` })).success, true)
+assert.equal(state.quotation.productSource, 'private supplier')
+assert.equal(state.quotation.costPriceText, `${costs}\n含税`)
 const picker = await actions.readCommonProducts()
 assert.equal(JSON.stringify(picker).includes('private supplier'), false)
 assert.equal('productSource' in picker[0], false)
+assert.equal('costPriceText' in picker[0], false)
+assert.equal(JSON.stringify(picker).includes('100件'), false)
+assert.equal(picker[0].unitCost, '7.25')
 assert.equal((await actions.saveCommonQuotationProduct({ ...update, expectedUpdatedAt: '2026-09-27T00:00:00.000Z', productSource: 'stale edit' })).code, 'VERSION_CONFLICT')
 assert.equal(state.quotation.productSource, 'private supplier')
+assert.equal((await actions.saveCommonQuotationProduct({ ...update, expectedUpdatedAt: '2026-09-27T00:00:00.000Z', costPriceText: 'stale cost' })).code, 'VERSION_CONFLICT')
+assert.equal(state.quotation.costPriceText, `${costs}\n含税`)
+for (const invalid of [123, 'x'.repeat(2001)]) assert.equal((await actions.saveCommonQuotationProduct({ ...update, costPriceText: invalid })).code, 'VALIDATION_FAILED')
 for (const invalid of [123, 'x'.repeat(2001)]) assert.equal((await actions.saveCommonQuotationProduct({ ...update, productSource: invalid })).code, 'VALIDATION_FAILED')
 assert.equal(state.quotation.productSource, 'private supplier')
 for (const blank of ['', ' \n ', null]) {
   assert.equal((await actions.saveCommonQuotationProduct({ ...update, productSource: blank })).success, true)
   assert.equal(state.quotation.productSource, null)
+  assert.equal(state.quotation.costPriceText, `${costs}\n含税`, 'clearing source preserves cost text')
+}
+for (const blank of ['', ' \n ', null]) {
+  assert.equal((await actions.saveCommonQuotationProduct({ ...update, costPriceText: blank })).success, true)
+  assert.equal(state.quotation.costPriceText, null)
 }
 state.authorized = false
 const deniedWrites = state.writes

@@ -7,4 +7,5 @@ test('customer projections reject nested internal fields', () => {
   assert.equal(containsForbiddenCustomerKey({ items: [{ name: 'A', unitCost: '1.00' }] }), true)
   assert.equal(containsForbiddenCustomerKey({ items: [{ name: 'A', lineTotal: '2.00' }] }), false)
   assert.equal(containsForbiddenCustomerKey({ items: [{ name: 'A', productSource: 'private supplier' }] }), true)
+  assert.equal(containsForbiddenCustomerKey({ items: [{ name: 'A', costPriceText: '￥12/件\n￥10/件' }] }), true)
 })
