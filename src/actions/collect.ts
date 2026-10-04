@@ -6,6 +6,7 @@ import { generateUniqueProductSlug } from '@/lib/product-slug.server'
 import { transferImages } from '@/lib/scraper/image-transfer'
 import type { ScrapedProduct } from '@/lib/scraper/types'
 import { revalidatePath } from 'next/cache'
+import { invalidateHomeCache } from '@/lib/home-cache'
 
 export async function saveCollectedProduct(scrapedData: ScrapedProduct) {
   await requireAdmin()
@@ -155,6 +156,7 @@ export async function updateCollectedProduct(
 
   revalidatePath('/admin/products')
   revalidatePath(`/admin/products/${productId}`)
+  invalidateHomeCache('products')
 
   return { success: true, productId }
 }

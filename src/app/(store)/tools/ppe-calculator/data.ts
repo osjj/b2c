@@ -1,6 +1,6 @@
-// Industry-average monthly PPE consumption per worker (baseline).
-// Values are realistic industry benchmarks compiled from OSHA guidance,
-// BLS occupational data, and PPE-distributor replenishment data.
+// Illustrative planning defaults, reviewed 2026-10-03. No measured industry benchmark
+// or OSHA/BLS consumption dataset supports these values. Users should replace them
+// with their own usage records, manufacturer instructions and supplier prices.
 
 export type RoleKey =
   | 'construction'
@@ -24,7 +24,7 @@ export interface PpeItem {
   rate: number
   // Categories where this item is applicable (empty = all).
   appliesTo?: RoleKey[]
-  // Typical unit price in USD (rough industry average) for budget estimation.
+  // Illustrative unit price in USD (not a supplier quotation) for budget estimation.
   unitPriceUsd: number
   description?: string
 }
@@ -130,7 +130,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 80,
     unitPriceUsd: 0.12,
-    description: 'Single-use, changed multiple times per shift for hygiene or chemical contact.',
+    description: "Illustrative single-use rate. Select the correct glove for the task and follow product-specific change instructions.",
   },
   {
     key: 'cut-gloves',
@@ -138,7 +138,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 2.5,
     unitPriceUsd: 8.0,
-    description: 'Replaced every ~2 weeks of heavy use; sooner if damaged.',
+    description: "Illustrative reusable-glove cycle. Replace worn or damaged protection according to manufacturer instructions.",
     appliesTo: ['construction', 'manufacturing', 'warehouse', 'foodprocessing', 'welding', 'general'],
   },
   {
@@ -147,7 +147,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 1,
     unitPriceUsd: 18.0,
-    description: 'Leather gauntlets replaced monthly under heavy welding.',
+    description: "Illustrative replacement cycle, not a safe-use service life.",
     appliesTo: ['welding'],
   },
   {
@@ -156,7 +156,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 1.5,
     unitPriceUsd: 6.0,
-    description: 'Scratched or damaged glasses are replaced monthly on average.',
+    description: "Illustrative cycle. Inspect clarity, fit and damage; follow manufacturer retirement instructions.",
   },
   {
     key: 'welding-helmet-lens',
@@ -164,7 +164,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 0.25,
     unitPriceUsd: 45.0,
-    description: 'Lens replacement every 4 months of continuous welding.',
+    description: "Illustrative lens replacement cycle. Confirm compatibility and inspect before use.",
     appliesTo: ['welding'],
   },
   {
@@ -173,7 +173,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 0.04,
     unitPriceUsd: 22.0,
-    description: 'Replaced every 2-5 years per ANSI Z89.1 or sooner on impact.',
+    description: "Illustrative shell replacement cycle, not an ANSI-mandated service life. Inspect and follow the manufacturer, including replacement after impact.",
   },
   {
     key: 'hi-vis',
@@ -181,7 +181,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 0.12,
     unitPriceUsd: 14.0,
-    description: 'Retired when reflective striping degrades — roughly every 8–10 months.',
+    description: "Illustrative cycle. Replace when visibility performance or condition no longer meets site requirements.",
   },
   {
     key: 'safety-boots',
@@ -189,7 +189,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 0.18,
     unitPriceUsd: 85.0,
-    description: 'Heavy use boots last 5–8 months; track wear and toe-cap damage.',
+    description: "Illustrative footwear cycle. Inspect tread, soles, uppers and protective features; replace damaged footwear.",
   },
   {
     key: 'n95',
@@ -197,7 +197,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 22,
     unitPriceUsd: 1.1,
-    description: 'One per shift minimum; replace sooner if breathing resistance increases.',
+    description: "Illustrative rate. N95 and FFP2 are separate standards; choose suitable protection and follow fit, use and change instructions.",
   },
   {
     key: 'respirator-cartridges',
@@ -205,7 +205,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 3,
     unitPriceUsd: 14.0,
-    description: 'Change when saturated or at end of shift in heavy exposure.',
+    description: "Illustrative inventory rate, not a cartridge change schedule. Use the manufacturer and site respiratory-protection program; do not rely on odour or saturation.",
     appliesTo: ['chemical', 'welding', 'construction', 'general'],
   },
   {
@@ -214,7 +214,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pairs',
     rate: 22,
     unitPriceUsd: 0.25,
-    description: 'One pair per shift.',
+    description: "Illustrative disposable-earplug rate. Follow manufacturer hygiene and reuse instructions.",
   },
   {
     key: 'earmuffs',
@@ -222,7 +222,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 0.06,
     unitPriceUsd: 28.0,
-    description: 'Retired when cushions deform — ~15 month lifespan on average.',
+    description: "Illustrative cycle. Inspect cushions, seals and headband; replace components as instructed.",
   },
   {
     key: 'coveralls',
@@ -230,7 +230,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 6,
     unitPriceUsd: 7.5,
-    description: 'Full-body single-use for chemical, asbestos or spray work.',
+    description: "Illustrative single-use rate. Confirm the exact chemical and task protection; Type 5/6 does not cover every hazard.",
     appliesTo: ['chemical', 'construction', 'healthcare', 'general'],
   },
   {
@@ -239,7 +239,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 0.04,
     unitPriceUsd: 120.0,
-    description: 'Inspected daily; replaced every 2 years or after arresting a fall.',
+    description: "Illustrative cycle, not a mandatory two-year life. Inspect and follow manufacturer retirement and post-fall instructions.",
     appliesTo: ['construction', 'electrical', 'general'],
   },
   {
@@ -248,7 +248,7 @@ export const PPE_ITEMS: PpeItem[] = [
     unit: 'pcs',
     rate: 0.25,
     unitPriceUsd: 65.0,
-    description: 'Sensors replaced every 1–3 years; calibration gas consumed monthly.',
+    description: "Illustrative combined budget allowance. Sensor replacement and calibration-gas use are different; replace this rate and price with your equipment-specific budget.",
     appliesTo: ['chemical', 'electrical', 'welding'],
   },
 ]

@@ -1,3 +1,4 @@
+import theme from '../tools-theme.module.css'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
@@ -157,7 +158,7 @@ export default function HardHatClassDecoderPage() {
   }
 
   return (
-    <div className="min-h-screen bg-ppe-bg-page pb-24">
+    <div className={[theme.page, "min-h-screen pb-24"].join(" ")}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -189,7 +190,7 @@ export default function HardHatClassDecoderPage() {
         </ol>
       </nav>
 
-      <header className="container mx-auto max-w-4xl px-4 pb-10 pt-14 text-center lg:px-6">
+      <header data-tool-hero className={[theme.hero, "container mx-auto max-w-4xl px-4 pb-10 pt-14 text-center lg:px-6"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
           Head Protection Tool
         </p>
@@ -221,7 +222,7 @@ export default function HardHatClassDecoderPage() {
       <main className="container mx-auto max-w-6xl px-4 lg:px-6">
         <HardHatDecoder />
 
-        <section className="mt-16 grid gap-5 md:grid-cols-3">
+        <section data-tool-reading className="mt-16 grid gap-5 md:grid-cols-3">
           <article className="rounded-2xl border bg-background p-5 shadow-sm">
             <HardHat className="h-6 w-6 text-primary" aria-hidden="true" />
             <h2 className="mt-4 text-lg font-semibold text-foreground">Type answers impact direction</h2>
@@ -245,7 +246,7 @@ export default function HardHatClassDecoderPage() {
           </article>
         </section>
 
-        <section className="mt-20">
+        <section data-tool-reading className="mt-20">
           <div className="mb-6 flex items-center gap-3">
             <ShieldCheck className="h-6 w-6 text-primary" aria-hidden="true" />
             <h2 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl">
@@ -298,7 +299,7 @@ export default function HardHatClassDecoderPage() {
           </div>
         </section>
 
-        <section className="mt-20">
+        <section data-tool-reading className="mt-20">
           <div className="mb-6 flex items-center gap-3">
             <FileCheck2 className="h-6 w-6 text-primary" aria-hidden="true" />
             <h2 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl">
@@ -327,7 +328,7 @@ export default function HardHatClassDecoderPage() {
           </div>
         </section>
 
-        <section className="mt-20">
+        <section data-tool-reading className="mt-20">
           <ToolRelatedGuidesSection
             title="Guides to finish the head protection decision"
             description="Use these pages when the decoder result needs to become a full construction PPE specification, kit, or RFQ."
@@ -335,7 +336,7 @@ export default function HardHatClassDecoderPage() {
           />
         </section>
 
-        <section className="mt-20 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+        <section data-tool-reading className="mt-20 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
               <BookOpenCheck className="h-4 w-4" aria-hidden="true" />
@@ -345,7 +346,7 @@ export default function HardHatClassDecoderPage() {
               Hard hat class questions
             </h2>
             <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              These answers target the short questions already appearing in Search Console.
+              Understand impact types, electrical classes and label details before selecting head protection for your site.
             </p>
           </div>
           <div className="grid gap-3">
@@ -358,7 +359,7 @@ export default function HardHatClassDecoderPage() {
           </div>
         </section>
 
-        <section className="mt-20 rounded-2xl border bg-primary/5 p-6 shadow-sm sm:p-8">
+        <section data-tool-reading className="mt-20 rounded-2xl border bg-primary/5 p-6 shadow-sm sm:p-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <h2 className="font-serif text-3xl leading-tight text-foreground">

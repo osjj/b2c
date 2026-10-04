@@ -1,5 +1,7 @@
 'use client'
 
+import theme from '../tools-theme.module.css'
+
 import { useMemo, useState } from 'react'
 import { ArrowLeftRight, Ruler } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -45,7 +47,7 @@ export function SizeConverter() {
   return (
     <div className="space-y-8">
       {/* Converter card */}
-      <div className="rounded-2xl border bg-background p-6 sm:p-8 shadow-sm">
+      <div data-tool-panel className={[theme.panel, "rounded-2xl border bg-background p-6 sm:p-8 shadow-sm"].join(" ")}>
         <div className="flex items-center gap-3 mb-6">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
             <ArrowLeftRight className="h-5 w-5" />
@@ -89,7 +91,7 @@ export function SizeConverter() {
 
       {/* Result */}
       {match ? (
-        <div className="rounded-2xl border bg-gradient-to-br from-primary/5 to-background p-6 sm:p-8 shadow-sm">
+        <div data-tool-results className={[theme.results, theme.sizeResults, "rounded-2xl border bg-gradient-to-br from-primary/5 to-background p-6 sm:p-8 shadow-sm"].join(" ")}>
           <div className="flex items-center gap-3 mb-5">
             <Ruler className="h-5 w-5 text-primary" />
             <h3 className="font-serif text-xl text-foreground">

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { invalidateHomeCache } from '@/lib/home-cache'
 import {
   generateUniqueProductSlug,
   resolveProductIdBySlug,
@@ -160,6 +161,8 @@ export async function POST(request: NextRequest) {
     const failCount = results.filter(r => !r.success).length
 
     scheduleIndexNowUrls(indexNowUrls)
+    // A failed item may already have replaced its images before its update failed.
+    invalidateHomeCache('products')
 
     return NextResponse.json({
       message: `Batch update complete: ${successCount} updated, ${failCount} failed`,

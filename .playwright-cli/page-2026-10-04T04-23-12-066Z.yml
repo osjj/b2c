@@ -1,0 +1,497 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - generic [ref=f3e4]:
+      - generic [ref=f3e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f3e8]:
+        - link "sales@laifappe.com" [ref=f3e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f3e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f3e11]: EN
+    - banner [ref=f3e13]:
+      - generic [ref=f3e14]:
+        - link "Laifappe homepage" [ref=f3e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f3e16]
+          - generic [ref=f3e17]:
+            - strong [ref=f3e18]: 粤来发劳保
+            - generic [ref=f3e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f3e20]:
+          - link "Home" [ref=f3e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f3e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f3e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f3e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f3e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f3e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f3e27]:
+          - link "Email" [ref=f3e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f3e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f3e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f3e41]: →
+    - main [ref=f3e42]:
+      - generic [ref=f3e43]:
+        - generic [ref=f3e44]:
+          - generic [ref=f3e45]: THE PPE WORKBENCH
+          - navigation "Procurement tools" [ref=f3e56]:
+            - link "All tools" [ref=f3e57] [cursor=pointer]:
+              - /url: /tools
+            - link "Quantity planner" [ref=f3e64] [cursor=pointer]:
+              - /url: /tools/ppe-calculator
+            - link "Footwear labels" [ref=f3e68] [cursor=pointer]:
+              - /url: /tools/compliance-checker
+            - link "Boot sizes" [ref=f3e75] [cursor=pointer]:
+              - /url: /tools/size-guide
+            - link "Hard hat classes" [ref=f3e83] [cursor=pointer]:
+              - /url: /tools/hard-hat-class-decoder
+            - link "AI quote" [ref=f3e90] [cursor=pointer]:
+              - /url: /tools/ai-quote
+          - button "Pause decorative animations" [ref=f3e95] [cursor=pointer]:
+            - generic [ref=f3e99]: Motion on
+        - generic [ref=f3e101]:
+          - navigation [ref=f3e102]:
+            - list [ref=f3e103]:
+              - listitem [ref=f3e104]:
+                - link [ref=f3e105] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=f3e111]:
+                - link "Tools" [ref=f3e112] [cursor=pointer]:
+                  - /url: /tools
+              - listitem [ref=f3e115]: Size Guide
+          - generic [ref=f3e116]:
+            - paragraph [ref=f3e117]: Reference Tool · Free
+            - heading "Safety Boot Size Guide" [level=1] [ref=f3e118]
+            - paragraph [ref=f3e119]: Convert safety footwear sizing across US, UK, EU, China and Japan — plus width fittings for ASTM F2413 and EN ISO 20345 boots.
+          - generic [ref=f3e121]:
+            - generic [ref=f3e122]:
+              - heading "Size converter" [level=2] [ref=f3e128]
+              - generic [ref=f3e129]:
+                - generic [ref=f3e130]:
+                  - generic [ref=f3e131]: Your size is in
+                  - combobox "Your size is in" [ref=f3e132]:
+                    - generic: US men's
+                - generic [ref=f3e133]:
+                  - generic [ref=f3e134]: Size
+                  - textbox "Size" [ref=f3e135]:
+                    - /placeholder: e.g. 10
+                    - text: "10"
+            - generic [ref=f3e136]:
+              - heading "Matching sizes for foot length 280 mm" [level=3] [ref=f3e144]
+              - generic [ref=f3e145]:
+                - generic [ref=f3e146]:
+                  - paragraph [ref=f3e147]: mm
+                  - paragraph [ref=f3e148]: "280"
+                - generic [ref=f3e149]:
+                  - paragraph [ref=f3e150]: US M
+                  - paragraph [ref=f3e151]: "10"
+                - generic [ref=f3e152]:
+                  - paragraph [ref=f3e153]: US W
+                  - paragraph [ref=f3e154]: "11.5"
+                - generic [ref=f3e155]:
+                  - paragraph [ref=f3e156]: UK
+                  - paragraph [ref=f3e157]: "9"
+                - generic [ref=f3e158]:
+                  - paragraph [ref=f3e159]: EU
+                  - paragraph [ref=f3e160]: "44"
+                - generic [ref=f3e161]:
+                  - paragraph [ref=f3e162]: CN
+                  - paragraph [ref=f3e163]: "44"
+                - generic [ref=f3e164]:
+                  - paragraph [ref=f3e165]: JP
+                  - paragraph [ref=f3e166]: "28.0"
+          - generic [ref=f3e167]:
+            - heading "How to measure your feet" [level=2] [ref=f3e175]
+            - paragraph [ref=f3e176]: Foot length in millimetres is the most accurate measurement for safety footwear. Take 5 minutes to do it properly and you will avoid the 40% of online boot returns caused by size mismatch.
+            - list [ref=f3e177]:
+              - listitem [ref=f3e178]:
+                - generic [ref=f3e179]: "1"
+                - generic [ref=f3e180]:
+                  - heading "Measure at the end of the day" [level=3] [ref=f3e181]
+                  - paragraph [ref=f3e182]: Feet swell throughout a shift — measuring in the evening or after several hours on your feet captures the maximum size and prevents cramped boots.
+              - listitem [ref=f3e183]:
+                - generic [ref=f3e184]: "2"
+                - generic [ref=f3e185]:
+                  - heading "Wear your work socks" [level=3] [ref=f3e186]
+                  - paragraph [ref=f3e187]: Thick thermal or cushioned safety socks add 2–3 mm of length. Always measure with the socks you plan to wear with the boots.
+              - listitem [ref=f3e188]:
+                - generic [ref=f3e189]: "3"
+                - generic [ref=f3e190]:
+                  - heading "Stand on a sheet of paper" [level=3] [ref=f3e191]
+                  - paragraph [ref=f3e192]: Place a sheet against a wall. Stand with your heel touching the wall and your weight evenly distributed — sitting under-measures by 3–5 mm.
+              - listitem [ref=f3e193]:
+                - generic [ref=f3e194]: "4"
+                - generic [ref=f3e195]:
+                  - heading "Mark the longest toe" [level=3] [ref=f3e196]
+                  - paragraph [ref=f3e197]: With a pencil held vertically, mark the paper at the tip of your longest toe. Do both feet — one foot is usually 2–4 mm longer.
+              - listitem [ref=f3e198]:
+                - generic [ref=f3e199]: "5"
+                - generic [ref=f3e200]:
+                  - heading "Measure to the wall" [level=3] [ref=f3e201]
+                  - paragraph [ref=f3e202]: Measure the distance from the wall edge to your mark in millimetres. Always buy for the longer foot.
+              - listitem [ref=f3e203]:
+                - generic [ref=f3e204]: "6"
+                - generic [ref=f3e205]:
+                  - heading "Add 10 mm of toe room" [level=3] [ref=f3e206]
+                  - paragraph [ref=f3e207]: Safety boots with steel or composite toe caps need 10 mm (about 1 cm) of room in front of your longest toe so the toe cap never presses on your nails when you walk downhill.
+          - generic [ref=f3e208]:
+            - heading "US to EU safety boot size conversion chart" [level=2] [ref=f3e209]
+            - paragraph [ref=f3e210]: Cross-reference table for safety-footwear sizing across the major systems. Sizes are based on Brannock / ISO 9407 foot-length measurement.
+            - table [ref=f3e212]:
+              - rowgroup [ref=f3e213]:
+                - row [ref=f3e214]:
+                  - columnheader "Foot length" [ref=f3e215]
+                  - columnheader "US Men's" [ref=f3e216]
+                  - columnheader "US Women's" [ref=f3e217]
+                  - columnheader "UK" [ref=f3e218]
+                  - columnheader "EU" [ref=f3e219]
+                  - columnheader "China" [ref=f3e220]
+                  - columnheader "Japan" [ref=f3e221]
+              - rowgroup [ref=f3e222]:
+                - row [ref=f3e223]:
+                  - cell "230 mm" [ref=f3e224]
+                  - cell "5" [ref=f3e225]
+                  - cell "6.5" [ref=f3e226]
+                  - cell "4" [ref=f3e227]
+                  - cell "38" [ref=f3e228]
+                  - cell "38" [ref=f3e229]
+                  - cell "23.0" [ref=f3e230]
+                - row [ref=f3e231]:
+                  - cell "235 mm" [ref=f3e232]
+                  - cell "5.5" [ref=f3e233]
+                  - cell "7" [ref=f3e234]
+                  - cell "4.5" [ref=f3e235]
+                  - cell "38.5" [ref=f3e236]
+                  - cell "38.5" [ref=f3e237]
+                  - cell "23.5" [ref=f3e238]
+                - row [ref=f3e239]:
+                  - cell "240 mm" [ref=f3e240]
+                  - cell "6" [ref=f3e241]
+                  - cell "7.5" [ref=f3e242]
+                  - cell "5" [ref=f3e243]
+                  - cell "39" [ref=f3e244]
+                  - cell "39" [ref=f3e245]
+                  - cell "24.0" [ref=f3e246]
+                - row [ref=f3e247]:
+                  - cell "245 mm" [ref=f3e248]
+                  - cell "6.5" [ref=f3e249]
+                  - cell "8" [ref=f3e250]
+                  - cell "5.5" [ref=f3e251]
+                  - cell "39.5" [ref=f3e252]
+                  - cell "39.5" [ref=f3e253]
+                  - cell "24.5" [ref=f3e254]
+                - row [ref=f3e255]:
+                  - cell "250 mm" [ref=f3e256]
+                  - cell "7" [ref=f3e257]
+                  - cell "8.5" [ref=f3e258]
+                  - cell "6" [ref=f3e259]
+                  - cell "40" [ref=f3e260]
+                  - cell "40" [ref=f3e261]
+                  - cell "25.0" [ref=f3e262]
+                - row [ref=f3e263]:
+                  - cell "255 mm" [ref=f3e264]
+                  - cell "7.5" [ref=f3e265]
+                  - cell "9" [ref=f3e266]
+                  - cell "6.5" [ref=f3e267]
+                  - cell "40.5" [ref=f3e268]
+                  - cell "40.5" [ref=f3e269]
+                  - cell "25.5" [ref=f3e270]
+                - row [ref=f3e271]:
+                  - cell "260 mm" [ref=f3e272]
+                  - cell "8" [ref=f3e273]
+                  - cell "9.5" [ref=f3e274]
+                  - cell "7" [ref=f3e275]
+                  - cell "41" [ref=f3e276]
+                  - cell "41" [ref=f3e277]
+                  - cell "26.0" [ref=f3e278]
+                - row [ref=f3e279]:
+                  - cell "265 mm" [ref=f3e280]
+                  - cell "8.5" [ref=f3e281]
+                  - cell "10" [ref=f3e282]
+                  - cell "7.5" [ref=f3e283]
+                  - cell "42" [ref=f3e284]
+                  - cell "42" [ref=f3e285]
+                  - cell "26.5" [ref=f3e286]
+                - row [ref=f3e287]:
+                  - cell "270 mm" [ref=f3e288]
+                  - cell "9" [ref=f3e289]
+                  - cell "10.5" [ref=f3e290]
+                  - cell "8" [ref=f3e291]
+                  - cell "42.5" [ref=f3e292]
+                  - cell "42.5" [ref=f3e293]
+                  - cell "27.0" [ref=f3e294]
+                - row [ref=f3e295]:
+                  - cell "275 mm" [ref=f3e296]
+                  - cell "9.5" [ref=f3e297]
+                  - cell "11" [ref=f3e298]
+                  - cell "8.5" [ref=f3e299]
+                  - cell "43" [ref=f3e300]
+                  - cell "43" [ref=f3e301]
+                  - cell "27.5" [ref=f3e302]
+                - row [ref=f3e303]:
+                  - cell "280 mm" [ref=f3e304]
+                  - cell "10" [ref=f3e305]
+                  - cell "11.5" [ref=f3e306]
+                  - cell "9" [ref=f3e307]
+                  - cell "44" [ref=f3e308]
+                  - cell "44" [ref=f3e309]
+                  - cell "28.0" [ref=f3e310]
+                - row [ref=f3e311]:
+                  - cell "285 mm" [ref=f3e312]
+                  - cell "10.5" [ref=f3e313]
+                  - cell "12" [ref=f3e314]
+                  - cell "9.5" [ref=f3e315]
+                  - cell "44.5" [ref=f3e316]
+                  - cell "44.5" [ref=f3e317]
+                  - cell "28.5" [ref=f3e318]
+                - row [ref=f3e319]:
+                  - cell "290 mm" [ref=f3e320]
+                  - cell "11" [ref=f3e321]
+                  - cell "12.5" [ref=f3e322]
+                  - cell "10" [ref=f3e323]
+                  - cell "45" [ref=f3e324]
+                  - cell "45" [ref=f3e325]
+                  - cell "29.0" [ref=f3e326]
+                - row [ref=f3e327]:
+                  - cell "295 mm" [ref=f3e328]
+                  - cell "11.5" [ref=f3e329]
+                  - cell "13" [ref=f3e330]
+                  - cell "10.5" [ref=f3e331]
+                  - cell "45.5" [ref=f3e332]
+                  - cell "45.5" [ref=f3e333]
+                  - cell "29.5" [ref=f3e334]
+                - row [ref=f3e335]:
+                  - cell "300 mm" [ref=f3e336]
+                  - cell "12" [ref=f3e337]
+                  - cell "13.5" [ref=f3e338]
+                  - cell "11" [ref=f3e339]
+                  - cell "46" [ref=f3e340]
+                  - cell "46" [ref=f3e341]
+                  - cell "30.0" [ref=f3e342]
+                - row [ref=f3e343]:
+                  - cell "310 mm" [ref=f3e344]
+                  - cell "13" [ref=f3e345]
+                  - cell "—" [ref=f3e346]
+                  - cell "12" [ref=f3e347]
+                  - cell "47" [ref=f3e348]
+                  - cell "47" [ref=f3e349]
+                  - cell "31.0" [ref=f3e350]
+                - row [ref=f3e351]:
+                  - cell "320 mm" [ref=f3e352]
+                  - cell "14" [ref=f3e353]
+                  - cell "—" [ref=f3e354]
+                  - cell "13" [ref=f3e355]
+                  - cell "48" [ref=f3e356]
+                  - cell "48" [ref=f3e357]
+                  - cell "32.0" [ref=f3e358]
+                - row [ref=f3e359]:
+                  - cell "330 mm" [ref=f3e360]
+                  - cell "15" [ref=f3e361]
+                  - cell "—" [ref=f3e362]
+                  - cell "14" [ref=f3e363]
+                  - cell "49" [ref=f3e364]
+                  - cell "49" [ref=f3e365]
+                  - cell "33.0" [ref=f3e366]
+          - generic [ref=f3e367]:
+            - heading "Width fittings explained" [level=2] [ref=f3e372]
+            - paragraph [ref=f3e373]: Safety footwear width is measured across the ball of the foot. US systems use letter codes (D, E, 2E, 4E), European systems use F/G/H/K. Both ASTM F2413 and EN ISO 20345 permit these variants.
+            - table [ref=f3e375]:
+              - rowgroup [ref=f3e376]:
+                - row [ref=f3e377]:
+                  - columnheader "Width" [ref=f3e378]
+                  - columnheader "US label" [ref=f3e379]
+                  - columnheader "EU label" [ref=f3e380]
+                  - columnheader "Typical use" [ref=f3e381]
+              - rowgroup [ref=f3e382]:
+                - row [ref=f3e383]:
+                  - cell "B / Narrow" [ref=f3e384]
+                  - cell "B (women) / AA (men)" [ref=f3e385]
+                  - cell "—" [ref=f3e386]
+                  - cell "Narrower instep and ball, common for smaller frames." [ref=f3e387]
+                - row [ref=f3e388]:
+                  - cell "D / Medium" [ref=f3e389]
+                  - cell "D" [ref=f3e390]
+                  - cell "F (medium)" [ref=f3e391]
+                  - cell "Standard width — fits most workers." [ref=f3e392]
+                - row [ref=f3e393]:
+                  - cell "E / Wide" [ref=f3e394]
+                  - cell "E, 2E" [ref=f3e395]
+                  - cell "G (wide)" [ref=f3e396]
+                  - cell "Extra room across the ball of the foot." [ref=f3e397]
+                - row [ref=f3e398]:
+                  - cell "2E / EE" [ref=f3e399]
+                  - cell "2E, EE" [ref=f3e400]
+                  - cell "H" [ref=f3e401]
+                  - cell "Wide fit used for work boots with thick socks." [ref=f3e402]
+                - row [ref=f3e403]:
+                  - cell "4E / EEEE" [ref=f3e404]
+                  - cell "4E, EEEE" [ref=f3e405]
+                  - cell "K" [ref=f3e406]
+                  - cell "Very wide fit — orthopaedic or swelling accommodation." [ref=f3e407]
+                - row [ref=f3e408]:
+                  - cell "6E" [ref=f3e409]
+                  - cell "6E" [ref=f3e410]
+                  - cell "—" [ref=f3e411]
+                  - cell "Rare US-only extra-wide fit; select brands only." [ref=f3e412]
+          - generic [ref=f3e413]:
+            - heading "Break-in and on-site fit check" [level=2] [ref=f3e414]
+            - generic [ref=f3e415]:
+              - generic [ref=f3e416]:
+                - heading "First 40 hours" [level=3] [ref=f3e420]
+                - paragraph [ref=f3e421]: Expect light pressure at the heel and instep — this resolves as the leather conforms. Sharp pain or toe-cap contact means wrong size.
+              - generic [ref=f3e422]:
+                - heading "Toe test" [level=3] [ref=f3e429]
+                - paragraph [ref=f3e430]: Kick a flat wall lightly. Your longest toe should never feel the toe cap — if it does, the boot is too short regardless of labelled size.
+              - generic [ref=f3e431]:
+                - heading "Heel lock test" [level=3] [ref=f3e435]
+                - paragraph [ref=f3e436]: With boots laced, walk on tiptoes. A properly fitted boot keeps your heel anchored within 2–3 mm of the insole.
+          - generic [ref=f3e438]:
+            - generic [ref=f3e439]:
+              - paragraph [ref=f3e440]: Related buying guides
+              - heading "Footwear guides to use after sizing" [level=2] [ref=f3e444]
+              - paragraph [ref=f3e445]: Once size and width are clear, use these buying guides to confirm standards, role needs, and bulk order details before requesting safety footwear pricing.
+            - generic [ref=f3e446]:
+              - link "Safety footwear Safety Footwear Guide Compare toe protection, outsole requirements and fit evidence before ordering safety footwear. Read guide" [ref=f3e447] [cursor=pointer]:
+                - /url: /blog/construction-safety-footwear-guide
+                - generic [ref=f3e448]: Safety footwear
+                - heading "Safety Footwear Guide" [level=3] [ref=f3e449]
+                - paragraph [ref=f3e450]: Compare toe protection, outsole requirements and fit evidence before ordering safety footwear.
+                - generic [ref=f3e451]: Read guide
+              - link "Mining footwear Mining & Quarry Safety Boots Guide Turn mine hazards, standards evidence, fit trials, size curves, and replacement stock into a footwear RFQ. Read guide" [ref=f3e454] [cursor=pointer]:
+                - /url: /blog/mining-quarry-safety-boots-guide
+                - generic [ref=f3e455]: Mining footwear
+                - heading "Mining & Quarry Safety Boots Guide" [level=3] [ref=f3e456]
+                - paragraph [ref=f3e457]: Turn mine hazards, standards evidence, fit trials, size curves, and replacement stock into a footwear RFQ.
+                - generic [ref=f3e458]: Read guide
+              - link "Bulk purchasing Bulk PPE Procurement Prepare a clear RFQ, compare supplier evidence and plan repeat orders. Read guide" [ref=f3e461] [cursor=pointer]:
+                - /url: /blog/bulk-construction-ppe-procurement
+                - generic [ref=f3e462]: Bulk purchasing
+                - heading "Bulk PPE Procurement" [level=3] [ref=f3e463]
+                - paragraph [ref=f3e464]: Prepare a clear RFQ, compare supplier evidence and plan repeat orders.
+                - generic [ref=f3e465]: Read guide
+              - link "Checklist Construction PPE Checklist A field checklist for turning tool output into daily PPE issue and inspection routines. Read guide" [ref=f3e468] [cursor=pointer]:
+                - /url: /blog/construction-ppe-checklist
+                - generic [ref=f3e469]: Checklist
+                - heading "Construction PPE Checklist" [level=3] [ref=f3e470]
+                - paragraph [ref=f3e471]: A field checklist for turning tool output into daily PPE issue and inspection routines.
+                - generic [ref=f3e472]: Read guide
+              - link "Workplace requirements OSHA PPE Requirements Review construction PPE requirements, fit and documentation before selecting equipment. Read guide" [ref=f3e475] [cursor=pointer]:
+                - /url: /blog/osha-ppe-requirements-construction
+                - generic [ref=f3e476]: Workplace requirements
+                - heading "OSHA PPE Requirements" [level=3] [ref=f3e477]
+                - paragraph [ref=f3e478]: Review construction PPE requirements, fit and documentation before selecting equipment.
+                - generic [ref=f3e479]: Read guide
+          - generic [ref=f3e482]:
+            - heading "Frequently asked questions" [level=2] [ref=f3e483]
+            - generic [ref=f3e484]:
+              - group [ref=f3e485]:
+                - generic "How do I convert US shoe size to EU for safety boots?" [ref=f3e486] [cursor=pointer]
+              - group [ref=f3e490]:
+                - generic "Are safety boots sized differently from regular shoes?" [ref=f3e491] [cursor=pointer]
+              - group [ref=f3e495]:
+                - generic "What width fitting should I order?" [ref=f3e496] [cursor=pointer]
+              - group [ref=f3e500]:
+                - generic "Do I order my street-shoe size in steel-toe boots?" [ref=f3e501] [cursor=pointer]
+              - group [ref=f3e505]:
+                - generic "How do I know if my safety boots fit correctly?" [ref=f3e506] [cursor=pointer]
+              - group [ref=f3e510]:
+                - generic "Can I return safety boots that do not fit?" [ref=f3e511] [cursor=pointer]
+          - generic [ref=f3e520]:
+            - heading "Ready to choose your boots?" [level=2] [ref=f3e521]
+            - paragraph [ref=f3e522]:
+              - text: Once you know your size, send the footwear range to our sourcing team, or learn what the certification labels mean with the
+              - link "Compliance Label Decoder" [ref=f3e523] [cursor=pointer]:
+                - /url: /tools/compliance-checker
+              - text: ", or read the full"
+              - link "construction safety footwear guide" [ref=f3e524] [cursor=pointer]:
+                - /url: /blog/construction-safety-footwear-guide
+              - text: covering ASTM F2413 and EN ISO 20345.
+            - generic [ref=f3e525]:
+              - link "Request footwear quote" [ref=f3e526] [cursor=pointer]:
+                - /url: /quote
+              - link "Shop safety boots" [ref=f3e527] [cursor=pointer]:
+                - /url: /categories/foot-protection
+              - link "Decode a label" [ref=f3e528] [cursor=pointer]:
+                - /url: /tools/compliance-checker
+    - contentinfo [ref=f3e529]:
+      - generic [ref=f3e530]:
+        - generic [ref=f3e531]:
+          - generic [ref=f3e532]:
+            - link "Laifappe homepage" [ref=f3e533] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f3e534]
+              - generic [ref=f3e535]:
+                - strong [ref=f3e536]: 粤来发劳保
+                - generic [ref=f3e537]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f3e538]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f3e539]:
+              - generic [ref=f3e540]: CE EN
+              - generic [ref=f3e541]: ISO 9001
+              - generic [ref=f3e542]: ANSI
+              - generic [ref=f3e543]: BSCI
+          - navigation "Footer products" [ref=f3e544]:
+            - heading "Products" [level=3] [ref=f3e545]
+            - link "Head Protection" [ref=f3e546] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f3e547] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f3e548] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f3e549] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f3e550] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f3e551] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f3e552]:
+            - heading "Solutions" [level=3] [ref=f3e553]
+            - link "Construction" [ref=f3e554] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f3e555] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f3e556] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f3e557] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f3e558] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f3e559] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f3e560]:
+            - heading "Company" [level=3] [ref=f3e561]
+            - link "About Us" [ref=f3e562] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f3e563] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f3e564] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f3e565] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f3e566] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f3e567]:
+            - heading "Contact Us" [level=3] [ref=f3e568]
+            - paragraph [ref=f3e569]: +86 180 2930 9938
+            - paragraph [ref=f3e573]: sales@laifappe.com
+            - paragraph [ref=f3e578]:
+              - generic [ref=f3e579]: W
+              - link "www.laifappe.com" [ref=f3e580] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f3e581]: Foshan, Guangdong, China
+        - generic [ref=f3e586]:
+          - generic [ref=f3e587]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f3e588]:
+            - link "Privacy Policy" [ref=f3e589] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f3e590] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f3e591] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - button "Open Next.js Dev Tools" [ref=f3e597] [cursor=pointer]
+  - alert [ref=f3e601]

@@ -1,3 +1,4 @@
+import theme from '../tools-theme.module.css'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Home, Clock, RefreshCw, FileCheck, Info } from 'lucide-react'
@@ -52,43 +53,63 @@ export const metadata: Metadata = {
 }
 
 const REPLACEMENT_GUIDE = [
-  { item: 'Disposable nitrile gloves', interval: 'Per task (food/chemical: change every 2–4 hours)', lifespan: 'Single use' },
-  { item: 'Cut-resistant gloves (A4–A6)', interval: 'Every 2–3 weeks of heavy use', lifespan: '80–120 hours' },
-  { item: 'Safety glasses', interval: 'When scratched or damaged (monthly average)', lifespan: '1–6 months' },
-  { item: 'Hard hat (ANSI Z89.1)', interval: 'Every 2–5 years, immediately after impact', lifespan: 'Date-coded' },
-  { item: 'Hi-vis vest (ANSI 107)', interval: 'When striping degrades or fades', lifespan: '8–12 months' },
-  { item: 'Safety boots (ASTM F2413)', interval: 'Every 5–8 months of heavy use', lifespan: '6–12 months' },
-  { item: 'N95 / FFP2 respirator', interval: 'Per shift; sooner if damp or damaged', lifespan: 'Single shift' },
-  { item: 'Reusable respirator cartridges', interval: 'End-of-shift or when saturated', lifespan: '8–40 hours' },
-  { item: 'Disposable earplugs', interval: 'Per shift (never re-use corded)', lifespan: 'Single use' },
-  { item: 'Fall-arrest harness', interval: 'Every 2 years; immediately after arresting a fall', lifespan: '24 months' },
+  {
+    "item": "Disposable gloves and coveralls",
+    "interval": "Follow the product and task change instructions; replace compromised barriers.",
+    "lifespan": "Product/task specific"
+  },
+  {
+    "item": "Reusable gloves and eye protection",
+    "interval": "Inspect condition, fit and protective performance; replace damaged items.",
+    "lifespan": "Manufacturer instructions"
+  },
+  {
+    "item": "Hard hats and harnesses",
+    "interval": "Inspect before use and follow manufacturer retirement and post-impact/fall rules.",
+    "lifespan": "No universal budget cycle"
+  },
+  {
+    "item": "Safety boots and hi-vis clothing",
+    "interval": "Inspect wear, damage and protective performance; replace when unsuitable.",
+    "lifespan": "Condition and model specific"
+  },
+  {
+    "item": "Respirators and cartridges",
+    "interval": "Use the site respiratory-protection program and a documented, product-specific change schedule.",
+    "lifespan": "Not the calculator rate"
+  },
+  {
+    "item": "Hearing protection",
+    "interval": "Follow hygiene, inspection, cleaning and component-replacement instructions.",
+    "lifespan": "Manufacturer instructions"
+  }
 ]
 
 const FAQ = [
   {
-    q: 'How do I calculate how much PPE my company needs?',
-    a: 'Start with headcount and role type, multiply industry-average consumption rates for each PPE item by the number of workers, then adjust for shift pattern and exposure level. The calculator automates this with benchmarks from OSHA guidance and industry data.',
+    "q": "How do I calculate how much PPE my company needs?",
+    "a": "Select the items needed for your assessed tasks. Multiply workers by a base monthly usage rate and the displayed role, shift and exposure factors. For reusable PPE the base rate is 1 divided by the base replacement cycle in months. Annual consumption is monthly consumption times 12; costs multiply quantity by your unit price."
   },
   {
-    q: 'How often should disposable gloves be replaced?',
-    a: 'Disposable nitrile or latex gloves are single-use. Change them between tasks, whenever they contact chemicals, and every 2–4 hours under continuous use to maintain barrier integrity. Heavy-use roles typically consume 60–120 pairs per worker per month.',
+    "q": "How are purchase quantities rounded?",
+    "a": "For each item and horizon, purchase quantity is ceil(consumption estimate divided by your pack size) times pack size. Pack size defaults to 1 and is user supplied, not supplier MOQ. Monthly and annual orders are rounded separately. Adjust for usable stock, initial issue, sizes and lead time before buying."
   },
   {
-    q: 'When should safety boots be replaced?',
-    a: 'Replace ASTM F2413 or EN ISO 20345 safety boots every 5–8 months under heavy construction use, or immediately on visible toe-cap damage, sole separation, or significant tread wear. Routine inspection adds several months of protective life.',
+    "q": "When should PPE be replaced?",
+    "a": "The editable cycles are budget assumptions, not safe service lives. Inspect PPE and follow the exact manufacturer instructions and your site program. Damaged or compromised PPE may need immediate replacement. Respirator cartridges need a documented change schedule rather than the calculator usage rate."
   },
   {
-    q: 'What is the average annual PPE cost per worker?',
-    a: 'Annual PPE cost typically ranges from $180 per worker (low-exposure warehouse) to $650+ per worker (chemical, welding, high-exposure construction), driven by disposable glove and respirator consumption. The calculator gives a specific figure for your inputs.',
+    "q": "What is the annual PPE cost per worker in the default plan?",
+    "a": "The illustrative Construction, single-shift, medium-exposure plan costs USD 2,371.25 per worker per year before purchase rounding. It includes all 12 applicable lines, including several disposable and reusable alternatives. This is a scenario total, not an industry average or a universal USD 180-650 range. Change item selection, prices and usage to reflect your site."
   },
   {
-    q: 'Does OSHA require the employer to pay for PPE?',
-    a: 'Yes. Under 29 CFR 1910.132(h) and 1926.95, employers must provide and pay for most PPE at no cost to the employee, with limited exceptions for everyday items and personal-use equipment retained by the worker.',
+    "q": "Does OSHA require the employer to pay for PPE?",
+    "a": "OSHA 29 CFR 1910.132(h) and 1926.95(d) cover employer payment for required PPE, with specified exceptions. Check the applicable rule and workplace requirements; this calculator does not determine legal compliance."
   },
   {
-    q: 'How accurate is this PPE consumption calculator?',
-    a: 'It is a planning estimator using industry-average consumption rates. Actual usage varies 20–40% by site conditions, contract pricing and training quality. Use it to set a baseline, then refine against real consumption data after 2–3 months.',
-  },
+    "q": "How accurate is this PPE consumption calculator?",
+    "a": "No validated accuracy percentage is available. Defaults and factors are illustrative planning inputs reviewed on 3 October 2026, not measured OSHA/BLS benchmarks or supplier quotations. Replace them with site usage records and current USD unit prices. The estimate excludes initial issue, usable stock, tax, freight, training and administration."
+  }
 ]
 
 export default function PpeCalculatorPage() {
@@ -129,7 +150,7 @@ export default function PpeCalculatorPage() {
   }
 
   return (
-    <div className="bg-ppe-bg-page min-h-screen pb-24">
+    <div className={[theme.page, "min-h-screen pb-24"].join(" ")}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -162,7 +183,7 @@ export default function PpeCalculatorPage() {
       </nav>
 
       {/* Hero */}
-      <header className="container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center">
+      <header data-tool-hero className={[theme.hero, "container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary mb-4">
           Planning Tool · Free
         </p>
@@ -180,14 +201,12 @@ export default function PpeCalculatorPage() {
       </div>
 
       {/* How it works */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-6">
           How to calculate PPE needs
         </h2>
         <p className="text-muted-foreground text-base leading-[1.85] mb-6">
-          A defensible PPE plan starts with four inputs: headcount by role, industry-specific
-          consumption rates, shift pattern and exposure level. The calculator combines them
-          using the following logic:
+          A replenishment plan starts with assessed tasks, selected items, workforce size, usage records and supplier prices. The defaults are illustrative; the editable inputs use this logic:
         </p>
         <div className="rounded-xl border bg-background p-6 shadow-sm font-mono text-sm leading-relaxed">
           <span className="text-primary font-semibold">Monthly quantity</span> ={' '}
@@ -203,34 +222,33 @@ export default function PpeCalculatorPage() {
             <Clock className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Shift pattern</h3>
             <p className="text-sm text-muted-foreground">
-              Extended 12-hour shifts consume ~1.5× baseline PPE; 24/7 rotations ~2.2×.
+              Illustrative factors: single shift 1.0, extended 1.5, continuous 2.2. Avoid double-counting the workforce.
             </p>
           </div>
           <div className="rounded-xl border bg-background p-5 shadow-sm">
             <RefreshCw className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Exposure level</h3>
             <p className="text-sm text-muted-foreground">
-              Heavy dust, chemicals or contamination push disposable consumption 1.6× higher.
+              Illustrative factors: low 0.7, medium 1.0, high 1.6. Adjust item usage from your own records.
             </p>
           </div>
           <div className="rounded-xl border bg-background p-5 shadow-sm">
             <FileCheck className="h-5 w-5 text-primary mb-2" />
-            <h3 className="font-semibold text-foreground mb-1">Compliance buffer</h3>
+            <h3 className="font-semibold text-foreground mb-1">Stock and initial issue</h3>
             <p className="text-sm text-muted-foreground">
-              Add 10–15% safety stock to cover lost/damaged items and audit reserves.
+              The estimate excludes initial issue and current stock. Set reserves according to lead times and the site plan.
             </p>
           </div>
         </div>
       </section>
 
       {/* Replacement schedule */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
-          PPE replacement schedule benchmarks
+          Replacement decisions and budget assumptions
         </h2>
         <p className="text-muted-foreground text-base leading-relaxed mb-6">
-          Typical replacement intervals for common PPE items under normal use. Harsher
-          environments (chemical, welding, offshore) shorten these intervals significantly.
+          A budget cycle does not determine when PPE remains safe. Use the product instructions, inspection findings and site program; the calculator cycles are editable planning assumptions.
         </p>
         <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
           <table className="w-full border-collapse text-sm">
@@ -238,7 +256,7 @@ export default function PpeCalculatorPage() {
               <tr className="bg-muted/60">
                 <th className="border-b px-4 py-3 text-left font-semibold">PPE Item</th>
                 <th className="border-b px-4 py-3 text-left font-semibold">Replacement interval</th>
-                <th className="border-b px-4 py-3 text-left font-semibold">Typical lifespan</th>
+                <th className="border-b px-4 py-3 text-left font-semibold">Basis for replacement</th>
               </tr>
             </thead>
             <tbody>
@@ -257,16 +275,16 @@ export default function PpeCalculatorPage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <ToolRelatedGuidesSection
           title="Use these guides to refine your PPE quantities"
-          description="The calculator gives a planning number. These high-impression buying guides help you adjust that number by task, replacement rate, and PPE category before sending an RFQ."
+          description="The calculator gives a planning number. These buying guides help you adjust that number by task, replacement rate, and PPE category before sending an RFQ."
           guides={TOOL_RELATED_GUIDES['ppe-calculator']}
         />
       </section>
 
       {/* FAQ */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-8 text-center">
           Frequently asked questions
         </h2>
@@ -287,7 +305,7 @@ export default function PpeCalculatorPage() {
       </section>
 
       {/* Related links */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
         <div className="rounded-2xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 sm:p-10 shadow-sm">
           <div className="flex items-start gap-4">
             <Info className="h-6 w-6 text-primary flex-shrink-0 mt-1" />

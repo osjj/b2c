@@ -8,7 +8,7 @@ const title = buildPageTitle("Professional PPE Manufacturer & OEM Supplier")
 const description =
   "Laifappe manufactures professional PPE for bulk buyers, including safety gloves, footwear, workwear, helmets, and respiratory protection with OEM/ODM service."
 
-export const dynamic = "force-dynamic"
+export const revalidate = 300
 
 export const metadata: Metadata = {
   title: {

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
+import { invalidateHomeCache } from '@/lib/home-cache'
 import {
   collectProductIndexNowUrls,
   scheduleIndexNowUrls,
@@ -45,6 +46,7 @@ export async function POST(
 
     revalidatePath('/admin/products')
     revalidatePath('/products')
+    invalidateHomeCache('products')
 
     return NextResponse.json({ success: true })
   } catch {

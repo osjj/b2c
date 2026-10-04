@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:quotation": "tsx --test src/lib/quotation/*.test.ts",
+    "test:home": "node --test src/modules/home-new/lib/home-data.test.mjs",
     "sync": "prisma generate",
     "db:push": "prisma db push",
     "db:deploy": "prisma migrate deploy",

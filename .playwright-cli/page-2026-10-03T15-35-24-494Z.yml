@@ -1,0 +1,449 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e4]:
+      - generic [ref=f1e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f1e8]:
+        - link "sales@laifappe.com" [ref=f1e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f1e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f1e11]: EN
+    - banner [ref=f1e13]:
+      - generic [ref=f1e14]:
+        - link "Laifappe homepage" [ref=f1e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f1e16]
+          - generic [ref=f1e17]:
+            - strong [ref=f1e18]: 粤来发劳保
+            - generic [ref=f1e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f1e20]:
+          - link "Home" [ref=f1e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f1e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f1e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f1e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f1e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f1e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f1e27]:
+          - link "Email" [ref=f1e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f1e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f1e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f1e41]: →
+    - main [ref=f1e42]:
+      - generic [ref=f1e43]:
+        - navigation [ref=f1e44]:
+          - list [ref=f1e45]:
+            - listitem [ref=f1e46]:
+              - link [ref=f1e47] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f1e53]:
+              - link "Tools" [ref=f1e54] [cursor=pointer]:
+                - /url: /tools
+            - listitem [ref=f1e57]: PPE Calculator
+        - generic [ref=f1e58]:
+          - paragraph [ref=f1e59]: Planning Tool · Free
+          - heading "PPE Quantity Calculator" [level=1] [ref=f1e60]
+          - paragraph [ref=f1e61]: Estimate monthly and annual PPE consumption by industry, shift pattern and exposure level. Get a worker-level cost breakdown and export a budget-ready CSV.
+        - generic [ref=f1e63]:
+          - generic [ref=f1e64]:
+            - heading "Your workforce" [level=2] [ref=f1e65]
+            - generic [ref=f1e68]:
+              - generic [ref=f1e69]:
+                - generic [ref=f1e70]: Number of workers
+                - spinbutton "Number of workers" [ref=f1e71]: "50"
+              - generic [ref=f1e72]:
+                - generic [ref=f1e73]: Industry / role
+                - combobox "Industry / role" [ref=f1e74]:
+                  - generic: Construction
+              - generic [ref=f1e75]:
+                - generic [ref=f1e76]: Shift pattern
+                - combobox "Shift pattern" [ref=f1e77]:
+                  - generic: Single shift (8h)
+              - generic [ref=f1e78]:
+                - generic [ref=f1e79]: Exposure level
+                - combobox "Exposure level" [ref=f1e80]:
+                  - generic: Medium
+            - paragraph [ref=f1e81]: "Illustrative factors: role 1.1 x shift 1 x exposure 1 = 1.100. These are planning assumptions, not measured industry benchmarks. For a 24/7 workforce, avoid counting the same workers twice."
+            - group [ref=f1e82]:
+              - generic "Review prices, usage and pack sizes" [ref=f1e83] [cursor=pointer]
+            - generic [ref=f1e84]:
+              - button "Export CSV" [ref=f1e85]
+              - button "Reset" [ref=f1e86]
+          - generic [ref=f1e87]:
+            - generic [ref=f1e88]:
+              - paragraph [ref=f1e89]: Monthly consumption budget
+              - paragraph [ref=f1e90]: $9,880.20
+              - paragraph [ref=f1e91]: for 50 workers
+            - generic [ref=f1e92]:
+              - paragraph [ref=f1e93]: Annual consumption budget
+              - paragraph [ref=f1e94]: $118,562.40
+              - paragraph [ref=f1e95]: 12 selected PPE items
+            - generic [ref=f1e96]:
+              - paragraph [ref=f1e97]: Consumption cost / worker / year
+              - paragraph [ref=f1e98]: $2,371.25
+              - paragraph [ref=f1e99]: Equipment only; excludes training and administration
+          - generic [ref=f1e100]:
+            - heading "Consumption and whole-unit purchase plan" [level=2] [ref=f1e101]
+            - paragraph [ref=f1e102]: Estimated consumption can be fractional. Purchase quantities round each item up to your pack size for each horizon separately. An annual order is not 12 rounded monthly orders. Subtract usable stock and add initial issue, lead-time reserves and site-specific spare stock before ordering.
+            - paragraph [ref=f1e103]: "Whole-unit purchase budget: $10,034.50 for one month; $118,687.00 for one annual order."
+            - paragraph [ref=f1e104]: "Monthly estimate = workers x base monthly rate x 1.100. For reusable items, base monthly rate = 1 / replacement cycle in months. Annual = monthly x 12. Cost = quantity x unit price. Currency: USD. Your price date: 2026-10-03. Illustrative defaults reviewed: 2026-10-03. Excludes initial issue, current stock, tax, freight, training and administration."
+          - table [ref=f1e108]:
+            - rowgroup [ref=f1e109]:
+              - row [ref=f1e110]:
+                - columnheader "PPE item" [ref=f1e111]
+                - columnheader "Monthly estimate" [ref=f1e112]
+                - columnheader "Monthly purchase" [ref=f1e113]
+                - columnheader "Annual estimate" [ref=f1e114]
+                - columnheader "Annual purchase" [ref=f1e115]
+                - columnheader "Annual consumption cost (USD)" [ref=f1e116]
+            - rowgroup [ref=f1e117]:
+              - row [ref=f1e118]:
+                - cell "Disposable gloves (nitrile / latex)" [ref=f1e119]
+                - cell "4,400 pairs" [ref=f1e120]
+                - cell "4,400 pairs" [ref=f1e121]
+                - cell "52,800 pairs" [ref=f1e122]
+                - cell "52,800 pairs" [ref=f1e123]
+                - cell "$6,336.00" [ref=f1e124]
+              - row [ref=f1e125]:
+                - cell "Cut-resistant gloves (reusable)" [ref=f1e126]
+                - cell "137.5 pairs" [ref=f1e127]
+                - cell "138 pairs" [ref=f1e128]
+                - cell "1,650 pairs" [ref=f1e129]
+                - cell "1,650 pairs" [ref=f1e130]
+                - cell "$13,200.00" [ref=f1e131]
+              - row [ref=f1e132]:
+                - cell "Safety glasses (standard)" [ref=f1e133]
+                - cell "82.5 pairs" [ref=f1e134]
+                - cell "83 pairs" [ref=f1e135]
+                - cell "990 pairs" [ref=f1e136]
+                - cell "990 pairs" [ref=f1e137]
+                - cell "$5,940.00" [ref=f1e138]
+              - row [ref=f1e139]:
+                - cell "Hard hat (helmet)" [ref=f1e140]
+                - cell "2.2 pcs" [ref=f1e141]
+                - cell "3 pcs" [ref=f1e142]
+                - cell "26.4 pcs" [ref=f1e143]
+                - cell "27 pcs" [ref=f1e144]
+                - cell "$580.80" [ref=f1e145]
+              - row [ref=f1e146]:
+                - cell "Hi-vis vest / jacket" [ref=f1e147]
+                - cell "6.6 pcs" [ref=f1e148]
+                - cell "7 pcs" [ref=f1e149]
+                - cell "79.2 pcs" [ref=f1e150]
+                - cell "80 pcs" [ref=f1e151]
+                - cell "$1,108.80" [ref=f1e152]
+              - row [ref=f1e153]:
+                - cell "Safety boots (ASTM F2413 / EN ISO 20345)" [ref=f1e154]
+                - cell "9.9 pairs" [ref=f1e155]
+                - cell "10 pairs" [ref=f1e156]
+                - cell "118.8 pairs" [ref=f1e157]
+                - cell "119 pairs" [ref=f1e158]
+                - cell "$10,098.00" [ref=f1e159]
+              - row [ref=f1e160]:
+                - cell "N95 / FFP2 disposable respirators" [ref=f1e161]
+                - cell "1,210 pcs" [ref=f1e162]
+                - cell "1,210 pcs" [ref=f1e163]
+                - cell "14,520 pcs" [ref=f1e164]
+                - cell "14,520 pcs" [ref=f1e165]
+                - cell "$15,972.00" [ref=f1e166]
+              - row [ref=f1e167]:
+                - cell "Reusable respirator cartridges" [ref=f1e168]
+                - cell "165 pairs" [ref=f1e169]
+                - cell "165 pairs" [ref=f1e170]
+                - cell "1,980 pairs" [ref=f1e171]
+                - cell "1,980 pairs" [ref=f1e172]
+                - cell "$27,720.00" [ref=f1e173]
+              - row [ref=f1e174]:
+                - cell "Disposable earplugs" [ref=f1e175]
+                - cell "1,210 pairs" [ref=f1e176]
+                - cell "1,210 pairs" [ref=f1e177]
+                - cell "14,520 pairs" [ref=f1e178]
+                - cell "14,520 pairs" [ref=f1e179]
+                - cell "$3,630.00" [ref=f1e180]
+              - row [ref=f1e181]:
+                - cell "Earmuffs (reusable)" [ref=f1e182]
+                - cell "3.3 pcs" [ref=f1e183]
+                - cell "4 pcs" [ref=f1e184]
+                - cell "39.6 pcs" [ref=f1e185]
+                - cell "40 pcs" [ref=f1e186]
+                - cell "$1,108.80" [ref=f1e187]
+              - row [ref=f1e188]:
+                - cell "Disposable coveralls (Type 5/6)" [ref=f1e189]
+                - cell "330 pcs" [ref=f1e190]
+                - cell "330 pcs" [ref=f1e191]
+                - cell "3,960 pcs" [ref=f1e192]
+                - cell "3,960 pcs" [ref=f1e193]
+                - cell "$29,700.00" [ref=f1e194]
+              - row [ref=f1e195]:
+                - cell "Full-body fall-arrest harness" [ref=f1e196]
+                - cell "2.2 pcs" [ref=f1e197]
+                - cell "3 pcs" [ref=f1e198]
+                - cell "26.4 pcs" [ref=f1e199]
+                - cell "27 pcs" [ref=f1e200]
+                - cell "$3,168.00" [ref=f1e201]
+          - generic [ref=f1e202]:
+            - paragraph [ref=f1e203]: Review the inputs above or export them with your plan. Compare suitable products and confirm sizes, pack quantities and current pricing with the sourcing team.
+            - generic [ref=f1e204]:
+              - link "Browse PPE products" [ref=f1e205] [cursor=pointer]:
+                - /url: /products
+              - link "Request a supplier quote" [ref=f1e206] [cursor=pointer]:
+                - /url: /quote
+        - generic [ref=f1e207]:
+          - heading "How to calculate PPE needs" [level=2] [ref=f1e208]
+          - paragraph [ref=f1e209]: "A replenishment plan starts with assessed tasks, selected items, workforce size, usage records and supplier prices. The defaults are illustrative; the editable inputs use this logic:"
+          - generic [ref=f1e210]: Monthly quantity = Workers × Baseline rate per worker × Role multiplier × Shift multiplier × Exposure multiplier
+          - generic [ref=f1e211]:
+            - generic [ref=f1e212]:
+              - heading "Shift pattern" [level=3] [ref=f1e216]
+              - paragraph [ref=f1e217]: "Illustrative factors: single shift 1.0, extended 1.5, continuous 2.2. Avoid double-counting the workforce."
+            - generic [ref=f1e218]:
+              - heading "Exposure level" [level=3] [ref=f1e224]
+              - paragraph [ref=f1e225]: "Illustrative factors: low 0.7, medium 1.0, high 1.6. Adjust item usage from your own records."
+            - generic [ref=f1e226]:
+              - heading "Stock and initial issue" [level=3] [ref=f1e231]
+              - paragraph [ref=f1e232]: The estimate excludes initial issue and current stock. Set reserves according to lead times and the site plan.
+        - generic [ref=f1e233]:
+          - heading "Replacement decisions and budget assumptions" [level=2] [ref=f1e234]
+          - paragraph [ref=f1e235]: A budget cycle does not determine when PPE remains safe. Use the product instructions, inspection findings and site program; the calculator cycles are editable planning assumptions.
+          - table [ref=f1e237]:
+            - rowgroup [ref=f1e238]:
+              - row [ref=f1e239]:
+                - columnheader "PPE Item" [ref=f1e240]
+                - columnheader "Replacement interval" [ref=f1e241]
+                - columnheader "Basis for replacement" [ref=f1e242]
+            - rowgroup [ref=f1e243]:
+              - row [ref=f1e244]:
+                - cell "Disposable gloves and coveralls" [ref=f1e245]
+                - cell "Follow the product and task change instructions; replace compromised barriers." [ref=f1e246]
+                - cell "Product/task specific" [ref=f1e247]
+              - row [ref=f1e248]:
+                - cell "Reusable gloves and eye protection" [ref=f1e249]
+                - cell "Inspect condition, fit and protective performance; replace damaged items." [ref=f1e250]
+                - cell "Manufacturer instructions" [ref=f1e251]
+              - row [ref=f1e252]:
+                - cell "Hard hats and harnesses" [ref=f1e253]
+                - cell "Inspect before use and follow manufacturer retirement and post-impact/fall rules." [ref=f1e254]
+                - cell "No universal budget cycle" [ref=f1e255]
+              - row [ref=f1e256]:
+                - cell "Safety boots and hi-vis clothing" [ref=f1e257]
+                - cell "Inspect wear, damage and protective performance; replace when unsuitable." [ref=f1e258]
+                - cell "Condition and model specific" [ref=f1e259]
+              - row [ref=f1e260]:
+                - cell "Respirators and cartridges" [ref=f1e261]
+                - cell "Use the site respiratory-protection program and a documented, product-specific change schedule." [ref=f1e262]
+                - cell "Not the calculator rate" [ref=f1e263]
+              - row [ref=f1e264]:
+                - cell "Hearing protection" [ref=f1e265]
+                - cell "Follow hygiene, inspection, cleaning and component-replacement instructions." [ref=f1e266]
+                - cell "Manufacturer instructions" [ref=f1e267]
+        - generic [ref=f1e269]:
+          - generic [ref=f1e270]:
+            - paragraph [ref=f1e271]: Related buying guides
+            - heading "Use these guides to refine your PPE quantities" [level=2] [ref=f1e275]
+            - paragraph [ref=f1e276]: The calculator gives a planning number. These buying guides help you adjust that number by task, replacement rate, and PPE category before sending an RFQ.
+          - generic [ref=f1e277]:
+            - link "Mining maintenance Mine Maintenance Welding, Cutting and Grinding PPE Allocate task-specific equipment and spares across handling, grinding, welding and thermal cutting crews. Read guide" [ref=f1e278] [cursor=pointer]:
+              - /url: /blog/mining-maintenance-welding-cutting-grinding-ppe
+              - generic [ref=f1e279]: Mining maintenance
+              - heading "Mine Maintenance Welding, Cutting and Grinding PPE" [level=3] [ref=f1e280]
+              - paragraph [ref=f1e281]: Allocate task-specific equipment and spares across handling, grinding, welding and thermal cutting crews.
+              - generic [ref=f1e282]: Read guide
+            - link "Mining workwear Mining High-Visibility Workwear Guide Plan approved clothing configurations, sizes, cleaning rotation and replenishment for mine and quarry crews. Read guide" [ref=f1e285] [cursor=pointer]:
+              - /url: /blog/mining-high-visibility-workwear-guide
+              - generic [ref=f1e286]: Mining workwear
+              - heading "Mining High-Visibility Workwear Guide" [level=3] [ref=f1e287]
+              - paragraph [ref=f1e288]: Plan approved clothing configurations, sizes, cleaning rotation and replenishment for mine and quarry crews.
+              - generic [ref=f1e289]: Read guide
+            - link "Quarry eye protection Quarry Eye and Face Protection Guide Plan task-specific eye protection, compatible face shields, sample approval and replacement quantities for quarry crews. Read guide" [ref=f1e292] [cursor=pointer]:
+              - /url: /blog/quarry-eye-face-protection-guide
+              - generic [ref=f1e293]: Quarry eye protection
+              - heading "Quarry Eye and Face Protection Guide" [level=3] [ref=f1e294]
+              - paragraph [ref=f1e295]: Plan task-specific eye protection, compatible face shields, sample approval and replacement quantities for quarry crews.
+              - generic [ref=f1e296]: Read guide
+            - link "Mining hand protection Mining Work Gloves Guide Plan task-specific glove models, evidence, fit trials, sizes and replenishment for mine maintenance and handling crews. Read guide" [ref=f1e299] [cursor=pointer]:
+              - /url: /blog/mining-work-gloves-maintenance-material-handling
+              - generic [ref=f1e300]: Mining hand protection
+              - heading "Mining Work Gloves Guide" [level=3] [ref=f1e301]
+              - paragraph [ref=f1e302]: Plan task-specific glove models, evidence, fit trials, sizes and replenishment for mine maintenance and handling crews.
+              - generic [ref=f1e303]: Read guide
+            - link "Bulk purchasing Bulk PPE Procurement Prepare a clear RFQ, compare supplier evidence and plan repeat orders. Read guide" [ref=f1e306] [cursor=pointer]:
+              - /url: /blog/bulk-construction-ppe-procurement
+              - generic [ref=f1e307]: Bulk purchasing
+              - heading "Bulk PPE Procurement" [level=3] [ref=f1e308]
+              - paragraph [ref=f1e309]: Prepare a clear RFQ, compare supplier evidence and plan repeat orders.
+              - generic [ref=f1e310]: Read guide
+            - link "Kit planning Contractor PPE Kit Checklist Build role-based PPE kits with appropriate sizes and issue quantities. Read guide" [ref=f1e313] [cursor=pointer]:
+              - /url: /blog/contractor-ppe-kit-checklist
+              - generic [ref=f1e314]: Kit planning
+              - heading "Contractor PPE Kit Checklist" [level=3] [ref=f1e315]
+              - paragraph [ref=f1e316]: Build role-based PPE kits with appropriate sizes and issue quantities.
+              - generic [ref=f1e317]: Read guide
+            - link "Supplier checks Contractor PPE Supplier Checklist Compare documents, packing, substitutions and replenishment commitments before an order. Read guide" [ref=f1e320] [cursor=pointer]:
+              - /url: /blog/contractor-ppe-supplier-bulk-checklist
+              - generic [ref=f1e321]: Supplier checks
+              - heading "Contractor PPE Supplier Checklist" [level=3] [ref=f1e322]
+              - paragraph [ref=f1e323]: Compare documents, packing, substitutions and replenishment commitments before an order.
+              - generic [ref=f1e324]: Read guide
+            - link "Hand protection Construction Gloves Guide Choose gloves for cut, grip, impact and wet-work hazards, then plan sizes and replacements. Read guide" [ref=f1e327] [cursor=pointer]:
+              - /url: /blog/construction-gloves-selection-guide
+              - generic [ref=f1e328]: Hand protection
+              - heading "Construction Gloves Guide" [level=3] [ref=f1e329]
+              - paragraph [ref=f1e330]: Choose gloves for cut, grip, impact and wet-work hazards, then plan sizes and replacements.
+              - generic [ref=f1e331]: Read guide
+            - link "High-visibility clothing High-Visibility Clothing Guide Plan garment types, sizes, cleaning rotation and replacement stock. Read guide" [ref=f1e334] [cursor=pointer]:
+              - /url: /blog/high-visibility-clothing-construction
+              - generic [ref=f1e335]: High-visibility clothing
+              - heading "High-Visibility Clothing Guide" [level=3] [ref=f1e336]
+              - paragraph [ref=f1e337]: Plan garment types, sizes, cleaning rotation and replacement stock.
+              - generic [ref=f1e338]: Read guide
+            - link "Respiratory protection Respiratory Protection Guide Match dust and fume tasks to suitable respirators, fit requirements and filter planning. Read guide" [ref=f1e341] [cursor=pointer]:
+              - /url: /blog/construction-respiratory-protection
+              - generic [ref=f1e342]: Respiratory protection
+              - heading "Respiratory Protection Guide" [level=3] [ref=f1e343]
+              - paragraph [ref=f1e344]: Match dust and fume tasks to suitable respirators, fit requirements and filter planning.
+              - generic [ref=f1e345]: Read guide
+            - link "Hearing protection Hearing Protection Guide Compare earplugs, earmuffs, fit, communication needs and replacement planning. Read guide" [ref=f1e348] [cursor=pointer]:
+              - /url: /blog/construction-hearing-protection
+              - generic [ref=f1e349]: Hearing protection
+              - heading "Hearing Protection Guide" [level=3] [ref=f1e350]
+              - paragraph [ref=f1e351]: Compare earplugs, earmuffs, fit, communication needs and replacement planning.
+              - generic [ref=f1e352]: Read guide
+            - link "Mining noise Mining Hearing Protection Guide Connect MSHA Part 62 exposure groups to controls, earplug, earmuff, dual-protection, and RFQ decisions. Read guide" [ref=f1e355] [cursor=pointer]:
+              - /url: /blog/mining-hearing-protection-guide
+              - generic [ref=f1e356]: Mining noise
+              - heading "Mining Hearing Protection Guide" [level=3] [ref=f1e357]
+              - paragraph [ref=f1e358]: Connect MSHA Part 62 exposure groups to controls, earplug, earmuff, dual-protection, and RFQ decisions.
+              - generic [ref=f1e359]: Read guide
+            - link "Mining footwear Mining & Quarry Safety Boots Guide Turn mine hazards, standards evidence, fit trials, size curves, and replacement stock into a footwear RFQ. Read guide" [ref=f1e362] [cursor=pointer]:
+              - /url: /blog/mining-quarry-safety-boots-guide
+              - generic [ref=f1e363]: Mining footwear
+              - heading "Mining & Quarry Safety Boots Guide" [level=3] [ref=f1e364]
+              - paragraph [ref=f1e365]: Turn mine hazards, standards evidence, fit trials, size curves, and replacement stock into a footwear RFQ.
+              - generic [ref=f1e366]: Read guide
+            - link "Mining head protection Mining Safety Helmet Buyer Guide Control helmet fit, cap-lamp interfaces, PPE compatibility, model evidence, samples, spare parts, and substitutions before a bulk order. Read guide" [ref=f1e369] [cursor=pointer]:
+              - /url: /blog/mining-safety-helmet-buyer-guide
+              - generic [ref=f1e370]: Mining head protection
+              - heading "Mining Safety Helmet Buyer Guide" [level=3] [ref=f1e371]
+              - paragraph [ref=f1e372]: Control helmet fit, cap-lamp interfaces, PPE compatibility, model evidence, samples, spare parts, and substitutions before a bulk order.
+              - generic [ref=f1e373]: Read guide
+            - link "Checklist Construction PPE Checklist A field checklist for turning tool output into daily PPE issue and inspection routines. Read guide" [ref=f1e376] [cursor=pointer]:
+              - /url: /blog/construction-ppe-checklist
+              - generic [ref=f1e377]: Checklist
+              - heading "Construction PPE Checklist" [level=3] [ref=f1e378]
+              - paragraph [ref=f1e379]: A field checklist for turning tool output into daily PPE issue and inspection routines.
+              - generic [ref=f1e380]: Read guide
+        - generic [ref=f1e383]:
+          - heading "Frequently asked questions" [level=2] [ref=f1e384]
+          - generic [ref=f1e385]:
+            - group [ref=f1e386]:
+              - generic "How do I calculate how much PPE my company needs?" [ref=f1e387] [cursor=pointer]
+            - group [ref=f1e391]:
+              - generic "How are purchase quantities rounded?" [ref=f1e392] [cursor=pointer]
+            - group [ref=f1e396]:
+              - generic "When should PPE be replaced?" [ref=f1e397] [cursor=pointer]
+            - group [ref=f1e401]:
+              - generic "What is the annual PPE cost per worker in the default plan?" [ref=f1e402] [cursor=pointer]
+            - group [ref=f1e406]:
+              - generic "Does OSHA require the employer to pay for PPE?" [ref=f1e407] [cursor=pointer]
+            - group [ref=f1e411]:
+              - generic "How accurate is this PPE consumption calculator?" [ref=f1e412] [cursor=pointer]
+        - generic [ref=f1e421]:
+          - 'heading "Next step: get a tailored quote" [level=2] [ref=f1e422]'
+          - paragraph [ref=f1e423]:
+            - text: Once you have a consumption estimate, send it to our sourcing team for a quote, or use the
+            - link "AI Quote Generator" [ref=f1e424] [cursor=pointer]:
+              - /url: /tools/ai-quote
+            - text: to match it to specific SKUs from our catalog with real pricing. Or learn the standards behind the items in our
+            - link "construction safety footwear guide" [ref=f1e425] [cursor=pointer]:
+              - /url: /blog/construction-safety-footwear-guide
+            - text: .
+          - generic [ref=f1e426]:
+            - link "Request quote" [ref=f1e427] [cursor=pointer]:
+              - /url: /quote
+            - link "Open AI Quote" [ref=f1e428] [cursor=pointer]:
+              - /url: /tools/ai-quote
+            - link "Browse catalog" [ref=f1e429] [cursor=pointer]:
+              - /url: /products
+    - contentinfo [ref=f1e430]:
+      - generic [ref=f1e431]:
+        - generic [ref=f1e432]:
+          - generic [ref=f1e433]:
+            - link "Laifappe homepage" [ref=f1e434] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f1e435]
+              - generic [ref=f1e436]:
+                - strong [ref=f1e437]: 粤来发劳保
+                - generic [ref=f1e438]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f1e439]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f1e440]:
+              - generic [ref=f1e441]: CE EN
+              - generic [ref=f1e442]: ISO 9001
+              - generic [ref=f1e443]: ANSI
+              - generic [ref=f1e444]: BSCI
+          - navigation "Footer products" [ref=f1e445]:
+            - heading "Products" [level=3] [ref=f1e446]
+            - link "Head Protection" [ref=f1e447] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f1e448] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f1e449] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f1e450] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f1e451] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f1e452] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f1e453]:
+            - heading "Solutions" [level=3] [ref=f1e454]
+            - link "Construction" [ref=f1e455] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f1e456] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f1e457] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f1e458] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f1e459] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f1e460] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f1e461]:
+            - heading "Company" [level=3] [ref=f1e462]
+            - link "About Us" [ref=f1e463] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f1e464] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f1e465] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f1e466] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f1e467] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f1e468]:
+            - heading "Contact Us" [level=3] [ref=f1e469]
+            - paragraph [ref=f1e470]: +86 180 2930 9938
+            - paragraph [ref=f1e474]: sales@laifappe.com
+            - paragraph [ref=f1e479]:
+              - generic [ref=f1e480]: W
+              - link "www.laifappe.com" [ref=f1e481] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f1e482]: Foshan, Guangdong, China
+        - generic [ref=f1e487]:
+          - generic [ref=f1e488]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f1e489]:
+            - link "Privacy Policy" [ref=f1e490] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f1e491] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f1e492] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - button "Open Next.js Dev Tools" [ref=f1e498] [cursor=pointer]
+  - alert [ref=f1e502]

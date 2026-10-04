@@ -1,5 +1,7 @@
 'use client'
 
+import theme from '../tools-theme.module.css'
+
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import {
@@ -125,9 +127,9 @@ export default function AiQuotePage() {
   const total = calculateQuoteTotal(items)
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.14),_transparent_28%),linear-gradient(180deg,_rgba(15,23,42,0.04),_transparent_18%),var(--color-ppe-bg-page)]">
+    <div className={[theme.page, "min-h-screen"].join(" ")}>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90">
+      <section data-tool-hero className={[theme.quoteHero, "relative overflow-hidden"].join(" ")}>
         <div className="absolute inset-0 opacity-[0.08]">
           <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -215,7 +217,7 @@ export default function AiQuotePage() {
       {/* Main content */}
       <section className="container mx-auto grid gap-8 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
         {/* Input card */}
-        <Card className="overflow-hidden border-border/60 bg-white/95 shadow-[0_32px_90px_-50px_rgba(15,23,42,0.35)]">
+        <Card data-tool-panel className={[theme.panel, theme.quotePanel, "overflow-hidden bg-white/95"].join(" ")}>
           <CardHeader className="border-b border-border/60 bg-secondary/35">
             <CardTitle className="flex items-center gap-3 text-2xl">
               <WandSparkles className="h-5 w-5 text-accent" />
@@ -320,7 +322,7 @@ export default function AiQuotePage() {
         </Card>
 
         {/* Result card */}
-        <Card className="overflow-hidden border-border/60 bg-white/95 shadow-[0_32px_90px_-50px_rgba(15,23,42,0.35)]">
+        <Card data-tool-results className={[theme.results, theme.quotePanel, theme.quoteResults, "overflow-hidden bg-white/95"].join(" ")}>
           <CardHeader className="border-b border-border/60 bg-white">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>

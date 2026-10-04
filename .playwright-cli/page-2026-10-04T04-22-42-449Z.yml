@@ -1,0 +1,296 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=e8]:
+        - link "sales@laifappe.com" [ref=e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=e11]: EN
+    - banner [ref=e13]:
+      - generic [ref=e14]:
+        - link "Laifappe homepage" [ref=e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=e16]
+          - generic [ref=e17]:
+            - strong [ref=e18]: 粤来发劳保
+            - generic [ref=e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=e20]:
+          - link "Home" [ref=e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e27]:
+          - link "Email" [ref=e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=e33] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=e37] [cursor=pointer]:
+            - generic [aria-hidden] [ref=e39]: →
+    - main [ref=e40]:
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: THE PPE WORKBENCH
+          - navigation "Procurement tools" [ref=e54]:
+            - link "All tools" [ref=e55] [cursor=pointer]:
+              - /url: /tools
+            - link "Quantity planner" [active] [ref=e62] [cursor=pointer]:
+              - /url: /tools/ppe-calculator
+            - link "Footwear labels" [ref=e66] [cursor=pointer]:
+              - /url: /tools/compliance-checker
+            - link "Boot sizes" [ref=e73] [cursor=pointer]:
+              - /url: /tools/size-guide
+            - link "Hard hat classes" [ref=e81] [cursor=pointer]:
+              - /url: /tools/hard-hat-class-decoder
+            - link "AI quote" [ref=e88] [cursor=pointer]:
+              - /url: /tools/ai-quote
+          - button "Pause decorative animations" [ref=e93] [cursor=pointer]:
+            - generic [ref=e97]: Motion on
+        - generic [ref=e100]:
+          - navigation "Breadcrumb" [ref=e101]:
+            - link "Home" [ref=e102] [cursor=pointer]:
+              - /url: /
+            - generic [ref=e105]: Tools
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - paragraph [ref=e108]: Procurement workbench
+              - heading "Know what to order." [level=1] [ref=e110]: Know whatto order.
+              - paragraph [ref=e111]: Work out quantities. Check the specification. Get the fit right. Practical PPE tools for the decisions before an order.
+              - link "Find your tool" [ref=e112] [cursor=pointer]:
+                - /url: "#tool-directory-title"
+            - generic [ref=e115]:
+              - generic [ref=e117]: ORDER / PLANNING
+              - text: Built for the buying desk
+              - paragraph [ref=e144]: From workforce numbersto a clearer supplier brief.
+              - generic [ref=e145]:
+                - text: Free to use
+                - generic [aria-hidden] [ref=e146]: /
+                - text: No signup
+          - region [ref=e147]:
+            - generic [ref=e148]:
+              - heading "Choose your task" [level=2] [ref=e149]
+              - generic [ref=e150]: 01—05 / Tools
+            - generic [ref=e151]:
+              - link "01 Planning / CSV Quantity & budget planner Bring Workforce, usage rates and unit prices Get Consumption, whole-unit purchase plan and CSV Plan PPE quantities" [ref=e152] [cursor=pointer]:
+                - /url: /tools/ppe-calculator
+                - generic [ref=e153]:
+                  - generic [ref=e154]: "01"
+                  - generic [ref=e155]: Planning / CSV
+                - heading "Quantity & budget planner" [level=3] [ref=e161]
+                - generic [ref=e162]:
+                  - generic [ref=e163]:
+                    - term [ref=e164]: Bring
+                    - definition [ref=e165]: Workforce, usage rates and unit prices
+                  - generic [ref=e166]:
+                    - term [ref=e167]: Get
+                    - definition [ref=e168]: Consumption, whole-unit purchase plan and CSV
+                - generic [ref=e174]: Plan PPE quantities
+              - link "02 Standards / Footwear Footwear label decoder Bring Footwear label, standard and edition year Get Code meanings, edition conflicts and unknown tokens Decode footwear labels" [ref=e177] [cursor=pointer]:
+                - /url: /tools/compliance-checker
+                - generic [ref=e178]:
+                  - generic [ref=e179]: "02"
+                  - generic [ref=e180]: Standards / Footwear
+                - heading "Footwear label decoder" [level=3] [ref=e189]
+                - generic [ref=e190]:
+                  - generic [ref=e191]:
+                    - term [ref=e192]: Bring
+                    - definition [ref=e193]: Footwear label, standard and edition year
+                  - generic [ref=e194]:
+                    - term [ref=e195]: Get
+                    - definition [ref=e196]: Code meanings, edition conflicts and unknown tokens
+                - generic [ref=e197]: Decode footwear labels
+              - link "03 Sizing / Footwear Boot size converter Bring Shoe size or foot measurements Get Regional size equivalents and fit guidance Convert boot sizes" [ref=e200] [cursor=pointer]:
+                - /url: /tools/size-guide
+                - generic [ref=e201]:
+                  - generic [ref=e202]: "03"
+                  - generic [ref=e203]: Sizing / Footwear
+                - heading "Boot size converter" [level=3] [ref=e213]
+                - generic [ref=e214]:
+                  - generic [ref=e215]:
+                    - term [ref=e216]: Bring
+                    - definition [ref=e217]: Shoe size or foot measurements
+                  - generic [ref=e218]:
+                    - term [ref=e219]: Get
+                    - definition [ref=e220]: Regional size equivalents and fit guidance
+                - generic [ref=e221]: Convert boot sizes
+              - link "04 Standards / Head protection Hard hat class decoder Bring Hard hat type and electrical class Get Impact coverage, class limits and buyer checks Compare hard hat classes" [ref=e224] [cursor=pointer]:
+                - /url: /tools/hard-hat-class-decoder
+                - generic [ref=e225]:
+                  - generic [ref=e226]: "04"
+                  - generic [ref=e227]: Standards / Head protection
+                - heading "Hard hat class decoder" [level=3] [ref=e236]
+                - generic [ref=e237]:
+                  - generic [ref=e238]:
+                    - term [ref=e239]: Bring
+                    - definition [ref=e240]: Hard hat type and electrical class
+                  - generic [ref=e241]:
+                    - term [ref=e242]: Get
+                    - definition [ref=e243]: Impact coverage, class limits and buyer checks
+                - generic [ref=e244]: Compare hard hat classes
+              - link "05 Quoting / AI-assisted AI quote generator Bring Workforce, job site and hazards Get PPE quote draft with PDF and Excel export Open quote generator" [ref=e247] [cursor=pointer]:
+                - /url: /tools/ai-quote
+                - generic [ref=e248]:
+                  - generic [ref=e249]: "05"
+                  - generic [ref=e250]: Quoting / AI-assisted
+                - heading "AI quote generator" [level=3] [ref=e257]
+                - generic [ref=e258]:
+                  - generic [ref=e259]:
+                    - term [ref=e260]: Bring
+                    - definition [ref=e261]: Workforce, job site and hazards
+                  - generic [ref=e262]:
+                    - term [ref=e263]: Get
+                    - definition [ref=e264]: PPE quote draft with PDF and Excel export
+                - generic [ref=e265]: Open quote generator
+            - paragraph [ref=e268]: A planning starting point. Confirm fit, site requirements and product evidence before purchasing.
+          - region [ref=e269]:
+            - generic [ref=e270]:
+              - generic [ref=e271]: Field notes / Buying guides
+              - heading "The detail behind the decision." [level=2] [ref=e272]
+              - paragraph [ref=e273]: Practical reading for specifications, fit and the questions to put to a supplier.
+              - generic [ref=e274]:
+                - text: "06"
+                - generic [ref=e275]: guides for your next order
+            - generic [ref=e276]:
+              - link "01 Safety footwear Safety Footwear Guide Compare toe protection, outsole requirements and fit evidence before ordering safety footwear." [ref=e277] [cursor=pointer]:
+                - /url: /blog/construction-safety-footwear-guide
+                - generic [ref=e278]: "01"
+                - generic [ref=e279]:
+                  - text: Safety footwear
+                  - heading "Safety Footwear Guide" [level=3] [ref=e280]
+                  - paragraph [ref=e281]: Compare toe protection, outsole requirements and fit evidence before ordering safety footwear.
+              - link "02 Hand protection Construction Gloves Guide Choose gloves for cut, grip, impact and wet-work hazards, then plan sizes and replacements." [ref=e284] [cursor=pointer]:
+                - /url: /blog/construction-gloves-selection-guide
+                - generic [ref=e285]: "02"
+                - generic [ref=e286]:
+                  - text: Hand protection
+                  - heading "Construction Gloves Guide" [level=3] [ref=e287]
+                  - paragraph [ref=e288]: Choose gloves for cut, grip, impact and wet-work hazards, then plan sizes and replacements.
+              - link "03 High-visibility clothing High-Visibility Clothing Guide Plan garment types, sizes, cleaning rotation and replacement stock." [ref=e291] [cursor=pointer]:
+                - /url: /blog/high-visibility-clothing-construction
+                - generic [ref=e292]: "03"
+                - generic [ref=e293]:
+                  - text: High-visibility clothing
+                  - heading "High-Visibility Clothing Guide" [level=3] [ref=e294]
+                  - paragraph [ref=e295]: Plan garment types, sizes, cleaning rotation and replacement stock.
+              - link "04 Respiratory protection Respiratory Protection Guide Match dust and fume tasks to suitable respirators, fit requirements and filter planning." [ref=e298] [cursor=pointer]:
+                - /url: /blog/construction-respiratory-protection
+                - generic [ref=e299]: "04"
+                - generic [ref=e300]:
+                  - text: Respiratory protection
+                  - heading "Respiratory Protection Guide" [level=3] [ref=e301]
+                  - paragraph [ref=e302]: Match dust and fume tasks to suitable respirators, fit requirements and filter planning.
+              - link "05 Impact types Type 1 vs Type 2 Hard Hats Compare Type I and Type II impact coverage alongside Class G, E and C requirements." [ref=e305] [cursor=pointer]:
+                - /url: /blog/type-1-vs-type-2-hard-hats
+                - generic [ref=e306]: "05"
+                - generic [ref=e307]:
+                  - text: Impact types
+                  - heading "Type 1 vs Type 2 Hard Hats" [level=3] [ref=e308]
+                  - paragraph [ref=e309]: Compare Type I and Type II impact coverage alongside Class G, E and C requirements.
+              - link "06 Eye and face protection Eye and Face Protection Guide Select eyewear, goggles and face shields for dust, splash and task-specific hazards." [ref=e312] [cursor=pointer]:
+                - /url: /blog/construction-eye-face-protection
+                - generic [ref=e313]: "06"
+                - generic [ref=e314]:
+                  - text: Eye and face protection
+                  - heading "Eye and Face Protection Guide" [level=3] [ref=e315]
+                  - paragraph [ref=e316]: Select eyewear, goggles and face shields for dust, splash and task-specific hazards.
+          - complementary [ref=e319]:
+            - generic [ref=e320]:
+              - text: Help shape the workbench
+              - heading "What would make your next order easier?" [level=2] [ref=e321]
+              - paragraph [ref=e322]: Tell us which purchasing task could use a better tool.
+            - link "Suggest a tool" [ref=e323] [cursor=pointer]:
+              - /url: /contact?topic=tools
+          - generic [aria-hidden] [ref=e326]:
+            - generic [ref=e327]: LAIFAPPE / PROCUREMENT RESOURCES
+            - generic [ref=e328]: END OF DIRECTORY — 05 TOOLS
+    - contentinfo [ref=e329]:
+      - generic [ref=e330]:
+        - generic [ref=e331]:
+          - generic [ref=e332]:
+            - link "Laifappe homepage" [ref=e333] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=e334]
+              - generic [ref=e335]:
+                - strong [ref=e336]: 粤来发劳保
+                - generic [ref=e337]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=e338]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=e339]:
+              - generic [ref=e340]: CE EN
+              - generic [ref=e341]: ISO 9001
+              - generic [ref=e342]: ANSI
+              - generic [ref=e343]: BSCI
+          - navigation "Footer products" [ref=e344]:
+            - heading "Products" [level=3] [ref=e345]
+            - link "Head Protection" [ref=e346] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=e347] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=e348] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=e349] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=e350] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=e351] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=e352]:
+            - heading "Solutions" [level=3] [ref=e353]
+            - link "Construction" [ref=e354] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=e355] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=e356] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=e357] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=e358] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=e359] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=e360]:
+            - heading "Company" [level=3] [ref=e361]
+            - link "About Us" [ref=e362] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=e363] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=e364] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=e365] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=e366] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e367]:
+            - heading "Contact Us" [level=3] [ref=e368]
+            - paragraph [ref=e369]: +86 180 2930 9938
+            - paragraph [ref=e373]: sales@laifappe.com
+            - paragraph [ref=e378]:
+              - generic [ref=e379]: W
+              - link "www.laifappe.com" [ref=e380] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=e381]: Foshan, Guangdong, China
+        - generic [ref=e386]:
+          - generic [ref=e387]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=e388]:
+            - link "Privacy Policy" [ref=e389] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=e390] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=e391] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - button "Open Next.js Dev Tools" [ref=e404] [cursor=pointer]:
+    - generic [ref=e407]:
+      - text: Compiling
+      - generic [ref=e408]:
+        - generic [ref=e409]: .
+        - generic [ref=e410]: .
+        - generic [ref=e411]: .
+  - alert [ref=e401]

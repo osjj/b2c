@@ -1,0 +1,839 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=e8]:
+        - link "sales@laifappe.com" [ref=e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=e11]: EN
+    - banner [ref=e13]:
+      - generic [ref=e14]:
+        - link "Laifappe homepage" [ref=e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=e16]
+          - generic [ref=e17]:
+            - strong [ref=e18]: 粤来发劳保
+            - generic [ref=e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=e20]:
+          - link "Home" [ref=e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=e27]:
+          - link "Email" [ref=e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=e33] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=e37] [cursor=pointer]:
+            - generic [aria-hidden] [ref=e39]: →
+    - generic [ref=e40]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]: Trusted by 500+ buyers across 50+ countries
+          - heading [level=1] [ref=e49]:
+            - text: Professional PPE
+            - emphasis [ref=e50]: Manufacturing Solutions
+          - paragraph [ref=e51]: Leading manufacturer of personal protective equipment for extreme environments. Safety gloves, footwear, workwear and more with global certifications.
+          - generic [ref=e52]:
+            - button "Get Instant Quote →" [ref=e53] [cursor=pointer]:
+              - text: Get Instant Quote
+              - generic [ref=e54]: →
+            - link "Download Catalog" [ref=e55] [cursor=pointer]:
+              - /url: https://shop.laifappe.com/LAIFA_PPE_catalog.pdf
+              - generic [aria-hidden] [ref=e56]: ↓
+              - text: Download Catalog
+          - generic [ref=e57]:
+            - generic [ref=e58]: Certified
+            - strong [ref=e59]: CE EN
+            - strong [ref=e60]: ISO 9001:2015
+            - strong [ref=e61]: ANSI/ISEA
+            - strong [ref=e62]: EN 388
+            - strong [ref=e63]: BSCI
+          - generic "Current catalog product examples" [ref=e64]:
+            - article [ref=e65]:
+              - generic [ref=e68]:
+                - generic [ref=e69]: EN 388
+                - generic [ref=e70]: Nitrile coated work gloves
+            - article [ref=e71]:
+              - generic [ref=e74]:
+                - generic [ref=e75]: CE EN397
+                - generic [ref=e76]: Vented ABS safety helmet
+            - article [ref=e77]:
+              - generic [ref=e80]:
+                - generic [ref=e81]: EN ISO 20345
+                - generic [ref=e82]: Steel-toe safety shoes
+            - article [ref=e83]:
+              - generic [ref=e86]:
+                - generic [ref=e87]: EN 166
+                - generic [ref=e88]: Anti-fog safety glasses
+            - article [ref=e89]:
+              - generic [ref=e92]:
+                - generic [ref=e93]: EN 407
+                - generic [ref=e94]: Leather welding gloves
+            - article [ref=e95]:
+              - generic [ref=e98]:
+                - generic [ref=e99]: ANSI / ISEA
+                - generic [ref=e100]: Industrial FRP helmet
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: "- Get Instant Quote"
+            - heading "Tell us what you need. We respond within 24 hours." [level=2] [ref=e104]: Tell us what you need.We respond within 24 hours.
+          - generic [ref=e105]:
+            - generic [ref=e106]: Email
+            - textbox "Email" [ref=e107]:
+              - /placeholder: you@company.com
+            - generic [ref=e108]: 0/100
+          - generic [ref=e109]:
+            - generic [ref=e110]: Mobile/WhatsApp
+            - generic [ref=e111]:
+              - button "Code" [ref=e113] [cursor=pointer]
+              - textbox "Mobile/WhatsApp" [ref=e116]:
+                - /placeholder: Please enter your mobile phone
+              - generic [ref=e117]: 0/100
+          - generic [ref=e118]:
+            - generic [ref=e119]: Name
+            - textbox "Name" [ref=e120]:
+              - /placeholder: Please enter your name
+            - generic [ref=e121]: 0/100
+          - generic [ref=e122]:
+            - generic [ref=e123]: Company Name
+            - textbox "Company Name" [ref=e124]:
+              - /placeholder: Please enter your company name
+            - generic [ref=e125]: 0/200
+          - generic [ref=e126]:
+            - generic [ref=e127]: Message
+            - textbox "Message" [ref=e128]:
+              - /placeholder: Which products are you interested in? and what is the quantity?
+            - generic [ref=e129]: 0/1000
+          - button "Submit Request" [ref=e130] [cursor=pointer]:
+            - text: Submit Request
+            - generic [aria-hidden] [ref=e131]: →
+          - paragraph [ref=e132]: ✓ We respond within one business day
+      - generic [ref=e134]:
+        - generic [ref=e136]:
+          - strong [ref=e137]: 20+yr
+          - generic [ref=e138]: Years Experience
+        - generic [ref=e140]:
+          - strong [ref=e141]: 50+
+          - generic [ref=e142]: Export Countries
+        - generic [ref=e144]:
+          - strong [ref=e145]: 1M+
+          - generic [ref=e146]: Units / Year
+        - generic [ref=e148]:
+          - strong [ref=e149]: 100+
+          - generic [ref=e150]: Skilled Workers
+        - generic [ref=e152]:
+          - strong [ref=e153]: 24h
+          - generic [ref=e154]: Quote Response
+    - region "Laifappe trust highlights" [ref=e155]:
+      - generic [ref=e156]:
+        - generic [ref=e157]:
+          - generic [ref=e160]: CE Certified · EN Standards
+          - text: "|"
+        - generic [ref=e161]:
+          - generic [ref=e165]: ISO 9001 · Quality Management
+          - text: "|"
+        - generic [ref=e166]:
+          - generic [ref=e169]: OEM/ODM · Custom Solutions
+          - text: "|"
+        - generic [ref=e170]:
+          - generic [ref=e174]: Quote in 24 Hours
+          - text: "|"
+        - generic [ref=e175]: Global Shipping · On-Time
+    - generic [ref=e180]:
+      - generic [ref=e181]:
+        - generic [ref=e182]:
+          - generic [ref=e183]: PRODUCT CATEGORIES
+          - heading [level=2] [ref=e184]:
+            - text: Full-range protection,
+            - emphasis [ref=e185]: built in-house.
+        - paragraph [ref=e186]: From precision-engineered cut-resistant gloves to ANSI-certified safety footwear - produced under one roof, governed by one quality standard.
+      - generic [ref=e187]:
+        - link "Hand protection 14 SKUs Category 01 Hand protection Cut, impact, chemical, and heat-resistant gloves engineered for industrial handling and welding." [ref=e188] [cursor=pointer]:
+          - /url: /categories/hand-protection
+          - generic [ref=e189]:
+            - img "Hand protection" [ref=e190]
+            - generic [ref=e191]: 14 SKUs
+          - generic [ref=e192]:
+            - generic [ref=e193]: Category 01
+            - heading "Hand protection" [level=3] [ref=e194]
+            - paragraph [ref=e195]: Cut, impact, chemical, and heat-resistant gloves engineered for industrial handling and welding.
+            - generic [aria-hidden] [ref=e196]: ^
+        - link "Foot protection 11 SKUs Category 02 Foot protection Steel-toe boots, anti-slip safety shoes, and waterproof footwear for construction and wet-site work." [ref=e197] [cursor=pointer]:
+          - /url: /categories/foot-protection
+          - generic [ref=e198]:
+            - img "Foot protection" [ref=e199]
+            - generic [ref=e200]: 11 SKUs
+          - generic [ref=e201]:
+            - generic [ref=e202]: Category 02
+            - heading "Foot protection" [level=3] [ref=e203]
+            - paragraph [ref=e204]: Steel-toe boots, anti-slip safety shoes, and waterproof footwear for construction and wet-site work.
+            - generic [aria-hidden] [ref=e205]: ^
+        - link "Head protection 12 SKUs Category 03 Head protection CE EN397-certified safety helmets with adjustable suspension and switchable ventilation." [ref=e206] [cursor=pointer]:
+          - /url: /categories/head-protection
+          - generic [ref=e207]:
+            - img "Head protection" [ref=e208]
+            - generic [ref=e209]: 12 SKUs
+          - generic [ref=e210]:
+            - generic [ref=e211]: Category 03
+            - heading "Head protection" [level=3] [ref=e212]
+            - paragraph [ref=e213]: CE EN397-certified safety helmets with adjustable suspension and switchable ventilation.
+            - generic [aria-hidden] [ref=e214]: ^
+        - link "Body protection 6 SKUs Category 04 Body protection Workwear, coveralls, hi-vis apparel, and chemical-resistant rainwear for every industrial setting." [ref=e215] [cursor=pointer]:
+          - /url: /categories/body-protection
+          - generic [ref=e216]:
+            - img "Body protection" [ref=e217]
+            - generic [ref=e218]: 6 SKUs
+          - generic [ref=e219]:
+            - generic [ref=e220]: Category 04
+            - heading "Body protection" [level=3] [ref=e221]
+            - paragraph [ref=e222]: Workwear, coveralls, hi-vis apparel, and chemical-resistant rainwear for every industrial setting.
+            - generic [aria-hidden] [ref=e223]: ^
+        - link "Eye protection 3 SKUs Category 05 Eye protection Anti-fog safety glasses and impact-rated goggles for dust, splash, and projectile protection." [ref=e224] [cursor=pointer]:
+          - /url: /categories/eye-protection
+          - generic [ref=e225]:
+            - img "Eye protection" [ref=e226]
+            - generic [ref=e227]: 3 SKUs
+          - generic [ref=e228]:
+            - generic [ref=e229]: Category 05
+            - heading "Eye protection" [level=3] [ref=e230]
+            - paragraph [ref=e231]: Anti-fog safety glasses and impact-rated goggles for dust, splash, and projectile protection.
+            - generic [aria-hidden] [ref=e232]: ^
+        - link "Respiratory 2 SKUs Category 06 Respiratory N95, FFP2, and reusable half-mask respirators with replaceable filter cartridges." [ref=e233] [cursor=pointer]:
+          - /url: /categories/respiratory-protection
+          - generic [ref=e234]:
+            - img "Respiratory" [ref=e235]
+            - generic [ref=e236]: 2 SKUs
+          - generic [ref=e237]:
+            - generic [ref=e238]: Category 06
+            - heading "Respiratory" [level=3] [ref=e239]
+            - paragraph [ref=e240]: N95, FFP2, and reusable half-mask respirators with replaceable filter cartridges.
+            - generic [aria-hidden] [ref=e241]: ^
+        - link "Fall protection 2 SKUs Category 07 Fall protection Full-body harnesses and lanyard systems for elevated work, roof access, and scaffolding." [ref=e242] [cursor=pointer]:
+          - /url: /categories/fall-protection
+          - generic [ref=e243]:
+            - img "Fall protection" [ref=e244]
+            - generic [ref=e245]: 2 SKUs
+          - generic [ref=e246]:
+            - generic [ref=e247]: Category 07
+            - heading "Fall protection" [level=3] [ref=e248]
+            - paragraph [ref=e249]: Full-body harnesses and lanyard systems for elevated work, roof access, and scaffolding.
+            - generic [aria-hidden] [ref=e250]: ^
+        - link "Laifappe OEM and ODM development Custom build OEM / ODM development Design custom PPE under your brand. From sketch to shipment in 8-12 weeks." [ref=e251] [cursor=pointer]:
+          - /url: /about#oem-odm
+          - img "Laifappe OEM and ODM development" [ref=e253]
+          - generic [ref=e254]:
+            - generic [ref=e255]: Custom build
+            - heading "OEM / ODM development" [level=3] [ref=e256]
+            - paragraph [ref=e257]: Design custom PPE under your brand. From sketch to shipment in 8-12 weeks.
+            - generic [aria-hidden] [ref=e258]: ^
+    - generic [ref=e259]:
+      - generic:
+        - img "Laifappe packaging area"
+        - generic [ref=e260]:
+          - generic [ref=e261]: — OUR ADVANTAGE
+          - heading [level=3] [ref=e262]:
+            - text: Why global buyerschoose
+            - emphasis [ref=e263]: Laifappe.
+      - generic [ref=e264]:
+        - generic [ref=e266]:
+          - generic [ref=e267]: — Why global buyers work with us
+          - heading [level=2] [ref=e268]:
+            - text: Direct from factory.
+            - emphasis [ref=e269]: Built for procurement.
+        - generic [ref=e270]:
+          - generic [ref=e271]:
+            - generic [ref=e272]: — 01
+            - generic [ref=e273]:
+              - heading "Factory Direct Pricing" [level=3] [ref=e274]
+              - paragraph [ref=e275]: No traders, no markups. Order straight from a 22-year manufacturer in Foshan with full price transparency.
+          - generic [ref=e276]:
+            - generic [ref=e277]: — 02
+            - generic [ref=e278]:
+              - heading "Stable, Scalable Supply" [level=3] [ref=e279]
+              - paragraph [ref=e280]: Seven production lines and 100+ technicians support repeat orders, OEM packaging, and cross-category PPE programs.
+          - generic [ref=e281]:
+            - generic [ref=e282]: — 03
+            - generic [ref=e283]:
+              - heading "Strict Quality Inspection" [level=3] [ref=e284]
+              - paragraph [ref=e285]: Batch inspection, documentation support, and product standards aligned to buyer requirements before shipment.
+          - generic [ref=e286]:
+            - generic [ref=e287]: — 04
+            - generic [ref=e288]:
+              - heading "OEM / ODM from 500 units" [level=3] [ref=e289]
+              - paragraph [ref=e290]: Custom branding, packaging, and product development. Minimum 500 pairs for OEM with in-house design support.
+          - generic [ref=e291]:
+            - generic [ref=e292]: — 05
+            - generic [ref=e293]:
+              - heading "Fast Global Delivery" [level=3] [ref=e294]
+              - paragraph [ref=e295]: DDP, FOB, CIF to 50+ countries. Lead time 2-4 weeks from confirmed order.
+        - text: SOURCE
+    - generic [ref=e296]:
+      - generic [ref=e297]:
+        - generic [ref=e298]:
+          - generic [ref=e299]:
+            - generic [ref=e300]: — OEM / ODM Capabilities
+            - heading [level=2] [ref=e301]:
+              - text: Custom PPE programs,built around
+              - emphasis [ref=e302]: your market.
+            - paragraph [ref=e303]: From product specification to branded packaging, our team supports distributors, contractors, and importers with practical customization options for repeat PPE programs.
+          - 'img "Custom workwear program: material options, product specification, private label packaging, and sample approval" [ref=e305]'
+          - generic [ref=e306]:
+            - article [ref=e307]:
+              - generic [ref=e308]: — 01
+              - generic [ref=e309]:
+                - generic [ref=e310]: MATERIAL OPTIONS
+                - heading "Material & performance selection" [level=3] [ref=e311]
+                - paragraph [ref=e312]: Choose fabric weight, coating, leather, outsole, shell, lens, and reflective tape around your target market.
+            - article [ref=e313]:
+              - generic [ref=e314]: — 02
+              - generic [ref=e315]:
+                - generic [ref=e316]: PRODUCT SPEC
+                - heading "Fit, function, and standard matching" [level=3] [ref=e317]
+                - paragraph [ref=e318]: Refine size grading, grip, protection level, color, comfort, and compliance requirements before mass production.
+            - article [ref=e319]:
+              - generic [ref=e320]: — 03
+              - generic [ref=e321]:
+                - generic [ref=e322]: PRIVATE LABEL
+                - heading "Branding & packaging development" [level=3] [ref=e323]
+                - paragraph [ref=e324]: Support logo application, hang tags, barcode labels, color boxes, polybags, instructions, and export cartons.
+            - article [ref=e325]:
+              - generic [ref=e326]: — 04
+              - generic [ref=e327]:
+                - generic [ref=e328]: SAMPLE APPROVAL
+                - heading "Prototype review before bulk order" [level=3] [ref=e329]
+                - paragraph [ref=e330]: Confirm samples for material, workmanship, color, packaging, and documentation before scaling production.
+        - generic [ref=e331]:
+          - generic [ref=e332]: Branding samples available
+          - generic [ref=e333]: Packaging mockups supported
+          - generic [ref=e334]: Pilot orders accepted
+          - generic [ref=e335]: Repeat programs managed
+      - text: OEM / ODM
+    - generic [ref=e337]:
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - generic [ref=e340]: — Best Sellers
+          - heading [level=2] [ref=e341]:
+            - text: Best-selling SKUs
+            - emphasis [ref=e342]: shipping
+            - text: this quarter.
+        - link "View All Products" [ref=e344] [cursor=pointer]:
+          - /url: /products
+          - text: View All Products
+          - generic [aria-hidden] [ref=e345]: →
+      - generic [ref=e346]:
+        - link "CHEMICAL EN388 Latex-Coated Polyester Work Gloves, Oil/Chemical Resistant Best Sellers EN388 Latex-Coated Polyester Work Gloves, Oil/Chemical Resistant EN388-certified work gloves with a polyester liner and black crinkle latex palm coating for dependable grip, flexibility, and durability. Designed for warehousing, construction, and heavy industry, they provide waterproof, oil-resistant, chemical-resistant, and anti-slip performance. From $0.28 Ask Price" [ref=e347] [cursor=pointer]:
+          - /url: /products/en388-latex-coated-polyester-work-gloves-oil-chemical
+          - generic [ref=e348]:
+            - generic [ref=e349]: CHEMICAL
+            - img "EN388 Latex-Coated Polyester Work Gloves, Oil/Chemical Resistant" [ref=e350]
+          - generic [ref=e351]:
+            - generic [ref=e352]: Best Sellers
+            - heading "EN388 Latex-Coated Polyester Work Gloves, Oil/Chemical Resistant" [level=3] [ref=e353]
+            - paragraph [ref=e354]: EN388-certified work gloves with a polyester liner and black crinkle latex palm coating for dependable grip, flexibility, and durability. Designed for warehousing, construction, and heavy industry, they provide waterproof, oil-resistant, chemical-resistant, and anti-slip performance.
+            - generic [ref=e355]:
+              - generic [ref=e356]: From $0.28
+              - generic [ref=e357]: Ask Price
+        - link "RESPIRATOR KN95 / FFP2 Cup-Shaped Valved Dust Respirator Best Sellers KN95 / FFP2 Cup-Shaped Valved Dust Respirator Five-layer cup-shaped headband particulate respirator with an exhalation valve, optional activated carbon, PU edge-seal options and an adjustable nose clip. Protection markings and performance claims shown by the source require independent document verification before use. From $0.19 Ask Price" [ref=e358] [cursor=pointer]:
+          - /url: /products/kn95-ffp2-cup-shaped-valved-dust-respirator
+          - generic [ref=e359]:
+            - generic [ref=e360]: RESPIRATOR
+            - img "KN95 / FFP2 Cup-Shaped Valved Dust Respirator" [ref=e361]
+          - generic [ref=e362]:
+            - generic [ref=e363]: Best Sellers
+            - heading "KN95 / FFP2 Cup-Shaped Valved Dust Respirator" [level=3] [ref=e364]
+            - paragraph [ref=e365]: Five-layer cup-shaped headband particulate respirator with an exhalation valve, optional activated carbon, PU edge-seal options and an adjustable nose clip. Protection markings and performance claims shown by the source require independent document verification before use.
+            - generic [ref=e366]:
+              - generic [ref=e367]: From $0.19
+              - generic [ref=e368]: Ask Price
+        - link "SG-GEN-001-GRY Heavy Duty Cowhide Split Leather Welding Gloves with Long Gauntlet Cuff SG-GEN-001-GRY Heavy Duty Cowhide Split Leather Welding Gloves with Long Gauntlet Cuff Premium split leather welding gloves designed for maximum heat and abrasion resistance. Featuring an extended gauntlet cuff, these gloves provide superior protection for the hands and forearms during heavy-duty industrial tasks. From $1.80 Ask Price" [ref=e369] [cursor=pointer]:
+          - /url: /products/heavy-duty-cowhide-split-leather-welding-gloves-with-long
+          - generic [ref=e370]:
+            - generic [ref=e371]: SG-GEN-001-GRY
+            - img "Heavy Duty Cowhide Split Leather Welding Gloves with Long Gauntlet Cuff" [ref=e372]
+          - generic [ref=e373]:
+            - generic [ref=e374]: SG-GEN-001-GRY
+            - heading "Heavy Duty Cowhide Split Leather Welding Gloves with Long Gauntlet Cuff" [level=3] [ref=e375]
+            - paragraph [ref=e376]: Premium split leather welding gloves designed for maximum heat and abrasion resistance. Featuring an extended gauntlet cuff, these gloves provide superior protection for the hands and forearms during heavy-duty industrial tasks.
+            - generic [ref=e377]:
+              - generic [ref=e378]: From $1.80
+              - generic [ref=e379]: Ask Price
+        - link "SLOTTED CE EN397 ABS Safety Helmet with Switchable Vents, Slotted, Yellow Best Sellers CE EN397 ABS Safety Helmet with Switchable Vents, Slotted, Yellow This CE EN397-certified safety helmet features a durable ABS shell, 6-point webbing suspension, and switchable ventilation holes for reliable head protection in construction, industrial, and mining environments. The ratchet/knob adjustment system and adjustable chin strap provide a secure and comfortable fit for daily use. From $2.65 Ask Price" [ref=e380] [cursor=pointer]:
+          - /url: /products/ce-en397-abs-safety-helmet-with-switchable-vents-slotted
+          - generic [ref=e381]:
+            - generic [ref=e382]: SLOTTED
+            - img "CE EN397 ABS Safety Helmet with Switchable Vents, Slotted, Yellow" [ref=e383]
+          - generic [ref=e384]:
+            - generic [ref=e385]: Best Sellers
+            - heading "CE EN397 ABS Safety Helmet with Switchable Vents, Slotted, Yellow" [level=3] [ref=e386]
+            - paragraph [ref=e387]: This CE EN397-certified safety helmet features a durable ABS shell, 6-point webbing suspension, and switchable ventilation holes for reliable head protection in construction, industrial, and mining environments. The ratchet/knob adjustment system and adjustable chin strap provide a secure and comfortable fit for daily use.
+            - generic [ref=e388]:
+              - generic [ref=e389]: From $2.65
+              - generic [ref=e390]: Ask Price
+        - link "HP-FR-001-GRY Welding Safety Work Gloves HP-FR-001-GRY Welding Safety Work Gloves Professional-grade cow split leather working gloves designed for heavy-duty applications. These gloves feature anti-heat, anti-slip, and anti-impact properties, making them ideal for welding and industrial tasks. From $1.50 Ask Price" [ref=e391] [cursor=pointer]:
+          - /url: /products/welding-safety-work-gloves
+          - generic [ref=e392]:
+            - generic [ref=e393]: HP-FR-001-GRY
+            - img "Welding Safety Work Gloves" [ref=e394]
+          - generic [ref=e395]:
+            - generic [ref=e396]: HP-FR-001-GRY
+            - heading "Welding Safety Work Gloves" [level=3] [ref=e397]
+            - paragraph [ref=e398]: Professional-grade cow split leather working gloves designed for heavy-duty applications. These gloves feature anti-heat, anti-slip, and anti-impact properties, making them ideal for welding and industrial tasks.
+            - generic [ref=e399]:
+              - generic [ref=e400]: From $1.50
+              - generic [ref=e401]: Ask Price
+        - link "ALL PRODUCTS — FULL CATALOG Browse all products across 7 categories. View All" [ref=e402] [cursor=pointer]:
+          - /url: /products
+          - generic [ref=e403]:
+            - strong [ref=e404]: ALL
+            - generic [ref=e405]: PRODUCTS
+          - generic [ref=e406]:
+            - generic [ref=e407]: — FULL CATALOG
+            - heading "Browse all products across 7 categories." [level=3] [ref=e408]
+            - generic [ref=e409]: View All →
+    - generic [ref=e411]:
+      - img "Laifappe production floor" [ref=e412]
+      - generic [ref=e415]:
+        - text: Our factory - Foshan, China
+        - heading [level=2] [ref=e416]:
+          - text: Factory-backed PPE supply,
+          - emphasis [ref=e417]: organized for repeat orders.
+        - paragraph [ref=e418]: Walk through our production, packing, and inspection workflow before placing bulk PPE orders.
+        - button "Tour the factory" [ref=e420] [cursor=pointer]:
+          - text: Tour the factory
+          - generic [aria-hidden] [ref=e421]: →
+        - generic [ref=e422]:
+          - generic [ref=e423]:
+            - strong [ref=e424]: "7"
+            - generic [ref=e425]: Production Lines
+          - generic [ref=e426]:
+            - strong [ref=e427]: 500+
+            - generic [ref=e428]: OEM MOQ
+          - generic [ref=e429]:
+            - strong [ref=e430]: 100+
+            - generic [ref=e431]: Technicians
+          - generic [ref=e432]:
+            - strong [ref=e433]: 22 yr
+            - generic [ref=e434]: In Operation
+    - generic [ref=e436]:
+      - generic [ref=e437]:
+        - generic [ref=e438]:
+          - generic [ref=e439]: "- How to order"
+          - heading [level=2] [ref=e440]:
+            - text: From inquiry to delivery,
+            - emphasis [ref=e441]: three clear steps.
+        - link "Contact Us" [ref=e443] [cursor=pointer]:
+          - /url: /contact
+          - text: Contact Us
+          - generic [aria-hidden] [ref=e444]: →
+      - generic [ref=e445]:
+        - generic [ref=e448]:
+          - generic [ref=e449]:
+            - generic [ref=e450]: Export Routes
+            - strong [ref=e451]: 50+ Countries
+          - generic [ref=e452]:
+            - generic [ref=e453]: Response
+            - strong [ref=e454]: Within 24 Hours
+          - generic [ref=e455]:
+            - generic [ref=e456]: QC Standard
+            - strong [ref=e457]: Before Shipment
+          - generic [ref=e458]:
+            - generic [ref=e459]: Delivery
+            - strong [ref=e460]: Sea / Air / Express
+        - generic [ref=e461]:
+          - article [ref=e462]:
+            - generic [ref=e463]: Step 01
+            - heading [level=3] [ref=e464]:
+              - text: Inquiry
+              - emphasis [ref=e465]: Received
+            - paragraph [ref=e466]: Share product type, certification, quantity, packaging needs, and destination.
+          - article [ref=e467]:
+            - generic [ref=e468]: Step 02
+            - heading [level=3] [ref=e469]:
+              - text: Specs & Quote
+              - emphasis [ref=e470]: Confirmed
+            - paragraph [ref=e471]: We confirm MOQ, lead time, compliance documents, and shipping method.
+          - article [ref=e472]:
+            - generic [ref=e473]: Step 03
+            - heading [level=3] [ref=e474]:
+              - text: Production & Global
+              - emphasis [ref=e475]: Delivery
+            - paragraph [ref=e476]: QC checked orders ship from China to your destination by sea, air, or express.
+    - generic [ref=e478]:
+      - generic [ref=e479]:
+        - generic [ref=e480]:
+          - generic [ref=e481]: — Industry solutions
+          - heading [level=2] [ref=e482]:
+            - text: Find your
+            - emphasis [ref=e483]: industry
+            - text: solution.
+        - link "View All Solutions" [ref=e485] [cursor=pointer]:
+          - /url: /solutions
+          - text: View All Solutions
+          - generic [aria-hidden] [ref=e486]: →
+        - paragraph [ref=e487]: Each solution includes hazard analysis, recommended equipment, and compliance guidance.
+      - link "Open the Construction PPE hub" [ref=e488] [cursor=pointer]:
+        - /url: /solutions/construction-site-ppe-solution
+        - img "Construction PPE kit with helmet, eyewear, gloves, footwear, and high visibility protection" [ref=e490]
+        - generic [ref=e491]:
+          - generic [ref=e492]: — Priority hub
+          - generic [ref=e493]: Construction PPE hub
+          - generic [ref=e494]: A single entry for construction hazards, equipment categories, downloadable planning files, and quote-ready procurement paths.
+          - generic [ref=e495]:
+            - generic [ref=e496]: Site-wide PPE map
+            - generic [ref=e500]: Task checklists
+            - generic [ref=e504]: Product paths
+            - generic [ref=e508]: Quote planning
+          - generic [ref=e512]: Open hub
+      - link "Open the Mining & Quarrying PPE hub" [ref=e515] [cursor=pointer]:
+        - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+        - img "Mining and quarry PPE for drilling, crushing, haul roads, and processing work" [ref=e517]
+        - generic [ref=e518]:
+          - generic [ref=e519]: — Priority hub
+          - generic [ref=e520]: Mining & Quarrying PPE hub
+          - generic [ref=e521]: A task-based entry for mine and quarry hazards, exposure controls, PPE category paths, documentation, and bulk RFQ planning.
+          - generic [ref=e522]:
+            - generic [ref=e523]: Task hazard map
+            - generic [ref=e527]: Exposure controls
+            - generic [ref=e531]: Product paths
+            - generic [ref=e535]: Bulk RFQ planning
+          - generic [ref=e539]: Open hub
+      - generic [ref=e542]:
+        - link "Complete PPE Solution for Construction Sites Construction — Featured Solution Complete PPE Solution for Construction Sites A complete construction PPE guide for site managers, safety officers, and procurement teams covering OSHA requirements, CE and EN standards, core hazard controls, and bulk sourcing decisions. Hazard Analysis Equipment Guide Standards Info Product Links Explore Solution" [ref=e543] [cursor=pointer]:
+          - /url: /solutions/construction-site-ppe-solution
+          - generic [ref=e544]:
+            - img "Complete PPE Solution for Construction Sites" [ref=e545]
+            - generic [ref=e546]: Construction
+          - generic [ref=e547]:
+            - generic [ref=e548]: — Featured Solution
+            - heading "Complete PPE Solution for Construction Sites" [level=3] [ref=e549]
+            - paragraph [ref=e550]: A complete construction PPE guide for site managers, safety officers, and procurement teams covering OSHA requirements, CE and EN standards, core hazard controls, and bulk sourcing decisions.
+            - list [ref=e551]:
+              - listitem [ref=e552]:
+                - generic [ref=e556]: Hazard Analysis
+              - listitem [ref=e557]:
+                - generic [ref=e561]: Equipment Guide
+              - listitem [ref=e562]:
+                - generic [ref=e566]: Standards Info
+              - listitem [ref=e567]:
+                - generic [ref=e571]: Product Links
+            - generic [ref=e572]: Explore Solution
+        - generic [ref=e575]:
+          - 'link "PPE for Metal Fabrication and Welding Workshops Steel Work #02 PPE for Metal Fabrication and Welding Workshops Compare welding helmets, grinding face shields, heat-resistant gloves, respiratory and hearing protection, and RFQ details for metal fabrication workshops. Certified Details" [ref=e576] [cursor=pointer]':
+            - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - generic [ref=e577]:
+              - img "PPE for Metal Fabrication and Welding Workshops" [ref=e578]
+              - generic [ref=e579]: Steel Work
+              - generic [ref=e580]: "#02"
+            - generic [ref=e581]:
+              - heading "PPE for Metal Fabrication and Welding Workshops" [level=3] [ref=e582]
+              - paragraph [ref=e583]: Compare welding helmets, grinding face shields, heat-resistant gloves, respiratory and hearing protection, and RFQ details for metal fabrication workshops.
+              - generic [ref=e584]:
+                - generic [ref=e585]: Certified
+                - strong [ref=e589]: Details
+          - 'link "Fall Protection PPE for Construction Sites Construction #03 Fall Protection PPE for Construction Sites A solution-focused guide for contractors, safety teams, and procurement buyers selecting fall protection PPE for roofing, scaffolding, steel work, shutdowns, and mixed elevated construction tasks. Certified Details" [ref=e592] [cursor=pointer]':
+            - /url: /solutions/fall-protection-construction
+            - generic [ref=e593]:
+              - img "Fall Protection PPE for Construction Sites" [ref=e594]
+              - generic [ref=e595]: Construction
+              - generic [ref=e596]: "#03"
+            - generic [ref=e597]:
+              - heading "Fall Protection PPE for Construction Sites" [level=3] [ref=e598]
+              - paragraph [ref=e599]: A solution-focused guide for contractors, safety teams, and procurement buyers selecting fall protection PPE for roofing, scaffolding, steel work, shutdowns, and mixed elevated construction tasks.
+              - generic [ref=e600]:
+                - generic [ref=e601]: Certified
+                - strong [ref=e605]: Details
+          - 'link "Warehouse PPE: Task Selection and Bulk Buying Guide Heavy Duty #04 Warehouse PPE: Task Selection and Bulk Buying Guide Plan warehouse and logistics PPE by task, approved model, fit, issue quantities and supplier documents before placing a bulk order. Certified Details" [ref=e608] [cursor=pointer]':
+            - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - generic [ref=e609]:
+              - 'img "Warehouse PPE: Task Selection and Bulk Buying Guide" [ref=e610]'
+              - generic [ref=e611]: Heavy Duty
+              - generic [ref=e612]: "#04"
+            - generic [ref=e613]:
+              - 'heading "Warehouse PPE: Task Selection and Bulk Buying Guide" [level=3] [ref=e614]'
+              - paragraph [ref=e615]: Plan warehouse and logistics PPE by task, approved model, fit, issue quantities and supplier documents before placing a bulk order.
+              - generic [ref=e616]:
+                - generic [ref=e617]: Certified
+                - strong [ref=e621]: Details
+          - 'link "Mining Safety Equipment and PPE for Quarry Operations Heavy Duty #05 Mining Safety Equipment and PPE for Quarry Operations Compare mining safety equipment for surface mines, underground work and quarries. Build a PPE shortlist, separate specialist systems and prepare a documented RFQ. Certified Details" [ref=e624] [cursor=pointer]':
+            - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - generic [ref=e625]:
+              - img "Mining Safety Equipment and PPE for Quarry Operations" [ref=e626]
+              - generic [ref=e627]: Heavy Duty
+              - generic [ref=e628]: "#05"
+            - generic [ref=e629]:
+              - heading "Mining Safety Equipment and PPE for Quarry Operations" [level=3] [ref=e630]
+              - paragraph [ref=e631]: Compare mining safety equipment for surface mines, underground work and quarries. Build a PPE shortlist, separate specialist systems and prepare a documented RFQ.
+              - generic [ref=e632]:
+                - generic [ref=e633]: Certified
+                - strong [ref=e637]: Details
+    - generic [ref=e640]:
+      - generic [ref=e641]:
+        - img "Laifappe certification documents" [ref=e642]
+        - generic [ref=e644]:
+          - generic [ref=e645]: — TESTED & VERIFIED
+          - heading [level=3] [ref=e646]:
+            - text: Certifications yourbuyers can
+            - emphasis [ref=e647]: rely on.
+      - generic [ref=e648]:
+        - generic [ref=e650]:
+          - generic [ref=e651]: — Certifications
+          - heading [level=2] [ref=e652]:
+            - text: Our products meet
+            - emphasis [ref=e653]: international
+            - text: standards.
+        - generic [ref=e654]:
+          - generic [ref=e655]:
+            - strong [ref=e656]: CE
+            - generic [ref=e657]: EN STANDARDS
+          - generic [ref=e658]:
+            - strong [ref=e659]: ISO
+            - generic [ref=e660]: 9001:2015
+          - generic [ref=e661]:
+            - strong [ref=e662]: ANSI
+            - generic [ref=e663]: ISEA
+          - generic [ref=e664]:
+            - strong [ref=e665]: EN
+            - generic [ref=e666]: 388 / 397
+          - generic [ref=e667]:
+            - strong [ref=e668]: BSCI
+            - generic [ref=e669]: AUDITED
+        - generic [ref=e670]:
+          - generic [ref=e671]:
+            - strong [ref=e672]:
+              - text: 20+
+              - emphasis [ref=e673]: yr
+            - generic [ref=e674]: Experience
+          - generic [ref=e675]:
+            - strong [ref=e676]: 50+
+            - generic [ref=e677]: Countries
+          - generic [ref=e678]:
+            - strong [ref=e679]: 1M+
+            - generic [ref=e680]: Units / Year
+          - generic [ref=e681]:
+            - strong [ref=e682]: 100+
+            - generic [ref=e683]: Technicians
+    - generic [ref=e685]:
+      - generic [ref=e686]:
+        - generic [ref=e687]:
+          - generic [ref=e688]: — Inside our facility
+          - heading [level=2] [ref=e689]:
+            - text: See the
+            - emphasis [ref=e690]: production floor
+            - text: yourself.
+        - link "Virtual Factory Tour" [ref=e692] [cursor=pointer]:
+          - /url: /about
+          - text: Virtual Factory Tour
+          - generic [aria-hidden] [ref=e693]: →
+      - generic [ref=e694]:
+        - figure "— PRODUCTION LINE Seven active lines - Foshan, 2025" [ref=e695] [cursor=pointer]:
+          - img "Laifappe production line" [ref=e696]
+          - generic [ref=e697]:
+            - generic [ref=e698]: — PRODUCTION LINE
+            - generic [ref=e699]: Seven active lines - Foshan, 2025
+        - figure "— QC LAB Batch testing before shipment" [ref=e700] [cursor=pointer]:
+          - img "Quality control station" [ref=e701]
+          - generic [ref=e702]:
+            - generic [ref=e703]: — QC LAB
+            - generic [ref=e704]: Batch testing before shipment
+        - figure "— EQUIPMENT Precision manufacturing" [ref=e705] [cursor=pointer]:
+          - img "Manufacturing equipment" [ref=e706]
+          - generic [ref=e707]:
+            - generic [ref=e708]: — EQUIPMENT
+            - generic [ref=e709]: Precision manufacturing
+        - figure "— WAREHOUSE Ready-to-ship inventory" [ref=e710] [cursor=pointer]:
+          - img "Warehouse inventory" [ref=e711]
+          - generic [ref=e712]:
+            - generic [ref=e713]: — WAREHOUSE
+            - generic [ref=e714]: Ready-to-ship inventory
+    - generic [ref=e717]:
+      - generic [ref=e719]:
+        - generic [ref=e720]: — Trusted by global partners
+        - heading "Trusted by industry leaders." [level=2] [ref=e721]
+      - generic [ref=e722]:
+        - article [ref=e723]:
+          - paragraph [ref=e724]: "\"We've been sourcing PPE from Laifappe for 5 years. Their quality consistency and on-time delivery have been exceptional. The custom branding service is a great bonus.\""
+          - generic [ref=e725]:
+            - generic [ref=e726]:
+              - strong [ref=e727]: Michael Chen
+              - generic [ref=e728]: Procurement Director
+            - generic [ref=e729]:
+              - text: BUILDCORP
+              - generic [ref=e730]: INTL
+        - article [ref=e731]:
+          - paragraph [ref=e732]: "\"We've worked with Laifappe for many years. They understand our requirements very well. Their OEM service is outstanding, fast and precise.\""
+          - generic [ref=e733]:
+            - generic [ref=e734]:
+              - strong [ref=e735]: Sarah Williams
+              - generic [ref=e736]: CEO
+            - generic [ref=e737]:
+              - text: SAFETYFIRST
+              - generic [ref=e738]: DISTRIBUTION
+        - article [ref=e739]:
+          - paragraph [ref=e740]: "\"The flame-resistant workwear meets all our strict safety requirements. Their technical support team helped us choose the right products for offshore operations.\""
+          - generic [ref=e741]:
+            - generic [ref=e742]:
+              - strong [ref=e743]: Ahmed Hassan
+              - generic [ref=e744]: HSE Manager
+            - generic [ref=e745]:
+              - text: PETROGLOBAL
+              - generic [ref=e746]: ENERGY
+      - generic [ref=e747]:
+        - generic [ref=e748]:
+          - strong [ref=e749]: 500+
+          - generic [ref=e750]: Global Clients
+        - generic [ref=e751]:
+          - strong [ref=e752]: 98%
+          - generic [ref=e753]: Satisfaction Rate
+        - generic [ref=e754]:
+          - strong [ref=e755]: 4.9/5
+          - generic [ref=e756]: Average Rating
+        - generic [ref=e757]:
+          - strong [ref=e758]: 85%
+          - generic [ref=e759]: Repeat Orders
+    - generic [ref=e760]:
+      - generic [ref=e761]:
+        - img "Request a PPE quotation" [ref=e762]
+        - generic [ref=e763]:
+          - generic [ref=e764]: — Request a quote
+          - heading [level=2] [ref=e765]:
+            - text: Ready to source
+            - emphasis [ref=e766]: quality PPE?
+          - paragraph [ref=e767]: Email our team for product inquiries, custom orders, or a detailed quotation. We help you find the right protection solutions.
+          - generic [ref=e768]:
+            - generic [ref=e769]:
+              - generic [ref=e770]: — 01
+              - generic [ref=e771]:
+                - strong [ref=e772]: Itemized quotation
+                - emphasis [ref=e773]: Unit price, packaging, shipping and duties all line-itemed.
+            - generic [ref=e774]:
+              - generic [ref=e775]: — 02
+              - generic [ref=e776]:
+                - strong [ref=e777]: Free product samples
+                - emphasis [ref=e778]: Verified buyers receive free samples within 5 business days.
+            - generic [ref=e779]:
+              - generic [ref=e780]: — 03
+              - generic [ref=e781]:
+                - strong [ref=e782]: Dedicated account manager
+                - emphasis [ref=e783]: One point of contact from quote through to delivery.
+      - generic [ref=e784]:
+        - generic [ref=e785]:
+          - generic [ref=e786]: "- GET A QUOTE"
+          - heading "Tell us what you need. We respond within 24 hours." [level=2] [ref=e787]: Tell us what you need.We respond within 24 hours.
+        - generic [ref=e788]:
+          - generic [ref=e789]: Email
+          - textbox "Email" [ref=e790]:
+            - /placeholder: you@company.com
+          - generic [ref=e791]: 0/100
+        - generic [ref=e792]:
+          - generic [ref=e793]: Mobile/WhatsApp
+          - generic [ref=e794]:
+            - button "Code" [ref=e796] [cursor=pointer]
+            - textbox "Mobile/WhatsApp" [ref=e799]:
+              - /placeholder: Please enter your mobile phone
+            - generic [ref=e800]: 0/100
+        - generic [ref=e801]:
+          - generic [ref=e802]: Name
+          - textbox "Name" [ref=e803]:
+            - /placeholder: Please enter your name
+          - generic [ref=e804]: 0/100
+        - generic [ref=e805]:
+          - generic [ref=e806]: Company Name
+          - textbox "Company Name" [ref=e807]:
+            - /placeholder: Please enter your company name
+          - generic [ref=e808]: 0/200
+        - generic [ref=e809]:
+          - generic [ref=e810]: Message
+          - textbox "Message" [ref=e811]:
+            - /placeholder: Which products are you interested in? and what is the quantity?
+          - generic [ref=e812]: 0/1000
+        - button "Submit Request" [ref=e813] [cursor=pointer]:
+          - text: Submit Request
+          - generic [aria-hidden] [ref=e814]: →
+        - paragraph [ref=e815]: ✓ We respond within one business day
+    - contentinfo [ref=e816]:
+      - generic [ref=e817]:
+        - generic [ref=e818]:
+          - generic [ref=e819]:
+            - link "Laifappe homepage" [ref=e820] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=e821]
+              - generic [ref=e822]:
+                - strong [ref=e823]: 粤来发劳保
+                - generic [ref=e824]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=e825]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=e826]:
+              - generic [ref=e827]: CE EN
+              - generic [ref=e828]: ISO 9001
+              - generic [ref=e829]: ANSI
+              - generic [ref=e830]: BSCI
+          - navigation "Footer products" [ref=e831]:
+            - heading "Products" [level=3] [ref=e832]
+            - link "Head Protection" [ref=e833] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=e834] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=e835] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=e836] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=e837] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=e838] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=e839]:
+            - heading "Solutions" [level=3] [ref=e840]
+            - link "Construction" [ref=e841] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=e842] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=e843] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=e844] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=e845] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=e846] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=e847]:
+            - heading "Company" [level=3] [ref=e848]
+            - link "About Us" [ref=e849] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=e850] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=e851] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=e852] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=e853] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e854]:
+            - heading "Contact Us" [level=3] [ref=e855]
+            - paragraph [ref=e856]: +86 180 2930 9938
+            - paragraph [ref=e860]: sales@laifappe.com
+            - paragraph [ref=e865]:
+              - generic [ref=e866]: W
+              - link "www.laifappe.com" [ref=e867] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=e868]: Foshan, Guangdong, China
+        - generic [ref=e873]:
+          - generic [ref=e874]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=e875]:
+            - link "Privacy Policy" [ref=e876] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=e877] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=e878] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - button "Open Next.js Dev Tools" [ref=e884] [cursor=pointer]
+  - alert [ref=e888]

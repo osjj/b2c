@@ -1,3 +1,4 @@
+import theme from '../tools-theme.module.css'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronRight, Home, Ruler, Footprints, Info, Clock } from 'lucide-react'
@@ -150,7 +151,7 @@ export default function SizeGuidePage() {
   }
 
   return (
-    <div className="bg-ppe-bg-page min-h-screen pb-24">
+    <div className={[theme.page, "min-h-screen pb-24"].join(" ")}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -183,7 +184,7 @@ export default function SizeGuidePage() {
       </nav>
 
       {/* Hero */}
-      <header className="container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center">
+      <header data-tool-hero className={[theme.hero, "container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary mb-4">
           Reference Tool · Free
         </p>
@@ -201,7 +202,7 @@ export default function SizeGuidePage() {
       </div>
 
       {/* How to measure */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
         <div className="flex items-center gap-3 mb-3">
           <Ruler className="h-6 w-6 text-primary" />
           <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
@@ -233,7 +234,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Full conversion chart */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-6xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-6xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
           US to EU safety boot size conversion chart
         </h2>
@@ -275,7 +276,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Width chart */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <div className="flex items-center gap-3 mb-3">
           <Footprints className="h-6 w-6 text-primary" />
           <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
@@ -315,7 +316,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Break-in tips */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-6">
           Break-in and on-site fit check
         </h2>
@@ -347,7 +348,7 @@ export default function SizeGuidePage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <ToolRelatedGuidesSection
           title="Footwear guides to use after sizing"
           description="Once size and width are clear, use these buying guides to confirm standards, role needs, and bulk order details before requesting safety footwear pricing."
@@ -356,7 +357,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* FAQ */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
         <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-8 text-center">
           Frequently asked questions
         </h2>
@@ -377,7 +378,7 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Related */}
-      <section className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
         <div className="rounded-2xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 sm:p-10 shadow-sm">
           <div className="flex items-start gap-4">
             <Info className="h-6 w-6 text-primary flex-shrink-0 mt-1" />

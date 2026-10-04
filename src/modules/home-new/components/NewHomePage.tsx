@@ -1,10 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { COMPANY_NAME } from "@/lib/company"
-import type { ReactNode } from "react"
+import { Suspense, type ReactNode } from "react"
 import { CheckCircle2, Clock3, Mail, MapPin, Monitor, MoveRight, Phone, Shield } from "lucide-react"
-import { getCollectionProducts } from "@/actions/collections"
-import { getSolutions } from "@/actions/solutions"
+import { getHomeFeaturedProducts, getHomeSolutions } from "../lib/home-data"
 import { formatUsageSceneLabel, USAGE_SCENES, type UsageScene } from "@/types/solution"
 import { ASSET_BASE, catalogProofProducts, categories, facilityImages, testimonials } from "./data"
 import { FactoryTourDialog } from "./FactoryTourDialog"
@@ -14,31 +13,29 @@ import { QuoteDrawer, QuoteRequestForm } from "./QuoteRequestForm"
 import { SectionHeader } from "./SectionHeader"
 import styles from "./home-new.module.css"
 
-const HOME_DATA_TIMEOUT_MS = 1200
-
-type FeaturedProductsData = NonNullable<Awaited<ReturnType<typeof getCollectionProducts>>>
+type FeaturedProductsData = NonNullable<Awaited<ReturnType<typeof getHomeFeaturedProducts>>>
 type FeaturedProduct = FeaturedProductsData["products"][number]
-type HomeSolutionsData = NonNullable<Awaited<ReturnType<typeof getSolutions>>>
+type HomeSolutionsData = NonNullable<Awaited<ReturnType<typeof getHomeSolutions>>>
 type HomeSolution = HomeSolutionsData["solutions"][number]
 
-async function loadFeaturedProducts(): Promise<FeaturedProductsData | null> {
-  return Promise.race([
-    getCollectionProducts("best-sellers", 5),
-    new Promise<null>((resolve) => setTimeout(() => resolve(null), HOME_DATA_TIMEOUT_MS)),
-  ]).catch((error) => {
-    console.error("Failed to load new homepage featured products", error)
-    return null
-  })
+async function FeaturedProducts() {
+  const data = await getHomeFeaturedProducts()
+  return <FeaturedProductsSection data={data} />
 }
 
-async function loadHomeSolutions(): Promise<HomeSolutionsData | null> {
-  return Promise.race([
-    getSolutions({ activeOnly: true, limit: 5 }),
-    new Promise<null>((resolve) => setTimeout(() => resolve(null), HOME_DATA_TIMEOUT_MS)),
-  ]).catch((error) => {
-    console.error("Failed to load new homepage solutions", error)
-    return null
-  })
+async function HomeSolutions() {
+  const data = await getHomeSolutions()
+  return <IndustriesSection data={data} />
+}
+
+function HomeSectionPlaceholder({ section }: { section: "products" | "solutions" }) {
+  return (
+    <div
+      className={section === "products" ? styles.productsPlaceholder : styles.solutionsPlaceholder}
+      role="status"
+      aria-label={section === "products" ? "Loading featured products" : "Loading industry solutions"}
+    />
+  )
 }
 
 function formatProductPrice(product: FeaturedProduct) {
@@ -65,9 +62,7 @@ function getSolutionSceneLabel(solution: HomeSolution) {
   return scene && isUsageScene(scene) ? formatUsageSceneLabel(scene) : "General"
 }
 
-export async function NewHomePage() {
-  const [featuredProductsData, solutionsData] = await Promise.all([loadFeaturedProducts(), loadHomeSolutions()])
-
+export function NewHomePage() {
   return (
     <NewHomeShell>
       <NewHomeTopBar />
@@ -77,10 +72,14 @@ export async function NewHomePage() {
       <CategorySection />
       <WhyUsSection />
       <OemOdmSection />
-      <FeaturedProductsSection data={featuredProductsData} />
+      <Suspense fallback={<HomeSectionPlaceholder section="products" />}>
+        <FeaturedProducts />
+      </Suspense>
       <FactoryFullSection />
       <HowToOrderSection />
-      <IndustriesSection data={solutionsData} />
+      <Suspense fallback={<HomeSectionPlaceholder section="solutions" />}>
+        <HomeSolutions />
+      </Suspense>
       <CertificationsSection />
       <FacilitySection />
       <TestimonialsSection />
@@ -952,10 +951,10 @@ function OemOdmSection() {
           </div>
           <div className={styles.oemMedia}>
             <Image
-              src="https://shop.laifappe.com/homepage/oem-odm-capabilities02.webp"
-              alt="OEM and ODM PPE sample development, measurement, packaging, and material review"
+              src="/homepage/oem-odm-workwear-programs.png"
+              alt="Custom workwear program: material options, product specification, private label packaging, and sample approval"
               fill
-              sizes="(max-width: 1100px) 100vw, 48vw"
+              sizes="(max-width: 1320px) 100vw, 1240px"
             />
           </div>
           <div className={styles.oemCapabilityList}>

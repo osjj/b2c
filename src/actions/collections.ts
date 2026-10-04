@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { invalidateHomeCache } from '@/lib/home-cache'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
@@ -131,6 +132,7 @@ export async function createCollection(
   })
 
   revalidatePath('/admin/collections')
+  invalidateHomeCache('products')
   revalidatePath('/collections')
   redirect('/admin/collections')
 }
@@ -171,6 +173,7 @@ export async function updateCollection(
   })
 
   revalidatePath('/admin/collections')
+  invalidateHomeCache('products')
   revalidatePath('/collections')
   revalidatePath(`/collections/${result.data.slug}`)
   redirect('/admin/collections')
@@ -183,6 +186,7 @@ export async function deleteCollection(id: string) {
   await prisma.collection.delete({ where: { id } })
 
   revalidatePath('/admin/collections')
+  invalidateHomeCache('products')
   revalidatePath('/collections')
 }
 
@@ -201,6 +205,7 @@ export async function addProductToCollection(
   })
 
   revalidatePath('/admin/collections')
+  invalidateHomeCache('products')
   revalidatePath('/collections')
 }
 
@@ -219,6 +224,7 @@ export async function removeProductFromCollection(
   })
 
   revalidatePath('/admin/collections')
+  invalidateHomeCache('products')
   revalidatePath('/collections')
 }
 
@@ -247,6 +253,7 @@ export async function updateProductCollections(
 
   revalidatePath('/admin/products')
   revalidatePath('/admin/collections')
+  invalidateHomeCache('products')
   revalidatePath('/collections')
 }
 

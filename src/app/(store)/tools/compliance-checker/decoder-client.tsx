@@ -1,69 +1,31 @@
 'use client'
 
+import theme from '../tools-theme.module.css'
+
 import { useMemo, useState } from 'react'
 import { Search, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  ALL_CODES,
-  DECODER_TOKENS,
-  STANDARD_LABEL,
-  type ComplianceCode,
-} from './data'
-
-interface DecodedMatch {
-  code: ComplianceCode
-  count: number
-}
-
-function decodeLabel(text: string): DecodedMatch[] {
-  if (!text.trim()) return []
-  const byCode = new Map<string, number>()
-  const upper = text.toUpperCase()
-
-  for (const { pattern, code } of DECODER_TOKENS) {
-    const matches = upper.match(pattern)
-    if (matches && matches.length > 0 && !byCode.has(code)) {
-      byCode.set(code, matches.length)
-    }
-  }
-
-  const standardOrder: ComplianceCode['standard'][] = [
-    'EN-CLASS',
-    'EN-ADDON',
-    'SLIP',
-    'ASTM',
-  ]
-
-  return Array.from(byCode.entries())
-    .map(([code, count]) => {
-      const meta = ALL_CODES.find((c) => c.code === code)!
-      return { code: meta, count }
-    })
-    .sort(
-      (a, b) =>
-        standardOrder.indexOf(a.code.standard) -
-        standardOrder.indexOf(b.code.standard),
-    )
-}
+import { STANDARD_LABEL } from './data'
+import { decodeLabel } from './parser'
 
 const EXAMPLES = [
-  'S3 SRC HRO',
-  'S1P SRA ESD',
+  'EN ISO 20345:2011 S3 SRC HRO',
+  'EN ISO 20345:2022 S1PL SR FO',
   'ASTM F2413-18 M I/75 C/75 EH PR',
-  'S7 WR M SC LG',
+  'EN ISO 20345:2022 S7 WR M SC LG',
 ]
 
 export function ComplianceDecoder() {
-  const [input, setInput] = useState('S3 SRC HRO CI M')
+  const [input, setInput] = useState('EN ISO 20345:2022 S3 SR HRO CI M')
 
-  const matches = useMemo(() => decodeLabel(input), [input])
+  const { matches, warnings, unknown } = useMemo(() => decodeLabel(input), [input])
 
   return (
     <div className="space-y-8">
       {/* Input card */}
-      <div className="rounded-2xl border bg-background p-6 sm:p-8 shadow-sm">
+      <div data-tool-panel className={[theme.panel, "rounded-2xl border bg-background p-6 sm:p-8 shadow-sm"].join(" ")}>
         <div className="flex items-center gap-3 mb-6">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
             <Search className="h-5 w-5" />
@@ -81,7 +43,7 @@ export function ComplianceDecoder() {
             id="label"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="e.g. EN ISO 20345:2022 S3 SRC HRO CI"
+            placeholder="e.g. EN ISO 20345:2022 S3 SR HRO CI"
             className="font-mono"
           />
         </div>
@@ -94,7 +56,7 @@ export function ComplianceDecoder() {
               size="sm"
               variant="outline"
               onClick={() => setInput(ex)}
-              className="h-7 text-xs font-mono"
+              className="h-auto min-h-11 whitespace-normal text-left text-xs font-mono"
             >
               {ex}
             </Button>
@@ -103,8 +65,11 @@ export function ComplianceDecoder() {
       </div>
 
       {/* Result */}
+      <p className="text-sm text-muted-foreground">This explains label text only. Verify the model, edition, declaration of conformity and test reports before purchasing; this tool does not validate certification.</p>
+      {warnings.length > 0 && <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950" role="status"><h3 className="font-semibold">Check the standard and edition</h3><ul className="mt-2 space-y-2">{warnings.map(w => <li key={w}>{w}</li>)}</ul></div>}
+      {unknown.length > 0 && <div className="rounded-xl border p-4 text-sm" role="status"><h3 className="font-semibold">Unrecognised or unresolved markings</h3><ul className="mt-2 space-y-1 font-mono break-words">{unknown.map(t => <li key={t}>{t}</li>)}</ul><p className="mt-2 text-muted-foreground">These tokens were not interpreted. Confirm them against the original label and manufacturer documentation.</p></div>}
       {matches.length > 0 ? (
-        <div className="rounded-2xl border bg-gradient-to-br from-primary/5 to-background p-6 sm:p-8 shadow-sm">
+        <div data-testid="decoded-codes" data-tool-results className={[theme.results, "rounded-2xl border bg-gradient-to-br from-primary/5 to-background p-6 sm:p-8 shadow-sm"].join(" ")}>
           <div className="flex items-center gap-3 mb-5">
             <Sparkles className="h-5 w-5 text-primary" />
             <h3 className="font-serif text-xl text-foreground">
@@ -113,9 +78,9 @@ export function ComplianceDecoder() {
           </div>
 
           <ul className="space-y-3">
-            {matches.map(({ code }) => (
+            {matches.map(({ code, context }) => (
               <li
-                key={code.code}
+                key={`${context}-${code.code}`}
                 className="rounded-xl border bg-background p-4 sm:p-5"
               >
                 <div className="flex flex-wrap items-start gap-x-4 gap-y-2">
@@ -125,7 +90,7 @@ export function ComplianceDecoder() {
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-foreground">{code.name}</p>
                     <p className="mt-0.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                      {STANDARD_LABEL[code.standard]}
+                      {context} · {STANDARD_LABEL[code.standard]}
                     </p>
                   </div>
                 </div>
@@ -140,7 +105,7 @@ export function ComplianceDecoder() {
         <div className="rounded-2xl border border-dashed bg-background p-6 text-center text-sm text-muted-foreground">
           Paste a marking like <code className="font-mono">S3 SRC HRO</code> or{' '}
           <code className="font-mono">ASTM F2413-18 M I/75 C/75 EH PR</code> to
-          decode every safety code.
+          interpret supported markings.
         </div>
       )}
     </div>

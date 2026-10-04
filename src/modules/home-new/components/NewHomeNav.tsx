@@ -33,7 +33,7 @@ export function NewHomeNav() {
 
   return (
     <div className={styles.navSticky}>
-      <header className={styles.nav}>
+      <header className={styles.nav} data-tools-page={pathname === '/tools' || pathname.startsWith('/tools/')}>
         <div className={styles.wrap}>
           <Link className={styles.logo} href="/" aria-label="Laifappe homepage">
             <Image

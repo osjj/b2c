@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { invalidateHomeCache } from '@/lib/home-cache'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
@@ -294,6 +295,7 @@ export async function createSolution(
   )
 
   revalidatePath('/admin/solutions')
+  invalidateHomeCache('solutions')
   revalidatePath('/solutions')
   redirect('/admin/solutions')
 }
@@ -406,6 +408,7 @@ export async function updateSolution(
   )
 
   revalidatePath('/admin/solutions')
+  invalidateHomeCache('solutions')
   revalidatePath('/solutions')
   revalidatePath(`/solutions/${data.slug}`)
   redirect('/admin/solutions')
@@ -433,6 +436,7 @@ export async function deleteSolution(id: string) {
   )
 
   revalidatePath('/admin/solutions')
+  invalidateHomeCache('solutions')
   revalidatePath('/solutions')
 }
 
@@ -461,6 +465,7 @@ export async function toggleSolutionActive(id: string) {
   )
 
   revalidatePath('/admin/solutions')
+  invalidateHomeCache('solutions')
   revalidatePath('/solutions')
 }
 
@@ -478,5 +483,6 @@ export async function updateSolutionsOrder(solutionIds: string[]) {
   )
 
   revalidatePath('/admin/solutions')
+  invalidateHomeCache('solutions')
   revalidatePath('/solutions')
 }

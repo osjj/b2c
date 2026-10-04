@@ -177,7 +177,91 @@ function pickGuides(keys: Array<keyof typeof GUIDE_CATALOG>) {
   return keys.map((key) => GUIDE_CATALOG[key])
 }
 
-export const TOOLS_HUB_RELATED_GUIDES = pickGuides([
+
+const BUYER_GUIDE_COPY: Partial<Record<keyof typeof GUIDE_CATALOG, [string, string]>> = {
+  "construction-safety-footwear-guide": [
+    "Safety footwear",
+    "Compare toe protection, outsole requirements and fit evidence before ordering safety footwear."
+  ],
+  "construction-gloves-selection-guide": [
+    "Hand protection",
+    "Choose gloves for cut, grip, impact and wet-work hazards, then plan sizes and replacements."
+  ],
+  "high-visibility-clothing-construction": [
+    "High-visibility clothing",
+    "Plan garment types, sizes, cleaning rotation and replacement stock."
+  ],
+  "construction-respiratory-protection": [
+    "Respiratory protection",
+    "Match dust and fume tasks to suitable respirators, fit requirements and filter planning."
+  ],
+  "construction-hard-hat-types": [
+    "Head protection",
+    "Compare hard hat classes, shell styles, compatible accessories and fit before ordering."
+  ],
+  "type-1-vs-type-2-hard-hats": [
+    "Impact types",
+    "Compare Type I and Type II impact coverage alongside Class G, E and C requirements."
+  ],
+  "class-e-vs-class-g-vs-class-c-hard-hats": [
+    "Electrical classes",
+    "Understand electrical class limits before choosing head protection."
+  ],
+  "vented-vs-non-vented-hard-hats-construction": [
+    "Shell ventilation",
+    "Assess ventilation, Class C limits and comfort against the site hazard assessment."
+  ],
+  "full-brim-vs-cap-style-hard-hats-construction": [
+    "Brim styles",
+    "Compare brim coverage and accessory compatibility before selecting a shell style."
+  ],
+  "hard-hat-color-codes-construction-sites": [
+    "Colour planning",
+    "Plan role colours, visitor identification and clear colour requirements for the order."
+  ],
+  "construction-eye-face-protection": [
+    "Eye and face protection",
+    "Select eyewear, goggles and face shields for dust, splash and task-specific hazards."
+  ],
+  "construction-hearing-protection": [
+    "Hearing protection",
+    "Compare earplugs, earmuffs, fit, communication needs and replacement planning."
+  ],
+  "osha-ppe-requirements-construction": [
+    "Workplace requirements",
+    "Review construction PPE requirements, fit and documentation before selecting equipment."
+  ],
+  "bulk-construction-ppe-procurement": [
+    "Bulk purchasing",
+    "Prepare a clear RFQ, compare supplier evidence and plan repeat orders."
+  ],
+  "demolition-concrete-cutting-ppe-checklist": [
+    "Demolition tasks",
+    "Check dust, eye, respiratory, hearing, hand and footwear needs for demolition tasks."
+  ],
+  "construction-safety-helmet-vs-hard-hat": [
+    "Helmet selection",
+    "Compare hard hats and helmet-style protection against hazards, retention and compatibility needs."
+  ],
+  "contractor-ppe-kit-checklist": [
+    "Kit planning",
+    "Build role-based PPE kits with appropriate sizes and issue quantities."
+  ],
+  "contractor-ppe-supplier-bulk-checklist": [
+    "Supplier checks",
+    "Compare documents, packing, substitutions and replenishment commitments before an order."
+  ]
+}
+
+function pickBuyerGuides(keys: Array<keyof typeof GUIDE_CATALOG>) {
+  return keys.map(key => {
+    const guide = GUIDE_CATALOG[key]
+    const copy = BUYER_GUIDE_COPY[key]
+    return copy ? { ...guide, eyebrow: copy[0], description: copy[1] } : guide
+  })
+}
+
+export const TOOLS_HUB_RELATED_GUIDES = pickBuyerGuides([
   'construction-safety-footwear-guide',
   'construction-gloves-selection-guide',
   'high-visibility-clothing-construction',
@@ -197,7 +281,7 @@ export const TOOL_RELATED_GUIDES = {
     'mining-quarry-safety-boots-guide',
     'mining-safety-helmet-buyer-guide',
   ]),
-  'ppe-calculator': pickGuides([
+  'ppe-calculator': pickBuyerGuides([
     'mining-maintenance-welding-cutting-grinding-ppe',
     'mining-high-visibility-workwear-guide',
     'quarry-eye-face-protection-guide',
@@ -214,21 +298,21 @@ export const TOOL_RELATED_GUIDES = {
     'mining-safety-helmet-buyer-guide',
     'construction-ppe-checklist',
   ]),
-  'size-guide': pickGuides([
+  'size-guide': pickBuyerGuides([
     'construction-safety-footwear-guide',
     'mining-quarry-safety-boots-guide',
     'bulk-construction-ppe-procurement',
     'construction-ppe-checklist',
     'osha-ppe-requirements-construction',
   ]),
-  'compliance-checker': pickGuides([
+  'compliance-checker': pickBuyerGuides([
     'construction-safety-footwear-guide',
     'mining-quarry-safety-boots-guide',
     'osha-ppe-requirements-construction',
     'bulk-construction-ppe-procurement',
     'construction-ppe-checklist',
   ]),
-  'hard-hat-class-decoder': pickGuides([
+  'hard-hat-class-decoder': pickBuyerGuides([
     'class-e-vs-class-g-vs-class-c-hard-hats',
     'fiberglass-vs-abs-vs-hdpe-safety-helmets',
     'vented-vs-non-vented-hard-hats-construction',

@@ -1,6 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { invalidateHomeCache } from '@/lib/home-cache'
 import { redirect } from 'next/navigation'
 import { after } from 'next/server'
 import { prisma } from '@/lib/prisma'
@@ -474,6 +475,7 @@ export async function createProduct(
   )
 
   revalidatePath('/admin/products')
+  invalidateHomeCache('products')
   revalidatePath('/products')
   redirect('/admin/products')
 }
@@ -729,6 +731,7 @@ export async function updateProduct(
   )
 
   revalidatePath('/admin/products')
+  invalidateHomeCache('products')
   revalidatePath('/products')
   revalidatePath(`/products/${currentProduct.slug}`)
   revalidatePath(`/products/${normalizedSlug}`)
@@ -761,6 +764,7 @@ export async function archiveProduct(id: string) {
   )
 
   revalidatePath('/admin/products')
+  invalidateHomeCache('products')
   revalidatePath('/products')
 }
 
@@ -813,6 +817,7 @@ export async function deleteProduct(id: string) {
   )
 
   revalidatePath('/admin/products')
+  invalidateHomeCache('products')
   revalidatePath('/products')
 }
 
@@ -831,6 +836,7 @@ export async function updateProductsOrder(productIds: string[]) {
   )
 
   revalidatePath('/admin/products')
+  invalidateHomeCache('products')
   revalidatePath('/products')
 }
 
@@ -844,6 +850,7 @@ export async function updateProductSortOrder(productId: string, sortOrder: numbe
   })
 
   revalidatePath('/admin/products')
+  invalidateHomeCache('products')
   revalidatePath('/products')
 }
 

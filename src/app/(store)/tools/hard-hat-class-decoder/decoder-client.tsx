@@ -1,5 +1,7 @@
 'use client'
 
+import theme from '../tools-theme.module.css'
+
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, HardHat } from 'lucide-react'
@@ -100,7 +102,7 @@ export function HardHatDecoder() {
   )
 
   return (
-    <section className="rounded-2xl border bg-background p-5 shadow-sm sm:p-6">
+    <section data-tool-panel className={[theme.panel, "rounded-2xl border bg-background p-5 shadow-sm sm:p-6"].join(" ")}>
       <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)]">
         <div className="space-y-5">
           <div>
@@ -165,7 +167,7 @@ export function HardHatDecoder() {
           </div>
         </div>
 
-        <aside className="rounded-xl border bg-primary/5 p-5">
+        <aside data-tool-results className={[theme.results, "rounded-xl border bg-primary/5 p-5"].join(" ")}>
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
               <HardHat className="h-5 w-5" aria-hidden="true" />
