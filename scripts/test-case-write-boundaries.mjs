@@ -138,6 +138,59 @@ assert.equal(state.rows[0].publishedAt, null)
 assert.ok(state.invalidations.includes('/cases'))
 assert.ok(state.invalidations.includes('/sitemap.xml'))
 
+// An outdated editor may have loaded the current version while stripping newly
+// added JSON fields. Version locking alone must not allow that metadata loss.
+const layoutInput = {
+  ...input, slug: 'contextual-layout-record',
+  sections: [
+    { key: 'visit', title: 'Buyer visit', body: 'Recorded sample review.' },
+    { key: 'packing', title: 'Packing', body: 'Recorded packing progress.' },
+  ],
+  gallery: [
+    { url: '/cases/visit.png', alt: 'Buyer visit', caption: 'Original visit', placement: 'section:visit' },
+    { url: '/cases/packing.png', alt: 'Packing', caption: 'Original packing', placement: 'section:packing' },
+  ],
+}
+const layoutCreated = await saveCaseStudy(layoutInput)
+assert.equal(layoutCreated.success, true)
+const layoutRecord = state.rows.find((row) => row.id === layoutCreated.id)
+assert.ok(layoutRecord)
+const writesBeforeOmission = state.writes
+const invalidationsBeforeOmission = state.invalidations.length
+const metadataSnapshot = structuredClone({ sections: layoutRecord.sections, gallery: layoutRecord.gallery })
+const omittedLayout = {
+  ...layoutInput,
+  sections: layoutInput.sections.map(({ title, body }) => ({ title, body })),
+  gallery: layoutInput.gallery.map(({ url, alt, caption }) => ({ url, alt, caption })),
+}
+const omittedResult = await saveCaseStudy(omittedLayout, layoutCreated.id, 1)
+assert.equal(omittedResult.success, false, 'Old editor metadata omissions are rejected')
+assert.match(omittedResult.reason, /Reload the case before saving/)
+assert.deepEqual(Object.keys(omittedResult.errors), ['sections.0.key', 'sections.1.key', 'gallery.0.placement', 'gallery.1.placement'])
+assert.equal(state.writes, writesBeforeOmission, 'Missing layout metadata does not reach updateMany')
+assert.equal(state.invalidations.length, invalidationsBeforeOmission, 'Rejected layout does not invalidate routes')
+assert.equal(layoutRecord.version, 1)
+assert.deepEqual({ sections: layoutRecord.sections, gallery: layoutRecord.gallery }, metadataSnapshot)
+const omittedGallery = await saveCaseStudy({ ...layoutInput, gallery: omittedLayout.gallery }, layoutCreated.id, 1)
+assert.equal(omittedGallery.success, false, 'Retained gallery URLs require explicit layout information')
+assert.deepEqual(Object.keys(omittedGallery.errors), ['gallery.0.placement', 'gallery.1.placement'])
+assert.equal(state.writes, writesBeforeOmission)
+
+const rearrangedLayout = {
+  ...layoutInput,
+  sections: [...layoutInput.sections].reverse().map((section) => ({ ...section, title: `Updated ${section.title}`, body: `Updated ${section.body}` })),
+  gallery: [...layoutInput.gallery].reverse(),
+}
+assert.equal((await saveCaseStudy(rearrangedLayout, layoutCreated.id, 1)).success, true, 'Stable keys support reorder and rename')
+const removedSection = {
+  ...rearrangedLayout,
+  sections: rearrangedLayout.sections.filter(({ key }) => key !== 'visit'),
+  gallery: rearrangedLayout.gallery.map((image) => ({ ...image, placement: image.placement === 'section:visit' ? '' : image.placement })),
+}
+assert.equal((await saveCaseStudy(removedSection, layoutCreated.id, 2)).success, true, 'Explicit deletion and image unassignment remain available')
+assert.equal(layoutRecord.version, 3)
+assert.equal(layoutRecord.gallery.find(({ url }) => url === '/cases/visit.png').placement, '')
+
 // Read boundaries: real query predicates, not a hand-written public fallback.
 const now = new Date()
 const baseRecord = { ...input, version: 1, createdAt: now, updatedAt: now, cooperationDate: new Date('2026-08-02'), publicationApproved: true, publishedAt: new Date(now.getTime() - 1000) }
@@ -163,4 +216,4 @@ await assert.rejects(getAdminCase('draft'), /Denied/)
 assert.equal(state.reads.length, readCount, 'Unauthorized private reads do not reach the database')
 state.authorized = true
 assert.equal((await getAdminCase('draft')).privateNotes, input.privateNotes)
-process.stdout.write('PASS: real case actions and read queries; authorization, validation, draft creation, duplicate slug, optimistic race, publish/withdraw, invalidation, public filtering and private projection verified with mocks. No database or storage contacted.\n')
+process.stdout.write('PASS: real case actions and read queries; authorization, validation, draft creation, duplicate slug, optimistic race, layout omission protection, intentional reorder/delete, publish/withdraw, invalidation, public filtering and private projection verified with mocks. No database or storage contacted.\n')

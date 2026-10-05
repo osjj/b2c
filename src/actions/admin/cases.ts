@@ -8,6 +8,7 @@ import { prisma } from '@/lib/prisma'
 import { caseInputSchema } from '@/lib/cases/types'
 import type { CaseSaveResult } from '@/lib/cases/types'
 import { parseCasePrivateImage } from '@/lib/cases/private-image-path'
+import { caseLayoutWriteErrors } from '@/lib/cases/layout-write-guard'
 
 type SavedCase = { id: string; version: number; oldSlug: string; slug: string }
 
@@ -61,11 +62,19 @@ export async function saveCaseStudy(input: unknown, id?: string, expectedVersion
       }
 
       const existing = await tx.caseStudy.findUnique({
-        where: { id }, select: { id: true, slug: true, version: true, status: true, publishedAt: true },
+        where: { id }, select: { id: true, slug: true, version: true, status: true, publishedAt: true, sections: true, gallery: true },
       })
       if (!existing) return { success: false, reason: 'Case not found. Nothing was saved.' }
       if (existing.version !== expectedVersion) {
         return { success: false, reason: 'This case changed in another editor. Reload before saving; your changes were not overwritten.' }
+      }
+      const layoutErrors = caseLayoutWriteErrors(existing, value)
+      if (Object.keys(layoutErrors).length) {
+        return {
+          success: false,
+          reason: 'This editor is missing saved image layout information. Reload the case before saving. Nothing was saved.',
+          errors: layoutErrors,
+        }
       }
       const publishedAt = value.status === 'PUBLISHED'
         ? (existing.status === 'PUBLISHED' ? existing.publishedAt ?? new Date() : new Date())

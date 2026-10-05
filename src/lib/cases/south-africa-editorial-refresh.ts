@@ -90,3 +90,31 @@ export function refreshSouthAfricaCase(current: AdminCaseView): CaseInput {
   assert.equal(candidate.gallery.every((image) => Boolean(image.placement)), true)
   return candidate
 }
+
+/** Restore reviewed associations only; never replace later prose or nonempty edits. */
+export function repairSouthAfricaCaseLayout(current: AdminCaseView): CaseInput {
+  assert.equal(current.id, SOUTH_AFRICA_CASE_ID)
+  assert.equal(current.slug, SOUTH_AFRICA_CASE_SLUG)
+  assert.equal(current.status, 'DRAFT')
+  assert.equal(current.publicationApproved, false)
+  assert.equal(current.publishedAt, null)
+  assert.equal(current.sections.length, CHAPTERS.length)
+  assert.equal(current.gallery.length, SOUTH_AFRICA_SOURCE_HASHES.length)
+  const sections = current.sections.map((section, index) => {
+    const reviewed = CHAPTERS[index]
+    assert.equal(section.title, reviewed.title, 'Chapter order changed; review instead of guessing')
+    assert.equal(!section.key || section.key === reviewed.key, true, 'Keep nonempty editorial keys unchanged')
+    return { ...section, key: reviewed.key }
+  })
+  const gallery = current.gallery.map((image, index) => {
+    const parsed = parseCasePrivateImage(image.url)
+    assert.equal(parsed?.caseId, current.id)
+    assert.equal(parsed?.sha256, SOUTH_AFRICA_SOURCE_HASHES[index], 'Source image order changed; review instead of guessing')
+    const chapter = CHAPTERS.find((item) => (item.images as readonly number[]).includes(index))
+    if (!chapter) throw new Error('Source image has no reviewed chapter')
+    const placement = `section:${chapter.key}`
+    assert.equal(!image.placement || image.placement === placement, true, 'Keep nonempty editorial placements unchanged')
+    return { ...image, placement }
+  })
+  return caseInputSchema.parse({ ...current, sections, gallery })
+}

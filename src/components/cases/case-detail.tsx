@@ -11,17 +11,28 @@ import styles from './cases.module.css'
 
 export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView; preview?: boolean }) {
   const c = caseStudy
-  const remainingImages = caseUnplacedImages(c)
-  const showCover = c.coverImage && !c.gallery.some((image) => image.url === c.coverImage)
+  const openingIndex = c.coverImage ? c.gallery.findIndex((image) => image.url === c.coverImage) : -1
+  const openingImage = c.gallery[openingIndex]
+  const imagesAt = (placement: string) => caseImagesAt(c, placement).filter(({ index }) => index !== openingIndex)
+  const remainingImages = caseUnplacedImages(c).filter(({ index }) => index !== openingIndex)
+  const narrative = c.sections.map((section, index) => ({ section, placement: caseSectionPlacement(section, index) }))
+  const hasFacts = Boolean(c.country || c.industry || c.cooperationDate || c.procurement.length)
   const chapters = [
     ...(c.buyerProfile.trim() ? [{ placement: 'buyer-context', title: 'The procurement brief' }] : []),
+    ...narrative.slice(0, 1).map(({ section, placement }) => ({ placement, title: section.title })),
     ...(c.procurement.length ? [{ placement: 'procurement-scope', title: 'Products & quantities' }] : []),
     ...(c.customization.trim() ? [{ placement: 'customization', title: 'Customization requirements' }] : []),
-    ...c.sections.map((section, index) => ({ placement: caseSectionPlacement(section, index), title: section.title })),
+    ...narrative.slice(1).map(({ section, placement }) => ({ placement, title: section.title })),
     ...(c.timeline.length ? [{ placement: 'project-timeline', title: 'Project milestones' }] : []),
     ...(remainingImages.length ? [{ placement: 'additional-records', title: 'Additional records' }] : []),
   ]
   const chapterNumber = (placement: string) => caseNumber(chapters.findIndex((chapter) => chapter.placement === placement))
+  const narrativeChapter = ({ section, placement }: (typeof narrative)[number]) => (
+    <Chapter key={placement} placement={placement} number={chapterNumber(placement)} label="CASE NOTES" title={section.title}>
+      <PlainText value={section.body} />
+      <InlineRecords entries={imagesAt(placement)} />
+    </Chapter>
+  )
 
   return (
     <div className={`${styles.page} ${styles.detailPage}`}>
@@ -38,15 +49,30 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
             <Link href="/cases">Procurement cases</Link><span aria-hidden="true">/</span>
             <span>Case file</span>
           </nav>
-          <div className={styles.detailHeading}>
+          <div className={`${styles.detailHeading} ${c.coverImage ? styles.detailHeadingPhoto : styles.detailHeadingText}`}>
             <div className={styles.detailLead}>
               <div className={styles.eyebrow}><span className={styles.redDot} /> PROCUREMENT CASE / {c.industry || 'PROJECT RECORD'}</div>
               <h1>{c.title}</h1>
+            </div>
+            {c.coverImage && (
+              <figure data-case-placement="opening-record" data-case-image-index={openingIndex >= 0 ? openingIndex : undefined} className={styles.openingRecord}>
+                <div className={styles.recordTopline}>
+                  <span>{openingIndex >= 0 ? `RECORD / ${caseNumber(openingIndex)}` : 'PROJECT PHOTOGRAPH'}</span>
+                  {isCasePrivateImage(c.coverImage) && <a href={c.coverImage} target="_blank" rel="noopener noreferrer" className={styles.originalLink}>View original <ArrowUpRight size={14} aria-hidden="true" /><span className={styles.srOnly}>: {openingImage?.alt || c.coverAlt} (opens in a new tab)</span></a>}
+                </div>
+                <div className={styles.openingImage}>
+                  <Image src={c.coverImage} alt={openingImage?.alt || c.coverAlt} fill priority unoptimized={isCasePrivateImage(c.coverImage)} sizes="(max-width: 700px) calc(100vw - 44px), (max-width: 1000px) 46vw, 560px" className={styles.detailImage} />
+                </div>
+                {openingImage?.caption && <figcaption><span className={styles.recordCaptionMark} aria-hidden="true">{caseNumber(openingIndex)}</span><span>{openingImage.caption}</span></figcaption>}
+              </figure>
+            )}
+            <div className={styles.detailSynopsis}>
               <p className={styles.detailSummary}>{c.summary}</p>
               {chapters.length > 0 && <a href={`#${chapters[0].placement}`} className={styles.storyStart}>Explore the case <ArrowUpRight size={17} aria-hidden="true" /></a>}
             </div>
-            <div className={styles.factsPanel}>
-              <span className={styles.factsLabel}>PROJECT AT A GLANCE</span>
+          </div>
+          {hasFacts && (
+            <div className={styles.factsPanel} aria-label="Project at a glance">
               <dl className={styles.projectFacts}>
                 {c.country && <div><dt>Destination</dt><dd><MapPin size={14} aria-hidden="true" />{c.country}</dd></div>}
                 {c.industry && <div><dt>Industry</dt><dd>{c.industry}</dd></div>}
@@ -54,8 +80,7 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
                 {c.procurement.length > 0 && <div><dt>Procurement scope</dt><dd>{c.procurement.length} product {c.procurement.length === 1 ? 'line' : 'lines'}</dd></div>}
               </dl>
             </div>
-          </div>
-          {showCover && <figure className={styles.detailCover}><Image src={c.coverImage} alt={c.coverAlt} fill priority unoptimized={isCasePrivateImage(c.coverImage)} sizes="(max-width: 1200px) 100vw, 1200px" className={styles.detailImage} /></figure>}
+          )}
           <div className={styles.storyDivider}><span>THE PROCUREMENT RECORD</span><span>{c.country || 'CASE FILE'}</span></div>
         </div>
       </header>
@@ -71,9 +96,10 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
           {c.buyerProfile.trim() && (
             <Chapter placement="buyer-context" number={chapterNumber('buyer-context')} label="BUYER CONTEXT" title="The procurement brief">
               <PlainText value={c.buyerProfile} />
-              <InlineRecords entries={caseImagesAt(c, 'buyer-context')} />
+              <InlineRecords entries={imagesAt('buyer-context')} />
             </Chapter>
           )}
+          {narrative.slice(0, 1).map(narrativeChapter)}
           {c.procurement.length > 0 && (
             <Chapter placement="procurement-scope" number={chapterNumber('procurement-scope')} label="ORDER DETAILS" title="Products & quantities">
               <div className={styles.tableWrap}>
@@ -84,28 +110,20 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
                 </table>
               </div>
               <p className={styles.tableNote}>Quantities and units refer to this order only.</p>
-              <InlineRecords entries={caseImagesAt(c, 'procurement-scope')} />
+              <InlineRecords entries={imagesAt('procurement-scope')} />
             </Chapter>
           )}
           {c.customization.trim() && (
             <Chapter placement="customization" number={chapterNumber('customization')} label="ORDER-SPECIFIC REQUIREMENTS" title="Customization requirements">
               <div className={styles.customizationNote}><PlainText value={c.customization} /></div>
-              <InlineRecords entries={caseImagesAt(c, 'customization')} />
+              <InlineRecords entries={imagesAt('customization')} />
             </Chapter>
           )}
-          {c.sections.map((section, index) => {
-            const placement = caseSectionPlacement(section, index)
-            return (
-              <Chapter key={placement} placement={placement} number={chapterNumber(placement)} label="CASE NOTES" title={section.title}>
-                <PlainText value={section.body} />
-                <InlineRecords entries={caseImagesAt(c, placement)} />
-              </Chapter>
-            )
-          })}
+          {narrative.slice(1).map(narrativeChapter)}
           {c.timeline.length > 0 && (
             <Chapter placement="project-timeline" number={chapterNumber('project-timeline')} label="DOCUMENTED MILESTONES" title="Project milestones">
               <ol className={styles.timeline}>{c.timeline.map((item, index) => <li key={`milestone-${index}`}><div className={styles.timelineDate}>{item.date ? <time dateTime={item.date}>{formatCaseDate(item.date)}</time> : <span>Step {caseNumber(index)}</span>}</div><div className={styles.timelineContent}><h3>{item.label}</h3>{item.description && <PlainText value={item.description} />}</div></li>)}</ol>
-              <InlineRecords entries={caseImagesAt(c, 'project-timeline')} />
+              <InlineRecords entries={imagesAt('project-timeline')} />
             </Chapter>
           )}
           {remainingImages.length > 0 && (

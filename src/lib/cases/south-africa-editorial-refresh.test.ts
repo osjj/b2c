@@ -4,7 +4,7 @@ import test from 'node:test'
 import { southAfricaMiningDraft } from './south-africa-draft'
 import { casePrivateImageUrl } from './private-image-path'
 import { toAdminCaseView } from './types'
-import { refreshSouthAfricaCase, SOUTH_AFRICA_CASE_ID, SOUTH_AFRICA_SOURCE_HASHES } from './south-africa-editorial-refresh'
+import { refreshSouthAfricaCase, repairSouthAfricaCaseLayout, SOUTH_AFRICA_CASE_ID, SOUTH_AFRICA_SOURCE_HASHES } from './south-africa-editorial-refresh'
 
 function source() {
   const gallery = SOUTH_AFRICA_SOURCE_HASHES.map((hash, index) => ({
@@ -44,4 +44,37 @@ test('refresh is pure/idempotent and refuses reordered, missing or foreign sourc
   assert.throws(() => refreshSouthAfricaCase({ ...before, gallery: before.gallery.slice(1) }))
   assert.throws(() => refreshSouthAfricaCase({ ...before, id: 'unrelated-case' }))
   assert.throws(() => refreshSouthAfricaCase({ ...before, status: 'PUBLISHED', publicationApproved: true }))
+})
+
+test('layout repair fills missing associations while preserving current edited prose and originals', () => {
+  const base = source()
+  const refreshed = refreshSouthAfricaCase(base)
+  const current = {
+    ...base, ...refreshed, version: 7,
+    summary: 'Owner-edited summary', buyerProfile: 'Owner-edited buyer profile',
+    sections: refreshed.sections.map(({ title, body }) => ({ title, body: `${body}\n\nOwner-edited factual note.` })),
+    gallery: refreshed.gallery.map(({ url, alt, caption }) => ({ url, alt, caption })),
+  }
+  const serialized = JSON.stringify(current)
+  const repaired = repairSouthAfricaCaseLayout(current)
+  assert.equal(JSON.stringify(current), serialized)
+  assert.deepEqual(repaired.sections.map(({ title, body }) => ({ title, body })), current.sections)
+  assert.deepEqual(repaired.gallery.map(({ url, alt, caption }) => ({ url, alt, caption })), current.gallery)
+  assert.equal(repaired.summary, current.summary)
+  assert.equal(repaired.buyerProfile, current.buyerProfile)
+  assert.deepEqual(repairSouthAfricaCaseLayout({ ...current, ...repaired }), repaired)
+  assert.equal(repaired.gallery.every(({ placement }) => Boolean(placement)), true)
+  assert.equal(repaired.status, 'DRAFT')
+  assert.equal(repaired.publicationApproved, false)
+})
+
+test('layout repair rejects changed order, nonempty editorial assignments and public records', () => {
+  const base = source()
+  const current = { ...base, ...refreshSouthAfricaCase(base) }
+  assert.throws(() => repairSouthAfricaCaseLayout({ ...current, sections: [...current.sections].reverse() }))
+  assert.throws(() => repairSouthAfricaCaseLayout({ ...current, sections: current.sections.map((section, i) => i === 0 ? { ...section, key: 'owner-new-key' } : section) }))
+  assert.throws(() => repairSouthAfricaCaseLayout({ ...current, gallery: current.gallery.map((image, i) => i === 0 ? { ...image, placement: 'buyer-context' } : image) }))
+  assert.throws(() => repairSouthAfricaCaseLayout({ ...current, gallery: [...current.gallery].reverse() }))
+  assert.throws(() => repairSouthAfricaCaseLayout({ ...current, status: 'PUBLISHED', publicationApproved: true }))
+  assert.throws(() => repairSouthAfricaCaseLayout({ ...current, publishedAt: '2026-10-05T00:00:00Z' }))
 })
