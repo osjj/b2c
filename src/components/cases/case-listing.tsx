@@ -4,7 +4,8 @@ import { ArrowDown, ArrowUpRight, FileText, FolderOpen } from 'lucide-react'
 import type { CaseView } from '@/lib/cases/types'
 import { isCasePrivateImage } from '@/lib/cases/private-image-path'
 import { caseNumber, formatCaseDate } from './case-format'
-import styles from './cases.module.css'
+import styles from './case-listing.module.css'
+import sharedStyles from './cases.module.css'
 
 export function CaseListing({ cases, preview = false }: { cases: CaseView[]; preview?: boolean }) {
   const [lead, ...archive] = cases
@@ -63,7 +64,7 @@ export function CaseListing({ cases, preview = false }: { cases: CaseView[]; pre
           </div>
         )}
       </section>
-      <CaseInquiry />
+      <div className={styles.inquiryFrame}><CaseInquiry /></div>
     </div>
   )
 }
@@ -73,5 +74,5 @@ function DossierCover({ caseStudy }: { caseStudy: CaseView }) {
 }
 
 export function CaseInquiry() {
-  return <section className={styles.inquiry}><div className={styles.wrap}><div><span className={styles.eyebrow}>YOUR PROCUREMENT BRIEF</span><h2>Let’s start with<br /><em>what you need.</em></h2></div><div className={styles.inquiryAside}><p>Share your product list, quantities, destination and customization requirements. We’ll help you work through the details.</p><Link href="/quote" data-source="procurement-cases" className={styles.primaryLink}>Discuss a PPE order <ArrowUpRight size={19} aria-hidden="true" /></Link></div></div></section>
+  return <section className={sharedStyles.inquiry}><div className={sharedStyles.wrap}><div><span className={sharedStyles.eyebrow}>YOUR PROCUREMENT BRIEF</span><h2>Let’s start with<br /><em>what you need.</em></h2></div><div className={sharedStyles.inquiryAside}><p>Share your product list, quantities, destination and customization requirements. We’ll help you work through the details.</p><Link href="/quote" data-source="procurement-cases" className={sharedStyles.primaryLink}>Discuss a PPE order <ArrowUpRight size={19} aria-hidden="true" /></Link></div></div></section>
 }
