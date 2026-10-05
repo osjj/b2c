@@ -5,6 +5,18 @@ export const CASE_STATUSES = ['DRAFT', 'PUBLISHED', 'ARCHIVED'] as const
 export const caseStatusSchema = z.enum(CASE_STATUSES)
 export type CaseStatus = z.infer<typeof caseStatusSchema>
 
+export const CASE_BUILTIN_PLACEMENTS = ['buyer-context', 'procurement-scope', 'customization', 'project-timeline'] as const
+export type CaseBuiltinPlacement = typeof CASE_BUILTIN_PLACEMENTS[number]
+
+export function isCaseSectionKey(value: string): boolean {
+  return value.length <= 80 && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value)
+}
+
+export function isCaseGalleryPlacement(value: string): boolean {
+  return !value || CASE_BUILTIN_PLACEMENTS.some((placement) => placement === value)
+    || (value.startsWith('section:') && isCaseSectionKey(value.slice('section:'.length)))
+}
+
 /** Calendar validation deliberately rejects dates that JS would normalize. */
 export function isCaseDate(value: string): boolean {
   if (!value) return true
@@ -49,12 +61,17 @@ export const caseProcurementSchema = z.object({
   unit: text(40).min(1, 'Unit is required'),
   note: text(1000),
 })
-export const caseSectionSchema = z.object({ title: text(160).min(1), body: text(12000).min(1) })
+export const caseSectionSchema = z.object({
+  key: text(80).refine((value) => !value || isCaseSectionKey(value), 'Use a lowercase section key separated by single hyphens').optional(),
+  title: text(160).min(1),
+  body: text(12000).min(1),
+})
 export const caseTimelineSchema = z.object({ date: dateSchema, label: text(160).min(1), description: text(2000) })
 export const caseGallerySchema = z.object({
   url: imageSchema.refine(Boolean, 'Image URL is required'),
   alt: text(300).min(1, 'Describe the image for accessibility'),
   caption: text(1000),
+  placement: text(88).refine(isCaseGalleryPlacement, 'Choose a content block or a stable story section').optional(),
 })
 export const caseRelatedLinkSchema = z.object({
   label: text(160).min(1),
@@ -88,6 +105,30 @@ export const caseInputSchema = caseFieldsSchema.extend({
   privateNotes: text(12000),
   publicationApproved: z.boolean().default(false),
 }).superRefine((value, context) => {
+  const sectionKeys = new Map<string, number>()
+  value.sections.forEach((section, index) => {
+    if (!section.key) return
+    const previousIndex = sectionKeys.get(section.key)
+    if (previousIndex !== undefined) {
+      context.addIssue({ code: 'custom', path: ['sections', index, 'key'], message: 'Story section keys must be unique' })
+      context.addIssue({ code: 'custom', path: ['sections', previousIndex, 'key'], message: 'Story section keys must be unique' })
+    } else {
+      sectionKeys.set(section.key, index)
+    }
+  })
+  const populatedPlacements = new Set<string>()
+  if (value.buyerProfile) populatedPlacements.add('buyer-context')
+  if (value.procurement.length) populatedPlacements.add('procurement-scope')
+  if (value.customization) populatedPlacements.add('customization')
+  if (value.timeline.length) populatedPlacements.add('project-timeline')
+  value.sections.forEach((section) => {
+    if (section.key && section.title && section.body) populatedPlacements.add(`section:${section.key}`)
+  })
+  value.gallery.forEach((image, index) => {
+    if (image.placement && !populatedPlacements.has(image.placement)) {
+      context.addIssue({ code: 'custom', path: ['gallery', index, 'placement'], message: 'The selected block needs content or no longer exists. Add content or choose another image position.' })
+    }
+  })
   if (value.coverImage && !value.coverAlt) {
     context.addIssue({ code: 'custom', path: ['coverAlt'], message: 'Cover alt text is required when a cover image is supplied' })
   }

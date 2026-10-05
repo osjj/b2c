@@ -4,7 +4,7 @@ import test from 'node:test'
 import { southAfricaMiningDraft } from './south-africa-draft'
 import {
   caseInputSchema, emptyCaseInput, isAllowedCaseImage, isAllowedCaseRelatedLink,
-  isCaseDate, publicCaseView, toAdminCaseView, toCaseView,
+  isCaseDate, isCaseGalleryPlacement, isCaseSectionKey, publicCaseView, toAdminCaseView, toCaseView,
 } from './types'
 import { casePrivateImageUrl } from './private-image-path'
 
@@ -102,4 +102,54 @@ test('public serializers whitelist fields and never expose private evidence note
 test('malformed stored JSON is not trusted or substituted by invented fallback content', () => {
   assert.throws(() => toCaseView({ ...record(), procurement: { quantity: 'bad' } }))
   assert.throws(() => toCaseView({ ...record(), gallery: [{ url: 'javascript:alert(1)', alt: 'x', caption: '' }] }))
+})
+
+test('contextual image fields remain optional for legacy cases and survive serialization', () => {
+  assert.equal(caseInputSchema.safeParse(southAfricaMiningDraft).success, true)
+  const contextual = {
+    ...record(),
+    sections: [{ key: 'glove-workshop', title: 'Workshop', body: 'Recorded visit.' }],
+    gallery: [{ url: '/cases/gloves.png', alt: 'Glove sample', caption: 'Sample record', placement: 'section:glove-workshop' }],
+  }
+  const view = toCaseView(contextual)
+  assert.equal(view.sections[0].key, 'glove-workshop')
+  assert.equal(view.gallery[0].placement, 'section:glove-workshop')
+  assert.equal('privateNotes' in view, false)
+  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, sections: [{ key: '', title: 'Section', body: 'Content' }] }).success, true)
+})
+
+test('stable keys and placement syntax reject unsafe or malformed identifiers', () => {
+  for (const key of ['glove-workshop', 'story-2026', 'a'.repeat(80)]) assert.equal(isCaseSectionKey(key), true, key)
+  for (const key of ['', 'Gloves', 'two--hyphens', '-gloves', 'gloves-', 'a b', 'section:gloves', 'a'.repeat(81)]) assert.equal(isCaseSectionKey(key), false, key)
+  for (const placement of ['', 'buyer-context', 'procurement-scope', 'customization', 'project-timeline', 'section:glove-workshop']) assert.equal(isCaseGalleryPlacement(placement), true, placement)
+  for (const placement of ['all-images', 'section:', 'section:Bad', 'section:gloves/x', 'javascript:alert(1)']) assert.equal(isCaseGalleryPlacement(placement), false, placement)
+  const result = caseInputSchema.safeParse({ ...southAfricaMiningDraft, sections: [{ key: 'Bad key', title: 'Section', body: 'Content' }] })
+  assert.equal(result.success, false)
+  if (!result.success) assert.ok(result.error.issues.some((issue) => issue.path.join('.') === 'sections.0.key'))
+})
+
+test('duplicate section keys and nonexistent or empty image targets have precise field errors', () => {
+  const image = { url: '/cases/evidence.png', alt: 'Documentary record', caption: '' }
+  const duplicate = caseInputSchema.safeParse({
+    ...southAfricaMiningDraft,
+    sections: [{ key: 'duplicate', title: 'First', body: 'First body' }, { key: 'duplicate', title: 'Second', body: 'Second body' }],
+  })
+  assert.equal(duplicate.success, false)
+  if (!duplicate.success) {
+    assert.ok(duplicate.error.issues.some((issue) => issue.path.join('.') === 'sections.0.key'))
+    assert.ok(duplicate.error.issues.some((issue) => issue.path.join('.') === 'sections.1.key'))
+  }
+  for (const placement of ['buyer-context', 'procurement-scope', 'customization', 'project-timeline', 'section:removed']) {
+    const result = caseInputSchema.safeParse({
+      ...emptyCaseInput(), title: 'Private case', slug: 'private-case', gallery: [{ ...image, placement }],
+    })
+    assert.equal(result.success, false, placement)
+    if (!result.success) assert.ok(result.error.issues.some((issue) => issue.path.join('.') === 'gallery.0.placement'), placement)
+  }
+  const populated = {
+    ...southAfricaMiningDraft,
+    sections: [{ key: 'glove-workshop', title: 'Workshop', body: 'Recorded visit.' }],
+    gallery: ['buyer-context', 'procurement-scope', 'customization', 'project-timeline', 'section:glove-workshop', ''].map((placement) => ({ ...image, placement })),
+  }
+  assert.equal(caseInputSchema.safeParse(populated).success, true)
 })

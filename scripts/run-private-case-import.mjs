@@ -6,8 +6,8 @@ import { build } from 'esbuild'
 
 const nodeRequire = createRequire(import.meta.url)
 const built = await build({
-  entryPoints: [process.argv.includes('--append-container-photo')
-    ? 'scripts/append-case-container-photo.ts'
+  entryPoints: [process.argv.includes('--append-container-photo') || process.argv.includes('--append-quotation-example')
+    ? 'scripts/append-case-draft-image.ts'
     : 'scripts/import-procurement-case-images.ts'],
   bundle: true, write: false, platform: 'node', format: 'cjs', packages: 'external',
   plugins: [{ name: 'private-case-cli-server-marker', setup(plugin) {

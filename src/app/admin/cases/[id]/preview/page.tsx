@@ -32,7 +32,7 @@ export default async function CasePreviewPage({ params, searchParams }: {
       </div>
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
         <div><p className="font-medium">Private preview — {record.status === 'PUBLISHED' ? 'published record' : 'unpublished'}</p><p className="mt-1 text-xs">Administrator access only. This preview does not publish or change the case.</p></div>
-        <nav aria-label="Case preview view" className="flex gap-2">
+        <nav aria-label="Case preview view" className="flex max-w-full flex-wrap gap-2">
           <Button asChild variant={view === 'detail' ? 'default' : 'outline'} className="min-h-11"><Link href={`/admin/cases/${record.id}/preview`} aria-current={view === 'detail' ? 'page' : undefined}>Detail preview</Link></Button>
           <Button asChild variant={view === 'listing' ? 'default' : 'outline'} className="min-h-11"><Link href={`/admin/cases/${record.id}/preview?view=listing`} aria-current={view === 'listing' ? 'page' : undefined}>Listing preview</Link></Button>
         </nav>

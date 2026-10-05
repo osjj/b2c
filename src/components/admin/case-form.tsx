@@ -8,7 +8,8 @@ import { Controller, FormProvider, useFieldArray, useForm, useFormContext, useWa
 import type { FieldPathByValue } from 'react-hook-form'
 import { ArrowDown, ArrowUp, Eye, Loader2, Plus, Save, ShieldCheck, Trash2 } from 'lucide-react'
 import { saveCaseStudy } from '@/actions/admin/cases'
-import { emptyCaseInput, type AdminCaseView, type CaseInput } from '@/lib/cases/types'
+import { emptyCaseInput, isCaseSectionKey, type AdminCaseView, type CaseInput } from '@/lib/cases/types'
+import { clearCaseSectionPlacement, initializeCaseSectionKeys } from '@/lib/cases/layout'
 import { isCasePrivateImage } from '@/lib/cases/private-image-path'
 import { generateSlug } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -33,7 +34,7 @@ function editableValues(record?: AdminCaseView): CaseInput {
     title: record.title, slug: record.slug, summary: record.summary,
     country: record.country, industry: record.industry, cooperationDate: record.cooperationDate,
     buyerProfile: record.buyerProfile, coverImage: record.coverImage, coverAlt: record.coverAlt,
-    procurement: record.procurement, customization: record.customization, sections: record.sections,
+    procurement: record.procurement, customization: record.customization, sections: initializeCaseSectionKeys(record.sections),
     timeline: record.timeline, gallery: record.gallery, relatedLinks: record.relatedLinks,
     status: record.status, featured: record.featured, sortOrder: record.sortOrder,
     seoTitle: record.seoTitle, seoDescription: record.seoDescription,
@@ -145,17 +146,44 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [serverErrors, setServerErrors] = useState<FieldErrors>({})
+  const [placementMessage, setPlacementMessage] = useState('')
   const [publishCandidate, setPublishCandidate] = useState<CaseInput | null>(null)
   const [archiveCandidate, setArchiveCandidate] = useState<CaseInput | null>(null)
   const status = useWatch({ control, name: 'status' })
   const coverImage = useWatch({ control, name: 'coverImage' })
   const coverAlt = useWatch({ control, name: 'coverAlt' })
   const galleryItems = useWatch({ control, name: 'gallery' })
+  const [buyerProfile, procurementItems, customization, timelineItems, storySections] = useWatch({
+    control, name: ['buyerProfile', 'procurement', 'customization', 'timeline', 'sections'],
+  })
   const procurement = useFieldArray({ control, name: 'procurement' })
   const sections = useFieldArray({ control, name: 'sections' })
   const timeline = useFieldArray({ control, name: 'timeline' })
   const gallery = useFieldArray({ control, name: 'gallery' })
   const relatedLinks = useFieldArray({ control, name: 'relatedLinks' })
+
+  const imagePlacements = [
+    { value: 'buyer-context', label: 'Buyer context', populated: Boolean(buyerProfile?.trim()) },
+    { value: 'procurement-scope', label: 'Procurement scope', populated: Boolean(procurementItems?.length) },
+    { value: 'customization', label: 'Customization', populated: Boolean(customization?.trim()) },
+    { value: 'project-timeline', label: 'Cooperation & logistics timeline', populated: Boolean(timelineItems?.length) },
+    ...(storySections ?? []).flatMap((section, index) => section.key && isCaseSectionKey(section.key) ? [{
+      value: `section:${section.key}`,
+      label: `Story: ${section.title.trim() || `Untitled section ${index + 1}`}`,
+      populated: Boolean(section.title.trim() && section.body.trim()),
+    }] : []),
+  ]
+
+  function removeStorySection(index: number) {
+    const section = getValues(`sections.${index}`)
+    const currentGallery = getValues('gallery')
+    const released = section?.key ? currentGallery.filter((image) => image.placement === `section:${section.key}`).length : 0
+    if (released) setValue('gallery', clearCaseSectionPlacement(currentGallery, section.key), { shouldDirty: true })
+    sections.remove(index)
+    setPlacementMessage(released
+      ? `Section removed. ${released} image${released === 1 ? '' : 's'} returned to Additional records. Choose a new “Show after” position in the image editor; no images were removed.`
+      : 'Section removed. Existing images and their other assignments are unchanged.')
+  }
 
   const textField = (name: TextPath, label: string, options?: Omit<React.ComponentProps<typeof TextField>, 'name' | 'label' | 'error'>) => (
     <TextField name={name} label={label} error={serverErrors[name]?.[0]} {...options} />
@@ -292,16 +320,19 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
               {textField('customization', 'Customization instructions', { rows: 4, maxLength: 6000, help: 'Specify confirmed logo color and positions. Do not invent a printing process or a color that was not agreed.' })}
             </EditorCard>
 
-            <EditorCard number="03" title="The procurement story" description="Arrange the real background, selection and cooperation process into readable sections. Plain text is safely rendered; HTML is not supported.">
+            <EditorCard number="03" title="The procurement story" description="Arrange the real background, selection and cooperation process into readable sections. Images follow the section chosen in their “Show after” field. Heading edits and section moves keep those assignments. Plain text is safely rendered; HTML is not supported.">
+              {placementMessage ? <p role="status" className="rounded-md border border-blue-200 bg-blue-50 p-3 text-xs leading-relaxed text-blue-950">{placementMessage}</p> : null}
               {sections.fields.length === 0 ? <p className="text-sm text-muted-foreground">Add a narrative section to explain the case. At least one is required to publish.</p> : null}
               {sections.fields.map((row, index) => (
                 <div key={row.id} className="space-y-4 rounded-lg border p-4">
-                  <RowControls index={index} count={sections.fields.length} name="Section" remove={sections.remove} move={sections.move} />
+                  <RowControls index={index} count={sections.fields.length} name="Section" remove={removeStorySection} move={sections.move} />
+                  <input type="hidden" {...register(`sections.${index}.key`)} />
+                  {serverErrors[`sections.${index}.key`]?.[0] ? <p className="text-xs text-destructive">{serverErrors[`sections.${index}.key`][0]} Remove and add this section again if its internal identity needs replacing.</p> : null}
                   {textField(`sections.${index}.title`, 'Section heading', { maxLength: 160 })}
                   {textField(`sections.${index}.body`, 'Section content', { rows: 7, maxLength: 12000 })}
                 </div>
               ))}
-              <Button type="button" variant="outline" className="min-h-11" disabled={sections.fields.length >= 20} onClick={() => sections.append({ title: '', body: '' })}><Plus className="mr-2 size-4" />Add story section</Button>
+              <Button type="button" variant="outline" className="min-h-11" disabled={sections.fields.length >= 20} onClick={() => sections.append({ key: `story-${crypto.randomUUID()}`, title: '', body: '' })}><Plus className="mr-2 size-4" />Add story section</Button>
             </EditorCard>
 
             <EditorCard number="04" title="Cooperation & logistics timeline" description="Report only milestones supported by the source. A warehouse or dispatch screenshot does not prove final delivery.">
@@ -318,7 +349,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
               <Button type="button" variant="outline" className="min-h-11" disabled={timeline.fields.length >= 30} onClick={() => timeline.append({ date: '', label: '', description: '' })}><Plus className="mr-2 size-4" />Add milestone</Button>
             </EditorCard>
 
-            <EditorCard number="05" title="Documentary gallery" description="Use genuine, permissioned and redacted photographs. Certificate screenshots alone do not establish order-model correspondence or compliance.">
+            <EditorCard number="05" title="Documentary images & placement" description="Place each image immediately after its related text with “Show after”. Moving an image changes its order within that block. Unassigned images stay available as Additional records. Use genuine, permissioned and redacted photographs; certificate screenshots alone do not establish order-model correspondence or compliance.">
               <p className="rounded-md border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-950">Imported private originals are for administrator-only draft review and cannot be published. Use permissioned, redacted public images before publication. The public uploader below is not private.</p>
               {gallery.fields.map((row, index) => (
                 <div key={row.id} className="space-y-4 rounded-lg border p-4">
@@ -326,6 +357,25 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                   {textField(`gallery.${index}.url`, 'Image URL', { maxLength: 2048, placeholder: '/cases/documentary-image.webp', help: 'Use a local path or the configured image host. Notion signed URLs are not permanent public assets.' })}
                   {textField(`gallery.${index}.alt`, 'Alternative text', { maxLength: 300, help: 'Describe what can actually be seen, without unsupported claims.' })}
                   {textField(`gallery.${index}.caption`, 'Evidence caption', { rows: 2, maxLength: 1000 })}
+                  <div className="space-y-2">
+                    <Label htmlFor={`case-gallery.${index}.placement`}>Show after</Label>
+                    <Controller control={control} name={`gallery.${index}.placement`} render={({ field }) => (
+                      <select
+                        {...field} id={`case-gallery.${index}.placement`} value={field.value ?? ''}
+                        aria-invalid={Boolean(serverErrors[`gallery.${index}.placement`])}
+                        aria-describedby={`case-gallery.${index}.placement-help${serverErrors[`gallery.${index}.placement`]?.[0] ? ` case-gallery.${index}.placement-error` : ''}`}
+                        className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <option value="">Additional records — no section assigned</option>
+                        {imagePlacements.filter((option) => option.populated || option.value === field.value).map((option) => (
+                          <option key={option.value} value={option.value}>{option.label}{option.populated ? '' : ' (empty — add content)'}</option>
+                        ))}
+                        {field.value && !imagePlacements.some((option) => option.value === field.value) ? <option value={field.value}>Missing section — choose another position</option> : null}
+                      </select>
+                    )} />
+                    <p id={`case-gallery.${index}.placement-help`} className="text-xs leading-relaxed text-muted-foreground">The image appears once, directly below this block. An assigned empty or removed block needs content or a different position before saving.</p>
+                    {serverErrors[`gallery.${index}.placement`]?.[0] ? <p id={`case-gallery.${index}.placement-error`} className="text-xs text-destructive">{serverErrors[`gallery.${index}.placement`][0]}</p> : null}
+                  </div>
                   <PrivateImagePreview src={galleryItems[index]?.url ?? ''} alt={galleryItems[index]?.alt ?? ''} />
                 </div>
               ))}

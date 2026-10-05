@@ -556,7 +556,7 @@ function IndustriesSection({ data }: { data: HomeSolutionsData | null }) {
           }
           description="Each solution includes hazard analysis, recommended equipment, and compliance guidance."
           action={
-            <Link className={`${styles.btn} ${styles.btnGhostLight}`} href="/solutions">
+            <Link className={`${styles.btn} ${styles.btnGhostLight}`} href="/blog#industry-solutions">
               View All Solutions
               <span className={styles.arr} aria-hidden="true">
                 &rarr;
@@ -644,8 +644,8 @@ function IndustriesSection({ data }: { data: HomeSolutionsData | null }) {
           <div className={styles.industryEmpty}>
             <Shield aria-hidden="true" />
             <h3>Solutions are being prepared</h3>
-            <p>Visit the full solutions page to browse active PPE programs and industry guidance.</p>
-            <Link className={`${styles.btn} ${styles.btnOrange}`} href="/solutions">
+            <p>Browse industry PPE plans and procurement guides in the blog.</p>
+            <Link className={`${styles.btn} ${styles.btnOrange}`} href="/blog#industry-solutions">
               Browse Solutions
               <span className={styles.arr} aria-hidden="true">
                 &rarr;
@@ -1018,8 +1018,9 @@ export function NewHomeFooter() {
             <Link href="/categories/eye-protection">Eye Protection</Link>
             <Link href="/categories/fall-protection">Fall Protection</Link>
           </nav>
-          <nav aria-label="Footer solutions">
-            <h3>Solutions</h3>
+          <nav aria-label="Footer industry guides">
+            <h3>Industry Guides</h3>
+            <Link href="/blog#industry-solutions">All Industry Guides</Link>
             <Link href="/solutions/construction-site-ppe-solution">Construction</Link>
             <Link href="/solutions/ppe-for-metal-fabrication-and-welding-workshops">Metal Fabrication</Link>
             <Link href="/solutions/fall-protection-construction">Fall Protection</Link>

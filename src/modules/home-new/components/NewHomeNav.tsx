@@ -12,7 +12,6 @@ import styles from "./home-new.module.css"
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
-  { href: "/solutions", label: "Solutions" },
   { href: "/cases", label: "Procurement Cases" },
   { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
@@ -27,6 +26,10 @@ export function NewHomeNav() {
   const isActiveLink = (href: string) => {
     if (href === "/") {
       return pathname === "/"
+    }
+
+    if (href === "/blog" && (pathname === "/solutions" || pathname.startsWith("/solutions/"))) {
+      return true
     }
 
     return pathname === href || pathname.startsWith(`${href}/`)

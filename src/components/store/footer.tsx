@@ -8,7 +8,7 @@ const footerLinks = {
     { href: "/products", label: "All Products" },
     { href: "/products?sort=best-sellers", label: "Best Sellers" },
     { href: "/categories", label: "Categories" },
-    { href: "/solutions", label: "Industry Solutions" },
+    { href: "/blog", label: "Blog & Guides" },
   ],
   help: [
     { href: "/tools", label: "Tools" },
