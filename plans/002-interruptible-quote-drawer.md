@@ -1,6 +1,6 @@
 # 002 — 让询价抽屉从当前画面连续反转
 
-- **Status**: TODO
+- **Status**: IMPLEMENTED
 - **Commit**: 3a2a939
 - **Severity**: HIGH
 - **Category**: Interruptibility / Easing & duration
@@ -51,3 +51,9 @@ Radix在退出完成后才关闭/卸载；不要对已closed的modal无限forceM
 - **Feel check**：1440/390px，DevTools10%播放；开始展开立刻Escape/Close/点overlay，面板从当前X连续向右退出；重复操作无闪白、蒙层残留或重复锁滚动。检查Tab焦点限制、退出后触发器焦点恢复。
 - 动画期间切reduce、切路由卸载、调整viewport，确认无未处理AbortError。打开/关闭 `/products` 和 `/about` 中共享询价入口。
 - **Done when**：连续性与资源清理检查通过；reduce只有淡入淡出；表单不需真实提交即可完成验收。
+
+## 实施记录（2026-10-05）
+
+最终实现：抽屉与新增工厂图库共用模块局部 useAnimatedDialog.ts，保持Radix受控退出，不复制生命周期逻辑；这增加了一个局部hook文件，未修改全局组件或API。
+
+本地开发/生产预览回归、定向lint、首页数据测试和production build已核查；详细证据见 [实施验收](./homepage-motion-implementation.md)。真实手机手感未做实机验收，触屏验证使用浏览器模拟。未部署。

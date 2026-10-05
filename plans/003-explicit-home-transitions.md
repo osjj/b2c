@@ -1,6 +1,6 @@
 # 003 — 收紧常用反馈的动画属性
 
-- **Status**: TODO
+- **Status**: IMPLEMENTED
 - **Commit**: 3a2a939
 - **Severity**: HIGH
 - **Category**: Performance / Cohesion & tokens
@@ -64,3 +64,9 @@ CSS Modules `.page` 已定义 `--home-*`；:318导航underline已显式只transi
 - **Feel check**：桌面反复hover按钮、产品、hub和solution，DevTools10%播放；文字/CTA宽度不变，仅箭头移动4px。图库点击与方向键反复切换，bar中心固定、点击目标不缩小；reduce无箭头位移，active颜色仍区分。
 - Performance面板比较相同hover流程，CTA没有gap导致的Layout；记录实际结果，不承诺没有任何Paint。Portal computed style正确使用fallback。
 - **Done when**：四组all删除，三类gap和图库width运动消除；控件功能/颜色/布局保持。
+
+## 实施记录（2026-10-05）
+
+最终实现：有限属性、间距固定配合箭头transform、指示条scaleX、模块tokens和Portal fallback均已落地。
+
+本地开发/生产预览回归、定向lint、首页数据测试和production build已核查；详细证据见 [实施验收](./homepage-motion-implementation.md)。真实手机手感未做实机验收，触屏验证使用浏览器模拟。未部署。

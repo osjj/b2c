@@ -1,6 +1,6 @@
 # 005 — 精简装饰运动，缩短常用悬停
 
-- **Status**: TODO
+- **Status**: IMPLEMENTED
 - **Commit**: 3a2a939
 - **Severity**: MEDIUM
 - **Category**: Purpose & frequency / Accessibility / Easing & duration
@@ -51,3 +51,9 @@
 - **Feel check**：桌面快速扫过8张类目和产品卡；DevTools10%播放确认200ms、scale1.03，进出途中连续反向，文字不动。静态图/OEM article不跟鼠标位移，Hero不在hover时放大。
 - 390px touch模拟与真实手机点击链接：无残留hover缩放；Tab focus仍清楚；reduce不放大。静态绿色点、OEM原图、图片object-fit与所有链接保持正确。
 - **Done when**：常用卡反馈轻微且快速；非交互内容没有装饰位移；真实设备和reduce验收完成。
+
+## 实施记录（2026-10-05）
+
+最终实现：静态内容zoom/pulse移除、fine-pointer gate和200ms轻微hover均已落地；OEM3:2原构图和Hero调度保留。
+
+本地开发/生产预览回归、定向lint、首页数据测试和production build已核查；详细证据见 [实施验收](./homepage-motion-implementation.md)。真实手机手感未做实机验收，触屏验证使用浏览器模拟。未部署。

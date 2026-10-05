@@ -137,8 +137,8 @@ function HeroSection() {
               <em>Manufacturing Solutions</em>
             </h1>
             <p className={styles.heroSub}>
-              Leading manufacturer of personal protective equipment for extreme environments. Safety gloves, footwear,
-              workwear and more with global certifications.
+              <strong>Leading manufacturer of personal protective equipment for extreme environments.</strong>{" "}
+              Safety gloves, footwear, workwear and more with global certifications.
             </p>
             <div className={styles.heroCta}>
               <QuoteDrawer
@@ -535,7 +535,10 @@ function HowToOrderSection() {
 function OrderWorldMap() {
   return (
     <span className={styles.orderWorldMap} aria-hidden="true">
-      <Image src={`${ASSET_BASE}/order-world-map.svg`} alt="" fill sizes="100vw" unoptimized />
+      <picture>
+        <source media="(prefers-reduced-motion: reduce)" srcSet={`${ASSET_BASE}/order-world-map-static.svg`} />
+        <Image src={`${ASSET_BASE}/order-world-map.svg`} alt="" fill sizes="100vw" unoptimized />
+      </picture>
     </span>
   )
 }

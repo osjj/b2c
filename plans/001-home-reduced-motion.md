@@ -1,6 +1,6 @@
 # 001 — 补齐首页减少动态效果
 
-- **Status**: TODO
+- **Status**: IMPLEMENTED
 - **Commit**: 3a2a939
 - **Severity**: MEDIUM
 - **Category**: Accessibility
@@ -56,3 +56,9 @@ reduce：移除位移、缩放、无限脉冲；保留颜色反馈，抽屉使�
 - 在DevTools Animations设10%回放，确认reduce不残留位移动画；检查地图img.currentSrc确实是static.svg。关闭reduce后恢复动态地图和Hero暂停/恢复行为。
 - 抽查 `/products`、`/about` 的共享导航/抽屉。无需提交询价。
 - **Done when**：reduce模式无上述位移/无限动画；普通模式功能和图像完整；Portal动画正常结束并卸载。
+
+## 实施记录（2026-10-05）
+
+最终实现：减少运动的抽屉由共享 useAnimatedDialog.ts 使用WAAPI淡入/淡出，替代原计划CSS关键帧；其余偏好覆盖和静态地图按计划实施。
+
+本地开发/生产预览回归、定向lint、首页数据测试和production build已核查；详细证据见 [实施验收](./homepage-motion-implementation.md)。真实手机手感未做实机验收，触屏验证使用浏览器模拟。未部署。

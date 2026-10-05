@@ -5,9 +5,10 @@ import Link from "next/link"
 import { MiniQuote } from "@/components/store/mini-quote"
 import { Mail, Menu, MessageCircle, X } from "lucide-react"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { QuoteDrawer } from "./QuoteRequestForm"
 import styles from "./home-new.module.css"
+import { pointerPressHandlers } from "./pointerPress"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,8 +21,40 @@ const navLinks = [
 
 export function NewHomeNav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const showQuoteList = process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B"
+
+  useEffect(() => {
+    if (!menuOpen) return
+    const desktop = window.matchMedia("(min-width: 1251px)")
+    const closeForDesktop = () => {
+      if (desktop.matches) setMenuOpen(false)
+    }
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+      event.preventDefault()
+      setMenuOpen(false)
+      menuButtonRef.current?.focus()
+    }
+    const outside = (event: globalThis.PointerEvent) => {
+      if (!(event.target instanceof Node) || headerRef.current?.contains(event.target)) return
+      const focusWasInMenu = menuRef.current?.contains(document.activeElement)
+      setMenuOpen(false)
+      if (focusWasInMenu) menuButtonRef.current?.focus()
+    }
+    closeForDesktop()
+    desktop.addEventListener("change", closeForDesktop)
+    document.addEventListener("keydown", keydown)
+    document.addEventListener("pointerdown", outside)
+    return () => {
+      desktop.removeEventListener("change", closeForDesktop)
+      document.removeEventListener("keydown", keydown)
+      document.removeEventListener("pointerdown", outside)
+    }
+  }, [menuOpen])
 
   const isActiveLink = (href: string) => {
     if (href === "/") {
@@ -37,7 +70,7 @@ export function NewHomeNav() {
 
   return (
     <div className={styles.navSticky}>
-      <header className={styles.nav} data-tools-page={pathname === '/tools' || pathname.startsWith('/tools/')}>
+      <header ref={headerRef} className={styles.nav} data-tools-page={pathname === '/tools' || pathname.startsWith('/tools/')}>
         <div className={styles.wrap}>
           <Link className={styles.logo} href="/" aria-label="Laifappe homepage">
             <Image
@@ -96,6 +129,7 @@ export function NewHomeNav() {
               source="Header Request Quote"
               trigger={
                 <button
+                  {...pointerPressHandlers}
                   aria-label="Request Quote"
                   className={`${styles.navBtn} ${styles.btnAccentNav}`}
                   title="Request Quote"
@@ -109,6 +143,8 @@ export function NewHomeNav() {
               }
             />
             <button
+              {...pointerPressHandlers}
+              ref={menuButtonRef}
               aria-controls="new-home-mobile-menu"
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -128,7 +164,13 @@ export function NewHomeNav() {
             )}
           </div>
         </div>
-        <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`} id="new-home-mobile-menu">
+        <div
+          ref={menuRef}
+          className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ""}`}
+          id="new-home-mobile-menu"
+          inert={!menuOpen}
+          aria-hidden={!menuOpen}
+        >
           <nav aria-label="Mobile homepage navigation">
             {navLinks.map((link) => (
               <Link

@@ -9,6 +9,8 @@ import {
   readRecentAttributionSource,
 } from "@/lib/seo-links"
 import styles from "./home-new.module.css"
+import { useAnimatedDialog } from "./useAnimatedDialog"
+import { pointerPressHandlers } from "./pointerPress"
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -246,17 +248,18 @@ function CountryCodeCombobox({
 }
 
 export function QuoteDrawer({ source = "Quote drawer", trigger }: QuoteDrawerProps) {
+  const { open, requestOpen, onTriggerClick, panelRef, overlayRef } = useAnimatedDialog("drawer")
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+    <Dialog.Root open={open} onOpenChange={requestOpen}>
+      <Dialog.Trigger {...pointerPressHandlers} asChild onClick={onTriggerClick}>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={styles.quoteDrawerOverlay} />
-        <Dialog.Content className={styles.quoteDrawerPanel}>
+        <Dialog.Overlay ref={overlayRef} className={styles.quoteDrawerOverlay} />
+        <Dialog.Content ref={panelRef} className={styles.quoteDrawerPanel}>
           <Dialog.Title className={styles.srOnly}>Get a Free Quote</Dialog.Title>
           <Dialog.Description className={styles.srOnly}>
             Our representative will contact you soon.
           </Dialog.Description>
-          <Dialog.Close className={styles.quoteDrawerClose} aria-label="Close quote form">
+          <Dialog.Close {...pointerPressHandlers} className={styles.quoteDrawerClose} aria-label="Close quote form">
             &times;
           </Dialog.Close>
           <div className={styles.quoteDrawerScroll}>
@@ -497,9 +500,11 @@ export function QuoteRequestForm({
           {errors.form}
         </p>
       ) : null}
-      {status ? <p className={styles.formSuccess}>{status}</p> : null}
+      <div role="status" aria-live="polite" aria-atomic="true">
+        {status ? <p className={styles.formSuccess}>{status}</p> : null}
+      </div>
 
-      <button className={styles.quoteSubmit} disabled={isSubmitting} type="submit">
+      <button {...pointerPressHandlers} className={styles.quoteSubmit} disabled={isSubmitting} type="submit">
         {isSubmitting ? "Submitting..." : "Submit Request"}
         <span aria-hidden="true">&rarr;</span>
       </button>

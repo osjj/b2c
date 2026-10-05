@@ -1,4 +1,10 @@
 .page {
+  --home-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --home-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --home-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --home-duration-press: 160ms;
+  --home-duration-feedback: 150ms;
+  --home-duration-hover: 200ms;
   --home-ink: #0b1929;
   --home-ink2: #152238;
   --home-bg: #f2ede4;
@@ -68,8 +74,8 @@
   gap: 8px;
   min-height: 44px;
   padding: 13px 24px;
-  transition: all 0.22s ease;
   white-space: nowrap;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, color var(--home-duration-feedback, 150ms) ease, border-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .btnInk {
@@ -90,10 +96,6 @@
 
 .page .btnAccent:visited {
   color: #fff;
-}
-
-.btn:hover .arr {
-  transform: translateX(4px);
 }
 
 .btnWhite {
@@ -186,25 +188,12 @@
 }
 
 .liveDot {
-  animation: pulse 2s infinite;
   background: #4ade80;
   border-radius: 999px;
   box-shadow: 0 0 8px rgba(74, 222, 128, 0.7);
   display: inline-block;
   height: 6px;
   width: 6px;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
-  }
 }
 
 .language {
@@ -230,6 +219,8 @@
   background: rgba(11, 25, 41, 0.92);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 15px 0;
+
+  position: relative;
 }
 
 .nav .wrap {
@@ -249,10 +240,6 @@
   height: 44px;
   transition: transform 0.2s ease;
   width: 44px;
-}
-
-.logo:hover .logoIcon {
-  transform: scale(1.04);
 }
 
 .logoText {
@@ -324,7 +311,6 @@
 .navLinks a:hover::after,
 .navLinks .navLinkActive::after {
   opacity: 1;
-  transform: scaleX(1);
 }
 
 .navLinks .navLinkActive {
@@ -350,8 +336,8 @@
   line-height: 18px;
   min-height: auto;
   padding: 13px 18px;
-  transition: all 0.22s ease;
   white-space: nowrap;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, color var(--home-duration-feedback, 150ms) ease, border-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .page .navBtn,
@@ -405,11 +391,7 @@
 }
 
 .arr {
-  transition: transform 0.22s ease;
-}
-
-.navBtn:hover .arr {
-  transform: translateX(4px);
+  transition: transform var(--home-duration-hover, 200ms) ease;
 }
 
 .mobileMenuButton {
@@ -421,10 +403,8 @@
   display: none;
   height: 38px;
   justify-content: center;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease;
   width: 38px;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, border-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .mobileMenuButton:hover {
@@ -486,30 +466,23 @@
   object-fit: cover;
   object-position: center;
   position: absolute;
-  transition:
-    opacity 1.3s ease,
-    transform 8s ease;
   width: 100%;
+  transition: opacity 1.3s ease;
 }
 
 .heroSlideActive {
   opacity: 0.86;
 }
 
-.hero:hover .heroSlide {
-  transform: scale(1.04);
-}
+/* Navigation stays below the header at intermediate widths. */
 
-/* The seven-link menu uses a drawer at intermediate widths to avoid overlap. */
-.nav .mobileMenu:not(.mobileMenuOpen) { visibility: hidden; }
 @media (min-width: 769px) and (max-width: 1250px) {
   .nav .navLinks { display: none; }
   .nav .mobileMenuButton { display: inline-flex; min-height: 44px; min-width: 44px; }
   .nav .mobileMenu {
-    display: block; background: #0b1929; max-height: 0; opacity: 0; overflow: hidden;
-    transition: max-height 0.28s ease, opacity 0.22s ease;
+    background: #0b1929;
   }
-  .nav .mobileMenuOpen { max-height: 420px; opacity: 1; }
+
   .nav .mobileMenu nav { display: grid; gap: 1px; padding: 8px 28px 12px; }
   .nav .mobileMenu a {
     display: flex; align-items: center; min-height: 44px; padding: 0 14px;
@@ -521,10 +494,6 @@
 @media (prefers-reduced-motion: reduce) {
   .heroSlide {
     transition: none;
-  }
-
-  .hero:hover .heroSlide {
-    transform: none;
   }
 }
 
@@ -596,7 +565,7 @@
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.95;
-  margin: 0 0 18px;
+  margin: 0 0 10px;
   max-width: 760px;
   text-shadow: 0 1px 18px rgba(255, 255, 255, 0.52);
 }
@@ -625,6 +594,18 @@
   line-height: 1.65;
   margin: 0 0 26px;
   max-width: 520px;
+}
+
+.hero .heroSub {
+  color: #26384a;
+  font-size: clamp(16px, 1.25vw, 18px);
+  font-weight: 400;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.heroSub strong {
+  font-weight: 600;
 }
 
 .heroCta {
@@ -1122,12 +1103,11 @@
   margin: 14px auto 0;
   min-width: 210px;
   padding: 0 36px;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .quoteSubmit:hover:not(:disabled) {
   background: #0b3d67;
-  transform: translateY(-1px);
 }
 
 .quoteSubmit:disabled {
@@ -1148,14 +1128,6 @@
   z-index: 1000;
 }
 
-.quoteDrawerOverlay[data-state="open"] {
-  animation: quoteOverlayFadeIn 0.24s ease forwards;
-}
-
-.quoteDrawerOverlay[data-state="closed"] {
-  animation: quoteOverlayFadeOut 0.18s ease forwards;
-}
-
 .quoteDrawerPanel {
   background:
     radial-gradient(circle at 76% 92%, rgba(217, 88, 32, 0.2), transparent 18%),
@@ -1172,14 +1144,6 @@
   top: 0;
   width: min(96vw, 960px);
   z-index: 1001;
-}
-
-.quoteDrawerPanel[data-state="open"] {
-  animation: quoteDrawerSlideIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.quoteDrawerPanel[data-state="closed"] {
-  animation: quoteDrawerSlideOut 0.22s ease forwards;
 }
 
 .quoteDrawerScroll {
@@ -1209,49 +1173,13 @@
   position: absolute;
   right: 22px;
   top: 12px;
-  transition: color 0.2s ease;
   width: 48px;
   z-index: 2;
+  transition: color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .quoteDrawerClose:hover {
   color: #111;
-}
-
-@keyframes quoteOverlayFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes quoteOverlayFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes quoteDrawerSlideIn {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes quoteDrawerSlideOut {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
 }
 
 .quoteRequestForm {
@@ -1505,9 +1433,8 @@
   min-width: 210px;
   padding: 0 28px;
   transition:
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+    background-color var(--home-duration-feedback, 150ms) ease,
+    transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
   width: 100%;
 }
 
@@ -1525,8 +1452,6 @@
 
 .quoteSubmit:hover:not(:disabled) {
   background: #c84918;
-  box-shadow: 0 18px 38px rgba(200, 73, 24, 0.28);
-  transform: translateY(-1px);
 }
 
 .quoteSubmit:focus-visible {
@@ -1913,7 +1838,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
-  transition: all 0.25s ease;
+  transition: background-color var(--home-duration-feedback, 150ms) ease;
 }
 
 .categoryCard:hover,
@@ -1932,13 +1857,6 @@
 .productImage img,
 .facilityImage img {
   object-fit: cover;
-  transition: transform 0.45s ease;
-}
-
-.categoryCard:hover .categoryImage img,
-.productCard:hover .productImage img,
-.facilityImage:hover img {
-  transform: scale(1.05);
 }
 
 .categoryImage span,
@@ -2037,14 +1955,6 @@
 .certImage img,
 .quoteImage img {
   object-fit: cover;
-}
-
-.whyImage img {
-  transition: transform 8s ease;
-}
-
-.whySection:hover .whyImage img {
-  transform: scale(1.04);
 }
 
 .quoteImage::after {
@@ -2200,11 +2110,7 @@
 .productImage img {
   object-fit: contain;
   padding: 20px;
-  transition: transform 0.4s ease;
-}
-
-.productCard:hover .productImage img {
-  transform: scale(1.08);
+  transition: transform var(--home-duration-hover, 200ms) ease;
 }
 
 .productImage span {
@@ -2283,7 +2189,7 @@
   letter-spacing: 0.1em;
   padding: 4px 10px;
   text-transform: uppercase;
-  transition: all 0.2s ease;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, color var(--home-duration-feedback, 150ms) ease, border-color var(--home-duration-feedback, 150ms) ease;
 }
 
 .productCard:hover .productAsk {
@@ -2484,7 +2390,7 @@
   display: inline-flex;
   justify-content: center;
   position: absolute;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-press, 160ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .factoryTourArrow {
@@ -2567,14 +2473,17 @@
   left: 50%;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
-  transition: background 0.2s ease, width 0.2s ease;
-  width: 22px;
+
+  transform: translate(-50%, -50%) scaleX(0.6470588235);
+  transform-origin: center;
+  transition: background-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-feedback, 150ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
+  width: 34px;
 }
 
 .factoryTourDots .factoryTourDotActive::before {
   background: var(--home-accent, #d95820);
-  width: 34px;
+
+  transform: translate(-50%, -50%) scaleX(1);
 }
 
 .orderSection {
@@ -3319,20 +3228,6 @@
     background: rgba(11, 25, 41, 0.96);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: block;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transform: translateY(-6px);
-    transition:
-      max-height 0.28s ease,
-      opacity 0.22s ease,
-      transform 0.22s ease;
-  }
-
-  .mobileMenuOpen {
-    max-height: 360px;
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .mobileMenu nav {
@@ -3689,16 +3584,11 @@
   margin-bottom: 16px;
   min-width: 0;
   overflow: hidden;
-  transition:
-    border-color 0.28s ease,
-    box-shadow 0.28s ease,
-    transform 0.28s ease;
+  transition: border-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-hover, 200ms) ease;
 }
 
 .constructionHubSpotlight:hover {
   border-color: rgba(217, 88, 32, 0.62);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.26);
-  transform: translateY(-4px);
 }
 
 .constructionHubMedia {
@@ -3710,11 +3600,7 @@
 
 .constructionHubMedia img {
   object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.constructionHubSpotlight:hover .constructionHubMedia img {
-  transform: scale(1.045);
+  transition: transform var(--home-duration-hover, 200ms) ease;
 }
 
 .constructionHubBody {
@@ -3787,15 +3673,12 @@
   min-height: 42px;
   margin-top: 28px;
   padding: 0 18px;
-  transition:
-    background 0.2s ease,
-    gap 0.2s ease;
   white-space: nowrap;
+  transition: background-color var(--home-duration-feedback, 150ms) ease;
 }
 
 .constructionHubSpotlight:hover .constructionHubAction {
   background: var(--home-accent);
-  gap: 13px;
 }
 
 .industryFeaturedCard,
@@ -3811,17 +3694,12 @@
 .industrySolutionCard {
   display: flex;
   min-width: 0;
-  transition:
-    border-color 0.28s ease,
-    box-shadow 0.28s ease,
-    transform 0.28s ease;
+  transition: border-color var(--home-duration-feedback, 150ms) ease, transform var(--home-duration-hover, 200ms) ease;
 }
 
 .industryFeaturedCard:hover,
 .industrySolutionCard:hover {
   border-color: rgba(217, 88, 32, 0.58);
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.26);
-  transform: translateY(-4px);
 }
 
 .industryFeaturedCard {
@@ -3845,15 +3723,7 @@
 .industryCardImage img {
   filter: saturate(0.94) contrast(1.02);
   object-fit: cover;
-  transition:
-    filter 0.6s ease,
-    transform 0.6s ease;
-}
-
-.industryFeaturedCard:hover img,
-.industrySolutionCard:hover img {
-  filter: saturate(1);
-  transform: scale(1.055);
+  transition: transform var(--home-duration-hover, 200ms) ease;
 }
 
 .industryFeaturedImage::after,
@@ -3965,12 +3835,6 @@
   font-weight: 600;
   gap: 10px;
   margin-top: auto;
-  transition: gap 0.2s ease;
-}
-
-.industryFeaturedCard:hover .industryAction,
-.industrySolutionCard:hover strong {
-  gap: 14px;
 }
 
 .industryRegularGrid {
@@ -4074,7 +3938,6 @@
 .industryCardContent strong {
   color: var(--home-accent);
   font-weight: 600;
-  transition: gap 0.2s ease;
 }
 
 .industryImageFallback {
@@ -4308,7 +4171,7 @@
 }
 
 .facilityImage {
-  cursor: pointer;
+  cursor: auto;
   margin: 0;
   min-height: 0;
   overflow: hidden;
@@ -4325,11 +4188,6 @@
 
 .facilityImage img {
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.facilityImage:hover img {
-  transform: scale(1.06);
 }
 
 .facilityImage figcaption {
@@ -4515,11 +4373,6 @@
 
 .quoteImage img {
   object-fit: cover;
-  transition: transform 0.8s ease;
-}
-
-.quoteImage:hover img {
-  transform: scale(1.04);
 }
 
 .quoteImage::after {
@@ -4716,7 +4569,6 @@
 
 .quoteForm button:hover {
   background: var(--home-accent);
-  transform: translateY(-1px);
 }
 
 .quoteSectionRequestForm {
@@ -5017,7 +4869,7 @@
   min-height: 230px;
   padding: 28px 24px;
   position: relative;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background-color var(--home-duration-feedback, 150ms) ease;
 }
 
 .oemCapabilityList article::after {
@@ -5034,7 +4886,6 @@
 
 .oemCapabilityList article:hover {
   background: rgba(255, 250, 242, 0.94);
-  transform: translateY(-2px);
 }
 
 .oemCapabilityList article:hover::after {
@@ -5532,4 +5383,172 @@
     flex-direction: column;
     gap: 16px;
   }
+}
+
+.categoryImage img,
+.productImage img {
+  transition: transform var(--home-duration-hover, 200ms) ease;
+}
+
+.navLinks .navLinkActive::after {
+  transform: scaleX(1);
+}
+
+.constructionHubAction > svg,
+.industryAction > svg,
+.industryCardContent strong > svg {
+  transition: transform var(--home-duration-hover, 200ms) ease;
+}
+
+/* Status feedback is opacity-only and remains immediately readable. */
+.formSuccess {
+  opacity: 1;
+  transition: opacity var(--home-duration-feedback, 150ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
+}
+
+@starting-style {
+  .formSuccess { opacity: 0; }
+}
+
+/* Pointer state is supplied explicitly; keyboard activation stays instant. */
+.btn.pointerPress,
+.navBtn.pointerPress,
+.quoteSubmit.pointerPress,
+.mobileMenuButton.pointerPress,
+.quoteDrawerClose.pointerPress,
+.factoryTourClose.pointerPress {
+  transform: scale(0.97);
+}
+
+.factoryTourArrow.pointerPress {
+  transform: translateY(-50%) scale(0.97);
+}
+
+@media (max-width: 1250px) {
+  .nav .mobileMenu {
+    display: block;
+    height: auto;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - 100px);
+    opacity: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    transform: translateY(-6px);
+    visibility: hidden;
+    transition:
+      opacity var(--home-duration-hover, 200ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1)),
+      transform var(--home-duration-hover, 200ms) var(--home-ease-out, cubic-bezier(0.23, 1, 0.32, 1)),
+      visibility 0s linear var(--home-duration-hover, 200ms);
+  }
+
+  .nav .mobileMenuOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+    transition-delay: 0s;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover .logoIcon { transform: scale(1.04); }
+  .btn:hover .arr,
+  .navBtn:hover .arr,
+  .constructionHubSpotlight:hover .constructionHubAction > svg,
+  .industryFeaturedCard:hover .industryAction > svg,
+  .industrySolutionCard:hover strong > svg { transform: translateX(4px); }
+  .navLinks a:hover::after { transform: scaleX(1); }
+  .quoteSubmit:hover:not(:disabled),
+  .quoteForm button:hover { transform: translateY(-1px); }
+  .categoryCard:hover .categoryImage img,
+  .productCard:hover .productImage img,
+  .constructionHubSpotlight:hover .constructionHubMedia img,
+  .industryFeaturedCard:hover .industryFeaturedImage img,
+  .industrySolutionCard:hover .industryCardImage img { transform: scale(1.03); }
+  .constructionHubSpotlight:hover,
+  .industryFeaturedCard:hover,
+  .industrySolutionCard:hover { transform: translateY(-2px); }
+}
+
+.quoteSubmit.pointerPress:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveDot,
+  .mapRoute,
+  .chinaRing,
+  .chinaBurst,
+  .destDot { animation: none; }
+
+  .nav .mobileMenu {
+    transform: none;
+    transition: opacity 150ms ease, visibility 0s linear 150ms;
+  }
+
+  .nav .mobileMenuOpen { transition-delay: 0s; }
+
+  .logoIcon,
+  .arr,
+  .categoryImage img,
+  .productImage img,
+  .constructionHubMedia img,
+  .industryFeaturedImage img,
+  .industryCardImage img,
+  .constructionHubAction > svg,
+  .industryAction > svg,
+  .industryCardContent strong > svg { transition: none; }
+
+  .btn,
+  .navBtn,
+  .quoteSubmit,
+  .mobileMenuButton,
+  .quoteDrawerClose,
+  .factoryTourClose,
+  .factoryTourArrow,
+  .constructionHubSpotlight,
+  .industryFeaturedCard,
+  .industrySolutionCard {
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+
+  .logo:hover .logoIcon,
+  .btn:hover .arr,
+  .navBtn:hover .arr,
+  .quoteSubmit:hover:not(:disabled),
+  .quoteSubmit.pointerPress:not(:disabled),
+  .quoteForm button:hover,
+  .categoryCard:hover .categoryImage img,
+  .productCard:hover .productImage img,
+  .constructionHubSpotlight:hover,
+  .constructionHubSpotlight:hover .constructionHubMedia img,
+  .constructionHubSpotlight:hover .constructionHubAction > svg,
+  .industryFeaturedCard:hover,
+  .industrySolutionCard:hover,
+  .industryFeaturedCard:hover .industryFeaturedImage img,
+  .industrySolutionCard:hover .industryCardImage img,
+  .industryFeaturedCard:hover .industryAction > svg,
+  .industrySolutionCard:hover strong > svg,
+  .btn.pointerPress,
+  .navBtn.pointerPress,
+  .quoteSubmit.pointerPress,
+  .mobileMenuButton.pointerPress,
+  .quoteDrawerClose.pointerPress,
+  .factoryTourClose.pointerPress { transform: none; }
+
+  .factoryTourArrow.pointerPress { transform: translateY(-50%); }
+
+  .navLinks a::after {
+    transform: none;
+    transition: opacity 150ms ease;
+  }
+
+  .navLinks a:hover::after,
+  .navLinks .navLinkActive::after { transform: none; }
+
+  .factoryTourDots button::before { transition: background-color 150ms ease; }
 }

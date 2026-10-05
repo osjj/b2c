@@ -6,10 +6,13 @@ import Image from "next/image"
 import { useCallback, useState } from "react"
 import { factoryTourImages } from "./data"
 import styles from "./home-new.module.css"
+import { useAnimatedDialog } from "./useAnimatedDialog"
+import { pointerPressHandlers } from "./pointerPress"
 
 export function FactoryTourDialog() {
   const [activeIndex, setActiveIndex] = useState(0)
   const activeImage = factoryTourImages[activeIndex]
+  const { open: present, requestOpen, onTriggerClick, panelRef, overlayRef } = useAnimatedDialog("modal")
 
   const showPrevious = useCallback(() => {
     setActiveIndex((index) => (index === 0 ? factoryTourImages.length - 1 : index - 1))
@@ -20,9 +23,12 @@ export function FactoryTourDialog() {
   }, [])
 
   return (
-    <Dialog.Root onOpenChange={(open) => open && setActiveIndex(0)}>
-      <Dialog.Trigger asChild>
-        <button className={`${styles.btn} ${styles.btnWhite}`} type="button">
+    <Dialog.Root open={present} onOpenChange={(open) => {
+      if (open && !present) setActiveIndex(0)
+      requestOpen(open)
+    }}>
+      <Dialog.Trigger asChild onClick={onTriggerClick}>
+        <button {...pointerPressHandlers} className={`${styles.btn} ${styles.btnWhite}`} type="button">
           Tour the factory
           <span className={styles.arr} aria-hidden="true">
             &rarr;
@@ -30,8 +36,9 @@ export function FactoryTourDialog() {
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={styles.factoryTourOverlay} />
+        <Dialog.Overlay ref={overlayRef} className={styles.factoryTourOverlay} />
         <Dialog.Content
+          ref={panelRef}
           className={styles.factoryTourDialog}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") {
@@ -61,6 +68,7 @@ export function FactoryTourDialog() {
             />
           </div>
           <button
+            {...pointerPressHandlers}
             className={`${styles.factoryTourArrow} ${styles.factoryTourArrowLeft}`}
             type="button"
             onClick={showPrevious}
@@ -69,6 +77,7 @@ export function FactoryTourDialog() {
             <ChevronLeft size={26} strokeWidth={2} aria-hidden="true" />
           </button>
           <button
+            {...pointerPressHandlers}
             className={`${styles.factoryTourArrow} ${styles.factoryTourArrowRight}`}
             type="button"
             onClick={showNext}
@@ -76,7 +85,7 @@ export function FactoryTourDialog() {
           >
             <ChevronRight size={26} strokeWidth={2} aria-hidden="true" />
           </button>
-          <Dialog.Close className={styles.factoryTourClose} aria-label="Close factory tour">
+          <Dialog.Close {...pointerPressHandlers} className={styles.factoryTourClose} aria-label="Close factory tour">
             <X size={22} strokeWidth={2} aria-hidden="true" />
           </Dialog.Close>
           <div className={styles.factoryTourFooter}>

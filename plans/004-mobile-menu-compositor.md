@@ -1,6 +1,6 @@
 # 004 — 移动导航使用浮层过渡
 
-- **Status**: TODO
+- **Status**: IMPLEMENTED
 - **Commit**: 3a2a939
 - **Severity**: MEDIUM
 - **Category**: Performance / Interruptibility / Physicality
@@ -50,3 +50,9 @@ mobile版本:3325–3335另加translateY(-6px)，max-height为360px。`D:/projec
 - 鼠标、Tab、Enter、Escape、外点、链接跳转；closed/closing菜单不可Tab，焦点恢复规则正确。reduce无translate；按钮/颜色反馈仍在。
 - `/products`、`/cases`、`/about`、`/tools`抽查相同断点；真实手机检查触屏/滚动，模拟视口不能替代该项。
 - **Done when**：展开不触发布局高度动画，所有链接可操作、关闭焦点安全、共享页面无覆盖错误。
+
+## 实施记录（2026-10-05）
+
+最终实现：菜单浮层、200ms可反向transition、关闭inert、Escape恢复焦点和desktop断点清理均已落地；DOM中的实际导航项为6个，旧注释中的7个计数不适用。
+
+本地开发/生产预览回归、定向lint、首页数据测试和production build已核查；详细证据见 [实施验收](./homepage-motion-implementation.md)。真实手机手感未做实机验收，触屏验证使用浏览器模拟。未部署。
