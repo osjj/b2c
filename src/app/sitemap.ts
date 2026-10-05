@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/prisma'
 import { getSiteUrl } from '@/lib/site-url'
 import { normalizeSitemapImageUrls } from '@/lib/sitemap-images'
+import { listPublishedCases } from '@/lib/cases/data'
+import type { CaseView } from '@/lib/cases/types'
 
 export const revalidate = 3600
 export const dynamic = 'force-dynamic'
@@ -17,7 +19,7 @@ const HOME_LASTMOD = new Date('2026-05-30')
 const PRODUCTS_HUB_LASTMOD = new Date('2026-04-23')
 const CATEGORIES_HUB_LASTMOD = new Date('2026-04-23')
 const ABOUT_LASTMOD = new Date('2026-04-20')
-const CASES_LASTMOD = new Date('2026-04-20')
+const CASES_LASTMOD = new Date('2026-10-05')
 const NEWS_LASTMOD = new Date('2026-04-20')
 const SOLUTIONS_HUB_LASTMOD = new Date('2026-05-09')
 const BLOG_HUB_LASTMOD = new Date('2026-05-09')
@@ -170,7 +172,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl()
   const staticPages = buildStaticPages(baseUrl)
 
-  const [products, categories, solutions, blogPosts] = await Promise.all([
+  const [products, categories, solutions, blogPosts, cases] = await Promise.all([
     safeQuery<SitemapProduct[]>(
       prisma.product.findMany({
         where: { isActive: true },
@@ -221,6 +223,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }),
       [],
     ),
+    safeQuery<CaseView[]>(listPublishedCases(), []),
   ])
 
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
@@ -267,11 +270,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...buildImageSitemapField(baseUrl, [post.coverImage]),
   }))
 
+  const casePages: MetadataRoute.Sitemap = cases.map((caseStudy) => ({
+    url: `${baseUrl}/cases/${caseStudy.slug}`,
+    lastModified: new Date(caseStudy.updatedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+    ...buildImageSitemapField(baseUrl, [caseStudy.coverImage]),
+  }))
+
   return [
     ...staticPages,
     ...productPages,
     ...categoryPages,
     ...solutionPages,
     ...blogPostPages,
+    ...casePages,
   ]
 }

@@ -66,7 +66,7 @@ const mocks = {
   '@/lib/embeddings': 'export function buildProductEmbeddingText(){};export async function generateEmbedding(){}',
   '@/lib/indexnow-auto': 'export function collectProductIndexNowUrls(){return []};export function scheduleIndexNowUrls(){}',
   'next/navigation': 'export function redirect(){throw new Error("TEST_REDIRECT")};export function unstable_rethrow(){}',
-  'next/cache': 'export function revalidatePath(){}',
+  'next/cache': 'export function revalidatePath(){};export function revalidateTag(){}',
   'next/server': 'export function after(){}',
 }
 const built = await build({

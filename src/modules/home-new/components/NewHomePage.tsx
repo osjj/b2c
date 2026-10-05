@@ -1033,6 +1033,7 @@ export function NewHomeFooter() {
             <Link href="/about#factory">Our Factory</Link>
             <Link href="/about#certifications">Certifications</Link>
             <Link href="/about#oem-odm">OEM / ODM</Link>
+            <Link href="/cases">Procurement Cases</Link>
             <Link href="/blog">News & Blog</Link>
           </nav>
           <div>

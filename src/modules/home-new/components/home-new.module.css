@@ -284,7 +284,8 @@
 
 .navLinks {
   display: flex;
-  gap: 28px;
+  gap: 20px;
+  flex-shrink: 0;
 }
 
 .navLinks a {
@@ -297,6 +298,7 @@
   line-height: 1.2;
   position: relative;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .navLinks a:hover {
@@ -498,22 +500,22 @@
   transform: scale(1.04);
 }
 
-/* Tools have their own navigation; keep the site header usable at tablet widths. */
-.nav[data-tools-page='true'] .mobileMenu:not(.mobileMenuOpen) { visibility: hidden; }
-@media (min-width: 769px) and (max-width: 1000px) {
-  .nav[data-tools-page='true'] .navLinks { display: none; }
-  .nav[data-tools-page='true'] .mobileMenuButton { display: inline-flex; min-height: 44px; min-width: 44px; }
-  .nav[data-tools-page='true'] .mobileMenu {
+/* The seven-link menu uses a drawer at intermediate widths to avoid overlap. */
+.nav .mobileMenu:not(.mobileMenuOpen) { visibility: hidden; }
+@media (min-width: 769px) and (max-width: 1250px) {
+  .nav .navLinks { display: none; }
+  .nav .mobileMenuButton { display: inline-flex; min-height: 44px; min-width: 44px; }
+  .nav .mobileMenu {
     display: block; background: #0b1929; max-height: 0; opacity: 0; overflow: hidden;
     transition: max-height 0.28s ease, opacity 0.22s ease;
   }
-  .nav[data-tools-page='true'] .mobileMenuOpen { max-height: 360px; opacity: 1; }
-  .nav[data-tools-page='true'] .mobileMenu nav { display: grid; gap: 1px; padding: 8px 28px 12px; }
-  .nav[data-tools-page='true'] .mobileMenu a {
+  .nav .mobileMenuOpen { max-height: 420px; opacity: 1; }
+  .nav .mobileMenu nav { display: grid; gap: 1px; padding: 8px 28px 12px; }
+  .nav .mobileMenu a {
     display: flex; align-items: center; min-height: 44px; padding: 0 14px;
     color: #d5e2ed; background: #ffffff0b; font-size: 14px;
   }
-  .nav[data-tools-page='true'] .mobileMenu a[aria-current='page'] { background: #d9582029; color: white; }
+  .nav .mobileMenu a[aria-current='page'] { background: #d9582029; color: white; }
 }
 
 @media (prefers-reduced-motion: reduce) {

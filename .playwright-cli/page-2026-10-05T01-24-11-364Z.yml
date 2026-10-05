@@ -1,0 +1,326 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - generic [ref=f1e4]:
+      - generic [ref=f1e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f1e8]:
+        - link "sales@laifappe.com" [ref=f1e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f1e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f1e11]: EN
+    - banner [ref=f1e13]:
+      - generic [ref=f1e14]:
+        - link "Laifappe homepage" [ref=f1e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f1e16]
+          - generic [ref=f1e17]:
+            - strong [ref=f1e18]: 粤来发劳保
+            - generic [ref=f1e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f1e20]:
+          - link "Home" [ref=f1e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f1e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f1e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f1e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f1e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f1e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f1e27]:
+          - link "Email" [ref=f1e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f1e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f1e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f1e41]: →
+    - main [ref=f1e42]:
+      - generic [ref=f1e43]:
+        - generic [ref=f1e49]:
+          - navigation [ref=f1e50]:
+            - link "Home" [ref=f1e51] [cursor=pointer]:
+              - /url: /
+            - generic [ref=f1e54]: Products
+          - generic [ref=f1e55]:
+            - generic [ref=f1e56]:
+              - generic [ref=f1e57]: Professional Protective Equipment
+              - heading "All Products" [level=1] [ref=f1e61]
+              - paragraph [ref=f1e62]: We provide high-quality industrial safety equipment that meets international standards and protects every worker.
+            - generic [ref=f1e63]:
+              - generic [ref=f1e64]:
+                - generic [ref=f1e65]: "84"
+                - generic [ref=f1e66]: Total Products
+              - generic [ref=f1e68]:
+                - generic [ref=f1e69]: "7"
+                - generic [ref=f1e70]: Categories
+        - generic [ref=f1e72]:
+          - complementary [ref=f1e73]:
+            - navigation "Product categories" [ref=f1e74]:
+              - list [ref=f1e75]:
+                - listitem [ref=f1e76]:
+                  - link "All Products" [ref=f1e77] [cursor=pointer]:
+                    - /url: /products
+                - listitem [ref=f1e85]:
+                  - link "Foot Protection" [ref=f1e86] [cursor=pointer]:
+                    - /url: /categories/foot-protection
+                - listitem [ref=f1e93]:
+                  - link "Body Protection" [ref=f1e94] [cursor=pointer]:
+                    - /url: /categories/body-protection
+                - listitem [ref=f1e100]:
+                  - link "Eye Protection" [ref=f1e101] [cursor=pointer]:
+                    - /url: /categories/eye-protection
+                - listitem [ref=f1e108]:
+                  - link "Respiratory Protection" [ref=f1e109] [cursor=pointer]:
+                    - /url: /categories/respiratory-protection
+                - listitem [ref=f1e117]:
+                  - link "Hand Protection" [ref=f1e118] [cursor=pointer]:
+                    - /url: /categories/hand-protection
+                - listitem [ref=f1e127]:
+                  - link "Fall Protection" [ref=f1e128] [cursor=pointer]:
+                    - /url: /categories/fall-protection
+                - listitem [ref=f1e135]:
+                  - link "Head Protection" [ref=f1e136] [cursor=pointer]:
+                    - /url: /categories/head-protection
+          - generic [ref=f1e145]:
+            - generic [ref=f1e146]:
+              - generic [ref=f1e147]: 84 products
+              - generic [ref=f1e152]:
+                - combobox [ref=f1e153]:
+                  - generic: Newest
+                - combobox [aria-hidden] [ref=f1e154]
+            - generic [ref=f1e155]:
+              - generic [ref=f1e157]:
+                - link [ref=f1e158] [cursor=pointer]:
+                  - /url: /products/bird-eye-mesh-hi-vis-long-sleeve-work-shirt
+                  - img "Bird-Eye Mesh Hi-Vis Long Sleeve Work Shirt, 130 GSM" [ref=f1e161]
+                - generic [ref=f1e163]:
+                  - generic [ref=f1e164]: Hi-Vis Workwear
+                  - link [ref=f1e169] [cursor=pointer]:
+                    - /url: /products/bird-eye-mesh-hi-vis-long-sleeve-work-shirt
+                    - heading "Bird-Eye Mesh Hi-Vis Long Sleeve Work Shirt, 130 GSM" [level=3] [ref=f1e170]
+                  - generic [ref=f1e171]: From $4.20
+                  - button "Add to Quote" [ref=f1e174]
+              - generic [ref=f1e176]:
+                - link [ref=f1e177] [cursor=pointer]:
+                  - /url: /products/40cm-cow-split-leather-heat-resistant-gloves
+                  - img "40cm Cow Split Leather Heat-Resistant Gloves" [ref=f1e180]
+                - generic [ref=f1e182]:
+                  - generic [ref=f1e183]: Welding Gloves
+                  - link [ref=f1e188] [cursor=pointer]:
+                    - /url: /products/40cm-cow-split-leather-heat-resistant-gloves
+                    - heading "40cm Cow Split Leather Heat-Resistant Gloves" [level=3] [ref=f1e189]
+                  - generic [ref=f1e190]: $5.22
+                  - button "Add to Quote" [ref=f1e193]
+              - generic [ref=f1e195]:
+                - link [ref=f1e196] [cursor=pointer]:
+                  - /url: /products/13-gauge-red-black-latex-crinkle-grip-work-gloves
+                  - img "Latex Coated Work Gloves – 13-Gauge Crinkle Grip, Red/Black" [ref=f1e199]
+                - generic [ref=f1e201]:
+                  - generic [ref=f1e202]: Latex Coated Gloves
+                  - link [ref=f1e207] [cursor=pointer]:
+                    - /url: /products/13-gauge-red-black-latex-crinkle-grip-work-gloves
+                    - heading "Latex Coated Work Gloves – 13-Gauge Crinkle Grip, Red/Black" [level=3] [ref=f1e208]
+                  - generic [ref=f1e209]: $0.28
+                  - button "Add to Quote" [ref=f1e212]
+              - generic [ref=f1e214]:
+                - link [ref=f1e215] [cursor=pointer]:
+                  - /url: /products/tall-pvc-steel-toe-steel-midsole-safety-rain-boots
+                  - img "Tall PVC Steel Toe and Steel Midsole Safety Rain Boots" [ref=f1e218]
+                - generic [ref=f1e220]:
+                  - generic [ref=f1e221]: Safety Rain Boots
+                  - link [ref=f1e226] [cursor=pointer]:
+                    - /url: /products/tall-pvc-steel-toe-steel-midsole-safety-rain-boots
+                    - heading "Tall PVC Steel Toe and Steel Midsole Safety Rain Boots" [level=3] [ref=f1e227]
+                  - generic [ref=f1e228]: From $4.85
+                  - button "Add to Quote" [ref=f1e231]
+              - generic [ref=f1e233]:
+                - link [ref=f1e234] [cursor=pointer]:
+                  - /url: /products/air-cushioned-breathable-knit-safety-shoes
+                  - img "Air-Cushioned Breathable Knit Safety Shoes" [ref=f1e237]
+                - generic [ref=f1e239]:
+                  - generic [ref=f1e240]: Safety Shoes
+                  - link [ref=f1e245] [cursor=pointer]:
+                    - /url: /products/air-cushioned-breathable-knit-safety-shoes
+                    - heading "Air-Cushioned Breathable Knit Safety Shoes" [level=3] [ref=f1e246]
+                  - generic [ref=f1e247]: $11.00
+                  - button "Add to Quote" [ref=f1e250]
+              - generic [ref=f1e252]:
+                - link [ref=f1e253] [cursor=pointer]:
+                  - /url: /products/14-inch-split-cowhide-welding-gloves-reinforced-thumb
+                  - img "14-Inch Split Cowhide Welding Gloves with Reinforced Thumb" [ref=f1e256]
+                - generic [ref=f1e258]:
+                  - generic [ref=f1e259]: Welding Gloves
+                  - link [ref=f1e264] [cursor=pointer]:
+                    - /url: /products/14-inch-split-cowhide-welding-gloves-reinforced-thumb
+                    - heading "14-Inch Split Cowhide Welding Gloves with Reinforced Thumb" [level=3] [ref=f1e265]
+                  - generic [ref=f1e266]: $1.98
+                  - button "Add to Quote" [ref=f1e269]
+              - generic [ref=f1e271]:
+                - link [ref=f1e272] [cursor=pointer]:
+                  - /url: /products/lightweight-breathable-steel-toe-puncture-resistant-safety
+                  - img "Lightweight Breathable Steel-Toe Puncture-Resistant Safety Shoes" [ref=f1e275]
+                - generic [ref=f1e277]:
+                  - generic [ref=f1e278]: Safety Shoes
+                  - link [ref=f1e283] [cursor=pointer]:
+                    - /url: /products/lightweight-breathable-steel-toe-puncture-resistant-safety
+                    - heading "Lightweight Breathable Steel-Toe Puncture-Resistant Safety Shoes" [level=3] [ref=f1e284]
+                  - generic [ref=f1e285]: $6.50
+                  - button "Add to Quote" [ref=f1e288]
+              - generic [ref=f1e290]:
+                - link [ref=f1e291] [cursor=pointer]:
+                  - /url: /products/abs-insert-bump-cap-mesh-ventilation
+                  - img "ABS Insert Bump Cap with Mesh Ventilation" [ref=f1e294]
+                - generic [ref=f1e296]:
+                  - generic [ref=f1e297]: Bump Caps
+                  - link [ref=f1e302] [cursor=pointer]:
+                    - /url: /products/abs-insert-bump-cap-mesh-ventilation
+                    - heading "ABS Insert Bump Cap with Mesh Ventilation" [level=3] [ref=f1e303]
+                  - generic [ref=f1e304]: $3.42
+                  - button "Add to Quote" [ref=f1e307]
+              - generic [ref=f1e309]:
+                - link [ref=f1e310] [cursor=pointer]:
+                  - /url: /products/blue-double-sided-dotted-knit-work-gloves
+                  - img "Blue Double-Sided Dotted Knit Work Gloves" [ref=f1e313]
+                - generic [ref=f1e315]:
+                  - generic [ref=f1e316]: Knit Gloves
+                  - link [ref=f1e321] [cursor=pointer]:
+                    - /url: /products/blue-double-sided-dotted-knit-work-gloves
+                    - heading "Blue Double-Sided Dotted Knit Work Gloves" [level=3] [ref=f1e322]
+                  - generic [ref=f1e323]: From $0.14
+                  - button "Add to Quote" [ref=f1e326]
+              - generic [ref=f1e328]:
+                - link [ref=f1e329] [cursor=pointer]:
+                  - /url: /products/steel-wire-thumb-reinforced-cut-resistant-sandy-coated
+                  - img "Steel-Wire Thumb-Reinforced Cut-Resistant Sandy-Coated Gloves" [ref=f1e332]
+                - generic [ref=f1e334]:
+                  - generic [ref=f1e335]: Cut Resistant Gloves
+                  - link [ref=f1e340] [cursor=pointer]:
+                    - /url: /products/steel-wire-thumb-reinforced-cut-resistant-sandy-coated
+                    - heading "Steel-Wire Thumb-Reinforced Cut-Resistant Sandy-Coated Gloves" [level=3] [ref=f1e341]
+                  - generic [ref=f1e342]: From $1.25
+                  - button "Add to Quote" [ref=f1e345]
+              - generic [ref=f1e347]:
+                - link [ref=f1e348] [cursor=pointer]:
+                  - /url: /products/s3-sr-slip-resistant-steel-toe-antistatic-safety-shoes
+                  - img "S3 SR Slip-Resistant Steel-Toe Puncture-Resistant Antistatic Safety Shoes" [ref=f1e351]
+                - generic [ref=f1e353]:
+                  - generic [ref=f1e354]: Safety Shoes
+                  - link [ref=f1e359] [cursor=pointer]:
+                    - /url: /products/s3-sr-slip-resistant-steel-toe-antistatic-safety-shoes
+                    - heading "S3 SR Slip-Resistant Steel-Toe Puncture-Resistant Antistatic Safety Shoes" [level=3] [ref=f1e360]
+                  - generic [ref=f1e361]: From $9.30
+                  - button "Add to Quote" [ref=f1e364]
+              - generic [ref=f1e366]:
+                - link [ref=f1e367] [cursor=pointer]:
+                  - /url: /products/mining-safety-helmet-headlamp-mount
+                  - img "Mining Safety Helmet with Headlamp Mount" [ref=f1e370]
+                - generic [ref=f1e372]:
+                  - generic [ref=f1e373]: Safety Helmets
+                  - link [ref=f1e378] [cursor=pointer]:
+                    - /url: /products/mining-safety-helmet-headlamp-mount
+                    - heading "Mining Safety Helmet with Headlamp Mount" [level=3] [ref=f1e379]
+                  - generic [ref=f1e380]: $1.60
+                  - button "Add to Quote" [ref=f1e383]
+            - navigation "Pagination, 84 total items" [ref=f1e385]:
+              - button "Previous page unavailable" [disabled]
+              - generic [ref=f1e386]:
+                - link "Page 1, current page" [ref=f1e387] [cursor=pointer]:
+                  - /url: /products
+                  - text: "1"
+                - link "Go to page 2" [ref=f1e388] [cursor=pointer]:
+                  - /url: /products?page=2
+                  - text: "2"
+                - link "Go to page 3" [ref=f1e389] [cursor=pointer]:
+                  - /url: /products?page=3
+                  - text: "3"
+                - link "Go to page 4" [ref=f1e390] [cursor=pointer]:
+                  - /url: /products?page=4
+                  - text: "4"
+                - link "Go to page 5" [ref=f1e391] [cursor=pointer]:
+                  - /url: /products?page=5
+                  - text: "5"
+                - link "Go to page 6" [ref=f1e392] [cursor=pointer]:
+                  - /url: /products?page=6
+                  - text: "6"
+                - link "Go to page 7" [ref=f1e393] [cursor=pointer]:
+                  - /url: /products?page=7
+                  - text: "7"
+              - link "Go to next page, page 2" [ref=f1e394] [cursor=pointer]:
+                - /url: /products?page=2
+    - contentinfo [ref=f1e395]:
+      - generic [ref=f1e396]:
+        - generic [ref=f1e397]:
+          - generic [ref=f1e398]:
+            - link "Laifappe homepage" [ref=f1e399] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f1e400]
+              - generic [ref=f1e401]:
+                - strong [ref=f1e402]: 粤来发劳保
+                - generic [ref=f1e403]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f1e404]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f1e405]:
+              - generic [ref=f1e406]: CE EN
+              - generic [ref=f1e407]: ISO 9001
+              - generic [ref=f1e408]: ANSI
+              - generic [ref=f1e409]: BSCI
+          - navigation "Footer products" [ref=f1e410]:
+            - heading "Products" [level=3] [ref=f1e411]
+            - link "Head Protection" [ref=f1e412] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f1e413] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f1e414] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f1e415] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f1e416] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f1e417] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f1e418]:
+            - heading "Solutions" [level=3] [ref=f1e419]
+            - link "Construction" [ref=f1e420] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f1e421] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f1e422] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f1e423] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f1e424] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f1e425] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f1e426]:
+            - heading "Company" [level=3] [ref=f1e427]
+            - link "About Us" [ref=f1e428] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f1e429] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f1e430] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f1e431] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f1e432] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f1e433]:
+            - heading "Contact Us" [level=3] [ref=f1e434]
+            - paragraph [ref=f1e435]: +86 180 2930 9938
+            - paragraph [ref=f1e439]: sales@laifappe.com
+            - paragraph [ref=f1e444]:
+              - generic [ref=f1e445]: W
+              - link "www.laifappe.com" [ref=f1e446] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f1e447]: Foshan, Guangdong, China
+        - generic [ref=f1e452]:
+          - generic [ref=f1e453]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f1e454]:
+            - link "Privacy Policy" [ref=f1e455] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f1e456] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f1e457] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - alert [ref=f1e458]

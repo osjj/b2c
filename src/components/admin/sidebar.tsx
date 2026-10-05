@@ -23,6 +23,7 @@ import {
   MailCheck,
   Newspaper,
   ReceiptText,
+  BriefcaseBusiness,
 } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -32,6 +33,7 @@ const menuItems = [
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/solutions", label: "Solutions", icon: Lightbulb },
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
+  { href: "/admin/cases", label: "Procurement Cases", icon: BriefcaseBusiness },
   { href: "/admin/categories", label: "Categories", icon: FolderTree },
   { href: "/admin/collections", label: "Collections", icon: Layers },
   { href: "/admin/attributes", label: "Attributes", icon: Tags },
@@ -51,13 +53,14 @@ interface SidebarProps {
 export function Sidebar({ quotationEnabled = false }: SidebarProps) {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
-  const visibleMenuItems = quotationEnabled
-    ? [
-        ...menuItems.slice(0, 9),
-        { href: "/admin/quotation-workbench", label: "Quote Workbench", icon: ReceiptText },
-        ...menuItems.slice(9),
-      ]
-    : menuItems
+  const visibleMenuItems = menuItems.flatMap((item) =>
+    quotationEnabled && item.href === "/admin/quotes"
+      ? [
+          item,
+          { href: "/admin/quotation-workbench", label: "Quote Workbench", icon: ReceiptText },
+        ]
+      : [item]
+  )
 
   return (
     <aside
@@ -94,8 +97,10 @@ export function Sidebar({ quotationEnabled = false }: SidebarProps) {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-label={item.label}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "flex items-center justify-center gap-3 rounded-lg px-2 py-2.5 text-sm transition-all duration-200 md:justify-start md:px-3",
+                  "flex min-h-11 items-center justify-center gap-3 rounded-lg px-2 py-2.5 text-sm transition-all duration-200 md:justify-start md:px-3",
                   isActive
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground",
@@ -143,6 +148,7 @@ export function Sidebar({ quotationEnabled = false }: SidebarProps) {
           variant="ghost"
           size="sm"
           onClick={() => setCollapsed(!collapsed)}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn("w-full", collapsed && "px-2")}
         >
           {collapsed ? (

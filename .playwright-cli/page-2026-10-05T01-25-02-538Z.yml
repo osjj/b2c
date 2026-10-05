@@ -1,0 +1,327 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - generic [ref=f3e4]:
+      - generic [ref=f3e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f3e8]:
+        - link "sales@laifappe.com" [ref=f3e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f3e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f3e11]: EN
+    - banner [ref=f3e13]:
+      - generic [ref=f3e14]:
+        - link "Laifappe homepage" [ref=f3e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f3e16]
+          - generic [ref=f3e17]:
+            - strong [ref=f3e18]: 粤来发劳保
+            - generic [ref=f3e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f3e20]:
+          - link "Home" [ref=f3e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f3e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f3e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f3e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f3e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f3e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f3e27]:
+          - link "Email" [ref=f3e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f3e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f3e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f3e41]: →
+    - main [ref=f3e42]:
+      - generic [ref=f3e43]:
+        - navigation [ref=f3e45]:
+          - link "Home" [ref=f3e46] [cursor=pointer]:
+            - /url: /
+          - link "Categories" [ref=f3e49] [cursor=pointer]:
+            - /url: /categories
+          - link "Head Protection" [ref=f3e52] [cursor=pointer]:
+            - /url: /categories/head-protection
+          - generic [ref=f3e55]: Safety Helmets
+        - generic [ref=f3e58]:
+          - paragraph [ref=f3e59]: Hard hats and helmets
+          - heading "Safety Helmets" [level=1] [ref=f3e60]
+          - paragraph [ref=f3e61]: Hard hats and industrial safety helmets for impact protection
+        - generic [ref=f3e62]:
+          - paragraph [ref=f3e64]: Showing 6 of 6 products
+          - generic [ref=f3e65]:
+            - generic [ref=f3e67]:
+              - link [ref=f3e68] [cursor=pointer]:
+                - /url: /products/mining-safety-helmet-headlamp-mount
+                - img "Mining Safety Helmet with Headlamp Mount" [ref=f3e71]
+              - generic [ref=f3e73]:
+                - generic [ref=f3e74]: Safety Helmets
+                - link [ref=f3e79] [cursor=pointer]:
+                  - /url: /products/mining-safety-helmet-headlamp-mount
+                  - heading "Mining Safety Helmet with Headlamp Mount" [level=3] [ref=f3e80]
+                - generic [ref=f3e81]: $1.60
+                - button "Add to Quote" [ref=f3e84]
+            - generic [ref=f3e86]:
+              - link [ref=f3e87] [cursor=pointer]:
+                - /url: /products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6
+                - img "HDPE Safety Helmet with Chin Strap, Slider-Adjustable, 6-Point" [ref=f3e90]
+              - generic [ref=f3e92]:
+                - generic [ref=f3e93]: Safety Helmets
+                - link [ref=f3e98] [cursor=pointer]:
+                  - /url: /products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6
+                  - heading "HDPE Safety Helmet with Chin Strap, Slider-Adjustable, 6-Point" [level=3] [ref=f3e99]
+                - generic [ref=f3e100]: From $1.25
+                - button "Add to Quote" [ref=f3e103]
+            - generic [ref=f3e105]:
+              - link [ref=f3e106] [cursor=pointer]:
+                - /url: /products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit
+                - img "Green ABS Vented Safety Helmet, CE EN397/ANSI, Ratchet Fit" [ref=f3e109]
+              - generic [ref=f3e111]:
+                - generic [ref=f3e112]: Safety Helmets
+                - link [ref=f3e117] [cursor=pointer]:
+                  - /url: /products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit
+                  - heading "Green ABS Vented Safety Helmet, CE EN397/ANSI, Ratchet Fit" [level=3] [ref=f3e118]
+                - generic [ref=f3e119]: $2.70
+                - button "Add to Quote" [ref=f3e122]
+            - generic [ref=f3e124]:
+              - link [ref=f3e125] [cursor=pointer]:
+                - /url: /products/en397-abs-safety-helmet-with-6-point-suspension
+                - img "EN397 ABS Safety Helmet with 6-Point Suspension & Ratchet Adjustment" [ref=f3e128]
+              - generic [ref=f3e130]:
+                - generic [ref=f3e131]: Safety Helmets
+                - link [ref=f3e136] [cursor=pointer]:
+                  - /url: /products/en397-abs-safety-helmet-with-6-point-suspension
+                  - heading "EN397 ABS Safety Helmet with 6-Point Suspension & Ratchet Adjustment" [level=3] [ref=f3e137]
+                - generic [ref=f3e138]: $2.60
+                - button "Add to Quote" [ref=f3e141]
+            - generic [ref=f3e143]:
+              - link [ref=f3e144] [cursor=pointer]:
+                - /url: /products/ce-en397-abs-safety-helmet-with-switchable-vents-slotted
+                - img "CE EN397 ABS Safety Helmet with Switchable Vents, Slotted, Yellow" [ref=f3e147]
+              - generic [ref=f3e149]:
+                - generic [ref=f3e150]: Safety Helmets
+                - link [ref=f3e155] [cursor=pointer]:
+                  - /url: /products/ce-en397-abs-safety-helmet-with-switchable-vents-slotted
+                  - heading "CE EN397 ABS Safety Helmet with Switchable Vents, Slotted, Yellow" [level=3] [ref=f3e156]
+                - generic [ref=f3e157]: From $2.65
+                - button "Add to Quote" [ref=f3e160]
+            - generic [ref=f3e162]:
+              - link "Industrial White Fiberglass Reinforced Plastic (FRP) Safety Helmet HOT -22%" [ref=f3e163] [cursor=pointer]:
+                - /url: /products/industrial-white-fiberglass-reinforced-plastic-frp-safety
+                - generic [ref=f3e164]:
+                  - img "Industrial White Fiberglass Reinforced Plastic (FRP) Safety Helmet" [ref=f3e166]
+                  - generic [ref=f3e168]:
+                    - generic [ref=f3e169]: HOT
+                    - generic [ref=f3e172]: "-22%"
+              - generic [ref=f3e173]:
+                - generic [ref=f3e174]: Safety Helmets
+                - link [ref=f3e179] [cursor=pointer]:
+                  - /url: /products/industrial-white-fiberglass-reinforced-plastic-frp-safety
+                  - heading "Industrial White Fiberglass Reinforced Plastic (FRP) Safety Helmet" [level=3] [ref=f3e180]
+                - generic [ref=f3e181]: From $18.50
+                - button "Add to Quote" [ref=f3e184]
+          - generic [ref=f3e186]:
+            - generic [ref=f3e187]:
+              - generic [ref=f3e188]:
+                - generic [ref=f3e189]:
+                  - paragraph [ref=f3e190]: Hard hats and helmets
+                  - heading "Safety helmets are the core product family inside head protection" [level=2] [ref=f3e191]
+                - generic [ref=f3e192]:
+                  - paragraph [ref=f3e193]: Safety helmets usually dominate head protection demand because buyers often know they need hard hats or industrial helmets before they evaluate the rest of the PPE kit.
+                  - paragraph [ref=f3e194]: The products in this range are most often compared through shell type, suspension, ventilation, and accessory compatibility.
+              - complementary [ref=f3e195]:
+                - generic [ref=f3e200]:
+                  - paragraph [ref=f3e201]: Catalog depth
+                  - paragraph [ref=f3e202]: 6 products currently listed in this category
+                - generic [ref=f3e208]:
+                  - paragraph [ref=f3e209]: Navigation strength
+                  - paragraph [ref=f3e210]: Focused page targeting with direct product and FAQ content
+                - generic [ref=f3e211]:
+                  - text: This category sits inside
+                  - link "Head Protection" [ref=f3e212] [cursor=pointer]:
+                    - /url: /categories/head-protection
+                  - text: so buyers can move back to the broader range when they want to compare nearby product families.
+            - generic [ref=f3e213]:
+              - generic [ref=f3e214]:
+                - heading "How to choose safety helmets" [level=2] [ref=f3e215]
+                - list [ref=f3e216]:
+                  - listitem [ref=f3e217]:
+                    - generic [ref=f3e218]: "1"
+                    - paragraph [ref=f3e219]: Start with the work environment and required head protection level.
+                  - listitem [ref=f3e220]:
+                    - generic [ref=f3e221]: "2"
+                    - paragraph [ref=f3e222]: Compare shell construction, suspension design, and adjustment systems.
+                  - listitem [ref=f3e223]:
+                    - generic [ref=f3e224]: "3"
+                    - paragraph [ref=f3e225]: Check compatibility with visors, hearing protection, and chin straps if the helmet is part of a wider PPE setup.
+                  - listitem [ref=f3e226]:
+                    - generic [ref=f3e227]: "4"
+                    - paragraph [ref=f3e228]: Review comfort and ventilation for crews wearing helmets across full shifts.
+              - generic [ref=f3e229]:
+                - generic [ref=f3e230]:
+                  - heading "Typical safety helmet applications" [level=2] [ref=f3e231]
+                  - generic [ref=f3e232]:
+                    - generic [ref=f3e233]: Construction sites
+                    - generic [ref=f3e234]: Utilities work
+                    - generic [ref=f3e235]: Industrial plants
+                    - generic [ref=f3e236]: General contracting
+                - generic [ref=f3e237]:
+                  - heading "What buyers compare in safety helmets" [level=2] [ref=f3e238]
+                  - list [ref=f3e239]:
+                    - listitem [ref=f3e240]:
+                      - generic [ref=f3e244]: Shell design
+                    - listitem [ref=f3e245]:
+                      - generic [ref=f3e249]: Suspension system
+                    - listitem [ref=f3e250]:
+                      - generic [ref=f3e254]: Accessory options
+                    - listitem [ref=f3e255]:
+                      - generic [ref=f3e259]: Ventilation and comfort
+            - generic [ref=f3e260]:
+              - heading "Safety Helmets catalog signals" [level=2] [ref=f3e261]
+              - paragraph [ref=f3e262]: The products currently listed here share the following themes, which gives buyers a quicker summary of what shows up most often in this range.
+              - generic [ref=f3e263]: safety helmet coverage
+            - generic [ref=f3e265]:
+              - generic [ref=f3e272]:
+                - heading "Useful next paths" [level=2] [ref=f3e273]
+                - paragraph [ref=f3e274]: Use these links to move into the most relevant nearby categories, product pages, or the broader parent range when you need a wider comparison.
+              - generic [ref=f3e275]:
+                - generic [ref=f3e276]:
+                  - heading "Related categories" [level=3] [ref=f3e283]
+                  - generic [ref=f3e284]:
+                    - link [ref=f3e285] [cursor=pointer]:
+                      - /url: /categories/head-protection/bump-caps
+                      - generic [ref=f3e287]:
+                        - paragraph [ref=f3e288]: Explore Bump Caps in Head Protection
+                        - paragraph [ref=f3e289]: Follow this path to compare bump caps alongside the rest of the head protection range.
+                    - link [ref=f3e292] [cursor=pointer]:
+                      - /url: /categories/head-protection/face-shields
+                      - generic [ref=f3e294]:
+                        - paragraph [ref=f3e295]: Explore Face Shields in Head Protection
+                        - paragraph [ref=f3e296]: Follow this path to compare face shields alongside the rest of the head protection range.
+                    - link [ref=f3e299] [cursor=pointer]:
+                      - /url: /categories/head-protection/protective-hoods
+                      - generic [ref=f3e301]:
+                        - paragraph [ref=f3e302]: Explore Protective Hoods in Head Protection
+                        - paragraph [ref=f3e303]: Follow this path to compare protective hoods alongside the rest of the head protection range.
+                    - link [ref=f3e306] [cursor=pointer]:
+                      - /url: /categories/head-protection/hearing-protection
+                      - generic [ref=f3e308]:
+                        - paragraph [ref=f3e309]: Explore Hearing Protection in Head Protection
+                        - paragraph [ref=f3e310]: Follow this path to compare hearing protection alongside the rest of the head protection range.
+                - generic [ref=f3e313]:
+                  - heading "Popular products" [level=3] [ref=f3e318]
+                  - generic [ref=f3e319]:
+                    - link [ref=f3e320] [cursor=pointer]:
+                      - /url: /products/mining-safety-helmet-headlamp-mount
+                      - generic [ref=f3e322]:
+                        - paragraph [ref=f3e323]: View Mining Safety Helmet with Headlamp Mount
+                        - paragraph [ref=f3e324]: Open the product page to review specifications, images, and use details for this item.
+                    - link [ref=f3e327] [cursor=pointer]:
+                      - /url: /products/hdpe-safety-helmet-with-chin-strap-slider-adjustable-6
+                      - generic [ref=f3e329]:
+                        - paragraph [ref=f3e330]: View HDPE Safety Helmet with Chin Strap, Slider-Adjustable, 6-Point
+                        - paragraph [ref=f3e331]: Open the product page to review specifications, images, and use details for this item.
+                    - link [ref=f3e334] [cursor=pointer]:
+                      - /url: /products/green-abs-vented-safety-helmet-ce-en397-ansi-ratchet-fit
+                      - generic [ref=f3e336]:
+                        - paragraph [ref=f3e337]: View Green ABS Vented Safety Helmet, CE EN397/ANSI, Ratchet Fit
+                        - paragraph [ref=f3e338]: Open the product page to review specifications, images, and use details for this item.
+                    - link [ref=f3e341] [cursor=pointer]:
+                      - /url: /products/en397-abs-safety-helmet-with-6-point-suspension
+                      - generic [ref=f3e343]:
+                        - paragraph [ref=f3e344]: View EN397 ABS Safety Helmet with 6-Point Suspension & Ratchet Adjustment
+                        - paragraph [ref=f3e345]: Open the product page to review specifications, images, and use details for this item.
+                - generic [ref=f3e348]:
+                  - heading "Parent category" [level=3] [ref=f3e354]
+                  - link [ref=f3e356] [cursor=pointer]:
+                    - /url: /categories/head-protection
+                    - generic [ref=f3e358]:
+                      - paragraph [ref=f3e359]: Return to Head Protection
+                      - paragraph [ref=f3e360]: Use the parent category to understand how safety helmets fits into the broader head protection architecture.
+            - generic [ref=f3e363]:
+              - heading "Safety helmets FAQ" [level=2] [ref=f3e368]
+              - generic [ref=f3e369]:
+                - group [ref=f3e370]:
+                  - generic "Why should safety helmets have a dedicated subcategory page?" [ref=f3e371] [cursor=pointer]
+                - group [ref=f3e372]:
+                  - generic "What product features usually matter most on safety helmet pages?" [ref=f3e373] [cursor=pointer]
+                - group [ref=f3e374]:
+                  - generic "Why compare safety helmets separately from the broader head protection range?" [ref=f3e375] [cursor=pointer]
+    - contentinfo [ref=f3e376]:
+      - generic [ref=f3e377]:
+        - generic [ref=f3e378]:
+          - generic [ref=f3e379]:
+            - link "Laifappe homepage" [ref=f3e380] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f3e381]
+              - generic [ref=f3e382]:
+                - strong [ref=f3e383]: 粤来发劳保
+                - generic [ref=f3e384]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f3e385]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f3e386]:
+              - generic [ref=f3e387]: CE EN
+              - generic [ref=f3e388]: ISO 9001
+              - generic [ref=f3e389]: ANSI
+              - generic [ref=f3e390]: BSCI
+          - navigation "Footer products" [ref=f3e391]:
+            - heading "Products" [level=3] [ref=f3e392]
+            - link "Head Protection" [ref=f3e393] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f3e394] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f3e395] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f3e396] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f3e397] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f3e398] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f3e399]:
+            - heading "Solutions" [level=3] [ref=f3e400]
+            - link "Construction" [ref=f3e401] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f3e402] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f3e403] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f3e404] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f3e405] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f3e406] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f3e407]:
+            - heading "Company" [level=3] [ref=f3e408]
+            - link "About Us" [ref=f3e409] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f3e410] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f3e411] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f3e412] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f3e413] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f3e414]:
+            - heading "Contact Us" [level=3] [ref=f3e415]
+            - paragraph [ref=f3e416]: +86 180 2930 9938
+            - paragraph [ref=f3e420]: sales@laifappe.com
+            - paragraph [ref=f3e425]:
+              - generic [ref=f3e426]: W
+              - link "www.laifappe.com" [ref=f3e427] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f3e428]: Foshan, Guangdong, China
+        - generic [ref=f3e433]:
+          - generic [ref=f3e434]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f3e435]:
+            - link "Privacy Policy" [ref=f3e436] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f3e437] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f3e438] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - alert [ref=f3e439]

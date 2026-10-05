@@ -1,0 +1,1057 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - generic [ref=f2e4]:
+      - generic [ref=f2e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f2e8]:
+        - link "sales@laifappe.com" [ref=f2e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f2e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f2e11]: EN
+    - banner [ref=f2e13]:
+      - generic [ref=f2e14]:
+        - link "Laifappe homepage" [ref=f2e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f2e16]
+          - generic [ref=f2e17]:
+            - strong [ref=f2e18]: 粤来发劳保
+            - generic [ref=f2e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f2e20]:
+          - link "Home" [ref=f2e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f2e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f2e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f2e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f2e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f2e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f2e27]:
+          - link "Email" [ref=f2e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f2e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f2e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f2e41]: →
+    - main [ref=f2e42]:
+      - generic [ref=f2e43]:
+        - navigation [ref=f2e44]:
+          - list [ref=f2e45]:
+            - listitem [ref=f2e46]:
+              - link [ref=f2e47] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f2e53]:
+              - link "Solutions" [ref=f2e54] [cursor=pointer]:
+                - /url: /solutions
+            - listitem [ref=f2e57]: Complete PPE Solution for Construction Sites
+        - generic [ref=f2e58]:
+          - img "Complete PPE Solution for Construction Sites" [ref=f2e59]
+          - generic [ref=f2e62]:
+            - generic [ref=f2e63]:
+              - generic [ref=f2e64]:
+                - generic [ref=f2e65]: Basic Information
+                - generic [ref=f2e66]: Construction · Height Work +9
+              - heading "Complete PPE Solution for Construction Sites" [level=1] [ref=f2e70]
+              - paragraph [ref=f2e71]: A complete construction PPE guide for site managers, safety officers, and procurement teams covering OSHA requirements, CE and EN standards, core hazard controls, and bulk sourcing decisions.
+            - img "Complete PPE Solution for Construction Sites" [ref=f2e74]
+        - generic [ref=f2e77]:
+          - complementary [ref=f2e78]:
+            - navigation [ref=f2e79]:
+              - generic [ref=f2e80]:
+                - heading "On This Page" [level=3] [ref=f2e81]
+                - generic [ref=f2e82]: 14 sections
+              - list [ref=f2e83]:
+                - listitem [ref=f2e84]:
+                  - button "What PPE does a modern construction site need?" [ref=f2e85] [cursor=pointer]
+                - listitem [ref=f2e88]:
+                  - button "Construction PPE guide map" [ref=f2e89] [cursor=pointer]
+                - listitem [ref=f2e92]:
+                  - button "Construction hazard landscape and PPE focus" [ref=f2e93] [cursor=pointer]
+                - listitem [ref=f2e96]:
+                  - button "OSHA construction PPE requirements and the 2025 fit rule" [ref=f2e97] [cursor=pointer]
+                - listitem [ref=f2e100]:
+                  - 'button "Construction PPE standards: OSHA, ANSI, and EN at a glance" [ref=f2e101] [cursor=pointer]'
+                - listitem [ref=f2e104]:
+                  - button "Core PPE categories every construction program should define" [ref=f2e105] [cursor=pointer]
+                - listitem [ref=f2e108]:
+                  - button "Specialist construction PPE categories that drive procurement errors" [ref=f2e109] [cursor=pointer]
+                - listitem [ref=f2e112]:
+                  - button "Hazard-to-PPE quick reference for site setup" [ref=f2e113] [cursor=pointer]
+                - listitem [ref=f2e116]:
+                  - button "Recommended PPE products for construction projects" [ref=f2e117] [cursor=pointer]
+                - listitem [ref=f2e120]:
+                  - button "PPE procurement guidance for contractors and distributors" [ref=f2e121] [cursor=pointer]
+                - listitem [ref=f2e124]:
+                  - button "Construction PPE resources" [ref=f2e125] [cursor=pointer]
+                - listitem [ref=f2e128]:
+                  - button "Browse construction PPE by category" [ref=f2e129] [cursor=pointer]
+                - listitem [ref=f2e132]:
+                  - button "Frequently asked questions" [ref=f2e133] [cursor=pointer]
+                - listitem [ref=f2e136]:
+                  - button "Source certified construction PPE at project scale" [ref=f2e137] [cursor=pointer]
+          - generic [ref=f2e140]:
+            - generic [ref=f2e141]:
+              - generic [ref=f2e143]:
+                - heading "What PPE does a modern construction site need?" [level=2] [ref=f2e144]
+                - generic [ref=f2e145]:
+                  - paragraph [ref=f2e146]: Construction remains one of the highest-risk private industries in the United States. The right PPE does not remove every hazard on site, but it is the last critical barrier between a worker and a life-changing injury when engineering controls, planning, and supervision are not enough. This pillar guide gives site managers, safety officers, and procurement teams one reference point for hazard mapping, OSHA compliance, EN and CE alignment, and category-by-category PPE selection.
+                  - list [ref=f2e147]:
+                    - listitem [ref=f2e148]:
+                      - generic [ref=f2e150]: Fall arrest systems for work at height
+                    - listitem [ref=f2e151]:
+                      - generic [ref=f2e153]: Hard hats selected by impact and electrical class
+                    - listitem [ref=f2e154]:
+                      - generic [ref=f2e156]: High-visibility garments for vehicle and plant traffic
+                    - listitem [ref=f2e157]:
+                      - generic [ref=f2e159]: Eye, face, hearing, and respiratory protection matched to the task
+                    - listitem [ref=f2e160]:
+                      - generic [ref=f2e162]: Gloves and footwear selected by cut, puncture, crush, and slip risk
+                    - listitem [ref=f2e163]:
+                      - generic [ref=f2e165]: Bulk procurement planning with fit, certification, and replacement cycles built in
+              - generic [ref=f2e168]:
+                - paragraph [ref=f2e169]: The Fatal Four hazards - falls, struck-by incidents, caught-in or between incidents, and electrocution - still dominate construction injuries and deaths. Respiratory dust, long-term noise exposure, chemical contact, and weather-driven slip hazards add another layer of daily risk that PPE programs have to address.
+                - paragraph [ref=f2e170]: Use this page as the top-level construction PPE reference, then branch into the related sub-trade solution pages and category pages linked below when a project needs more trade-specific detail.
+              - generic [ref=f2e172]:
+                - heading "Construction PPE guide map" [level=2] [ref=f2e173]
+                - generic [ref=f2e174]:
+                  - generic [ref=f2e175]:
+                    - heading "Guide" [level=3] [ref=f2e176]
+                    - paragraph [ref=f2e177]: Use these pages when a buyer needs the whole construction PPE path before narrowing by role or hazard.
+                    - list [ref=f2e178]:
+                      - listitem [ref=f2e179]:
+                        - link "Complete construction PPE solution" [ref=f2e182] [cursor=pointer]:
+                          - /url: /solutions/construction-site-ppe-solution
+                      - listitem [ref=f2e183]:
+                        - link "Construction PPE checklist" [ref=f2e186] [cursor=pointer]:
+                          - /url: /blog/construction-ppe-checklist
+                      - listitem [ref=f2e187]:
+                        - link "Contractor PPE kit checklist" [ref=f2e190] [cursor=pointer]:
+                          - /url: /blog/contractor-ppe-kit-checklist
+                  - generic [ref=f2e191]:
+                    - heading "Compliance" [level=3] [ref=f2e192]
+                    - paragraph [ref=f2e193]: Use these pages when the buyer needs OSHA, fit, training, hazard assessment, and inspection logic.
+                    - list [ref=f2e194]:
+                      - listitem [ref=f2e195]:
+                        - link "OSHA PPE requirements for construction" [ref=f2e198] [cursor=pointer]:
+                          - /url: /blog/osha-ppe-requirements-construction
+                      - listitem [ref=f2e199]:
+                        - link "Respiratory protection for construction" [ref=f2e202] [cursor=pointer]:
+                          - /url: /blog/construction-respiratory-protection
+                      - listitem [ref=f2e203]:
+                        - link "Construction PPE checklist PDF" [ref=f2e206] [cursor=pointer]:
+                          - /url: /downloads/construction-ppe-checklist.pdf
+                  - generic [ref=f2e207]:
+                    - heading "Procurement" [level=3] [ref=f2e208]
+                    - paragraph [ref=f2e209]: Use these pages and templates when the buyer is moving from specification to RFQ, sizes, and repeat ordering.
+                    - list [ref=f2e210]:
+                      - listitem [ref=f2e211]:
+                        - link "Bulk construction PPE procurement guide" [ref=f2e214] [cursor=pointer]:
+                          - /url: /blog/bulk-construction-ppe-procurement
+                      - listitem [ref=f2e215]:
+                        - link "Contractor PPE supplier bulk checklist" [ref=f2e218] [cursor=pointer]:
+                          - /url: /blog/contractor-ppe-supplier-bulk-checklist
+                      - listitem [ref=f2e219]:
+                        - link "Construction PPE RFQ Template" [ref=f2e222] [cursor=pointer]:
+                          - /url: /downloads/construction-ppe-rfq-template
+                      - listitem [ref=f2e223]:
+                        - link "PPE Size & Standards Planning Sheet" [ref=f2e226] [cursor=pointer]:
+                          - /url: /downloads/ppe-size-standards-planning-sheet.xlsx
+                  - generic [ref=f2e227]:
+                    - heading "Height" [level=3] [ref=f2e228]
+                    - paragraph [ref=f2e229]: Use these pages when falls, scaffolds, helmet retention, dropped tools, or elevated platforms control the PPE mix.
+                    - list [ref=f2e230]:
+                      - listitem [ref=f2e231]:
+                        - link "Fall protection PPE for construction sites" [ref=f2e234] [cursor=pointer]:
+                          - /url: /solutions/fall-protection-construction
+                      - listitem [ref=f2e235]:
+                        - link "PPE for scaffolding and elevated platforms" [ref=f2e238] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+                      - listitem [ref=f2e239]:
+                        - link "Scaffolding PPE checklist" [ref=f2e242] [cursor=pointer]:
+                          - /url: /blog/scaffolding-ppe-checklist
+                      - listitem [ref=f2e243]:
+                        - link "Types of hard hats for construction" [ref=f2e246] [cursor=pointer]:
+                          - /url: /blog/construction-hard-hat-types
+                      - listitem [ref=f2e247]:
+                        - link "Type 1 vs Type 2 hard hats" [ref=f2e250] [cursor=pointer]:
+                          - /url: /blog/type-1-vs-type-2-hard-hats
+                      - listitem [ref=f2e251]:
+                        - link "Class E vs Class G vs Class C hard hats" [ref=f2e254] [cursor=pointer]:
+                          - /url: /blog/class-e-vs-class-g-vs-class-c-hard-hats
+                      - listitem [ref=f2e255]:
+                        - link "Vented vs non-vented hard hats" [ref=f2e258] [cursor=pointer]:
+                          - /url: /blog/vented-vs-non-vented-hard-hats-construction
+                      - listitem [ref=f2e259]:
+                        - link "Full brim vs cap style hard hats" [ref=f2e262] [cursor=pointer]:
+                          - /url: /blog/full-brim-vs-cap-style-hard-hats-construction
+                      - listitem [ref=f2e263]:
+                        - link "Hard hat color codes on construction sites" [ref=f2e266] [cursor=pointer]:
+                          - /url: /blog/hard-hat-color-codes-construction-sites
+                      - listitem [ref=f2e267]:
+                        - link "Hard Hat Class Decoder" [ref=f2e270] [cursor=pointer]:
+                          - /url: /tools/hard-hat-class-decoder
+                      - listitem [ref=f2e271]:
+                        - link "Safety helmet vs hard hat comparison" [ref=f2e274] [cursor=pointer]:
+                          - /url: /blog/construction-safety-helmet-vs-hard-hat
+                  - generic [ref=f2e275]:
+                    - heading "Exposure" [level=3] [ref=f2e276]
+                    - paragraph [ref=f2e277]: Use these pages when traffic, dust, noise, night work, weather, heat, or impact exposure drives product selection.
+                    - list [ref=f2e278]:
+                      - listitem [ref=f2e279]:
+                        - link "PPE for road and bridge construction projects" [ref=f2e282] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-road-and-bridge-construction-projects
+                      - listitem [ref=f2e283]:
+                        - link "Night construction and low-visibility PPE" [ref=f2e286] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-night-construction-and-low-visibility-work
+                      - listitem [ref=f2e287]:
+                        - link "PPE for demolition and concrete cutting work" [ref=f2e290] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-demolition-and-concrete-cutting-work
+                      - listitem [ref=f2e291]:
+                        - link "High-visibility clothing for construction" [ref=f2e294] [cursor=pointer]:
+                          - /url: /blog/high-visibility-clothing-construction
+                      - listitem [ref=f2e295]:
+                        - link "Eye and face protection for construction" [ref=f2e298] [cursor=pointer]:
+                          - /url: /blog/construction-eye-face-protection
+                      - listitem [ref=f2e299]:
+                        - link "Hearing protection for construction" [ref=f2e302] [cursor=pointer]:
+                          - /url: /blog/construction-hearing-protection
+                      - listitem [ref=f2e303]:
+                        - link "Heat stress PPE for construction workers" [ref=f2e306] [cursor=pointer]:
+                          - /url: /blog/heat-stress-ppe-construction-workers
+                  - generic [ref=f2e307]:
+                    - heading "Role Kits" [level=3] [ref=f2e308]
+                    - paragraph [ref=f2e309]: Use these pages when the buyer needs trade, operator, or task-specific kit logic.
+                    - list [ref=f2e310]:
+                      - listitem [ref=f2e311]:
+                        - link "Heavy equipment operator PPE checklist" [ref=f2e314] [cursor=pointer]:
+                          - /url: /blog/heavy-equipment-operator-ppe-checklist
+                      - listitem [ref=f2e315]:
+                        - link "PPE for heavy equipment operators" [ref=f2e318] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-heavy-equipment-operators-on-construction-sites
+                      - listitem [ref=f2e319]:
+                        - link "Trenching and excavation PPE checklist" [ref=f2e322] [cursor=pointer]:
+                          - /url: /blog/trenching-excavation-ppe-checklist
+                      - listitem [ref=f2e323]:
+                        - link "PPE for electrical installation on construction sites" [ref=f2e326] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-electrical-installation-on-construction-sites
+                      - listitem [ref=f2e327]:
+                        - link "Construction gloves selection guide" [ref=f2e330] [cursor=pointer]:
+                          - /url: /blog/construction-gloves-selection-guide
+                      - listitem [ref=f2e331]:
+                        - link "Construction safety footwear guide" [ref=f2e334] [cursor=pointer]:
+                          - /url: /blog/construction-safety-footwear-guide
+              - generic [ref=f2e336]:
+                - heading "Construction hazard landscape and PPE focus" [level=2] [ref=f2e337]
+                - table [ref=f2e339]:
+                  - rowgroup [ref=f2e340]:
+                    - row [ref=f2e341]:
+                      - columnheader "Hazard" [ref=f2e342]
+                      - columnheader "Why it matters" [ref=f2e343]
+                      - columnheader "Primary PPE response" [ref=f2e344]
+                  - rowgroup [ref=f2e345]:
+                    - row [ref=f2e346]:
+                      - cell "Falls from roofs, edges, ladders, and scaffolds" [ref=f2e347]
+                      - cell "Falls remain the leading cause of construction fatalities and serious injuries." [ref=f2e348]
+                      - cell "Full body harness, lanyard or SRL, helmet with chin strap, anti-slip footwear" [ref=f2e349]
+                    - row [ref=f2e350]:
+                      - cell "Struck-by tools, loads, vehicles, and moving plant" [ref=f2e351]
+                      - cell "Flying or falling objects and site traffic create constant impact exposure." [ref=f2e352]
+                      - cell "Hard hats, high-visibility garments, safety glasses, protective footwear" [ref=f2e353]
+                    - row [ref=f2e354]:
+                      - cell "Caught-in or between hazards" [ref=f2e355]
+                      - cell "Workers can be pinned by machinery, walls, trenches, or shifting materials." [ref=f2e356]
+                      - cell "Close-fitting workwear, gloves matched to the task, reinforced footwear" [ref=f2e357]
+                    - row [ref=f2e358]:
+                      - cell "Electrocution and arc exposure" [ref=f2e359]
+                      - cell "Overhead lines, temporary wiring, and energized equipment create lethal contact risk." [ref=f2e360]
+                      - cell "Class E helmets, insulating gloves, dielectric boots, arc-rated clothing" [ref=f2e361]
+                    - row [ref=f2e362]:
+                      - cell "Silica dust, demolition dust, fumes, and vapors" [ref=f2e363]
+                      - cell "Concrete cutting, drilling, welding, and coatings expose workers to harmful airborne contaminants." [ref=f2e364]
+                      - cell "Respirator selected from the contaminant, engineering controls, OSHA silica Table 1 or measured exposure, required protection factor, fit, and applicable NIOSH approval or EN/CE conformity; sealed eye protection where required" [ref=f2e365]
+                    - row [ref=f2e366]:
+                      - cell "High noise from jackhammers, saws, drills, and grinders" [ref=f2e367]
+                      - cell "Chronic exposure above safe thresholds leads to permanent hearing loss." [ref=f2e368]
+                      - cell "Earplugs, earmuffs, or dual hearing protection" [ref=f2e369]
+                    - row [ref=f2e370]:
+                      - cell "Wet ground, mud, and uneven terrain" [ref=f2e371]
+                      - cell "Slip risk increases around rain, fresh concrete, ramps, and unfinished surfaces." [ref=f2e372]
+                      - cell "Slip-resistant footwear, waterproof boots, grip gloves, weather-ready workwear" [ref=f2e373]
+              - generic [ref=f2e375]:
+                - heading "OSHA construction PPE requirements and the 2025 fit rule" [level=2] [ref=f2e376]
+                - generic [ref=f2e377]:
+                  - paragraph [ref=f2e378]: Construction PPE obligations sit mainly under 29 CFR 1926 Subpart E, with 29 CFR 1926.95 requiring employers to assess hazards, provide the right PPE, keep it in reliable condition, and train workers on fit, use, limits, and care.
+                  - paragraph [ref=f2e379]: "The January 13, 2025 update to 29 CFR 1926.95(c) makes proper fit explicit. That matters operationally: oversized harnesses do not arrest falls correctly, loose goggles leak dust and debris, gloves that are too long can snag in equipment, and one-size bulk buying is no longer a defensible default."
+                  - paragraph [ref=f2e380]: For multi-site contractors, the fit rule changes procurement behavior. Size ranges, wearer records, and replacement planning need to be part of the PPE program, not an afterthought after site delivery.
+              - generic [ref=f2e382]:
+                - 'heading "Construction PPE standards: OSHA, ANSI, and EN at a glance" [level=2] [ref=f2e383]'
+                - table [ref=f2e385]:
+                  - rowgroup [ref=f2e386]:
+                    - row [ref=f2e387]:
+                      - columnheader "PPE category" [ref=f2e388]
+                      - columnheader "US standard" [ref=f2e389]
+                      - columnheader "EU and EN equivalent" [ref=f2e390]
+                  - rowgroup [ref=f2e391]:
+                    - row [ref=f2e392]:
+                      - cell "Head protection" [ref=f2e393]
+                      - cell "29 CFR 1926.100 with ANSI Z89.1" [ref=f2e394]
+                      - cell "EN 397 and EN 12492 depending on the helmet design" [ref=f2e395]
+                    - row [ref=f2e396]:
+                      - cell "Eye and face protection" [ref=f2e397]
+                      - cell "29 CFR 1926.102 with ANSI Z87.1" [ref=f2e398]
+                      - cell "EN 166 and EN 175 for welding applications" [ref=f2e399]
+                    - row [ref=f2e400]:
+                      - cell "Hearing protection" [ref=f2e401]
+                      - cell "29 CFR 1926.101 with ANSI noise ratings" [ref=f2e402]
+                      - cell "EN 352 series with SNR values" [ref=f2e403]
+                    - row [ref=f2e404]:
+                      - cell "Respiratory protection" [ref=f2e405]
+                      - cell "29 CFR 1926.103 and 1910.134 with NIOSH approval" [ref=f2e406]
+                      - cell "EN 149, EN 140, and EN 136" [ref=f2e407]
+                    - row [ref=f2e408]:
+                      - cell "Hand protection" [ref=f2e409]
+                      - cell "29 CFR 1926.28 with ANSI ISEA 105 references" [ref=f2e410]
+                      - cell "EN 388, EN 374, and EN 407" [ref=f2e411]
+                    - row [ref=f2e412]:
+                      - cell "Safety footwear" [ref=f2e413]
+                      - cell "29 CFR 1926.96 with ASTM F2413" [ref=f2e414]
+                      - cell "EN ISO 20345" [ref=f2e415]
+                    - row [ref=f2e416]:
+                      - cell "Fall protection equipment" [ref=f2e417]
+                      - cell "29 CFR 1926 Subpart M with ANSI Z359 family" [ref=f2e418]
+                      - cell "EN 361, EN 354, EN 355, EN 360, and EN 795" [ref=f2e419]
+                    - row [ref=f2e420]:
+                      - cell "High-visibility clothing" [ref=f2e421]
+                      - cell "ANSI ISEA 107" [ref=f2e422]
+                      - cell "EN ISO 20471" [ref=f2e423]
+              - generic [ref=f2e425]:
+                - heading "Core PPE categories every construction program should define" [level=2] [ref=f2e426]
+                - generic [ref=f2e427]:
+                  - generic [ref=f2e428]:
+                    - heading "Fall protection" [level=3] [ref=f2e429]
+                    - paragraph [ref=f2e430]: Required whenever workers operate at exposed edges, on scaffolds, roofs, platforms, ladders, or any location where a fall can occur.
+                    - list [ref=f2e431]:
+                      - listitem [ref=f2e432]:
+                        - generic [ref=f2e434]: Full body harness sized to the wearer
+                      - listitem [ref=f2e435]:
+                        - generic [ref=f2e437]: Shock-absorbing lanyard or self-retracting lifeline
+                      - listitem [ref=f2e438]:
+                        - generic [ref=f2e440]: Anchor devices and connectors matched to the system
+                      - listitem [ref=f2e441]:
+                        - generic [ref=f2e443]: Pre-use inspection and immediate removal after any fall arrest
+                  - generic [ref=f2e444]:
+                    - heading "Head protection" [level=3] [ref=f2e445]
+                    - paragraph [ref=f2e446]: Hard hats remain mandatory wherever overhead impact, side impact, or electrical contact risk exists.
+                    - list [ref=f2e447]:
+                      - listitem [ref=f2e448]:
+                        - generic [ref=f2e450]: Choose Type I or Type II by impact exposure
+                      - listitem [ref=f2e451]:
+                        - generic [ref=f2e453]: Use Class E where electrical contact is possible
+                      - listitem [ref=f2e454]:
+                        - generic [ref=f2e456]: Check shell age, suspension condition, and visible damage before reuse
+                      - listitem [ref=f2e457]:
+                        - generic [ref=f2e459]: Use chin straps where climbing or high-wind movement makes retention critical
+                      - listitem [ref=f2e460]:
+                        - generic [ref=f2e462]:
+                          - text: Use the
+                          - link "types of hard hats for construction guide" [ref=f2e463] [cursor=pointer]:
+                            - /url: /blog/construction-hard-hat-types
+                          - text: for Type I vs Type II, Class G/E/C, shell style, fit, and accessory decisions
+                      - listitem [ref=f2e464]:
+                        - generic [ref=f2e466]:
+                          - text: Use the
+                          - link "Type 1 vs Type 2 hard hats guide" [ref=f2e467] [cursor=pointer]:
+                            - /url: /blog/type-1-vs-type-2-hard-hats
+                          - text: to separate impact type decisions from Class G, Class E, and Class C electrical rating decisions
+                      - listitem [ref=f2e468]:
+                        - generic [ref=f2e470]:
+                          - text: Use the
+                          - link "Class E vs Class G vs Class C hard hats guide" [ref=f2e471] [cursor=pointer]:
+                            - /url: /blog/class-e-vs-class-g-vs-class-c-hard-hats
+                          - text: when electrical exposure, vented shells, or non-vented Class E/G head protection is the buying question
+                      - listitem [ref=f2e472]:
+                        - generic [ref=f2e474]:
+                          - text: Use the
+                          - link "vented vs non-vented hard hats guide" [ref=f2e475] [cursor=pointer]:
+                            - /url: /blog/vented-vs-non-vented-hard-hats-construction
+                          - text: when shell ventilation, Class C inventory control, or heat comfort is the buying question
+                      - listitem [ref=f2e476]:
+                        - generic [ref=f2e478]:
+                          - text: Use the
+                          - link "full brim vs cap style hard hats guide" [ref=f2e479] [cursor=pointer]:
+                            - /url: /blog/full-brim-vs-cap-style-hard-hats-construction
+                          - text: when weather coverage, accessory compatibility, or brim shape is the buying question
+                      - listitem [ref=f2e480]:
+                        - generic [ref=f2e482]:
+                          - text: Use the
+                          - link "hard hat color codes guide" [ref=f2e483] [cursor=pointer]:
+                            - /url: /blog/hard-hat-color-codes-construction-sites
+                          - text: when role colors, visitor helmets, color-coded inventory, or hard hat RFQ color wording is the buying question
+                      - listitem [ref=f2e484]:
+                        - generic [ref=f2e486]:
+                          - text: Use the
+                          - link "Hard Hat Class Decoder" [ref=f2e487] [cursor=pointer]:
+                            - /url: /tools/hard-hat-class-decoder
+                          - text: when buyers need a quick way to match construction hazards to Class G, Class E, or Class C head protection
+                      - listitem [ref=f2e488]:
+                        - generic [ref=f2e490]:
+                          - text: Use the
+                          - link "safety helmet vs hard hat comparison guide" [ref=f2e491] [cursor=pointer]:
+                            - /url: /blog/construction-safety-helmet-vs-hard-hat
+                          - text: when deciding whether to upgrade from traditional hard hats to helmet-style Type II or chin-strap head protection
+                  - generic [ref=f2e492]:
+                    - heading "High-visibility clothing" [level=3] [ref=f2e493]
+                    - paragraph [ref=f2e494]: Visibility control matters on mixed-traffic sites with trucks, cranes, telehandlers, rollers, loaders, and reversing plant.
+                    - list [ref=f2e495]:
+                      - listitem [ref=f2e496]:
+                        - generic [ref=f2e498]: Select Class 2 or Class 3 from the applicable work-zone rule, traffic speed, visibility, worker role, employer hazard assessment, and site policy
+                      - listitem [ref=f2e499]:
+                        - generic [ref=f2e501]: Class 3 or a certified garment system may be appropriate for higher-risk roadwork, flagging, night work, and high-speed vehicle exposure
+                      - listitem [ref=f2e502]:
+                        - generic [ref=f2e504]: Select flame-resistant or arc-rated hi-vis only where the flame or electrical hazard assessment requires it
+                      - listitem [ref=f2e505]:
+                        - generic [ref=f2e507]: Wet-weather hi-vis outerwear should preserve visibility, not cover it
+                      - listitem [ref=f2e508]:
+                        - generic [ref=f2e510]:
+                          - text: Use the
+                          - link "high-visibility clothing for construction workers guide" [ref=f2e511] [cursor=pointer]:
+                            - /url: /blog/high-visibility-clothing-construction
+                          - text: for Class 2 vs Class 3, color, reflective layout, weather, FR, and replacement decisions
+                  - generic [ref=f2e512]:
+                    - heading "Eye and face protection" [level=3] [ref=f2e513]
+                    - paragraph [ref=f2e514]: Construction eye protection has to match debris, splash, dust, grinding, cutting, and welding exposure.
+                    - list [ref=f2e515]:
+                      - listitem [ref=f2e516]:
+                        - generic [ref=f2e518]: Safety glasses for routine debris and impact risk
+                      - listitem [ref=f2e519]:
+                        - generic [ref=f2e521]: Goggles for dust, splash, and sealed protection
+                      - listitem [ref=f2e522]:
+                        - generic [ref=f2e524]: Face shields over glasses for grinding and heavy chipping
+                      - listitem [ref=f2e525]:
+                        - generic [ref=f2e527]: Welding helmets and shaded filters for hot work
+                      - listitem [ref=f2e528]:
+                        - generic [ref=f2e530]:
+                          - text: Use the
+                          - link "construction eye and face protection guide" [ref=f2e531] [cursor=pointer]:
+                            - /url: /blog/construction-eye-face-protection
+                          - text: for impact, splash, dust, welding, face-shield, and PPE compatibility decisions
+                  - generic [ref=f2e532]:
+                    - heading "Hearing protection" [level=3] [ref=f2e533]
+                    - paragraph [ref=f2e534]: Noise exposure is routine on most active sites, even when hearing loss prevention is under-managed.
+                    - list [ref=f2e535]:
+                      - listitem [ref=f2e536]:
+                        - generic [ref=f2e538]: Foam earplugs for high attenuation at low cost
+                      - listitem [ref=f2e539]:
+                        - generic [ref=f2e541]: Helmet-mounted earmuffs for workers already wearing hard hats
+                      - listitem [ref=f2e542]:
+                        - generic [ref=f2e544]: Dual protection where noise levels stay extreme
+                      - listitem [ref=f2e545]:
+                        - generic [ref=f2e547]: Consistent fit and wear discipline matter more than nominal lab ratings
+                      - listitem [ref=f2e548]:
+                        - generic [ref=f2e550]:
+                          - text: Use the
+                          - link "construction hearing protection guide" [ref=f2e551] [cursor=pointer]:
+                            - /url: /blog/construction-hearing-protection
+                          - text: for task-level NRR, SNR, fit, and compatibility decisions
+              - generic [ref=f2e553]:
+                - heading "Specialist construction PPE categories that drive procurement errors" [level=2] [ref=f2e554]
+                - generic [ref=f2e555]:
+                  - generic [ref=f2e556]:
+                    - heading "Respiratory protection" [level=3] [ref=f2e557]
+                    - paragraph [ref=f2e558]: Dust and vapor control is where many sites under-spec PPE, especially around silica, demolition, and coatings.
+                    - list [ref=f2e559]:
+                      - listitem [ref=f2e560]:
+                        - generic [ref=f2e562]: Identify the airborne contaminant and apply engineering controls, OSHA silica Table 1, or measured exposure before selecting a respirator
+                      - listitem [ref=f2e563]:
+                        - generic [ref=f2e565]: Select the complete NIOSH-approved or EN respirator by required protection factor, contaminant, oil or vapor hazards, work duration, and facepiece; filter class alone is not enough
+                      - listitem [ref=f2e566]:
+                        - generic [ref=f2e568]: Use the correct particulate, gas or vapor, or combination filter or cartridge for coatings, solvents, fumes, and mixed airborne hazards
+                      - listitem [ref=f2e569]:
+                        - generic [ref=f2e571]: Medical evaluation, fit testing, facial-hair and use controls, training, cleaning, storage, and change schedules belong in the respiratory protection program
+                      - listitem [ref=f2e572]:
+                        - generic [ref=f2e574]:
+                          - text: Use the
+                          - link "construction respiratory protection guide" [ref=f2e575] [cursor=pointer]:
+                            - /url: /blog/construction-respiratory-protection
+                          - text: for N95, P100, half-face, cartridge, fit-test, and silica dust decisions
+                  - generic [ref=f2e576]:
+                    - heading "Hand protection" [level=3] [ref=f2e577]
+                    - paragraph [ref=f2e578]: Construction gloves should be chosen by the real hazard, not by habit or lowest cost.
+                    - list [ref=f2e579]:
+                      - listitem [ref=f2e580]:
+                        - generic [ref=f2e582]: Cut-rated gloves for steel, rebar, sheet material, and sharp edges
+                      - listitem [ref=f2e583]:
+                        - generic [ref=f2e585]: Coated gloves for wet handling and masonry work
+                      - listitem [ref=f2e586]:
+                        - generic [ref=f2e588]: Impact gloves where hand crush or back-of-hand strikes are likely
+                      - listitem [ref=f2e589]:
+                        - generic [ref=f2e591]: Chemical-resistant gloves for cement, coatings, and site chemicals
+                      - listitem [ref=f2e592]:
+                        - generic [ref=f2e594]:
+                          - text: Use the
+                          - link "construction gloves selection guide" [ref=f2e595] [cursor=pointer]:
+                            - /url: /blog/construction-gloves-selection-guide
+                          - text: when cut, abrasion, impact, chemical, heat, or electrical exposure changes by task
+                  - generic [ref=f2e596]:
+                    - heading "Safety footwear" [level=3] [ref=f2e597]
+                    - paragraph [ref=f2e598]: Boot selection needs to reflect puncture, crush, terrain, ladder use, and weather, not just toe cap presence.
+                    - list [ref=f2e599]:
+                      - listitem [ref=f2e600]:
+                        - generic [ref=f2e602]: Toe cap and puncture-resistant sole for general site entry
+                      - listitem [ref=f2e603]:
+                        - generic [ref=f2e605]: Slip-resistant outsole for wet concrete, ramps, and muddy access paths
+                      - listitem [ref=f2e606]:
+                        - generic [ref=f2e608]: Water-resistant or waterproof styles for rain and ground water exposure
+                      - listitem [ref=f2e609]:
+                        - generic [ref=f2e611]: Electrical hazard or dielectric footwear for electrical teams
+                  - generic [ref=f2e612]:
+                    - heading "Electrical PPE" [level=3] [ref=f2e613]
+                    - paragraph [ref=f2e614]: Standard site PPE is not enough for energized work or work near live conductors.
+                    - list [ref=f2e615]:
+                      - listitem [ref=f2e616]:
+                        - generic [ref=f2e618]: Voltage-rated insulating gloves with protector gloves
+                      - listitem [ref=f2e619]:
+                        - generic [ref=f2e621]: Arc-rated clothing matched to the incident energy
+                      - listitem [ref=f2e622]:
+                        - generic [ref=f2e624]: Class E helmets and dielectric footwear
+                      - listitem [ref=f2e625]:
+                        - generic [ref=f2e627]: Face and eye protection selected for electrical arc exposure
+              - generic [ref=f2e629]:
+                - heading "Hazard-to-PPE quick reference for site setup" [level=2] [ref=f2e630]
+                - table [ref=f2e632]:
+                  - rowgroup [ref=f2e633]:
+                    - row [ref=f2e634]:
+                      - columnheader "Body area" [ref=f2e635]
+                      - columnheader "Baseline PPE" [ref=f2e636]
+                      - columnheader "Typical construction benchmark" [ref=f2e637]
+                  - rowgroup [ref=f2e638]:
+                    - row [ref=f2e639]:
+                      - cell "Head" [ref=f2e640]
+                      - cell "Hard hat sized to the wearer" [ref=f2e641]
+                      - cell "ANSI Z89.1 or EN 397" [ref=f2e642]
+                    - row [ref=f2e643]:
+                      - cell "Eyes" [ref=f2e644]
+                      - cell "Safety glasses with side protection" [ref=f2e645]
+                      - cell "ANSI Z87.1 or EN 166" [ref=f2e646]
+                    - row [ref=f2e647]:
+                      - cell "Hearing" [ref=f2e648]
+                      - cell "Earplugs or earmuffs near powered equipment" [ref=f2e649]
+                      - cell "ANSI noise ratings or EN 352" [ref=f2e650]
+                    - row [ref=f2e651]:
+                      - cell "Hands" [ref=f2e652]
+                      - cell "Task-matched gloves" [ref=f2e653]
+                      - cell "ANSI ISEA 105 or EN 388 and EN 374" [ref=f2e654]
+                    - row [ref=f2e655]:
+                      - cell "Feet" [ref=f2e656]
+                      - cell "Toe-protective boots with puncture and slip resistance" [ref=f2e657]
+                      - cell "ASTM F2413 or EN ISO 20345 S3-type selection" [ref=f2e658]
+                    - row [ref=f2e659]:
+                      - cell "Body and visibility" [ref=f2e660]
+                      - cell "High-visibility vest or outerwear near traffic and plant" [ref=f2e661]
+                      - cell "ANSI 107 Class 2 or EN ISO 20471 Class 2" [ref=f2e662]
+                    - row [ref=f2e663]:
+                      - cell "Fall" [ref=f2e664]
+                      - cell "Harness plus lanyard or SRL where exposure exists" [ref=f2e665]
+                      - cell "ANSI Z359 family or EN 361 and related EN standards" [ref=f2e666]
+                    - row [ref=f2e667]:
+                      - cell "Respiratory" [ref=f2e668]
+                      - cell "Dust or respirator protection matched to the airborne hazard" [ref=f2e669]
+                      - cell "NIOSH approvals or EN 149 and related standards" [ref=f2e670]
+              - generic [ref=f2e671]:
+                - generic [ref=f2e672]:
+                  - heading "Recommended PPE products for construction projects" [level=2] [ref=f2e673]
+                  - generic [ref=f2e674]:
+                    - paragraph [ref=f2e675]: Most contractors do better when they stop buying construction PPE as isolated items and start buying by role-based kit. General laborers, roof teams, steel crews, demolition teams, and electrical installers need different combinations even when they share the same site gate.
+                    - paragraph [ref=f2e676]: "Use the related products below as a starting set for general construction purchasing, then tighten the specification by trade, hazard assessment, and local compliance standard. Product modules should be treated as procurement prompts, not final PPE approval: verify fit, certification, compatibility, and replacement rules before issuing gear to a crew."
+                - generic [ref=f2e677]:
+                  - generic [ref=f2e679]:
+                    - link [ref=f2e680] [cursor=pointer]:
+                      - /url: /products/hppe-cut-resistant-nitrile-palm-coated-anti-slip-work
+                      - generic [ref=f2e681]:
+                        - img "HPPE Cut-Resistant Nitrile Palm-Coated Anti-Slip Work Gloves" [ref=f2e683]
+                        - generic [ref=f2e685]: HOT
+                    - generic [ref=f2e689]:
+                      - generic [ref=f2e690]: Cut Resistant Gloves
+                      - link [ref=f2e695] [cursor=pointer]:
+                        - /url: /products/hppe-cut-resistant-nitrile-palm-coated-anti-slip-work
+                        - heading "HPPE Cut-Resistant Nitrile Palm-Coated Anti-Slip Work Gloves" [level=3] [ref=f2e696]
+                      - generic [ref=f2e697]: From $0.89
+                      - button "Add to Quote" [ref=f2e700]
+                  - generic [ref=f2e702]:
+                    - link [ref=f2e703] [cursor=pointer]:
+                      - /url: /products/a5-cut-resistant-tpr-impact-mechanic-gloves-sandy-nitrile
+                      - generic [ref=f2e704]:
+                        - img "A5 Cut-Resistant TPR Impact Mechanic Gloves, Sandy Nitrile Palm" [ref=f2e706]
+                        - generic [ref=f2e708]: HOT
+                    - generic [ref=f2e712]:
+                      - generic [ref=f2e713]: Cut Resistant Gloves
+                      - link [ref=f2e718] [cursor=pointer]:
+                        - /url: /products/a5-cut-resistant-tpr-impact-mechanic-gloves-sandy-nitrile
+                        - heading "A5 Cut-Resistant TPR Impact Mechanic Gloves, Sandy Nitrile Palm" [level=3] [ref=f2e719]
+                      - generic [ref=f2e720]: From $2.50
+                      - button "Add to Quote" [ref=f2e723]
+                  - generic [ref=f2e725]:
+                    - link [ref=f2e726] [cursor=pointer]:
+                      - /url: /products/s3-anti-static-waterproof-steel-toe-puncture-resistant
+                      - generic [ref=f2e727]:
+                        - img "S3 Anti-Static Waterproof Steel Toe Puncture-Resistant Work Boots" [ref=f2e729]
+                        - generic [ref=f2e731]: HOT
+                    - generic [ref=f2e735]:
+                      - generic [ref=f2e736]: Safety Boots
+                      - link [ref=f2e741] [cursor=pointer]:
+                        - /url: /products/s3-anti-static-waterproof-steel-toe-puncture-resistant
+                        - heading "S3 Anti-Static Waterproof Steel Toe Puncture-Resistant Work Boots" [level=3] [ref=f2e742]
+                      - generic [ref=f2e743]: From $10.00
+                      - button "Add to Quote" [ref=f2e746]
+                  - generic [ref=f2e748]:
+                    - link "Men's Breathable Suede Leather Work Shoes - Anti-Crash & Puncture Resistant HOT -64%" [ref=f2e749] [cursor=pointer]:
+                      - /url: /products/mens-breathable-suede-leather-work-shoes-anti-crash
+                      - generic [ref=f2e750]:
+                        - img "Men's Breathable Suede Leather Work Shoes - Anti-Crash & Puncture Resistant" [ref=f2e752]
+                        - generic [ref=f2e754]:
+                          - generic [ref=f2e755]: HOT
+                          - generic [ref=f2e758]: "-64%"
+                    - generic [ref=f2e759]:
+                      - generic [ref=f2e760]: Safety Shoes
+                      - link [ref=f2e765] [cursor=pointer]:
+                        - /url: /products/mens-breathable-suede-leather-work-shoes-anti-crash
+                        - heading "Men's Breathable Suede Leather Work Shoes - Anti-Crash & Puncture Resistant" [level=3] [ref=f2e766]
+                      - generic [ref=f2e767]: From $17.00
+                      - button "Add to Quote" [ref=f2e770]
+                  - generic [ref=f2e772]:
+                    - link "Welding Safety Work Gloves HOT -13%" [ref=f2e773] [cursor=pointer]:
+                      - /url: /products/welding-safety-work-gloves
+                      - generic [ref=f2e774]:
+                        - img "Welding Safety Work Gloves" [ref=f2e776]
+                        - generic [ref=f2e778]:
+                          - generic [ref=f2e779]: HOT
+                          - generic [ref=f2e782]: "-13%"
+                    - generic [ref=f2e783]:
+                      - generic [ref=f2e784]: Welding Gloves
+                      - link [ref=f2e789] [cursor=pointer]:
+                        - /url: /products/welding-safety-work-gloves
+                        - heading "Welding Safety Work Gloves" [level=3] [ref=f2e790]
+                      - generic [ref=f2e791]: From $1.27
+                      - button "Add to Quote" [ref=f2e794]
+                  - generic [ref=f2e796]:
+                    - link [ref=f2e797] [cursor=pointer]:
+                      - /url: /products/13-gauge-red-black-latex-crinkle-grip-work-gloves
+                      - img "Latex Coated Work Gloves – 13-Gauge Crinkle Grip, Red/Black" [ref=f2e800]
+                    - generic [ref=f2e802]:
+                      - generic [ref=f2e803]: Latex Coated Gloves
+                      - link [ref=f2e808] [cursor=pointer]:
+                        - /url: /products/13-gauge-red-black-latex-crinkle-grip-work-gloves
+                        - heading "Latex Coated Work Gloves – 13-Gauge Crinkle Grip, Red/Black" [level=3] [ref=f2e809]
+                      - generic [ref=f2e810]: $0.28
+                      - button "Add to Quote" [ref=f2e813]
+              - generic [ref=f2e815]:
+                - heading "PPE procurement guidance for contractors and distributors" [level=2] [ref=f2e816]
+                - generic [ref=f2e817]:
+                  - generic [ref=f2e818]:
+                    - heading "Certification verification" [level=3] [ref=f2e819]
+                    - paragraph [ref=f2e820]: Every item should be traceable to the relevant standard and documentation set.
+                    - list [ref=f2e821]:
+                      - listitem [ref=f2e822]:
+                        - generic [ref=f2e824]: Verify ANSI, ASTM, NIOSH, NFPA, or CE and EN marks by product category
+                      - listitem [ref=f2e825]:
+                        - generic [ref=f2e827]: Request declarations of conformity and test reports for imported PPE
+                      - listitem [ref=f2e828]:
+                        - generic [ref=f2e830]: Treat fall protection, respiratory, and electrical PPE as high-scrutiny categories
+                  - generic [ref=f2e831]:
+                    - heading "Sizing and proper fit" [level=3] [ref=f2e832]
+                    - paragraph [ref=f2e833]: The 2025 OSHA fit rule turns a common weak spot into a compliance requirement.
+                    - list [ref=f2e834]:
+                      - listitem [ref=f2e835]:
+                        - generic [ref=f2e837]: Order across the full size curve instead of relying on standard sizing
+                      - listitem [ref=f2e838]:
+                        - generic [ref=f2e840]: Record fit-critical items such as harnesses, gloves, eyewear, and footwear by wearer
+                      - listitem [ref=f2e841]:
+                        - generic [ref=f2e843]: Check fit again when crews, clothing layers, or work conditions change
+                  - generic [ref=f2e844]:
+                    - heading "Replacement planning" [level=3] [ref=f2e845]
+                    - paragraph [ref=f2e846]: Bulk buying without replacement logic creates hidden gaps later in the project.
+                    - list [ref=f2e847]:
+                      - listitem [ref=f2e848]:
+                        - generic [ref=f2e850]: Track service life for hard hats, suspensions, harnesses, and respirators
+                      - listitem [ref=f2e851]:
+                        - generic [ref=f2e853]: Replace scratched eyewear, worn gloves, damaged boot soles, and compressed ear cushions early
+                      - listitem [ref=f2e854]:
+                        - generic [ref=f2e856]: Remove any fall-arrest component from service after a real arrest event
+                  - generic [ref=f2e857]:
+                    - heading "Training and compliance" [level=3] [ref=f2e858]
+                    - paragraph [ref=f2e859]: Supplying PPE is only half of the control system.
+                    - list [ref=f2e860]:
+                      - listitem [ref=f2e861]:
+                        - generic [ref=f2e863]: Train workers on what to wear, when to wear it, and what the limits are
+                      - listitem [ref=f2e864]:
+                        - generic [ref=f2e866]: Use site induction and toolbox talks to reinforce wear discipline
+                      - listitem [ref=f2e867]:
+                        - generic [ref=f2e869]: Document issue, fit confirmation, and refresher training for audit readiness
+              - generic [ref=f2e871]:
+                - heading "Construction PPE resources" [level=2] [ref=f2e872]
+                - list [ref=f2e873]:
+                  - listitem [ref=f2e874]:
+                    - generic [ref=f2e876]:
+                      - paragraph [ref=f2e877]:
+                        - link "Fall Protection PPE for Construction Sites" [ref=f2e878] [cursor=pointer]:
+                          - /url: /solutions/fall-protection-construction
+                      - paragraph [ref=f2e879]: Focused on harness selection, anchors, lifelines, rescue planning, and inspection logic for height work.
+                  - listitem [ref=f2e880]:
+                    - generic [ref=f2e882]:
+                      - paragraph [ref=f2e883]:
+                        - link "PPE for Scaffolding and Elevated Platforms" [ref=f2e884] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+                      - paragraph [ref=f2e885]: Focused on scaffold erection, work positioning, dropped tools, and access stability.
+                  - listitem [ref=f2e886]:
+                    - generic [ref=f2e888]:
+                      - paragraph [ref=f2e889]:
+                        - link "PPE for Road and Bridge Construction Projects" [ref=f2e890] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-road-and-bridge-construction-projects
+                      - paragraph [ref=f2e891]: Focused on roadwork, bridge decks, live traffic, Class 2/Class 3 hi-vis, fall exposure, asphalt heat, dust, noise, and role-based crew kits.
+                  - listitem [ref=f2e892]:
+                    - generic [ref=f2e894]:
+                      - paragraph [ref=f2e895]:
+                        - link "PPE for Demolition and Concrete Cutting Work" [ref=f2e896] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-demolition-and-concrete-cutting-work
+                      - paragraph [ref=f2e897]: Focused on silica dust, concrete cutting, chipping, grinding, debris handling, high noise, vibration, eye/face impact, gloves, footwear, and role-based demolition kits.
+                  - listitem [ref=f2e898]:
+                    - generic [ref=f2e900]:
+                      - paragraph [ref=f2e901]:
+                        - link "Demolition and Concrete Cutting PPE Checklist" [ref=f2e902] [cursor=pointer]:
+                          - /url: /blog/demolition-concrete-cutting-ppe-checklist
+                      - paragraph [ref=f2e903]: Use this field checklist for pre-start PPE checks before concrete cutting, jackhammering, strip-out, debris handling, and elevated demolition work.
+                  - listitem [ref=f2e904]:
+                    - generic [ref=f2e906]:
+                      - paragraph [ref=f2e907]:
+                        - link "OSHA PPE Requirements for Construction" [ref=f2e908] [cursor=pointer]:
+                          - /url: /blog/osha-ppe-requirements-construction
+                      - paragraph [ref=f2e909]: Focused on fit, certification, employer obligations, and the construction standards auditors check first.
+                  - listitem [ref=f2e910]:
+                    - generic [ref=f2e912]:
+                      - paragraph [ref=f2e913]:
+                        - link "Construction PPE Checklist" [ref=f2e914] [cursor=pointer]:
+                          - /url: /blog/construction-ppe-checklist
+                      - paragraph [ref=f2e915]: Focused on daily pre-start checks by crew, task, and changing hazard conditions across active jobsites.
+                  - listitem [ref=f2e916]:
+                    - generic [ref=f2e918]:
+                      - paragraph [ref=f2e919]:
+                        - link "Types of Hard Hats for Construction" [ref=f2e920] [cursor=pointer]:
+                          - /url: /blog/construction-hard-hat-types
+                      - paragraph [ref=f2e921]: Focused on ANSI Type I vs Type II, Class G/E/C electrical ratings, shell style, accessory compatibility, inspection, and bulk buying.
+                  - listitem [ref=f2e922]:
+                    - generic [ref=f2e924]:
+                      - paragraph [ref=f2e925]:
+                        - link "Type 1 vs Type 2 Hard Hats" [ref=f2e926] [cursor=pointer]:
+                          - /url: /blog/type-1-vs-type-2-hard-hats
+                      - paragraph [ref=f2e927]: Focused on impact protection type, electrical class selection, common buyer combinations, and RFQ wording for contractor bulk orders.
+                  - listitem [ref=f2e928]:
+                    - generic [ref=f2e930]:
+                      - paragraph [ref=f2e931]:
+                        - link "Class E vs Class G vs Class C Hard Hats" [ref=f2e932] [cursor=pointer]:
+                          - /url: /blog/class-e-vs-class-g-vs-class-c-hard-hats
+                      - paragraph [ref=f2e933]: Focused on hard hat electrical ratings, Class E/G/C selection, vented shell limits, and supplier-ready RFQ wording.
+                  - listitem [ref=f2e934]:
+                    - generic [ref=f2e936]:
+                      - paragraph [ref=f2e937]:
+                        - link "Vented vs Non-Vented Hard Hats" [ref=f2e938] [cursor=pointer]:
+                          - /url: /blog/vented-vs-non-vented-hard-hats-construction
+                      - paragraph [ref=f2e939]: Focused on shell ventilation, Class C use limits, non-vented Class E/G buying, heat comfort, RFQ wording, and inventory controls.
+                  - listitem [ref=f2e940]:
+                    - generic [ref=f2e942]:
+                      - paragraph [ref=f2e943]:
+                        - link "Full Brim vs Cap Style Hard Hats" [ref=f2e944] [cursor=pointer]:
+                          - /url: /blog/full-brim-vs-cap-style-hard-hats-construction
+                      - paragraph [ref=f2e945]: Focused on brim shape, weather exposure, accessory compatibility, Type/Class separation, RFQ wording, and bulk buying.
+                  - listitem [ref=f2e946]:
+                    - generic [ref=f2e948]:
+                      - paragraph [ref=f2e949]:
+                        - link "Hard Hat Color Codes on Construction Sites" [ref=f2e950] [cursor=pointer]:
+                          - /url: /blog/hard-hat-color-codes-construction-sites
+                      - paragraph [ref=f2e951]: Focused on common hard hat color meanings, role identification, visitor helmets, color-coded inventory, and RFQ color wording without confusing color with Type or Class.
+                  - listitem [ref=f2e952]:
+                    - generic [ref=f2e954]:
+                      - paragraph [ref=f2e955]:
+                        - link "Hard Hat Class Decoder" [ref=f2e956] [cursor=pointer]:
+                          - /url: /tools/hard-hat-class-decoder
+                      - paragraph [ref=f2e957]: Use this tool to turn jobsite hazards such as electrical exposure, heat, ventilation needs, and side-impact risk into a practical hard hat class recommendation.
+                  - listitem [ref=f2e958]:
+                    - generic [ref=f2e960]:
+                      - paragraph [ref=f2e961]:
+                        - link "Safety Helmet vs Hard Hat for Construction" [ref=f2e962] [cursor=pointer]:
+                          - /url: /blog/construction-safety-helmet-vs-hard-hat
+                      - paragraph [ref=f2e963]: Focused on when to keep traditional hard hats, when to upgrade to Type II safety helmets, chin straps, side-impact protection, electrical classes, and accessory compatibility.
+                  - listitem [ref=f2e964]:
+                    - generic [ref=f2e966]:
+                      - paragraph [ref=f2e967]:
+                        - link "High-Visibility Clothing for Construction Workers" [ref=f2e968] [cursor=pointer]:
+                          - /url: /blog/high-visibility-clothing-construction
+                      - paragraph [ref=f2e969]: Focused on ANSI/ISEA 107, EN ISO 20471, Class 2 vs Class 3, color, reflective layout, weather layers, FR needs, and bulk replacement planning.
+                  - listitem [ref=f2e970]:
+                    - generic [ref=f2e972]:
+                      - paragraph [ref=f2e973]:
+                        - link "Hearing Protection for Construction Workers" [ref=f2e974] [cursor=pointer]:
+                          - /url: /blog/construction-hearing-protection
+                      - paragraph [ref=f2e975]: Focused on earplugs, earmuffs, NRR/SNR, fit, communication needs, and replacement planning for noisy construction tasks.
+                  - listitem [ref=f2e976]:
+                    - generic [ref=f2e978]:
+                      - paragraph [ref=f2e979]:
+                        - link "Respiratory Protection for Construction Dust and Fumes" [ref=f2e980] [cursor=pointer]:
+                          - /url: /blog/construction-respiratory-protection
+                      - paragraph [ref=f2e981]: Focused on silica dust, N95/P100 selection, half-face respirators, cartridges, fit testing, and replacement planning.
+                  - listitem [ref=f2e982]:
+                    - generic [ref=f2e984]:
+                      - paragraph [ref=f2e985]:
+                        - 'link "Construction Gloves: How to Choose the Right Hand Protection" [ref=f2e986] [cursor=pointer]':
+                          - /url: /blog/construction-gloves-selection-guide
+                      - paragraph [ref=f2e987]: Focused on cut, abrasion, impact, grip, wet cement, chemical, heat, welding, electrical exposure, fit, dexterity, and replacement planning.
+                  - listitem [ref=f2e988]:
+                    - generic [ref=f2e990]:
+                      - paragraph [ref=f2e991]:
+                        - link "Eye and Face Protection for Construction Sites" [ref=f2e992] [cursor=pointer]:
+                          - /url: /blog/construction-eye-face-protection
+                      - paragraph [ref=f2e993]: Focused on safety glasses, goggles, face shields, welding protection, dust, splash, impact hazards, prescription eyewear, and compatibility with helmets and respirators.
+                  - listitem [ref=f2e994]:
+                    - generic [ref=f2e996]:
+                      - paragraph [ref=f2e997]:
+                        - link "How to Buy Construction PPE in Bulk" [ref=f2e998] [cursor=pointer]:
+                          - /url: /blog/bulk-construction-ppe-procurement
+                      - paragraph [ref=f2e999]: Focused on RFQs, supplier comparison, sizing, replacement stock, packaging, and repeat ordering for construction PPE buyers.
+                  - listitem [ref=f2e1000]:
+                    - generic [ref=f2e1002]:
+                      - paragraph [ref=f2e1003]:
+                        - link "Contractor PPE Supplier Bulk Checklist" [ref=f2e1004] [cursor=pointer]:
+                          - /url: /blog/contractor-ppe-supplier-bulk-checklist
+                      - paragraph [ref=f2e1005]: Focused on supplier scorecards, standards documents, size support, kit packing, substitutions, replacement stock, and repeat-order risk.
+                  - listitem [ref=f2e1006]:
+                    - generic [ref=f2e1008]:
+                      - paragraph [ref=f2e1009]:
+                        - link "Construction Safety Footwear Guide" [ref=f2e1010] [cursor=pointer]:
+                          - /url: /blog/construction-safety-footwear-guide
+                      - paragraph [ref=f2e1011]: Focused on safety shoes and boots by trade, hazard profile, ASTM and EN requirements, and bulk fit planning.
+                  - listitem [ref=f2e1012]:
+                    - generic [ref=f2e1014]:
+                      - paragraph [ref=f2e1015]:
+                        - link "PPE for Electrical Installation on Construction Sites" [ref=f2e1016] [cursor=pointer]:
+                          - /url: /solutions/ppe-for-electrical-installation-on-construction-sites
+                      - paragraph [ref=f2e1017]: Focused on voltage-rated gloves, arc-rated clothing, Class E head protection, electrical-hazard footwear, fall protection, and mixed construction site hazards.
+              - generic [ref=f2e1019]:
+                - heading "Browse construction PPE by category" [level=2] [ref=f2e1020]
+                - list [ref=f2e1021]:
+                  - listitem [ref=f2e1022]:
+                    - generic [ref=f2e1024]:
+                      - paragraph [ref=f2e1025]:
+                        - link "Head Protection" [ref=f2e1026] [cursor=pointer]:
+                          - /url: /categories/head-protection
+                      - paragraph [ref=f2e1027]: Safety helmets, bump caps, face shields, and hearing protection for active sites.
+                  - listitem [ref=f2e1028]:
+                    - generic [ref=f2e1030]:
+                      - paragraph [ref=f2e1031]:
+                        - link "Hand Protection" [ref=f2e1032] [cursor=pointer]:
+                          - /url: /categories/hand-protection
+                      - paragraph [ref=f2e1033]: Cut-resistant, coated, leather, and task-specific gloves for material handling and tool use.
+                  - listitem [ref=f2e1034]:
+                    - generic [ref=f2e1036]:
+                      - paragraph [ref=f2e1037]:
+                        - link "Foot Protection" [ref=f2e1038] [cursor=pointer]:
+                          - /url: /categories/foot-protection
+                      - paragraph [ref=f2e1039]: Safety shoes, boots, and site-ready footwear for slip, puncture, and crush resistance.
+                  - listitem [ref=f2e1040]:
+                    - generic [ref=f2e1042]:
+                      - paragraph [ref=f2e1043]:
+                        - link "Body Protection" [ref=f2e1044] [cursor=pointer]:
+                          - /url: /categories/body-protection
+                      - paragraph [ref=f2e1045]: High-visibility workwear, coveralls, FR garments, and outerwear for site conditions.
+                  - listitem [ref=f2e1046]:
+                    - generic [ref=f2e1048]:
+                      - paragraph [ref=f2e1049]:
+                        - link "Eye Protection" [ref=f2e1050] [cursor=pointer]:
+                          - /url: /categories/eye-protection
+                      - paragraph [ref=f2e1051]: Safety glasses and goggles for debris, dust, splash, and grinding exposure.
+                  - listitem [ref=f2e1052]:
+                    - generic [ref=f2e1054]:
+                      - paragraph [ref=f2e1055]:
+                        - link "Respiratory Protection" [ref=f2e1056] [cursor=pointer]:
+                          - /url: /categories/respiratory-protection
+                      - paragraph [ref=f2e1057]: Disposable respirators and reusable systems for dust, fumes, and vapor control.
+              - generic [ref=f2e1059]:
+                - heading "Frequently asked questions" [level=2] [ref=f2e1060]
+                - generic [ref=f2e1061]:
+                  - generic [ref=f2e1062]:
+                    - heading "Who is responsible for PPE on a construction site?" [level=3] [ref=f2e1063]
+                    - paragraph [ref=f2e1064]: Under OSHA construction rules, the employer is generally responsible for hazard assessment, supplying required PPE, and ensuring workers are trained and properly equipped for the task.
+                  - generic [ref=f2e1065]:
+                    - heading "Does construction PPE have to fit each worker?" [level=3] [ref=f2e1066]
+                    - paragraph [ref=f2e1067]: Yes. Since January 13, 2025, OSHA construction rules explicitly require PPE to be selected so it properly fits each affected employee.
+                  - generic [ref=f2e1068]:
+                    - heading "What is the biggest PPE failure on construction sites?" [level=3] [ref=f2e1069]
+                    - paragraph [ref=f2e1070]: A common failure is treating PPE as a box-ticking purchase instead of a hazard-matched system. Sites often under-specify fit, respiratory protection, or replacement cycles even when head and footwear basics are in place.
+                  - generic [ref=f2e1071]:
+                    - heading "When should a contractor step up from disposable dust masks to reusable respirators?" [level=3] [ref=f2e1072]
+                    - paragraph [ref=f2e1073]: Once tasks involve sustained silica dust, demolition contaminants, welding fumes, or mixed dust and vapor exposure, reusable respirators with the correct filters usually become the safer and more controllable option.
+                  - generic [ref=f2e1074]:
+                    - heading "What should procurement teams ask for before approving a PPE supplier?" [level=3] [ref=f2e1075]
+                    - paragraph [ref=f2e1076]: Ask for certification documents, test reports where relevant, size availability, replacement guidance, and proof that the supplier can support repeat bulk supply instead of one-off shipments.
+              - generic [ref=f2e1077]: This pillar page is built around the OSHA construction PPE framework, EN and CE product standards, and current construction fatality and hazard patterns used by site safety teams when they build practical PPE programs.
+              - generic [ref=f2e1081]:
+                - heading "Source certified construction PPE at project scale" [level=2] [ref=f2e1082]
+                - generic [ref=f2e1083]:
+                  - paragraph [ref=f2e1084]: We support contractors, distributors, and procurement teams with full size ranges, cross-category supply, and documentation-ready PPE programs for construction crews.
+                  - generic [ref=f2e1085]:
+                    - link "Request a Quote" [ref=f2e1086] [cursor=pointer]:
+                      - /url: /contact
+                    - link "Contact Us" [ref=f2e1087] [cursor=pointer]:
+                      - /url: /contact
+            - generic [ref=f2e1089]:
+              - generic [ref=f2e1090]:
+                - generic [ref=f2e1091]:
+                  - generic [ref=f2e1092]: Trust proof
+                  - generic [ref=f2e1093]: Standards ready
+                - heading "Verify standards before sending an RFQ" [level=2] [ref=f2e1094]
+                - paragraph [ref=f2e1095]: Review the required standards, certificate samples, document needs, and factory capability before confirming quantities, packaging, and delivery details.
+                - generic [ref=f2e1096]:
+                  - article [ref=f2e1097]:
+                    - heading "Standards" [level=3] [ref=f2e1103]
+                    - paragraph [ref=f2e1104]: CE, EN, ANSI/ISEA and buyer-specific standard checks can be mapped before quoting.
+                  - article [ref=f2e1105]:
+                    - heading "Certification" [level=3] [ref=f2e1111]
+                    - paragraph [ref=f2e1112]: Certificate samples and product compliance files are available for qualified bulk buyers.
+                  - article [ref=f2e1113]:
+                    - heading "Sample docs" [level=3] [ref=f2e1120]
+                    - paragraph [ref=f2e1121]: Use sample sheets, RFQ templates, and size standards before finalizing order quantities.
+                  - article [ref=f2e1122]:
+                    - heading "Factory proof" [level=3] [ref=f2e1127]
+                    - paragraph [ref=f2e1128]: Direct factory supply with OEM/ODM support, inspection workflow, and repeat order handling.
+              - img "Laifappe PPE certification document sample" [ref=f2e1130]
+            - generic [ref=f2e1131]:
+              - generic [ref=f2e1132]:
+                - generic [ref=f2e1133]:
+                  - generic [ref=f2e1134]: Related downloads
+                  - heading "Turn this solution into a buying brief" [level=2] [ref=f2e1138]
+                  - paragraph [ref=f2e1139]: Download the checklist, RFQ template, and size sheet, then send quantities and standards through the quote form.
+                - link "Request quote" [ref=f2e1140] [cursor=pointer]:
+                  - /url: /quote
+              - generic [ref=f2e1143]:
+                - link "Checklist PDF Field-ready construction PPE checklist for site supervisors. Download" [ref=f2e1144] [cursor=pointer]:
+                  - /url: /downloads/construction-ppe-checklist.pdf
+                  - generic [ref=f2e1149]: Checklist PDF
+                  - generic [ref=f2e1150]: Field-ready construction PPE checklist for site supervisors.
+                  - generic [ref=f2e1151]: Download
+                - link "RFQ template Open the template page before downloading or sending a quote request. Open template" [ref=f2e1154] [cursor=pointer]:
+                  - /url: /downloads/construction-ppe-rfq-template
+                  - generic [ref=f2e1159]: RFQ template
+                  - generic [ref=f2e1160]: Open the template page before downloading or sending a quote request.
+                  - generic [ref=f2e1161]: Open template
+                - link "Size sheet Spreadsheet for sizing, standards, and replacement planning. Download" [ref=f2e1164] [cursor=pointer]:
+                  - /url: /downloads/ppe-size-standards-planning-sheet.xlsx
+                  - generic [ref=f2e1169]: Size sheet
+                  - generic [ref=f2e1170]: Spreadsheet for sizing, standards, and replacement planning.
+                  - generic [ref=f2e1171]: Download
+              - generic [ref=f2e1174]:
+                - link "Checklist guide" [ref=f2e1175] [cursor=pointer]:
+                  - /url: /blog/construction-ppe-checklist
+                - link "Bulk buying" [ref=f2e1179] [cursor=pointer]:
+                  - /url: /blog/bulk-construction-ppe-procurement
+                - link "PPE calculator" [ref=f2e1183] [cursor=pointer]:
+                  - /url: /tools/ppe-calculator
+            - generic [ref=f2e1187]:
+              - generic [ref=f2e1188]:
+                - paragraph [ref=f2e1189]: Related Tools
+                - heading "Move from PPE guidance to order planning" [level=2] [ref=f2e1190]
+                - paragraph [ref=f2e1191]: These tools help buyers convert the solution into sizing checks, compliance review, quantity planning, and a faster quote request.
+              - generic [ref=f2e1192]:
+                - link "Procurement AI Quote Generator Turn site conditions, hazards, and worker roles into a shortlist of PPE SKUs and a fast quote request. Build a quote" [ref=f2e1193] [cursor=pointer]:
+                  - /url: /tools/ai-quote
+                  - generic [ref=f2e1194]: Procurement
+                  - heading "AI Quote Generator" [level=3] [ref=f2e1200]
+                  - paragraph [ref=f2e1201]: Turn site conditions, hazards, and worker roles into a shortlist of PPE SKUs and a fast quote request.
+                  - generic [ref=f2e1202]: Build a quote
+                - link "Planning PPE Quantity Calculator Estimate monthly usage, replacement cycles, and budget needs before you place a bulk PPE order. Plan quantities" [ref=f2e1205] [cursor=pointer]:
+                  - /url: /tools/ppe-calculator
+                  - generic [ref=f2e1206]: Planning
+                  - heading "PPE Quantity Calculator" [level=3] [ref=f2e1211]
+                  - paragraph [ref=f2e1212]: Estimate monthly usage, replacement cycles, and budget needs before you place a bulk PPE order.
+                  - generic [ref=f2e1213]: Plan quantities
+                - link "Compliance Safety Footwear Label Decoder Decode ASTM F2413 and EN ISO 20345 markings such as S3, SRC, HRO, EH, and PR in seconds. Decode labels" [ref=f2e1216] [cursor=pointer]:
+                  - /url: /tools/compliance-checker
+                  - generic [ref=f2e1217]: Compliance
+                  - heading "Safety Footwear Label Decoder" [level=3] [ref=f2e1223]
+                  - paragraph [ref=f2e1224]: Decode ASTM F2413 and EN ISO 20345 markings such as S3, SRC, HRO, EH, and PR in seconds.
+                  - generic [ref=f2e1225]: Decode labels
+    - contentinfo [ref=f2e1228]:
+      - generic [ref=f2e1229]:
+        - generic [ref=f2e1230]:
+          - generic [ref=f2e1231]:
+            - link "Laifappe homepage" [ref=f2e1232] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f2e1233]
+              - generic [ref=f2e1234]:
+                - strong [ref=f2e1235]: 粤来发劳保
+                - generic [ref=f2e1236]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f2e1237]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f2e1238]:
+              - generic [ref=f2e1239]: CE EN
+              - generic [ref=f2e1240]: ISO 9001
+              - generic [ref=f2e1241]: ANSI
+              - generic [ref=f2e1242]: BSCI
+          - navigation "Footer products" [ref=f2e1243]:
+            - heading "Products" [level=3] [ref=f2e1244]
+            - link "Head Protection" [ref=f2e1245] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f2e1246] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f2e1247] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f2e1248] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f2e1249] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f2e1250] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f2e1251]:
+            - heading "Solutions" [level=3] [ref=f2e1252]
+            - link "Construction" [ref=f2e1253] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f2e1254] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f2e1255] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f2e1256] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f2e1257] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f2e1258] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f2e1259]:
+            - heading "Company" [level=3] [ref=f2e1260]
+            - link "About Us" [ref=f2e1261] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f2e1262] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f2e1263] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f2e1264] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f2e1265] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f2e1266]:
+            - heading "Contact Us" [level=3] [ref=f2e1267]
+            - paragraph [ref=f2e1268]: +86 180 2930 9938
+            - paragraph [ref=f2e1272]: sales@laifappe.com
+            - paragraph [ref=f2e1277]:
+              - generic [ref=f2e1278]: W
+              - link "www.laifappe.com" [ref=f2e1279] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f2e1280]: Foshan, Guangdong, China
+        - generic [ref=f2e1285]:
+          - generic [ref=f2e1286]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f2e1287]:
+            - link "Privacy Policy" [ref=f2e1288] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f2e1289] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f2e1290] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - alert [ref=f2e1291]

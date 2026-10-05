@@ -1,0 +1,464 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e2]:
+    - generic [ref=f5e4]:
+      - generic [ref=f5e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f5e8]:
+        - link "sales@laifappe.com" [ref=f5e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f5e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f5e11]: EN
+    - banner [ref=f5e13]:
+      - generic [ref=f5e14]:
+        - link "Laifappe homepage" [ref=f5e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f5e16]
+          - generic [ref=f5e17]:
+            - strong [ref=f5e18]: 粤来发劳保
+            - generic [ref=f5e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f5e20]:
+          - link "Home" [ref=f5e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f5e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f5e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f5e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f5e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f5e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f5e27]:
+          - link "Email" [ref=f5e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f5e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f5e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f5e41]: →
+    - main [ref=f5e42]:
+      - generic [ref=f5e43]:
+        - navigation [ref=f5e44]:
+          - list [ref=f5e45]:
+            - listitem [ref=f5e46]:
+              - link [ref=f5e47] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f5e53]:
+              - link "Blog" [ref=f5e54] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=f5e57]: Welding, Cutting and Grinding PPE for Mine and Quarry Maintenance
+        - generic [ref=f5e58]:
+          - paragraph [ref=f5e59]: Safety Guide
+          - heading "Welding, Cutting and Grinding PPE for Mine and Quarry Maintenance" [level=1] [ref=f5e60]
+          - paragraph [ref=f5e61]: Plan PPE changes through mine repairs, from handling and grinding to welding, thermal cutting and hot-part handling, with sample and RFQ checks.
+          - generic [ref=f5e62]:
+            - time [ref=f5e63]: September 25, 2026
+            - generic [ref=f5e65]: 10 min read
+        - img "Welding, Cutting and Grinding PPE for Mine and Quarry Maintenance" [ref=f5e71]
+        - generic [ref=f5e73]:
+          - complementary [ref=f5e74]:
+            - navigation [ref=f5e75]:
+              - generic [ref=f5e76]:
+                - heading "On This Page" [level=3] [ref=f5e77]
+                - generic [ref=f5e78]: 12 sections
+              - list [ref=f5e79]:
+                - listitem [ref=f5e80]:
+                  - 'button "Quick Answer: Specify Each Step of the Repair" [ref=f5e81] [cursor=pointer]'
+                - listitem [ref=f5e84]:
+                  - button "Set the Mine-Specific Work Conditions First" [ref=f5e85] [cursor=pointer]
+                - listitem [ref=f5e88]:
+                  - button "Match PPE to Handling, Grinding, Welding and Cutting" [ref=f5e89] [cursor=pointer]
+                - listitem [ref=f5e92]:
+                  - button "Change Eye and Face Protection With the Process" [ref=f5e93] [cursor=pointer]
+                - listitem [ref=f5e96]:
+                  - button "Separate Welding Gloves From Handling and Hot-Part Gloves" [ref=f5e97] [cursor=pointer]
+                - listitem [ref=f5e100]:
+                  - button "Check Clothing Coverage at Cuffs, Neck and Boot Tops" [ref=f5e101] [cursor=pointer]
+                - listitem [ref=f5e104]:
+                  - button "Reassess Welding Fumes Instead of Reusing the Dust Specification" [ref=f5e105] [cursor=pointer]
+                - listitem [ref=f5e108]:
+                  - button "Trial the Complete Setup and the Task Changeover" [ref=f5e109] [cursor=pointer]
+                - listitem [ref=f5e112]:
+                  - button "Build a Repair-Specific PPE RFQ" [ref=f5e113] [cursor=pointer]
+                - listitem [ref=f5e116]:
+                  - button "Inspect Before Issue and at Each Change of Task" [ref=f5e117] [cursor=pointer]
+                - listitem [ref=f5e120]:
+                  - button "Common Purchasing Errors to Catch Before Approval" [ref=f5e121] [cursor=pointer]
+                - listitem [ref=f5e124]:
+                  - button "Frequently Asked Questions" [ref=f5e125] [cursor=pointer]
+          - article [ref=f5e128]:
+            - generic [ref=f5e130]:
+              - generic [ref=f5e131]:
+                - paragraph [ref=f5e132]: Buyer next step
+                - paragraph [ref=f5e133]: Turn this guide into a sourced PPE shortlist with standards, quantities, and role-based kit notes.
+              - link "Request maintenance PPE options and model documents" [ref=f5e134] [cursor=pointer]:
+                - /url: /quote
+            - generic [ref=f5e138]:
+              - generic [ref=f5e139]:
+                - paragraph [ref=f5e140]: Planning tools
+                - paragraph [ref=f5e141]: Use these tools before moving from this guide into quantities, sizing, labels, or RFQ planning.
+              - link "Planning PPE Quantity Calculator" [ref=f5e143] [cursor=pointer]:
+                - /url: /tools/ppe-calculator
+                - generic [ref=f5e144]:
+                  - generic [ref=f5e145]: Planning
+                  - generic [ref=f5e146]: PPE Quantity Calculator
+            - generic [ref=f5e149]:
+              - paragraph [ref=f5e150]: A quarry repair can involve moving a replacement plate, grinding its edge, welding it into place and removing slag before the equipment returns to service. The worker may stay in the same location while the protection needed changes several times. A general maintenance kit can miss those transitions.
+              - paragraph [ref=f5e151]:
+                - text: This guide helps mine maintenance supervisors, safety managers and procurement teams specify PPE for that sequence. It covers the worn equipment and its purchasing checks; the mine's approved work method controls isolation, lifting, fire prevention, ventilation and access. Use the
+                - link "mining and quarrying PPE hub" [ref=f5e152] [cursor=pointer]:
+                  - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+                - text: for the wider site order.
+              - 'heading "Quick Answer: Specify Each Step of the Repair" [level=2] [ref=f5e153]'
+              - paragraph [ref=f5e154]: "For mine and quarry maintenance, start with the operation: material handling, abrasive cutting or grinding, arc welding, thermal cutting, slag removal, or hot-part handling. Select eye and face protection, gloves and clothing for each step, then check hearing and respiratory needs against the actual exposure. Keep the approved combinations available at the job rather than expecting one pair of gloves and one visor to cover everything."
+              - paragraph [ref=f5e155]: "Three decisions deserve a place on the work order:"
+              - list [ref=f5e156]:
+                - listitem [ref=f5e157]: What changes next? Name the next process and the point where PPE must change.
+                - listitem [ref=f5e158]: Which configuration is approved? Record the actual helmet or shield, eyewear, gloves, clothing and any respirator together.
+                - listitem [ref=f5e159]: What would stop the job? Missing isolation, an unidentified coating, unsuitable equipment or a failed PPE check needs resolution before work resumes.
+              - heading "Set the Mine-Specific Work Conditions First" [level=2] [ref=f5e160]
+              - paragraph [ref=f5e161]: A repair beside a conveyor, on a crusher platform or in an enclosed chute is different from work on a detached component at a workshop bench. Record the location and access conditions alongside the welding process. Consider nearby belts, hoses, oily residues, equipment below the work and people who can enter the area.
+              - paragraph [ref=f5e162]:
+                - link "HSE's quarry crusher guidance" [ref=f5e163] [cursor=pointer]:
+                  - /url: https://www.hse.gov.uk/quarries/crushing.htm
+                - text: treats guarding, isolation and maintenance arrangements as central controls. PPE does not provide permission to reach past a guard, work beneath an unsupported part or enter equipment that can move. The maintenance plan must address stored and gravitational energy as well as the electrical supply.
+              - paragraph [ref=f5e164]: "The site should resolve these questions before the buyer releases a hot-work kit:"
+              - list [ref=f5e165]:
+                - listitem [ref=f5e166]: Is the component isolated, supported and accessible under the approved maintenance procedure?
+                - listitem [ref=f5e167]: Has the responsible person approved the hot-work location, fire precautions, screening and any required fire watch?
+                - listitem [ref=f5e168]: Are the base metal, coatings, residues and welding consumables identified?
+                - listitem [ref=f5e169]: Are ventilation, exposure assessment and nearby-worker protection arranged?
+                - listitem [ref=f5e170]: Does the work require a separate confined-space, work-at-height or electrical procedure?
+              - paragraph [ref=f5e171]:
+                - text: For U.S. surface metal and nonmetal mines,
+                - link "30 CFR 56.15007" [ref=f5e172] [cursor=pointer]:
+                  - /url: https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-N/section-56.15007
+                - text: addresses protective equipment and clothing for welding, cutting and work with molten metal. It is not a universal product specification or an approval label. Establish the rules for the actual mine type and jurisdiction before accepting supplier documents; underground and coal operations require their own regulatory review.
+              - heading "Match PPE to Handling, Grinding, Welding and Cutting" [level=2] [ref=f5e173]
+              - paragraph [ref=f5e174]: Use the table to organize the purchase brief. Each row is a decision to be completed by the site's competent reviewers, not a ready-made kit approved for every repair.
+              - table [ref=f5e176]:
+                - rowgroup [ref=f5e177]:
+                  - row [ref=f5e178]:
+                    - columnheader "Repair step" [ref=f5e179]
+                    - columnheader "Protection decision" [ref=f5e180]
+                    - columnheader "Detail to put in the purchase brief" [ref=f5e181]
+                - rowgroup [ref=f5e182]:
+                  - row [ref=f5e183]:
+                    - cell "Move a cold plate, screen panel or replacement part" [ref=f5e184]
+                    - cell "Mechanical hand protection for edges and grip; eye, foot and head protection for the assessed handling task" [ref=f5e185]
+                    - cell "Part condition, handling aids, glove sizes and dexterity; keep lifting and crush hazards outside glove-performance claims" [ref=f5e186]
+                  - row [ref=f5e187]:
+                    - cell "Abrasive cutting, grinding or weld preparation" [ref=f5e188]
+                    - cell "Impact-rated primary eyewear with assessed face coverage; task-selected gloves, clothing and hearing protection" [ref=f5e189]
+                    - cell "Tool and accessory instructions, fragment and spark exposure, work position and any assessed airborne contaminants" [ref=f5e190]
+                  - row [ref=f5e191]:
+                    - cell "Arc welding" [ref=f5e192]
+                    - cell "Welding eye and face protection with a suitable filter, primary eyewear, welding gloves and protective clothing" [ref=f5e193]
+                    - cell "Welding process and operating range, weld position, filter selection, coverage and compatibility" [ref=f5e194]
+                  - row [ref=f5e195]:
+                    - cell "Oxy-fuel or plasma cutting" [ref=f5e196]
+                    - cell "Eye and face protection selected for that specific process, plus thermal hand and body protection" [ref=f5e197]
+                    - cell "Name the cutting method; do not use a single generic “cutting goggles” line for both operations" [ref=f5e198]
+                  - row [ref=f5e199]:
+                    - cell "Chip slag or dress a completed weld" [ref=f5e200]
+                    - cell "Reassess impact eye and face protection, hearing and hand protection" [ref=f5e201]
+                    - cell "Do not treat a lifted welding helmet as face coverage; record whether the part remains hot" [ref=f5e202]
+                  - row [ref=f5e203]:
+                    - cell "Move or hold a heated component" [ref=f5e204]
+                    - cell "Cooling or handling aids first; separately specified contact-heat protection if handling is authorized" [ref=f5e205]
+                    - cell "Expected surface condition, contact temperature and duration, grip and the exact glove's use limits" [ref=f5e206]
+              - paragraph [ref=f5e207]:
+                - text: The existing
+                - link "mining work-glove guide" [ref=f5e208] [cursor=pointer]:
+                  - /url: /blog/mining-work-gloves-maintenance-material-handling
+                - text: covers cold material handling, cut resistance and oily grip in more detail. Keep those specifications distinct from the hot-work additions.
+              - heading "Change Eye and Face Protection With the Process" [level=2] [ref=f5e209]
+              - paragraph [ref=f5e210]: A welding filter addresses optical radiation; a grinding configuration must address flying particles and face exposure. Neither a dark lens nor a clear shield proves every property needed for both jobs. Read the markings and instructions for the complete assembly, including its lenses and carrier.
+              - paragraph [ref=f5e211]:
+                - link "CCOHS welding PPE guidance" [ref=f5e212] [cursor=pointer]:
+                  - /url: https://www.ccohs.ca/oshanswers/safety_haz/welding/ppe.html
+                - text: distinguishes arc processes from gas cutting and calls for primary eyewear beneath welding face protection. Select the filter for the actual process and operating conditions. There is no single shade number that this article can assign to all mine repairs.
+              - paragraph [ref=f5e213]:
+                - text: For equipment with an auto-darkening filter, make mode selection an explicit changeover check.
+                - link "Miller's Classic helmet information" [ref=f5e214] [cursor=pointer]:
+                  - /url: https://www.millerwelds.com/en-us/safety-products/helmets/classic-m30254/classic-black-287803
+                - text: illustrates that weld, cut and grind can be separate modes with different shade ranges. This is an example of why the offered model's controls must be reviewed, not a recommendation of that helmet for a mine. Before welding, leave grind mode and perform the manufacturer's prescribed checks; never test protection by looking at an unprotected arc.
+              - paragraph [ref=f5e215]: "Ask the supplier to identify:"
+              - list [ref=f5e216]:
+                - listitem [ref=f5e217]: The complete eye/face assembly and the standard and performance markings requested by the site.
+                - listitem [ref=f5e218]: Whether grinding use is permitted, with which cover lenses or visor and under which instructions.
+                - listitem [ref=f5e219]: Replacement cover plates, lenses, headgear and approved hard-hat adapters.
+                - listitem [ref=f5e220]: Any restrictions when wearing the assembly with a respirator, earmuffs or prescription eyewear.
+              - paragraph [ref=f5e221]:
+                - text: Keep primary eyewear in place when the welding hood is raised. Helpers and other exposed people need their own protection and screening arrangements. For quarry dust and impact markings, use the
+                - link "eye and face protection guide" [ref=f5e222] [cursor=pointer]:
+                  - /url: /blog/quarry-eye-face-protection-guide
+                - text: .
+              - heading "Separate Welding Gloves From Handling and Hot-Part Gloves" [level=2] [ref=f5e223]
+              - paragraph [ref=f5e224]: “Leather,” “cut resistant” and “welding glove” are not interchangeable specifications. Compare the protection documented for the model with the job it will do. A glove may support one step of the repair without being suitable for the next.
+              - figure "Mechanical glove constructions illustrate the handling comparison; welding and hot-contact suitability require separate model evidence." [ref=f5e225]:
+                - img "Mechanical glove constructions illustrate the handling comparison; welding and hot-contact suitability require separate model evidence." [ref=f5e227]
+              - table [ref=f5e230]:
+                - rowgroup [ref=f5e231]:
+                  - row [ref=f5e232]:
+                    - columnheader "Glove allocation" [ref=f5e233]
+                    - columnheader "Ask the site and supplier" [ref=f5e234]
+                    - columnheader "Reason to keep a separate line item" [ref=f5e235]
+                - rowgroup [ref=f5e236]:
+                  - row [ref=f5e237]:
+                    - cell "Cold-part handling" [ref=f5e238]
+                    - cell "What edge, grip, puncture and dexterity requirements apply?" [ref=f5e239]
+                    - cell "Mechanical ratings do not establish welding or contact-heat performance" [ref=f5e240]
+                  - row [ref=f5e241]:
+                    - cell "Welding or thermal cutting" [ref=f5e242]
+                    - cell "What process, work position, coverage and control movements must the glove support?" [ref=f5e243]
+                    - cell "A bulky glove may change control feel; a lighter glove may not meet the required exposure specification" [ref=f5e244]
+                  - row [ref=f5e245]:
+                    - cell "Authorized hot-part handling" [ref=f5e246]
+                    - cell "What temperature, contact time, contact surface and handling aid are involved?" [ref=f5e247]
+                    - cell "Welding suitability alone does not establish a safe hot-metal holding time" [ref=f5e248]
+                  - row [ref=f5e249]:
+                    - cell "Chemical cleaning before repair" [ref=f5e250]
+                    - cell "Which substance, concentration and contact duration are involved?" [ref=f5e251]
+                    - cell "Chemical resistance must be checked separately; contaminated gloves should not carry residues into hot work" [ref=f5e252]
+              - paragraph [ref=f5e253]: Record the sizes and approved use beside each model so a replacement issue does not silently substitute one glove for another. Do not evaluate heat resistance by having workers touch hot parts during a sample trial. Review manufacturer evidence, then assess fit and control movements under safe conditions.
+              - paragraph [ref=f5e254]: Gloves do not protect against entanglement in rotating equipment or crushing by a moving component. The tool instructions and site procedure govern glove use around machinery. Welding gloves also do not establish the electrical insulation needed for energized electrical work.
+              - heading "Check Clothing Coverage at Cuffs, Neck and Boot Tops" [level=2] [ref=f5e255]
+              - paragraph [ref=f5e256]: Specify clothing for the welding position and spark or spatter exposure, then review the whole outfit. A jacket sample is not enough if reaching opens a waist gap or hot material can collect at a cuff. Ordinary reflective workwear should not be assumed suitable for hot work, and welding clothing should not be treated as proof of electrical arc-flash protection.
+              - paragraph [ref=f5e257]:
+                - text: CCOHS recommends closed clothing, suitable coverage, clean garments and trouser legs over boot tops without spark-catching cuffs. Its
+                - link "protective-clothing guidance" [ref=f5e258] [cursor=pointer]:
+                  - /url: https://www.ccohs.ca/oshanswers/safety_haz/welding/ppe.html
+                - text: also emphasizes following care instructions. Translate that into a sample review of the proposed layers, closures and footwear rather than approving a fabric from its name alone.
+              - paragraph [ref=f5e259]: Have representative wearers reach, kneel and use unpowered controls in the complete outfit. Record whether coverage is maintained and whether the gloves, sleeves or garment restrict necessary movement. Resolve visibility requirements for travel through the mine and heat exposure during the job as part of the same clothing decision.
+              - paragraph [ref=f5e260]: For the RFQ, request the garment's intended use, model-specific protection evidence, available sizes, cleaning instructions and rejection criteria. Any logo, alteration or added reflective material needs review against the manufacturer's instructions before approval.
+              - heading "Reassess Welding Fumes Instead of Reusing the Dust Specification" [level=2] [ref=f5e261]
+              - paragraph [ref=f5e262]:
+                - text: The respirator assigned for a dusty quarry route is not automatically suitable for welding.
+                - link "CCOHS explains" [ref=f5e263] [cursor=pointer]:
+                  - /url: https://www.ccohs.ca/oshanswers/safety_haz/welding/fumes.html
+                - text: that base metals, electrodes, coatings and residues affect the contaminants generated. Coating removal can itself create a hazardous exposure. Identify unknown paint, plating or cleaning residues before deciding how to prepare or heat the part.
+              - paragraph [ref=f5e264]: For the exposure reviewer, provide the process, materials and safety data sheets, operating duration, work location and ventilation arrangements. Keep this record with the repair order so a change of material or welding consumable triggers a review rather than an automatic repeat of the old respirator order.
+              - paragraph [ref=f5e265]:
+                - link "HSE's welding-fume guidance" [ref=f5e266] [cursor=pointer]:
+                  - /url: https://www.hse.gov.uk/welding/protect-your-workers/avoid-reduce-exposure.htm
+                - text: "sets out a control sequence: reduce exposure, use extraction where appropriate and provide suitable respiratory protection where needed. Its detailed recommendations have a UK context; the mine's applicable program determines selection and use. Tight-fitting equipment must meet the relevant fit-testing and program requirements."
+              - paragraph [ref=f5e267]:
+                - text: A particulate filter does not remove all gases and vapors or supply oxygen. An air-purifying respirator, including a PAPR, is not a solution for an oxygen-deficient atmosphere. Enclosed chutes, tanks and other potentially confined spaces require specialist assessment and the site's entry arrangements; this buying guide does not authorize entry. See
+                - link "NIOSH's guide to air-purifying respirators" [ref=f5e268] [cursor=pointer]:
+                  - /url: https://www.cdc.gov/niosh/docs/2018-176/default.html
+                - text: for their limitations.
+              - heading "Trial the Complete Setup and the Task Changeover" [level=2] [ref=f5e269]
+              - paragraph [ref=f5e270]:
+                - link "HSE's PPE selection guidance" [ref=f5e271] [cursor=pointer]:
+                  - /url: https://www.hse.gov.uk/ppe/selection-and-use.htm
+                - text: calls for equipment to fit the wearer and work with other PPE worn at the same time. For mine repairs, review both the assembled outfit and the transition between operations. A good fit while standing still may not settle a problem that appears when the worker lowers a hood or reaches overhead.
+              - figure "Review eyewear, head, hearing and respiratory equipment together, then assess the additional welding or grinding face protection." [ref=f5e272]:
+                - img "Review eyewear, head, hearing and respiratory equipment together, then assess the additional welding or grinding face protection." [ref=f5e274]
+              - paragraph [ref=f5e276]: "Use an unpowered, hazard-free trial to record:"
+              - list [ref=f5e277]:
+                - listitem [ref=f5e278]: Whether the welding or grinding face protection can move without displacing primary eyewear or a respirator.
+                - listitem [ref=f5e279]:
+                  - generic [ref=f5e280]:
+                    - text: Whether earmuffs seat correctly with the chosen helmet, eyewear and straps. Use the
+                    - link "mining hearing guide" [ref=f5e281] [cursor=pointer]:
+                      - /url: /blog/mining-hearing-protection-guide
+                    - text: for exposure, fit and communication decisions.
+                - listitem [ref=f5e282]: Whether required head protection remains in place with a manufacturer-approved assembly.
+                - listitem [ref=f5e283]: Whether controls can be operated with the assigned gloves and without opening clothing gaps.
+                - listitem [ref=f5e284]: Where the next task's gloves, lenses and other components will be kept clean and accessible.
+                - listitem [ref=f5e285]: Whether the wearer can identify the correct next configuration without improvising attachments or removing necessary protection.
+              - paragraph [ref=f5e286]: This trial checks usability and interference. It does not replace certification, required respirator fit testing or performance testing. Record rejected combinations as well as the accepted one, and review any later substitution.
+              - heading "Build a Repair-Specific PPE RFQ" [level=2] [ref=f5e287]
+              - paragraph [ref=f5e288]: Organize quantities by work crew and task allocation. A shutdown team may need handling gloves, welding gloves and approved spare lenses, but that does not mean every worker needs every item. Include helpers and other exposed roles in the site review.
+              - table [ref=f5e290]:
+                - rowgroup [ref=f5e291]:
+                  - row [ref=f5e292]:
+                    - columnheader "RFQ field" [ref=f5e293]
+                    - columnheader "Buyer information" [ref=f5e294]
+                    - columnheader "Supplier response to request" [ref=f5e295]
+                - rowgroup [ref=f5e296]:
+                  - row [ref=f5e297]:
+                    - cell "Job and location" [ref=f5e298]
+                    - cell "Mine type, repair area, process, working position and task sequence" [ref=f5e299]
+                    - cell "Intended-use match and any stated limitations" [ref=f5e300]
+                  - row [ref=f5e301]:
+                    - cell "Eye and face protection" [ref=f5e302]
+                    - cell "Required impact and optical protection; operating range; existing headgear" [ref=f5e303]
+                    - cell "Exact assembly, markings, filter range, instructions and replacement lens references" [ref=f5e304]
+                  - row [ref=f5e305]:
+                    - cell "Gloves" [ref=f5e306]
+                    - cell "Separate handling, welding, hot-contact or chemical needs" [ref=f5e307]
+                    - cell "Model evidence, sizes, coverage, use limits and replacement model" [ref=f5e308]
+                  - row [ref=f5e309]:
+                    - cell "Clothing and footwear interfaces" [ref=f5e310]
+                    - cell "Required protection, work posture, layers and size distribution" [ref=f5e311]
+                    - cell "Garment documents, care instructions and samples for combined fit review" [ref=f5e312]
+                  - row [ref=f5e313]:
+                    - cell "Respiratory and hearing protection" [ref=f5e314]
+                    - cell "Site-approved specification and existing equipment" [ref=f5e315]
+                    - cell "Approval and configuration documents, compatible components and consumables" [ref=f5e316]
+                  - row [ref=f5e317]:
+                    - cell "Sample decision" [ref=f5e318]
+                    - cell "Review criteria, named reviewer and unresolved questions" [ref=f5e319]
+                    - cell "Sample models and sizes; written confirmation of any differences from the bulk offer" [ref=f5e320]
+                  - row [ref=f5e321]:
+                    - cell "Order and replenishment" [ref=f5e322]
+                    - cell "Quantities, spare allocation, destination and required date" [ref=f5e323]
+                    - cell "Confirmed availability, price, delivery terms and substitution process" [ref=f5e324]
+              - paragraph [ref=f5e325]:
+                - text: Use the
+                - link "mining PPE RFQ worksheet" [ref=f5e326] [cursor=pointer]:
+                  - /url: /downloads/mining-ppe-rfq-worksheet.txt
+                - text: to record the order, then attach this task breakdown. Keep requested dates separate from supplier-confirmed dates and do not count spare quantities twice. The
+                - link "PPE quantity calculator" [ref=f5e327] [cursor=pointer]:
+                  - /url: /tools/ppe-calculator
+                - text: can organize issue and replacement assumptions; it does not determine protective suitability.
+              - heading "Inspect Before Issue and at Each Change of Task" [level=2] [ref=f5e328]
+              - paragraph [ref=f5e329]: Follow the exact models' inspection and replacement instructions. Make damage, contamination, missing parts and loss of fit visible in the issue record. A stock replacement should restore the approved configuration, not introduce an unreviewed alternative because it looks similar.
+              - paragraph [ref=f5e330]: "For each repair, the supervisor's changeover record can include:"
+              - list [ref=f5e331]:
+                - listitem [ref=f5e332]: Current operation completed and next operation identified.
+                - listitem [ref=f5e333]: Correct eye/face device and filter mode selected; lenses, covers and attachment points checked.
+                - listitem [ref=f5e334]: Assigned glove model available, clean and within its use limits.
+                - listitem [ref=f5e335]: Clothing closures and coverage restored after changing equipment.
+                - listitem [ref=f5e336]: Respiratory and hearing equipment checked under the site's programs.
+                - listitem [ref=f5e337]: Damaged items removed from use, with an approved replacement available.
+              - paragraph [ref=f5e338]: Do not publish a universal weekly or monthly replacement interval for this kit. Lens wear, glove contamination, garment damage and component service limits differ. Record recurring defects so the next purchase addresses their cause instead of simply increasing stock.
+              - heading "Common Purchasing Errors to Catch Before Approval" [level=2] [ref=f5e339]
+              - list [ref=f5e340]:
+                - listitem [ref=f5e341]: "One “cutting” line item: abrasive cutting, oxy-fuel cutting and plasma cutting remain different operations."
+                - listitem [ref=f5e342]: "A lifted welding hood during grinding: the worker still needs the assessed impact eye and face protection."
+                - listitem [ref=f5e343]: "One glove because it looks heavy: separate mechanical handling, welding and hot-contact evidence."
+                - listitem [ref=f5e344]: "A dust-mask order copied into hot work: reconsider materials, gases, ventilation and the respiratory program."
+                - listitem [ref=f5e345]: "Sample approval without the other PPE: check the complete configuration and the change between tasks."
+                - listitem [ref=f5e346]: "Uncontrolled repeat orders: preserve exact model and component identities; review substitutions."
+              - heading "Frequently Asked Questions" [level=2] [ref=f5e347]
+              - heading "Can one welding helmet also be used for grinding?" [level=3] [ref=f5e348]
+              - paragraph [ref=f5e349]: Only if the exact assembly is intended and documented for that use. Check impact protection, the required lenses or visor, primary eyewear and the manufacturer's operating instructions. A grind-mode button alone is not the site's acceptance evidence. Restore the correct welding mode and settings before an arc is struck.
+              - heading "Can miners use their normal work gloves for welding?" [level=3] [ref=f5e350]
+              - paragraph [ref=f5e351]: Not solely because those gloves are leather, thick or cut resistant. The welding process needs its own documented glove specification. Keep ordinary handling and welding allocations distinct unless the exact model has been reviewed for both tasks.
+              - heading "Is a welding glove suitable for carrying hot steel?" [level=3] [ref=f5e352]
+              - paragraph [ref=f5e353]: That requires a separate contact-heat and handling assessment. Check temperature, duration, surface and manufacturer limits, and use cooling or handling aids where possible. Do not infer a safe holding time from the word “welding.”
+              - heading "Is an N95 or P100 enough for mine welding fumes?" [level=3] [ref=f5e354]
+              - paragraph [ref=f5e355]: The filter label alone cannot answer that. The exposure assessment must address the materials, contaminants, concentration, controls and required protection. Particle filtration does not establish gas protection or address oxygen deficiency. The approved respiratory program determines the configuration.
+              - heading "Does reflective mine clothing qualify as welding clothing?" [level=3] [ref=f5e356]
+              - paragraph [ref=f5e357]: Visibility and hot-work protection are separate requirements. Request evidence for the exact garment and intended exposure, including its reflective trim and layers. Likewise, welding suitability does not prove an electrical arc-flash rating.
+              - heading "What should a buyer send before requesting a quotation?" [level=3] [ref=f5e358]
+              - paragraph [ref=f5e359]: Send the repair sequence, location, welding or cutting process, site-approved protection requirements, existing equipment models, workforce sizes and quantities. Add required documents, trial criteria and replacement parts. These details let suppliers identify gaps before samples and bulk prices are compared.
+              - paragraph [ref=f5e360]:
+                - text: Preparing a mine maintenance order?
+                - link "Request PPE options and model documents" [ref=f5e361] [cursor=pointer]:
+                  - /url: /quote
+                - text: using the approved task breakdown. LAIFAPPE can organize available options for buyer review; product suitability, sample acceptance and release remain with the responsible site team.
+            - generic [ref=f5e362]:
+              - generic [ref=f5e363]:
+                - generic [ref=f5e364]:
+                  - paragraph [ref=f5e365]: Related PPE
+                  - heading "Source the PPE covered in this guide" [level=2] [ref=f5e366]
+                  - paragraph [ref=f5e367]: Move from research to a buyer shortlist with the matching solution page, category paths, selected PPE options, and RFQ next steps.
+                  - generic [ref=f5e368]:
+                    - link "Request quote" [ref=f5e369] [cursor=pointer]:
+                      - /url: /quote
+                    - link "Build PPE kit" [ref=f5e370] [cursor=pointer]:
+                      - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+                    - link "Mining task checklist" [ref=f5e371] [cursor=pointer]:
+                      - /url: /blog/mining-ppe-checklist-by-task
+                    - link "Mining PPE RFQ worksheet" [ref=f5e372] [cursor=pointer]:
+                      - /url: /downloads/mining-ppe-rfq-worksheet.txt
+                - link "Request maintenance PPE options and model documents" [ref=f5e373] [cursor=pointer]:
+                  - /url: /quote
+              - generic [ref=f5e374]:
+                - generic [ref=f5e375]:
+                  - generic [ref=f5e376]: Solution
+                  - link "Mining and quarrying PPE solution" [ref=f5e387] [cursor=pointer]:
+                    - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+                - generic [ref=f5e390]:
+                  - generic [ref=f5e391]: PPE categories
+                  - generic [ref=f5e396]:
+                    - link "Hand protection options" [ref=f5e397] [cursor=pointer]:
+                      - /url: /categories/hand-protection
+                    - link "Primary eye protection" [ref=f5e398] [cursor=pointer]:
+                      - /url: /categories/eye-protection
+                    - link "Protective clothing options" [ref=f5e399] [cursor=pointer]:
+                      - /url: /categories/body-protection
+              - generic [ref=f5e400]:
+                - generic [ref=f5e401]: Buyer shortlist
+                - list
+            - link "Back to all articles" [ref=f5e406] [cursor=pointer]:
+              - /url: /blog
+    - contentinfo [ref=f5e409]:
+      - generic [ref=f5e410]:
+        - generic [ref=f5e411]:
+          - generic [ref=f5e412]:
+            - link "Laifappe homepage" [ref=f5e413] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f5e414]
+              - generic [ref=f5e415]:
+                - strong [ref=f5e416]: 粤来发劳保
+                - generic [ref=f5e417]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f5e418]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f5e419]:
+              - generic [ref=f5e420]: CE EN
+              - generic [ref=f5e421]: ISO 9001
+              - generic [ref=f5e422]: ANSI
+              - generic [ref=f5e423]: BSCI
+          - navigation "Footer products" [ref=f5e424]:
+            - heading "Products" [level=3] [ref=f5e425]
+            - link "Head Protection" [ref=f5e426] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f5e427] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f5e428] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f5e429] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f5e430] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f5e431] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f5e432]:
+            - heading "Solutions" [level=3] [ref=f5e433]
+            - link "Construction" [ref=f5e434] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f5e435] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f5e436] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f5e437] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f5e438] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f5e439] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f5e440]:
+            - heading "Company" [level=3] [ref=f5e441]
+            - link "About Us" [ref=f5e442] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f5e443] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f5e444] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f5e445] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f5e446] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f5e447]:
+            - heading "Contact Us" [level=3] [ref=f5e448]
+            - paragraph [ref=f5e449]: +86 180 2930 9938
+            - paragraph [ref=f5e453]: sales@laifappe.com
+            - paragraph [ref=f5e458]:
+              - generic [ref=f5e459]: W
+              - link "www.laifappe.com" [ref=f5e460] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f5e461]: Foshan, Guangdong, China
+        - generic [ref=f5e466]:
+          - generic [ref=f5e467]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f5e468]:
+            - link "Privacy Policy" [ref=f5e469] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f5e470] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f5e471] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - alert [ref=f5e472]

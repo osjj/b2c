@@ -77,12 +77,36 @@ export async function generateJordanPdf(input: QuotationSnapshot, options?: PdfF
       text('QUOTATION', R - 14, 48, 19, NAVY, true, 'right')
       text('PPE Supply Quotation', R - 14, 65, 8.5, MUTED, false, 'right')
       document.setFillColor('#F5F8FB'); document.setDrawColor(BORDER)
-      const address = wrap(brandFieldLabel('Address', brand.address), W * .44 - 22, 8)
-      const contact = [brandFieldLabel('Contact', brand.contactLine), brandFieldLabel('Website', brand.website), brandFieldLabel('Email', brand.email)].filter(Boolean).flatMap((value) => wrap(value, W * .52 - 22, 8))
-      const contactHeight = Math.max(38, 22 + Math.max(contact.length, address.length) * 10)
+      const padding = 12
+      const addressWidth = W * .56 - padding * 2
+      const contactX = L + W * .62
+      const labelWidth = 44
+      const valueX = contactX + labelWidth + 6
+      const field = (key: Parameters<typeof brandFieldLabel>[0], value?: string) => {
+        const labeled = brandFieldLabel(key, value)
+        if (!labeled) return undefined
+        const colon = labeled.search(/[:：]/)
+        return { label: `${key}:`, value: labeled.slice(colon + 1).trim() }
+      }
+      const addressField = field('Address', brand.address)
+      const address = addressField ? wrap(addressField.value, addressWidth, 8) : []
+      const contact = [field('Contact', brand.contactLine), field('Email', brand.email), field('Website', brand.website)]
+        .filter((entry) => entry !== undefined)
+        .map((entry) => ({ ...entry, lines: wrap(entry.value, R - padding - valueX, 8) }))
+      const addressHeight = addressField ? 15 + address.length * 10 : 0
+      const rightHeight = contact.reduce((height, entry) => height + entry.lines.length * 10 + 5, 0)
+      const contactHeight = Math.max(60, 25 + Math.max(addressHeight, rightHeight))
       document.roundedRect(L, 98, W, contactHeight, 5, 5, 'FD')
-      if (address.length) text(address, L + 10, 112, 8, MUTED)
-      if (contact.length) text(contact, R - 10, 112, 8, MUTED, false, 'right')
+      if (addressField) {
+        text(addressField.label, L + padding, 113, 8, NAVY, true)
+        text(address, L + padding, 128, 8, INK)
+      }
+      let contactY = 113
+      for (const entry of contact) {
+        text(entry.label, contactX, contactY, 8, NAVY, true)
+        text(entry.lines, valueX, contactY, 8, INK)
+        contactY += entry.lines.length * 10 + 5
+      }
       const customerLines = wrap(snapshot.customer.companyName, W - 24, 8)
       const longCustomer = wrap(snapshot.customer.companyName, (W - 40) / 5 - 14, 6).length > 2
       let fieldsY = 106 + contactHeight

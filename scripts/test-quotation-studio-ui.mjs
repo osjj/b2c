@@ -11,23 +11,31 @@ import { chromium } from 'playwright'
 
 const mocks = `
 export const unstable_rethrow=()=>{};
-export const useRouter=()=>({push:route=>{window.__route=route},refresh:()=>{}});
+export const useRouter=()=>({push:route=>{window.__route=route},refresh:()=>{window.dispatchEvent(new Event('fixture-refresh'))}});
 export const usePathname=()=>'/admin/business-customers';
 export async function saveQuotationCustomer(input){window.__customer=input;return {success:true,reason:'已保存'}}
 export async function saveCommonQuotationProduct(input){window.__product=input;return {success:true,data:{id:'cmockproduct00000000000000'}}}
+export async function saveCommonProductImages(input){window.__imageInput=input;await new Promise(resolve=>setTimeout(resolve,600));window.__savedImageIds=input.sourceIds;window.__imageVersion=new Date(new Date(input.updatedAt).getTime()+1000).toISOString();return {success:true,reason:'产品图片已保存'}}
+export async function reimportCommonProductImages(input){window.__reimageInput=input;await new Promise(resolve=>setTimeout(resolve,600));if(window.__reimageFail)return {success:false,code:'INTERNAL_ERROR',reason:'模拟导入失败，原图片已保留'};const images=[4,5].map(n=>({id:'00000000-0000-4000-8000-'+String(n).padStart(12,'0'),kind:'source',name:'Fresh catalog '+n}));window.__savedImageIds=images.map(image=>image.id);window.__imageVersion='2026-10-05T00:00:00.000Z';return {success:true,reason:'商城主图已重新导入',data:{id:input.id,updatedAt:window.__imageVersion,images}}}
 export async function saveQuotationSettings(input){window.__settings=input;return {success:true,reason:'设置已保存'}}
 export async function searchQuotationCatalog(){return {success:true,data:[{id:'cmockcatalog00000000000000',name:'Catalog Fixture',unitPrice:'12.50',unitCost:'7.25',updatedAt:'2026-09-06T00:00:00.000Z',imageIds:['fixture-image']}]}}
 export async function importQuotationCatalogProduct(input){window.__import=input;return {success:true,data:{id:'cmockproduct00000000000000'}}}
 `
 const bundle = await build({ stdin: { contents: `
-import React,{useState} from 'react';import {createRoot} from 'react-dom/client';
+import React,{useState,useEffect} from 'react';import {createRoot} from 'react-dom/client';
 import {CustomerForm} from './src/components/admin/quotation/customer-form';
 import {CommonProductForm} from './src/components/admin/quotation/common-product-form';
+import {CommonProductImages} from './src/components/admin/quotation/common-product-images';
+import {SimpleImagePicker} from './src/components/admin/quotation/simple-image-picker';
 import {QuotationSettingsForm} from './src/components/admin/quotation/settings-form';
 import {CatalogImport} from './src/components/admin/quotation/catalog-import';
 import {WorkbenchHeader} from './src/components/admin/quotation/workbench-header';
 import {defaultWorkbenchSettings} from './src/lib/quotation/workbench-config';
-function App(){const [page,setPage]=useState('客户');return <main className="mx-auto max-w-7xl space-y-6 p-6"><p>隔离表单测试 · 不连接数据库</p><nav>{['客户','产品','设置','导入'].map(p=><button className="mr-3 rounded border px-4 py-2" onClick={()=>setPage(p)} key={p}>{p}</button>)}</nav><WorkbenchHeader title={page} description="Quotation studio local review"/>{page==='客户'?<CustomerForm/>:page==='产品'?<CommonProductForm/>:page==='设置'?<QuotationSettingsForm initialValue={defaultWorkbenchSettings}/>:<CatalogImport/>}</main>}
+const importedProduct={id:'cmockproduct00000000000000',expectedUpdatedAt:'2026-09-06T00:00:00.000Z',name:'Imported fixture',productSource:'Supplier / https://supplier.example/item',costPriceText:'100 pcs: $8.25\\n500 pcs: $7.50',specifications:'Material: Cotton',description:'Imported description',packaging:'',unitCost:'8.25',unitPrice:'12.50',unit:'pcs',currency:'USD',active:true};
+const imageFixture=[1,2,3].map(n=>({id:'00000000-0000-4000-8000-'+String(n).padStart(12,'0'),kind:'source',name:'Fixture '+n}));
+const allImageFixture=[...imageFixture,...[4,5].map(n=>({id:'00000000-0000-4000-8000-'+String(n).padStart(12,'0'),kind:'source',name:'Fresh catalog '+n}))];
+function PickerFixture({disabled=false}){const [images,setImages]=useState(imageFixture);return <SimpleImagePicker key={String(disabled)} images={images} onChange={setImages} disabled={disabled} sortable={disabled}/>}
+function App(){const [page,setPage]=useState('客户');const [refreshes,setRefreshes]=useState(0);useEffect(()=>{const refresh=()=>setRefreshes(n=>n+1);window.addEventListener('fixture-refresh',refresh);return ()=>window.removeEventListener('fixture-refresh',refresh)},[]);const savedImages=(window.__savedImageIds||imageFixture.map(image=>image.id)).map(id=>allImageFixture.find(image=>image.id===id)).filter(Boolean);return <main data-refreshes={refreshes} className="mx-auto max-w-7xl space-y-6 p-6"><p>隔离表单测试 · 不连接数据库</p><nav>{['客户','产品','编辑产品','设置','导入','图片','普通图片','禁用图片','未关联图片'].map(p=><button className="mr-3 rounded border px-4 py-2" onClick={()=>setPage(p)} key={p}>{p}</button>)}</nav><WorkbenchHeader title={page} description="Quotation studio local review"/>{page==='客户'?<CustomerForm/>:page==='产品'||page==='编辑产品'?<CommonProductForm key={page} initialValue={page==='编辑产品'?importedProduct:undefined}/>:page==='设置'?<QuotationSettingsForm initialValue={defaultWorkbenchSettings}/>:page==='图片'||page==='未关联图片'?<CommonProductImages key={page} catalogLinked={page==='图片'} productId="cmockproduct00000000000000" updatedAt={window.__imageVersion||'2026-09-06T00:00:00.000Z'} images={savedImages}/>:page==='普通图片'||page==='禁用图片'?<PickerFixture key={page} disabled={page==='禁用图片'}/>:<CatalogImport/>}</main>}
 createRoot(document.getElementById('root')).render(<App/>);
 `, resolveDir: process.cwd(), loader: 'tsx' }, bundle: true, write: false, platform: 'browser', format: 'iife', jsx: 'automatic', define: { 'process.env.NODE_ENV': '"development"' }, plugins: [{ name: 'isolated-forms', setup(plugin) {
   plugin.onResolve({ filter: /^(next\/navigation|@\/actions\/admin\/(quotation-customers|common-quotation-products|quotation-settings|quotation-catalog))$/ }, () => ({ path: 'mock', namespace: 'fixture' }))
@@ -79,7 +87,7 @@ try {
   await page.getByLabel('规格', { exact: true }).fill('Material: Cotton\nColor: Navy')
   await page.getByLabel('描述备注', { exact: true }).fill('Customer description')
   await page.getByLabel('包装信息', { exact: true }).fill('20 pcs/carton')
-  await page.getByLabel('成本价（仅内部，与单价同币种）').fill('7.25')
+  assert.equal(await page.getByLabel('成本价（仅内部，与单价同币种）').count(), 0)
   await page.getByLabel('默认报价单价').fill('12.50')
   await page.getByRole('button', { name: '保存常用产品', exact: true }).click()
   await page.waitForFunction(() => Boolean(window.__product))
@@ -98,7 +106,17 @@ try {
   await page.getByLabel('成本价（多行文本，仅内部）', { exact: true }).fill('')
   await page.getByRole('button', { name: '保存常用产品', exact: true }).click()
   await page.waitForFunction(() => window.__product?.costPriceText === null)
-  assert.equal(product.unitCost, '7.25'); assert.equal(product.packaging, '20 pcs/carton'); assert.equal(product.description, 'Customer description')
+  assert.equal(product.unitCost, null); assert.equal(product.packaging, '20 pcs/carton'); assert.equal(product.description, 'Customer description')
+  await page.getByRole('button', { name: '编辑产品', exact: true }).click()
+  assert.equal(await page.getByLabel('商品来源（仅内部）', { exact: true }).inputValue(), 'Supplier / https://supplier.example/item')
+  assert.equal(await page.getByLabel('成本价（多行文本，仅内部）', { exact: true }).inputValue(), '100 pcs: $8.25\n500 pcs: $7.50')
+  assert.equal(await page.getByLabel('成本价（仅内部，与单价同币种）').count(), 0)
+  await page.getByLabel('包装信息', { exact: true }).fill('20 pcs/carton')
+  await page.getByRole('button', { name: '保存常用产品', exact: true }).click()
+  await page.waitForFunction(() => window.__product?.id === 'cmockproduct00000000000000')
+  const editedProduct = await page.evaluate(() => window.__product)
+  assert.equal(editedProduct.unitCost, '8.25'); assert.equal(editedProduct.productSource, 'Supplier / https://supplier.example/item'); assert.equal(editedProduct.costPriceText, '100 pcs: $8.25\n500 pcs: $7.50')
+  await page.screenshot({ path: 'output/playwright/product-source/quotation-import-edit.png', fullPage: true })
   await page.getByRole('button', { name: '设置', exact: true }).click()
   for (const [label, value] of [['联系方式（右侧）', 'Contact fixture'], ['地址（左侧）', 'Address fixture'], ['网站（右侧）', 'https://example.com'], ['邮箱（右侧）', 'fixture@example.com']]) await page.getByLabel(label, { exact: true }).fill(value)
   assert.equal(await page.getByLabel('正式 PDF 和 Excel 使用印章，并叠加报价日期').isChecked(), false)
@@ -113,6 +131,7 @@ try {
   assert.equal(await page.evaluate(() => window.__settings.useSeal), true)
   await page.screenshot({ path: 'tmp/pdfs/studio-review/settings-ui.png', fullPage: true })
   await page.getByRole('button', { name: '导入', exact: true }).click()
+  await page.getByText('手动复制上架商品的名称、规格、描述、单价、商品来源和成本价（多行文本，仅内部）。', { exact: false }).waitFor()
   await page.getByRole('button', { name: '搜索商城', exact: true }).click()
   await page.getByText('Catalog Fixture', { exact: true }).waitFor()
   await page.getByRole('button', { name: '导入', exact: true }).last().click()
@@ -124,14 +143,117 @@ try {
   await page.getByRole('button', { name: '确认继续', exact: true }).click()
   await page.waitForFunction(() => Boolean(window.__import))
   assert.equal(await page.evaluate(() => window.__import.includeImages), true)
+  await page.getByRole('button', { name: '图片', exact: true }).click()
+  const cards = page.locator('[data-image-key]')
+  const imageOrder = () => cards.evaluateAll(nodes => nodes.map(node => node.dataset.imageKey))
+  const originalOrder = await imageOrder()
+  assert.equal(originalOrder.length, 3)
+  assert.equal(await page.getByRole('button', { name: '前移图片 1', exact: true }).isDisabled(), true)
+  assert.equal(await page.getByRole('button', { name: '后移图片 3', exact: true }).isDisabled(), true)
+  await cards.nth(2).dragTo(cards.nth(0))
+  assert.deepEqual(await imageOrder(), [originalOrder[2], originalOrder[0], originalOrder[1]])
+  await cards.nth(0).dragTo(cards.nth(2))
+  assert.deepEqual(await imageOrder(), originalOrder)
+  await page.getByRole('button', { name: '前移图片 3', exact: true }).click()
+  assert.deepEqual(await imageOrder(), [originalOrder[0], originalOrder[2], originalOrder[1]])
+  await page.getByRole('button', { name: '后移图片 1', exact: true }).focus()
+  await page.keyboard.press('Enter')
+  const reordered = [originalOrder[2], originalOrder[0], originalOrder[1]]
+  assert.deepEqual(await imageOrder(), reordered)
+  // External drops, cancelled internal drags and same-position drops cannot alter order.
+  await cards.nth(1).evaluate(node => {
+    const transfer = new DataTransfer(); transfer.setData('application/x-quotation-image', 'foreign-key')
+    node.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }))
+  })
+  await cards.nth(0).evaluate(node => {
+    const transfer = new DataTransfer()
+    node.dispatchEvent(new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer: transfer }))
+    node.dispatchEvent(new DragEvent('dragend', { bubbles: true, dataTransfer: transfer }))
+  })
+  await cards.nth(0).evaluate(node => {
+    const transfer = new DataTransfer()
+    node.dispatchEvent(new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer: transfer }))
+    node.dispatchEvent(new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: transfer }))
+  })
+  assert.deepEqual(await imageOrder(), reordered)
+  assert.equal(await page.locator('[data-dragging],[data-drop-target]').count(), 0)
+  await page.getByRole('button', { name: '保存图片', exact: true }).click()
+  await page.waitForFunction(() => Boolean(window.__imageInput))
+  assert.deepEqual(await page.evaluate(() => window.__imageInput.sourceIds), reordered.map(key => key.slice('source-'.length)))
+  assert.equal(await cards.evaluateAll(nodes => nodes.every(node => !node.draggable)), true)
+  assert.equal(await page.getByRole('button', { name: '后移图片 1', exact: true }).isDisabled(), true)
+  await page.waitForFunction(() => Boolean(window.__savedImageIds))
+  await page.getByRole('button', { name: '普通图片', exact: true }).click()
+  assert.equal(await cards.evaluateAll(nodes => nodes.every(node => !node.draggable)), true)
+  assert.equal(await page.getByRole('button', { name: /前移图片|后移图片/ }).count(), 0)
+  await page.getByRole('button', { name: '禁用图片', exact: true }).click()
+  assert.equal(await cards.evaluateAll(nodes => nodes.every(node => !node.draggable)), true)
+  assert.equal(await page.getByRole('button', { name: '前移图片 2', exact: true }).isDisabled(), true)
+  await page.getByRole('button', { name: '图片', exact: true }).click()
+  assert.deepEqual(await imageOrder(), reordered, 'Reopened fixture follows the saved source ID order')
+  await page.route('**/api/admin/quotation-files/upload', async route => {
+    await new Promise(resolve => setTimeout(resolve, 300)); await route.continue()
+  })
+  await page.locator('input[type=file]').setInputFiles({ name: 'new-image.png', mimeType: 'image/png', buffer: png })
+  assert.equal(await page.getByRole('button', { name: '保存图片', exact: true }).isDisabled(), true)
+  assert.equal(await cards.evaluateAll(nodes => nodes.every(node => !node.draggable)), true)
+  await page.waitForFunction(() => document.querySelectorAll('[data-image-key]').length === 4)
+  assert.deepEqual((await imageOrder()).slice(0, 3), reordered)
+  await page.getByRole('button', { name: '移除图片 2', exact: true }).click()
+  assert.equal((await imageOrder()).length, 3)
+  await cards.nth(2).dragTo(cards.nth(0))
+  await page.screenshot({ path: 'output/playwright/product-source/quotation-image-sort.png', fullPage: true })
+  const beforeRefresh = await imageOrder()
+  const reimportButton = page.getByRole('button', { name: '重新导入商品主图', exact: true })
+  assert.equal(await reimportButton.isEnabled(), true)
+  await reimportButton.click()
+  await page.getByRole('alertdialog').waitFor()
+  assert.match(await page.getByRole('alertdialog').innerText(), /替换/)
+  assert.equal(await page.evaluate(() => window.__reimageInput), undefined)
+  await page.getByRole('button', { name: '取消', exact: true }).click()
+  assert.equal(await page.evaluate(() => window.__reimageInput), undefined)
+  assert.deepEqual(await imageOrder(), beforeRefresh)
+  // Failure preserves unsaved image selection/order.
+  await page.evaluate(() => { window.__reimageFail = true })
+  await reimportButton.click()
+  await page.getByRole('button', { name: '确认继续', exact: true }).click()
+  await page.getByText('模拟导入失败，原图片已保留', { exact: true }).waitFor()
+  assert.deepEqual(await imageOrder(), beforeRefresh)
+  await page.evaluate(() => { window.__reimageFail = false; delete window.__reimageInput })
+  await reimportButton.click()
+  await page.getByRole('button', { name: '确认继续', exact: true }).click()
+  await page.waitForFunction(() => Boolean(window.__reimageInput))
+  assert.equal(await reimportButton.isDisabled(), true)
+  assert.equal(await page.getByRole('button', { name: '保存图片', exact: true }).isDisabled(), true)
+  assert.equal(await page.locator('input[type=file]').isDisabled(), true)
+  assert.equal(await cards.evaluateAll(nodes => nodes.every(node => !node.draggable)), true)
+  await page.getByRole('img', { name: 'Fresh catalog 4', exact: true }).waitFor()
+  await page.getByText('商城主图已重新导入', { exact: true }).waitFor()
+  assert.equal(await cards.count(), 2)
+  assert.deepEqual(await imageOrder(), [4, 5].map(n => `source-00000000-0000-4000-8000-${String(n).padStart(12, '0')}`))
+  assert.equal(await reimportButton.isEnabled(), true)
+  // Server-style prop refresh must retain feedback and supply the latest timestamp.
+  const refreshBefore = await page.locator('main').getAttribute('data-refreshes')
+  await page.evaluate(() => window.dispatchEvent(new Event('fixture-refresh')))
+  await page.waitForFunction(previous => document.querySelector('main').dataset.refreshes !== previous, refreshBefore)
+  assert.equal(await page.getByText('商城主图已重新导入', { exact: true }).isVisible(), true)
+  await cards.nth(1).dragTo(cards.nth(0))
+  await page.getByRole('button', { name: '保存图片', exact: true }).click()
+  await page.waitForFunction(() => window.__imageInput?.updatedAt === '2026-10-05T00:00:00.000Z')
+  assert.deepEqual(await page.evaluate(() => window.__imageInput.sourceIds), [5, 4].map(n => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`))
+  await page.getByText('产品图片已保存', { exact: true }).waitFor()
+  await page.screenshot({ path: 'output/playwright/product-source/quotation-image-reimport.png', fullPage: true })
+  await page.getByRole('button', { name: '未关联图片', exact: true }).click()
+  assert.equal(await reimportButton.isDisabled(), true)
+  assert.match(await page.locator('main').innerText(), /未关联商城商品/)
   await page.setViewportSize({ width: 390, height: 844 })
-  for (const tab of ['客户', '产品', '设置', '导入']) {
+  for (const tab of ['客户', '产品', '设置', '导入', '图片']) {
     await page.getByRole('button', { name: tab, exact: true }).first().click()
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `Mobile overflow: ${tab}`)
   }
   await page.screenshot({ path: 'tmp/pdfs/studio-review/mobile-ui.png', fullPage: true })
   assert.deepEqual(errors, [])
-  console.log('PASS: real customer/product/settings/import forms, seal upload, confirmation/cancel, 390px layouts. All I/O mocked.')
+  console.log('PASS: real customer/product/settings/import forms, private metadata, image sort/save/reopen, reimport confirmation/failure/pending/version update/unlinked guards, seal upload, 390px layouts. All I/O mocked.')
 } finally {
   await browser?.close()
   await new Promise(resolve => server.close(resolve))

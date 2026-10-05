@@ -1087,3 +1087,42 @@ enum QuotationFinalizationStatus {
   SUCCEEDED
   FAILED
 }
+
+enum CaseStudyStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model CaseStudy {
+  id                  String          @id @default(cuid())
+  slug                String          @unique
+  title               String
+  summary             String          @default("") @db.Text
+  country             String          @default("")
+  industry            String          @default("")
+  cooperationDate     DateTime?       @db.Date @map("cooperation_date")
+  buyerProfile        String          @default("") @db.Text @map("buyer_profile")
+  coverImage          String          @default("") @map("cover_image")
+  coverAlt            String          @default("") @map("cover_alt")
+  procurement         Json            @default("[]")
+  customization       String          @default("") @db.Text
+  sections            Json            @default("[]")
+  timeline            Json            @default("[]")
+  gallery             Json            @default("[]")
+  relatedLinks        Json            @default("[]") @map("related_links")
+  status              CaseStudyStatus @default(DRAFT)
+  featured            Boolean         @default(false)
+  sortOrder           Int             @default(0) @map("sort_order")
+  seoTitle            String          @default("") @map("seo_title")
+  seoDescription      String          @default("") @map("seo_description")
+  privateNotes        String          @default("") @db.Text @map("private_notes")
+  publicationApproved Boolean         @default(false) @map("publication_approved")
+  version             Int             @default(1)
+  publishedAt         DateTime?       @map("published_at")
+  createdAt           DateTime        @default(now()) @map("created_at")
+  updatedAt           DateTime        @updatedAt @map("updated_at")
+
+  @@index([status, featured, sortOrder, publishedAt])
+  @@map("case_studies")
+}

@@ -29,6 +29,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/solutions", label: "Solutions" },
+  { href: "/cases", label: "Procurement Cases" },
   { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
@@ -119,7 +120,7 @@ export function Header({ user }: HeaderProps) {
           <div className="flex items-center gap-2 sm:gap-4 lg:gap-8">
             {/* Mobile Menu */}
             <Sheet>
-              <SheetTrigger asChild className="lg:hidden">
+              <SheetTrigger asChild className="xl:hidden">
                 <Button variant="ghost" size="icon" className="h-11 w-11 hover:bg-accent shrink-0 sm:h-9 sm:w-9">
                   <Menu className="h-7 w-7 sm:h-6 sm:w-6" />
                 </Button>
@@ -171,7 +172,7 @@ export function Header({ user }: HeaderProps) {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8 group/nav">
+            <nav className="hidden xl:flex items-center gap-5 group/nav">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

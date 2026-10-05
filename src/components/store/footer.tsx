@@ -21,7 +21,7 @@ const footerLinks = {
   ],
   about: [
     { href: "/about", label: "Our Story" },
-    { href: "/cases", label: "Case Studies" },
+    { href: "/cases", label: "Procurement Cases" },
     { href: "/news", label: "News" },
     { href: "/contact?topic=partnership", label: "Partnership" },
   ],

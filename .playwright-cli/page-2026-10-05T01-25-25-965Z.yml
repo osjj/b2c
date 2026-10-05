@@ -1,0 +1,833 @@
+- generic [active] [ref=f4e1]:
+  - generic [ref=f4e2]:
+    - generic [ref=f4e4]:
+      - generic [ref=f4e5]: 22 years PPE manufacturing - OEM/ODM - Quote in 24 hours - Global shipping
+      - generic [ref=f4e8]:
+        - link "sales@laifappe.com" [ref=f4e9] [cursor=pointer]:
+          - /url: mailto:sales@laifappe.com
+        - link "+86 180 2930 9938" [ref=f4e10] [cursor=pointer]:
+          - /url: tel:+8618029309938
+        - generic [ref=f4e11]: EN
+    - banner [ref=f4e13]:
+      - generic [ref=f4e14]:
+        - link "Laifappe homepage" [ref=f4e15] [cursor=pointer]:
+          - /url: /
+          - img "Yuelaifa PPE icon" [ref=f4e16]
+          - generic [ref=f4e17]:
+            - strong [ref=f4e18]: 粤来发劳保
+            - generic [ref=f4e19]: YUELAIFA PPE · EST. 2003
+        - navigation "New homepage navigation" [ref=f4e20]:
+          - link "Home" [ref=f4e21] [cursor=pointer]:
+            - /url: /
+          - link "Products" [ref=f4e22] [cursor=pointer]:
+            - /url: /products
+          - link "Solutions" [ref=f4e23] [cursor=pointer]:
+            - /url: /solutions
+          - link "Tools" [ref=f4e24] [cursor=pointer]:
+            - /url: /tools
+          - link "Blog" [ref=f4e25] [cursor=pointer]:
+            - /url: /blog
+          - link "About" [ref=f4e26] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f4e27]:
+          - link "Email" [ref=f4e28] [cursor=pointer]:
+            - /url: mailto:sales@laifappe.com
+          - link "WhatsApp" [ref=f4e34] [cursor=pointer]:
+            - /url: https://wa.me/8618029309938
+          - button "Request Quote" [ref=f4e39] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f4e41]: →
+    - main [ref=f4e42]:
+      - generic [ref=f4e43]:
+        - navigation [ref=f4e44]:
+          - list [ref=f4e45]:
+            - listitem [ref=f4e46]:
+              - link [ref=f4e47] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f4e53]:
+              - link "Blog" [ref=f4e54] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=f4e57]: "Construction Safety Footwear Guide: ASTM, EN ISO 20345 and Size Planning"
+        - generic [ref=f4e58]:
+          - paragraph [ref=f4e59]: Safety Guide
+          - 'heading "Construction Safety Footwear Guide: ASTM, EN ISO 20345 and Size Planning" [level=1] [ref=f4e60]'
+          - paragraph [ref=f4e61]: Choose construction safety footwear by site hazard, ASTM F2413 or EN ISO 20345 rating, slip and puncture risk, electrical exposure, and bulk size planning.
+          - generic [ref=f4e62]:
+            - time [ref=f4e63]: April 19, 2026
+            - generic [ref=f4e65]: 23 min read
+        - 'img "Construction Safety Footwear Guide: ASTM, EN ISO 20345 and Size Planning" [ref=f4e71]'
+        - generic [ref=f4e73]:
+          - complementary [ref=f4e74]:
+            - navigation [ref=f4e75]:
+              - generic [ref=f4e76]:
+                - heading "On This Page" [level=3] [ref=f4e77]
+                - generic [ref=f4e78]: 13 sections
+              - list [ref=f4e79]:
+                - listitem [ref=f4e80]:
+                  - 'button "Quick Answer: Construction Safety Footwear For Site Buyers" [ref=f4e81] [cursor=pointer]'
+                - listitem [ref=f4e84]:
+                  - button "Foot Hazards on a Construction Site" [ref=f4e85] [cursor=pointer]
+                - listitem [ref=f4e88]:
+                  - button "OSHA Safety Footwear Requirements for Construction" [ref=f4e89] [cursor=pointer]
+                - listitem [ref=f4e92]:
+                  - 'button "Understanding ASTM F2413: The US Safety Footwear Standard" [ref=f4e93] [cursor=pointer]'
+                - listitem [ref=f4e96]:
+                  - 'button "Understanding EN ISO 20345: The European Safety Footwear Standard" [ref=f4e97] [cursor=pointer]'
+                - listitem [ref=f4e100]:
+                  - 'button "Steel Toe vs Composite Toe vs Aluminium Toe: Which to Choose" [ref=f4e101] [cursor=pointer]'
+                - listitem [ref=f4e104]:
+                  - button "Matching Safety Footwear to Construction Sub-Trades" [ref=f4e105] [cursor=pointer]
+                - listitem [ref=f4e108]:
+                  - 'button "How to Read the Boot Label: A Practical Checklist" [ref=f4e109] [cursor=pointer]'
+                - listitem [ref=f4e112]:
+                  - button "Common Mistakes in Construction Safety Footwear Selection" [ref=f4e113] [cursor=pointer]
+                - listitem [ref=f4e116]:
+                  - button "Care and Maintenance of Construction Safety Boots" [ref=f4e117] [cursor=pointer]
+                - listitem [ref=f4e120]:
+                  - 'button "Regulatory Summary: OSHA and EU Requirements Side by Side" [ref=f4e121] [cursor=pointer]'
+                - listitem [ref=f4e124]:
+                  - button "Frequently Asked Questions" [ref=f4e125] [cursor=pointer]
+                - listitem [ref=f4e128]:
+                  - button "Build Your Construction Footwear Programme" [ref=f4e129] [cursor=pointer]
+          - article [ref=f4e132]:
+            - generic [ref=f4e134]:
+              - generic [ref=f4e135]:
+                - paragraph [ref=f4e136]: Buyer next step
+                - paragraph [ref=f4e137]: Turn this guide into a sourced PPE shortlist with standards, quantities, and role-based kit notes.
+              - link "Request a safety footwear quote" [ref=f4e138] [cursor=pointer]:
+                - /url: /quote
+            - generic [ref=f4e142]:
+              - generic [ref=f4e143]:
+                - paragraph [ref=f4e144]: Planning tools
+                - paragraph [ref=f4e145]: Use these tools before moving from this guide into quantities, sizing, labels, or RFQ planning.
+              - generic [ref=f4e146]:
+                - link "Reference Safety Boot Size Guide" [ref=f4e147] [cursor=pointer]:
+                  - /url: /tools/size-guide
+                  - generic [ref=f4e148]:
+                    - generic [ref=f4e149]: Reference
+                    - generic [ref=f4e150]: Safety Boot Size Guide
+                - link "Compliance Safety Footwear Label Decoder" [ref=f4e153] [cursor=pointer]:
+                  - /url: /tools/compliance-checker
+                  - generic [ref=f4e154]:
+                    - generic [ref=f4e155]: Compliance
+                    - generic [ref=f4e156]: Safety Footwear Label Decoder
+                - link "Planning PPE Quantity Calculator" [ref=f4e159] [cursor=pointer]:
+                  - /url: /tools/ppe-calculator
+                  - generic [ref=f4e160]:
+                    - generic [ref=f4e161]: Planning
+                    - generic [ref=f4e162]: PPE Quantity Calculator
+            - generic [ref=f4e165]:
+              - paragraph [ref=f4e166]:
+                - text: Construction safety footwear for a jobsite should normally start with a certified toe cap, puncture-resistant midsole, slip-resistant outsole, proper fit by worker size, and the right electrical, waterproof, heat, or metatarsal add-ons for the task. For US projects, specify
+                - strong [ref=f4e167]: ASTM F2413
+                - text: markings. For CE/EN or export projects, specify
+                - strong [ref=f4e168]: EN ISO 20345
+                - text: ratings such as S1P, S3, or S5.
+              - paragraph [ref=f4e169]: A nail through the sole. A concrete block dropped from a scaffold. A slip on wet formwork. A live circuit contacted through a conductive boot.
+              - paragraph [ref=f4e170]: Foot injuries on construction sites are among the most common, the most painful, and the most preventable workplace injuries in the industry. According to the National Safety Council, over 96,000 foot injuries required days away from work in the US in a recent two-year period — and the Bureau of Labor Statistics has consistently found that the majority of workers who suffered foot impact injuries were not wearing protective footwear at the time.
+              - paragraph [ref=f4e171]: The typical construction foot injury involves an object falling less than four feet, weighing around 65 pounds. That is not a catastrophic incident. It is an ordinary moment on an ordinary site, made dangerous by the wrong footwear — or no footwear at all.
+              - paragraph [ref=f4e172]: "This guide covers how to select the right safety boots or shoes for construction work: the hazards workers face, what the US and European standards require, how to read certification labels, and how to match construction site footwear to tasks, sizes, and procurement documents."
+              - paragraph [ref=f4e173]:
+                - text: Use this page together with the
+                - link "complete construction PPE solution" [ref=f4e174] [cursor=pointer]:
+                  - /url: /solutions/construction-site-ppe-solution
+                - text: when footwear is part of a whole-site PPE program. For role-specific applications, connect it to
+                - link "fall protection PPE for construction" [ref=f4e175] [cursor=pointer]:
+                  - /url: /solutions/fall-protection-construction
+                - text: ","
+                - link "PPE for scaffolding and elevated platforms" [ref=f4e176] [cursor=pointer]:
+                  - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+                - text: ","
+                - link "PPE for road and bridge construction" [ref=f4e177] [cursor=pointer]:
+                  - /url: /solutions/ppe-for-road-and-bridge-construction-projects
+                - text: ", and"
+                - link "PPE for electrical installation on construction sites" [ref=f4e178] [cursor=pointer]:
+                  - /url: /solutions/ppe-for-electrical-installation-on-construction-sites
+                - text: .
+              - 'heading "Quick Answer: Construction Safety Footwear For Site Buyers" [level=2] [ref=f4e184]'
+              - paragraph [ref=f4e185]: For a construction footwear RFQ, ask for a certified boot or shoe by site hazard, surface condition, electrical exposure, and workforce size curve, not just a "steel toe boot." A common starting specification for active construction covers toe impact/compression, puncture and slip hazards, and proper fit, but the final features and ratings must come from the actual task and site conditions.
+              - table [ref=f4e187]:
+                - rowgroup [ref=f4e188]:
+                  - row [ref=f4e189]:
+                    - columnheader "Buyer decision" [ref=f4e190]
+                    - columnheader "What to specify" [ref=f4e191]
+                    - columnheader "Why it matters" [ref=f4e192]
+                - rowgroup [ref=f4e193]:
+                  - row [ref=f4e194]:
+                    - cell "General construction site footwear" [ref=f4e195]
+                    - cell "Toe protection, puncture resistance, slip resistance, durable upper, and fit range" [ref=f4e196]
+                    - 'cell "Covers the most common foot hazards: falling objects, nails, wet surfaces, rubble, and long walking shifts." [ref=f4e197]'
+                  - row [ref=f4e198]:
+                    - cell "US compliance" [ref=f4e199]
+                    - cell "ASTM F2413 version, toe impact/compression, puncture resistance, EH or SD where needed" [ref=f4e200]
+                    - cell "Keeps the quote tied to a testable footwear label instead of a generic description." [ref=f4e201]
+                  - row [ref=f4e202]:
+                    - cell "Export or international projects" [ref=f4e203]
+                    - cell "EN ISO 20345 rating such as S1, S1P, S3, S5, plus slip and penetration details" [ref=f4e204]
+                    - cell "Helps buyers compare CE/EN footwear without mixing incompatible ratings." [ref=f4e205]
+                  - row [ref=f4e206]:
+                    - cell "Electrical or utility work" [ref=f4e207]
+                    - cell "EH footwear, dielectric needs, dry-use limits, and compatibility with electrical PPE rules" [ref=f4e208]
+                    - cell "Prevents buyers from treating all safety shoes as electrical protection." [ref=f4e209]
+                  - row [ref=f4e210]:
+                    - cell "Proper fit" [ref=f4e211]
+                    - cell "Men's and women's size curve, width needs, socks, climate, and return/replenishment plan" [ref=f4e212]
+                    - cell "OSHA's 2025 proper-fit rule makes narrow size planning a compliance risk." [ref=f4e213]
+                  - row [ref=f4e214]:
+                    - cell "Bulk ordering" [ref=f4e215]
+                    - cell "Baseline quantity, spare sizes, replacement stock, wet-weather or electrical add-ons" [ref=f4e216]
+                    - cell "Prevents one large footwear order from becoming a long-running site fit problem." [ref=f4e217]
+              - paragraph [ref=f4e218]:
+                - text: Use the
+                - link "PPE Size & Standards Planning Sheet" [ref=f4e219] [cursor=pointer]:
+                  - /url: /downloads/ppe-size-standards-planning-sheet.xlsx
+                - text: before placing a bulk footwear order. If the footwear order is part of a multi-category PPE buy, attach the
+                - link "Construction PPE RFQ Template" [ref=f4e220] [cursor=pointer]:
+                  - /url: /downloads/construction-ppe-rfq-template
+                - text: or
+                - link "request footwear pricing" [ref=f4e221] [cursor=pointer]:
+                  - /url: /quote
+                - text: with your worker count, size curve, standard, and delivery country.
+              - heading "Foot Hazards on a Construction Site" [level=2] [ref=f4e227]
+              - paragraph [ref=f4e228]: Before selecting safety footwear, start with a task-specific hazard assessment. OSHA 29 CFR 1926.95/1926.96 requires protective footwear where the listed foot or electrical hazards are present, while EU Regulation 2016/425 governs PPE conformity in the EU market. The applicable project and jurisdiction still determine the final specification.
+              - figure "Active construction sites present a wider range of foot hazards than almost any other workplace." [ref=f4e229]:
+                - img "Active construction sites present a wider range of foot hazards than almost any other workplace." [ref=f4e231]
+              - heading "Impact and crushing injuries" [level=3] [ref=f4e233]
+              - paragraph [ref=f4e234]: Falling objects are the most common cause of serious foot injury on construction sites. Tools dropped from scaffolding, materials shifting during handling, precast concrete elements during installation, and equipment components during maintenance — all represent daily impact risks. The average weight of the object causing a foot impact injury is approximately 65 pounds dropped from under four feet. Steel-toe and composite-toe caps exist specifically to prevent the catastrophic crushing of toes under these loads.
+              - paragraph [ref=f4e235]:
+                - text: Beyond the toes, the
+                - strong [ref=f4e236]: metatarsal bones
+                - text: — the five long bones running along the top of the foot — are equally vulnerable to crush injury. A dropped sledgehammer or a pallet edge can fracture metatarsals even when a toe cap is intact. This is why metatarsal protection is a distinct requirement from toe cap protection.
+              - heading "Puncture injuries" [level=3] [ref=f4e237]
+              - paragraph [ref=f4e238]: Construction sites are covered in exposed nails, screws, rebar offcuts, broken glass, and sharp metal debris. A nail puncture through the sole of an unprotected boot can reach deep tissue, cause serious infection, and in some cases lead to tetanus. Standard boot outsoles provide no meaningful puncture resistance — only a purpose-designed puncture-resistant midsole (a steel plate or advanced composite material between the insole and outsole) provides reliable protection against penetration from below.
+              - heading "Slips, trips, and falls" [level=3] [ref=f4e239]
+              - paragraph [ref=f4e240]: "Construction floors are chronically hazardous underfoot: wet concrete, oily surfaces near plant equipment, mud on access routes, loose aggregate, ice in winter, and the transition between surfaces of very different textures. Slips and trips cause ankle sprains, fractures, and falls from height. Slip-resistant outsoles matched to the specific surface conditions on site are a fundamental requirement, not an optional extra."
+              - heading "Electrical hazards" [level=3] [ref=f4e241]
+              - paragraph [ref=f4e242]: Electricians and any worker exposed to electrical hazards need footwear selected as part of the wider electrical safety program. ASTM EH footwear provides secondary protection under dry conditions; it is not primary electrical PPE, does not authorize energized work, and does not replace de-energization, insulating gloves, blankets, mats, or purpose-rated dielectric footwear where those controls are required.
+              - heading "Cuts and lacerations" [level=3] [ref=f4e243]
+              - paragraph [ref=f4e244]: Chainsaw work, unguarded cutting machinery, and sharp sheet metal edges can cause severe lacerations to the foot and ankle. While most construction safety boots do not address chainsaw cuts specifically (that is covered by dedicated chainsaw-protection footwear to EN ISO 17249), robust leather or reinforced upper materials provide meaningful cut and abrasion resistance against common site hazards.
+              - heading "Thermal hazards" [level=3] [ref=f4e245]
+              - paragraph [ref=f4e246]: "Hot works — road surfacing, concrete pouring, welding — expose feet to heat from surfaces. Winter construction in cold climates creates the opposite problem: prolonged exposure to cold ground causes cold stress and in extreme cases, frostbite of the feet. Both heat insulation and cold insulation are distinct, certifiable properties of safety footwear that must be matched to the working environment."
+              - heading "Chemical exposure" [level=3] [ref=f4e247]
+              - paragraph [ref=f4e248]: Cement is alkaline and causes severe skin burns on prolonged contact — a hazard frequently underestimated by workers who handle it daily. Petroleum products, adhesives, and solvents on construction sites can degrade standard boot materials, compromising both the boot's structure and the chemical barrier between the worker and the substance.
+              - heading "OSHA Safety Footwear Requirements for Construction" [level=2] [ref=f4e254]
+              - paragraph [ref=f4e255]: "For construction work, distinguish the OSHA rule from the performance standard used in a footwear purchase specification:"
+              - figure "Check OSHA construction requirements separately from the standard and protective properties specified for the offered footwear." [ref=f4e256]:
+                - img "Check OSHA construction requirements separately from the standard and protective properties specified for the offered footwear." [ref=f4e258]
+              - list [ref=f4e260]:
+                - listitem [ref=f4e261]:
+                  - generic [ref=f4e262]:
+                    - link "29 CFR 1926.95" [ref=f4e263] [cursor=pointer]:
+                      - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95
+                    - text: requires appropriate PPE to be provided, used, and maintained where necessary for the hazards. Its current selection provisions require safe design and construction for the work and
+                    - strong [ref=f4e264]: proper fit
+                    - text: for each affected employee.
+                - listitem [ref=f4e265]:
+                  - generic [ref=f4e266]:
+                    - link "29 CFR 1926.96" [ref=f4e267] [cursor=pointer]:
+                      - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.96
+                    - text: still names
+                    - strong [ref=f4e268]: ANSI Z41.1-1967
+                    - text: in its safety-toe footwear requirement. It does not literally specify ASTM F2413-24.
+                - listitem [ref=f4e269]: ASTM F2413 is a modern protective-footwear performance specification used in purchasing, with ASTM F2412 providing test methods. Record the edition and required protective properties, and have the responsible safety professional confirm the applicable construction compliance basis. Do not treat a supplier's ASTM claim as automatic proof of compliance for every jobsite.
+              - paragraph [ref=f4e270]:
+                - text: The separate general-industry rule,
+                - link "29 CFR 1910.136" [ref=f4e271] [cursor=pointer]:
+                  - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.136
+                - text: ", expressly lists ASTM F2412-2005/F2413-2005 and specified ANSI editions, with an alternative for footwear demonstrated to be at least as effective. Do not quote that provision as the wording of the construction rule."
+              - paragraph [ref=f4e272]:
+                - text: A compliant footwear program does not stop at purchasing a certified model. Employers still need to select footwear for the actual foot and electrical hazards, provide sizes that properly fit, maintain the footwear, and enforce use. Because OSHA penalty amounts and policy-based minimums can change, buyers and safety teams should verify the
+                - link "current OSHA penalty schedule" [ref=f4e273] [cursor=pointer]:
+                  - /url: https://www.osha.gov/penalties
+                - text: instead of relying on an older fixed range.
+              - paragraph [ref=f4e274]:
+                - text: For US construction, the payment rule includes an exception for non-specialty safety-toe footwear that the employer allows workers to wear off the jobsite. Check
+                - link "1926.95(d)" [ref=f4e275] [cursor=pointer]:
+                  - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95
+                - text: rather than assuming every footwear purchase has the same payment obligation.
+              - 'heading "Understanding ASTM F2413: The US Safety Footwear Standard" [level=2] [ref=f4e281]'
+              - paragraph [ref=f4e282]:
+                - strong [ref=f4e283]: ASTM F2413
+                - text: is a performance specification for protective safety-toe footwear. It works alongside
+                - strong [ref=f4e284]: ASTM F2412
+                - text: ", which sets the test methods. Check the complete footwear marking against model-specific test documentation; the standard name alone does not establish every optional protective property or prove independent certification."
+              - figure "ASTM F2413 specifies impact, compression, puncture and electrical hazard protection for North American safety footwear." [ref=f4e285]:
+                - img "ASTM F2413 specifies impact, compression, puncture and electrical hazard protection for North American safety footwear." [ref=f4e287]
+              - paragraph [ref=f4e289]:
+                - text: The ASTM catalog lists
+                - strong [ref=f4e290]: ASTM F2413-24
+                - text: as the active edition. Check the edition on the offered model rather than assuming every shoe uses the latest one. For a US slip-resistance claim, request the applicable
+                - strong [ref=f4e291]: ASTM F3445
+                - text: performance evidence using
+                - strong [ref=f4e292]: ASTM F2913
+                - text: testing; do not infer slip performance from an F2413 toe-protection marking alone.
+              - heading "How to read an ASTM F2413 label" [level=3] [ref=f4e293]
+              - paragraph [ref=f4e294]: Read the manufacturer's actual label and report for the stated edition. The terms below explain common purchasing shorthand; they are not a label template to copy onto footwear, and marking formats can differ by edition.
+              - paragraph [ref=f4e295]:
+                - strong [ref=f4e296]: ASTM F2413-24
+                - text: — the standard version the boot was tested to
+              - paragraph [ref=f4e297]:
+                - strong [ref=f4e298]: M or F
+                - text: — the footwear marking identifies the male or female test category used by the standard. Under OSHA's 2025 proper-fit rule, employers must provide footwear that actually fits each affected worker. That can require women's lasts, smaller and larger sizes, width options, or other designs rather than simply issuing a smaller men's size.
+              - paragraph [ref=f4e299]:
+                - strong [ref=f4e300]: I/75
+                - text: "— Impact resistance: the toe cap maintains a minimum clearance of ½ inch (men's) or 15/32 inch (women's) after a 75 foot-pound impact. I/50 is a lower performance class; use the class selected by the hazard assessment and purchasing specification."
+              - paragraph [ref=f4e301]:
+                - strong [ref=f4e302]: C/75
+                - text: "— Compression resistance: the toe cap maintains minimum clearance under a 2,500 lb compressive load. C/75 is a common construction specification, but the selected marking still needs to match the assessed compression hazard."
+              - paragraph [ref=f4e303]:
+                - strong [ref=f4e304]: PR
+                - text: "— Puncture resistance: the midsole resists penetration by a standardised nail point under 270 lbf of force. Specify it where the hazard assessment identifies exposed nails, rebar ends, sharp debris, or similar underfoot penetration risk."
+              - paragraph [ref=f4e305]:
+                - strong [ref=f4e306]: EH
+                - text: "— Electrical Hazard: the outsole and heel resist 18,000 volts at 60 Hz for one minute with no current leakage exceeding 1.0 milliampere under dry conditions. This is secondary protection — EH boots are not rated for work on live circuits but provide meaningful protection against inadvertent contact."
+              - paragraph [ref=f4e307]:
+                - strong [ref=f4e308]: Mt
+                - text: "— Metatarsal protection: a metatarsal guard (internal or external) maintains a minimum 1 inch clearance to the top of the foot under a 75 ft-lb impact. Add it where the hazard assessment identifies significant impact or crush exposure beyond the toe area."
+              - paragraph [ref=f4e309]:
+                - strong [ref=f4e310]: SD
+                - text: "— Static Dissipative: limits static charge build-up (resistance 106–108 ohms). For environments where static sparks could ignite flammable vapours or damage sensitive electronics. Not appropriate as a substitute for EH where live circuit contact is a risk."
+              - paragraph [ref=f4e311]:
+                - strong [ref=f4e312]: CD
+                - text: "— Conductive: very low electrical resistance (under 500,000 ohms). Used in specialised environments where static accumulation must be entirely eliminated. Not appropriate for general construction."
+              - 'heading "Understanding EN ISO 20345: The European Safety Footwear Standard" [level=2] [ref=f4e318]'
+              - paragraph [ref=f4e319]:
+                - text: For EU projects and many international procurement programs,
+                - strong [ref=f4e320]: EN ISO 20345
+                - text: is a common safety-footwear reference. Buyers should confirm the standard and conformity route required by the destination market and project. The current version is
+                - strong [ref=f4e321]: EN ISO 20345:2022+A1:2024
+                - text: ", while products certified under an earlier edition may remain lawfully available while their supporting certification remains valid."
+              - figure "Check the EN ISO 20345 edition, category, penetration-resistance suffix, and additional markings on the exact offered model." [ref=f4e322]:
+                - img "Check the EN ISO 20345 edition, category, penetration-resistance suffix, and additional markings on the exact offered model." [ref=f4e324]
+              - paragraph [ref=f4e326]:
+                - text: "All EN ISO 20345 footwear shares a mandatory baseline: a toe cap that resists a"
+                - strong [ref=f4e327]: 200-joule impact
+                - text: and a
+                - strong [ref=f4e328]: 15 kN compression load
+                - text: . Beyond this baseline, footwear is classified by "S" rating based on its additional protective properties.
+              - heading "EN ISO 20345 S-class ratings explained" [level=3] [ref=f4e329]
+              - paragraph [ref=f4e330]:
+                - strong [ref=f4e331]: SB (Safety Basic)
+                - text: — the basic safety-footwear requirements, including protective toe performance. It does not mean only a toe cap has been assessed. Check additional properties against the actual task.
+              - paragraph [ref=f4e332]:
+                - strong [ref=f4e333]: S1
+                - text: — adds a closed heel region, antistatic properties, and heel energy absorption. It does not by itself specify a water-resistant upper or penetration resistance. Under the 2022 edition, fuel-oil resistance is an optional
+                - strong [ref=f4e334]: FO
+                - text: claim, not a default S1 feature.
+              - paragraph [ref=f4e335]:
+                - strong [ref=f4e336]: S1P / S1PL / S1PS
+                - text: — add penetration resistance to S1. Under the 2022 edition,
+                - strong [ref=f4e337]: P
+                - text: identifies a metallic insert;
+                - strong [ref=f4e338]: PL
+                - text: and
+                - strong [ref=f4e339]: PS
+                - text: identify non-metallic inserts assessed with 4.5 mm and 3 mm test nails respectively. These codes are not interchangeable and do not by themselves add water resistance.
+              - paragraph [ref=f4e340]:
+                - strong [ref=f4e341]: S2
+                - text: — adds water-resistant upper (WPA marking under 2022 standard) to S1 features. Suitable for damp or intermittently wet conditions.
+              - paragraph [ref=f4e342]:
+                - strong [ref=f4e343]: S3 / S3L / S3S
+                - text: — combine S2 features with penetration resistance and a cleated outsole. The suffix distinguishes P, PL, or PS insert performance. These can be useful starting points for outdoor construction specifications, but the selected category and additional markings must match the site hazards.
+              - paragraph [ref=f4e344]:
+                - strong [ref=f4e345]: S4
+                - text: — all-rubber or all-polymer boot (wellington boot construction), inherently waterproof. Equivalent to S1 features but fully waterproof. For agriculture and extremely wet environments.
+              - paragraph [ref=f4e346]:
+                - strong [ref=f4e347]: S5 / S5L / S5S
+                - text: — add penetration resistance and a cleated outsole to S4. Check the exact suffix and any additional properties; a category is not a universal ranking of protection against every hazard.
+              - paragraph [ref=f4e348]:
+                - strong [ref=f4e349]: S6 / S7 / S7L / S7S
+                - text: — add whole-footwear water resistance to the corresponding S2 or S3-family category. Distinguish this from the water-resistant upper alone. See the
+                - link "2022 marking changes explained by Safety Jogger" [ref=f4e350] [cursor=pointer]:
+                  - /url: https://www.safetyjogger.com/en/cd/technical/iso_20345_2022
+                - text: when comparing old and new labels.
+              - heading "Key additional EN ISO 20345 markings for construction" [level=3] [ref=f4e351]
+              - paragraph [ref=f4e352]:
+                - strong [ref=f4e353]: HI
+                - text: — heat insulation of the sole complex under specified test conditions. Distinguish it from
+                - strong [ref=f4e354]: HRO
+                - text: ", resistance of the outsole to hot contact. A laboratory test temperature is not a safe working-temperature limit; check both properties and the manufacturer's limitations for hot-work exposure."
+              - paragraph [ref=f4e355]:
+                - strong [ref=f4e356]: CI
+                - text: "— cold insulation: insulation tested at -17°C. Essential for winter construction in northern climates, cold store work, and high-altitude sites."
+              - paragraph [ref=f4e357]:
+                - strong [ref=f4e358]: LG
+                - text: "— ladder grip (new in 2022 standard): the outsole passes specific grip tests on ladder rungs. Directly relevant for scaffolders, roofers, and any worker who regularly climbs ladders. No equivalent marking exists in ASTM F2413."
+              - paragraph [ref=f4e359]:
+                - strong [ref=f4e360]: WR
+                - text: — water resistance of the complete footwear (not just the upper). The whole boot resists water penetration. Distinct from WPA (water-resistant upper only).
+              - paragraph [ref=f4e361]:
+                - strong [ref=f4e362]: SR
+                - text: — an additional slip-resistance test on ceramic tile with glycerine under the 2022 edition. Distinguish this optional marking from the basic slip test on ceramic tile with a soap solution. The old SRA/SRB/SRC markings belong to the earlier test scheme; they are not directly interchangeable with SR. Laboratory results do not cover every jobsite surface.
+              - paragraph [ref=f4e363]:
+                - strong [ref=f4e364]: FO
+                - text: — optional resistance of the outsole to fuel oil under the 2022 edition. Specify and verify it where required; do not assume an S1, S2, or S3 category includes it or that FO proves resistance to all chemicals.
+              - paragraph [ref=f4e365]:
+                - strong [ref=f4e366]: ESD
+                - text: "— electrostatic dissipative: contact resistance under 100 MΩ. For sensitive electronics environments or areas with flammable vapour risk. Distinct from EH (electrical hazard insulation)."
+              - 'heading "ASTM F2413 vs EN ISO 20345: key differences" [level=3] [ref=f4e367]'
+              - table [ref=f4e369]:
+                - rowgroup [ref=f4e370]:
+                  - row [ref=f4e371]:
+                    - columnheader "Feature" [ref=f4e372]
+                    - columnheader "ASTM F2413" [ref=f4e373]
+                    - columnheader "EN ISO 20345" [ref=f4e374]
+                - rowgroup [ref=f4e375]:
+                  - row [ref=f4e376]:
+                    - cell "Toe cap impact" [ref=f4e377]
+                    - cell "75 ft-lb (~102 J)" [ref=f4e378]
+                    - cell "200 J" [ref=f4e379]
+                  - row [ref=f4e380]:
+                    - cell "Toe cap compression" [ref=f4e381]
+                    - cell "2,500 lb" [ref=f4e382]
+                    - cell "15,000 N (~3,370 lb)" [ref=f4e383]
+                  - row [ref=f4e384]:
+                    - cell "Puncture resistance" [ref=f4e385]
+                    - cell "Verify PR marking and edition-specific test evidence" [ref=f4e386]
+                    - cell "Verify P, PL, or PS and the corresponding category suffix" [ref=f4e387]
+                  - row [ref=f4e388]:
+                    - cell "Ladder grip" [ref=f4e389]
+                    - cell "Not covered" [ref=f4e390]
+                    - cell "LG marking (2022)" [ref=f4e391]
+                  - row [ref=f4e392]:
+                    - cell "Slip resistance" [ref=f4e393]
+                    - cell "Request ASTM F3445/F2913 evidence separately from the toe-protection claim" [ref=f4e394]
+                    - cell "Basic slip requirement plus optional SR test; verify the edition" [ref=f4e395]
+                  - row [ref=f4e396]:
+                    - cell "Water resistance" [ref=f4e397]
+                    - cell "Not a standard feature" [ref=f4e398]
+                    - cell "S2/S3 WPA; WR full boot" [ref=f4e399]
+              - paragraph [ref=f4e400]: ASTM and EN use different test methods and classification systems. Do not treat a higher value in one test as proof of better overall protection or assume one marking establishes compliance with the other. Compare the complete model's documented properties against the destination market and jobsite specification.
+              - 'heading "Steel Toe vs Composite Toe vs Aluminium Toe: Which to Choose" [level=2] [ref=f4e406]'
+              - paragraph [ref=f4e407]: The toe cap material is the most visible choice in safety footwear selection, but it is not always the most important one. All three main types can achieve identical ASTM F2413 I/75 C/75 or EN ISO 20345 200J ratings — the difference is in weight, electrical properties, and environmental performance.
+              - figure "Modern safety boots offer steel, composite, or aluminium toe caps — each with distinct trade-offs." [ref=f4e408]:
+                - img "Modern safety boots offer steel, composite, or aluminium toe caps — each with distinct trade-offs." [ref=f4e410]
+              - heading "Steel toe caps" [level=3] [ref=f4e412]
+              - paragraph [ref=f4e413]: Steel remains a common construction choice because it is durable, cost-effective, and can use a relatively compact toe-cap profile. A steel and a composite toe cap carrying the same ASTM or EN marking have both met the stated impact and compression threshold, so buyers should compare the certified rating, fit, weight, temperature conditions, and other hazards rather than assuming the material alone provides a higher protection class.
+              - paragraph [ref=f4e414]: "Limitations: Steel is electrically conductive, but a steel toe cap does not automatically prevent the complete footwear from carrying a valid ASTM EH marking. EH performance applies to the tested boot or shoe as a complete construction, and exposed metal, damage, moisture, wear, or unauthorized modifications can compromise its secondary electrical protection. In extreme cold, steel can conduct temperature and cause discomfort. Steel also adds weight (typically 200–400g per pair more than composite alternatives)."
+              - heading "Composite toe caps" [level=3] [ref=f4e415]
+              - paragraph [ref=f4e416]: Composite toe caps — made from fiberglass, carbon fibre, aramid fibre, or combinations thereof — can achieve the same ASTM I/75 and EN 200J ratings as steel while often reducing weight and avoiding a metallic toe component. They can be useful where a buyer needs metal-free footwear, lower weight, or reduced cold transfer, but toe material alone does not establish electrical protection. Electrical workers should select footwear from the hazard assessment, complete ASTM EH or applicable dielectric marking, work conditions, and the wider electrical PPE program rather than assuming every composite-toe boot is suitable.
+              - paragraph [ref=f4e417]: Composite toes may also reduce cold transfer into the toe box compared with steel, although the complete boot insulation and fit still determine cold-weather performance.
+              - paragraph [ref=f4e418]: "Limitations: Composite toes are generally more expensive than steel. At very high compression loads they may fracture rather than deform, potentially creating a second hazard. Not recommended for environments where crushing loads significantly exceed the rated test force."
+              - heading "Aluminium toe caps" [level=3] [ref=f4e419]
+              - paragraph [ref=f4e420]: Aluminium occupies the middle ground — lighter than steel, stronger than most composites under compression, and non-magnetic (relevant for some specialist construction environments). Less common than steel or composite but a valid choice for workers who need the weight advantage of composite with the crush resistance of steel.
+              - heading "Matching Safety Footwear to Construction Sub-Trades" [level=2] [ref=f4e426]
+              - paragraph [ref=f4e427]: Different trades on a construction site face different combinations of foot hazards. A single "construction boot" specification is rarely optimal for every worker on site.
+              - figure "Each construction sub-trade — electrician, scaffolder, concrete worker — has its own footwear priorities." [ref=f4e428]:
+                - img "Each construction sub-trade — electrician, scaffolder, concrete worker — has its own footwear priorities." [ref=f4e430]
+              - heading "General labourer / site operative" [level=3] [ref=f4e432]
+              - paragraph [ref=f4e433]: "Primary hazards: falling objects, nail puncture, wet conditions, slips on varied surfaces."
+              - paragraph [ref=f4e434]:
+                - text: "Recommended:"
+                - strong [ref=f4e435]: EN ISO 20345 S3 SR
+                - text: or
+                - strong [ref=f4e436]: ASTM F2413 I/75 C/75 PR with slip-resistant outsole
+                - text: . The combination of toe cap, puncture-resistant midsole, water-resistant upper, and cleated outsole covers the full range of general site hazards. For US sites, add EH rating if electrical work is part of the role.
+              - heading "Scaffolder / steel erector" [level=3] [ref=f4e437]
+              - paragraph [ref=f4e438]: "Primary hazards: falling objects at height, nail puncture, ladder grip, impact on instep and ankle from steel components."
+              - paragraph [ref=f4e439]:
+                - text: "Recommended:"
+                - strong [ref=f4e440]: EN ISO 20345 S3 SR LG
+                - text: (the LG ladder grip rating is specifically designed for this trade) or ASTM F2413 I/75 C/75 PR. High-ankle support is important — ankle boots or mid-height boots are preferable to low-cut shoes for ankle stability on scaffold boards and ladder rungs. Consider metatarsal protection (Mt / EN 50J metatarsal guard) where heavy steel components are handled.
+              - heading "Electrician / electrical contractor" [level=3] [ref=f4e441]
+              - paragraph [ref=f4e442]: "Primary hazards: electric shock from live circuits, nail puncture, impact from tools and conduit."
+              - paragraph [ref=f4e443]:
+                - text: "Starting point: specify the required impact, compression, puncture, slip, and electrical markings from the task hazard assessment. For US work, that may include"
+                - strong [ref=f4e444]: ASTM F2413 I/75 C/75 EH
+                - text: ; the toe cap may be steel, composite, or aluminium if the complete footwear carries the required marking. Do not substitute ESD or antistatic footwear for electrical-hazard protection. ASTM EH footwear is secondary protection under dry conditions, and energized or higher-voltage work may require purpose-rated dielectric footwear and other electrical PPE under the applicable program.
+              - heading "Concrete and masonry worker" [level=3] [ref=f4e445]
+              - paragraph [ref=f4e446]: "Primary hazards: cement skin burns from contact with wet concrete, heavy impact from blocks and precast elements, nail puncture, wet conditions."
+              - paragraph [ref=f4e447]:
+                - text: "Recommended:"
+                - strong [ref=f4e448]: EN ISO 20345 S3 SR
+                - text: or ASTM F2413 I/75 C/75 PR with chemical-resistant upper material. Look for boots with a full rubber outsole and extended protection across the upper to resist cement penetration. Metatarsal protection (Mt) is strongly recommended for workers handling heavy precast elements or heavy masonry units.
+              - heading "Road construction / highway worker" [level=3] [ref=f4e449]
+              - paragraph [ref=f4e450]: "Primary hazards: hot bitumen and asphalt contact, nail puncture, wet and slippery surfaces, heavy plant equipment in proximity."
+              - paragraph [ref=f4e451]:
+                - text: "Recommended:"
+                - strong [ref=f4e452]: EN ISO 20345 S3 HI SR
+                - text: (heat insulation for asphalt work, puncture resistance, slip resistance) or ASTM F2413 I/75 C/75 PR with heat-resistant outsole. For cold-climate winter road construction,
+                - strong [ref=f4e453]: S3 CI SR
+                - text: (cold insulation) may be more appropriate.
+              - heading "Roofer" [level=3] [ref=f4e454]
+              - paragraph [ref=f4e455]: "Primary hazards: falls on sloped surfaces, nail puncture, hot bitumen contact, cold exposure."
+              - paragraph [ref=f4e456]:
+                - text: "Recommended:"
+                - strong [ref=f4e457]: EN ISO 20345 S3 SR
+                - text: with LG marking for ladder work, or ASTM F2413 I/75 C/75 PR with slip-resistant outsole specifically tested on angled surfaces. Lightweight composite toe is preferred to reduce fatigue on pitched roof work. Ankle support is important.
+              - heading "Demolition worker" [level=3] [ref=f4e458]
+              - paragraph [ref=f4e459]: "Primary hazards: falling debris, nail puncture, sharp metal offcuts, dust and chemical contamination, potential asbestos and lead exposure."
+              - paragraph [ref=f4e460]:
+                - text: "Recommended:"
+                - strong [ref=f4e461]: EN ISO 20345 S3 SR
+                - text: or ASTM F2413 I/75 C/75 PR. Where asbestos or lead contamination is present, the exposure-control and decontamination plan may require disposable boot covers or dedicated decontaminable footwear. Do not set that requirement from the footwear guide alone; follow the applicable regulated-area and employer program rules.
+              - heading "Cold climate / winter construction" [level=3] [ref=f4e462]
+              - paragraph [ref=f4e463]: "Primary hazards: cold stress, ice and snow on surfaces, standard hazards."
+              - paragraph [ref=f4e464]:
+                - text: "Recommended:"
+                - strong [ref=f4e465]: EN ISO 20345 S3 CI SR
+                - text: or ASTM F2413 I/75 C/75 PR with insulation selected for the real temperature and exposure duration. A composite toe may reduce cold transfer compared with steel, but the complete boot insulation, moisture management, socks, fit, and work-rest plan determine cold-weather performance. Look for applicable whole-footwear cold-insulation evidence rather than relying on the toe material alone.
+              - 'heading "How to Read the Boot Label: A Practical Checklist" [level=2] [ref=f4e471]'
+              - paragraph [ref=f4e472]: "When evaluating safety footwear for a construction procurement, check the following on the boot label and product documentation:"
+              - figure "A safety boot label tells you, in minutes, whether it matches your hazard assessment." [ref=f4e473]:
+                - img "A safety boot label tells you, in minutes, whether it matches your hazard assessment." [ref=f4e475]
+              - paragraph [ref=f4e477]:
+                - strong [ref=f4e478]: "For US (ASTM) footwear:"
+              - list [ref=f4e479]:
+                - listitem [ref=f4e480]: Standard version (F2413-18 or F2413-24)
+                - listitem [ref=f4e481]: Impact and compression markings in the format required by the stated edition
+                - listitem [ref=f4e482]: Fit information and available sizes and widths; a test-category marking is not a substitute for a fit trial
+                - listitem [ref=f4e483]: Puncture resistance (PR) where the site assessment requires it
+                - listitem [ref=f4e484]: Electrical rating (EH) if electrical work is involved
+                - listitem [ref=f4e485]: Metatarsal (Mt) if heavy crushing risk is present
+              - paragraph [ref=f4e486]:
+                - strong [ref=f4e487]: "For European (EN ISO 20345) footwear:"
+              - list [ref=f4e488]:
+                - listitem [ref=f4e489]: S-class category and exact P/PL/PS suffix matching the required protection
+                - listitem [ref=f4e490]: Basic slip performance and any additional SR claim under the stated edition
+                - listitem [ref=f4e491]: "Additional markings matching the environment: FO, HI/HRO, CI, LG, WR as relevant"
+                - listitem [ref=f4e492]: CE marking and conformity documents appropriate to the exact model and PPE risk category; do not use a four-digit number alone as the acceptance test
+                - listitem [ref=f4e493]: Standard edition, certificate validity, and destination-market requirements
+                - listitem [ref=f4e494]: EU Declaration of Conformity identifying the offered model
+              - paragraph [ref=f4e495]:
+                - strong [ref=f4e496]: "For both standards:"
+              - list [ref=f4e497]:
+                - listitem [ref=f4e498]: Manufacturing/batch identification and the manufacturer's storage and service-life instructions
+                - listitem [ref=f4e499]: Manufacturer's recommended replacement interval
+                - listitem [ref=f4e500]: Correct sizing — under both OSHA's 2025 proper-fit rule and EN requirements, footwear must fit the individual worker
+              - heading "Bulk-order evidence and sample acceptance" [level=3] [ref=f4e501]
+              - paragraph [ref=f4e502]: Before approving an order, match the proposed model, supporting documents, sample, and purchase specification. A generic certificate or a label photograph from a different boot is not enough.
+              - table [ref=f4e504]:
+                - rowgroup [ref=f4e505]:
+                  - row [ref=f4e506]:
+                    - columnheader "Request from the supplier" [ref=f4e507]
+                    - columnheader "What the buyer should verify" [ref=f4e508]
+                    - columnheader "Record before approval" [ref=f4e509]
+                - rowgroup [ref=f4e510]:
+                  - row [ref=f4e511]:
+                    - cell "Exact model/SKU and footwear specification" [ref=f4e512]
+                    - cell "The quoted upper, sole, toe cap, insert, and claimed properties match the offered construction" [ref=f4e513]
+                    - cell "Agreed model, specification revision, and permitted substitutions" [ref=f4e514]
+                  - row [ref=f4e515]:
+                    - cell "Model-specific reports and conformity documents" [ref=f4e516]
+                    - cell "Model identity, standard edition, tests performed, issuing organization, and applicable certificate validity; check that documents cover the offered size range" [ref=f4e517]
+                    - cell "Document references and any unresolved gaps" [ref=f4e518]
+                  - row [ref=f4e519]:
+                    - cell "Clear photographs of the shoe label and packaging" [ref=f4e520]
+                    - cell "Markings and model/batch identity agree with the documents and quotation" [ref=f4e521]
+                    - cell "Approved label and packaging references" [ref=f4e522]
+                  - row [ref=f4e523]:
+                    - cell "Representative size and width samples" [ref=f4e524]
+                    - cell "Workers can achieve a suitable fit with normal work socks and any manufacturer-approved inserts" [ref=f4e525]
+                    - cell "Trial sizes, fit feedback, and accepted size curve" [ref=f4e526]
+                  - row [ref=f4e527]:
+                    - cell "Inspection and care instructions" [ref=f4e528]
+                    - cell "Limitations, storage, replacement criteria, and permitted cleaning or accessories are suitable for the intended use" [ref=f4e529]
+                    - cell "Agreed instructions supplied with the order" [ref=f4e530]
+                  - row [ref=f4e531]:
+                    - cell "Approved reference sample and delivery inspection plan" [ref=f4e532]
+                    - cell "Delivered model, labels, size quantities, workmanship, and packaging match the agreed reference" [ref=f4e533]
+                    - cell "Sample approval record and discrepancy-handling process" [ref=f4e534]
+              - paragraph [ref=f4e535]:
+                - text: A fit trial and incoming inspection do not replace laboratory testing or the employer's hazard assessment. Put unresolved documentation or sample differences on hold before bulk approval. Record the agreed sizes in the
+                - link "PPE Size & Standards Planning Sheet" [ref=f4e536] [cursor=pointer]:
+                  - /url: /downloads/ppe-size-standards-planning-sheet.xlsx
+                - text: and attach the approved specification to the RFQ.
+              - heading "Common Mistakes in Construction Safety Footwear Selection" [level=2] [ref=f4e542]
+              - paragraph [ref=f4e543]:
+                - strong [ref=f4e544]: Choosing boots that meet the toe cap standard but nothing else.
+                - text: A boot labelled simply "steel toe" with no ASTM or EN certification provides unknown protection. Toe cap standards without puncture-resistant midsoles leave workers exposed to the most common foot injury mechanism on construction sites.
+              - figure "Most construction foot injuries trace back to avoidable mistakes in selection and fit." [ref=f4e545]:
+                - img "Most construction foot injuries trace back to avoidable mistakes in selection and fit." [ref=f4e547]
+              - paragraph [ref=f4e549]:
+                - strong [ref=f4e550]: Using I/50 or S1 rated boots on general construction.
+                - text: Lower-rated boots are appropriate for light industrial use, not for sites where heavy tools, precast elements, or plant equipment is present.
+              - paragraph [ref=f4e551]:
+                - strong [ref=f4e552]: Ignoring slip resistance for the actual site conditions.
+                - text: A boot rated SR on a ceramic tile may perform poorly on wet mud, loose aggregate, or oily surfaces. Check whether the boot's outsole compound and tread pattern are suited to the dominant surface condition on your specific sites.
+              - paragraph [ref=f4e553]:
+                - strong [ref=f4e554]: Providing standard-sized boots to all workers.
+                - text: Under OSHA's January 2025 rule (29 CFR 1926.95(c)), safety footwear must properly fit each worker. This means stocking women's-sized (W) footwear as well as men's (M), and providing multiple size options across the workforce.
+              - paragraph [ref=f4e555]:
+                - strong [ref=f4e556]: Wearing EH-rated boots as primary electrical protection.
+                - text: EH rating provides secondary protection under dry conditions. It is not a substitute for insulating rubber boots for live electrical work, and it provides no protection once the boot is wet.
+              - paragraph [ref=f4e557]:
+                - strong [ref=f4e558]: Continuing to wear boots beyond their service life.
+                - text: Safety footwear degrades with use. Outsoles lose slip resistance as the tread wears. Toe cap midsoles can crack. Puncture-resistant inserts can corrode or delaminate. Most manufacturers recommend replacement every 6–12 months for heavy construction use, or immediately if the boot shows visible damage.
+              - heading "Care and Maintenance of Construction Safety Boots" [level=2] [ref=f4e564]
+              - paragraph [ref=f4e565]: The protective performance of safety boots depends on their condition. Proper maintenance extends service life and ensures the boot performs as certified.
+              - figure "Routine cleaning, inspection and re-waterproofing extend the protective life of safety boots." [ref=f4e566]:
+                - img "Routine cleaning, inspection and re-waterproofing extend the protective life of safety boots." [ref=f4e568]
+              - paragraph [ref=f4e570]:
+                - strong [ref=f4e571]: "Daily inspection:"
+                - text: Before putting on boots each day, check the outsole for excessive wear or embedded objects, inspect the upper for cracks or separating seams, and verify the lace or fastening system is intact. Remove any embedded nails, wire, or sharp debris from the outsole.
+              - paragraph [ref=f4e572]:
+                - strong [ref=f4e573]: "Cleaning:"
+                - text: Remove mud and concrete residue after each shift. Dried concrete is alkaline and will degrade leather and synthetic upper materials over time. Use a stiff brush and water — avoid harsh chemical cleaners that can strip leather treatment or degrade waterproof membranes.
+              - paragraph [ref=f4e574]:
+                - strong [ref=f4e575]: "Drying:"
+                - text: Never dry boots on radiators, in front of fires, or with a heat gun. High heat degrades adhesives, deforms toe caps, and shrinks leather. Stuff boots with newspaper and dry at room temperature overnight.
+              - paragraph [ref=f4e576]:
+                - strong [ref=f4e577]: "Conditioning:"
+                - text: For leather-upper boots, regular conditioning prevents the leather from drying and cracking. Use products compatible with the boot's waterproof membrane if present.
+              - paragraph [ref=f4e578]:
+                - strong [ref=f4e579]: "Storage:"
+                - text: Store boots away from direct sunlight, heat sources, and chemicals. UV exposure and heat accelerate material degradation even in stored boots.
+              - paragraph [ref=f4e580]:
+                - strong [ref=f4e581]: "When to replace:"
+                - text: Replace immediately if the boot has sustained a significant impact or compression event (the toe cap may be invisibly damaged), if the outsole is worn smooth, if the upper has a penetrating crack or split, or if the boot's waterproof membrane is failing and the boot is required for wet conditions.
+              - 'heading "Regulatory Summary: OSHA and EU Requirements Side by Side" [level=2] [ref=f4e587]'
+              - table [ref=f4e589]:
+                - rowgroup [ref=f4e590]:
+                  - row [ref=f4e591]:
+                    - columnheader "Requirement" [ref=f4e592]
+                    - columnheader "OSHA (US)" [ref=f4e593]
+                    - columnheader "EU / European Markets" [ref=f4e594]
+                - rowgroup [ref=f4e595]:
+                  - row [ref=f4e596]:
+                    - cell "Governing standard" [ref=f4e597]
+                    - cell "29 CFR 1926.95 / 1926.96" [ref=f4e598]
+                    - cell "EU Regulation 2016/425" [ref=f4e599]
+                  - row [ref=f4e600]:
+                    - cell "Rule versus purchase specification" [ref=f4e601]
+                    - cell "1926.96 names ANSI Z41.1-1967; confirm the applicable basis when specifying modern ASTM footwear" [ref=f4e602]
+                    - cell "PPE Regulation conformity requirements; confirm the applicable EN edition and model documents" [ref=f4e603]
+                  - row [ref=f4e604]:
+                    - cell "Toe protection" [ref=f4e605]
+                    - cell "Verify the offered ASTM edition, marking, and test evidence" [ref=f4e606]
+                    - cell "EN safety-footwear baseline includes 200 J toe impact performance" [ref=f4e607]
+                  - row [ref=f4e608]:
+                    - cell "Puncture resistance" [ref=f4e609]
+                    - cell "Verify PR where required" [ref=f4e610]
+                    - cell "Check P/PL/PS and the exact category suffix" [ref=f4e611]
+                  - row [ref=f4e612]:
+                    - cell "Proper fit requirement" [ref=f4e613]
+                    - cell "Required (since Jan 2025)" [ref=f4e614]
+                    - cell "Required (EU Reg 2016/425)" [ref=f4e615]
+                  - row [ref=f4e616]:
+                    - cell "Employer obligation" [ref=f4e617]
+                    - cell "Select suitable, properly fitting PPE; payment exceptions exist under 1926.95(d)" [ref=f4e618]
+                    - cell "Follow applicable workplace PPE rules as well as product conformity requirements" [ref=f4e619]
+                  - row [ref=f4e620]:
+                    - cell "CE marking required" [ref=f4e621]
+                    - cell "CE does not establish OSHA compliance" [ref=f4e622]
+                    - cell "Check CE and conformity documents for the model and risk category" [ref=f4e623]
+                  - row [ref=f4e624]:
+                    - cell "Slip resistance" [ref=f4e625]
+                    - cell "Verify the separate slip claim and test evidence" [ref=f4e626]
+                    - cell "Distinguish basic slip performance from optional SR" [ref=f4e627]
+              - heading "Frequently Asked Questions" [level=2] [ref=f4e633]
+              - paragraph [ref=f4e634]:
+                - strong [ref=f4e635]: What is the minimum safety footwear for a general construction labourer?
+                - text: There is no single specification suitable for every construction task. Start with the assessed impact, compression, penetration, slip, and fit requirements. For US purchasing, verify the ASTM edition and required markings alongside the applicable OSHA construction requirements. For EN purchasing, an S3-family category may be a starting point for outdoor work; specify the insert type and any additional SR, FO, electrical, or other task-specific evidence separately.
+              - paragraph [ref=f4e636]:
+                - strong [ref=f4e637]: What safety footwear is needed on a construction site?
+                - text: Most construction sites need safety footwear with toe impact/compression protection, puncture resistance, slip resistance, durable uppers, and a size range that actually fits the workforce. Add EH protection for electrical exposure, metatarsal protection for heavy material handling, waterproofing for wet sites, and heat or cold features where the surface or climate requires it.
+              - paragraph [ref=f4e638]:
+                - strong [ref=f4e639]: What should a buyer specify for construction site footwear in bulk?
+                - text: "Specify the standard, rating, and size curve, not just the product name. A strong RFQ line says something like: ASTM F2413 I/75 C/75 PR EH safety footwear, or EN ISO 20345 S3 SR safety footwear, with men's and women's size ranges, width needs, spare sizes, replacement stock, label photos, and delivery country."
+              - paragraph [ref=f4e640]:
+                - strong [ref=f4e641]: Do I need steel toe boots, or will composite toe work?
+                - text: Both steel and composite toe caps can achieve the same ASTM I/75 or EN 200J impact rating. Either can be acceptable when the complete footwear carries the markings required by the hazard assessment. Composite toe is not automatically required for ASTM EH footwear, and toe material alone does not establish electrical protection. Composite may reduce weight or cold transfer, while steel can offer a compact, durable, cost-effective construction.
+              - paragraph [ref=f4e642]:
+                - strong [ref=f4e643]: Does EH-rated footwear protect against all electrical hazards?
+                - text: No. EH rating provides secondary protection against inadvertent contact with live circuits under dry conditions only. It does not protect against direct, sustained contact with high-voltage sources and provides no protection once wet. Workers performing live electrical work should use purpose-rated electrical insulating boots.
+              - paragraph [ref=f4e644]:
+                - strong [ref=f4e645]: How often should construction safety boots be replaced?
+                - text: Most manufacturers recommend replacement every 6 to 12 months under heavy construction use. Replace immediately if the boot has sustained a significant impact event, if the outsole is worn smooth, or if the upper shows cracks or splits.
+              - paragraph [ref=f4e646]:
+                - strong [ref=f4e647]: Does OSHA require appropriately fitting construction footwear for women?
+                - text: Yes. The January 2025 revision to 29 CFR 1926.95(c) requires PPE, including footwear, to properly fit each affected worker. OSHA does not prescribe one product label called a "women's construction boot," but employers must provide the sizes, widths, lasts, or designs needed for real fit instead of assuming a smaller men's size will work for everyone.
+              - paragraph [ref=f4e648]:
+                - strong [ref=f4e649]: What does EN ISO 20345 S3 mean?
+                - text: Under the 2022 edition, S3 combines the basic safety-footwear requirements with antistatic properties, heel energy absorption, a water-resistant upper, penetration resistance, and a cleated outsole. S3, S3L, and S3S distinguish the insert test category. Additional SR slip testing and FO fuel-oil resistance are separate claims; whole-footwear water resistance is also distinct from upper water resistance.
+              - paragraph [ref=f4e650]:
+                - strong [ref=f4e651]: What is the LG marking on safety boots?
+                - text: LG (Ladder Grip) is a marking introduced in EN ISO 20345:2022. It certifies that the outsole provides secure grip on ladder rungs - directly relevant for scaffolders, roofers, and any worker who regularly climbs ladders. It has no equivalent in the current ASTM F2413 standard.
+              - heading "Build Your Construction Footwear Programme" [level=2] [ref=f4e657]
+              - paragraph [ref=f4e658]: Selecting the right safety footwear for a construction workforce requires matching certified performance levels to the actual hazards each worker faces. A one-size-fits-all boot specification will inevitably leave some workers under-protected and others in heavier, more expensive footwear than their role requires.
+              - paragraph [ref=f4e659]: Send your destination market, task hazards, required standard and edition, size curve, quantity, and delivery schedule with your footwear inquiry. Before approving a model, confirm its specific markings, supporting test reports or conformity documents, available sizes, and sample fit. Certification and protective properties must be verified for the exact offered model; this guide does not establish them for every product in the range.
+              - paragraph [ref=f4e660]:
+                - link "Browse our construction safety footwear range" [ref=f4e661] [cursor=pointer]:
+                  - /url: /categories/foot-protection/safety-shoes
+                - link "View the complete PPE solution for construction sites" [ref=f4e662] [cursor=pointer]:
+                  - /url: /solutions/construction-site-ppe-solution
+              - paragraph [ref=f4e663]:
+                - link "Download the PPE Size & Standards Planning Sheet" [ref=f4e664] [cursor=pointer]:
+                  - /url: /downloads/ppe-size-standards-planning-sheet.xlsx
+                - link "Open the Construction PPE RFQ Template" [ref=f4e665] [cursor=pointer]:
+                  - /url: /downloads/construction-ppe-rfq-template
+                - link "Request construction footwear pricing" [ref=f4e666] [cursor=pointer]:
+                  - /url: /quote
+                - link "Read the bulk construction PPE procurement guide" [ref=f4e667] [cursor=pointer]:
+                  - /url: /blog/bulk-construction-ppe-procurement
+              - paragraph [ref=f4e668]: "Related construction PPE guides:"
+              - list [ref=f4e669]:
+                - listitem [ref=f4e670]:
+                  - link "Construction PPE Checklist" [ref=f4e672] [cursor=pointer]:
+                    - /url: /blog/construction-ppe-checklist
+                - listitem [ref=f4e673]:
+                  - link "Fall Protection PPE for Construction Sites" [ref=f4e675] [cursor=pointer]:
+                    - /url: /solutions/fall-protection-construction
+                - listitem [ref=f4e676]:
+                  - link "PPE for Scaffolding and Elevated Platforms" [ref=f4e678] [cursor=pointer]:
+                    - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+                - listitem [ref=f4e679]:
+                  - link "PPE for Road and Bridge Construction Projects" [ref=f4e681] [cursor=pointer]:
+                    - /url: /solutions/ppe-for-road-and-bridge-construction-projects
+                - listitem [ref=f4e682]:
+                  - link "PPE for Electrical Installation on Construction Sites" [ref=f4e684] [cursor=pointer]:
+                    - /url: /solutions/ppe-for-electrical-installation-on-construction-sites
+                - listitem [ref=f4e685]:
+                  - 'link "Construction Gloves: How to Choose the Right Hand Protection" [ref=f4e687] [cursor=pointer]':
+                    - /url: /blog/construction-gloves-selection-guide
+                - listitem [ref=f4e688]:
+                  - link "Eye and Face Protection for Construction Sites" [ref=f4e690] [cursor=pointer]:
+                    - /url: /blog/construction-eye-face-protection
+                - listitem [ref=f4e691]:
+                  - link "High-Visibility Clothing for Construction Workers" [ref=f4e693] [cursor=pointer]:
+                    - /url: /blog/high-visibility-clothing-construction
+              - paragraph [ref=f4e699]: "Standards and procurement references:"
+              - list [ref=f4e700]:
+                - listitem [ref=f4e701]:
+                  - 'link "OSHA construction PPE criteria: 29 CFR 1926.95" [ref=f4e703] [cursor=pointer]':
+                    - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.95
+                - listitem [ref=f4e704]:
+                  - 'link "OSHA construction foot protection: 29 CFR 1926.96" [ref=f4e706] [cursor=pointer]':
+                    - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.96
+                - listitem [ref=f4e707]:
+                  - 'link "OSHA general-industry foot protection: 29 CFR 1910.136" [ref=f4e709] [cursor=pointer]':
+                    - /url: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.136
+                - listitem [ref=f4e710]:
+                  - link "ASTM F2413-24 protective safety-toe footwear specification" [ref=f4e712] [cursor=pointer]:
+                    - /url: https://store.astm.org/f2413-24.html
+                - listitem [ref=f4e713]:
+                  - link "ASTM F3445-24 footwear slip-resistance specification" [ref=f4e715] [cursor=pointer]:
+                    - /url: https://store.astm.org/f3445-24.html
+                - listitem [ref=f4e716]:
+                  - 'link "Safety Jogger: EN ISO 20345:2022 marking changes" [ref=f4e718] [cursor=pointer]':
+                    - /url: https://www.safetyjogger.com/en/cd/technical/iso_20345_2022
+              - paragraph [ref=f4e719]: "Additional background: EN ISO 20345:2022+A1:2024, EU Regulation 2016/425, National Safety Council Injury Facts, and Bureau of Labor Statistics foot injury data. Always verify the documents applicable to the offered model and destination market."
+            - generic [ref=f4e720]:
+              - generic [ref=f4e721]:
+                - generic [ref=f4e722]:
+                  - paragraph [ref=f4e723]: Related PPE
+                  - heading "Source the PPE covered in this guide" [level=2] [ref=f4e724]
+                  - paragraph [ref=f4e725]: Move from research to a buyer shortlist with the matching solution page, category paths, selected PPE options, and RFQ next steps.
+                  - generic [ref=f4e726]:
+                    - link "Request quote" [ref=f4e727] [cursor=pointer]:
+                      - /url: /quote
+                    - link "Build PPE kit" [ref=f4e728] [cursor=pointer]:
+                      - /url: /solutions/construction-site-ppe-solution
+                    - link "Download checklist" [ref=f4e729] [cursor=pointer]:
+                      - /url: /downloads/construction-ppe-checklist.pdf
+                    - link "RFQ template" [ref=f4e730] [cursor=pointer]:
+                      - /url: /downloads/construction-ppe-rfq-template
+                    - link "Size sheet" [ref=f4e731] [cursor=pointer]:
+                      - /url: /downloads/ppe-size-standards-planning-sheet.xlsx
+                - link "Request a safety footwear quote" [ref=f4e732] [cursor=pointer]:
+                  - /url: /quote
+              - generic [ref=f4e733]:
+                - generic [ref=f4e734]:
+                  - generic [ref=f4e735]: Solution
+                  - link "Construction PPE sourcing solution" [ref=f4e746] [cursor=pointer]:
+                    - /url: /solutions/construction-site-ppe-solution
+                - generic [ref=f4e749]:
+                  - generic [ref=f4e750]: PPE categories
+                  - generic [ref=f4e755]:
+                    - link "Foot protection" [ref=f4e756] [cursor=pointer]:
+                      - /url: /categories/foot-protection
+                    - link "Safety shoes" [ref=f4e757] [cursor=pointer]:
+                      - /url: /categories/foot-protection/safety-shoes
+                    - link "Safety boots" [ref=f4e758] [cursor=pointer]:
+                      - /url: /categories/foot-protection/safety-boots
+                    - link "Safety rain boots" [ref=f4e759] [cursor=pointer]:
+                      - /url: /categories/foot-protection/safety-rain-boots
+              - generic [ref=f4e760]:
+                - generic [ref=f4e761]: Buyer shortlist
+                - list [ref=f4e765]:
+                  - listitem [ref=f4e766]:
+                    - link "Breathable steel toe safety shoes" [ref=f4e767] [cursor=pointer]:
+                      - /url: /products/breathable-low-cut-safety-shoes-with-steel-toe
+                  - listitem [ref=f4e771]:
+                    - link "S3 waterproof puncture resistant shoes" [ref=f4e772] [cursor=pointer]:
+                      - /url: /products/s3-anti-static-waterproof-steel-toe-puncture-resistant
+                  - listitem [ref=f4e776]:
+                    - link "PVC steel toe safety rain boots" [ref=f4e777] [cursor=pointer]:
+                      - /url: /products/pvc-steel-toe-safety-rain-boots-for-mining-and-industrial
+            - link "Back to all articles" [ref=f4e782] [cursor=pointer]:
+              - /url: /blog
+    - contentinfo [ref=f4e785]:
+      - generic [ref=f4e786]:
+        - generic [ref=f4e787]:
+          - generic [ref=f4e788]:
+            - link "Laifappe homepage" [ref=f4e789] [cursor=pointer]:
+              - /url: /
+              - img "Yuelaifa PPE icon" [ref=f4e790]
+              - generic [ref=f4e791]:
+                - strong [ref=f4e792]: 粤来发劳保
+                - generic [ref=f4e793]: YUELAIFA PPE · EST. 2003
+            - paragraph [ref=f4e794]: Foshan Yuelaifa Labor Protection Products Co., Ltd. manufactures certified personal protective equipment for global buyers since 2003.
+            - generic [ref=f4e795]:
+              - generic [ref=f4e796]: CE EN
+              - generic [ref=f4e797]: ISO 9001
+              - generic [ref=f4e798]: ANSI
+              - generic [ref=f4e799]: BSCI
+          - navigation "Footer products" [ref=f4e800]:
+            - heading "Products" [level=3] [ref=f4e801]
+            - link "Head Protection" [ref=f4e802] [cursor=pointer]:
+              - /url: /categories/head-protection
+            - link "Hand Protection" [ref=f4e803] [cursor=pointer]:
+              - /url: /categories/hand-protection
+            - link "Foot Protection" [ref=f4e804] [cursor=pointer]:
+              - /url: /categories/foot-protection
+            - link "Workwear" [ref=f4e805] [cursor=pointer]:
+              - /url: /categories/body-protection
+            - link "Eye Protection" [ref=f4e806] [cursor=pointer]:
+              - /url: /categories/eye-protection
+            - link "Fall Protection" [ref=f4e807] [cursor=pointer]:
+              - /url: /categories/fall-protection
+          - navigation "Footer solutions" [ref=f4e808]:
+            - heading "Solutions" [level=3] [ref=f4e809]
+            - link "Construction" [ref=f4e810] [cursor=pointer]:
+              - /url: /solutions/construction-site-ppe-solution
+            - link "Metal Fabrication" [ref=f4e811] [cursor=pointer]:
+              - /url: /solutions/ppe-for-metal-fabrication-and-welding-workshops
+            - link "Fall Protection" [ref=f4e812] [cursor=pointer]:
+              - /url: /solutions/fall-protection-construction
+            - link "Logistics" [ref=f4e813] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-warehouse-logistics
+            - link "Mining" [ref=f4e814] [cursor=pointer]:
+              - /url: /solutions/ppe-safety-equipment-for-mining-quarrying
+            - link "Scaffolding" [ref=f4e815] [cursor=pointer]:
+              - /url: /solutions/ppe-for-scaffolding-and-elevated-platforms
+          - navigation "Footer company" [ref=f4e816]:
+            - heading "Company" [level=3] [ref=f4e817]
+            - link "About Us" [ref=f4e818] [cursor=pointer]:
+              - /url: /about
+            - link "Our Factory" [ref=f4e819] [cursor=pointer]:
+              - /url: /about#factory
+            - link "Certifications" [ref=f4e820] [cursor=pointer]:
+              - /url: /about#certifications
+            - link "OEM / ODM" [ref=f4e821] [cursor=pointer]:
+              - /url: /about#oem-odm
+            - link "News & Blog" [ref=f4e822] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=f4e823]:
+            - heading "Contact Us" [level=3] [ref=f4e824]
+            - paragraph [ref=f4e825]: +86 180 2930 9938
+            - paragraph [ref=f4e829]: sales@laifappe.com
+            - paragraph [ref=f4e834]:
+              - generic [ref=f4e835]: W
+              - link "www.laifappe.com" [ref=f4e836] [cursor=pointer]:
+                - /url: https://www.laifappe.com
+            - paragraph [ref=f4e837]: Foshan, Guangdong, China
+        - generic [ref=f4e842]:
+          - generic [ref=f4e843]: © 2026 Laifappe PPE. All Rights Reserved.
+          - generic [ref=f4e844]:
+            - link "Privacy Policy" [ref=f4e845] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Use" [ref=f4e846] [cursor=pointer]:
+              - /url: /terms
+            - link "Sitemap" [ref=f4e847] [cursor=pointer]:
+              - /url: /sitemap.xml
+  - alert [ref=f4e848]
