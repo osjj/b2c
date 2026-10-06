@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Controller, FormProvider, useFieldArray, useForm, useFormContext, useWatch } from 'react-hook-form'
 import type { FieldPathByValue } from 'react-hook-form'
@@ -123,14 +123,36 @@ function EditorCard({ number, title, description, children }: {
   )
 }
 
-function PrivateImagePreview({ src, alt }: { src: string; alt: string }) {
-  if (!isCasePrivateImage(src)) return null
+function safePreviewSource(src: string): boolean {
+  if (isCasePrivateImage(src)) return true
+  const safePath = (path: string) => /^\/[A-Za-z0-9._/-]+$/.test(path)
+    && !path.includes('//') && !path.split('/').some((part) => part === '.' || part === '..')
+    && !/^\/(api|admin)(\/|$)/.test(path)
+  if (src.startsWith('/')) return safePath(src)
+  try {
+    const url = new URL(src)
+    return url.href === src && url.protocol === 'https:' && !url.username && !url.password
+      && !url.search && !url.hash && safePath(url.pathname)
+  } catch {
+    return false
+  }
+}
+
+function CaseImagePreview({ src, alt }: { src: string; alt: string }) {
+  const [failedSource, setFailedSource] = useState('')
+  if (!src) return null
+  if (!safePreviewSource(src)) return <p className="text-xs text-muted-foreground">Preview unavailable. Enter a valid image path or HTTPS image URL; saving validates the configured image host.</p>
+  const privateImage = isCasePrivateImage(src)
   return (
     <figure className="space-y-2">
       <div className="relative aspect-[4/3] overflow-hidden rounded-md border bg-muted/30">
-        <Image src={src} alt={alt || 'Private draft source image'} fill unoptimized={isCasePrivateImage(src)} sizes="(max-width: 768px) 100vw, 640px" className="object-contain" />
+        {failedSource === src ? (
+          <p role="status" className="flex h-full items-center justify-center p-4 text-center text-xs text-muted-foreground">Image preview could not load. Check the image URL and your administrator session for private originals.</p>
+        ) : (
+          <Image key={src} src={src} alt={alt || (privateImage ? 'Private draft source image' : 'Case image preview')} fill unoptimized sizes="(max-width: 768px) 100vw, 640px" className="object-contain" onError={() => setFailedSource(src)} />
+        )}
       </div>
-      <figcaption className="text-xs text-muted-foreground">Private original · Administrator access only</figcaption>
+      <figcaption className="text-xs text-muted-foreground">{privateImage ? 'Private original · Administrator access only' : 'Public image · Save the case to keep image changes'}</figcaption>
     </figure>
   )
 }
@@ -143,12 +165,16 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
   const [version, setVersion] = useState(caseStudy?.version)
   const [savedStatus, setSavedStatus] = useState(caseStudy?.status ?? 'DRAFT')
   const [pending, setPending] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  const editorBusyRef = useRef(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [serverErrors, setServerErrors] = useState<FieldErrors>({})
   const [placementMessage, setPlacementMessage] = useState('')
   const [publishCandidate, setPublishCandidate] = useState<CaseInput | null>(null)
   const [archiveCandidate, setArchiveCandidate] = useState<CaseInput | null>(null)
+  const busy = pending || uploading
+  const uploadsDisabled = busy || Boolean(publishCandidate) || Boolean(archiveCandidate)
   const status = useWatch({ control, name: 'status' })
   const coverImage = useWatch({ control, name: 'coverImage' })
   const coverAlt = useWatch({ control, name: 'coverAlt' })
@@ -175,6 +201,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
   ]
 
   function removeStorySection(index: number) {
+    if (editorBusyRef.current) return
     const section = getValues(`sections.${index}`)
     const currentGallery = getValues('gallery')
     const released = section?.key ? currentGallery.filter((image) => image.placement === `section:${section.key}`).length : 0
@@ -189,8 +216,17 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
     <TextField name={name} label={label} error={serverErrors[name]?.[0]} {...options} />
   )
 
+  function changeUploading(active: boolean) {
+    if (active && (editorBusyRef.current || publishCandidate || archiveCandidate)) return false
+    editorBusyRef.current = active
+    setUploading(active)
+    if (active) setMessage('')
+    return true
+  }
+
   async function persist(values: CaseInput) {
-    if (pending) return
+    if (editorBusyRef.current) return
+    editorBusyRef.current = true
     setPending(true)
     setError('')
     setMessage('')
@@ -218,11 +254,13 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
     } catch {
       setError('The save result could not be confirmed. Your edits are still here. Open the latest saved version before retrying.')
     } finally {
+      editorBusyRef.current = false
       setPending(false)
     }
   }
 
   function submit(values: CaseInput) {
+    if (editorBusyRef.current) return
     if (!id) {
       void persist(values)
       return
@@ -245,7 +283,13 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(submit)} className="space-y-6">
+      <form onSubmit={(event) => {
+        if (editorBusyRef.current) {
+          event.preventDefault()
+          return
+        }
+        void handleSubmit(submit)(event)
+      }} className="space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border bg-card p-4">
           <div className="space-y-1">
             <div className="flex flex-wrap items-center gap-2">
@@ -261,7 +305,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                 <Link href={`/admin/cases/${id}/preview`} target="_blank" rel="noopener noreferrer"><Eye className="mr-2 size-4" />Preview saved case</Link>
               </Button>
             ) : null}
-            <Button type="submit" disabled={pending} className="min-h-11">
+            <Button type="submit" disabled={busy} className="min-h-11">
               {pending ? <Loader2 className="mr-2 size-4 animate-spin" /> : <Save className="mr-2 size-4" />}
               {pending ? 'Saving…' : saveLabel}
             </Button>
@@ -269,6 +313,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
         </div>
 
         {message ? <div role="status" className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">{message}</div> : null}
+        {uploading ? <p role="status" className="rounded-lg border bg-muted/30 p-4 text-sm">Images are uploading. Wait before saving or changing image order. Uploaded images still require an explicit case save.</p> : null}
         {error ? (
           <div role="alert" className="space-y-3 rounded-lg border border-destructive/25 bg-destructive/5 p-4 text-sm text-destructive">
             <p>{error}</p>
@@ -281,7 +326,12 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
           </div>
         ) : null}
 
-        <fieldset disabled={pending} className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <fieldset disabled={busy} className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_340px]" onClickCapture={(event) => {
+          if (editorBusyRef.current) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+        }}>
           <legend className="sr-only">Procurement case editor</legend>
           <div className="min-w-0 space-y-6">
             <EditorCard number="01" title="Case overview" description="Write in English. Identify the procurement context without disclosing a customer's identity unless publication is authorized.">
@@ -351,6 +401,12 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
 
             <EditorCard number="05" title="Documentary images & placement" description="Place each image immediately after its related text with “Show after”. Moving an image changes its order within that block. Unassigned images stay available as Additional records. Use genuine, permissioned and redacted photographs; certificate screenshots alone do not establish order-model correspondence or compliance.">
               <p className="rounded-md border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-950">Imported private originals are for administrator-only draft review and cannot be published. Use permissioned, redacted public images before publication. The public uploader below is not private.</p>
+              <CaseDocumentaryUpload
+                id="case-gallery-upload" multiple maxFiles={30 - gallery.fields.length}
+                label="Add gallery image files" buttonLabel="Upload gallery images"
+                disabled={uploadsDisabled || gallery.fields.length >= 30} onUploadingChange={changeUploading}
+                onUploaded={(url) => gallery.append({ url, alt: '', caption: '', placement: '' })}
+              />
               {gallery.fields.map((row, index) => (
                 <div key={row.id} className="space-y-4 rounded-lg border p-4">
                   <RowControls index={index} count={gallery.fields.length} name="Image" remove={gallery.remove} move={gallery.move} />
@@ -376,11 +432,16 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                     <p id={`case-gallery.${index}.placement-help`} className="text-xs leading-relaxed text-muted-foreground">The image appears once, directly below this block. An assigned empty or removed block needs content or a different position before saving.</p>
                     {serverErrors[`gallery.${index}.placement`]?.[0] ? <p id={`case-gallery.${index}.placement-error`} className="text-xs text-destructive">{serverErrors[`gallery.${index}.placement`][0]}</p> : null}
                   </div>
-                  <PrivateImagePreview src={galleryItems[index]?.url ?? ''} alt={galleryItems[index]?.alt ?? ''} />
+                  <CaseImagePreview src={galleryItems[index]?.url ?? ''} alt={galleryItems[index]?.alt ?? ''} />
+                  <CaseDocumentaryUpload
+                    id={`case-gallery-${index}-upload`} label={`Replace image ${index + 1} file`}
+                    buttonLabel={`Upload replacement for image ${index + 1}`}
+                    disabled={uploadsDisabled} onUploadingChange={changeUploading}
+                    onUploaded={(url) => setValue(`gallery.${index}.url`, url, { shouldDirty: true })}
+                  />
                 </div>
               ))}
               <Button type="button" variant="outline" className="min-h-11" disabled={gallery.fields.length >= 30} onClick={() => gallery.append({ url: '', alt: '', caption: '' })}><Plus className="mr-2 size-4" />Add image URL</Button>
-              <CaseDocumentaryUpload id="case-gallery-upload" disabled={pending || gallery.fields.length >= 30} onUploaded={(url) => gallery.append({ url, alt: '', caption: '' })} />
             </EditorCard>
 
             <EditorCard number="06" title="Related pages" description="Connect this case to relevant product, category, solution or buying-guide pages. Use canonical internal paths only, without query strings.">
@@ -430,7 +491,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                   <p className="text-xs text-muted-foreground">Featured cases appear first; lower values come first within each group.</p>
                   {serverErrors.sortOrder?.[0] ? <p className="text-xs text-destructive">{serverErrors.sortOrder[0]}</p> : null}
                 </div>
-                <Button type="submit" className="min-h-11 w-full" disabled={pending}>{pending ? 'Saving…' : saveLabel}</Button>
+                <Button type="submit" className="min-h-11 w-full" disabled={busy}>{pending ? 'Saving…' : saveLabel}</Button>
                 {id ? <p className="text-xs text-muted-foreground">Preview shows the last saved version. Save changes before opening it.</p> : <p className="text-xs text-muted-foreground">Save the draft first to unlock its administrator-only preview.</p>}
               </CardContent>
             </Card>
@@ -438,11 +499,18 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
             <Card>
               <CardHeader><CardTitle>Cover photograph</CardTitle><CardDescription>A real image is optional. No stock customer photos or invented scene images.</CardDescription></CardHeader>
               <CardContent className="space-y-5">
+                <CaseDocumentaryUpload
+                  id="case-cover-upload" label="Cover image file" buttonLabel="Upload cover image"
+                  disabled={uploadsDisabled} onUploadingChange={changeUploading}
+                  onUploaded={(url) => setValue('coverImage', url, { shouldDirty: true })}
+                />
                 {textField('coverImage', 'Cover image URL', { maxLength: 2048, placeholder: '/cases/cover.webp' })}
                 {textField('coverAlt', 'Cover alternative text', { rows: 2, maxLength: 300 })}
-                <PrivateImagePreview src={coverImage} alt={coverAlt} />
-                <p className="text-xs leading-relaxed text-amber-800">A private cover is administrator-only and blocks publication. Replace it with an approved, redacted public image before publishing; the public uploader below does not keep uploads private.</p>
-                <CaseDocumentaryUpload id="case-cover-upload" disabled={pending} onUploaded={(url) => setValue('coverImage', url, { shouldDirty: true })} />
+                <CaseImagePreview src={coverImage} alt={coverAlt} />
+                {coverImage ? <Button type="button" variant="outline" className="min-h-11" disabled={busy} onClick={() => {
+                  if (!editorBusyRef.current) setValue('coverImage', '', { shouldDirty: true })
+                }}><Trash2 className="mr-2 size-4" />Remove cover image</Button> : null}
+                <p className="text-xs leading-relaxed text-amber-800">A private cover is administrator-only and blocks publication. Replace it with an approved, redacted public image before publishing; the cover uploader does not keep uploads private.</p>
               </CardContent>
             </Card>
 
@@ -473,7 +541,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
           {!publishCandidate?.publicationApproved ? <p className="text-sm text-destructive">Check the editorial review confirmation in the form before publishing.</p> : null}
           <AlertDialogFooter>
             <AlertDialogCancel>Keep editing</AlertDialogCancel>
-            <AlertDialogAction disabled={!publishCandidate?.publicationApproved || pending} onClick={() => {
+            <AlertDialogAction disabled={!publishCandidate?.publicationApproved || busy} onClick={() => {
               const values = publishCandidate
               setPublishCandidate(null)
               if (values) void persist(values)
@@ -490,7 +558,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Keep editing</AlertDialogCancel>
-            <AlertDialogAction onClick={() => {
+            <AlertDialogAction disabled={busy} onClick={() => {
               const values = archiveCandidate
               setArchiveCandidate(null)
               if (values) void persist(values)
