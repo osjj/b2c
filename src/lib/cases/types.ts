@@ -51,6 +51,10 @@ export function isAllowedCaseRelatedLink(value: string): boolean {
   return isSafePath(value) && /^\/(products|categories|solutions|blog|cases|quote|contact)(\/|$)/.test(value)
 }
 
+export function isAllowedCaseProcurementLink(value: string): boolean {
+  return !value || (isSafePath(value) && /^\/(products|categories)(\/|$)/.test(value))
+}
+
 const text = (max: number) => z.string().trim().max(max)
 const dateSchema = text(10).refine(isCaseDate, 'Use a real calendar date in YYYY-MM-DD format')
 const imageSchema = text(2048).refine(isAllowedCaseImage, 'Use a local image path or the configured HTTPS image host; no signed or query URLs')
@@ -60,6 +64,7 @@ export const caseProcurementSchema = z.object({
   quantity: z.number().int().positive().max(1_000_000_000),
   unit: text(40).min(1, 'Unit is required'),
   note: text(1000),
+  href: text(500).refine(isAllowedCaseProcurementLink, 'Use a canonical internal product or category path').optional(),
 })
 export const caseSectionSchema = z.object({
   key: text(80).refine((value) => !value || isCaseSectionKey(value), 'Use a lowercase section key separated by single hyphens').optional(),
@@ -72,6 +77,7 @@ export const caseGallerySchema = z.object({
   alt: text(300).min(1, 'Describe the image for accessibility'),
   caption: text(1000),
   placement: text(88).refine(isCaseGalleryPlacement, 'Choose a content block or a stable story section').optional(),
+  kind: z.enum(['photo', 'document']).optional(),
 })
 export const caseRelatedLinkSchema = z.object({
   label: text(160).min(1),

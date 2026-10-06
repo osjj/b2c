@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { ArrowRight, CheckCircle2, FileText, Mail } from 'lucide-react'
 import { QuoteRequestForm } from '@/modules/home-new/components'
 import { Button } from '@/components/ui/button'
+import { getPublishedCase } from '@/lib/cases/data'
+import { quotePageSource, resolveCaseInquiryContext } from '@/lib/cases/inquiry'
 
 export const metadata: Metadata = {
   title: 'Request a PPE Quote | Laifappe',
@@ -14,17 +16,13 @@ export const metadata: Metadata = {
 }
 
 type QuotePageProps = {
-  searchParams: Promise<{ source?: string | string[] }>
-}
-
-function normalizeSource(source: string | string[] | undefined) {
-  const value = Array.isArray(source) ? source[0] : source
-  return value?.trim().slice(0, 80) || 'Quote page'
+  searchParams: Promise<{ source?: string | string[]; case?: string | string[] }>
 }
 
 export default async function QuotePage({ searchParams }: QuotePageProps) {
   const params = await searchParams
-  const source = normalizeSource(params.source)
+  const context = await resolveCaseInquiryContext(params.case, getPublishedCase)
+  const source = context?.source ?? quotePageSource(params.source)
 
   return (
     <main className="min-h-screen bg-ppe-bg-page">
@@ -67,13 +65,19 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
               </Button>
             </div>
           </div>
-          <div className="rounded-xl border bg-secondary/30 p-5 text-sm text-muted-foreground">
-            Source tracked for this request: <span className="font-semibold text-foreground">{source}</span>
-          </div>
         </div>
 
-        <div className="order-1 lg:order-2">
-          <QuoteRequestForm source={source} />
+        <div className="order-1 min-w-0 space-y-5 lg:order-2">
+          {context && (
+            <aside aria-label="Your procurement case reference" className="rounded-xl border bg-secondary/30 p-5 text-sm">
+              <p className="text-muted-foreground">Discuss a similar project</p>
+              <Link href={context.caseHref} className="mt-2 flex min-h-11 items-center gap-2 font-semibold text-foreground hover:underline">
+                <span className="min-w-0 break-words">{context.title}</span><ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+              </Link>
+              <p className="mt-2 leading-relaxed text-muted-foreground">Edit the message below to describe your own PPE requirements.</p>
+            </aside>
+          )}
+          <QuoteRequestForm key={context?.slug ?? 'quote-page'} source={source} initialMessage={context?.initialMessage} />
         </div>
       </section>
     </main>

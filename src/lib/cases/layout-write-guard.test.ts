@@ -82,3 +82,21 @@ test('legacy records without metadata remain writable while unreadable records f
     _form: ['Existing image layout could not be checked. Reload the case before saving.'],
   })
 })
+
+test('older editors cannot silently remove retained document roles or procurement links', () => {
+  const existing = {
+    ...fixture(), gallery: fixture().gallery.map((image) => ({ ...image, kind: 'document' as const })),
+    procurement: [{ name: 'Gloves', quantity: 200, unit: 'pairs', note: '', href: '/categories/hand-protection' }],
+  }
+  const incoming = {
+    ...fixture(), procurement: existing.procurement.map(({ name, quantity, unit, note }) => ({ name, quantity, unit, note })),
+  }
+  const before = structuredClone({ existing, incoming })
+  assert.deepEqual(Object.keys(caseLayoutWriteErrors(existing, incoming)), ['gallery.0.kind', 'gallery.1.kind', 'procurement.0.href'])
+  assert.deepEqual({ existing, incoming }, before)
+  assert.deepEqual(caseLayoutWriteErrors(existing, {
+    ...existing, gallery: existing.gallery.map((image) => ({ ...image, kind: 'photo' as const })),
+    procurement: existing.procurement.map((item) => ({ ...item, href: '' })),
+  }), {})
+  assert.deepEqual(caseLayoutWriteErrors(existing, { ...fixture(), gallery: [], procurement: [] }), {})
+})

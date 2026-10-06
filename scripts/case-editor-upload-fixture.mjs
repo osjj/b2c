@@ -6,13 +6,20 @@ import { build } from 'esbuild'
 import postcss from 'postcss'
 import tailwind from '@tailwindcss/postcss'
 
+const port = Number(process.argv.find((argument) => argument.startsWith('--port='))?.slice(7) || 8769)
+if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Invalid fixture port')
+const readingFields = process.argv.includes('--reading-fields')
+
 const mocks = `
+import {caseInputSchema} from '@/lib/cases/types';
 export const useRouter=()=>({replace:()=>{},refresh:()=>{}});
 export async function saveCaseStudy(input,id,version){
+ const parsed=caseInputSchema.safeParse(input);
+ if(!parsed.success){const errors={};for(const issue of parsed.error.issues){const path=issue.path.join('.')||'_form';(errors[path]??=[]).push(issue.message);}return {success:false,reason:'Review the highlighted fields.',errors};}
  window.__caseSaves=(window.__caseSaves||0)+1;
- window.__savedCase=structuredClone(input);
+ window.__savedCase=structuredClone(parsed.data);
  window.__saveVersion=version;
- localStorage.setItem('case-upload-fixture',JSON.stringify({...input,id,version:version+1}));
+ localStorage.setItem('case-upload-fixture',JSON.stringify({...parsed.data,id,version:version+1}));
  return {success:true,id,version:version+1,reason:'Saved fixture'};
 }
 `
@@ -30,6 +37,7 @@ const original={...emptyCaseInput(),id,version:1,title:'Documentary upload fixtu
  gallery:[{url:'/fixture.png',alt:'Original public photograph',caption:'Original caption',placement:'section:samples'},
  {url:'/api/admin/case-images/'+id+'/'+ 'a'.repeat(64)+'.png',alt:'Original private photograph',caption:'Private original',placement:''}],
  publishedAt:null,createdAt:'2026-10-06T00:00:00.000Z',updatedAt:'2026-10-06T00:00:00.000Z'};
+if(${JSON.stringify(readingFields)}){original.procurement[0].href='/categories/hand-protection';original.gallery[0].kind='document';original.gallery[1].kind='photo';}
 const stored=localStorage.getItem('case-upload-fixture');
 const record=stored?{...original,...JSON.parse(stored)}:original;
 createRoot(document.getElementById('root')).render(<main className="mx-auto max-w-7xl p-4"><p className="mb-4 rounded border bg-amber-50 p-3">Isolated case editor · uploads and saves are simulated</p><CaseForm caseStudy={record}/></main>);
@@ -65,4 +73,4 @@ const server = createServer((request, response) => {
     response.statusCode = 404; response.end('Fixture route not mocked')
   }
 })
-server.listen(8769, '127.0.0.1', () => process.stdout.write('Case fixture ready: http://127.0.0.1:8769/\n'))
+server.listen(port, '127.0.0.1', () => process.stdout.write('Case fixture ready: http://127.0.0.1:'+port+'/\n'))

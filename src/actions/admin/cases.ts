@@ -62,7 +62,7 @@ export async function saveCaseStudy(input: unknown, id?: string, expectedVersion
       }
 
       const existing = await tx.caseStudy.findUnique({
-        where: { id }, select: { id: true, slug: true, version: true, status: true, publishedAt: true, sections: true, gallery: true },
+        where: { id }, select: { id: true, slug: true, version: true, status: true, publishedAt: true, sections: true, gallery: true, procurement: true },
       })
       if (!existing) return { success: false, reason: 'Case not found. Nothing was saved.' }
       if (existing.version !== expectedVersion) {
@@ -72,7 +72,7 @@ export async function saveCaseStudy(input: unknown, id?: string, expectedVersion
       if (Object.keys(layoutErrors).length) {
         return {
           success: false,
-          reason: 'This editor is missing saved image layout information. Reload the case before saving. Nothing was saved.',
+          reason: 'This editor is missing saved case display or link information. Reload the case before saving. Nothing was saved.',
           errors: layoutErrors,
         }
       }

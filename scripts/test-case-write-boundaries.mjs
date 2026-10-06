@@ -17,7 +17,7 @@ const db = {
       if (state.rows.some((row) => row.slug === data.slug)) {
         throw new Prisma.PrismaClientKnownRequestError('Duplicate slug', { code: 'P2002', clientVersion: 'test' })
       }
-      const row = { id: `c${String(state.rows.length + 1).padStart(24, '0')}`, version: 1, ...data }
+      const row = { id: `c${String(state.rows.length + 1).padStart(24, '0')}`, version: 1, createdAt: new Date(), updatedAt: new Date(), ...data }
       state.rows.push(row)
       state.writes++
       return selected(row, select)
@@ -191,6 +191,49 @@ assert.equal((await saveCaseStudy(removedSection, layoutCreated.id, 2)).success,
 assert.equal(layoutRecord.version, 3)
 assert.equal(layoutRecord.gallery.find(({ url }) => url === '/cases/visit.png').placement, '')
 
+// New reading fields must survive the real validated save/projection path.
+// A current-version payload from an older editor cannot erase them by omission.
+const readingInput = {
+  ...layoutInput, slug: 'document-and-product-link-record',
+  procurement: input.procurement.map((item) => ({ ...item, href: '/categories/head-protection' })),
+  gallery: layoutInput.gallery.map((image, index) => ({ ...image, kind: index === 0 ? 'document' : 'photo' })),
+}
+const readingCreated = await saveCaseStudy(readingInput)
+assert.equal(readingCreated.success, true)
+const readingReopened = await getAdminCase(readingCreated.id)
+assert.equal(readingReopened.procurement[0].href, '/categories/head-protection', 'Admin reopen retains procurement href')
+assert.equal(readingReopened.gallery[0].kind, 'document', 'Admin reopen retains document kind')
+const readingPublished = await saveCaseStudy({ ...readingInput, status: 'PUBLISHED', publicationApproved: true }, readingCreated.id, 1)
+assert.equal(readingPublished.success, true)
+const readingPublic = await getPublishedCase(readingInput.slug)
+assert.equal(readingPublic.procurement[0].href, '/categories/head-protection', 'Public projection retains procurement href')
+assert.equal(readingPublic.gallery[0].kind, 'document', 'Public projection retains document kind')
+assert.equal('privateNotes' in readingPublic, false)
+const oldReadingPayload = {
+  ...readingInput,
+  procurement: readingInput.procurement.map(({ name, quantity, unit, note }) => ({ name, quantity, unit, note })),
+  gallery: readingInput.gallery.map(({ url, alt, caption, placement }) => ({ url, alt, caption, placement })),
+}
+const readingWrites = state.writes
+const readingInvalidations = state.invalidations.length
+const readingSnapshot = structuredClone(state.rows.find(({ id }) => id === readingCreated.id))
+const readingOmitted = await saveCaseStudy(oldReadingPayload, readingCreated.id, 2)
+assert.equal(readingOmitted.success, false)
+assert.deepEqual(Object.keys(readingOmitted.errors), ['gallery.0.kind', 'gallery.1.kind', 'procurement.0.href'])
+assert.equal(state.writes, readingWrites, 'Reading-field omissions do not reach updateMany')
+assert.equal(state.invalidations.length, readingInvalidations, 'Reading-field omissions do not invalidate routes')
+assert.deepEqual(state.rows.find(({ id }) => id === readingCreated.id), readingSnapshot)
+const changedReading = {
+  ...readingInput, status: 'PUBLISHED', publicationApproved: true,
+  procurement: readingInput.procurement.map((item) => ({ ...item, href: '' })),
+  gallery: [...readingInput.gallery].reverse().map((image) => ({ ...image, kind: 'photo' })),
+}
+assert.equal((await saveCaseStudy(changedReading, readingCreated.id, 2)).success, true, 'Explicit unlink and role change remain available after gallery reorder')
+const changedPublic = await getPublishedCase(readingInput.slug)
+assert.equal(changedPublic.procurement[0].href, '')
+assert.equal(changedPublic.gallery[1].kind, 'photo')
+assert.equal(changedPublic.gallery[1].url, readingInput.gallery[0].url)
+
 // Read boundaries: real query predicates, not a hand-written public fallback.
 const now = new Date()
 const baseRecord = { ...input, version: 1, createdAt: now, updatedAt: now, cooperationDate: new Date('2026-08-02'), publicationApproved: true, publishedAt: new Date(now.getTime() - 1000) }
@@ -216,4 +259,4 @@ await assert.rejects(getAdminCase('draft'), /Denied/)
 assert.equal(state.reads.length, readCount, 'Unauthorized private reads do not reach the database')
 state.authorized = true
 assert.equal((await getAdminCase('draft')).privateNotes, input.privateNotes)
-process.stdout.write('PASS: real case actions and read queries; authorization, validation, draft creation, duplicate slug, optimistic race, layout omission protection, intentional reorder/delete, publish/withdraw, invalidation, public filtering and private projection verified with mocks. No database or storage contacted.\n')
+process.stdout.write('PASS: real case actions and read queries; authorization, validation, draft creation, duplicate slug, optimistic race, layout/reading-field omission protection, product href/document kind save-reopen-public projection, intentional reorder/unlink/role change, publish/withdraw, invalidation, public filtering and private projection verified with mocks. No database or storage contacted.\n')

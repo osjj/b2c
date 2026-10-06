@@ -1,4 +1,4 @@
-import { caseGallerySchema, caseSectionSchema } from './types'
+import { caseGallerySchema, caseProcurementSchema, caseSectionSchema } from './types'
 import type { CaseInput } from './types'
 
 const missingMetadataMessage = 'Saved image layout information is missing. Reload the case before saving.'
@@ -9,8 +9,8 @@ const missingMetadataMessage = 'Saved image layout information is missing. Reloa
  * Matching uses content identity, never array order or guessed image meaning.
  */
 export function caseLayoutWriteErrors(
-  existing: { sections: unknown; gallery: unknown },
-  incoming: Pick<CaseInput, 'sections' | 'gallery'>,
+  existing: { sections: unknown; gallery: unknown; procurement?: unknown },
+  incoming: Pick<CaseInput, 'sections' | 'gallery'> & Partial<Pick<CaseInput, 'procurement'>>,
 ): Record<string, string[]> {
   const sections = caseSectionSchema.array().safeParse(existing.sections)
   const gallery = caseGallerySchema.array().safeParse(existing.gallery)
@@ -31,6 +31,21 @@ export function caseLayoutWriteErrors(
     if (image.placement === undefined && assignedUrls.has(image.url)) {
       errors[`gallery.${index}.placement`] = [missingMetadataMessage]
     }
+    if (image.kind === undefined && gallery.data.some((previous) => previous.url === image.url && previous.kind !== undefined)) {
+      errors[`gallery.${index}.kind`] = ['Saved image display information is missing. Reload the case before saving.']
+    }
   })
+  if (existing.procurement !== undefined) {
+    const procurement = caseProcurementSchema.array().safeParse(existing.procurement)
+    if (!procurement.success || !incoming.procurement) {
+      errors._form = ['Existing procurement links could not be checked. Reload the case before saving.']
+    } else {
+      incoming.procurement.forEach((item, index) => {
+        const retainedLink = procurement.data.some((previous) => previous.href && previous.name === item.name
+          && previous.quantity === item.quantity && previous.unit === item.unit)
+        if (item.href === undefined && retainedLink) errors[`procurement.${index}.href`] = ['Saved product link information is missing. Reload the case before saving.']
+      })
+    }
+  }
   return errors
 }

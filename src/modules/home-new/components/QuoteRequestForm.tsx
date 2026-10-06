@@ -114,6 +114,7 @@ type QuoteRequestFormProps = {
   className?: string
   compact?: boolean
   eyebrow?: string
+  initialMessage?: string
   source?: string
   title?: ReactNode
 }
@@ -275,6 +276,7 @@ export function QuoteRequestForm({
   className = "",
   compact = false,
   eyebrow = "- Get Instant Quote",
+  initialMessage = "",
   source = "FAST RFQ",
   title = (
     <>
@@ -285,7 +287,10 @@ export function QuoteRequestForm({
   ),
 }: QuoteRequestFormProps) {
   const idPrefix = useId()
-  const [values, setValues] = useState<QuoteRequestFormValues>(initialValues)
+  const [values, setValues] = useState<QuoteRequestFormValues>(() => ({
+    ...initialValues,
+    message: initialMessage.slice(0, 1000),
+  }))
   const [errors, setErrors] = useState<QuoteRequestFormErrors>({})
   const [status, setStatus] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)

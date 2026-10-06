@@ -3,7 +3,7 @@ import test from 'node:test'
 
 import { southAfricaMiningDraft } from './south-africa-draft'
 import {
-  caseInputSchema, emptyCaseInput, isAllowedCaseImage, isAllowedCaseRelatedLink,
+  caseInputSchema, emptyCaseInput, isAllowedCaseImage, isAllowedCaseRelatedLink, isAllowedCaseProcurementLink,
   isCaseDate, isCaseGalleryPlacement, isCaseSectionKey, publicCaseView, toAdminCaseView, toCaseView,
 } from './types'
 import { casePrivateImageUrl } from './private-image-path'
@@ -31,6 +31,21 @@ test('related links only permit canonical internal storefront paths', () => {
   for (const href of ['/admin/cases', '/api/a', '/login', '/products/a?utm_source=x', '//evil.com/a', 'https://www.laifappe.com/blog/a', '/products/../admin']) {
     assert.equal(isAllowedCaseRelatedLink(href), false)
   }
+})
+
+test('optional product links and document roles preserve legacy records and public projection', () => {
+  for (const href of ['', '/products/helmet', '/categories/hand-protection']) assert.equal(isAllowedCaseProcurementLink(href), true)
+  for (const href of ['/quote', '/blog/guide', '/admin/cases', '/categories/a?source=x', '/products/../admin', '//evil.com/a', 'https://www.laifappe.com/products/a']) assert.equal(isAllowedCaseProcurementLink(href), false, href)
+  const enriched = {
+    ...record(), procurement: [{ ...southAfricaMiningDraft.procurement[0], href: '/categories/head-protection' }],
+    gallery: [{ url: '/cases/document.png', alt: 'Supporting record', caption: 'Recorded document', kind: 'document' }],
+  }
+  const view = toCaseView(enriched)
+  assert.equal(view.procurement[0].href, '/categories/head-protection')
+  assert.equal(view.gallery[0].kind, 'document')
+  assert.deepEqual(publicCaseView(toAdminCaseView(enriched)), view)
+  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, gallery: [{ ...enriched.gallery[0], kind: 'certificate' }] }).success, false)
+  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, procurement: [{ ...enriched.procurement[0], href: '/api/secret' }] }).success, false)
 })
 
 test('draft supports absent images and retains the actual six quantities', () => {

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowDown, ArrowUpRight, FileText, FolderOpen } from 'lucide-react'
 import type { CaseView } from '@/lib/cases/types'
 import { isCasePrivateImage } from '@/lib/cases/private-image-path'
+import { caseInquiryHref, caseInquirySource } from '@/lib/cases/inquiry'
 import { caseNumber, formatCaseDate } from './case-format'
 import styles from './case-listing.module.css'
 import sharedStyles from './cases.module.css'
@@ -73,6 +74,6 @@ function DossierCover({ caseStudy }: { caseStudy: CaseView }) {
   return <div className={styles.dossierCover}><span className={styles.dossierLabel}>LAIFAPPE / PROCUREMENT RECORD</span><div><span>{caseStudy.country}</span><strong>{caseStudy.industry}</strong></div><div className={styles.dossierBottom}><span>ORDER SCOPE<br />{caseStudy.procurement.length} product {caseStudy.procurement.length === 1 ? 'line' : 'lines'}</span><FileText size={32} strokeWidth={1} aria-hidden="true" /></div></div>
 }
 
-export function CaseInquiry() {
-  return <section className={sharedStyles.inquiry}><div className={sharedStyles.wrap}><div><span className={sharedStyles.eyebrow}>YOUR PROCUREMENT BRIEF</span><h2>Let’s start with<br /><em>what you need.</em></h2></div><div className={sharedStyles.inquiryAside}><p>Share your product list, quantities, destination and customization requirements. We’ll help you work through the details.</p><Link href="/quote" data-source="procurement-cases" className={sharedStyles.primaryLink}>Discuss a PPE order <ArrowUpRight size={19} aria-hidden="true" /></Link></div></div></section>
+export function CaseInquiry({ caseSlug }: { caseSlug?: string }) {
+  return <section className={sharedStyles.inquiry}><div className={sharedStyles.wrap}><div><span className={sharedStyles.eyebrow}>YOUR PROCUREMENT BRIEF</span><h2>Let’s start with<br /><em>what you need.</em></h2></div><div className={sharedStyles.inquiryAside}><p>Share your product list, quantities, destination and customization requirements. We’ll help you work through the details.</p><Link href={caseSlug ? caseInquiryHref(caseSlug) : '/quote'} data-source={caseSlug ? caseInquirySource(caseSlug) : 'procurement-cases'} className={sharedStyles.primaryLink}>Discuss a PPE order <ArrowUpRight size={19} aria-hidden="true" /></Link></div></div></section>
 }

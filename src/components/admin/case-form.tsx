@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { CaseDocumentaryUpload } from './case-documentary-upload'
 
-type TextPath = FieldPathByValue<CaseInput, string>
+type TextPath = FieldPathByValue<CaseInput, string | undefined>
 type FieldErrors = Record<string, string[]>
 
 function editableValues(record?: AdminCaseView): CaseInput {
@@ -364,6 +364,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                     {textField(`procurement.${index}.unit`, 'Unit', { maxLength: 40, placeholder: 'pieces / pairs / sets' })}
                   </div>
                   {textField(`procurement.${index}.note`, 'Item notes', { rows: 2, maxLength: 1000, placeholder: 'Confirmed product details or requirements only.' })}
+                  {textField(`procurement.${index}.href`, 'Product or category link', { maxLength: 500, placeholder: '/categories/hand-protection', help: 'Optional canonical internal path. Use a category if the final ordered model has not been matched to a product.' })}
                 </div>
               ))}
               <Button type="button" variant="outline" className="min-h-11" disabled={procurement.fields.length >= 40} onClick={() => procurement.append({ name: '', quantity: 1, unit: '', note: '' })}><Plus className="mr-2 size-4" />Add procurement item</Button>
@@ -413,6 +414,20 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                   {textField(`gallery.${index}.url`, 'Image URL', { maxLength: 2048, placeholder: '/cases/documentary-image.webp', help: 'Use a local path or the configured image host. Notion signed URLs are not permanent public assets.' })}
                   {textField(`gallery.${index}.alt`, 'Alternative text', { maxLength: 300, help: 'Describe what can actually be seen, without unsupported claims.' })}
                   {textField(`gallery.${index}.caption`, 'Evidence caption', { rows: 2, maxLength: 1000 })}
+                  <div className="space-y-2">
+                    <Label htmlFor={`case-gallery.${index}.kind`}>Display as</Label>
+                    <Controller control={control} name={`gallery.${index}.kind`} defaultValue="photo" render={({ field }) => (
+                      <select {...field} id={`case-gallery.${index}.kind`} value={field.value ?? 'photo'}
+                        aria-invalid={Boolean(serverErrors[`gallery.${index}.kind`])}
+                        aria-describedby={`case-gallery.${index}.kind-help${serverErrors[`gallery.${index}.kind`] ? ` case-gallery.${index}.kind-error` : ''}`}
+                        className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <option value="photo">Photograph</option>
+                        <option value="document">Supporting document</option>
+                      </select>
+                    )} />
+                    <p id={`case-gallery.${index}.kind-help`} className="text-xs leading-relaxed text-muted-foreground">Documents appear in an expandable supporting-record group. This label does not verify authenticity or correspondence to the order.</p>
+                    {serverErrors[`gallery.${index}.kind`]?.[0] ? <p id={`case-gallery.${index}.kind-error`} className="text-xs text-destructive">{serverErrors[`gallery.${index}.kind`][0]}</p> : null}
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor={`case-gallery.${index}.placement`}>Show after</Label>
                     <Controller control={control} name={`gallery.${index}.placement`} render={({ field }) => (
