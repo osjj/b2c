@@ -7,6 +7,7 @@ import { QuotationError, toQuotationActionError } from '@/lib/quotation/errors'
 import { buildCanonicalSnapshot, type SnapshotImage } from '@/lib/quotation/artifacts/snapshot'
 import { generateCustomerPdf } from '@/lib/quotation/artifacts/pdf'
 import { getQuotationPrivateStorage } from '@/lib/quotation/private-storage'
+import { assertQuotationImageBudget } from '@/lib/quotation/image-budget'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -22,13 +23,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     if (revision.version !== version) throw new QuotationError('VERSION_CONFLICT', '报价已更新，请刷新后重新预览')
     if (!['DRAFT', 'READY'].includes(revision.state)) throw new QuotationError('INVALID_STATE_TRANSITION', '此版本已有正式文件或正在生成，请从文件区下载')
     const images: SnapshotImage[] = []
-    let totalBytes = 0
     const assets = revision.items.flatMap((item) => item.assets.filter((asset) => asset.assetType === 'PRODUCT_IMAGE'))
+    assertQuotationImageBudget(assets)
     if (assets.length) {
       const storage = getQuotationPrivateStorage()
       for (const asset of assets) {
-        totalBytes += asset.sizeBytes
-        if (asset.sizeBytes > 5 * 1024 * 1024 || totalBytes > 20 * 1024 * 1024) throw new QuotationError('FILE_TOO_LARGE', '报价图片总量不能超过 20 MB，单张不能超过 5 MB')
         if (asset.contentType !== 'image/jpeg' && asset.contentType !== 'image/png') throw new QuotationError('VALIDATION_FAILED', '不支持的图片格式')
         const object = await storage.get(asset.objectKey, asset.contentType)
         if (object.sha256 !== asset.sha256 || object.sizeBytes !== asset.sizeBytes) throw new QuotationError('DOCUMENT_VALIDATION_FAILED', '图片完整性检查失败')

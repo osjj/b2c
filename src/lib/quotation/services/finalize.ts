@@ -10,6 +10,7 @@ import { buildCanonicalSnapshot, stableSnapshotJson } from '../artifacts/snapsho
 import { sha256, validateGeneratedArtifacts } from '../artifacts/validate'
 import { QuotationError } from '../errors'
 import { atFinalizationStage, finalizationError, type FinalizationStage } from '../finalization-error'
+import { assertQuotationImageBudget } from '../image-budget'
 import { calculateQuotationMoney } from '../money'
 import { quotationFinalAssetKey, quotationFinalKey, quotationStagingKey } from '../object-keys'
 import { getQuotationPrivateStorage } from '../private-storage'
@@ -28,8 +29,6 @@ type FinalizationResult = {
 }
 
 const LEASE_MILLISECONDS = 5 * 60 * 1000
-const MAX_FINAL_IMAGE_BYTES = 5 * 1024 * 1024
-const MAX_FINAL_IMAGE_TOTAL_BYTES = 20 * 1024 * 1024
 const CUSTOMER_IMAGE_TYPES = new Set(['image/jpeg', 'image/png'])
 
 export async function finalizeQuotationRevision(input: unknown, actorId: string): Promise<FinalizationResult> {
@@ -189,6 +188,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
       throw new QuotationError('INVALID_STATE_TRANSITION', 'Finalizing revision changed during recalculation')
     }
     stage = 'images'
+    assertQuotationImageBudget(revision.items.flatMap((item) => item.assets.filter((asset) => asset.assetType === 'PRODUCT_IMAGE')))
     const immutableAssets: Array<{
       id: string
       itemId: string
@@ -198,23 +198,15 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
       sha256: string
       bytes: Buffer
     }> = []
-    let totalImageBytes = 0
     for (const item of revision.items) {
       for (const asset of item.assets) {
         if (asset.assetType !== 'PRODUCT_IMAGE') continue
         if (!CUSTOMER_IMAGE_TYPES.has(asset.contentType)) {
           throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'A selected customer image has an unsupported content type')
         }
-        if (asset.sizeBytes > MAX_FINAL_IMAGE_BYTES) {
-          throw new QuotationError('FILE_TOO_LARGE', 'A selected customer image exceeds the finalization size limit')
-        }
         const source = await storage.get(asset.objectKey, asset.contentType)
         if (source.sha256 !== asset.sha256 || source.sizeBytes !== asset.sizeBytes || source.contentType !== asset.contentType) {
           throw new QuotationError('DOCUMENT_VALIDATION_FAILED', 'A selected customer image no longer matches its approved source')
-        }
-        totalImageBytes += source.sizeBytes
-        if (totalImageBytes > MAX_FINAL_IMAGE_TOTAL_BYTES) {
-          throw new QuotationError('FILE_TOO_LARGE', 'Selected customer images exceed the finalization size limit')
         }
         const filename = asset.displayName || `item-${item.sortOrder + 1}.${asset.contentType.split('/')[1]}`
         const stagingKey = quotationStagingKey(claimed.quotationId, claimed.revisionId, attemptId, `asset-${asset.id}-${filename}`)
