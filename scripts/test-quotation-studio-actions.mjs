@@ -6,7 +6,7 @@ import { build } from 'esbuild'
 import sharp from 'sharp'
 
 const require = createRequire(import.meta.url)
-const state = { enabled: true, admin: true, dbCalls: 0, catalogReads: 0, productReads: 0, storageReads: 0, s3Calls: 0, putCalls: 0, failReadAt: 0, failPutAt: 0, contentLength: null, counter: 0, customers: [], products: [], settings: [], images: [], sources: [], audits: [], failAudit: false }
+const state = { enabled: true, admin: true, dbCalls: 0, catalogReads: 0, productReads: 0, storageReads: 0, s3Calls: 0, putCalls: 0, failReadAt: 0, failPutAt: 0, contentLength: null, counter: 0, customers: [], products: [], settings: [], images: [], sources: [], audits: [], failAudit: false, failDefaults: false, failImages: false }
 const objects = new Map()
 const readKeys = []
 let copyHook
@@ -45,16 +45,16 @@ const db = {
     updateMany: async ({ where, data }) => { const row = state.products.find((entry) => matches(entry, where)); if (!row) return { count: 0 }; Object.assign(row, data, { updatedAt: data.updatedAt ?? stamp() }); return { count: 1 } },
   },
   setting: {
-    upsert: async ({ where, create, update }) => { const row = state.settings.find((entry) => entry.key === where.key); if (row) Object.assign(row, update); else state.settings.push(create) },
+    upsert: async ({ where, create, update }) => { if (state.failDefaults) throw new Error('Mock defaults failure'); const row = state.settings.find((entry) => entry.key === where.key); if (row) Object.assign(row, update); else state.settings.push(create) },
     create: async ({ data }) => { state.settings.push(data); return data },
   },
   quotationNumberCounter: { upsert: async () => ({ value: ++state.counter }) },
   quotationSourceFile: {
     createMany: async ({ data }) => state.sources.push(...data.map(row => ({ deletedAt: null, salesQuotationId: null, ...row }))),
-    findMany: async ({ where }) => state.sources.filter(row => where.id.in.includes(row.id) && row.securityStatus === where.securityStatus && row.deletedAt === where.deletedAt && row.salesQuotationId === where.salesQuotationId && where.contentType.in.includes(row.contentType) && row.sizeBytes <= where.sizeBytes.lte),
+    findMany: async ({ where }) => state.sources.filter(row => where.id.in.includes(row.id) && row.securityStatus === where.securityStatus && row.deletedAt === where.deletedAt && row.salesQuotationId === where.salesQuotationId && where.contentType.in.includes(row.contentType) && row.sizeBytes > (where.sizeBytes.gt ?? -1) && row.sizeBytes <= where.sizeBytes.lte),
   },
   quotationProductImage: {
-    createMany: async ({ data }) => state.images.push(...data),
+    createMany: async ({ data }) => { if (state.failImages) throw new Error('Mock image reference failure'); state.images.push(...data) },
     deleteMany: async ({ where }) => { state.images = state.images.filter(row => row.quotationProductId !== where.quotationProductId) },
   },
   quotationAuditLog: { create: async ({ data }) => { if (state.failAudit) throw new Error('Mock database failure'); state.audits.push(data) } },
@@ -228,10 +228,68 @@ const readsBeforeMaximum = state.s3Calls
 const maxGallery = await actions.reimportCommonProductImages(refreshInput())
 assert.equal(maxGallery.success, true); assert.equal(maxGallery.data.images.length, 8); assert.equal(state.s3Calls - readsBeforeMaximum, 8)
 
+// One final create persists information/defaults and selected private-image references together.
+const createPayload = { name: 'Manual product with images', productSource: 'Private supplier', costPriceText: 'Private cost note', specifications: 'Material: Cotton\nSize: L', description: 'Customer description', packaging: '10 per bag', unit: 'pair', unitPrice: '3.50', currency: 'USD', active: true, sourceIds: orderedSourceIds }
+const privateSourcesBefore = structuredClone(state.sources)
+const catalogBeforeCreate = structuredClone(catalog)
+const objectsBeforeCreate = [...objects.keys()]
+const unified = await actions.saveCommonQuotationProduct(createPayload)
+assert.equal(unified.success, true)
+const unifiedProduct = state.products.find(row => row.id === unified.data.id)
+assert.equal(unifiedProduct.nameEn, createPayload.name)
+assert.equal(unifiedProduct.productSource, createPayload.productSource)
+assert.equal(unifiedProduct.costPriceText, createPayload.costPriceText)
+assert.deepEqual(unifiedProduct.specifications, ['Material: Cotton', 'Size: L'])
+assert.deepEqual(state.images.filter(row => row.quotationProductId === unified.data.id).map(row => [row.sourceFileId, row.sortOrder]), orderedSourceIds.map((sourceId, index) => [sourceId, index]))
+assert.equal(state.settings.find(row => row.key === `quotation.product-defaults.${unified.data.id}`).value.description, createPayload.description)
+assert.equal(state.audits.at(-1).entityId, unified.data.id)
+assert.equal(state.audits.at(-1).action, 'CREATE')
+assert.deepEqual(state.sources, privateSourcesBefore); assert.deepEqual(catalog, catalogBeforeCreate); assert.deepEqual([...objects.keys()], objectsBeforeCreate)
+const unifiedImages = structuredClone(state.images)
+const { sourceIds: omittedImages, ...informationOnly } = createPayload
+assert.ok(omittedImages.length > 0)
+assert.equal((await actions.saveCommonQuotationProduct({ ...informationOnly, id: unified.data.id, expectedUpdatedAt: unifiedProduct.updatedAt.toISOString(), name: 'Updated text only' })).success, true)
+assert.deepEqual(state.images, unifiedImages, 'Existing information-only save must preserve image references')
+const currentUnified = state.products.find(row => row.id === unified.data.id)
+assert.equal((await actions.saveCommonQuotationProduct({ ...informationOnly, id: unified.data.id, expectedUpdatedAt: currentUnified.updatedAt.toISOString(), sourceIds: [] })).success, true)
+assert.equal(state.images.some(row => row.quotationProductId === unified.data.id), false, 'Explicit empty image array clears only selected product references')
+assert.deepEqual(state.sources, privateSourcesBefore)
+assert.equal((await actions.saveCommonQuotationProduct({ ...informationOnly, sourceIds: [] })).success, true)
+
+const ownedState = () => structuredClone({ products: state.products, settings: state.settings, images: state.images, sources: state.sources, audits: state.audits, counter: state.counter })
+async function assertUnifiedCreateFailure(payload, expectedCode) {
+  const before = ownedState()
+  const result = await actions.saveCommonQuotationProduct(payload)
+  assert.equal(result.code, expectedCode); assert.equal(result.success, false)
+  assert.deepEqual(ownedState(), before, 'Failed creation must roll back product/defaults/references/audit/counter')
+  assert.deepEqual([...objects.keys()], objectsBeforeCreate)
+}
+for (const [sourceIds, code] of [
+  [['invalid'], 'VALIDATION_FAILED'],
+  [Array.from({ length: 9 }, (_, index) => `22222222-2222-4222-8222-${String(index).padStart(12, '0')}`), 'VALIDATION_FAILED'],
+  [[imageIds[0], imageIds[0]], 'DUPLICATE_FILE'],
+  [['33333333-3333-4333-8333-000000000000'], 'FILE_NOT_CLEAN'],
+]) await assertUnifiedCreateFailure({ ...createPayload, sourceIds }, code)
+const invalidSourceId = '44444444-4444-4444-8444-000000000000'
+for (const metadata of [
+  { securityStatus: 'QUARANTINED' }, { deletedAt: new Date() }, { salesQuotationId: id() },
+  { contentType: 'application/pdf' }, { sizeBytes: 0 }, { sizeBytes: 5 * 1024 * 1024 + 1 },
+]) {
+  state.sources.push({ ...state.sources.find(row => row.id === imageIds[0]), id: invalidSourceId, ...metadata })
+  await assertUnifiedCreateFailure({ ...createPayload, sourceIds: [invalidSourceId] }, 'FILE_NOT_CLEAN')
+  state.sources = state.sources.filter(row => row.id !== invalidSourceId)
+}
+for (const flag of ['failDefaults', 'failImages', 'failAudit']) {
+  state[flag] = true
+  await assertUnifiedCreateFailure(createPayload, 'INTERNAL_ERROR')
+  state[flag] = false
+}
+
 state.admin = false
 const calls = state.dbCalls; const s3Calls = state.s3Calls; const catalogReads = state.catalogReads
 const productReads = state.productReads; const storageReads = state.storageReads; const putCalls = state.putCalls
 assert.equal((await actions.saveQuotationCustomer({ name: 'Forbidden' })).success, false)
+assert.equal((await actions.saveCommonQuotationProduct(createPayload)).success, false)
 assert.equal((await actions.importQuotationCatalogProduct(input)).success, false)
 assert.equal((await actions.saveCommonProductImages({ id: imported.data.id, updatedAt: latestImageStamp, sourceIds: orderedSourceIds })).success, false)
 assert.equal((await actions.reimportCommonProductImages(refreshInput())).success, false)
@@ -239,6 +297,7 @@ assert.equal(state.dbCalls, calls); assert.equal(state.s3Calls, s3Calls); assert
 assert.equal(state.productReads, productReads); assert.equal(state.storageReads, storageReads); assert.equal(state.putCalls, putCalls)
 state.admin = true; state.enabled = false
 assert.equal((await actions.saveCommonQuotationProduct({})).success, false)
+assert.equal((await actions.saveCommonQuotationProduct(createPayload)).success, false)
 assert.equal((await actions.importQuotationCatalogProduct(input)).success, false)
 assert.equal((await actions.searchQuotationCatalog({ search: 'sample' })).success, false)
 assert.equal((await actions.reimportCommonProductImages(refreshInput())).success, false)

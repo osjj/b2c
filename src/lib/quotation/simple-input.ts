@@ -40,6 +40,9 @@ export const commonProductSchema = simpleLineSchema.omit({ quantity: true, image
   active: z.boolean(),
   expectedUpdatedAt: z.string().datetime().optional(),
 })
+export const commonProductSaveSchema = commonProductSchema.extend({
+  sourceIds: z.array(z.string().uuid()).max(8).optional(),
+})
 export type CommonProductInput = z.infer<typeof commonProductSchema>
 export type CommonProductOption = Omit<CommonProductInput, 'productSource' | 'costPriceText'> & { id: string; images: SimpleImage[] }
 
