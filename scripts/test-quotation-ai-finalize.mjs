@@ -76,7 +76,7 @@ const fixtureFetch = async (url) => {
   assert.equal(url, 'https://chat.glarivoglass.com/v1/chat/completions')
   apiCalls++
   if (failAi) return new Response('private upstream diagnostic', { status: 503 })
-  return Response.json({ choices: [{ message: { content: JSON.stringify({ items: [{ position: 1, imageColumns: 1, labelPrefixes: ['Material:'], noteIndices: [] }] }) }, finish_reason: 'stop' }] })
+  return Response.json({ choices: [{ message: { content: JSON.stringify({ items: [{ position: 1, imageColumns: 1, noteIndices: [] }] }) }, finish_reason: 'stop' }] })
 }
 const finalizerModule = { exports: {} }
 new Function('require', 'module', 'exports', '__quotationTestEnvironment', 'fetch', built.outputFiles[0].text)(
@@ -90,7 +90,7 @@ assert.equal(apiCalls, 1)
 assert.equal(documents.length, 4)
 const snapshotFile = documents.find((doc) => doc.documentType === 'SNAPSHOT_JSON')
 const snapshot = JSON.parse(objects.get(snapshotFile.objectKey).toString())
-assert.equal(snapshot.layout.model, 'gpt-5.4')
+assert.equal(snapshot.layout.model, 'gpt-5.6-sol')
 assert.equal(snapshot.money.total, '3.00')
 assert.deepEqual(snapshot.items[0].specifications, ['Material: Cotton'])
 assert.equal((await finalizerModule.exports.finalizeQuotationRevision(input, 'isolated-admin')).status, 'FINALIZED')

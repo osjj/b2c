@@ -40,6 +40,8 @@ const makeRevision = () => ({
 let revision = makeRevision()
 let attempts = [], documents = []
 let reads = 0, writes = 0, apiCalls = 0
+let simulatedNow = Date.now(), imageReadTime = 0
+const heartbeats = []
 const objects = new Map()
 const matches = (row, where) => Object.entries(where).every(([key, value]) => value && typeof value === 'object' && 'in' in value ? value.in.includes(row[key]) : row[key] === value)
 const update = (row, data) => {
@@ -61,7 +63,12 @@ const db = {
     findUnique: async ({ where }) => { const attempt = attempts.find(row => row.idempotencyKey === where.idempotencyKey); return attempt ? { ...attempt, revision, documents: documents.filter(doc => doc.attemptId === attempt.id) } : null },
     create: async ({ data }) => { attempts.push(data); return data },
     update: async ({ where, data }) => update(attempts.find(row => matches(row, where)), data),
-    updateMany: async ({ where, data }) => { const rows = attempts.filter(row => matches(row, where)); rows.forEach(row => update(row, data)); return { count: rows.length } },
+    updateMany: async ({ where, data }) => {
+      const rows = attempts.filter(row => matches(row, where))
+      rows.forEach(row => update(row, data))
+      if (data.heartbeatAt) heartbeats.push({ reads, leaseExpiresAt: Number(data.leaseExpiresAt) })
+      return { count: rows.length }
+    },
   },
   $transaction: async (work) => {
     const backup = structuredClone({ revision, attempts, documents })
@@ -70,7 +77,11 @@ const db = {
 }
 const storage = {
   provider: 'r2-private',
-  get: async (key) => { reads++; const image = sourceImagesByKey.get(key); assert.ok(image, 'Only selected source images may be read'); return image },
+  get: async (key) => {
+    reads++; simulatedNow += imageReadTime
+    if (imageReadTime) assert.ok(Number(attempts.at(-1).leaseExpiresAt) > simulatedNow, 'An active image transfer must not outlive its lease')
+    const image = sourceImagesByKey.get(key); assert.ok(image, 'Only selected source images may be read'); return image
+  },
   put: async (key, bytes) => { writes++; objects.set(key, bytes) },
   move: async (from, to) => { writes++; objects.set(to, objects.get(from)); objects.delete(from) },
   delete: async (key) => { writes++; objects.delete(key) },
@@ -84,7 +95,7 @@ const mocks = {
 }
 const built = await build({
   stdin: { contents: 'export {finalizeQuotationRevision} from "./src/lib/quotation/services/finalize"; export {GET} from "./src/app/api/admin/quotation-revisions/[id]/preview/route";', resolveDir: process.cwd(), loader: 'ts' },
-  bundle: true, write: false, platform: 'node', format: 'cjs', packages: 'external', define: { 'process.env': '__quotationTestEnvironment' },
+  bundle: true, write: false, platform: 'node', format: 'cjs', packages: 'external', define: { 'process.env': '__quotationTestEnvironment', 'Date.now': '__quotationNow' },
   plugins: [{ name: 'isolate-budget', setup(plugin) {
     plugin.onResolve({ filter: /.*/ }, ({ path }) => {
       if (path in mocks) return { path, namespace: 'mock' }
@@ -97,14 +108,14 @@ const fixtureFetch = async (url, init) => {
   assert.equal(url, 'https://example.test/v1/chat/completions')
   apiCalls++
   const input = JSON.parse(JSON.parse(init.body).messages[1].content)
-  return Response.json({ choices: [{ message: { content: JSON.stringify({ items: input.items.map(item => ({ position: item.position, imageColumns: 2, labelPrefixes: ['Material:'], noteIndices: [] })) }) }, finish_reason: 'stop' }] })
+  return Response.json({ choices: [{ message: { content: JSON.stringify({ items: input.items.map(item => ({ position: item.position, imageColumns: 2, noteIndices: [] })) }) }, finish_reason: 'stop' }] })
 }
 const loaded = { exports: {} }
-new Function('require', 'module', 'exports', '__quotationTestEnvironment', 'fetch', built.outputFiles[0].text)(
+new Function('require', 'module', 'exports', '__quotationTestEnvironment', 'fetch', '__quotationNow', built.outputFiles[0].text)(
   name => name === 'quotation-budget-test-state' ? { db, storage } : nodeRequire(name), loaded, loaded.exports,
-  { NODE_ENV: 'test', OPENAI_API_ENDPOINT: 'https://example.test', OPENAI_API_KEY: 'test-only' }, fixtureFetch,
+  { NODE_ENV: 'test', OPENAI_API_ENDPOINT: 'https://example.test', OPENAI_API_KEY: 'test-only' }, fixtureFetch, () => simulatedNow,
 )
-const reset = () => { revision = makeRevision(); attempts = []; documents = []; objects.clear(); reads = 0; writes = 0; apiCalls = 0 }
+const reset = () => { revision = makeRevision(); attempts = []; documents = []; objects.clear(); reads = 0; writes = 0; apiCalls = 0; imageReadTime = 0; simulatedNow = Date.now(); heartbeats.length = 0 }
 const finalizeInput = () => ({ revisionId: revision.id, expectedVersion: revision.version, idempotencyKey: randomUUID() })
 const preview = () => loaded.exports.GET(new Request(`https://example.test/preview?version=${revision.version}`), { params: Promise.resolve({ id: revision.id }) })
 const selectedBytes = revision.items.flatMap(item => item.assets).reduce((sum, asset) => sum + asset.sizeBytes, 0)
@@ -118,7 +129,7 @@ reset()
 const input = finalizeInput()
 const result = await loaded.exports.finalizeQuotationRevision(input, 'isolated-admin')
 assert.equal(result.status, 'FINALIZED'); assert.equal(documents.length, 4)
-assert.equal(reads, 36); assert.equal(apiCalls, 1)
+assert.equal(reads, 36); assert.equal(apiCalls, 2)
 const saved = JSON.parse(objects.get(documents.find(doc => doc.documentType === 'SNAPSHOT_JSON').objectKey).toString())
 assert.equal(saved.items.length, 10); assert.equal(saved.items.flatMap(item => item.images).length, 36)
 assert.equal(saved.money.total, '30.00')
@@ -138,6 +149,12 @@ for (let itemIndex = 0; itemIndex < revision.items.length; itemIndex++) {
 const beforeReplay = { reads, writes, apiCalls }
 assert.equal((await loaded.exports.finalizeQuotationRevision(input, 'isolated-admin')).status, 'FINALIZED')
 assert.deepEqual({ reads, writes, apiCalls }, beforeReplay)
+
+reset(); imageReadTime = 15_000
+const slowResult = await loaded.exports.finalizeQuotationRevision(finalizeInput(), 'isolated-admin')
+assert.equal(slowResult.status, 'FINALIZED')
+assert.ok(heartbeats.some(entry => entry.reads > 0 && entry.reads < 36), 'Large image sets must renew their lease during copying')
+assert.ok(heartbeats.length >= 20)
 
 for (const failure of ['total', 'single', 'invalid', 'integrity']) {
   reset()

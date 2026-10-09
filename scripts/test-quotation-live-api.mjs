@@ -39,7 +39,7 @@ source = source.replace("import { build } from 'esbuild'", `import { build } fro
 source = source.replace('createRequire(import.meta.url)', `createRequire(${JSON.stringify(new URL('./test-quotation-ai-finalize.mjs', import.meta.url).href)})`)
 source = source.replace("{ NODE_ENV: 'test', OPENAI_API_ENDPOINT: 'https://chat.glarivoglass.com', OPENAI_API_KEY: 'test-only' }, fixtureFetch",
   "{NODE_ENV:'test', ...globalThis.__quotationLiveProbe.environment}, async (url, init) => { if (failAi) return fixtureFetch('https://chat.glarivoglass.com/v1/chat/completions'); apiCalls++; return globalThis.__quotationLiveProbe.fetch(url, init) }")
-source = source.replace("assert.equal(snapshot.layout.model, 'gpt-5.4')", "assert.equal(snapshot.layout.model, globalThis.__quotationLiveProbe.environment.QUOTATION_AI_MODEL?.trim() || 'gpt-5.4')")
+source = source.replace("assert.equal(snapshot.layout.model, 'gpt-5.6-sol')", "assert.equal(snapshot.layout.model, globalThis.__quotationLiveProbe.environment.QUOTATION_AI_MODEL?.trim() || 'gpt-5.6-sol')")
 source = source.replace('All external I/O mocked.', 'One actual configured AI call; DB/storage mocked. Failure branch uses mock API.')
 globalThis.__quotationLiveProbe = { environment, fetch: liveFetch }
 try {

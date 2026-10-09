@@ -29,6 +29,7 @@ type FinalizationResult = {
 }
 
 const LEASE_MILLISECONDS = 5 * 60 * 1000
+const HEARTBEAT_MILLISECONDS = 30 * 1000
 const CUSTOMER_IMAGE_TYPES = new Set(['image/jpeg', 'image/png'])
 
 export async function finalizeQuotationRevision(input: unknown, actorId: string): Promise<FinalizationResult> {
@@ -100,6 +101,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
 
   const storedKeys = new Set<string>()
   let stage: FinalizationStage = 'prepare'
+  let lastHeartbeatAt = Date.now()
   const heartbeat = async (): Promise<void> => {
     const updated = await prisma.quotationFinalizationAttempt.updateMany({
       where: { id: attemptId, status: 'RUNNING', leaseOwner },
@@ -108,6 +110,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
     if (updated.count !== 1) {
       throw new QuotationError('INVALID_STATE_TRANSITION', 'Finalization lease is no longer owned by this request')
     }
+    lastHeartbeatAt = Date.now()
   }
   try {
     await heartbeat()
@@ -226,6 +229,7 @@ export async function finalizeQuotationRevision(input: unknown, actorId: string)
           sha256: source.sha256,
           bytes: source.bytes,
         })
+        if (Date.now() - lastHeartbeatAt >= HEARTBEAT_MILLISECONDS) await heartbeat()
       }
     }
     await heartbeat()
