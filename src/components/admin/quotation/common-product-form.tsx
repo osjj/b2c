@@ -55,7 +55,7 @@ export function CommonProductForm({ initialValue }: { initialValue?: CommonProdu
   }
   return <form onSubmit={(event) => { event.preventDefault(); save() }} className="space-y-5 rounded-2xl border bg-white p-6"><fieldset disabled={saveLocked} className="space-y-5">
     <label className="block space-y-2 text-sm font-medium">产品名称<Input required value={value.name} maxLength={500} onChange={(e) => setValue({ ...value, name: e.target.value })} /></label>
-    {!value.id && <section className="space-y-3 rounded-xl border bg-slate-50 p-4"><div><h2 className="text-sm font-semibold">常用产品图片</h2><p className="mt-1 text-xs text-slate-500">图片可选。上传后可调整顺序或移除，产品资料与所选图片一起保存。</p></div><SimpleImagePicker sortable pasteAndDrop images={images} onChange={(next) => { imagesRef.current = next; setImages(next) }} onBusy={(next) => { uploadBusyRef.current = next; setUploading(next) }} disabled={saveLocked} /></section>}
+    {!value.id && <section className="space-y-3 rounded-xl border bg-slate-50 p-4"><div><h2 className="text-sm font-semibold">常用产品图片</h2><p className="mt-1 text-xs text-slate-500">图片可选。点击图片可放大查看；上传后可调整顺序或移除，产品资料与所选图片一起保存。</p></div><SimpleImagePicker sortable pasteAndDrop preview images={images} onChange={(next) => { imagesRef.current = next; setImages(next) }} onBusy={(next) => { uploadBusyRef.current = next; setUploading(next) }} disabled={saveLocked} /></section>}
     <div className="space-y-2">
       <label htmlFor="productSource" className="block text-sm font-medium">商品来源（仅内部）</label>
       <Textarea id="productSource" rows={3} maxLength={2000} value={value.productSource ?? ''} onChange={(e) => setValue({ ...value, productSource: e.target.value })} placeholder="供应商名称、采购链接或来源备注，可留空" aria-describedby="product-source-help" />

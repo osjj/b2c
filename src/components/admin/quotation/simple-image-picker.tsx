@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import type { SimpleImage } from '@/lib/quotation/simple-input'
+import { PrivateImagePreview } from './private-image-preview'
 
 const uploadResult = z.object({ success: z.boolean(), reason: z.string(), data: z.object({ id: z.string().uuid(), securityStatus: z.string() }).optional() })
 const dragType = 'application/x-quotation-image'
@@ -17,13 +18,14 @@ function clipboardFileName(file: File) {
   return new File([file], `${name}.${extension}`, { type: file.type, lastModified: file.lastModified })
 }
 
-export function SimpleImagePicker({ images, onChange, onBusy, disabled, sortable = false, pasteAndDrop = false, maxImages = 8, maxSizeMb = 5, label = '添加产品图片' }: { images: SimpleImage[]; onChange: (images: SimpleImage[]) => void; onBusy?: (busy: boolean) => void; disabled?: boolean; sortable?: boolean; pasteAndDrop?: boolean; maxImages?: number; maxSizeMb?: number; label?: string }) {
+export function SimpleImagePicker({ images, onChange, onBusy, disabled, sortable = false, pasteAndDrop = false, preview = false, maxImages = 8, maxSizeMb = 5, label = '添加产品图片' }: { images: SimpleImage[]; onChange: (images: SimpleImage[]) => void; onBusy?: (busy: boolean) => void; disabled?: boolean; sortable?: boolean; pasteAndDrop?: boolean; preview?: boolean; maxImages?: number; maxSizeMb?: number; label?: string }) {
   const id = useId()
   const busyRef = useRef(false)
   const [busy, setBusy] = useState(false)
   const [progress, setProgress] = useState({ current: 0, total: 0 })
   const [error, setError] = useState('')
   const dragKey = useRef<string | null>(null)
+  const suppressPreviewClick = useRef(false)
   const [dragging, setDragging] = useState<string | null>(null)
   const [dropTarget, setDropTarget] = useState<string | null>(null)
   const fileDragDepth = useRef(0)
@@ -85,6 +87,8 @@ export function SimpleImagePicker({ images, onChange, onBusy, disabled, sortable
     } finally { busyRef.current = false; setBusy(false); onBusy?.(false) }
   }
   function pasteImages(event: ClipboardEvent<HTMLDivElement>) {
+    // Portaled preview events still bubble through React; only the picker DOM uploads.
+    if (!(event.target instanceof Node) || !event.currentTarget.contains(event.target)) return
     if (event.target instanceof HTMLElement && (event.target.isContentEditable || event.target.closest('input,textarea,select'))) return
     const itemFiles = Array.from(event.clipboardData.items).filter((item) => item.kind === 'file').map((item) => item.getAsFile()).filter((file): file is File => file !== null)
     const files = itemFiles.length > 0 ? itemFiles : Array.from(event.clipboardData.files)
@@ -94,22 +98,31 @@ export function SimpleImagePicker({ images, onChange, onBusy, disabled, sortable
   }
   return <div data-image-picker data-file-drop-target={fileDropActive ? true : undefined} onPaste={pasteAndDrop ? pasteImages : undefined} onDragEnter={pasteAndDrop ? (event) => {
     if (!event.dataTransfer.types.includes('Files')) return
-    event.preventDefault(); clearDrag(); fileDragDepth.current += 1; setFileDragging(true)
+    event.preventDefault()
+    if (!(event.target instanceof Node) || !event.currentTarget.contains(event.target)) return
+    clearDrag(); fileDragDepth.current += 1; setFileDragging(true)
   } : undefined} onDragOver={pasteAndDrop ? (event) => {
     if (!event.dataTransfer.types.includes('Files')) return
-    event.preventDefault(); event.dataTransfer.dropEffect = busyRef.current || busy || disabled || full ? 'none' : 'copy'
+    event.preventDefault()
+    if (!(event.target instanceof Node) || !event.currentTarget.contains(event.target)) { event.dataTransfer.dropEffect = 'none'; return }
+    event.dataTransfer.dropEffect = busyRef.current || busy || disabled || full ? 'none' : 'copy'
   } : undefined} onDragLeave={pasteAndDrop ? (event) => {
     if (!event.dataTransfer.types.includes('Files')) return
+    if (!(event.target instanceof Node) || !event.currentTarget.contains(event.target)) return
     fileDragDepth.current = Math.max(0, fileDragDepth.current - 1)
     if (fileDragDepth.current === 0) setFileDragging(false)
   } : undefined} onDrop={pasteAndDrop ? (event) => {
     if (!event.dataTransfer.types.includes('Files')) return
-    event.preventDefault(); event.stopPropagation(); clearFileDrag(); clearDrag()
+    event.preventDefault(); event.stopPropagation()
+    if (!(event.target instanceof Node) || !event.currentTarget.contains(event.target)) return
+    clearFileDrag(); clearDrag()
     void upload(Array.from(event.dataTransfer.files))
   } : undefined} onDragEnd={pasteAndDrop ? clearFileDrag : undefined} className="space-y-3">
-    <div className="flex flex-wrap gap-3">{images.map((image, index) => <div key={imageKey(image)} data-image-key={imageKey(image)} data-dragging={canSort && dragging === imageKey(image) ? true : undefined} data-drop-target={canSort && dropTarget === imageKey(image) ? true : undefined} draggable={canSort} onDragStart={(event) => {
-      if (busyRef.current || !canSort || (event.target instanceof HTMLElement && event.target.closest('button,input'))) { event.preventDefault(); clearDrag(); return }
+    <div className="flex flex-wrap gap-3">{images.map((image, index) => <div key={imageKey(image)} data-image-key={imageKey(image)} data-dragging={canSort && dragging === imageKey(image) ? true : undefined} data-drop-target={canSort && dropTarget === imageKey(image) ? true : undefined} draggable={canSort} onPointerDownCapture={() => { suppressPreviewClick.current = false }} onDragStart={(event) => {
+      const control = event.target instanceof HTMLElement ? event.target.closest('button,input') : null
+      if (busyRef.current || !canSort || (control && !control.hasAttribute('data-image-preview-trigger'))) { event.preventDefault(); clearDrag(); return }
       const key = imageKey(image)
+      suppressPreviewClick.current = true
       dragKey.current = key; setDragging(key); setDropTarget(null)
       event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData(dragType, key)
     }} onDragOver={(event) => {
@@ -127,7 +140,7 @@ export function SimpleImagePicker({ images, onChange, onBusy, disabled, sortable
     }} onDragEnd={clearDrag} className={`relative rounded-xl border bg-white p-2 ${sortable ? 'w-28' : 'w-24'} ${canSort ? 'cursor-move' : ''} ${canSort && dragging === imageKey(image) ? 'opacity-50' : ''} ${canSort && dropTarget === imageKey(image) ? 'border-teal-600 ring-2 ring-teal-500' : ''}`}>
       {sortable && <p className="mb-1 text-center text-xs text-slate-500">图片 {index + 1}</p>}
       {/* Bypass the optimizer so the browser sends ADMIN session cookies directly. */}
-      <Image unoptimized draggable={false} width={96} height={80} src={`/api/admin/quotation-images/${image.id}?kind=${image.kind}`} alt={image.name} className="h-20 w-full object-contain" />
+      {preview ? <PrivateImagePreview imageId={image.id} imageKind={image.kind} imageName={image.name || `图片 ${index + 1}`} onTriggerClick={(event) => { if (suppressPreviewClick.current && event.detail > 0) event.preventDefault() }}><Image unoptimized draggable={false} width={96} height={80} src={`/api/admin/quotation-images/${image.id}?kind=${image.kind}`} alt={image.name} className="h-20 w-full object-contain" /></PrivateImagePreview> : <Image unoptimized draggable={false} width={96} height={80} src={`/api/admin/quotation-images/${image.id}?kind=${image.kind}`} alt={image.name} className="h-20 w-full object-contain" />}
       {sortable && <div className="mt-1 flex gap-1">
         <Button type="button" size="sm" variant="ghost" disabled={!canSort || index === 0} onClick={() => { clearDrag(); moveImage(imageKey(image), index - 1) }} aria-label={`前移图片 ${index + 1}`} title="前移" className="h-11 flex-1 px-0">←</Button>
         <Button type="button" size="sm" variant="ghost" disabled={!canSort || index === images.length - 1} onClick={() => { clearDrag(); moveImage(imageKey(image), index + 1) }} aria-label={`后移图片 ${index + 1}`} title="后移" className="h-11 flex-1 px-0">→</Button>
