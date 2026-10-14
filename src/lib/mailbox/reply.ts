@@ -5,6 +5,7 @@ import { z } from 'zod'
 
 import { MAX_RAW_MIME_BYTES } from './config'
 import { MailboxError } from './errors'
+import { providerDiagnosticCode, providerFailureReason, safeProviderDiagnosticCode, type ProviderDiagnosticCode } from './provider-diagnostics'
 import { buildReplyReferences, parseReplyRecipients, replySubject } from './threading'
 import type { MailboxMessage } from './types'
 
@@ -28,7 +29,7 @@ export type PreparedReply = {
 }
 export type ReplyAttempt = {
   requestKey: string; account: string; parentId: string; payloadHash: string; status: string;
-  outboundMessageId: string | null; providerRequestId: string | null; createdAt: Date;
+  outboundMessageId: string | null; providerRequestId: string | null; safeErrorCode: string | null; createdAt: Date;
 }
 export interface ReplyRepository {
   getParent(account: string, id: string): Promise<ReplyParent | null>
@@ -40,7 +41,7 @@ export interface ReplyRepository {
 }
 export type ReplyConfig = { account: string | null; defaultSender: string; aliases: string[]; ownAddresses: string[]; apiKey: string | undefined }
 export type ReplyDependencies = { repository: ReplyRepository; fetch?: typeof fetch; now?: () => Date }
-export type ProviderOutcome = { state: 'accepted' | 'rejected' | 'unknown'; requestId?: string }
+export type ProviderOutcome = { state: 'accepted' | 'rejected' | 'unknown'; requestId?: string; errorCode?: ProviderDiagnosticCode }
 
 export async function readReplyForm(request: Request): Promise<FormData> {
   const contentType = request.headers.get('content-type') || ''
@@ -162,27 +163,47 @@ export function classifyProviderResponse(status: number, raw: unknown): Provider
   if (!parsed.success) return { state: 'unknown' }
   const { data, request_id: rawRequestId } = parsed.data
   const requestId = rawRequestId && /^[\w.-]+$/.test(rawRequestId) ? rawRequestId : undefined
+  // Server errors can occur after acceptance. Even a failure-shaped body does
+  // not prove non-delivery, so it must never unlock a new send attempt.
+  if (status >= 500) return { state: 'unknown', requestId }
   const error = Boolean(parsed.data.error || parsed.data.error_code || data?.error || data?.error_code)
   const hasFailures = (data?.failures?.length || 0) > 0 || (data?.failed || 0) > 0
-  // SMTP2GO MIME endpoint counts an email with multiple recipients as ONE email.
+  // SMTP2GO standard email endpoint counts multiple recipients as ONE email.
   // Require the synchronous acceptance tuple; HTTP 200 alone is insufficient.
   if (status >= 200 && status < 300 && !error && data?.succeeded === 1 && data.failed === 0 && !data.failures?.length) {
     return { state: 'accepted', requestId }
   }
   if ((data?.succeeded || 0) > 0) return { state: 'unknown', requestId }
-  if (data?.succeeded === 0 && (hasFailures || error)) return { state: 'rejected', requestId }
-  if (error && status >= 400 && status < 500) return { state: 'rejected', requestId }
+  if (data?.succeeded === 0 && (hasFailures || error)) return { state: 'rejected', requestId, errorCode: providerDiagnosticCode(parsed.data, status) }
+  if (error && status >= 400 && status < 500) return { state: 'rejected', requestId, errorCode: providerDiagnosticCode(parsed.data, status) }
   // 5xx, malformed or contradictory results may follow acceptance. Never resend.
   return { state: 'unknown', requestId }
 }
 
-async function submitMime(rawMime: Buffer, apiKey: string, fetcher: typeof fetch): Promise<ProviderOutcome> {
+async function submitReply(prepared: PreparedReply, attachments: ReplyAttachment[], apiKey: string, fetcher: typeof fetch): Promise<ProviderOutcome> {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
   try {
-    const response = await fetcher('https://api.smtp2go.com/v3/email/mime', {
+    // Use the same standard-send permission as the existing admin composer.
+    // The locally built MIME is a private archive, not the provider's wire MIME.
+    const response = await fetcher('https://api.smtp2go.com/v3/email/send', {
       method: 'POST', headers: { 'Content-Type': 'application/json', accept: 'application/json', 'X-Smtp2go-Api-Key': apiKey },
-      body: JSON.stringify({ mime_email: rawMime.toString('base64'), fastaccept: false }),
+      body: JSON.stringify({
+        sender: prepared.message.from.address,
+        to: prepared.message.to.map(recipient => recipient.address),
+        cc: prepared.message.cc.map(recipient => recipient.address),
+        subject: prepared.message.subject,
+        text_body: prepared.message.textBody,
+        custom_headers: [
+          { header: 'Message-ID', value: prepared.message.messageId },
+          { header: 'In-Reply-To', value: prepared.inReplyTo[0] },
+          { header: 'References', value: prepared.references.join(' ') },
+        ],
+        attachments: attachments.map(attachment => ({
+          filename: attachment.filename, mimetype: attachment.contentType, fileblob: attachment.buffer.toString('base64'),
+        })),
+        fastaccept: false,
+      }),
       signal: controller.signal, cache: 'no-store', redirect: 'error',
     })
     return classifyProviderResponse(response.status, await response.json())
@@ -208,7 +229,7 @@ async function resolvePreviousAttempt(attempt: ReplyAttempt, prepared: PreparedR
     return { message, requestId: attempt.providerRequestId || undefined }
   }
   if (attempt.status === 'FAILED') {
-    throw new MailboxError('SEND_ALREADY_FAILED', 'This send was rejected. Review the recipients and start a new reply attempt only after confirming the failure.', 409)
+    throw new MailboxError('SEND_ALREADY_FAILED', providerFailureReason(attempt.safeErrorCode), 409)
   }
   if (attempt.status === 'UNKNOWN' || now.getTime() - attempt.createdAt.getTime() > ATTEMPT_PENDING_MS) throw unknownDelivery()
   throw new MailboxError('SEND_IN_PROGRESS', 'This reply is already being processed. Check its status before sending again.', 409)
@@ -221,10 +242,10 @@ export async function sendMailboxReply(input: ReplyInput, config: ReplyConfig, d
   if (!parent) throw new MailboxError('PARENT_NOT_FOUND', 'The original email was not found in this mailbox.', 404)
   const now = dependencies.now?.() || new Date()
   const prepared = await prepareReply(input, parent, config, now)
-  // Reserve both the identity and exact MIME durably before the only external send.
+  // Reserve the identity and private MIME archive before the only external send.
   const reservation = await repository.reserve(prepared)
   if (!reservation.created) return resolvePreviousAttempt(reservation.attempt, prepared, repository, now)
-  const outcome = await submitMime(prepared.rawMime, config.apiKey, dependencies.fetch || fetch)
+  const outcome = await submitReply(prepared, input.attachments, config.apiKey, dependencies.fetch || fetch)
   if (outcome.state === 'accepted') {
     try {
       const message = await repository.finish(prepared, outcome.requestId)
@@ -237,11 +258,11 @@ export async function sendMailboxReply(input: ReplyInput, config: ReplyConfig, d
   }
   if (outcome.state === 'rejected') {
     try {
-      await repository.markOutcome(input.requestKey, 'FAILED', 'PROVIDER_REJECTED', outcome.requestId)
+      await repository.markOutcome(input.requestKey, 'FAILED', outcome.errorCode || 'PROVIDER_REJECTED', outcome.requestId)
     } catch {
       throw unknownDelivery()
     }
-    throw new MailboxError('PROVIDER_REJECTED', 'The mail provider rejected this reply. Check the sender configuration and recipients before creating a new attempt.', 502)
+    throw new MailboxError('PROVIDER_REJECTED', providerFailureReason(outcome.errorCode), 502)
   }
   await retainUnknown(repository, input.requestKey, outcome.requestId)
   throw unknownDelivery()
@@ -265,7 +286,11 @@ export async function getReplyAttemptStatus(requestKey: string, account: string,
     const message = await repository.getSentMessage(account, attempt.outboundMessageId)
     if (message) return { status: 'SENT' as const, message, requestId }
   }
-  if (attempt.status === 'FAILED') return { status: 'FAILED' as const, requestId }
+  if (attempt.status === 'FAILED') return {
+    status: 'FAILED' as const, requestId,
+    errorCode: safeProviderDiagnosticCode(attempt.safeErrorCode),
+    reason: providerFailureReason(attempt.safeErrorCode),
+  }
   if (attempt.status === 'UNKNOWN' || attempt.status === 'SENT' || now.getTime() - attempt.createdAt.getTime() > ATTEMPT_PENDING_MS) {
     return { status: 'UNKNOWN' as const, requestId }
   }

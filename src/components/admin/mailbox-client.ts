@@ -30,6 +30,24 @@ export const mailboxSyncSchema = z.object({
   lastSyncedAt: z.string(),
 })
 
+export const mailboxReplyDraftSchema = z.object({
+  parentId: z.string(), mode: z.enum(['reply', 'replyAll']), to: z.string(), cc: z.string(),
+  text: z.string(), includeQuote: z.boolean(), requestKey: z.string().uuid(),
+  status: z.enum(['draft', 'sending', 'unknown', 'failed', 'sent']),
+  notice: z.string(), attachmentNames: z.array(z.string()),
+  errorCode: z.string().optional(), providerRequestId: z.string().optional(),
+})
+
+export const mailboxAttemptSchema = z.object({
+  status: z.enum(['PENDING', 'SENT', 'FAILED', 'UNKNOWN']),
+  message: mailboxMessageSchema.optional(), requestId: z.string().optional(),
+  errorCode: z.string().optional(), reason: z.string().optional(),
+})
+
+export function mailboxFailedAttemptNotice(attempt: z.infer<typeof mailboxAttemptSchema>) {
+  return attempt.reason?.trim() || '已确认此次发送失败，但服务端未提供具体原因。请先核对发信服务配置，再新建发送尝试。'
+}
+
 export type MailboxListData = z.infer<typeof mailboxListSchema>
 export type MailboxDetailData = z.infer<typeof mailboxDetailSchema>
 

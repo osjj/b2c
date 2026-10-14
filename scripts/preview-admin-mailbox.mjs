@@ -41,6 +41,11 @@ const server = createServer(async (request, response) => {
     const chunks = []; for await (const chunk of request) chunks.push(chunk)
     const form = await new Response(Buffer.concat(chunks), { headers: { 'content-type': request.headers['content-type'] } }).formData()
     const key = form.get('requestKey'); const parent = messages.find(message => message.id === form.get('parentId'))
+    if (String(form.get('text')).includes('[denied]')) {
+      const reason = 'SMTP2GO 密钥没有此发信接口的调用权限。请更新服务器代码或检查密钥权限后再试。'
+      attempts.set(key, { status: 'FAILED', errorCode: 'PROVIDER_PERMISSION_DENIED', reason, requestId: 'fixture-provider-request-001' })
+      return json(response, { success: false, code: 'PROVIDER_REJECTED', reason }, 502)
+    }
     if (String(form.get('text')).includes('[unknown]')) { attempts.set(key, { status: 'UNKNOWN' }); return json(response, { success: false, code: 'DELIVERY_UNKNOWN', reason: 'Simulated ambiguous result' }, 502) }
     attempts.set(key, { status: 'PENDING' })
     if (String(form.get('text')).includes('[delay]')) await new Promise(resolve => setTimeout(resolve, 15000))

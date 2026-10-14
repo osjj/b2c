@@ -43,7 +43,7 @@ class MemoryRepository implements ReplyRepository {
     if (existing) return { created: false, attempt: existing }
     const attempt: ReplyAttempt = {
       requestKey: prepared.requestKey, account: prepared.account, parentId: prepared.parentId,
-      payloadHash: prepared.payloadHash, status: 'SENDING', outboundMessageId: null, providerRequestId: null, createdAt: now,
+      payloadHash: prepared.payloadHash, status: 'SENDING', outboundMessageId: null, providerRequestId: null, safeErrorCode: null, createdAt: now,
     }
     this.attempts.set(prepared.requestKey, attempt)
     this.prepared.set(prepared.requestKey, prepared)
@@ -58,24 +58,24 @@ class MemoryRepository implements ReplyRepository {
     Object.assign(attempt, { status: 'SENT', outboundMessageId: prepared.message.id, providerRequestId: requestId || null })
     return prepared.message
   }
-  async markOutcome(requestKey: string, status: 'FAILED' | 'UNKNOWN', _code: string, requestId?: string) {
+  async markOutcome(requestKey: string, status: 'FAILED' | 'UNKNOWN', code: string, requestId?: string) {
     if (this.failMark) throw new Error('private database write error')
     const attempt = this.attempts.get(requestKey)
     assert.ok(attempt)
-    Object.assign(attempt, { status, providerRequestId: requestId || null })
+    Object.assign(attempt, { status, safeErrorCode: code, providerRequestId: requestId || null })
   }
 }
 
-function successfulFetch(inspect?: (init: RequestInit) => void): typeof fetch {
-  return async (_url, init) => {
+function successfulFetch(inspect?: (init: RequestInit, url: string) => void): typeof fetch {
+  return async (url, init) => {
     assert.ok(init)
-    inspect?.(init)
+    inspect?.(init, String(url))
     return Response.json({ request_id: 'provider-request', data: { succeeded: 1, failed: 0, failures: [] } })
   }
 }
 function hasCode(code: string) { return (error: unknown) => error instanceof MailboxError && error.code === code }
 
-test('MIME roundtrip preserves enterprise sender, original thread headers, visible Cc, quoted text and private attachment bytes', async () => {
+test('local MIME archive preserves enterprise sender, original thread headers, visible Cc, quoted text and private attachment bytes', async () => {
   const buffer = Buffer.from('private attachment bytes')
   const prepared = await prepareReply(input({ attachments: [{ filename: 'quote.pdf', contentType: 'application/pdf', buffer }] }), parent, config, now)
   const parsed = await simpleParser(prepared.rawMime)
@@ -115,7 +115,7 @@ test('multipart stream is bounded even when Content-Length is omitted', async ()
   await assert.rejects(readReplyForm(request), hasCode('REPLY_TOO_LARGE'))
 })
 
-test('provider classifier requires clean MIME acceptance, treats mixed counts and malformed results as unknown', () => {
+test('provider classifier requires clean single-email acceptance, treats mixed counts and malformed results as unknown', () => {
   assert.equal(classifyProviderResponse(200, { data: { succeeded: 1, failed: 0, failures: [] } }).state, 'accepted')
   assert.equal(classifyProviderResponse(200, { data: { succeeded: 1, failed: 0 } }).state, 'accepted')
   assert.equal(classifyProviderResponse(200, { data: { succeeded: 0, failed: 1, failures: ['private provider error'] } }).state, 'rejected')
@@ -129,13 +129,14 @@ test('provider classifier requires clean MIME acceptance, treats mixed counts an
 test('accepted reply stores outbound and a replay cannot call the provider twice', async () => {
   const repository = new MemoryRepository()
   let calls = 0
-  const fetcher = successfulFetch(init => {
+  const fetcher = successfulFetch((init, url) => {
     calls++
+    assert.equal(url, 'https://api.smtp2go.com/v3/email/send')
     assert.equal(repository.attempts.size, 1, 'attempt must exist before external call')
-    assert.equal(repository.prepared.size, 1, 'exact MIME must be durable before external call')
-    const body = JSON.parse(String(init.body)) as { mime_email: string; fastaccept: boolean }
+    assert.equal(repository.prepared.size, 1, 'private MIME archive must be durable before external call')
+    const body = JSON.parse(String(init.body)) as { custom_headers: { header: string; value: string }[]; fastaccept: boolean }
     assert.equal(body.fastaccept, false)
-    assert.match(Buffer.from(body.mime_email, 'base64').toString(), /In-Reply-To: <parent@customer.test>/)
+    assert.deepEqual(body.custom_headers.find(header => header.header === 'In-Reply-To'), { header: 'In-Reply-To', value: parent.messageId })
   })
   const result = await sendMailboxReply(input(), config, { repository, fetch: fetcher, now: () => now })
   const replay = await sendMailboxReply(input(), config, { repository, fetch: fetcher, now: () => now })
@@ -144,6 +145,41 @@ test('accepted reply stores outbound and a replay cannot call the provider twice
   assert.equal((await getReplyAttemptStatus(input().requestKey, config.account || '', repository, now)).status, 'SENT')
   await assert.rejects(sendMailboxReply(input({ text: 'Different payload' }), config, { repository, fetch: fetcher }), hasCode('REQUEST_KEY_CONFLICT'))
   assert.equal(calls, 1)
+})
+
+test('standard send includes original conversation headers, reply-all recipients and lossless private attachments', async () => {
+  const repository = new MemoryRepository()
+  const buffer = Buffer.from([0, 255, 3, 13, 10, 128, 42])
+  const attachment = { filename: '报价单_图片.png', contentType: 'image/png', buffer }
+  const fetcher = successfulFetch((init, url) => {
+    assert.equal(url, 'https://api.smtp2go.com/v3/email/send')
+    const body = JSON.parse(String(init.body)) as {
+      sender: string; to: string[]; cc: string[]; subject: string; text_body: string;
+      custom_headers: { header: string; value: string }[];
+      attachments: { filename: string; mimetype: string; fileblob: string }[]; fastaccept: boolean;
+    }
+    const prepared = repository.prepared.get(input().requestKey)
+    assert.ok(prepared)
+    assert.equal(body.sender, config.defaultSender)
+    assert.deepEqual(body.to, ['customer@customer.test', 'another@customer.test'])
+    assert.deepEqual(body.cc, ['copy@customer.test'])
+    assert.equal(body.subject, 'Re: Original request')
+    assert.equal(body.text_body, prepared.message.textBody)
+    assert.deepEqual(body.custom_headers, [
+      { header: 'Message-ID', value: prepared.message.messageId },
+      { header: 'In-Reply-To', value: parent.messageId },
+      { header: 'References', value: '<root@customer.test> <parent@customer.test>' },
+    ])
+    assert.equal(body.attachments[0].filename, attachment.filename)
+    assert.equal(body.attachments[0].mimetype, attachment.contentType)
+    assert.deepEqual(Buffer.from(body.attachments[0].fileblob, 'base64'), buffer)
+    assert.equal(body.fastaccept, false)
+    assert.ok(!('mime_email' in body))
+    assert.ok(!('api_key' in body))
+    assert.equal(new Headers(init.headers).get('X-Smtp2go-Api-Key'), config.apiKey)
+  })
+  const result = await sendMailboxReply(input({ to: 'customer@customer.test, another@customer.test', attachments: [attachment] }), config, { repository, fetch: fetcher, now: () => now })
+  assert.equal(result.message.direction, 'OUTBOUND', 'one accepted email can include several recipients')
 })
 
 test('concurrent duplicate requests reserve once and report in-progress without duplicate send', async () => {
@@ -172,11 +208,59 @@ test('provider rejection is persisted without leaking provider detail and replay
   assert.equal(calls, 1)
 })
 
-test('timeout, malformed JSON and partial acceptance are unknown and cannot be blindly retried', async () => {
+test('real permission rejection stores a safe cause and status remains useful after reloading without exposing raw errors', async () => {
+  const repository = new MemoryRepository()
+  const secretDetail = 'private-recipient@example.test secret-api-key customer message body'
+  let calls = 0
+  const fetcher: typeof fetch = async () => {
+    calls++
+    return Response.json({
+      request_id: 'request-safe-123',
+      data: { error: secretDetail, error_code: 'E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED' },
+    }, { status: 400 })
+  }
+  await assert.rejects(sendMailboxReply(input(), config, { repository, fetch: fetcher }), (error: unknown) => {
+    assert.ok(error instanceof MailboxError)
+    assert.equal(error.code, 'PROVIDER_REJECTED')
+    assert.match(error.message, /API 密钥.*权限/)
+    assert.ok(!error.message.includes(secretDetail))
+    return true
+  })
+  const attempt = repository.attempts.get(input().requestKey)
+  assert.equal(attempt?.safeErrorCode, 'PROVIDER_PERMISSION_DENIED')
+  const status = await getReplyAttemptStatus(input().requestKey, config.account || '', repository)
+  assert.equal(status.status, 'FAILED')
+  if (status.status !== 'FAILED') assert.fail('expected failed status')
+  assert.equal(status.errorCode, 'PROVIDER_PERMISSION_DENIED')
+  assert.equal(status.requestId, 'request-safe-123')
+  assert.match(status.reason, /\/email\/send/)
+  assert.ok(!JSON.stringify({ attempt, status }).includes(secretDetail))
+  await assert.rejects(sendMailboxReply(input(), config, { repository, fetch: fetcher }), hasCode('SEND_ALREADY_FAILED'))
+  assert.equal(calls, 1)
+})
+
+test('old failures provide generic advice and stored non-allowlisted codes never leak into status', async () => {
+  const repository = new MemoryRepository()
+  const prepared = await prepareReply(input(), parent, config, now)
+  const { attempt } = await repository.reserve(prepared)
+  attempt.status = 'FAILED'
+  for (const code of [null, 'PROVIDER_REJECTED', 'sensitive unexpected database value']) {
+    attempt.safeErrorCode = code
+    const result = await getReplyAttemptStatus(input().requestKey, config.account || '', repository)
+    if (result.status !== 'FAILED') assert.fail('expected failed status')
+    assert.equal(result.errorCode, 'PROVIDER_REJECTED')
+    assert.match(result.reason, /未保存可识别的具体原因/)
+    assert.ok(!result.reason.includes('sensitive'))
+  }
+})
+
+test('timeout, malformed JSON, server errors and partial acceptance stay unknown and cannot be blindly retried', async () => {
   const providers: (typeof fetch)[] = [
     async () => { throw new DOMException('sensitive timeout detail', 'AbortError') },
     async () => new Response('not json', { status: 200 }),
     async () => Response.json({ data: { succeeded: 1, failed: 1, failures: ['private rejection'] } }),
+    async () => Response.json({ data: { succeeded: 0, failed: 1, error_code: 'E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED' } }, { status: 500 }),
+    async () => Response.json({ data: { succeeded: 1, failed: 0 } }, { status: 503 }),
   ]
   for (const fetcher of providers) {
     const repository = new MemoryRepository()

@@ -15,7 +15,7 @@ export const maxDuration = 120
 
 const attemptSelect = {
   requestKey: true, account: true, parentId: true, payloadHash: true, status: true,
-  outboundMessageId: true, providerRequestId: true, createdAt: true,
+  outboundMessageId: true, providerRequestId: true, safeErrorCode: true, createdAt: true,
 } satisfies Prisma.AdminMailboxSendAttemptSelect
 
 const repository: ReplyRepository = {

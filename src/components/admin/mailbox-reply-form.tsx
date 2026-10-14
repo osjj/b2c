@@ -8,16 +8,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { mailboxMessageSchema, type MailboxMessage } from '@/lib/mailbox/types'
-import { MailboxRequestError, formatMailboxDate, formatMailboxSize, mailboxErrorMessage, mailboxRequest, replyRecipients } from './mailbox-client'
+import { MailboxRequestError, formatMailboxDate, formatMailboxSize, mailboxAttemptSchema, mailboxErrorMessage, mailboxFailedAttemptNotice, mailboxReplyDraftSchema, mailboxRequest, replyRecipients } from './mailbox-client'
 import { canApplyMailboxAttempt, subscribeMailboxDraft, writeMailboxDraft } from './mailbox-draft-cache'
 
-const draftSchema = z.object({
-  parentId: z.string(), mode: z.enum(['reply', 'replyAll']), to: z.string(), cc: z.string(),
-  text: z.string(), includeQuote: z.boolean(), requestKey: z.string().uuid(),
-  status: z.enum(['draft', 'sending', 'unknown', 'failed', 'sent']),
-  notice: z.string(), attachmentNames: z.array(z.string()),
-})
-type SavedDraft = z.infer<typeof draftSchema>
+type SavedDraft = z.infer<typeof mailboxReplyDraftSchema>
 export type MailboxReplyDraft = SavedDraft & { attachments: File[]; missingAttachments: boolean }
 export type MailboxDraftCache = Map<string, MailboxReplyDraft>
 
@@ -37,10 +31,6 @@ export interface MailboxReplyFormHandle {
 }
 
 const replySchema = z.object({ message: mailboxMessageSchema, requestId: z.string().optional() })
-const attemptSchema = z.object({
-  status: z.enum(['PENDING', 'SENT', 'FAILED', 'UNKNOWN']),
-  message: mailboxMessageSchema.optional(), requestId: z.string().optional(),
-})
 const storageKey = (parentId: string) => `admin-mailbox-reply:${parentId}`
 
 function saveDraft(draft: MailboxReplyDraft) {
@@ -55,7 +45,7 @@ function initialDraft(props: MailboxReplyFormProps): MailboxReplyDraft {
   const cached = props.cache.get(props.parent.id)
   if (cached) return cached
   try {
-    const parsed = draftSchema.safeParse(JSON.parse(sessionStorage.getItem(storageKey(props.parent.id)) || 'null'))
+    const parsed = mailboxReplyDraftSchema.safeParse(JSON.parse(sessionStorage.getItem(storageKey(props.parent.id)) || 'null'))
     if (parsed.success && parsed.data.parentId === props.parent.id) {
       const draft: MailboxReplyDraft = {
         ...parsed.data, attachments: [], missingAttachments: parsed.data.attachmentNames.length > 0,
@@ -129,7 +119,7 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
     event.preventDefault()
     if (requestBusy.current || blocked || !draft.text.trim() || !draft.to.trim()) return
     if (draft.missingAttachments) return
-    const sending: MailboxReplyDraft = { ...draft, status: 'sending', notice: '' }
+    const sending: MailboxReplyDraft = { ...draft, status: 'sending', notice: '', errorCode: undefined, providerRequestId: undefined }
     // Persist the same request key before the request leaves the browser. An uncertain
     // network result never creates another key or repeats the send automatically.
     try { saveDraft(sending) } catch {
@@ -150,7 +140,7 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
     draft.attachments.forEach((file) => formData.append('attachments', file))
     try {
       const result = await mailboxRequest('/api/admin/mailbox/reply', replySchema, { method: 'POST', body: formData, signal: AbortSignal.timeout(120000) })
-      updateAttempt({ ...sending, status: 'sent', notice: '邮件服务已接受回复，已加入当前会话。', attachments: [], attachmentNames: [] })
+      updateAttempt({ ...sending, status: 'sent', notice: '邮件服务已接受回复，已加入当前会话。', providerRequestId: result.requestId, attachments: [], attachmentNames: [] })
       onSent(result.message)
     } catch (error) {
       const definitelyFailed = error instanceof MailboxRequestError &&
@@ -160,6 +150,7 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
       updateAttempt({
         ...sending,
         status: definitelyFailed ? 'failed' : inputError ? 'draft' : 'unknown',
+        errorCode: error instanceof MailboxRequestError ? error.code : undefined,
         notice: inputError || definitelyFailed ? mailboxErrorMessage(error) : '发送结果尚未确认。为避免重复发送，此草稿已锁定；请查询发送状态并核对邮件服务记录。',
       })
     } finally { requestBusy.current = false; setSendingHere(false) }
@@ -169,14 +160,15 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
     if (checking || requestBusy.current) return
     setChecking(true)
     try {
-      const result = await mailboxRequest(`/api/admin/mailbox/reply?requestKey=${encodeURIComponent(draft.requestKey)}`, attemptSchema)
+      const result = await mailboxRequest(`/api/admin/mailbox/reply?requestKey=${encodeURIComponent(draft.requestKey)}`, mailboxAttemptSchema)
+      const diagnostics = { providerRequestId: result.requestId || draft.providerRequestId, errorCode: result.errorCode }
       if (result.status === 'SENT' && result.message) {
-        updateAttempt({ ...draft, status: 'sent', notice: '已确认：邮件服务已接受回复，已加入当前会话。', attachments: [], attachmentNames: [], missingAttachments: false })
+        updateAttempt({ ...draft, ...diagnostics, status: 'sent', notice: '已确认：邮件服务已接受回复，已加入当前会话。', attachments: [], attachmentNames: [], missingAttachments: false })
         onSent(result.message)
       } else if (result.status === 'FAILED') {
-        updateAttempt({ ...draft, status: 'failed', notice: '已确认此次发送失败。可以保留正文，新建一次发送尝试。' })
+        updateAttempt({ ...draft, ...diagnostics, status: 'failed', notice: mailboxFailedAttemptNotice(result) })
       } else {
-        updateAttempt({ ...draft, status: 'unknown', notice: result.status === 'PENDING' ? '服务器仍在处理，请稍后再次查询。请勿通过其他入口重复发送。' : '仍无法确认是否已发送。请核对邮件服务记录后处理，当前草稿保持锁定。' })
+        updateAttempt({ ...draft, ...diagnostics, status: 'unknown', notice: result.status === 'PENDING' ? '服务器仍在处理，请稍后再次查询。请勿通过其他入口重复发送。' : '仍无法确认是否已发送。请核对邮件服务记录后处理，当前草稿保持锁定。' })
       }
     } catch (error) {
       updateAttempt({ ...draft, notice: `${mailboxErrorMessage(error)} 当前发送锁定状态保持不变。` })
@@ -222,12 +214,13 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
       </fieldset>
       {storageError && <p role="alert" className="text-sm text-destructive">{storageError}</p>}
       {draft.notice && <p role={draft.status === 'sent' ? 'status' : 'alert'} className={`rounded-md border p-3 text-sm ${draft.status === 'sent' ? 'border-green-300 bg-green-50 text-green-900' : 'border-amber-300 bg-amber-50 text-amber-950'}`}>{draft.notice}</p>}
+      {draft.status !== 'draft' && <details className="rounded-md border p-3 text-xs text-muted-foreground"><summary className="cursor-pointer">发送诊断信息</summary><dl className="mt-2 grid min-w-0 gap-1"><dt>本次发送编号</dt><dd className="break-all font-mono">{draft.requestKey}</dd>{draft.providerRequestId && <><dt className="mt-1">邮件服务请求编号</dt><dd className="break-all font-mono">{draft.providerRequestId}</dd></>}{draft.errorCode && <><dt className="mt-1">错误代码</dt><dd className="break-all font-mono">{draft.errorCode}</dd></>}</dl></details>}
       {!smtpConfigured && <p role="alert" className="text-sm text-destructive">发信服务尚未配置，当前可以阅读和保存草稿。</p>}
       <div className="flex flex-wrap items-center gap-2">
         {draft.status === 'draft' || pending ? <Button type="submit" disabled={pending || !smtpConfigured || !parent.messageId || draft.missingAttachments || !draft.text.trim() || !draft.to.trim()}>{pending ? <Loader2 className="animate-spin" aria-hidden="true" /> : <Send aria-hidden="true" />}{pending ? '正在发送…' : '发送回复'}</Button> : null}
-        {(draft.status === 'unknown' || pending) && <Button type="button" variant="outline" disabled={checking || sendingHere} onClick={() => void checkStatus()}><RefreshCw className={checking ? 'animate-spin' : ''} aria-hidden="true" />{checking ? '查询中…' : '查询发送状态'}</Button>}
-        {draft.status === 'failed' && <Button type="button" variant="outline" onClick={() => update({ ...draft, status: 'draft', requestKey: crypto.randomUUID(), notice: '' })}>保留草稿，新建发送尝试</Button>}
-        {draft.status === 'sent' && <Button type="button" variant="outline" onClick={() => update({ ...draft, text: '', status: 'draft', requestKey: crypto.randomUUID(), notice: '', attachments: [], attachmentNames: [], missingAttachments: false })}>撰写另一封回复</Button>}
+        {(draft.status === 'unknown' || draft.status === 'failed' || pending) && <Button type="button" variant="outline" disabled={checking || sendingHere} onClick={() => void checkStatus()}><RefreshCw className={checking ? 'animate-spin' : ''} aria-hidden="true" />{checking ? '查询中…' : draft.status === 'failed' ? '查询失败原因' : '查询发送状态'}</Button>}
+        {draft.status === 'failed' && <Button type="button" variant="outline" disabled={checking} onClick={() => update({ ...draft, status: 'draft', requestKey: crypto.randomUUID(), notice: '', errorCode: undefined, providerRequestId: undefined })}>保留草稿，新建发送尝试</Button>}
+        {draft.status === 'sent' && <Button type="button" variant="outline" onClick={() => update({ ...draft, text: '', status: 'draft', requestKey: crypto.randomUUID(), notice: '', errorCode: undefined, providerRequestId: undefined, attachments: [], attachmentNames: [], missingAttachments: false })}>撰写另一封回复</Button>}
         <p className="text-xs text-muted-foreground">草稿保存在当前浏览器会话；附件刷新后需重新选择。</p>
       </div>
     </form>

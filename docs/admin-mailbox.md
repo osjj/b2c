@@ -60,16 +60,25 @@ To keep new mail up to date, configure your deployment host's scheduler to run `
 ## Reply behavior
 
 - Reply uses the original Reply-To, otherwise From. Reply-all also includes external To/Cc and removes own aliases, QQ login, duplicates and SRS forwarding identities. Review the editable recipients before sending.
-- The server chooses the approved enterprise sender, loads the original parent and builds a new MIME message with the original subject chain and proper thread headers. A missing original Message-ID cannot be fabricated.
+- The server chooses the approved enterprise sender, loads the original parent and uses SMTP2GO's standard `/email/send` endpoint with the original subject chain and custom `Message-ID`, `In-Reply-To`, and `References` headers. A missing original Message-ID cannot be fabricated. The private local MIME archive preserves reply text and attachments; it is not a byte-for-byte copy of the provider's transport MIME.
 - Optional original text is quoted. New attachments are private and limited to five files, 25 MiB combined before encoding and 25 MiB for the complete encoded MIME; approximately 18 MiB of files is a practical ceiling.
-- Every send has a persisted request key. Double clicks and retries cannot send the same attempt again. SMTP2GO acceptance is not a claim of final delivery. Ambiguous/partial responses lock the attempt for status checking and provider reconciliation. The exact MIME remains available for recovery; do not resend blindly.
+- Every send has a persisted request key. Double clicks and retries cannot send the same attempt again. SMTP2GO acceptance is not a claim of final delivery. Ambiguous/partial responses and all HTTP 5xx responses lock the attempt for status checking and provider reconciliation. The local MIME archive remains available for attachment recovery; do not resend blindly.
 - Backend replies appear in the backend conversation. They are **not appended to QQ's Sent folder** in this version. Customer replies still reach QQ through Cloudflare and appear after the next sync.
 - No AI-generated drafting or automatic customer replies are enabled.
 
 ## Local UI verification
 
-`node scripts/preview-admin-mailbox.mjs` starts an isolated fixture UI at `http://127.0.0.1:3127`. All mail responses are local fixtures; it does not load credentials, connect to the database or send mail. Include `[unknown]` in a fixture reply to exercise delivery-unknown locking, or `[delay]` to test switching conversations while a reply is pending. Stop this server after checking the interface.
+`node scripts/preview-admin-mailbox.mjs` starts an isolated fixture UI at `http://127.0.0.1:3127`. All mail responses are local fixtures; it does not load credentials, connect to the database or send mail. Include `[unknown]` in a fixture reply to exercise delivery-unknown locking, `[denied]` for specific failure diagnostics, or `[delay]` to test switching conversations while a reply is pending. Stop this server after checking the interface.
 
-The [SMTP2GO MIME endpoint](https://developers.smtp2go.com/reference/send-mime-email) accepts Base64-encoded MIME. This integration explicitly uses `fastaccept: false` and validates the response counters; HTTP 200 alone does not confirm acceptance.
+The [SMTP2GO standard endpoint](https://developers.smtp2go.com/reference/send-standard-email) accepts custom headers and Base64 attachment bytes. This integration explicitly uses `fastaccept: false` and validates the response counters; HTTP 200 alone does not confirm acceptance. The same endpoint is used by the existing admin composer. Its permission and final recipient-side headers still require verification with an explicitly authorized real send.
+
+## 发送失败排查与修复部署
+
+2026-10-14 的排查发现：初版回复调用 `/email/mime`，当前本机配置的 SMTP2GO 密钥对该接口返回 `E_ApiResponseCodes.ENDPOINT_PERMISSION_DENIED`。数据库中三次失败仅保留了通用拒绝状态，不能从旧记录还原每次服务商原文。修复改用原有写信功能使用的 `/email/send`，并保留会话头和附件；无须为本次代码修复增加数据库迁移或 QQ 授权码配置。
+
+1. 将修复代码部署到实际运行 `laifappe.com` 的应用，并按现有发布流程重新构建、重启。只修改本机文件不会更新线上后台。仍须确保服务器 SMTP2GO 密钥具有 `/email/send` 权限。
+2. 新失败会显示固定、安全的原因，例如接口权限不足、认证失败或请求被拒绝。「查询失败原因」只读取已有尝试，诊断详情显示错误代码和服务商请求编号。旧版只保存通用错误的记录仍显示通用原因。
+3. 原尝试为明确失败时，修复后点击「保留草稿，新建发送尝试」，重新核对收件人和附件后发送。若状态是待确认，不要新建尝试，应先查服务商记录以排除重复投递。
+4. `npx tsx scripts/diagnose-mailbox-sending.ts` 只读最近十次尝试的状态和诊断编号，不输出正文或凭据。可选 `--probe-legacy-mime-permission` 向旧 MIME 接口提交不含邮件头、地址的诊断字符串，不能投递邮件；它只帮助确认旧接口的权限拒绝，不能证明标准接口已获授权或真实投递成功。
 
 Local code, database migration, successful QQ login, imported history, production deployment and verified external delivery are separate states. Record each explicitly during rollout.
