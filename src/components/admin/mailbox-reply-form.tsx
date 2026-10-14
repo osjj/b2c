@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useImperativeHandle, useRef, useState, useSyncExternalStore, type Ref } from 'react'
+import { useEffect, useImperativeHandle, useMemo, useRef, useState, useSyncExternalStore, type Ref } from 'react'
 import { z } from 'zod'
 import { Loader2, Paperclip, RefreshCw, Send, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { mailboxMessageSchema, type MailboxMessage } from '@/lib/mailbox/types'
+import { buildReplyBodies } from '@/lib/mailbox/reply-body'
 import { MailboxRequestError, formatMailboxDate, formatMailboxSize, mailboxAttemptSchema, mailboxErrorMessage, mailboxFailedAttemptNotice, mailboxReplyDraftSchema, mailboxRequest, replyRecipients } from './mailbox-client'
 import { canApplyMailboxAttempt, subscribeMailboxDraft, writeMailboxDraft } from './mailbox-draft-cache'
 
@@ -76,6 +77,12 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
   const [storageError, setStorageError] = useState('')
   const [checking, setChecking] = useState(false)
   const [sendingHere, setSendingHere] = useState(false)
+  const [previewOpen, setPreviewOpen] = useState(false)
+  const previewHtml = useMemo(() => {
+    if (!previewOpen) return ''
+    const { htmlBody } = buildReplyBodies({ text: draft.text.trim(), includeQuote: draft.includeQuote }, parent)
+    return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"></head><body style="margin:16px;background:#fff">${htmlBody}</body></html>`
+  }, [previewOpen, draft.text, draft.includeQuote, parent])
   const requestBusy = useRef(false)
   const fileInput = useRef<HTMLInputElement>(null)
   const blocked = draft.status !== 'draft'
@@ -212,6 +219,11 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
           {draft.missingAttachments && <div role="alert" className="rounded-md border border-amber-300 p-3 text-xs"><p>刷新前选择的附件需要重新添加：{draft.attachmentNames.join('、')}</p><Button type="button" variant="outline" size="sm" className="mt-2" onClick={() => update({ ...draft, missingAttachments: false, attachmentNames: [] })}>确认不再附加这些文件</Button></div>}
         </div>
       </fieldset>
+      {draft.status !== 'sent' && <details className="rounded-md border p-3" onToggle={(event) => setPreviewOpen(event.currentTarget.open)}>
+        <summary className="cursor-pointer text-sm font-medium">预览发送后的邮件排版</summary>
+        <p className="mt-2 text-xs text-muted-foreground">正文和引用按下方排版发送，附件单独附加。不同邮箱的字体和间距可能略有差异。</p>
+        {previewOpen && <iframe title="邮件正文排版预览" sandbox="" referrerPolicy="no-referrer" srcDoc={previewHtml} className="mt-3 h-96 w-full rounded border bg-white" />}
+      </details>}
       {storageError && <p role="alert" className="text-sm text-destructive">{storageError}</p>}
       {draft.notice && <p role={draft.status === 'sent' ? 'status' : 'alert'} className={`rounded-md border p-3 text-sm ${draft.status === 'sent' ? 'border-green-300 bg-green-50 text-green-900' : 'border-amber-300 bg-amber-50 text-amber-950'}`}>{draft.notice}</p>}
       {draft.status !== 'draft' && <details className="rounded-md border p-3 text-xs text-muted-foreground"><summary className="cursor-pointer">发送诊断信息</summary><dl className="mt-2 grid min-w-0 gap-1"><dt>本次发送编号</dt><dd className="break-all font-mono">{draft.requestKey}</dd>{draft.providerRequestId && <><dt className="mt-1">邮件服务请求编号</dt><dd className="break-all font-mono">{draft.providerRequestId}</dd></>}{draft.errorCode && <><dt className="mt-1">错误代码</dt><dd className="break-all font-mono">{draft.errorCode}</dd></>}</dl></details>}

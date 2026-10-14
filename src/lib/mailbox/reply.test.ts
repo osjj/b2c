@@ -77,7 +77,7 @@ function hasCode(code: string) { return (error: unknown) => error instanceof Mai
 
 test('local MIME archive preserves enterprise sender, original thread headers, visible Cc, quoted text and private attachment bytes', async () => {
   const buffer = Buffer.from('private attachment bytes')
-  const prepared = await prepareReply(input({ attachments: [{ filename: 'quote.pdf', contentType: 'application/pdf', buffer }] }), parent, config, now)
+  const prepared = await prepareReply(input({ text: 'Confirmed.\n测试内容 & <tag>', attachments: [{ filename: 'quote.pdf', contentType: 'application/pdf', buffer }] }), parent, config, now)
   const parsed = await simpleParser(prepared.rawMime)
   assert.equal(parsed.from?.value[0]?.address, config.defaultSender)
   assert.equal(parsed.messageId, prepared.message.messageId)
@@ -85,6 +85,12 @@ test('local MIME archive preserves enterprise sender, original thread headers, v
   assert.deepEqual(parsed.references, ['<root@customer.test>', '<parent@customer.test>'])
   assert.equal(parsed.subject, 'Re: Original request')
   assert.match(parsed.text || '', /Confirmed\.[\s\S]*> Please confirm\./)
+  assert.equal(parsed.html, prepared.htmlBody)
+  assert.match(String(parsed.html), /<blockquote/)
+  assert.match(String(parsed.html), /Please confirm\.<br>Original history\./)
+  assert.match(String(parsed.html), /测试内容 &amp; &lt;tag&gt;/)
+  assert.ok(parsed.text?.includes('测试内容 & <tag>'))
+  assert.ok(prepared.rawMime.toString().includes('multipart/alternative'))
   assert.equal(Array.isArray(parsed.cc) ? parsed.cc[0].value[0].address : parsed.cc?.value[0].address, 'copy@customer.test')
   assert.equal(parsed.attachments.length, 1)
   assert.deepEqual(parsed.attachments[0].content, buffer)
@@ -154,7 +160,7 @@ test('standard send includes original conversation headers, reply-all recipients
   const fetcher = successfulFetch((init, url) => {
     assert.equal(url, 'https://api.smtp2go.com/v3/email/send')
     const body = JSON.parse(String(init.body)) as {
-      sender: string; to: string[]; cc: string[]; subject: string; text_body: string;
+      sender: string; to: string[]; cc: string[]; subject: string; text_body: string; html_body: string;
       custom_headers: { header: string; value: string }[];
       attachments: { filename: string; mimetype: string; fileblob: string }[]; fastaccept: boolean;
     }
@@ -165,6 +171,8 @@ test('standard send includes original conversation headers, reply-all recipients
     assert.deepEqual(body.cc, ['copy@customer.test'])
     assert.equal(body.subject, 'Re: Original request')
     assert.equal(body.text_body, prepared.message.textBody)
+    assert.equal(body.html_body, prepared.htmlBody)
+    assert.match(body.html_body, /<blockquote/)
     assert.deepEqual(body.custom_headers, [
       { header: 'Message-ID', value: prepared.message.messageId },
       { header: 'In-Reply-To', value: parent.messageId },
@@ -196,6 +204,24 @@ test('concurrent duplicate requests reserve once and report in-progress without 
   release?.()
   await first
   assert.equal(calls, 1)
+})
+
+test('format-only upgrades keep the legacy payload hash and never resend an uncertain old attempt', async () => {
+  const repository = new MemoryRepository()
+  const prepared = await prepareReply(input(), parent, config, now)
+  assert.equal(prepared.payloadHash, '93a6dc28ae721a87b21214c2299c221762ba98161ad611a68938fcbb74cf5abb')
+  repository.attempts.set(input().requestKey, {
+    requestKey: input().requestKey, account: config.account || '', parentId: parent.id,
+    // Captured from the pre-HTML reply contract for this unchanged input.
+    payloadHash: '93a6dc28ae721a87b21214c2299c221762ba98161ad611a68938fcbb74cf5abb',
+    status: 'UNKNOWN', outboundMessageId: null, providerRequestId: 'legacy-provider-id',
+    safeErrorCode: 'DELIVERY_UNKNOWN', createdAt: now,
+  })
+  let calls = 0
+  const fetcher = successfulFetch(() => { calls++ })
+  await assert.rejects(sendMailboxReply(input(), config, { repository, fetch: fetcher, now: () => now }), hasCode('DELIVERY_UNKNOWN'))
+  assert.equal(calls, 0)
+  assert.equal(repository.prepared.size, 0)
 })
 
 test('provider rejection is persisted without leaking provider detail and replay stays rejected', async () => {

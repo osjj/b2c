@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { MAX_RAW_MIME_BYTES } from './config'
 import { MailboxError } from './errors'
 import { providerDiagnosticCode, providerFailureReason, safeProviderDiagnosticCode, type ProviderDiagnosticCode } from './provider-diagnostics'
+import { buildReplyBodies } from './reply-body'
 import { buildReplyReferences, parseReplyRecipients, replySubject } from './threading'
 import type { MailboxMessage } from './types'
 
@@ -25,7 +26,7 @@ export type ReplyInput = Omit<z.infer<typeof replyFormSchema>, 'includeQuote'> &
 export type ReplyParent = MailboxMessage & { references: string[]; inReplyTo: string[] }
 export type PreparedReply = {
   account: string; parentId: string; requestKey: string; payloadHash: string;
-  message: MailboxMessage; references: string[]; inReplyTo: string[]; rawMime: Buffer;
+  message: MailboxMessage; htmlBody: string; references: string[]; inReplyTo: string[]; rawMime: Buffer;
 }
 export type ReplyAttempt = {
   requestKey: string; account: string; parentId: string; payloadHash: string; status: string;
@@ -100,15 +101,6 @@ export async function parseReplyForm(form: FormData): Promise<ReplyInput> {
   return { ...parsed.data, includeQuote: parsed.data.includeQuote === 'true', attachments }
 }
 
-function quotedBody(input: ReplyInput, parent: ReplyParent) {
-  if (!input.includeQuote) return input.text
-  const safeName = (parent.from.name || parent.from.address).replace(/[\x00-\x1f\x7f]/g, ' ')
-  const original = parent.textBody.slice(0, 200000)
-  const quoted = original.split(/\r?\n/).map(line => `> ${line}`).join('\n')
-  const truncated = original.length < parent.textBody.length ? '\n> [Earlier quoted content omitted due to size.]' : ''
-  return `${input.text}\n\nOn ${new Date(parent.sentAt).toISOString()}, ${safeName} <${parent.from.address}> wrote:\n${quoted}${truncated}`
-}
-
 export async function prepareReply(input: ReplyInput, parent: ReplyParent, config: ReplyConfig, now: Date): Promise<PreparedReply> {
   if (!config.account || !z.email().safeParse(config.defaultSender).success || !config.aliases.includes(config.defaultSender)) {
     throw new MailboxError('INVALID_MAILBOX_CONFIG', 'Configure the mailbox account and an approved enterprise sender before replying.', 503)
@@ -117,7 +109,7 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
   const headers = buildReplyReferences(parent)
   const messageId = `<${randomUUID()}@${config.defaultSender.split('@')[1]}>`
   const subject = replySubject(parent.subject)
-  const textBody = quotedBody(input, parent)
+  const { textBody, htmlBody } = buildReplyBodies(input, parent)
   const message: MailboxMessage = {
     id: randomUUID(), threadKey: parent.threadKey, direction: 'OUTBOUND', messageId,
     from: { address: config.defaultSender }, replyTo: [], ...recipients, subject, textBody,
@@ -126,7 +118,7 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
     })),
   }
   const rawMime = await new MailComposer({
-    from: config.defaultSender, to: recipients.to, cc: recipients.cc, subject, text: textBody,
+    from: config.defaultSender, to: recipients.to, cc: recipients.cc, subject, text: textBody, html: htmlBody,
     date: now, messageId, inReplyTo: headers.inReplyTo, references: headers.references,
     attachments: input.attachments.map(attachment => ({
       filename: attachment.filename, contentType: attachment.contentType, content: attachment.buffer,
@@ -146,7 +138,7 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
   })).digest('hex')
   return {
     account: config.account, parentId: input.parentId, requestKey: input.requestKey, payloadHash,
-    message, references: headers.references, inReplyTo: [headers.inReplyTo], rawMime,
+    message, htmlBody, references: headers.references, inReplyTo: [headers.inReplyTo], rawMime,
   }
 }
 
@@ -194,6 +186,7 @@ async function submitReply(prepared: PreparedReply, attachments: ReplyAttachment
         cc: prepared.message.cc.map(recipient => recipient.address),
         subject: prepared.message.subject,
         text_body: prepared.message.textBody,
+        html_body: prepared.htmlBody,
         custom_headers: [
           { header: 'Message-ID', value: prepared.message.messageId },
           { header: 'In-Reply-To', value: prepared.inReplyTo[0] },

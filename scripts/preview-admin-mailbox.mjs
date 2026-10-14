@@ -15,7 +15,7 @@ const messages = [{
 }, {
   id: 'fixture-inbound-2', threadKey: 'fixture-thread-2', direction: 'INBOUND', messageId: '<two@buyer.example>',
   from: { address: 'other@example.com', name: 'Other Buyer' }, replyTo: [], to: [{ address: 'sales@laifappe.com' }], cc: [],
-  subject: 'Second conversation — fixture only', textBody: 'Second fixture conversation.', sentAt: '2026-10-13T00:00:00.000Z', attachments: [],
+  subject: 'Second conversation — fixture only', textBody: 'Hello,\n\nPlease confirm the collection date and the attached packing details.\n\nReference: https://example.com/documents/packing-details?reference=fixture-only-long-reference-for-email-wrapping-check-123456789012345678901234567890\n\nThank you,\nSample Buyer\n\n> Previous message\n> Please keep these items in the same shipment.', sentAt: '2026-10-13T00:00:00.000Z', attachments: [],
 }]
 const ownAddresses = ['sales@laifappe.com', 'fixture@qq.com']
 const status = { configured: true, smtpConfigured: true, account: 'fixture@qq.com', aliases: ['sales@laifappe.com'], ownAddresses, defaultSender: 'sales@laifappe.com', lastSyncedAt: null, syncSince: '2026-07-16' }
