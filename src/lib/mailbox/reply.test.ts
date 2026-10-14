@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 
 import { simpleParser } from 'mailparser'
+import MailComposer from 'nodemailer/lib/mail-composer'
+import { readMailboxAttachment } from './attachments'
 
 import { MailboxError } from './errors'
 import {
@@ -74,6 +76,47 @@ function successfulFetch(inspect?: (init: RequestInit, url: string) => void): ty
   }
 }
 function hasCode(code: string) { return (error: unknown) => error instanceof MailboxError && error.code === code }
+
+test('original HTML styles and referenced CID bytes survive reply send, archive and private attachment indexing', async () => {
+  const image = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZlFQAAAAASUVORK5CYII=', 'base64')
+  const rawMime = await new MailComposer({
+    from: 'customer@customer.test', to: config.defaultSender, subject: parent.subject,
+    html: '<html><head><style>.note{color:#006633;background-color:#ffeeaa}</style></head><body><table><tr><td class="note">Original styled content<img src="cid:original-image"></td></tr></table></body></html>',
+    attachments: [
+      { filename: 'old-logo.png', contentType: 'image/png', content: image, cid: 'original-image' },
+      { filename: 'original-private.pdf', content: Buffer.from('Do not attach this original file') },
+    ],
+  }).compile().build()
+  const repository = new MemoryRepository()
+  repository.currentParent = { ...parent, rawMime }
+  const newFile = Buffer.from('newly supplied document')
+  const replyInput = input({ attachments: [{ filename: 'new-document.txt', contentType: 'text/plain', buffer: newFile }] })
+  const fetcher = successfulFetch(init => {
+    const payload = JSON.parse(String(init.body)) as { html_body: string; inlines: { filename: string; mimetype: string; fileblob: string }[]; attachments: { filename: string }[] }
+    assert.match(payload.html_body, /color:\s*#006633/)
+    assert.match(payload.html_body, /<table/)
+    assert.equal(payload.inlines.length, 1)
+    assert.ok(payload.html_body.includes(`src="cid:${payload.inlines[0].filename}"`))
+    assert.equal(payload.inlines[0].mimetype, 'image/png')
+    assert.deepEqual(Buffer.from(payload.inlines[0].fileblob, 'base64'), image)
+    assert.deepEqual(payload.attachments.map(file => file.filename), ['new-document.txt'])
+  })
+  const sent = await sendMailboxReply(replyInput, config, { repository, fetch: fetcher, now: () => now })
+  const prepared = repository.prepared.get(replyInput.requestKey)
+  assert.ok(prepared)
+  const archived = await simpleParser(prepared.rawMime, { skipImageLinks: true })
+  assert.equal(archived.html, prepared.htmlBody)
+  assert.equal(archived.inReplyTo, parent.messageId)
+  assert.equal(archived.attachments.length, 2)
+  for (const metadata of sent.message.attachments) {
+    const downloaded = await readMailboxAttachment(config.account || '', sent.message.id, String(metadata.index), { getRawMime: async () => prepared.rawMime })
+    assert.equal(downloaded.filename, metadata.filename)
+    assert.deepEqual(Buffer.from(downloaded.content), metadata.filename === 'new-document.txt' ? newFile : image)
+  }
+  const noQuote = await prepareReply(input({ includeQuote: false }), { ...parent, rawMime }, config, now)
+  assert.equal(noQuote.inlineImages.length, 0)
+  assert.ok(!noQuote.htmlBody.includes('Original styled content'))
+})
 
 test('local MIME archive preserves enterprise sender, original thread headers, visible Cc, quoted text and private attachment bytes', async () => {
   const buffer = Buffer.from('private attachment bytes')

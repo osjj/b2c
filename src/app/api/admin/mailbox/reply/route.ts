@@ -21,7 +21,7 @@ const attemptSelect = {
 const repository: ReplyRepository = {
   async getParent(account, id) {
     const row = await getMailboxParent(account, id)
-    return row ? { ...mailboxMessageToDto(row), references: row.references, inReplyTo: row.inReplyTo } : null
+    return row ? { ...mailboxMessageToDto(row), references: row.references, inReplyTo: row.inReplyTo, rawMime: row.rawMime } : null
   },
   async getAttempt(requestKey) {
     return prisma.adminMailboxSendAttempt.findUnique({ where: { requestKey }, select: attemptSelect })

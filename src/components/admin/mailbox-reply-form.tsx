@@ -11,6 +11,7 @@ import { mailboxMessageSchema, type MailboxMessage } from '@/lib/mailbox/types'
 import { buildReplyBodies } from '@/lib/mailbox/reply-body'
 import { MailboxRequestError, formatMailboxDate, formatMailboxSize, mailboxAttemptSchema, mailboxErrorMessage, mailboxFailedAttemptNotice, mailboxReplyDraftSchema, mailboxRequest, replyRecipients } from './mailbox-client'
 import { canApplyMailboxAttempt, subscribeMailboxDraft, writeMailboxDraft } from './mailbox-draft-cache'
+import { MailboxRichFrame, MailboxRichLoading, useMailboxRichContent } from './mailbox-rich-content'
 
 type SavedDraft = z.infer<typeof mailboxReplyDraftSchema>
 export type MailboxReplyDraft = SavedDraft & { attachments: File[]; missingAttachments: boolean }
@@ -78,11 +79,12 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
   const [checking, setChecking] = useState(false)
   const [sendingHere, setSendingHere] = useState(false)
   const [previewOpen, setPreviewOpen] = useState(false)
+  const quotedContent = useMailboxRichContent(parent.id, previewOpen && draft.includeQuote)
+  const previewPending = draft.includeQuote && (quotedContent.loading || !!quotedContent.error)
   const previewHtml = useMemo(() => {
-    if (!previewOpen) return ''
-    const { htmlBody } = buildReplyBodies({ text: draft.text.trim(), includeQuote: draft.includeQuote }, parent)
-    return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"></head><body style="margin:16px;background:#fff">${htmlBody}</body></html>`
-  }, [previewOpen, draft.text, draft.includeQuote, parent])
+    if (!previewOpen || previewPending) return ''
+    return buildReplyBodies({ text: draft.text.trim(), includeQuote: draft.includeQuote }, parent, { quotedHtml: quotedContent.data?.html }).htmlBody
+  }, [previewOpen, previewPending, draft.text, draft.includeQuote, parent, quotedContent.data?.html])
   const requestBusy = useRef(false)
   const fileInput = useRef<HTMLInputElement>(null)
   const blocked = draft.status !== 'draft'
@@ -210,7 +212,7 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
         <div className="space-y-2"><Label htmlFor={`${id}-cc`}>抄送</Label><Input id={`${id}-cc`} value={draft.cc} onChange={(event) => update({ ...draft, cc: event.target.value })} maxLength={5000} placeholder="可选" /></div>
         <div className="space-y-2"><Label htmlFor={`${id}-text`}>本次回复正文</Label><Textarea id={`${id}-text`} rows={8} value={draft.text} onChange={(event) => update({ ...draft, text: event.target.value })} required maxLength={100000} placeholder="直接输入本次回复，原邮件内容可在下方引用。" /></div>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={draft.includeQuote} onChange={(event) => update({ ...draft, includeQuote: event.target.checked })} />在回复下方引用原邮件正文</label>
-        {draft.includeQuote && <details className="rounded-md bg-muted/50 p-3 text-xs"><summary className="cursor-pointer text-muted-foreground">预览引用的原文（不属于本次新写的内容）</summary><blockquote className="mt-2 max-h-48 overflow-auto whitespace-pre-wrap break-words border-l-2 pl-3 [overflow-wrap:anywhere]">{parent.textBody || '原邮件无文本正文。'}</blockquote></details>}
+        {draft.includeQuote && <details className="rounded-md bg-muted/50 p-3 text-xs"><summary className="cursor-pointer text-muted-foreground">引用原文的纯文本摘要</summary><p className="mt-2 text-muted-foreground">发送时会保留原邮件可用的图片、颜色和排版，可在下方查看完整预览。</p><blockquote className="mt-2 max-h-48 overflow-auto whitespace-pre-wrap break-words border-l-2 pl-3 [overflow-wrap:anywhere]">{parent.textBody || '原邮件无文本正文，可在下方查看原邮件样式。'}</blockquote></details>}
         <div className="space-y-2">
           <Label htmlFor={`${id}-files`}>添加附件（最多 5 个，共 25 MB）</Label>
           <Input ref={fileInput} id={`${id}-files`} type="file" multiple onChange={addFiles} />
@@ -222,7 +224,10 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
       {draft.status !== 'sent' && <details className="rounded-md border p-3" onToggle={(event) => setPreviewOpen(event.currentTarget.open)}>
         <summary className="cursor-pointer text-sm font-medium">预览发送后的邮件排版</summary>
         <p className="mt-2 text-xs text-muted-foreground">正文和引用按下方排版发送，附件单独附加。不同邮箱的字体和间距可能略有差异。</p>
-        {previewOpen && <iframe title="邮件正文排版预览" sandbox="" referrerPolicy="no-referrer" srcDoc={previewHtml} className="mt-3 h-96 w-full rounded border bg-white" />}
+        {previewOpen && (previewPending ? <MailboxRichLoading error={quotedContent.error} onRetry={quotedContent.retry} /> : <>
+          {draft.includeQuote && !quotedContent.data?.html && <p className="mt-2 text-xs text-muted-foreground">原邮件未提供可用的丰富样式，本次引用使用纯文本排版。</p>}
+          <MailboxRichFrame key={`${parent.id}:${draft.includeQuote}`} html={previewHtml} hasRemoteImages={draft.includeQuote && !!quotedContent.data?.hasRemoteImages} omittedImages={draft.includeQuote ? quotedContent.data?.omittedImages : 0} title="邮件正文排版预览" />
+        </>)}
       </details>}
       {storageError && <p role="alert" className="text-sm text-destructive">{storageError}</p>}
       {draft.notice && <p role={draft.status === 'sent' ? 'status' : 'alert'} className={`rounded-md border p-3 text-sm ${draft.status === 'sent' ? 'border-green-300 bg-green-50 text-green-900' : 'border-amber-300 bg-amber-50 text-amber-950'}`}>{draft.notice}</p>}

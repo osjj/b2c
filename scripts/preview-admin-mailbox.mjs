@@ -4,6 +4,19 @@ import { readFile } from 'node:fs/promises'
 import { build } from 'esbuild'
 import postcss from 'postcss'
 import tailwind from '@tailwindcss/postcss'
+import { createRequire } from 'node:module'
+import MailComposer from 'nodemailer/lib/mail-composer/index.js'
+import sharp from 'sharp'
+
+await build({ entryPoints: ['src/lib/mailbox/rich-content.ts'], bundle: true, platform: 'node', format: 'cjs', packages: 'external', outfile: 'outputs/mailbox/rich-content-fixture.cjs' })
+const { readRichMailboxContent } = createRequire(import.meta.url)('../outputs/mailbox/rich-content-fixture.cjs')
+const demoImage = await sharp(Buffer.from('<svg width="160" height="96" xmlns="http://www.w3.org/2000/svg"><rect width="160" height="96" fill="#e8f1fa"/><rect x="28" y="23" width="104" height="54" rx="5" fill="#d29b5c"/><path d="M28 23L80 9L132 23L80 38Z" fill="#eccb9c"/><path d="M80 38V77" stroke="#946533" stroke-width="3"/></svg>')).png().toBuffer()
+const richFixtureMime = await new MailComposer({
+  from: 'buyer@example.com', to: 'sales@laifappe.com', subject: 'Packing details — fixture only',
+  html: '<html><head><style>body{font-family:Arial;color:#25324b}.heading{color:#ffffff;background-color:#173b67;padding:18px;font-size:22px}.note{color:#8c4510;background-color:#fff2cd;padding:12px}.details td{padding:10px;border:1px solid #d5dfeb}</style></head><body><table width="600" cellpadding="0" cellspacing="0" style="border-collapse:collapse"><tr><td class="heading">Shipment collection</td></tr><tr><td style="padding:18px;background-color:#f5f8fc"><img src="cid:packing-image" width="160" height="96" alt="Packing illustration"><p>Hello,</p><p>Please confirm the collection date and the packing details.</p><table class="details" style="border-collapse:collapse;width:100%"><tr><td><strong>Reference</strong></td><td>Sample shipment</td></tr><tr><td><strong>Documents</strong></td><td style="color:#16734b">Packing list attached</td></tr></table><p class="note"><strong>Please send photos before collection.</strong></p><a href="https://example.com/packing" style="color:#1856a2">View packing reference</a><p>Thank you,<br>Sample Buyer</p><img src="https://example.invalid/external.png" width="24" height="24" alt="External image"></td></tr></table></body></html>',
+  attachments: [{ filename: 'packing.png', content: demoImage, cid: 'packing-image', contentType: 'image/png' }],
+}).compile().build()
+const richFixture = await readRichMailboxContent(richFixtureMime)
 
 const messages = [{
   id: 'fixture-inbound-1', threadKey: 'fixture-thread-1', direction: 'INBOUND', messageId: '<one@buyer.example>',
@@ -30,6 +43,13 @@ const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://127.0.0.1:3127')
   if (url.pathname === '/bundle.js') { response.setHeader('Content-Type', 'text/javascript'); return response.end(bundle.outputFiles[0].contents) }
   if (url.pathname === '/style.css') { response.setHeader('Content-Type', 'text/css'); return response.end(css.css) }
+  if (url.pathname.endsWith('/content') && url.pathname.startsWith('/api/admin/mailbox/messages/')) {
+    const content = url.pathname.includes('fixture-inbound-2') ? richFixture : null
+    return json(response, { success: true, reason: 'Fixture original content', data: {
+      html: content?.previewHtml || null, hasRemoteImages: content?.hasRemoteImages || false,
+      omittedImages: content?.omittedImages || 0, inlineImageCount: content?.inlineImages.length || 0,
+    } })
+  }
   if (url.pathname === '/api/admin/mailbox') return json(response, { success: true, reason: 'Fixture list', data: {
     threads: [1, 2].map(number => { const items = messages.filter(message => message.threadKey === `fixture-thread-${number}`); const latest = items.at(-1); return { threadKey: latest.threadKey, subject: latest.subject, preview: latest.textBody.slice(0,100), latestAt: latest.sentAt, messageCount: items.length, participants: ['buyer@example.com'] } }),
     page: 1, totalPages: 1, total: 2, status,

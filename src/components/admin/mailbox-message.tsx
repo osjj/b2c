@@ -1,8 +1,12 @@
+'use client'
+
+import { useState } from 'react'
 import { Download, Reply, ReplyAll } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { MailboxMessage as Message } from '@/lib/mailbox/types'
 import { formatMailboxAddress, formatMailboxDate, formatMailboxSize } from './mailbox-client'
+import { MailboxRichFrame, MailboxRichLoading, useMailboxRichContent } from './mailbox-rich-content'
 
 interface MailboxMessageProps {
   message: Message
@@ -11,6 +15,8 @@ interface MailboxMessageProps {
 }
 
 export function MailboxMessage({ message, selected, onReply }: MailboxMessageProps) {
+  const [richOpen, setRichOpen] = useState(false)
+  const rich = useMailboxRichContent(message.id, richOpen)
   return (
     <article className={`min-w-0 rounded-xl border p-4 ${selected ? 'border-primary/50 bg-primary/5' : 'bg-card'}`}>
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -28,12 +34,21 @@ export function MailboxMessage({ message, selected, onReply }: MailboxMessagePro
         {message.replyTo.length > 0 && <div><dt className="inline font-medium">回复地址：</dt><dd className="inline">{message.replyTo.map(formatMailboxAddress).join(', ')}</dd></div>}
       </dl>
       <h3 className="mt-3 break-words text-sm font-medium">{message.subject || '（无主题）'}</h3>
-      <details className="mt-3" open>
-        <summary className="cursor-pointer text-xs text-muted-foreground">邮件正文（纯文本）</summary>
-        <div dir="auto" className="mt-2 max-h-[32rem] overflow-auto whitespace-pre-wrap break-words text-sm leading-relaxed [overflow-wrap:anywhere]">
+      <div className="mt-3 flex flex-wrap gap-2" aria-label="正文显示方式">
+        <Button type="button" variant={richOpen ? 'outline' : 'secondary'} size="sm" aria-pressed={!richOpen} onClick={() => setRichOpen(false)}>纯文本</Button>
+        <Button type="button" variant={richOpen ? 'secondary' : 'outline'} size="sm" aria-pressed={richOpen} onClick={() => setRichOpen(true)}>原邮件样式</Button>
+      </div>
+      {richOpen ? <div>
+        <p className="mt-2 text-xs text-muted-foreground">保留原邮件的图片、颜色和排版；不同邮箱的显示可能略有差异。</p>
+        {rich.loading || rich.error ? <MailboxRichLoading error={rich.error} onRetry={rich.retry} />
+          : rich.data?.html ? <MailboxRichFrame key={message.id} html={rich.data.html} hasRemoteImages={rich.data.hasRemoteImages} omittedImages={rich.data.omittedImages} title="原邮件样式" />
+            : <div className="mt-3">
+              <p className="mb-2 text-xs text-muted-foreground">原邮件未提供可用的丰富样式，以下显示纯文本正文。</p>
+              <div dir="auto" className="max-h-[32rem] overflow-auto whitespace-pre-wrap break-words text-sm leading-relaxed [overflow-wrap:anywhere]">{message.textBody || '这封邮件没有可显示的文本正文。'}</div>
+            </div>}
+      </div> : <div dir="auto" className="mt-3 max-h-[32rem] overflow-auto whitespace-pre-wrap break-words text-sm leading-relaxed [overflow-wrap:anywhere]">
           {message.textBody || '这封邮件没有可显示的文本正文。'}
-        </div>
-      </details>
+        </div>}
       {message.attachments.length > 0 && (
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="邮件附件">
           {message.attachments.map((attachment) => (

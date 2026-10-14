@@ -24,7 +24,7 @@ export function mailboxMessageToDto(row: DtoRow): MailboxMessage {
 }
 
 export async function getMailboxParent(account: string, id: string) {
-  return prisma.adminMailboxMessage.findFirst({ where: { account, id }, select: mailboxMessageSelect })
+  return prisma.adminMailboxMessage.findFirst({ where: { account, id }, select: { ...mailboxMessageSelect, rawMime: true } })
 }
 
 export function resolveMailboxThreadKey(account: string, parsed: Pick<ParsedMailboxMessage, 'messageId' | 'references' | 'inReplyTo' | 'dedupeKey'>, related: { threadKey: string }[]) {

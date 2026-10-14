@@ -72,10 +72,11 @@ function quotedHtml(text: string): string {
   return output.join('')
 }
 
-/** Shared by outbound delivery and its sandboxed preview; imported mail is always plain text. */
+/** quotedHtml must come from the server's original-MIME sanitizer, never a submitted draft. */
 export function buildReplyBodies(
   input: { text: string; includeQuote: boolean },
   parent: Pick<MailboxMessage, 'from' | 'sentAt' | 'textBody'>,
+  options: { quotedHtml?: string | null } = {},
 ): { textBody: string; htmlBody: string } {
   const reply = normalizeLines(input.text)
   let textBody = reply
@@ -86,10 +87,10 @@ export function buildReplyBodies(
     const attribution = quoteAttribution(parent)
     textBody += `\n\n${attribution}\n${quoted.split('\n').map(line => `> ${line}`).join('\n')}`
     html += `<div style="margin-top:24px;margin-bottom:8px;color:#6b7280;${TEXT_STYLE}">${escapeHtml(attribution)}</div>`
-    html += `<blockquote style="${QUOTE_STYLE}">${quotedHtml(quoted)}</blockquote>`
+    html += `<blockquote style="${QUOTE_STYLE}white-space:normal;">${options.quotedHtml || quotedHtml(quoted)}</blockquote>`
   }
   return {
     textBody,
-    htmlBody: `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#1f2937;${TEXT_STYLE}">${html}</div>`,
+    htmlBody: `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#1f2937;overflow-wrap:anywhere;">${html}</div>`,
   }
 }

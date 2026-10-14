@@ -1,12 +1,15 @@
 import { createHash, randomUUID } from 'node:crypto'
 
 import MailComposer from 'nodemailer/lib/mail-composer'
+import { simpleParser } from 'mailparser'
 import { z } from 'zod'
 
 import { MAX_RAW_MIME_BYTES } from './config'
 import { MailboxError } from './errors'
 import { providerDiagnosticCode, providerFailureReason, safeProviderDiagnosticCode, type ProviderDiagnosticCode } from './provider-diagnostics'
 import { buildReplyBodies } from './reply-body'
+import { readRichMailboxContent, type MailboxInlineImage } from './rich-content'
+import { safeAttachmentFilename } from './mime'
 import { buildReplyReferences, parseReplyRecipients, replySubject } from './threading'
 import type { MailboxMessage } from './types'
 
@@ -23,10 +26,10 @@ const replyFormSchema = z.object({
 
 type ReplyAttachment = { filename: string; contentType: string; buffer: Buffer }
 export type ReplyInput = Omit<z.infer<typeof replyFormSchema>, 'includeQuote'> & { includeQuote: boolean; attachments: ReplyAttachment[] }
-export type ReplyParent = MailboxMessage & { references: string[]; inReplyTo: string[] }
+export type ReplyParent = MailboxMessage & { references: string[]; inReplyTo: string[]; rawMime?: Uint8Array | null }
 export type PreparedReply = {
   account: string; parentId: string; requestKey: string; payloadHash: string;
-  message: MailboxMessage; htmlBody: string; references: string[]; inReplyTo: string[]; rawMime: Buffer;
+  message: MailboxMessage; htmlBody: string; inlineImages: MailboxInlineImage[]; references: string[]; inReplyTo: string[]; rawMime: Buffer;
 }
 export type ReplyAttempt = {
   requestKey: string; account: string; parentId: string; payloadHash: string; status: string;
@@ -109,7 +112,9 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
   const headers = buildReplyReferences(parent)
   const messageId = `<${randomUUID()}@${config.defaultSender.split('@')[1]}>`
   const subject = replySubject(parent.subject)
-  const { textBody, htmlBody } = buildReplyBodies(input, parent)
+  const richContent = input.includeQuote ? await readRichMailboxContent(parent.rawMime || null) : null
+  const inlineImages = richContent?.inlineImages || []
+  const { textBody, htmlBody } = buildReplyBodies(input, parent, { quotedHtml: richContent?.html })
   const message: MailboxMessage = {
     id: randomUUID(), threadKey: parent.threadKey, direction: 'OUTBOUND', messageId,
     from: { address: config.defaultSender }, replyTo: [], ...recipients, subject, textBody,
@@ -120,13 +125,22 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
   const rawMime = await new MailComposer({
     from: config.defaultSender, to: recipients.to, cc: recipients.cc, subject, text: textBody, html: htmlBody,
     date: now, messageId, inReplyTo: headers.inReplyTo, references: headers.references,
-    attachments: input.attachments.map(attachment => ({
+    attachments: [...input.attachments.map(attachment => ({
       filename: attachment.filename, contentType: attachment.contentType, content: attachment.buffer,
-    })),
+    })), ...inlineImages.map(image => ({ filename: image.filename, contentType: image.contentType, content: image.buffer, cid: image.cid, contentDisposition: 'inline' as const }))],
     disableFileAccess: true, disableUrlAccess: true,
   }).compile().build()
   if (rawMime.length > MAX_RAW_MIME_BYTES) {
     throw new MailboxError('MIME_TOO_LARGE', 'The encoded email exceeds 25 MiB. Reduce attachments to about 18 MiB or remove quoted history.', 413)
+  }
+  // Related inline images are serialized before ordinary attachments. Store the
+  // parser's actual indexes so every private attachment download returns its file.
+  if (inlineImages.length) {
+    const archived = await simpleParser(rawMime, { skipHtmlToText: true, skipTextToHtml: true, skipImageLinks: true })
+    message.attachments = archived.attachments.map((attachment, index) => ({
+      index, filename: safeAttachmentFilename(attachment.filename || `attachment-${index + 1}`),
+      contentType: attachment.contentType, size: attachment.size,
+    }))
   }
   const payloadHash = createHash('sha256').update(JSON.stringify({
     account: config.account, parentId: input.parentId, mode: input.mode,
@@ -138,7 +152,7 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
   })).digest('hex')
   return {
     account: config.account, parentId: input.parentId, requestKey: input.requestKey, payloadHash,
-    message, htmlBody, references: headers.references, inReplyTo: [headers.inReplyTo], rawMime,
+    message, htmlBody, inlineImages, references: headers.references, inReplyTo: [headers.inReplyTo], rawMime,
   }
 }
 
@@ -195,6 +209,7 @@ async function submitReply(prepared: PreparedReply, attachments: ReplyAttachment
         attachments: attachments.map(attachment => ({
           filename: attachment.filename, mimetype: attachment.contentType, fileblob: attachment.buffer.toString('base64'),
         })),
+        inlines: prepared.inlineImages.map(image => ({ filename: image.cid, mimetype: image.contentType, fileblob: image.buffer.toString('base64') })),
         fastaccept: false,
       }),
       signal: controller.signal, cache: 'no-store', redirect: 'error',

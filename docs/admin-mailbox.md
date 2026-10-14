@@ -55,15 +55,16 @@ To keep new mail up to date, configure your deployment host's scheduler to run `
 - Original MIME (maximum 25 MiB per message), attachment bytes and headers are stored in PostgreSQL private mailbox tables. No received attachments go to public R2. Include these tables in normal database backups and capacity planning. Lists fetch only metadata; attachments require ADMIN authorization and download with `nosniff`.
 - Stored attachment metadata includes inline MIME parts, such as signature images, as well as ordinary files. QQ may display only the ordinary files in its attachment count.
 - Conversations use Message-ID, In-Reply-To and References, not subject-only grouping. Legacy admin send records lacking RFC IDs remain in their separate history.
-- Preview shows plain text and blocks remote image/tracking requests. Detail views report when a very long thread is truncated.
+- Detail views offer plain text and 「原邮件样式」. The rich view reads the stored original MIME on demand, preserving supported HTML styles and embedded images. External images are blocked until the administrator explicitly allows them for that preview. Very long threads report truncation.
 
 ## Reply behavior
 
 - Reply uses the original Reply-To, otherwise From. Reply-all also includes external To/Cc and removes own aliases, QQ login, duplicates and SRS forwarding identities. Review the editable recipients before sending.
 - The server chooses the approved enterprise sender, loads the original parent and uses SMTP2GO's standard `/email/send` endpoint with the original subject chain and custom `Message-ID`, `In-Reply-To`, and `References` headers. A missing original Message-ID cannot be fabricated. The private local MIME archive preserves reply text and attachments; it is not a byte-for-byte copy of the provider's transport MIME.
-- Replies include both HTML and plain-text versions. HTML separates the new reply from a bordered original quotation, preserves paragraphs and wraps long URLs. Quote dates use readable English with an explicit UTC+08:00 offset. All text is escaped; original remote images and HTML are not embedded. Conventional older quote prefixes become nested quote blocks with bounded visual depth. The plain-text fallback retains standard `>` prefixes.
-- Before sending, expand 「预览发送后的邮件排版」 to inspect the same generated HTML used by the server. The isolated preview does not load external resources. Receiving mail clients may apply small font/spacing differences. This change affects newly sent replies, not mail already delivered.
-- Optional original text is quoted. New attachments are private and limited to five files, 25 MiB combined before encoding and 25 MiB for the complete encoded MIME including both body versions; approximately 18 MiB of files is a practical ceiling.
+- Replies include both HTML and plain-text versions. New text is escaped and placed above a bordered original quotation. Original HTML is sanitized and stylesheet rules are inlined, preserving supported tables, fonts, colors, backgrounds, spacing and images. Quote dates use readable English with an explicit UTC+08:00 offset. Mail with no HTML falls back to escaped text with bounded nested quote blocks; the plain-text alternative retains standard `>` prefixes.
+- Referenced embedded PNG/JPEG/GIF/WebP images are copied from the original private MIME into the reply as inline images. Original ordinary attachments are not automatically forwarded. External image URLs remain in the outbound HTML; the server never downloads them, and the recipient's email client controls whether they appear. Preview images use the same embedded bytes, while external images require 「显示外部图片」.
+- Before sending, expand 「预览发送后的邮件排版」 to inspect the generated HTML. The sandbox preview cannot run scripts, submit forms or follow links. Unsupported active elements, SVG, external stylesheets, CSS background-image URLs and client-specific VML are removed; email clients can still render fonts/spacing differently. This is supported original styling, not a guarantee of identical pixels in every client. Already delivered mail is unchanged.
+- New attachments are private and limited to five files, 25 MiB combined before encoding and 25 MiB for the complete encoded MIME including body versions and quoted images; approximately 18 MiB of files is a practical ceiling. Original HTML is limited to 1 MiB before/after style expansion; quoted images to 100 unique images/18 MiB, and expanded preview to 32 MiB. Oversized content returns a clear error; cancel quotation to send only the new reply. Missing or unsupported inline images are reported in the rich preview.
 - Every send has a persisted request key. Double clicks and retries cannot send the same attempt again. SMTP2GO acceptance is not a claim of final delivery. Ambiguous/partial responses and all HTTP 5xx responses lock the attempt for status checking and provider reconciliation. The local MIME archive remains available for attachment recovery; do not resend blindly.
 - Backend replies appear in the backend conversation. They are **not appended to QQ's Sent folder** in this version. Customer replies still reach QQ through Cloudflare and appear after the next sync.
 - No AI-generated drafting or automatic customer replies are enabled.
@@ -71,6 +72,12 @@ To keep new mail up to date, configure your deployment host's scheduler to run `
 ## Local UI verification
 
 `node scripts/preview-admin-mailbox.mjs` starts an isolated fixture UI at `http://127.0.0.1:3127`. All mail responses are local fixtures; it does not load credentials, connect to the database or send mail. Include `[unknown]` in a fixture reply to exercise delivery-unknown locking, `[denied]` for specific failure diagnostics, or `[delay]` to test switching conversations while a reply is pending. Stop this server after checking the interface.
+
+The second fixture includes a styled HTML message with a colored table, a CID image and a blocked external image. Check 「原邮件样式」 and the reply preview to verify image/style preservation without contacting a real mailbox.
+
+### 原邮件样式更新部署
+
+本次富文本更新需要部署代码和依赖：先 `npm ci`，再按现有流程构建并重启应用；没有新增数据库迁移或环境变量。已保存原始 MIME 的历史邮件可直接使用，不需要为此重新同步。部署后查看「原邮件样式」，并展开回复排版预览；只有之后新发送的回复会采用更新后的排版。
 
 The [SMTP2GO standard endpoint](https://developers.smtp2go.com/reference/send-standard-email) accepts custom headers and Base64 attachment bytes. This integration explicitly uses `fastaccept: false` and validates the response counters; HTTP 200 alone does not confirm acceptance. The same endpoint is used by the existing admin composer. Its permission and final recipient-side headers still require verification with an explicitly authorized real send.
 

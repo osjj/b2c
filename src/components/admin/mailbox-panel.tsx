@@ -180,11 +180,11 @@ export function MailboxPanel() {
         </section>
 
         <section className="min-w-0 space-y-4" aria-label="当前邮件会话" aria-busy={detailLoading}>
-          {!selectedThread && <div className="flex min-h-72 flex-col items-center justify-center rounded-xl border border-dashed p-6 text-center text-muted-foreground"><Inbox className="mb-3 size-8" aria-hidden="true" /><p>选择左侧会话，查看邮件往来并回复。</p><p className="mt-2 text-xs">邮件正文以纯文本显示；外部图片和跟踪像素不会加载。</p></div>}
+          {!selectedThread && <div className="flex min-h-72 flex-col items-center justify-center rounded-xl border border-dashed p-6 text-center text-muted-foreground"><Inbox className="mb-3 size-8" aria-hidden="true" /><p>选择左侧会话，查看邮件往来并回复。</p><p className="mt-2 text-xs">可切换查看原邮件样式；外部图片需手动允许显示。</p></div>}
           {detailLoading && <p className="flex items-center gap-2 text-sm text-muted-foreground" role="status"><Loader2 className="size-4 animate-spin" aria-hidden="true" />正在加载邮件往来…</p>}
           {detailError && <div role="alert" className="rounded-xl border p-4"><p className="text-sm text-destructive">{detailError}</p><Button className="mt-2" type="button" variant="outline" size="sm" onClick={() => setDetailRevision((revision) => revision + 1)}>重新加载会话</Button></div>}
           {activeDetail && <>
-            <div className="space-y-1"><h2 className="break-words text-lg font-semibold">{activeDetail.messages[0]?.subject || '邮件往来'}</h2><p className="text-xs text-muted-foreground">{activeDetail.total} 封邮件 · 安全纯文本预览</p></div>
+            <div className="space-y-1"><h2 className="break-words text-lg font-semibold">{activeDetail.messages[0]?.subject || '邮件往来'}</h2><p className="text-xs text-muted-foreground">{activeDetail.total} 封邮件 · 可查看原邮件样式</p></div>
             {activeDetail.truncated && <p role="status" className="rounded-lg border border-amber-300 p-3 text-sm">此会话邮件较多，目前只显示其中 {activeDetail.messages.length} 封。更早的内容请到 QQ 邮箱查看。</p>}
             {activeDetail.messages.map((message) => <MailboxMessage key={message.id} message={message} selected={message.id === replyParent?.id} onReply={selectReply} />)}
             {replyParent && <MailboxReplyForm key={replyParent.id} ref={connectReplyForm} parent={replyParent} initialMode={selectedReply?.mode || 'reply'} ownAddresses={activeDetail.ownAddresses} defaultSender={activeDetail.defaultSender} smtpConfigured={status?.smtpConfigured || false} cache={draftCache} onSent={handleSent} />}
