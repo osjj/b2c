@@ -7,6 +7,91 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum AdminMailboxDirection {
+  INBOUND
+  OUTBOUND
+}
+
+model AdminMailboxMessage {
+  id          String @id @default(cuid())
+  account     String
+  direction   AdminMailboxDirection
+  messageId   String?
+  dedupeKey   String
+  threadKey   String
+  fromAddress String
+  fromName    String?
+  replyTo     Json
+  to          Json
+  cc          Json
+  subject     String
+  textBody    String
+  preview     String @default("")
+  sentAt      DateTime
+  references  String[]
+  inReplyTo   String[]
+  rawMime     Bytes?
+  attachments Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([account, dedupeKey])
+  @@unique([account, messageId])
+  @@index([account, threadKey, sentAt])
+  @@index([account, sentAt])
+  @@map("admin_mailbox_messages")
+}
+
+model AdminMailboxSyncState {
+  account      String @id
+  lockToken    String?
+  leaseUntil   DateTime?
+  lastSyncedAt DateTime?
+  scopeHash    String @default("")
+  scanGeneration Int @default(0)
+  generationImported Int @default(0)
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin_mailbox_sync_states")
+}
+
+model AdminMailboxCursor {
+  id               String @id @default(cuid())
+  account          String
+  folder           String
+  since            DateTime
+  uidValidity      String
+  backfillUid      Int @default(0)
+  backfillUpperUid Int
+  latestUid        Int
+  backfillComplete Boolean @default(false)
+  scanGeneration   Int @default(0)
+  updatedAt        DateTime @updatedAt
+
+  @@unique([account, folder])
+  @@map("admin_mailbox_cursors")
+}
+
+model AdminMailboxSendAttempt {
+  id                String @id @default(cuid())
+  requestKey        String @unique @db.Uuid
+  account           String
+  parentId          String
+  payloadHash       String
+  status            String
+  messageId         String
+  outboundMessageId String?
+  providerRequestId String?
+  safeErrorCode     String?
+  rawMime           Bytes?
+  response          Json?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([account, parentId])
+  @@map("admin_mailbox_send_attempts")
+}
+
 model User {
   id            String        @id @default(cuid())
   name          String?

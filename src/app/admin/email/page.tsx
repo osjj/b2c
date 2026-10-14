@@ -24,7 +24,7 @@ export default async function AdminEmailPage({ searchParams }: AdminEmailPagePro
       <div>
         <h1 className="font-serif text-3xl mb-1">Email</h1>
         <p className="text-muted-foreground">
-          Send test or operational emails directly from the admin panel via SMTP2GO, and review paginated delivery history.
+          同步企业邮箱往来，在原会话中回复客户；也可以撰写新邮件并查看发送记录。
         </p>
       </div>
 
