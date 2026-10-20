@@ -229,6 +229,8 @@ Avoid these mistakes when comparing contractor PPE suppliers:
 
 Most supplier problems start before the purchase order. The RFQ was too vague, the sample approval was too loose, or the buyer compared only price. A good checklist makes the supplier prove capability before the order scales.
 
+Once the supplier is selected, use the [PPE sample approval and pre-shipment verification checklist](/blog/ppe-sample-approval-pre-shipment-checklist) to connect the approved sample and document baseline with packing evidence, discrepancy closure, and a separate written shipment release.
+
 ---
 
 ## Buyer Checklist

@@ -71,6 +71,10 @@ const FALLBACK_ORDER: ToolRecommendationId[] = [
 ]
 
 const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
+  'ppe-sample-approval-pre-shipment-checklist': [
+    'ppe-calculator',
+    'ai-quote',
+  ],
   'construction-safety-footwear-guide': [
     'size-guide',
     'compliance-checker',
@@ -206,6 +210,7 @@ const BLOG_TOOL_OVERRIDES: Record<string, ToolRecommendationId[]> = {
 }
 
 const PRIORITY_BLOG_TOOL_SHORTCUTS = new Set([
+  'ppe-sample-approval-pre-shipment-checklist',
   'mining-maintenance-welding-cutting-grinding-ppe',
   'mining-high-visibility-workwear-guide',
   'quarry-eye-face-protection-guide',

@@ -15,6 +15,26 @@ export interface BlogCommercialLinks {
 }
 
 const BLOG_COMMERCIAL_LINKS: Record<string, BlogCommercialLinks> = {
+  'ppe-sample-approval-pre-shipment-checklist': {
+    solution: {
+      href: '/solutions/ppe-safety-equipment-for-mining-quarrying',
+      label: 'Mining and quarrying PPE sourcing',
+    },
+    categories: [
+      { href: '/categories/head-protection', label: 'Head protection options' },
+      { href: '/categories/hand-protection', label: 'Hand protection options' },
+      { href: '/categories/foot-protection', label: 'Foot protection options' },
+    ],
+    products: [],
+    cta: { href: '/quote', label: 'Discuss PPE samples, model documents and packing' },
+    resources: [
+      {
+        href: 'https://shop.laifappe.com/blog/ppe-sample-approval-pre-shipment-checklist/ppe-sample-approval-pre-shipment-checklist.txt',
+        label: 'Download the blank approval and shipment checklist',
+      },
+      { href: '/blog/bulk-construction-ppe-procurement', label: 'Bulk PPE procurement guide' },
+    ],
+  },
   'mining-maintenance-welding-cutting-grinding-ppe': {
     solution: {
       href: '/solutions/ppe-safety-equipment-for-mining-quarrying',

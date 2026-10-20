@@ -220,6 +220,8 @@ Use the [PPE quantity calculator](/tools/ppe-calculator) to convert headcount, i
 
 For each line item in an RFQ, record the task, work area, hazard, required product standard or approval, model documentation, size range, compatibility, packaging, spare parts, inspection criteria, replacement trigger, sample approval, and permitted substitutions. Then submit the reviewed specification through the [quote request](/quote?source=blog-mining-ppe-checklist-by-task).
 
+For an example of a multi-category order schedule, review the [six-category PPE procurement case for a South African mining company](/cases/south-africa-mining-ppe-procurement-2026). The case records helmets, two glove lines, safety shoes, rain boots and workwear with separate quantities and units. Keep the same line-by-line clarity when turning your own task checklist into an RFQ.
+
 ## Common Mining PPE Checklist Mistakes
 
 - **Issuing one mine-wide kit.** A standard baseline can help, but drilling, blasting, crushing, screening, transport, and maintenance need different task modules.

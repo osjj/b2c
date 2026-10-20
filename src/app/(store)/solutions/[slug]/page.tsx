@@ -482,13 +482,13 @@ export default async function SolutionDetailPage({ params }: Props) {
             <aside className="hidden lg:block">
               <TableOfContents items={tocItems} />
             </aside>
-            <div className="max-w-4xl space-y-6">
+            <div className="min-w-0 max-w-4xl space-y-6">
               <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
               {solutionResourceSections}
             </div>
           </div>
         ) : (
-          <div className="max-w-4xl space-y-6">
+          <div className="min-w-0 max-w-4xl space-y-6">
             <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
             {solutionResourceSections}
           </div>

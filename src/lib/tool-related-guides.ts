@@ -6,6 +6,12 @@ export interface ToolRelatedGuide {
 }
 
 const GUIDE_CATALOG = {
+  'ppe-sample-approval-pre-shipment-checklist': {
+    href: '/blog/ppe-sample-approval-pre-shipment-checklist',
+    title: 'PPE Sample Approval and Pre-Shipment Checklist',
+    description: 'Connect approved samples and document versions to shipment evidence, packing checks, discrepancy closure and written release.',
+    eyebrow: 'Order verification',
+  },
   'mining-maintenance-welding-cutting-grinding-ppe': {
     href: '/blog/mining-maintenance-welding-cutting-grinding-ppe',
     title: 'Mine Maintenance Welding, Cutting and Grinding PPE',
@@ -272,6 +278,7 @@ export const TOOLS_HUB_RELATED_GUIDES = pickBuyerGuides([
 
 export const TOOL_RELATED_GUIDES = {
   'ai-quote': pickGuides([
+    'ppe-sample-approval-pre-shipment-checklist',
     'bulk-construction-ppe-procurement',
     'contractor-ppe-supplier-bulk-checklist',
     'construction-ppe-checklist',

@@ -23,6 +23,7 @@
     "db:seed:blog": "npx tsx prisma/seed-blog.ts",
     "db:gen:covers": "npx tsx prisma/generate-solution-covers.ts",
     "db:gen:blog-images": "npx tsx prisma/generate-blog-images.ts",
+    "db:upload:blog-images:sample-approval": "npx tsx prisma/generate-blog-images.ppe-sample-approval-pre-shipment-checklist.ts",
     "db:gen:blog-images:construction-gloves": "npx tsx prisma/generate-blog-images.construction-gloves-selection-guide.ts",
     "db:gen:blog-images:construction-eye-face": "npx tsx prisma/generate-blog-images.construction-eye-face-protection.ts",
     "db:gen:blog-images:bulk-procurement": "npx tsx prisma/generate-blog-images.bulk-construction-ppe-procurement.ts",

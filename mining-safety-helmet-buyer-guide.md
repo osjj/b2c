@@ -196,6 +196,8 @@ Do not publish one universal replacement interval for every mining helmet. Stora
 
 Use the [PPE Quantity Calculator](/tools/ppe-calculator) to plan issue and replacement stock. When the configuration and evidence requirements are ready, send them through the [quote request](/quote). Keep the mine's final approval separate from the supplier's quotation.
 
+For a procurement example involving helmet branding, see the [South Africa mining PPE procurement case](/cases/south-africa-mining-ppe-procurement-2026). It records the requested blue logo separately from the sample photograph. Confirm the exact model, documents and any accessory configuration for your own order.
+
 ## Common Mining Helmet Buying Mistakes
 
 - **Buying by product name.** “Mining helmet,” “hard hat,” or “helmet with lamp” is not a complete specification.

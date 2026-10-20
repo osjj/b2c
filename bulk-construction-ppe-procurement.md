@@ -438,6 +438,8 @@ Construction crews do different work. A scaffolder, electrician, concrete worker
 
 Fit problems are harder to fix after shipment. The right time to solve sizing is during RFQ and sample approval.
 
+After selecting the supplier, use the [PPE sample approval and pre-shipment verification checklist](/blog/ppe-sample-approval-pre-shipment-checklist) to record the approved model and document versions, compare the packed goods, close discrepancies, and authorize the defined shipment in writing.
+
 ### Forgetting replacement stock
 
 If replacement PPE is not planned, supervisors will delay work, reuse damaged equipment, or improvise. All three are bad outcomes.

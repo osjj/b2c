@@ -1,0 +1,90 @@
+PPE SAMPLE APPROVAL AND PRE-SHIPMENT VERIFICATION CHECKLIST
+Blank buyer working template - adapt to the order and applicable requirements.
+Sample approval, shipment release and receiving acceptance are separate decisions.
+
+ORDER CONTROL
+Buyer:
+Project:
+Order reference:
+Supplier:
+Record revision / date:
+Reviewer / role:
+Person authorized to release shipment:
+Shipment reference / planned scope:
+
+GATE 1 - SAMPLE AND DOCUMENT BASELINE
+Repeat this section for each distinct product configuration.
+Order line:
+PPE category:
+Exact model / variant:
+Sample ID / location:
+Document ID / version / date:
+Document issuer / model coverage / reviewed scope:
+Photo evidence references:
+Quantity / unit (pieces, pairs, sets or kits):
+Size / color split:
+Fit review participants / sizes / findings / limitations:
+Complete PPE combination / compatibility findings / instructions:
+Logo artwork version / dimensions / color / location / application method:
+Manufacturer decoration instructions or confirmation reference, where relevant:
+Packing instruction revision / carton or kit allocation / labels:
+Decision: Approved / Pending / Rejected
+Approval scope and conditions (appearance, fit, documents, packing, other):
+Open issues / owner / due date:
+Reviewer name / signature / date:
+Superseded baseline reference, if applicable:
+
+GATE 2 - PRE-SHIPMENT VERIFICATION
+Inspector / reviewer / qualifications or assigned responsibility:
+Inspection date / location:
+Order / shipment / lot or batch references, where available:
+Agreed checks / acceptance criteria:
+Sampling scope and selection agreed by buyer and qualified inspector:
+Number and identity of units / cartons checked:
+Checks not performed / limitations:
+
+Repeat this section for each requirement checked.
+Order line / item or carton reference:
+Approved requirement / baseline revision:
+Observed result:
+Evidence reference:
+Discrepancy ID / description:
+Proposed disposition:
+Action owner / due date:
+Correction evidence / recheck result:
+Accepted deviation scope / approving authority, if applicable:
+Closure name / signature / date:
+
+SUBSTITUTION CONTROL
+Original line / model / baseline:
+Proposed substitute / reason:
+Changed properties / document coverage / size / compatibility / schedule effect:
+Safety review / sample or trial required:
+Decision / authority / date:
+New baseline revision if approved:
+
+GATE 3 - SHIPMENT RELEASE
+Decision: Hold / Recheck / Released
+Shipment reference:
+Authorized lines / quantities / units:
+Excluded lines / quantities and segregation instructions:
+Conditions / remaining actions:
+Evidence and closed discrepancy references:
+Authorized decision maker / role:
+Signature / date:
+
+RECEIVING - SEPARATE ARRIVAL CHECK
+Receiving location / date / reviewer:
+Shipment and packing-list references:
+Carton identity / quantity / size allocation / visible-condition findings:
+Discrepancies / evidence / action owner:
+Receiving acceptance decision under purchase agreement:
+Name / signature / date:
+
+LIMITS
+This template does not certify PPE, establish document authenticity by itself,
+prove all units' performance, or replace hazard assessment, required testing,
+respirator program duties, training, user inspection, maintenance or replacement.
+Agree inspection and sampling with the responsible buyer and qualified inspector;
+no universal AQL or sample size is prescribed. Apply relevant destination and
+workplace requirements. Store completed records with appropriate access controls.

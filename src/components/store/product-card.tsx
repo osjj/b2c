@@ -1,8 +1,6 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { ProductImage, Category } from '@prisma/client'
+import type { ProductImage, Category } from '@prisma/client'
 import { formatPrice } from '@/lib/utils'
 import { getLowestTierPrice } from '@/lib/pricing'
 import { AddToCartButton } from './add-to-cart-button'

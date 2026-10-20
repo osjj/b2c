@@ -162,6 +162,8 @@ Compare lifecycle costs using the site's issue and care records. Include laundry
 
 When the requirements are ready, [request a mining workwear quotation](/quote) with the quantity schedule and sample criteria attached.
 
+For a workwear branding brief, the [South Africa mining PPE procurement case](/cases/south-africa-mining-ppe-procurement-2026) records 200 sets with logos specified for the right chest and back. Use it as an example of recording quantities and logo positions; the case does not establish a high-visibility classification or additional protective rating for the ordered garments.
+
 ## Buyer Approval Checklist
 
 - Each crew has a defined task, work area and clothing configuration.

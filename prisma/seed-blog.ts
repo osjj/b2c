@@ -5,6 +5,7 @@
  *   - construction-safety-footwear-guide
  *   - osha-ppe-requirements-construction
  *   - bulk-construction-ppe-procurement
+ *   - ppe-sample-approval-pre-shipment-checklist
  *   - contractor-ppe-kit-checklist
  *   - contractor-ppe-supplier-bulk-checklist
  *   - construction-hearing-protection
@@ -75,6 +76,27 @@ interface BlogSeedConfig {
 }
 
 const BLOG_POSTS: BlogSeedConfig[] = [
+  {
+    slug: 'ppe-sample-approval-pre-shipment-checklist',
+    markdownPath: join(process.cwd(), 'ppe-sample-approval-pre-shipment-checklist.md'),
+    generatedImagesPath: join(__dirname, 'blog-images.ppe-sample-approval-pre-shipment-checklist.generated.json'),
+    title: 'PPE Sample Approval and Pre-Shipment Verification Checklist for Bulk Orders',
+    excerpt: 'Connect approved PPE samples and document versions to actual goods, packing checks, discrepancy closure and written shipment release.',
+    seoTitle: 'PPE Sample Approval & Pre-Shipment Checklist',
+    seoDescription: 'Use this PPE sample approval and pre-shipment checklist to lock models, sizes, logo artwork, packing evidence, substitutions and written release for bulk orders.',
+    seoKeywords: 'PPE sample approval checklist, PPE pre-shipment checklist, bulk PPE verification, PPE sample sign-off, PPE packing verification, PPE substitution approval, PPE shipment release',
+    heroFallback: '/blog/ppe-sample-approval-pre-shipment-checklist/hero.webp',
+    sectionImages: {
+      'Record the Approved Sample and Document Baseline': {
+        url: '/blog/ppe-sample-approval-pre-shipment-checklist/record-the-approved-sample-and-document-baseline.webp',
+        caption: 'Illustration of a PPE sample, document references and a controlled approval record for a bulk order.',
+      },
+      'Use a Pre-Shipment Verification Record': {
+        url: '/blog/ppe-sample-approval-pre-shipment-checklist/use-a-pre-shipment-verification-record.webp',
+        caption: 'Illustration of goods and carton evidence being compared with an approved packing and product baseline.',
+      },
+    },
+  },
   {
     slug: 'mining-maintenance-welding-cutting-grinding-ppe',
     markdownPath: join(process.cwd(), 'mining-maintenance-welding-cutting-grinding-ppe.md'),
