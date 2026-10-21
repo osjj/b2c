@@ -44,7 +44,7 @@ function HeroSlides({ images }: HeroBackgroundProps) {
 
   useEffect(() => {
     const container = containerRef.current
-    if (!container || images.length <= 1) return
+    if (!container || images.length <= 1 || typeof IntersectionObserver === "undefined") return
 
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
     let isInView = false
@@ -122,6 +122,7 @@ function HeroSlides({ images }: HeroBackgroundProps) {
           priority={index === 0}
           loading={index === 0 ? undefined : "eager"}
           fetchPriority={index === 0 ? "high" : "low"}
+          quality={60}
           sizes="100vw"
           className={`${styles.heroSlide} ${index === activeIndex ? styles.heroSlideActive : ""}`}
           onLoad={handleLoad}

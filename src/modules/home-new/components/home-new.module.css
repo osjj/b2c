@@ -1816,9 +1816,15 @@
   justify-self: end;
 }
 
+/* Keep decorative URLs unused until their section approaches the viewport. */
+.deferredBackground[data-background-ready="true"] {
+  --home-section-image: var(--home-section-background);
+}
+
 .categoriesSection {
+  --home-section-background: url("https://shop.laifappe.com/homepage/full-range-protection-bg-f95f4b8c51.webp");
   background-color: #f2efe8;
-  background-image: linear-gradient(180deg, rgba(242, 239, 232, 0.48), rgba(247, 245, 239, 0.76)), url("https://shop.laifappe.com/homepage/full-range-protection-bg-f95f4b8c51.webp");
+  background-image: linear-gradient(180deg, rgba(242, 239, 232, 0.48), rgba(247, 245, 239, 0.76)), var(--home-section-image, none);
   background-position: center top;
   background-size: cover;
 }
@@ -2076,8 +2082,9 @@
 }
 
 .productsSection {
+  --home-section-background: url("https://shop.laifappe.com/homepage/featured-products-028c82538c.webp");
   background-color: #f5f1e8;
-  background-image: linear-gradient(180deg, rgba(245, 241, 232, 0.5), rgba(255, 255, 255, 0.88)), url("https://shop.laifappe.com/homepage/featured-products-028c82538c.webp");
+  background-image: linear-gradient(180deg, rgba(245, 241, 232, 0.5), rgba(255, 255, 255, 0.88)), var(--home-section-image, none);
   background-position: center top;
   background-size: cover;
 }
@@ -2487,8 +2494,9 @@
 }
 
 .orderSection {
+  --home-section-background: url("https://shop.laifappe.com/homepage/how-order-bg2-7c3b40ff6e.webp");
   background-color: #f4eee3;
-  background-image: linear-gradient(180deg, rgba(247, 243, 236, 0.34) 0%, rgba(239, 232, 220, 0.46) 100%), url("https://shop.laifappe.com/homepage/how-order-bg2-7c3b40ff6e.webp");
+  background-image: linear-gradient(180deg, rgba(247, 243, 236, 0.34) 0%, rgba(239, 232, 220, 0.46) 100%), var(--home-section-image, none);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -2910,8 +2918,9 @@
 }
 
 .facilitySection {
+  --home-section-background: url("https://shop.laifappe.com/homepage/floor-bg-28191eb08b.webp");
   background-color: var(--home-bg);
-  background-image: linear-gradient(180deg, rgba(242, 237, 228, 0.62), rgba(242, 237, 228, 0.82)), url("https://shop.laifappe.com/homepage/floor-bg-28191eb08b.webp");
+  background-image: linear-gradient(180deg, rgba(242, 237, 228, 0.62), rgba(242, 237, 228, 0.82)), var(--home-section-image, none);
   background-position: center;
   background-size: cover;
 }
@@ -4152,7 +4161,7 @@
 
 .facilitySection {
   background-color: var(--home-bg);
-  background-image: linear-gradient(180deg, rgba(242, 237, 228, 0.62), rgba(242, 237, 228, 0.82)), url("https://shop.laifappe.com/homepage/floor-bg-28191eb08b.webp");
+  background-image: linear-gradient(180deg, rgba(242, 237, 228, 0.62), rgba(242, 237, 228, 0.82)), var(--home-section-image, none);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

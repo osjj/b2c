@@ -6,6 +6,7 @@ import { CheckCircle2, Clock3, Mail, MapPin, Monitor, MoveRight, Phone, Shield }
 import { getHomeFeaturedProducts, getHomeSolutions } from "../lib/home-data"
 import { formatUsageSceneLabel, USAGE_SCENES, type UsageScene } from "@/types/solution"
 import { ASSET_BASE, catalogProofProducts, categories, facilityImages, testimonials } from "./data"
+import { DeferredBackgroundSection } from "./DeferredBackgroundSection"
 import { FactoryTourDialog } from "./FactoryTourDialog"
 import { HeroBackground } from "./HeroBackground"
 import { NewHomeNav } from "./NewHomeNav"
@@ -91,7 +92,12 @@ export function NewHomePage() {
 
 export function NewHomeShell({ children }: { children: ReactNode }) {
   return (
-    <div className={styles.page}>{children}</div>
+    <div className={styles.page}>
+      <noscript>
+        <style>{`.${styles.deferredBackground} { --home-section-image: var(--home-section-background); }`}</style>
+      </noscript>
+      {children}
+    </div>
   )
 }
 
@@ -233,7 +239,7 @@ function TrustStrip() {
 
 function CategorySection() {
   return (
-    <section className={`${styles.section} ${styles.categoriesSection}`}>
+    <DeferredBackgroundSection className={`${styles.section} ${styles.categoriesSection}`}>
       <div className={styles.wrap}>
         <SectionHeader
           eyebrow="PRODUCT CATEGORIES"
@@ -277,7 +283,7 @@ function CategorySection() {
           </Link>
         </div>
       </div>
-    </section>
+    </DeferredBackgroundSection>
   )
 }
 
@@ -345,7 +351,7 @@ function FeaturedProductsSection({ data }: { data: FeaturedProductsData | null }
   }
 
   return (
-    <section className={`${styles.section} ${styles.productsSection}`}>
+    <DeferredBackgroundSection className={`${styles.section} ${styles.productsSection}`}>
       <div className={styles.wrap}>
         <SectionHeader
           eyebrow={`${"\u2014"} ${data.collection.name}`}
@@ -403,7 +409,7 @@ function FeaturedProductsSection({ data }: { data: FeaturedProductsData | null }
           </Link>
         </div>
       </div>
-    </section>
+    </DeferredBackgroundSection>
   )
 }
 
@@ -480,7 +486,7 @@ function HowToOrderSection() {
   ]
 
   return (
-    <section className={`${styles.section} ${styles.orderSection}`}>
+    <DeferredBackgroundSection className={`${styles.section} ${styles.orderSection}`}>
       <div className={styles.wrap}>
         <SectionHeader
           eyebrow="- How to order"
@@ -528,7 +534,7 @@ function HowToOrderSection() {
           </div>
         </div>
       </div>
-    </section>
+    </DeferredBackgroundSection>
   )
 }
 
@@ -784,7 +790,7 @@ function CertificationsSection() {
 
 function FacilitySection() {
   return (
-    <section className={`${styles.section} ${styles.facilitySection}`}>
+    <DeferredBackgroundSection className={`${styles.section} ${styles.facilitySection}`}>
       <div className={styles.wrap}>
         <SectionHeader
           eyebrow={`${"\u2014"} Inside our facility`}
@@ -814,7 +820,7 @@ function FacilitySection() {
           ))}
         </div>
       </div>
-    </section>
+    </DeferredBackgroundSection>
   )
 }
 
