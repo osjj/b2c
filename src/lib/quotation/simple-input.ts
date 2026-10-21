@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { costPriceTextSchema, productSourceSchema } from '@/lib/product-source'
 import { createSalesQuotationInputSchema, currencySchema, quotationItemInputSchema } from './schemas'
+import { commonProductCategorySchema } from './common-product-category'
 import type { WorkbenchSettings } from './workbench-config'
 import { quotationCurrencyMinorUnit } from './workbench-config'
 
@@ -36,6 +37,7 @@ export const commonProductSchema = simpleLineSchema.omit({ quantity: true, image
   costPriceText: costPriceTextSchema,
   specifications: z.string().max(20000).optional(),
   packaging: z.string().max(5000).optional(),
+  category: commonProductCategorySchema.optional(),
   currency: currencySchema,
   active: z.boolean(),
   expectedUpdatedAt: z.string().datetime().optional(),

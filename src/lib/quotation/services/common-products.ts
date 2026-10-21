@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import type { CommonProductOption } from '../simple-input'
 import { commonProductDefaultsSchema } from '../simple-input'
+import { readCommonProductCategory } from '../common-product-category'
 
 export async function readCommonProducts(): Promise<CommonProductOption[]> {
   const products = await prisma.quotationProduct.findMany({
@@ -25,19 +26,20 @@ export async function readCommonProducts(): Promise<CommonProductOption[]> {
     },
   })
   if (!products.length) return []
-  const defaults = await prisma.setting.findMany({
-    where: { key: { in: products.map((product) => `quotation.product-defaults.${product.id}`) } },
+  const settings = await prisma.setting.findMany({
+    where: { key: { in: products.flatMap((product) => [`quotation.product-defaults.${product.id}`, `quotation.product-category.${product.id}`]) } },
     select: { key: true, value: true },
   })
-  const defaultsByKey = new Map(defaults.map((entry) => [entry.key, entry.value]))
+  const settingsByKey = new Map(settings.map((entry) => [entry.key, entry.value]))
   return products.map((product) => {
-    const price = commonProductDefaultsSchema.parse(defaultsByKey.get(`quotation.product-defaults.${product.id}`) ?? {})
+    const price = commonProductDefaultsSchema.parse(settingsByKey.get(`quotation.product-defaults.${product.id}`) ?? {})
     return {
       id: product.id, name: product.nameEn || product.nameZh || '',
       nameEn: product.nameEn, nameZh: product.nameZh, internalNumber: product.internalNumber,
       model: product.model, sku: product.sku,
       specifications: Array.isArray(product.specifications) ? product.specifications.filter((line) => typeof line === 'string').join('\n') : '',
       ...price, description: price.description ?? '', unit: product.unit, active: true,
+      category: readCommonProductCategory(settingsByKey.get(`quotation.product-category.${product.id}`)),
       images: product.images.flatMap((image) => image.sourceFileId ? [{ id: image.sourceFileId, kind: 'source' as const, name: image.displayName || '产品图片' }] : []),
     }
   })

@@ -20,6 +20,7 @@ export function CommonProductPicker({ target, disabled, onClose, onChoose }: {
   // This component stays mounted for the editor visit, shared by every line.
   const [products, setProducts] = useState<CommonProductOption[] | null>(null)
   const [query, setQuery] = useState('')
+  const [category, setCategory] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const started = useRef(false)
@@ -62,13 +63,15 @@ export function CommonProductPicker({ target, disabled, onClose, onChoose }: {
     if (!started.current) void load()
   }, [target, load])
 
+  const categories = useMemo(() => [...new Set((products ?? []).map((product) => product.category).filter((name): name is string => Boolean(name)))].sort((a, b) => a.localeCompare(b, 'zh-CN')), [products])
   const filtered = useMemo(() => {
     const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean)
     return (products ?? []).filter((product) => {
-      const text = [product.name, product.nameEn, product.nameZh, product.internalNumber, product.model, product.sku, product.specifications, product.description, product.packaging].filter(Boolean).join('\n').toLocaleLowerCase()
+      if (category && (category === '__uncategorized__' ? Boolean(product.category) : product.category !== category)) return false
+      const text = [product.name, product.nameEn, product.nameZh, product.category, product.internalNumber, product.model, product.sku, product.specifications, product.description, product.packaging].filter(Boolean).join('\n').toLocaleLowerCase()
       return terms.every((term) => text.includes(term))
     })
-  }, [products, query])
+  }, [products, query, category])
 
   return <Sheet open={target !== null} onOpenChange={(open) => { if (!open) onClose() }}>
     <SheetContent
@@ -89,6 +92,7 @@ export function CommonProductPicker({ target, disabled, onClose, onChoose }: {
         <SheetDescription>选择产品填入第 {(target?.index ?? 0) + 1} 项明细，名称、规格、价格和图片会一起带入。</SheetDescription>
       </SheetHeader>
       <div className="space-y-3 border-b px-6 py-4">
+        <label className="flex items-center gap-3 text-sm text-slate-600">产品分类<select aria-label="筛选产品分类" value={category} onChange={(event) => { setCategory(event.target.value); scrollTop.current = 0 }} className="h-11 min-w-0 flex-1 rounded-md border bg-white px-3 text-sm"><option value="">全部分类</option><option value="__uncategorized__">未分类</option>{categories.map((name) => <option key={name} value={name}>{name}</option>)}</select></label>
         <div className="flex items-center gap-2">
           <div className="relative min-w-0 flex-1">
             <Search aria-hidden="true" className="pointer-events-none absolute left-3 top-3.5 size-4 text-slate-400" />
@@ -96,12 +100,12 @@ export function CommonProductPicker({ target, disabled, onClose, onChoose }: {
           </div>
           {query && <Button type="button" variant="ghost" className="h-11 shrink-0" onClick={() => { setQuery(''); scrollTop.current = 0; searchInput.current?.focus() }}>清空搜索</Button>}
         </div>
-        {products !== null && <p role="status" className="text-xs text-slate-500">{query.trim() ? `找到 ${filtered.length} 个产品，共 ${products.length} 个可用产品` : `共 ${products.length} 个可用产品`}</p>}
+        {products !== null && <p role="status" className="text-xs text-slate-500">{query.trim() || category ? `找到 ${filtered.length} 个产品，共 ${products.length} 个可用产品` : `共 ${products.length} 个可用产品`}</p>}
       </div>
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6" ref={(element) => { if (element) element.scrollTop = scrollTop.current }} onScroll={(event) => { scrollTop.current = event.currentTarget.scrollTop }}>
         {loading && <p role="status" className="flex items-center justify-center gap-2 py-16 text-sm text-slate-500"><Loader2 aria-hidden="true" className="size-4 animate-spin" />正在加载常用产品…</p>}
         {!loading && error && <div className="space-y-4 rounded-xl border border-red-100 bg-red-50 p-6"><p role="alert" className="text-sm text-red-700">{error}</p><Button type="button" variant="outline" onClick={() => void load()}>重新加载</Button></div>}
-        {!loading && !error && products !== null && filtered.length === 0 && <div className="space-y-3 py-16 text-center text-sm text-slate-500"><p>{products.length === 0 ? '暂无可用的常用产品，请先在常用产品页面添加。' : '没有找到匹配的常用产品，请更换关键词。'}</p>{products.length > 0 && <Button type="button" variant="outline" onClick={() => { setQuery(''); searchInput.current?.focus() }}>显示全部产品</Button>}</div>}
+        {!loading && !error && products !== null && filtered.length === 0 && <div className="space-y-3 py-16 text-center text-sm text-slate-500"><p>{products.length === 0 ? '暂无可用的常用产品，请先在常用产品页面添加。' : '没有找到匹配的常用产品，请更换分类或关键词。'}</p>{products.length > 0 && <Button type="button" variant="outline" onClick={() => { setQuery(''); setCategory(''); scrollTop.current = 0; searchInput.current?.focus() }}>显示全部产品</Button>}</div>}
         {!loading && !error && <div className="grid gap-3 sm:grid-cols-2">{filtered.map((product) => {
           const image = product.images[0]
           return <button key={product.id} type="button" aria-label={`选择 ${product.name}`} disabled={disabled} className="group flex min-w-0 flex-col overflow-hidden rounded-xl border bg-white text-left transition-colors hover:border-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 disabled:opacity-50" onClick={() => {
@@ -114,6 +118,7 @@ export function CommonProductPicker({ target, disabled, onClose, onChoose }: {
             </div>
             <div className="flex w-full min-w-0 flex-1 flex-col gap-2 p-4">
               <p className="line-clamp-2 text-sm font-medium text-slate-900 [overflow-wrap:anywhere] group-hover:text-teal-800">{product.name}</p>
+              <p className="text-xs text-teal-700 [overflow-wrap:anywhere]">{product.category || '未分类'}</p>
               {(product.model || product.sku || product.internalNumber) && <p className="line-clamp-1 text-xs text-slate-500 [overflow-wrap:anywhere]">{[product.internalNumber, product.model, product.sku].filter(Boolean).join(' · ')}</p>}
               <p className="mt-auto pt-1 text-sm font-semibold text-teal-800 [overflow-wrap:anywhere]">{product.currency} {product.unitPrice}<span className="ml-1 text-xs font-normal text-slate-500">/ {product.unit}</span></p>
             </div>

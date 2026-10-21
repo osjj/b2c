@@ -57,6 +57,11 @@ export async function saveCommonQuotationProduct(input: unknown) {
       const key = `quotation.product-defaults.${id}`
       const value = { unitPrice: data.unitPrice, currency: data.currency, unitCost: data.unitCost ?? null, description: data.specifications === undefined ? '' : data.description, packaging: data.packaging ?? '' }
       await tx.setting.upsert({ where: { key }, create: { key, value }, update: { value } })
+      if (data.category !== undefined) {
+        const categoryKey = `quotation.product-category.${id}`
+        const categoryValue = { category: data.category }
+        await tx.setting.upsert({ where: { key: categoryKey }, create: { key: categoryKey, value: categoryValue }, update: { value: categoryValue } })
+      }
       if (data.sourceIds !== undefined) await replaceCommonProductImages(tx, id, data.sourceIds)
       await writeQuotationAudit(tx, { entityType: 'QuotationProduct', entityId: id, action: data.id ? 'UPDATE' : 'CREATE', actorId: actor.id })
       return { id }
@@ -89,7 +94,7 @@ export async function deleteCommonQuotationProduct(input: unknown) {
       if (quotationItems || costRecords) throw new QuotationError('REFERENCED_RECORD', referencedReason)
       const deleted = await tx.quotationProduct.deleteMany({ where: { id: data.id, updatedAt: expectedUpdatedAt } })
       if (deleted.count !== 1) throw new QuotationError('VERSION_CONFLICT', '常用产品已变更，请刷新后检查再删除')
-      await tx.setting.deleteMany({ where: { key: `quotation.product-defaults.${data.id}` } })
+      await tx.setting.deleteMany({ where: { key: { in: [`quotation.product-defaults.${data.id}`, `quotation.product-category.${data.id}`] } } })
       await writeQuotationAudit(tx, {
         entityType: 'QuotationProduct', entityId: data.id, action: 'ARCHIVE', actorId: actor.id,
         metadata: { deleted: true },

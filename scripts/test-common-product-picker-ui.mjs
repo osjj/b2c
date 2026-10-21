@@ -259,7 +259,7 @@ try {
   await page.getByRole('heading', { name: 'Fixture product 028', exact: true }).waitFor()
   await submitSearch('no-matching-common-product')
   assert.equal(new URL(page.url()).searchParams.has('page'), false, 'A new search resets pagination')
-  await page.getByText('没有找到匹配的常用产品，请更换关键词或清空搜索。', { exact: true }).waitFor()
+  await page.getByText('没有找到匹配的常用产品，请更换分类、关键词或清空筛选。', { exact: true }).waitFor()
   assert.equal(await page.locator('article').count(), 0)
   await page.getByText('找到 0 个匹配的常用产品', { exact: true }).waitFor()
   await page.getByRole('link', { name: '清空搜索', exact: true }).click()

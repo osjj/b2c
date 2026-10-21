@@ -16,7 +16,7 @@ function reset(status = 'ACTIVE') {
   Object.assign(control, { enabled: true, admin: true, dbCalls: 0, failAudit: false, failDefaults: false, race: null, paths: [] })
   state = {
     products: [{ id: productId, productId: otherId, nameEn: 'Reusable sample', status, updatedAt: new Date(updatedAt) }, { id: otherId, status: 'ACTIVE', updatedAt: new Date(updatedAt) }],
-    settings: [{ key: `quotation.product-defaults.${productId}`, value: { unitPrice: '12.50', unitCost: '8.25' } }, { key: `quotation.product-defaults.${otherId}`, value: { unitPrice: '9' } }, { key: 'quotation.workbench.v2', value: { currency: 'USD' } }],
+    settings: [{ key: `quotation.product-defaults.${productId}`, value: { unitPrice: '12.50', unitCost: '8.25' } }, { key: `quotation.product-defaults.${otherId}`, value: { unitPrice: '9' } }, { key: 'quotation.workbench.v2', value: { currency: 'USD' } }, { key: `quotation.product-category.${productId}`, value: { category: '手部防护' } }],
     images: [{ id: 'image-own', quotationProductId: productId, sourceFileId: 'source' }, { id: 'image-other', quotationProductId: otherId, sourceFileId: 'source' }],
     supplierReferences: [{ id: 'supplier', quotationProductId: productId, sourceFileId: 'source' }],
     sources: [{ id: 'source', objectKey: 'private/image.png', deletedAt: null }],
@@ -56,10 +56,10 @@ const db = {
   salesQuotationItem: { count: async ({ where }) => state.items.filter(row => matches(row, where)).length },
   quotationProductCostRecord: { count: async ({ where }) => state.costs.filter(row => matches(row, where)).length },
   setting: { deleteMany: async ({ where }) => {
-    assert.deepEqual(where, { key: `quotation.product-defaults.${productId}` })
+    assert.deepEqual(where, { key: { in: [`quotation.product-defaults.${productId}`, `quotation.product-category.${productId}`] } })
     if (control.failDefaults) throw new Error('PRIVATE_SECRET cleanup failed')
     const before = state.settings.length
-    state.settings = state.settings.filter(row => !matches(row, where))
+    state.settings = state.settings.filter(row => !where.key.in.includes(row.key))
     return { count: before - state.settings.length }
   } },
   quotationAuditLog: { create: async ({ data }) => { if (control.failAudit) throw new Error('PRIVATE_SECRET audit failed'); state.audits.push(data); return data } },

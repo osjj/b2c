@@ -10,8 +10,10 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { blankLine, blankQuotation, commonProductDescription, simpleTotals, toQuotationInput, type CommonProductOption, type SimpleLine, type SimpleQuotation } from '@/lib/quotation/simple-input'
 import type { WorkbenchSettings } from '@/lib/quotation/workbench-config'
+import { moveLine } from '@/lib/quotation/line-order'
 import { SimpleImagePicker } from './simple-image-picker'
 import { CommonProductPicker } from './common-product-picker'
+import { LinePosition } from './line-position'
 import { useQuotationConfirm } from './use-quotation-confirm'
 
 const savedSchema = z.object({ quotationId: z.string(), revisionId: z.string(), version: z.number(), items: z.array(z.object({ id: z.string(), assets: z.array(z.object({ id: z.string(), displayName: z.string().nullable() })) })) })
@@ -22,6 +24,9 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   const router = useRouter()
   const confirmation = useQuotationConfirm()
   const [value, setValue] = useState(initialValue ?? blankQuotation(settings))
+  // UI keys follow entire rows, including drafts that do not have database IDs yet.
+  const [lineKeys, setLineKeys] = useState(() => value.items.map((_, index) => `line-${index}`))
+  const nextLineKey = useRef(value.items.length)
   const [saved, setSaved] = useState({ revisionId, quotationId, version: expectedVersion })
   const [busy, startTransition] = useTransition()
   const [uploading, setUploading] = useState(false)
@@ -42,7 +47,25 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   }, [dirty])
   function change(next: SimpleQuotation) { setValue(next); setDirty(true); setFeedback('') }
   function line(index: number, patch: Partial<SimpleLine>) { change({ ...value, items: value.items.map((item, i) => i === index ? { ...item, ...patch } : item) }) }
-  function move(index: number, offset: number) { const items = [...value.items]; [items[index], items[index + offset]] = [items[index + offset], items[index]]; change({ ...value, items }) }
+  function moveTo(index: number, target: number) {
+    if (busy || uploading || needsRefresh || submitLock.current || pickerTarget) return
+    const items = moveLine(value.items, index, target)
+    if (items === value.items) return
+    setLineKeys((keys) => moveLine(keys, index, target))
+    change({ ...value, items })
+  }
+  function move(index: number, offset: number) { moveTo(index, index + offset) }
+  function removeLine(index: number) {
+    if (busy || uploading || needsRefresh || submitLock.current || pickerTarget || value.items.length <= 1) return
+    setLineKeys((keys) => keys.filter((_, i) => i !== index))
+    change({ ...value, items: value.items.filter((_, i) => i !== index) })
+  }
+  function addLine() {
+    if (busy || uploading || needsRefresh || submitLock.current || pickerTarget || value.items.length >= 100) return
+    const key = `line-${nextLineKey.current++}`
+    setLineKeys((keys) => [...keys, key])
+    change({ ...value, items: [...value.items, blankLine()] })
+  }
   function refresh() {
     if (saved.quotationId) router.replace(`/admin/sales-quotations/${saved.quotationId}?revision=${saved.revisionId}&reload=${Date.now()}`)
     router.refresh()
@@ -102,9 +125,9 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
         <label className="space-y-2 text-sm font-medium">报价日期<Input type="date" value={value.quotationDate} onChange={(e) => change({ ...value, quotationDate: e.target.value })} /></label>
         <label className="space-y-2 text-sm font-medium">币种<Input value={value.currency} maxLength={3} onChange={(e) => change({ ...value, currency: e.target.value.toUpperCase() })} /></label>
       </section>
-      <div className="flex items-end justify-between"><div><h2 className="text-lg font-semibold">产品明细</h2><p className="mt-1 text-sm text-slate-500">直接录入，或从常用产品填充。不会修改商城产品库。</p></div><span className="text-sm text-slate-500">{value.items.length} 项产品</span></div>
-      {value.items.map((item, index) => <section key={item.id ?? `new-${index}`} className="overflow-hidden rounded-2xl border bg-white">
-        <div className="flex items-center justify-between border-b bg-slate-50 px-5 py-3"><span className="font-mono text-sm font-semibold text-teal-800">ITEM {String(index + 1).padStart(2, '0')}</span><div className="flex gap-1"><Button type="button" variant="ghost" size="icon" aria-label={`上移产品 ${index + 1}`} disabled={index === 0} onClick={() => move(index, -1)}><ArrowUp className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`下移产品 ${index + 1}`} disabled={index === value.items.length - 1} onClick={() => move(index, 1)}><ArrowDown className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`删除产品 ${index + 1}`} disabled={value.items.length === 1} onClick={() => confirmation.ask('移除产品明细', '将从当前草稿中移除此产品。不会删除常用产品或商城产品。', () => change({ ...value, items: value.items.filter((_, i) => i !== index) }))}><Trash2 className="size-4" /></Button></div></div>
+      <div className="flex items-end justify-between gap-3"><div><h2 className="text-lg font-semibold">产品明细</h2><p className="mt-1 text-sm text-slate-500">直接录入，或从常用产品填充。填写序号后按 Enter 或离开输入框即可调整顺序。</p></div><span className="shrink-0 text-sm text-slate-500">{value.items.length} 项产品</span></div>
+      {value.items.map((item, index) => <section key={lineKeys[index]} className="overflow-hidden rounded-2xl border bg-white">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b bg-slate-50 px-5 py-3"><LinePosition position={index + 1} total={value.items.length} disabled={busy || uploading || needsRefresh || pickerTarget !== null} onCommit={(position) => moveTo(index, position - 1)} /><div className="flex gap-1"><Button type="button" variant="ghost" size="icon" aria-label={`上移产品 ${index + 1}`} disabled={index === 0} onClick={() => move(index, -1)}><ArrowUp className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`下移产品 ${index + 1}`} disabled={index === value.items.length - 1} onClick={() => move(index, 1)}><ArrowDown className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`删除产品 ${index + 1}`} disabled={value.items.length === 1} onClick={() => confirmation.ask('移除产品明细', '将从当前草稿中移除此产品。不会删除常用产品或商城产品。', () => removeLine(index))}><Trash2 className="size-4" /></Button></div></div>
         <div className="grid gap-6 p-6 xl:grid-cols-[1fr_2fr]">
           <SimpleImagePicker images={item.images} onChange={(images) => line(index, { images })} onBusy={setUploading} disabled={busy} />
           <div className="space-y-4"><label className="block space-y-2 text-sm font-medium">产品名称<Input value={item.name} maxLength={500} onChange={(e) => line(index, { name: e.target.value })} placeholder="填写对客户展示的名称，中英文均可" /></label>
@@ -115,7 +138,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
           </div>
         </div>
       </section>)}
-      <Button type="button" variant="outline" className="h-12 w-full border-dashed" disabled={value.items.length >= 100} onClick={() => change({ ...value, items: [...value.items, blankLine()] })}><Plus className="mr-2 size-4" />添加产品明细</Button>
+      <Button type="button" variant="outline" className="h-12 w-full border-dashed" disabled={value.items.length >= 100} onClick={addLine}><Plus className="mr-2 size-4" />添加产品明细</Button>
       <section className="grid gap-6 rounded-2xl border bg-white p-6 lg:grid-cols-[2fr_1fr]"><div className="space-y-5"><label className="block space-y-2 text-sm font-medium">报价条款<Textarea rows={6} value={value.terms} onChange={(e) => change({ ...value, terms: e.target.value })} placeholder="付款方式、交货时间、有效期等，按需要填写" /></label><details><summary className="cursor-pointer text-sm text-slate-500">内部备注（不会出现在客户文件中）</summary><Textarea aria-label="内部备注" className="mt-3" rows={3} value={value.internalNotes} onChange={(e) => change({ ...value, internalNotes: e.target.value })} /></details></div><div className="space-y-4"><details open={value.shippingFee !== '0' || value.discountAmount !== '0' || value.otherFee !== '0'}><summary className="cursor-pointer text-sm font-medium">运费、折扣及其他费用（可选）</summary><div className="mt-4 space-y-3">{([['shippingFee', '运费'], ['discountAmount', '折扣金额'], ['otherFee', '其他费用']] as const).map(([key, label]) => <label key={key} className="flex items-center justify-between gap-3 text-sm">{label}<Input className="w-36 text-right" inputMode="decimal" value={value[key]} onChange={(e) => change({ ...value, [key]: e.target.value })} /></label>)}</div></details><div className="rounded-xl bg-slate-900 p-5 text-white"><p className="text-xs tracking-widest text-slate-300">QUOTATION TOTAL</p><p className="mt-3 text-2xl font-semibold tabular-nums">{value.currency} {totals?.total ?? '—'}</p></div></div></section>
     </fieldset>
     <div className="sticky bottom-0 z-10 rounded-xl border bg-white/95 p-4 shadow-lg backdrop-blur"><div aria-live="polite">{feedback && <p className="mb-3 text-sm text-teal-800">{feedback}</p>}{error && <p role="alert" className="mb-3 whitespace-pre-wrap text-sm text-red-700">{error}</p>}</div><div className="flex flex-wrap items-center justify-end gap-3"><span className="mr-auto text-xs text-slate-500">{busy ? '正在处理…' : dirty ? '有未保存的修改' : '填写完成后可保存或预览'}</span>{needsRefresh ? <Button onClick={refresh} disabled={busy}>刷新状态后继续</Button> : <><Button variant="outline" disabled={busy || uploading} onClick={() => run('save')}>保存草稿</Button><Button variant="secondary" disabled={busy || uploading} onClick={() => run('preview')}>预览 PDF</Button><Button className="bg-slate-900 text-white hover:bg-slate-700" disabled={busy || uploading} onClick={() => run('finalize')}>生成正式文件</Button></>}</div></div>

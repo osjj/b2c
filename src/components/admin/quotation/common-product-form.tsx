@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useTransition } from 'react'
+import { useId, useRef, useState, useTransition } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { z } from 'zod'
@@ -10,9 +10,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { SimpleImagePicker } from './simple-image-picker'
+import { COMMON_PRODUCT_CATEGORIES } from '@/lib/quotation/common-product-category'
 
-export function CommonProductForm({ initialValue }: { initialValue?: CommonProductInput }) {
-  const [value, setValue] = useState<CommonProductInput>(initialValue ?? { name: '', specifications: '', description: '', packaging: '', unitCost: null, unit: 'pcs', unitPrice: '0', currency: 'USD', active: true })
+export function CommonProductForm({ initialValue, categoryOptions = [] }: { initialValue?: CommonProductInput; categoryOptions?: string[] }) {
+  const [value, setValue] = useState<CommonProductInput>(initialValue ?? { name: '', category: '', specifications: '', description: '', packaging: '', unitCost: null, unit: 'pcs', unitPrice: '0', currency: 'USD', active: true })
+  const categoryListId = useId()
+  const categories = [...new Set([...COMMON_PRODUCT_CATEGORIES, ...categoryOptions])]
   const [busy, startTransition] = useTransition()
   const saveBusyRef = useRef(false)
   const uploadBusyRef = useRef(false)
@@ -55,6 +58,7 @@ export function CommonProductForm({ initialValue }: { initialValue?: CommonProdu
   }
   return <form onSubmit={(event) => { event.preventDefault(); save() }} className="space-y-5 rounded-2xl border bg-white p-6"><fieldset disabled={saveLocked} className="space-y-5">
     <label className="block space-y-2 text-sm font-medium">产品名称<Input required value={value.name} maxLength={500} onChange={(e) => setValue({ ...value, name: e.target.value })} /></label>
+    <div className="space-y-2"><label className="block space-y-2 text-sm font-medium">产品分类<Input list={categoryListId} value={value.category ?? ''} maxLength={80} onChange={(event) => setValue({ ...value, category: event.target.value })} placeholder="选择已有分类或输入新分类" aria-describedby={`${categoryListId}-help`} /></label><datalist id={categoryListId}>{categories.map((category) => <option key={category} value={category} />)}</datalist><p id={`${categoryListId}-help`} className="text-xs text-slate-500">用于常用产品管理和报价选品筛选；留空则为未分类。</p></div>
     {!value.id && <section className="space-y-3 rounded-xl border bg-slate-50 p-4"><div><h2 className="text-sm font-semibold">常用产品图片</h2><p className="mt-1 text-xs text-slate-500">图片可选。点击图片可放大查看；上传后可调整顺序或移除，产品资料与所选图片一起保存。</p></div><SimpleImagePicker sortable pasteAndDrop preview images={images} onChange={(next) => { imagesRef.current = next; setImages(next) }} onBusy={(next) => { uploadBusyRef.current = next; setUploading(next) }} disabled={saveLocked} /></section>}
     <div className="space-y-2">
       <label htmlFor="productSource" className="block text-sm font-medium">商品来源（仅内部）</label>

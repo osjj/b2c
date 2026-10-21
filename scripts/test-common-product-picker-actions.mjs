@@ -75,7 +75,7 @@ const db = {
     control.calls.push('defaults')
     if (control.failRead === 'defaults') throw new Error('PRIVATE_SECRET setting read error')
     assert.deepEqual(query.select, { key: true, value: true })
-    assert.ok(query.where.key.in.every((key) => key.startsWith('quotation.product-defaults.')))
+    assert.ok(query.where.key.in.every((key) => key.startsWith('quotation.product-defaults.') || key.startsWith('quotation.product-category.')))
     assert.equal(new Set(query.where.key.in).size, query.where.key.in.length)
     return state.settings.filter((entry) => matches(entry, query.where)).map((entry) => selected(entry, query.select))
   } },
@@ -125,15 +125,17 @@ state.products[1].model = null
 state.products[1].sku = null
 state.products[1].specifications = { unstructured: true }
 state.settings.push({ key: `quotation.product-defaults.${productId(2)}`, value: {} })
+state.settings.push({ key: `quotation.product-category.${productId(1)}`, value: { category: '  手部防护  ' } })
 state.settings.reverse()
 const defaults = await load()
 assert.equal(defaults.success, true)
-assert.deepEqual(defaults.data[0], { id: productId(2), name: '产品 2', nameEn: null, nameZh: '产品 2', internalNumber: 'QP-2', model: null, sku: null, specifications: '', description: '', unit: 'pair', unitPrice: '0', currency: 'USD', active: true, images: [] })
+assert.deepEqual(defaults.data[0], { id: productId(2), name: '产品 2', nameEn: null, nameZh: '产品 2', internalNumber: 'QP-2', model: null, sku: null, specifications: '', description: '', unit: 'pair', unitPrice: '0', currency: 'USD', active: true, category: '', images: [] })
 assert.equal(defaults.data[1].unitPrice, '12.50')
 assert.equal(defaults.data[1].unitCost, '8.25')
 assert.equal(defaults.data[1].currency, 'EUR')
 assert.equal(defaults.data[1].description, 'Customer description')
 assert.equal(defaults.data[1].packaging, 'Carton')
+assert.equal(defaults.data[1].category, '手部防护')
 assert.equal(defaults.data[1].specifications, 'Specification A\nSpecification B')
 noPrivateData(defaults); cases++
 
