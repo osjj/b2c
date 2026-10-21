@@ -2,7 +2,6 @@ import { QuotationError } from './errors'
 
 const MIB = 1024 * 1024
 const MAX_IMAGE_BYTES = 5 * MIB
-const MAX_TOTAL_IMAGE_BYTES = 64 * MIB
 
 function formatMiB(bytes: number): string {
   return (bytes / MIB).toFixed(6).replace(/\.?0+$/, '')
@@ -27,12 +26,6 @@ export function assertQuotationImageBudget(assets: readonly { sizeBytes: number 
     throw new QuotationError(
       'FILE_TOO_LARGE',
       `单张报价图片不能超过 5 MiB，当前最大图片为 ${formatMiB(largestImageBytes)} MiB，本次图片总量为 ${formatMiB(totalBytes)} MiB。请压缩或替换超限图片后重试`,
-    )
-  }
-  if (totalBytes > MAX_TOTAL_IMAGE_BYTES) {
-    throw new QuotationError(
-      'FILE_TOO_LARGE',
-      `本次报价图片总量为 ${formatMiB(totalBytes)} MiB，超过 64 MiB 上限。请压缩图片或减少选用图片后重试`,
     )
   }
 }

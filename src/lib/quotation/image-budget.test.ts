@@ -6,9 +6,13 @@ import { assertQuotationImageBudget } from './image-budget'
 
 const MIB = 1024 * 1024
 
-test('allows a 36-image quotation above the former 20 MiB budget', () => {
-  const assets = Array.from({ length: 36 }, (_, index) => ({ sizeBytes: MIB + index }))
-  assert.ok(assets.reduce((total, asset) => total + asset.sizeBytes, 0) > 20 * MIB)
+test('allows an 81-image quotation totaling 91,300,876 bytes above the former 64 MiB budget', () => {
+  const totalBytes = 91_300_876
+  const imageCount = 81
+  const assets = Array.from({ length: imageCount }, (_, index) => ({
+    sizeBytes: Math.floor(totalBytes / imageCount) + (index < totalBytes % imageCount ? 1 : 0),
+  }))
+  assert.equal(assets.reduce((total, asset) => total + asset.sizeBytes, 0), totalBytes)
 
   assert.doesNotThrow(() => assertQuotationImageBudget(assets))
 })
@@ -18,13 +22,15 @@ test('allows no images and an image at the exact 5 MiB limit', () => {
   assert.doesNotThrow(() => assertQuotationImageBudget([{ sizeBytes: 5 * MIB }]))
 })
 
-test('allows an image set at the exact 64 MiB limit', () => {
-  const assets = [
-    ...Array.from({ length: 12 }, () => ({ sizeBytes: 5 * MIB })),
-    { sizeBytes: 4 * MIB },
-  ]
+test('allows image sets below, at and above the former 64 MiB limit', () => {
+  for (const offset of [-1, 0, 1]) {
+    const assets = [
+      ...Array.from({ length: 12 }, () => ({ sizeBytes: 5 * MIB })),
+      { sizeBytes: 4 * MIB + offset },
+    ]
 
-  assert.doesNotThrow(() => assertQuotationImageBudget(assets))
+    assert.doesNotThrow(() => assertQuotationImageBudget(assets))
+  }
 })
 
 test('rejects one byte above the per-image limit with the limit and full current total', () => {
@@ -37,25 +43,6 @@ test('rejects one byte above the per-image limit with the limit and full current
       assert.match(error.message, /当前最大图片为 5\.000001 MiB/)
       assert.match(error.message, /本次图片总量为 6\.000001 MiB/)
       assert.match(error.message, /压缩或替换/)
-      return true
-    },
-  )
-})
-
-test('rejects one byte above the total limit with the current total and remedy', () => {
-  const assets = [
-    ...Array.from({ length: 12 }, () => ({ sizeBytes: 5 * MIB })),
-    { sizeBytes: 4 * MIB + 1 },
-  ]
-
-  assert.throws(
-    () => assertQuotationImageBudget(assets),
-    (error: unknown) => {
-      assert.ok(error instanceof QuotationError)
-      assert.equal(error.code, 'FILE_TOO_LARGE')
-      assert.match(error.message, /图片总量为 64\.000001 MiB/)
-      assert.match(error.message, /超过 64 MiB 上限/)
-      assert.match(error.message, /压缩图片或减少选用图片/)
       return true
     },
   )

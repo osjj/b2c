@@ -7,9 +7,9 @@ import { build } from 'esbuild'
 import sharp from 'sharp'
 
 const nodeRequire = createRequire(import.meta.url)
-const rawImage = randomBytes(600 * 600 * 3)
+const rawImage = randomBytes(900 * 900 * 3)
 const sourceImages = await Promise.all(Array.from({ length: 36 }, async (_, index) => {
-  const bytes = await sharp(rawImage, { raw: { width: 600, height: 600, channels: 3 } })
+  const bytes = await sharp(rawImage, { raw: { width: 900, height: 900, channels: 3 } })
     .linear([1, 1, 1], [index, 0, 0]).png().toBuffer()
   return { bytes, sha256: createHash('sha256').update(bytes).digest('hex'), sizeBytes: bytes.length, contentType: 'image/png' }
 }))
@@ -119,7 +119,7 @@ const reset = () => { revision = makeRevision(); attempts = []; documents = []; 
 const finalizeInput = () => ({ revisionId: revision.id, expectedVersion: revision.version, idempotencyKey: randomUUID() })
 const preview = () => loaded.exports.GET(new Request(`https://example.test/preview?version=${revision.version}`), { params: Promise.resolve({ id: revision.id }) })
 const selectedBytes = revision.items.flatMap(item => item.assets).reduce((sum, asset) => sum + asset.sizeBytes, 0)
-assert.ok(selectedBytes > 20 * 1024 * 1024 && selectedBytes < 64 * 1024 * 1024)
+assert.ok(selectedBytes > 64 * 1024 * 1024, 'Real image bytes must exceed the former aggregate limit')
 let response = await preview()
 assert.equal(response.status, 200)
 assert.equal(Buffer.from(await response.arrayBuffer()).subarray(0, 4).toString(), '%PDF')
@@ -156,10 +156,9 @@ assert.equal(slowResult.status, 'FINALIZED')
 assert.ok(heartbeats.some(entry => entry.reads > 0 && entry.reads < 36), 'Large image sets must renew their lease during copying')
 assert.ok(heartbeats.length >= 20)
 
-for (const failure of ['total', 'single', 'invalid', 'integrity']) {
+for (const failure of ['single', 'invalid', 'integrity']) {
   reset()
   const assets = revision.items.flatMap(item => item.assets)
-  if (failure === 'total') assets.forEach(asset => { asset.sizeBytes = 2 * 1024 * 1024 })
   if (failure === 'single') assets.at(-1).sizeBytes = 5 * 1024 * 1024 + 1
   if (failure === 'invalid') assets.at(-1).sizeBytes = 0
   if (failure === 'integrity') assets[0].sha256 = '0'.repeat(64)
@@ -173,4 +172,4 @@ for (const failure of ['total', 'single', 'invalid', 'integrity']) {
   assert.equal(reads, failure === 'integrity' ? 1 : 0); assert.equal(writes, 0); assert.equal(apiCalls, 0)
   assert.equal(revision.state, 'READY'); assert.equal(documents.length, 0); assert.equal(attempts[0].status, 'FAILED')
 }
-process.stdout.write(`PASS: 36 original images (${(selectedBytes / 1024 / 1024).toFixed(1)} MiB), real preview/finalization rendering, frozen bytes/order/totals, immutable replay, early image limits and integrity failure compensation. All external I/O mocked.\n`)
+process.stdout.write(`PASS: 36 original images (${(selectedBytes / 1024 / 1024).toFixed(1)} MiB), real preview/finalization rendering above the former 64 MiB aggregate limit, frozen bytes/order/totals, immutable replay, early per-image limits and metadata validation, and integrity failure compensation. All external I/O mocked.\n`)
