@@ -17,6 +17,7 @@ export const useRouter=()=>({ push:route=>emit({route}), replace:route=>emit({ro
 export const usePathname=()=>'/admin/sales-quotations';
 export const useSearchParams=()=>new URLSearchParams();
 export const unstable_rethrow=()=>{};
+export async function loadCommonQuotationProducts(){return {success:true,reason:'已加载',data:[{id:'cmockproduct00000000000000',name:'Cotton Workwear',description:'Material: Cotton\\nColor: Navy',unit:'pcs',unitPrice:'12.50',currency:'USD',active:true,images:[]}]};}
 async function save(input) {
  emit({saves:state.saves+1,version:state.version+1});
  if (state.mode==='conflict') return { success:false,code:'VERSION_CONFLICT',reason:'报价已变更，请刷新后重试' };
@@ -32,9 +33,9 @@ import { SimpleQuotationEditor } from './src/components/admin/quotation/simple-e
 import { WorkbenchHeader } from './src/components/admin/quotation/workbench-header';
 import { defaultWorkbenchSettings } from './src/lib/quotation/workbench-config';
 import { useMockState,setMode } from 'quotation-test-mocks';
-function Harness(){const state=useMockState(); return <main className="mx-auto max-w-7xl space-y-8 p-6"><aside className="rounded border border-amber-300 bg-amber-50 p-3 text-sm"><strong>隔离测试 / 不连接数据库</strong><label className="ml-4">模拟结果 <select aria-label="模拟结果" value={state.mode} onChange={e=>setMode(e.target.value)}><option value="success">成功</option><option value="r2">R2 错误</option><option value="conflict">版本冲突</option></select></label><p role="status">保存次数 {state.saves} · 生成次数 {state.finalized} · 刷新次数 {state.refresh} · {state.route}</p></aside><WorkbenchHeader title="新建报价" description="客户名称、产品明细和条款，一页完成。"/><SimpleQuotationEditor customers={[]} products={[{id:'cmockproduct00000000000000',name:'Cotton Workwear',description:'Material: Cotton\\nColor: Navy',unit:'pcs',unitPrice:'12.50',currency:'USD',active:true,images:[]}]} settings={defaultWorkbenchSettings}/></main>}
+function Harness(){const state=useMockState(); return <main className="mx-auto max-w-7xl space-y-8 p-6"><aside className="rounded border border-amber-300 bg-amber-50 p-3 text-sm"><strong>隔离测试 / 不连接数据库</strong><label className="ml-4">模拟结果 <select aria-label="模拟结果" value={state.mode} onChange={e=>setMode(e.target.value)}><option value="success">成功</option><option value="r2">R2 错误</option><option value="conflict">版本冲突</option></select></label><p role="status">保存次数 {state.saves} · 生成次数 {state.finalized} · 刷新次数 {state.refresh} · {state.route}</p></aside><WorkbenchHeader title="新建报价" description="客户名称、产品明细和条款，一页完成。"/><SimpleQuotationEditor customers={[]} settings={defaultWorkbenchSettings}/></main>}
 createRoot(document.getElementById('root')).render(<Harness/>);`, resolveDir: process.cwd(), loader: 'tsx' }, bundle: true, write: false, platform: 'browser', format: 'iife', jsx: 'automatic', define: { 'process.env.NODE_ENV': '"development"' }, plugins: [{ name: 'isolate', setup(plugin) {
-  plugin.onResolve({ filter: /^(next\/navigation|@\/actions\/admin\/sales-quotations|quotation-test-mocks)$/ }, () => ({ path: 'mock', namespace: 'test' }))
+  plugin.onResolve({ filter: /^(next\/navigation|@\/actions\/admin\/(sales-quotations|common-quotation-products)|quotation-test-mocks)$/ }, () => ({ path: 'mock', namespace: 'test' }))
   plugin.onLoad({ filter: /.*/, namespace: 'test' }, () => ({ contents: mocks, loader: 'js', resolveDir: process.cwd() }))
   plugin.onResolve({ filter: /^next\/link$/ }, () => ({ path: 'link', namespace: 'link' }))
   plugin.onResolve({ filter: /^next\/image$/ }, () => ({ path: 'image', namespace: 'image' }))

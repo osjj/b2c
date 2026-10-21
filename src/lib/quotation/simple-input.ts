@@ -44,7 +44,17 @@ export const commonProductSaveSchema = commonProductSchema.extend({
   sourceIds: z.array(z.string().uuid()).max(8).optional(),
 })
 export type CommonProductInput = z.infer<typeof commonProductSchema>
-export type CommonProductOption = Omit<CommonProductInput, 'productSource' | 'costPriceText'> & { id: string; images: SimpleImage[] }
+export const commonProductOptionSchema = commonProductSchema.omit({ productSource: true, costPriceText: true }).extend({
+  id: z.string().cuid(),
+  nameEn: z.string().nullish(),
+  nameZh: z.string().nullish(),
+  internalNumber: z.string().nullish(),
+  model: z.string().nullish(),
+  sku: z.string().nullish(),
+  images: z.array(simpleImageSchema).max(8),
+})
+export const commonProductOptionsSchema = z.array(commonProductOptionSchema)
+export type CommonProductOption = z.infer<typeof commonProductOptionSchema>
 
 export function blankLine(): SimpleLine { return { name: '', description: '', quantity: '1', unit: 'pcs', unitPrice: '0', images: [] } }
 export function blankQuotation(settings: WorkbenchSettings): SimpleQuotation {

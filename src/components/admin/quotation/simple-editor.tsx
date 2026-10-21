@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { z } from 'zod'
-import { ArrowDown, ArrowUp, Plus, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, Plus, Search, Trash2 } from 'lucide-react'
 import { createSalesQuotation, updateSalesQuotation, finalizeSalesQuotation } from '@/actions/admin/sales-quotations'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -11,11 +11,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { blankLine, blankQuotation, commonProductDescription, simpleTotals, toQuotationInput, type CommonProductOption, type SimpleLine, type SimpleQuotation } from '@/lib/quotation/simple-input'
 import type { WorkbenchSettings } from '@/lib/quotation/workbench-config'
 import { SimpleImagePicker } from './simple-image-picker'
+import { CommonProductPicker } from './common-product-picker'
 import { useQuotationConfirm } from './use-quotation-confirm'
 
 const savedSchema = z.object({ quotationId: z.string(), revisionId: z.string(), version: z.number(), items: z.array(z.object({ id: z.string(), assets: z.array(z.object({ id: z.string(), displayName: z.string().nullable() })) })) })
-export function SimpleQuotationEditor({ customers, products, settings, initialValue, revisionId, quotationId, expectedVersion }: {
-  customers: { id: string; companyName: string }[]; products: CommonProductOption[]; settings: WorkbenchSettings
+export function SimpleQuotationEditor({ customers, settings, initialValue, revisionId, quotationId, expectedVersion }: {
+  customers: { id: string; companyName: string }[]; settings: WorkbenchSettings
   initialValue?: SimpleQuotation; revisionId?: string; quotationId?: string; expectedVersion?: number
 }) {
   const router = useRouter()
@@ -29,6 +30,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
   const [preview, setPreview] = useState('')
   const [dirty, setDirty] = useState(false)
   const [needsRefresh, setNeedsRefresh] = useState(false)
+  const [pickerTarget, setPickerTarget] = useState<{ index: number; trigger: HTMLButtonElement } | null>(null)
   const previewRef = useRef('')
   const submitLock = useRef(false)
   const totals = simpleTotals(value)
@@ -83,16 +85,16 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
       finally { submitLock.current = false }
     })
   }
-  function chooseProduct(index: number, id: string, confirmed = false) {
-    const product = products.find((p) => p.id === id)
-    if (!product) return
-    if (value.items[index].name && !confirmed) { confirmation.ask('填充常用产品', '将替换本行的名称、描述、价格和图片。', () => chooseProduct(index, id, true)); return }
+  function chooseProduct(index: number, product: CommonProductOption, confirmed = false) {
+    if (!value.items[index] || busy || uploading || needsRefresh) return
+    if (value.items[index].name && !confirmed) { confirmation.ask('填充常用产品', '将替换本行的名称、描述、价格和图片。', () => chooseProduct(index, product, true)); return }
     const sameCurrency = product.currency === value.currency
     if (!sameCurrency) setError(`产品默认币种为 ${product.currency}，与当前 ${value.currency} 不同，请手动填写单价。`)
     line(index, { quotationProductId: product.id, name: product.name, description: commonProductDescription(product), unit: product.unit, unitPrice: sameCurrency ? product.unitPrice : '0', unitCost: sameCurrency ? product.unitCost : null, images: product.images })
   }
   return <div className="space-y-6">
     {confirmation.dialog}
+    <CommonProductPicker target={pickerTarget} disabled={busy || uploading || needsRefresh} onClose={() => setPickerTarget(null)} onChoose={chooseProduct} />
     <p className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm text-teal-900">内置 Jordan 报价模板。预览不调用 AI、也不盖章，不能作为正式文件发送；正式生成时使用现有 AI 接口辅助排版，可能产生调用费用。产品文字和金额保持原值。</p>
     <fieldset disabled={busy || uploading || needsRefresh} className="space-y-6 disabled:opacity-75">
       <section className="grid gap-5 rounded-2xl border bg-white p-6 md:grid-cols-[2fr_1fr_1fr]">
@@ -106,7 +108,7 @@ export function SimpleQuotationEditor({ customers, products, settings, initialVa
         <div className="grid gap-6 p-6 xl:grid-cols-[1fr_2fr]">
           <SimpleImagePicker images={item.images} onChange={(images) => line(index, { images })} onBusy={setUploading} disabled={busy} />
           <div className="space-y-4"><label className="block space-y-2 text-sm font-medium">产品名称<Input value={item.name} maxLength={500} onChange={(e) => line(index, { name: e.target.value })} placeholder="填写对客户展示的名称，中英文均可" /></label>
-            {products.length > 0 && <label className="block text-xs text-slate-500">从常用产品填充<select aria-label={`选择常用产品 ${index + 1}`} className="mt-1 block w-full rounded-md border bg-white px-3 py-2 text-sm text-slate-700" value="" onChange={(e) => chooseProduct(index, e.target.value)}><option value="">选择产品（可选）</option>{products.map((product) => <option key={product.id} value={product.id}>{product.name} · {product.currency} {product.unitPrice}</option>)}</select></label>}
+            <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 rounded-lg border bg-slate-50 px-3 py-2"><span className="text-xs text-slate-500">从常用产品填充（可选）</span><Button type="button" variant="outline" className="min-h-11 bg-white" aria-label={`选择常用产品 ${index + 1}`} aria-haspopup="dialog" onClick={(event) => setPickerTarget({ index, trigger: event.currentTarget })}><Search aria-hidden="true" className="mr-2 size-4" />选择常用产品</Button></div>
             <label className="block space-y-2 text-sm font-medium">规格 / 描述 / 包装<Textarea rows={5} value={item.description} onChange={(e) => line(index, { description: e.target.value })} placeholder={'每行一条，例如：\nMaterial: Cotton\nColor: Navy\nSizes: S-3XL'} /></label>
             <details><summary className="cursor-pointer text-xs text-slate-500">内部核价（客户不可见）</summary><label className="mt-3 block max-w-xs space-y-2 text-sm">成本单价 · {value.currency}<Input inputMode="decimal" value={item.unitCost ?? ''} onChange={(e) => line(index, { unitCost: e.target.value || null })} placeholder="可留空" /></label></details>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4"><label className="space-y-2 text-sm">数量<Input inputMode="decimal" value={item.quantity} onChange={(e) => line(index, { quantity: e.target.value })} /></label><label className="space-y-2 text-sm">单位<Input value={item.unit} onChange={(e) => line(index, { unit: e.target.value })} /></label><label className="space-y-2 text-sm">单价 · {value.currency}<Input inputMode="decimal" value={item.unitPrice} onChange={(e) => line(index, { unitPrice: e.target.value })} /></label><div className="space-y-2 text-sm"><p>金额</p><output className="block py-2 font-semibold tabular-nums">{totals?.lines[index] ?? '—'}</output></div></div>

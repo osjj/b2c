@@ -8,8 +8,18 @@ import { prisma } from '@/lib/prisma'
 import { assertQuotationWorkbenchEnabled } from '@/lib/quotation/feature'
 import { QuotationError, toQuotationActionError } from '@/lib/quotation/errors'
 import { allocateQuotationProductNumber } from '@/lib/quotation/numbering'
-import { commonProductSaveSchema } from '@/lib/quotation/simple-input'
+import { commonProductOptionsSchema, commonProductSaveSchema } from '@/lib/quotation/simple-input'
 import { writeQuotationAudit } from '@/lib/quotation/services/audit'
+import { readCommonProducts } from '@/lib/quotation/services/common-products'
+
+export async function loadCommonQuotationProducts() {
+  try {
+    assertQuotationWorkbenchEnabled()
+    await requireAdmin()
+    const products = commonProductOptionsSchema.parse(await readCommonProducts())
+    return { success: true as const, reason: '常用产品已加载', data: products }
+  } catch (error) { return toQuotationActionError(error) }
+}
 
 async function replaceCommonProductImages(tx: Prisma.TransactionClient, productId: string, sourceIds: string[]) {
   if (new Set(sourceIds).size !== sourceIds.length) throw new QuotationError('DUPLICATE_FILE', '图片重复')
