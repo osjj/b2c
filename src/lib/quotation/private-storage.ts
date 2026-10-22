@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises'
+import { mkdir, open, readFile, rename, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { dirname, isAbsolute, relative, resolve } from 'node:path'
 
@@ -21,13 +21,26 @@ export type QuotationPrivateObject = {
   sha256: string
 }
 
+export type QuotationPrivateReadOptions = { maxBytes: number }
+
 export interface QuotationPrivateStorage {
   readonly provider: 'local' | 'r2-private'
   put(key: string, bytes: Buffer, contentType: string): Promise<QuotationPrivateObject>
-  get(key: string, contentType: string): Promise<QuotationPrivateObject>
+  get(key: string, contentType: string, options?: QuotationPrivateReadOptions): Promise<QuotationPrivateObject>
   move(sourceKey: string, destinationKey: string, contentType: string): Promise<QuotationPrivateObject>
   delete(key: string): Promise<void>
   deletePrefix(prefix: string): Promise<void>
+}
+
+function readLimit(options: QuotationPrivateReadOptions): number {
+  if (!Number.isSafeInteger(options.maxBytes) || options.maxBytes < 1) {
+    throw new QuotationError('VALIDATION_FAILED', 'Invalid private image read limit')
+  }
+  return options.maxBytes
+}
+
+function oversizedPrivateObject(): QuotationError {
+  return new QuotationError('FILE_TOO_LARGE', '私有图片超过本次处理的大小限制，请重新上传较小图片')
 }
 
 function objectMetadata(bytes: Buffer, contentType: string): QuotationPrivateObject {
@@ -70,9 +83,25 @@ class LocalQuotationPrivateStorage implements QuotationPrivateStorage {
     return objectMetadata(bytes, contentType)
   }
 
-  async get(key: string, contentType: string): Promise<QuotationPrivateObject> {
-    const bytes = await readFile(this.pathFor(key))
-    return objectMetadata(bytes, contentType)
+  async get(key: string, contentType: string, options?: QuotationPrivateReadOptions): Promise<QuotationPrivateObject> {
+    if (!options) return objectMetadata(await readFile(this.pathFor(key)), contentType)
+    const limit = readLimit(options)
+    const handle = await open(this.pathFor(key), 'r')
+    try {
+      if ((await handle.stat()).size > limit) throw oversizedPrivateObject()
+      // A bounded read still protects against a file growing after stat.
+      const buffer = Buffer.allocUnsafe(limit + 1)
+      let length = 0
+      while (length < buffer.length) {
+        const chunk = await handle.read(buffer, length, buffer.length - length, length)
+        if (!chunk.bytesRead) break
+        length += chunk.bytesRead
+      }
+      if (length > limit) throw oversizedPrivateObject()
+      return objectMetadata(buffer.subarray(0, length), contentType)
+    } finally {
+      await handle.close()
+    }
   }
 
   async move(sourceKey: string, destinationKey: string, contentType: string): Promise<QuotationPrivateObject> {
@@ -120,8 +149,47 @@ class R2QuotationPrivateStorage implements QuotationPrivateStorage {
     return objectMetadata(bytes, contentType)
   }
 
-  async get(key: string, contentType: string): Promise<QuotationPrivateObject> {
+  async get(key: string, contentType: string, options?: QuotationPrivateReadOptions): Promise<QuotationPrivateObject> {
     assertSafeObjectKey(key)
+    if (options) {
+      const limit = readLimit(options)
+      const controller = new AbortController()
+      const timeout = setTimeout(() => controller.abort(), 20_000)
+      try {
+        const response = await this.client.send(
+          new GetObjectCommand({ Bucket: this.bucket, Key: key }),
+          { abortSignal: controller.signal },
+        )
+        if (!response.Body) throw new QuotationError('NOT_FOUND', 'Private quotation file not found')
+        if ((response.ContentLength ?? 0) > limit) {
+          controller.abort()
+          throw oversizedPrivateObject()
+        }
+        const reader = response.Body.transformToWebStream().getReader()
+        const chunks: Uint8Array[] = []
+        let length = 0
+        try {
+          for (;;) {
+            const chunk = await reader.read()
+            if (chunk.done) break
+            length += chunk.value.length
+            if (length > limit) {
+              controller.abort()
+              throw oversizedPrivateObject()
+            }
+            chunks.push(chunk.value)
+          }
+        } catch (error) {
+          await reader.cancel().catch(() => undefined)
+          throw error
+        } finally {
+          reader.releaseLock()
+        }
+        return objectMetadata(Buffer.concat(chunks, length), response.ContentType ?? contentType)
+      } finally {
+        clearTimeout(timeout)
+      }
+    }
     const response = await this.client.send(new GetObjectCommand({ Bucket: this.bucket, Key: key }))
     if (!response.Body) throw new QuotationError('NOT_FOUND', 'Private quotation file not found')
     const bytes = Buffer.from(await response.Body.transformToByteArray())

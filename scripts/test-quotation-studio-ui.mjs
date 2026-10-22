@@ -318,8 +318,8 @@ try {
   const beforeValidation = uploadRequests.length
   await emitFiles(pasteTarget, 'drop', [{ name: 'invalid.gif', type: 'image/gif' }])
   await page.getByRole('alert').filter({ hasText: /PNG|JPEG/ }).waitFor()
-  await emitFiles(pasteTarget, 'drop', [{ name: 'large.png', size: 5 * 1024 * 1024 + 1 }])
-  await page.getByRole('alert').filter({ hasText: /5 MB/ }).waitFor()
+  await emitFiles(pasteTarget, 'drop', [{ name: 'large.png', size: 20 * 1024 * 1024 + 1 }])
+  await page.getByRole('alert').filter({ hasText: /20 MB/ }).waitFor()
   await emitFiles(pasteTarget, 'paste', [{ name: 'empty.png', size: 0 }])
   await page.getByRole('alert').waitFor()
   await emitFiles(pasteTarget, 'drop', dropFiles)
