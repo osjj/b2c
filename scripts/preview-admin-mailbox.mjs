@@ -34,7 +34,7 @@ const ownAddresses = ['sales@laifappe.com', 'fixture@qq.com']
 const status = { configured: true, smtpConfigured: true, account: 'fixture@qq.com', aliases: ['sales@laifappe.com'], ownAddresses, defaultSender: 'sales@laifappe.com', lastSyncedAt: null, syncSince: '2026-07-16' }
 const attempts = new Map()
 const bundle = await build({ stdin: {
-  contents: `import React from 'react'; import {createRoot} from 'react-dom/client'; import {MailboxPanel} from './src/components/admin/mailbox-panel'; createRoot(document.getElementById('root')).render(<><p className="mb-6 rounded bg-amber-100 p-3 text-sm">UI fixture preview — simulated mail only; no external sending.</p><MailboxPanel/></>);`,
+  contents: `import React from 'react'; import {createRoot} from 'react-dom/client'; import {MailboxPanel} from './src/components/admin/mailbox-panel'; createRoot(document.getElementById('root')).render(<><p className="mb-6 rounded bg-amber-100 p-3 text-sm">UI fixture preview — simulated mail only; no external sending. 回复正文输入 [invalid-parameters] 可预览参数错误，输入 [denied] 可预览没有参数明细的旧失败记录。</p><MailboxPanel/></>);`,
   resolveDir: process.cwd(), loader: 'tsx',
 }, bundle: true, write: false, platform: 'browser', jsx: 'automatic', define: { 'process.env.NODE_ENV': '"development"' }, tsconfig: 'tsconfig.json' })
 const css = await postcss([tailwind()]).process(await readFile('src/app/globals.css', 'utf8'), { from: 'src/app/globals.css' })
@@ -61,6 +61,17 @@ const server = createServer(async (request, response) => {
     const chunks = []; for await (const chunk of request) chunks.push(chunk)
     const form = await new Response(Buffer.concat(chunks), { headers: { 'content-type': request.headers['content-type'] } }).formData()
     const key = form.get('requestKey'); const parent = messages.find(message => message.id === form.get('parentId'))
+    if (String(form.get('text')).includes('[invalid-parameters]')) {
+      const reason = 'SMTP2GO 拒绝了邮件参数。请按参数校验详情检查后，新建发送尝试。'
+      const requestId = 'fixture-provider-parameter-request-001'
+      const diagnostics = { httpStatus: 400, validationErrors: [
+        { field: 'sender', reason: 'invalid_email' },
+        { field: 'attachments[0].fileblob', reason: 'invalid_base64' },
+        { field: 'custom_headers[0].value', reason: 'too_long', limit: 998 },
+      ] }
+      attempts.set(key, { status: 'FAILED', errorCode: 'PROVIDER_INVALID_REQUEST', reason, requestId, diagnostics })
+      return json(response, { success: false, code: 'PROVIDER_REJECTED', reason, requestId, diagnostics }, 502)
+    }
     if (String(form.get('text')).includes('[denied]')) {
       const reason = 'SMTP2GO 密钥没有此发信接口的调用权限。请更新服务器代码或检查密钥权限后再试。'
       attempts.set(key, { status: 'FAILED', errorCode: 'PROVIDER_PERMISSION_DENIED', reason, requestId: 'fixture-provider-request-001' })

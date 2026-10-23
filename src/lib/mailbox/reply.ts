@@ -6,7 +6,7 @@ import { z } from 'zod'
 
 import { MAX_RAW_MIME_BYTES } from './config'
 import { MailboxError } from './errors'
-import { providerDiagnosticCode, providerFailureReason, safeProviderDiagnosticCode, type ProviderDiagnosticCode } from './provider-diagnostics'
+import { extractProviderFailureDiagnostics, providerDiagnosticCode, providerFailureReason, readProviderFailureDiagnostics, safeProviderDiagnosticCode, type ProviderDiagnosticCode, type ProviderFailureDiagnostics } from './provider-diagnostics'
 import { buildReplyBodies } from './reply-body'
 import { readRichMailboxContent, type MailboxInlineImage } from './rich-content'
 import { safeAttachmentFilename } from './mime'
@@ -34,6 +34,7 @@ export type PreparedReply = {
 export type ReplyAttempt = {
   requestKey: string; account: string; parentId: string; payloadHash: string; status: string;
   outboundMessageId: string | null; providerRequestId: string | null; safeErrorCode: string | null; createdAt: Date;
+  diagnostics?: ProviderFailureDiagnostics;
 }
 export interface ReplyRepository {
   getParent(account: string, id: string): Promise<ReplyParent | null>
@@ -41,11 +42,11 @@ export interface ReplyRepository {
   reserve(prepared: PreparedReply): Promise<{ created: boolean; attempt: ReplyAttempt }>
   getSentMessage(account: string, id: string): Promise<MailboxMessage | null>
   finish(prepared: PreparedReply, requestId?: string): Promise<MailboxMessage>
-  markOutcome(requestKey: string, status: 'FAILED' | 'UNKNOWN', code: string, requestId?: string): Promise<void>
+  markOutcome(requestKey: string, status: 'FAILED' | 'UNKNOWN', code: string, requestId?: string, diagnostics?: ProviderFailureDiagnostics): Promise<void>
 }
 export type ReplyConfig = { account: string | null; defaultSender: string; aliases: string[]; ownAddresses: string[]; apiKey: string | undefined }
 export type ReplyDependencies = { repository: ReplyRepository; fetch?: typeof fetch; now?: () => Date }
-export type ProviderOutcome = { state: 'accepted' | 'rejected' | 'unknown'; requestId?: string; errorCode?: ProviderDiagnosticCode }
+export type ProviderOutcome = { state: 'accepted' | 'rejected' | 'unknown'; requestId?: string; errorCode?: ProviderDiagnosticCode; diagnostics?: ProviderFailureDiagnostics }
 
 export async function readReplyForm(request: Request): Promise<FormData> {
   const contentType = request.headers.get('content-type') || ''
@@ -158,9 +159,11 @@ export async function prepareReply(input: ReplyInput, parent: ReplyParent, confi
 
 const providerPayloadSchema = z.object({
   request_id: z.string().max(200).optional(), error: z.unknown().optional(), error_code: z.unknown().optional(),
+  field_validation_errors: z.unknown().optional(),
   data: z.object({
     failed: z.number().int().nonnegative().optional(), succeeded: z.number().int().nonnegative().optional(),
     failures: z.array(z.unknown()).optional(), error: z.unknown().optional(), error_code: z.unknown().optional(),
+    field_validation_errors: z.unknown().optional(),
   }).optional(),
 })
 
@@ -180,8 +183,12 @@ export function classifyProviderResponse(status: number, raw: unknown): Provider
     return { state: 'accepted', requestId }
   }
   if ((data?.succeeded || 0) > 0) return { state: 'unknown', requestId }
-  if (data?.succeeded === 0 && (hasFailures || error)) return { state: 'rejected', requestId, errorCode: providerDiagnosticCode(parsed.data, status) }
-  if (error && status >= 400 && status < 500) return { state: 'rejected', requestId, errorCode: providerDiagnosticCode(parsed.data, status) }
+  if ((data?.succeeded === 0 && (hasFailures || error)) || (error && status >= 400 && status < 500)) {
+    return {
+      state: 'rejected', requestId, errorCode: providerDiagnosticCode(parsed.data, status),
+      diagnostics: extractProviderFailureDiagnostics(parsed.data, status),
+    }
+  }
   // 5xx, malformed or contradictory results may follow acceptance. Never resend.
   return { state: 'unknown', requestId }
 }
@@ -237,7 +244,9 @@ async function resolvePreviousAttempt(attempt: ReplyAttempt, prepared: PreparedR
     return { message, requestId: attempt.providerRequestId || undefined }
   }
   if (attempt.status === 'FAILED') {
-    throw new MailboxError('SEND_ALREADY_FAILED', providerFailureReason(attempt.safeErrorCode), 409)
+    throw new MailboxError('SEND_ALREADY_FAILED', providerFailureReason(attempt.safeErrorCode), 409, {
+      requestId: attempt.providerRequestId || undefined, diagnostics: readProviderFailureDiagnostics(attempt.diagnostics),
+    })
   }
   if (attempt.status === 'UNKNOWN' || now.getTime() - attempt.createdAt.getTime() > ATTEMPT_PENDING_MS) throw unknownDelivery()
   throw new MailboxError('SEND_IN_PROGRESS', 'This reply is already being processed. Check its status before sending again.', 409)
@@ -266,11 +275,13 @@ export async function sendMailboxReply(input: ReplyInput, config: ReplyConfig, d
   }
   if (outcome.state === 'rejected') {
     try {
-      await repository.markOutcome(input.requestKey, 'FAILED', outcome.errorCode || 'PROVIDER_REJECTED', outcome.requestId)
+      await repository.markOutcome(input.requestKey, 'FAILED', outcome.errorCode || 'PROVIDER_REJECTED', outcome.requestId, outcome.diagnostics)
     } catch {
       throw unknownDelivery()
     }
-    throw new MailboxError('PROVIDER_REJECTED', providerFailureReason(outcome.errorCode), 502)
+    throw new MailboxError('PROVIDER_REJECTED', providerFailureReason(outcome.errorCode), 502, {
+      requestId: outcome.requestId, diagnostics: outcome.diagnostics,
+    })
   }
   await retainUnknown(repository, input.requestKey, outcome.requestId)
   throw unknownDelivery()
@@ -298,6 +309,7 @@ export async function getReplyAttemptStatus(requestKey: string, account: string,
     status: 'FAILED' as const, requestId,
     errorCode: safeProviderDiagnosticCode(attempt.safeErrorCode),
     reason: providerFailureReason(attempt.safeErrorCode),
+    diagnostics: readProviderFailureDiagnostics(attempt.diagnostics),
   }
   if (attempt.status === 'UNKNOWN' || attempt.status === 'SENT' || now.getTime() - attempt.createdAt.getTime() > ATTEMPT_PENDING_MS) {
     return { status: 'UNKNOWN' as const, requestId }

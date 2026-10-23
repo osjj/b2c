@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { mailboxMessageSchema, type MailboxMessage } from '@/lib/mailbox/types'
 import { buildReplyBodies } from '@/lib/mailbox/reply-body'
+import { formatProviderValidationIssue } from '@/lib/mailbox/provider-diagnostics'
 import { MailboxRequestError, formatMailboxDate, formatMailboxSize, mailboxAttemptSchema, mailboxErrorMessage, mailboxFailedAttemptNotice, mailboxReplyDraftSchema, mailboxRequest, replyRecipients } from './mailbox-client'
 import { canApplyMailboxAttempt, subscribeMailboxDraft, writeMailboxDraft } from './mailbox-draft-cache'
 import { MailboxRichFrame, MailboxRichLoading, useMailboxRichContent } from './mailbox-rich-content'
@@ -128,7 +129,7 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
     event.preventDefault()
     if (requestBusy.current || blocked || !draft.text.trim() || !draft.to.trim()) return
     if (draft.missingAttachments) return
-    const sending: MailboxReplyDraft = { ...draft, status: 'sending', notice: '', errorCode: undefined, providerRequestId: undefined }
+    const sending: MailboxReplyDraft = { ...draft, status: 'sending', notice: '', errorCode: undefined, providerRequestId: undefined, diagnostics: undefined }
     // Persist the same request key before the request leaves the browser. An uncertain
     // network result never creates another key or repeats the send automatically.
     try { saveDraft(sending) } catch {
@@ -160,6 +161,8 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
         ...sending,
         status: definitelyFailed ? 'failed' : inputError ? 'draft' : 'unknown',
         errorCode: error instanceof MailboxRequestError ? error.code : undefined,
+        providerRequestId: error instanceof MailboxRequestError ? error.requestId : undefined,
+        diagnostics: definitelyFailed && error instanceof MailboxRequestError ? error.diagnostics : undefined,
         notice: inputError || definitelyFailed ? mailboxErrorMessage(error) : '发送结果尚未确认。为避免重复发送，此草稿已锁定；请查询发送状态并核对邮件服务记录。',
       })
     } finally { requestBusy.current = false; setSendingHere(false) }
@@ -170,14 +173,18 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
     setChecking(true)
     try {
       const result = await mailboxRequest(`/api/admin/mailbox/reply?requestKey=${encodeURIComponent(draft.requestKey)}`, mailboxAttemptSchema)
-      const diagnostics = { providerRequestId: result.requestId || draft.providerRequestId, errorCode: result.errorCode }
+      const attemptMetadata = {
+        providerRequestId: result.requestId || draft.providerRequestId,
+        errorCode: result.errorCode,
+        diagnostics: result.status === 'FAILED' ? result.diagnostics : undefined,
+      }
       if (result.status === 'SENT' && result.message) {
-        updateAttempt({ ...draft, ...diagnostics, status: 'sent', notice: '已确认：邮件服务已接受回复，已加入当前会话。', attachments: [], attachmentNames: [], missingAttachments: false })
+        updateAttempt({ ...draft, ...attemptMetadata, status: 'sent', notice: '已确认：邮件服务已接受回复，已加入当前会话。', attachments: [], attachmentNames: [], missingAttachments: false })
         onSent(result.message)
       } else if (result.status === 'FAILED') {
-        updateAttempt({ ...draft, ...diagnostics, status: 'failed', notice: mailboxFailedAttemptNotice(result) })
+        updateAttempt({ ...draft, ...attemptMetadata, status: 'failed', notice: mailboxFailedAttemptNotice(result) })
       } else {
-        updateAttempt({ ...draft, ...diagnostics, status: 'unknown', notice: result.status === 'PENDING' ? '服务器仍在处理，请稍后再次查询。请勿通过其他入口重复发送。' : '仍无法确认是否已发送。请核对邮件服务记录后处理，当前草稿保持锁定。' })
+        updateAttempt({ ...draft, ...attemptMetadata, status: 'unknown', notice: result.status === 'PENDING' ? '服务器仍在处理，请稍后再次查询。请勿通过其他入口重复发送。' : '仍无法确认是否已发送。请核对邮件服务记录后处理，当前草稿保持锁定。' })
       }
     } catch (error) {
       updateAttempt({ ...draft, notice: `${mailboxErrorMessage(error)} 当前发送锁定状态保持不变。` })
@@ -231,13 +238,27 @@ export function MailboxReplyForm(props: MailboxReplyFormProps) {
       </details>}
       {storageError && <p role="alert" className="text-sm text-destructive">{storageError}</p>}
       {draft.notice && <p role={draft.status === 'sent' ? 'status' : 'alert'} className={`rounded-md border p-3 text-sm ${draft.status === 'sent' ? 'border-green-300 bg-green-50 text-green-900' : 'border-amber-300 bg-amber-50 text-amber-950'}`}>{draft.notice}</p>}
-      {draft.status !== 'draft' && <details className="rounded-md border p-3 text-xs text-muted-foreground"><summary className="cursor-pointer">发送诊断信息</summary><dl className="mt-2 grid min-w-0 gap-1"><dt>本次发送编号</dt><dd className="break-all font-mono">{draft.requestKey}</dd>{draft.providerRequestId && <><dt className="mt-1">邮件服务请求编号</dt><dd className="break-all font-mono">{draft.providerRequestId}</dd></>}{draft.errorCode && <><dt className="mt-1">错误代码</dt><dd className="break-all font-mono">{draft.errorCode}</dd></>}</dl></details>}
+      {draft.status !== 'draft' && <details open={draft.status === 'failed'} className="rounded-md border p-3 text-xs text-muted-foreground">
+        <summary className="cursor-pointer">发送诊断信息</summary>
+        <dl className="mt-2 grid min-w-0 gap-1">
+          <dt>本次发送编号</dt><dd className="break-all font-mono">{draft.requestKey}</dd>
+          {draft.providerRequestId && <><dt className="mt-1">邮件服务请求编号</dt><dd className="break-all font-mono">{draft.providerRequestId}</dd></>}
+          {draft.errorCode && <><dt className="mt-1">错误代码</dt><dd className="break-all font-mono">{draft.errorCode}</dd></>}
+          {draft.diagnostics && <><dt className="mt-1">SMTP2GO HTTP 状态</dt><dd className="font-mono">{draft.diagnostics.httpStatus}</dd></>}
+        </dl>
+        {draft.status === 'failed' && (draft.diagnostics?.validationErrors.length ? <div className="mt-3">
+          <p className="font-medium text-foreground">参数校验详情</p>
+          <ul className="mt-2 space-y-2">{draft.diagnostics.validationErrors.map((issue, index) => <li key={`${issue.field}-${index}`} className="break-words [overflow-wrap:anywhere]">
+            <code className="font-mono text-foreground">{issue.field}</code><span>：{formatProviderValidationIssue(issue)}</span>
+          </li>)}</ul>
+        </div> : <p className="mt-3">此次失败未保存参数明细，无法从此记录确定具体参数。</p>)}
+      </details>}
       {!smtpConfigured && <p role="alert" className="text-sm text-destructive">发信服务尚未配置，当前可以阅读和保存草稿。</p>}
       <div className="flex flex-wrap items-center gap-2">
         {draft.status === 'draft' || pending ? <Button type="submit" disabled={pending || !smtpConfigured || !parent.messageId || draft.missingAttachments || !draft.text.trim() || !draft.to.trim()}>{pending ? <Loader2 className="animate-spin" aria-hidden="true" /> : <Send aria-hidden="true" />}{pending ? '正在发送…' : '发送回复'}</Button> : null}
         {(draft.status === 'unknown' || draft.status === 'failed' || pending) && <Button type="button" variant="outline" disabled={checking || sendingHere} onClick={() => void checkStatus()}><RefreshCw className={checking ? 'animate-spin' : ''} aria-hidden="true" />{checking ? '查询中…' : draft.status === 'failed' ? '查询失败原因' : '查询发送状态'}</Button>}
-        {draft.status === 'failed' && <Button type="button" variant="outline" disabled={checking} onClick={() => update({ ...draft, status: 'draft', requestKey: crypto.randomUUID(), notice: '', errorCode: undefined, providerRequestId: undefined })}>保留草稿，新建发送尝试</Button>}
-        {draft.status === 'sent' && <Button type="button" variant="outline" onClick={() => update({ ...draft, text: '', status: 'draft', requestKey: crypto.randomUUID(), notice: '', errorCode: undefined, providerRequestId: undefined, attachments: [], attachmentNames: [], missingAttachments: false })}>撰写另一封回复</Button>}
+        {draft.status === 'failed' && <Button type="button" variant="outline" disabled={checking} onClick={() => update({ ...draft, status: 'draft', requestKey: crypto.randomUUID(), notice: '', errorCode: undefined, providerRequestId: undefined, diagnostics: undefined })}>保留草稿，新建发送尝试</Button>}
+        {draft.status === 'sent' && <Button type="button" variant="outline" onClick={() => update({ ...draft, text: '', status: 'draft', requestKey: crypto.randomUUID(), notice: '', errorCode: undefined, providerRequestId: undefined, diagnostics: undefined, attachments: [], attachmentNames: [], missingAttachments: false })}>撰写另一封回复</Button>}
         <p className="text-xs text-muted-foreground">草稿保存在当前浏览器会话；附件刷新后需重新选择。</p>
       </div>
     </form>

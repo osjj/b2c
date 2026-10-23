@@ -5,7 +5,8 @@ import { simpleParser } from 'mailparser'
 import MailComposer from 'nodemailer/lib/mail-composer'
 import { readMailboxAttachment } from './attachments'
 
-import { MailboxError } from './errors'
+import { MailboxError, safeMailboxError } from './errors'
+import type { ProviderFailureDiagnostics } from './provider-diagnostics'
 import {
   classifyProviderResponse, getReplyAttemptStatus, parseReplyForm, prepareReply, readReplyForm, sendMailboxReply,
   type PreparedReply, type ReplyAttempt, type ReplyConfig, type ReplyInput, type ReplyParent, type ReplyRepository,
@@ -60,11 +61,11 @@ class MemoryRepository implements ReplyRepository {
     Object.assign(attempt, { status: 'SENT', outboundMessageId: prepared.message.id, providerRequestId: requestId || null })
     return prepared.message
   }
-  async markOutcome(requestKey: string, status: 'FAILED' | 'UNKNOWN', code: string, requestId?: string) {
+  async markOutcome(requestKey: string, status: 'FAILED' | 'UNKNOWN', code: string, requestId?: string, diagnostics?: ProviderFailureDiagnostics) {
     if (this.failMark) throw new Error('private database write error')
     const attempt = this.attempts.get(requestKey)
     assert.ok(attempt)
-    Object.assign(attempt, { status, safeErrorCode: code, providerRequestId: requestId || null })
+    Object.assign(attempt, { status, safeErrorCode: code, providerRequestId: requestId || null, diagnostics })
   }
 }
 
@@ -320,6 +321,58 @@ test('old failures provide generic advice and stored non-allowlisted codes never
     assert.equal(result.errorCode, 'PROVIDER_REJECTED')
     assert.match(result.reason, /未保存可识别的具体原因/)
     assert.ok(!result.reason.includes('sensitive'))
+  }
+})
+
+test('parameter failure details survive immediate rejection, persisted status and replay without another send', async () => {
+  const repository = new MemoryRepository()
+  const privateValue = 'customer-private@example.test api-secret-private message-private'
+  let calls = 0
+  const fetcher: typeof fetch = async () => {
+    calls++
+    return Response.json({
+      request_id: 'parameter-request-123',
+      data: {
+        error: privateValue, error_code: 'E_ApiResponseCodes.NON_VALIDATING_IN_PAYLOAD',
+        field_validation_errors: {
+          fieldname: 'sender',
+          message: `The field 'sender' was expecting a valid RFC-822 formatted email field but found '${privateValue}', Please correct your JSON payload and try again.`,
+        },
+      },
+    }, { status: 400 })
+  }
+  const expected: ProviderFailureDiagnostics = {
+    httpStatus: 400, validationErrors: [{ field: 'sender', reason: 'invalid_email' }],
+  }
+  for (const code of ['PROVIDER_REJECTED', 'SEND_ALREADY_FAILED']) {
+    await assert.rejects(sendMailboxReply(input(), config, { repository, fetch: fetcher }), (error: unknown) => {
+      assert.ok(error instanceof MailboxError)
+      const safe = safeMailboxError(error)
+      assert.equal(safe.code, code)
+      assert.equal(safe.requestId, 'parameter-request-123')
+      assert.deepEqual(safe.diagnostics, expected)
+      assert.ok(!JSON.stringify(safe).includes(privateValue))
+      return true
+    })
+    const status = await getReplyAttemptStatus(input().requestKey, config.account || '', repository)
+    assert.equal(status.status, 'FAILED')
+    if (status.status !== 'FAILED') assert.fail('expected failed status')
+    assert.equal(status.errorCode, 'PROVIDER_INVALID_REQUEST')
+    assert.deepEqual(status.diagnostics, expected)
+  }
+  assert.equal(calls, 1)
+  assert.deepEqual(repository.attempts.get(input().requestKey)?.diagnostics, expected)
+})
+
+test('validation details never appear as a definitive cause for server errors or partial delivery', () => {
+  const validation = { fieldname: 'sender', message: 'must be a valid email address' }
+  for (const [status, data] of [
+    [500, { error_code: 'E_ApiResponseCodes.NON_VALIDATING_IN_PAYLOAD', succeeded: 0, field_validation_errors: validation }],
+    [200, { error_code: 'E_ApiResponseCodes.NON_VALIDATING_IN_PAYLOAD', succeeded: 1, failed: 1, field_validation_errors: validation }],
+  ] as const) {
+    assert.deepEqual(classifyProviderResponse(status, { request_id: 'unknown-request', data }), {
+      state: 'unknown', requestId: 'unknown-request',
+    })
   }
 })
 

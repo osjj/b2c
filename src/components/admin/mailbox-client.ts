@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { providerFailureDiagnosticsSchema, type ProviderFailureDiagnostics } from '@/lib/mailbox/provider-diagnostics'
 import {
   mailboxMessageSchema,
   mailboxStatusSchema,
@@ -36,12 +37,14 @@ export const mailboxReplyDraftSchema = z.object({
   status: z.enum(['draft', 'sending', 'unknown', 'failed', 'sent']),
   notice: z.string(), attachmentNames: z.array(z.string()),
   errorCode: z.string().optional(), providerRequestId: z.string().optional(),
+  diagnostics: providerFailureDiagnosticsSchema.optional().catch(undefined),
 })
 
 export const mailboxAttemptSchema = z.object({
   status: z.enum(['PENDING', 'SENT', 'FAILED', 'UNKNOWN']),
   message: mailboxMessageSchema.optional(), requestId: z.string().optional(),
   errorCode: z.string().optional(), reason: z.string().optional(),
+  diagnostics: providerFailureDiagnosticsSchema.optional().catch(undefined),
 })
 
 export function mailboxFailedAttemptNotice(attempt: z.infer<typeof mailboxAttemptSchema>) {
@@ -52,7 +55,13 @@ export type MailboxListData = z.infer<typeof mailboxListSchema>
 export type MailboxDetailData = z.infer<typeof mailboxDetailSchema>
 
 export class MailboxRequestError extends Error {
-  constructor(message: string, public code?: string, public status?: number) {
+  constructor(
+    message: string,
+    public code?: string,
+    public status?: number,
+    public diagnostics?: ProviderFailureDiagnostics,
+    public requestId?: string,
+  ) {
     super(message)
     this.name = 'MailboxRequestError'
   }
@@ -71,11 +80,16 @@ export async function mailboxRequest<T>(
     success: z.boolean(),
     reason: z.string(),
     code: z.string().optional(),
+    requestId: z.string().optional().catch(undefined),
+    diagnostics: providerFailureDiagnosticsSchema.optional().catch(undefined),
     data: z.unknown().optional(),
   }).safeParse(body)
   if (!envelope.success) throw new MailboxRequestError('服务器响应无法识别，请刷新后查看。')
   if (!response.ok || !envelope.data.success) {
-    throw new MailboxRequestError(envelope.data.reason, envelope.data.code, response.status)
+    throw new MailboxRequestError(
+      envelope.data.reason, envelope.data.code, response.status,
+      envelope.data.diagnostics, envelope.data.requestId,
+    )
   }
   const result = schema.safeParse(envelope.data.data)
   if (!result.success) throw new MailboxRequestError('邮件数据格式不完整，请刷新后查看。')

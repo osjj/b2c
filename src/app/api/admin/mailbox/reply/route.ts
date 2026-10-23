@@ -6,6 +6,7 @@ import { getMailboxConfig } from '@/lib/mailbox/config'
 import { MailboxError, requireMailboxAdmin, requireMailboxMutationRequest, safeMailboxError } from '@/lib/mailbox/errors'
 import { computeDedupeKey } from '@/lib/mailbox/mime'
 import { getReplyAttemptStatus, parseReplyForm, readReplyForm, sendMailboxReply, type ReplyRepository } from '@/lib/mailbox/reply'
+import { addReplyAttemptDiagnostics, readReplyAttemptDiagnostics } from '@/lib/mailbox/reply-attempt-diagnostics'
 import { getMailboxParent, mailboxMessageSelect, mailboxMessageToDto } from '@/lib/mailbox/store'
 
 export const runtime = 'nodejs'
@@ -15,8 +16,13 @@ export const maxDuration = 120
 
 const attemptSelect = {
   requestKey: true, account: true, parentId: true, payloadHash: true, status: true,
-  outboundMessageId: true, providerRequestId: true, safeErrorCode: true, createdAt: true,
+  outboundMessageId: true, providerRequestId: true, safeErrorCode: true, createdAt: true, response: true,
 } satisfies Prisma.AdminMailboxSendAttemptSelect
+
+function replyAttempt(row: Prisma.AdminMailboxSendAttemptGetPayload<{ select: typeof attemptSelect }>) {
+  const { response, ...attempt } = row
+  return { ...attempt, diagnostics: readReplyAttemptDiagnostics(response) }
+}
 
 const repository: ReplyRepository = {
   async getParent(account, id) {
@@ -24,7 +30,8 @@ const repository: ReplyRepository = {
     return row ? { ...mailboxMessageToDto(row), references: row.references, inReplyTo: row.inReplyTo, rawMime: row.rawMime } : null
   },
   async getAttempt(requestKey) {
-    return prisma.adminMailboxSendAttempt.findUnique({ where: { requestKey }, select: attemptSelect })
+    const row = await prisma.adminMailboxSendAttempt.findUnique({ where: { requestKey }, select: attemptSelect })
+    return row ? replyAttempt(row) : null
   },
   async reserve(prepared) {
     try {
@@ -34,12 +41,12 @@ const repository: ReplyRepository = {
         rawMime: new Uint8Array(prepared.rawMime),
         response: { message: prepared.message, references: prepared.references, inReplyTo: prepared.inReplyTo },
       }, select: attemptSelect })
-      return { created: true, attempt }
+      return { created: true, attempt: replyAttempt(attempt) }
     } catch (error) {
       if (!(error instanceof Prisma.PrismaClientKnownRequestError) || error.code !== 'P2002') throw error
       const attempt = await prisma.adminMailboxSendAttempt.findUnique({ where: { requestKey: prepared.requestKey }, select: attemptSelect })
       if (!attempt) throw error
-      return { created: false, attempt }
+      return { created: false, attempt: replyAttempt(attempt) }
     }
   },
   async getSentMessage(account, id) {
@@ -70,17 +77,29 @@ const repository: ReplyRepository = {
       return mailboxMessageToDto(row)
     }, { maxWait: 10_000, timeout: 20_000 })
   },
-  async markOutcome(requestKey, status, code, requestId) {
+  async markOutcome(requestKey, status, code, requestId, diagnostics) {
+    // Read only the small JSON archive, never its MIME bytes. The guarded update
+    // below still owns the SENDING -> outcome transition under concurrent calls.
+    const archive = status === 'FAILED' && diagnostics
+      ? await prisma.adminMailboxSendAttempt.findUnique({ where: { requestKey }, select: { response: true } })
+      : null
     await prisma.adminMailboxSendAttempt.updateMany({
       where: { requestKey, status: 'SENDING' },
-      data: { status, safeErrorCode: code, providerRequestId: requestId },
+      data: {
+        status, safeErrorCode: code, providerRequestId: requestId,
+        ...(archive ? { response: addReplyAttemptDiagnostics(archive.response, diagnostics) } : {}),
+      },
     })
   },
 }
 
 function failure(error: unknown) {
   const safe = safeMailboxError(error)
-  return NextResponse.json({ success: false, code: safe.code, reason: safe.reason }, { status: safe.status, headers: { 'Cache-Control': 'no-store' } })
+  return NextResponse.json({
+    success: false, code: safe.code, reason: safe.reason,
+    ...('requestId' in safe ? { requestId: safe.requestId } : {}),
+    ...('diagnostics' in safe ? { diagnostics: safe.diagnostics } : {}),
+  }, { status: safe.status, headers: { 'Cache-Control': 'no-store' } })
 }
 
 export async function POST(request: NextRequest) {

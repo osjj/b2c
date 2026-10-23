@@ -1,12 +1,24 @@
+import { readProviderFailureDiagnostics, type ProviderFailureDiagnostics } from './provider-diagnostics'
+
+type MailboxErrorDetails = { requestId?: string; diagnostics?: ProviderFailureDiagnostics }
+
 export class MailboxError extends Error {
-  constructor(public readonly code: string, message: string, public readonly status = 400) {
+  constructor(public readonly code: string, message: string, public readonly status = 400, public readonly details?: MailboxErrorDetails) {
     super(message)
     this.name = 'MailboxError'
   }
 }
 
 export function safeMailboxError(error: unknown) {
-  if (error instanceof MailboxError) return { code: error.code, reason: error.message, status: error.status }
+  if (error instanceof MailboxError) {
+    const diagnostics = readProviderFailureDiagnostics(error.details?.diagnostics)
+    const requestId = error.details?.requestId
+    return {
+      code: error.code, reason: error.message, status: error.status,
+      ...(requestId && /^[\w.-]{1,200}$/.test(requestId) ? { requestId } : {}),
+      ...(diagnostics ? { diagnostics } : {}),
+    }
+  }
   return { code: 'MAILBOX_UNAVAILABLE', reason: 'Mailbox operation failed. Check database setup and mailbox connection, then retry.', status: 503 }
 }
 

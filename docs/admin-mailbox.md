@@ -71,7 +71,13 @@ To keep new mail up to date, configure your deployment host's scheduler to run `
 
 ## Local UI verification
 
-`node scripts/preview-admin-mailbox.mjs` starts an isolated fixture UI at `http://127.0.0.1:3127`. All mail responses are local fixtures; it does not load credentials, connect to the database or send mail. Include `[unknown]` in a fixture reply to exercise delivery-unknown locking, `[denied]` for specific failure diagnostics, or `[delay]` to test switching conversations while a reply is pending. Stop this server after checking the interface.
+`node scripts/preview-admin-mailbox.mjs` starts an isolated fixture UI at `http://127.0.0.1:3127`. All mail responses are local fixtures; it does not load credentials, connect to the database or send mail. Include `[unknown]` in a fixture reply to exercise delivery-unknown locking, `[invalid-parameters]` for parameter paths and safe explanations, `[denied]` for a legacy failure without parameter details, or `[delay]` to test switching conversations while a reply is pending. Stop this server after checking the interface.
+
+### Parameter diagnostics release (2026-10-23)
+
+Deploy the updated application, build and restart using the existing release process. No new environment variables or database migration are required. On a new, confirmed provider rejection, the reply form shows the provider HTTP status, recognized parameter paths (for example `attachments[0].fileblob`), fixed safe explanations and the provider request identifier. Status checks and restored session drafts retain these details. Provider messages and actual rejected values are never copied into diagnostics.
+
+The existing private attempt JSON archive keeps its prepared message and threading metadata; only a validated `providerDiagnostics` property is added on failure. Old failures cannot recover parameter details that were never saved. Unsupported provider explanation wording falls back to a generic explanation while retaining any recognized parameter path. Transport failures, partial acceptance and 5xx responses remain locked as UNKNOWN, and diagnosing an existing attempt never sends mail.
 
 The second fixture includes a styled HTML message with a colored table, a CID image and a blocked external image. Check 「原邮件样式」 and the reply preview to verify image/style preservation without contacting a real mailbox.
 
