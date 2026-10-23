@@ -6,6 +6,7 @@ import { z } from 'zod'
 
 import { MAX_RAW_MIME_BYTES } from './config'
 import { MailboxError } from './errors'
+import { buildProviderReplyHeaders } from './provider-headers'
 import { extractProviderFailureDiagnostics, providerDiagnosticCode, providerFailureReason, readProviderFailureDiagnostics, safeProviderDiagnosticCode, type ProviderDiagnosticCode, type ProviderFailureDiagnostics } from './provider-diagnostics'
 import { buildReplyBodies } from './reply-body'
 import { readRichMailboxContent, type MailboxInlineImage } from './rich-content'
@@ -193,7 +194,7 @@ export function classifyProviderResponse(status: number, raw: unknown): Provider
   return { state: 'unknown', requestId }
 }
 
-async function submitReply(prepared: PreparedReply, attachments: ReplyAttachment[], apiKey: string, fetcher: typeof fetch): Promise<ProviderOutcome> {
+async function submitReply(prepared: PreparedReply, attachments: ReplyAttachment[], apiKey: string, fetcher: typeof fetch, providerHeaders: ReturnType<typeof buildProviderReplyHeaders>): Promise<ProviderOutcome> {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
   try {
@@ -208,11 +209,7 @@ async function submitReply(prepared: PreparedReply, attachments: ReplyAttachment
         subject: prepared.message.subject,
         text_body: prepared.message.textBody,
         html_body: prepared.htmlBody,
-        custom_headers: [
-          { header: 'Message-ID', value: prepared.message.messageId },
-          { header: 'In-Reply-To', value: prepared.inReplyTo[0] },
-          { header: 'References', value: prepared.references.join(' ') },
-        ],
+        custom_headers: providerHeaders,
         attachments: attachments.map(attachment => ({
           filename: attachment.filename, mimetype: attachment.contentType, fileblob: attachment.buffer.toString('base64'),
         })),
@@ -259,10 +256,15 @@ export async function sendMailboxReply(input: ReplyInput, config: ReplyConfig, d
   if (!parent) throw new MailboxError('PARENT_NOT_FOUND', 'The original email was not found in this mailbox.', 404)
   const now = dependencies.now?.() || new Date()
   const prepared = await prepareReply(input, parent, config, now)
+  // Resolve durable outcomes before new transport preflight rules. An old
+  // UNKNOWN/SENT attempt must never turn into an editable/retryable input error.
+  const previous = await repository.getAttempt(input.requestKey)
+  if (previous) return resolvePreviousAttempt(previous, prepared, repository, now)
+  const providerHeaders = buildProviderReplyHeaders(prepared.message.messageId || '', prepared.inReplyTo[0], prepared.references)
   // Reserve the identity and private MIME archive before the only external send.
   const reservation = await repository.reserve(prepared)
   if (!reservation.created) return resolvePreviousAttempt(reservation.attempt, prepared, repository, now)
-  const outcome = await submitReply(prepared, input.attachments, config.apiKey, dependencies.fetch || fetch)
+  const outcome = await submitReply(prepared, input.attachments, config.apiKey, dependencies.fetch || fetch, providerHeaders)
   if (outcome.state === 'accepted') {
     try {
       const message = await repository.finish(prepared, outcome.requestId)

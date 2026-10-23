@@ -98,6 +98,20 @@ function safeLimit(value: string | undefined): number | undefined {
   return Number.isSafeInteger(limit) && limit >= 0 && limit <= MAX_LIMIT ? limit : undefined
 }
 
+/** Read numeric lengths only from the exact provider grammar, never rejected values. */
+function lengthRangeIssue(value: unknown, field: string): ProviderValidationIssue | undefined {
+  if (typeof value !== 'string' || value.length > MAX_PROVIDER_MESSAGE_LENGTH) return undefined
+  const match = /^the field (?:'([^']+)'|"([^"]+)") was expecting a value with a length between (\d{1,10}) and (\d{1,10}) but found a value with length of (\d{1,10})(?:, please correct your json payload and try again\.)?$/i.exec(value.trim())
+  if (!match || normalizeParameterField(match[1] ?? match[2]) !== field) return undefined
+  const minimum = safeLimit(match[3])
+  const maximum = safeLimit(match[4])
+  const actual = safeLimit(match[5])
+  if (minimum === undefined || maximum === undefined || actual === undefined || minimum > maximum) return undefined
+  if (actual > maximum) return { field, reason: 'too_long', limit: maximum }
+  if (actual < minimum) return { field, reason: 'too_short', limit: minimum }
+  return undefined
+}
+
 /** Interpret only expected constraints, before any rejected actual value. */
 function expectationText(value: unknown, field: string): string | undefined {
   if (typeof value !== 'string' || value.length > MAX_PROVIDER_MESSAGE_LENGTH) return undefined
@@ -111,6 +125,8 @@ function expectationText(value: unknown, field: string): string | undefined {
 }
 
 function validationIssue(field: string, rawMessage: unknown): ProviderValidationIssue {
+  const lengthIssue = lengthRangeIssue(rawMessage, field)
+  if (lengthIssue) return lengthIssue
   const message = expectationText(rawMessage, field)
   const generic: ProviderValidationIssue = { field, reason: 'invalid_format' }
   if (!message) return generic

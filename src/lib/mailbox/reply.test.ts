@@ -268,6 +268,62 @@ test('format-only upgrades keep the legacy payload hash and never resend an unce
   assert.equal(repository.prepared.size, 0)
 })
 
+test('long conversation send compacts provider headers while retaining full archived references, bodies and attachment bytes', async () => {
+  const makeId = (length: number, index: number) => `<${`m${index}`.padEnd(length - '@example.test>'.length - 1, 'a')}@example.test>`
+  const references = [61, 84, 80, 80, 80, 80, 80, 80].map(makeId)
+  const repository = new MemoryRepository()
+  repository.currentParent = { ...parent, messageId: references[7], references: references.slice(0, -1), inReplyTo: [references[6]] }
+  const attachment = Buffer.from('private attachment bytes stay unchanged')
+  const replyInput = input({ attachments: [{ filename: 'quote.pdf', contentType: 'application/pdf', buffer: attachment }] })
+  let transportBody: {
+    custom_headers: { header: string; value: string }[]; text_body: string; html_body: string;
+    attachments: { fileblob: string }[];
+  } | undefined
+  await sendMailboxReply(replyInput, config, { repository, fetch: successfulFetch(init => { transportBody = JSON.parse(String(init.body)) }) })
+  const prepared = repository.prepared.get(replyInput.requestKey)
+  assert.ok(prepared)
+  assert.ok(transportBody)
+  assert.deepEqual(transportBody.custom_headers, [
+    { header: 'Message-ID', value: prepared.message.messageId },
+    { header: 'In-Reply-To', value: references[7] },
+    { header: 'References', value: [references[0], references[6], references[7]].join(' ') },
+  ])
+  assert.ok(transportBody.custom_headers.every(header => header.value.length <= 255))
+  assert.equal(transportBody.text_body, prepared.message.textBody)
+  assert.equal(transportBody.html_body, prepared.htmlBody)
+  assert.deepEqual(Buffer.from(transportBody.attachments[0].fileblob, 'base64'), attachment)
+  assert.deepEqual(prepared.references, references)
+  const archive = await simpleParser(prepared.rawMime)
+  assert.deepEqual(archive.references, references)
+  assert.equal(archive.inReplyTo, references[7])
+  assert.deepEqual(archive.attachments[0].content, attachment)
+  assert.match(archive.text || '', /Original history/)
+})
+
+test('an oversized required parent ID fails before reservation or provider call, while an older UNKNOWN attempt stays locked', async () => {
+  const repository = new MemoryRepository()
+  const oversizedParentId = `<${'a'.repeat(256 - '@example.test>'.length - 1)}@example.test>`
+  repository.currentParent = { ...parent, messageId: oversizedParentId }
+  let calls = 0
+  const fetcher = successfulFetch(() => { calls++ })
+  await assert.rejects(sendMailboxReply(input(), config, { repository, fetch: fetcher }), (error: unknown) => {
+    assert.ok(error instanceof MailboxError)
+    assert.equal(error.code, 'THREAD_HEADER_TOO_LONG')
+    assert.equal(error.status, 422)
+    return true
+  })
+  assert.equal(repository.prepared.size, 0)
+  assert.equal(repository.attempts.size, 0)
+  assert.equal(calls, 0)
+  // Simulate a durable attempt created by the version before header preflight.
+  const prepared = await prepareReply(input(), repository.currentParent, config, now)
+  const { attempt } = await repository.reserve(prepared)
+  attempt.status = 'UNKNOWN'
+  await assert.rejects(sendMailboxReply(input(), config, { repository, fetch: fetcher }), hasCode('DELIVERY_UNKNOWN'))
+  assert.equal(attempt.status, 'UNKNOWN')
+  assert.equal(calls, 0)
+})
+
 test('provider rejection is persisted without leaking provider detail and replay stays rejected', async () => {
   const repository = new MemoryRepository()
   let calls = 0

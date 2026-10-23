@@ -79,6 +79,12 @@ Deploy the updated application, build and restart using the existing release pro
 
 The existing private attempt JSON archive keeps its prepared message and threading metadata; only a validated `providerDiagnostics` property is added on failure. Old failures cannot recover parameter details that were never saved. Unsupported provider explanation wording falls back to a generic explanation while retaining any recognized parameter path. Transport failures, partial acceptance and 5xx responses remain locked as UNKNOWN, and diagnosing an existing attempt never sends mail.
 
+### Long-conversation References compatibility (2026-10-23)
+
+SMTP2GO validates each custom header value against a 255-character cap. For long conversations, the application now compacts only the References value submitted to that endpoint. Complete IDs are retained in historical order: the direct parent is mandatory, the original root is preferred when it fits, followed by recent ancestors that fit. In-Reply-To remains the direct parent. The private archive MIME, database References array, quoted history, message bodies and attachments retain their full existing contents.
+
+A single required Message-ID or In-Reply-To that exceeds the cap cannot be safely shortened; new attempts fail with an explicit 422 before reservation/provider submission. Existing durable attempts are resolved first, so old UNKNOWN results remain locked and cannot be turned into retryable input errors. Deploy/build/restart the application using the existing process; no migration or environment change is required. This does not automatically retry any failed or uncertain message.
+
 The second fixture includes a styled HTML message with a colored table, a CID image and a blocked external image. Check 「原邮件样式」 and the reply preview to verify image/style preservation without contacting a real mailbox.
 
 ### 原邮件样式更新部署

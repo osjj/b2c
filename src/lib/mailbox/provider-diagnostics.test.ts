@@ -104,6 +104,43 @@ test('recognized constraints become bounded numbers and fixed Chinese templates'
   assert.equal(formatProviderValidationIssue(diagnostics.validationErrors[5]), '参数值不在允许范围内。')
 })
 
+test('official length-range failures compare bounded actual lengths without retaining provider text', () => {
+  const diagnostics = extractProviderFailureDiagnostics({ data: { field_validation_errors: [
+    { fieldname: 'custom_headers[2].value', message: "The field 'custom_headers[2].value' was expecting a value with a length between 1 and 255 but found a value with length of 632, Please correct your JSON payload and try again." },
+    { fieldname: 'custom_headers.001.value', message: 'The field "custom_headers[1].value" was expecting a value with a length between 1 and 255 but found a value with length of 0' },
+  ] } }, 400)
+  assert.deepEqual(diagnostics.validationErrors, [
+    { field: 'custom_headers[2].value', reason: 'too_long', limit: 255 },
+    { field: 'custom_headers[1].value', reason: 'too_short', limit: 1 },
+  ])
+  assert.equal(formatProviderValidationIssue(diagnostics.validationErrors[0]), '超过允许的长度或数量（上限 255）。')
+  assert.equal(formatProviderValidationIssue(diagnostics.validationErrors[1]), '未达到要求的长度或数量（下限 1）。')
+  assert.ok(!JSON.stringify(diagnostics).includes('632'))
+  assert.ok(!JSON.stringify(diagnostics).includes('Please correct your JSON payload'))
+})
+
+test('length ranges without a proven bounded violation keep a generic explanation', () => {
+  const range = (minimum: string, maximum: string, actual: string) => `The field 'custom_headers[2].value' was expecting a value with a length between ${minimum} and ${maximum} but found a value with length of ${actual}`
+  for (const message of [
+    range('1', '255', '1'), range('1', '255', '255'), range('1', '255', '128'),
+    range('255', '1', '632'), range('-1', '255', '632'), range('1', '255', '-1'),
+    range('1', '255', '632.5'), range('1', '255', '6.32e2'),
+    range('1', '1000000001', '632'), range('1000000001', '1000000001', '0'),
+    range('1', '255', '1000000001'), range('1', '255', '9007199254740992'),
+    "The field 'custom_headers[2].value' was expecting a value with a length between 1 and 255",
+    "The field 'subject' was expecting a value with a length between 1 and 255 but found a value with length of 632",
+    "The field 'custom_headers[2].value' was expecting a value with a length between 1 and 255 but found 'private@example.invalid, api_key=sk-secret, length of 632'",
+    range('1', '255', '632') + ', private@example.invalid api_key=sk-secret private.pdf',
+    range('1', '255', '632') + ', Please correct your JSON payload and try again. api_key=sk-secret',
+    'Unrecognized format but found ' + range('1', '255', '632'),
+  ]) {
+    const diagnostics = extractProviderFailureDiagnostics({ field_validation_errors: { fieldname: 'custom_headers[2].value', message } }, 400)
+    assert.deepEqual(diagnostics.validationErrors, [{ field: 'custom_headers[2].value', reason: 'invalid_format' }], message)
+    assert.ok(!JSON.stringify(diagnostics).includes('private'))
+    assert.ok(!JSON.stringify(diagnostics).includes('sk-secret'))
+  }
+})
+
 test('unrecognized and overlong provider messages expose only safe fields with a generic explanation', () => {
   const privateMessages = [
     '<html>Secret body and filename private-quotation.pdf</html>',
