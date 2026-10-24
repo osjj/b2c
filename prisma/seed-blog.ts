@@ -1388,15 +1388,15 @@ const BLOG_POSTS: BlogSeedConfig[] = [
       __dirname,
       'blog-images.construction-safety-helmet-vs-hard-hat.generated.json',
     ),
-    title: 'Safety Helmet vs Hard Hat for Construction: When Buyers Should Upgrade',
+    title: 'Safety Helmet vs Hard Hat: How to Choose for Construction',
     excerpt:
-      'A buyer-focused comparison of construction safety helmets and traditional hard hats: when to upgrade for Type II side impact, chin straps, Class E/G/C ratings, accessory compatibility, and bulk PPE RFQs.',
+      'Compare hard hats and safety helmets by tested impact protection, chin-strap retention, electrical class and fit, with construction task examples and a practical buying checklist.',
     seoTitle:
-      'Safety Helmet vs Hard Hat for Construction | Buyer Guide',
+      'Safety Helmet vs Hard Hat: Differences for Construction',
     seoDescription:
-      'Compare safety helmets vs hard hats for construction buyers. Learn when to upgrade for Type II side impact, chin straps, Class E/G/C, height work, and bulk PPE RFQs.',
+      'Compare safety helmets vs hard hats by impact type, chin straps, electrical class and fit. Choose a construction worker helmet with a practical buyer checklist.',
     seoKeywords:
-      'safety helmet vs hard hat construction, safety helmet vs hard hat, construction safety helmet, hard hat vs safety helmet, when to upgrade hard hats, Type II safety helmet construction, chin strap hard hat construction, construction helmet vs hard hat, safety helmet for scaffolding, hard hat upgrade, construction helmet upgrade',
+      'safety helmet vs hard hat, hard hat vs helmet, safety helmets vs hard hats, construction worker helmet, construction safety helmet, helmet vs hard hat, Type II construction helmet, hard hat chin strap',
     heroFallback:
       'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80',
     sectionImages: {
