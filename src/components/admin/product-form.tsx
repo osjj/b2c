@@ -4,6 +4,7 @@ import { useActionState, useState, useRef, useTransition, useCallback } from 're
 import type { Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
 import { Eye, Loader2 } from 'lucide-react'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
+import type { getProduct } from '@/actions/products'
 import { buildProductSlugBase } from '@/lib/product-slug'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -27,7 +28,7 @@ import { ContentEditor, type EditorJSData, type ContentEditorRef } from './conte
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import { CollectImageAIDialog } from './collect-image-ai-dialog'
-import { ProductPreviewDialog, prepareProductPreviewContent, type ProductPreviewData } from './product-preview-dialog'
+import { ProductPreviewDialog, prepareProductPreviewContent, prepareProductPreviewVariantOptions, type ProductPreviewData } from './product-preview-dialog'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
 import {
@@ -75,7 +76,7 @@ type ProductWithImages = {
     price: number
     sortOrder: number
   }>
-  variants?: ProductPreviewData['variants']
+  variants?: NonNullable<Awaited<ReturnType<typeof getProduct>>>['variants']
   // SEO Fields
   metaTitle?: string | null
   metaDescription?: string | null
@@ -463,7 +464,7 @@ export function ProductForm({ product, categories, collections = [], productColl
         content: prepareProductPreviewContent(editorContent ?? content),
         priceTiers: priceTiers.filter((tier) => Number.isFinite(tier.price) && Number.isFinite(tier.minQuantity)).map((tier, index) => ({ ...tier, id: `preview-tier-${index}`, sortOrder: index })),
         attributes: previewAttributes,
-        variants: (product?.variants ?? []).map(({ id, name, sku, stock, price }) => ({ id, name, sku, stock, price })),
+        variants: (product?.variants ?? []).map(({ id, name, sku, stock, price, options }) => ({ id, name, sku, stock, price, options: prepareProductPreviewVariantOptions(options) })),
       })
       setProductPreviewOpen(true)
     } catch {

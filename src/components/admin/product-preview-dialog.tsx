@@ -1,19 +1,16 @@
 'use client'
 
-import type { ProductVariant } from '@prisma/client'
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { ContentRenderer, type ContentBlock } from '@/components/store/content-renderer'
 import { ProductImageGallery } from '@/components/store/product-image-gallery'
-import { PriceTiersTable } from '@/components/store/price-tiers-table'
+import { B2BProductActions, type B2BProductVariant } from '@/components/store/b2b-product-actions'
 import { getTierPriceRange, type PriceTier } from '@/lib/pricing'
 import { getStorefrontVisibleProductSpecifications, type ProductSpecification } from '@/lib/product-specification-visibility'
 import { formatPrice } from '@/lib/utils'
 import type { ImageData } from '@/types/image'
 import type { EditorJSData } from './content-editor'
-
-type PreviewVariant = Pick<ProductVariant, 'id' | 'name' | 'sku' | 'stock'> & { price: number }
 
 export interface ProductPreviewData {
   name: string
@@ -27,7 +24,7 @@ export interface ProductPreviewData {
   content: Parameters<typeof ContentRenderer>[0]['content']
   priceTiers: PriceTier[]
   attributes: Array<{ name: string; value: string }>
-  variants: PreviewVariant[]
+  variants: B2BProductVariant[]
 }
 
 interface ProductPreviewDialogProps {
@@ -111,6 +108,15 @@ export function prepareProductPreviewContent(content: EditorJSData | null): Prod
     },
   }))
   return { ...content, blocks }
+}
+
+export function prepareProductPreviewVariantOptions(value: unknown): B2BProductVariant['options'] {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+
+  return Object.fromEntries(Object.entries(value).filter((entry): entry is [string, B2BProductVariant['options'][string]] => {
+    const option = entry[1]
+    return option === null || typeof option === 'string' || typeof option === 'number' || typeof option === 'boolean'
+  }))
 }
 
 export function ProductPreviewDialog({ open, onOpenChange, product, onCloseAutoFocus }: ProductPreviewDialogProps) {
@@ -211,21 +217,18 @@ export function ProductPreviewDialog({ open, onOpenChange, product, onCloseAutoF
                     ))}
                   </dl>
                 )}
-                {product.sku && <p className="text-sm text-muted-foreground">SKU: {product.sku}</p>}
-                {product.priceTiers.length > 0 && (
-                  <PriceTiersTable tiers={product.priceTiers} currentQuantity={Math.min(...product.priceTiers.map((tier) => tier.minQuantity))} defaultPrice={product.price ?? product.priceTiers[0].price} />
-                )}
-                {product.variants.length > 0 && (
-                  <section className="space-y-3 border-t pt-4">
-                    <h2 className="text-sm font-medium">Variants</h2>
-                    {product.variants.map((variant) => (
-                      <div key={variant.id} className="rounded-md border p-3 text-sm">
-                        <p className="font-medium">{variant.name}</p>
-                        {variant.sku && <p className="text-muted-foreground">SKU: {variant.sku}</p>}
-                        <p>{formatPrice(variant.price)}</p>
-                      </div>
-                    ))}
-                  </section>
+                {product.sku && product.variants.length === 0 && <p className="text-sm text-muted-foreground">SKU: {product.sku}</p>}
+                {product.price !== null && (
+                  <B2BProductActions
+                    preview
+                    productId="product-preview"
+                    productName={productName}
+                    productImage={product.images[0]?.url}
+                    sku={product.sku || undefined}
+                    defaultPrice={product.price}
+                    priceTiers={product.priceTiers}
+                    variants={product.variants}
+                  />
                 )}
               </div>
             </div>

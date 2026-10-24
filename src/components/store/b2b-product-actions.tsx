@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { Lightbulb } from 'lucide-react'
+import { FileText, Lightbulb } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { cn, formatPrice } from '@/lib/utils'
 import { calculateTierPrice, getNextTierHint, type PriceTier } from '@/lib/pricing'
 import { PriceTiersTable } from './price-tiers-table'
@@ -29,6 +30,7 @@ interface B2BProductActionsProps {
   variants?: B2BProductVariant[]
   children?: ReactNode
   className?: string
+  preview?: boolean
 }
 
 const OPTION_LABELS: Record<string, string> = {
@@ -78,6 +80,7 @@ export function B2BProductActions({
   variants = [],
   children,
   className,
+  preview = false,
 }: B2BProductActionsProps) {
   const variantOptions = useMemo(
     () => variants.filter((variant) => Object.keys(variant.options).length > 0),
@@ -365,20 +368,27 @@ export function B2BProductActions({
           hasPanelHeader && 'lg:sticky lg:bottom-0 lg:z-20 lg:shrink-0 lg:border-t lg:bg-background lg:pb-1 lg:pt-3 lg:shadow-[0_-14px_24px_-22px_rgba(15,23,42,0.7)]'
         )}
       >
-        <AddToQuoteButton
-          productId={productId}
-          productName={selectedVariant ? `${productName} - ${selectedVariant.name}` : productName}
-          productPrice={currentPrice}
-          productImage={productImage}
-          sku={selectedVariant?.sku ?? sku}
-          variantId={selectedVariant?.id}
-          quantity={selectedQuantity}
-          tierLabel={getCurrentTierLabel()}
-          size="lg"
-          className="w-full"
-        >
-          Add to Quote
-        </AddToQuoteButton>
+        {preview ? (
+          <Button type="button" disabled size="lg" className="w-full">
+            <FileText className="h-4 w-4 mr-2" />
+            Add to Quote
+          </Button>
+        ) : (
+          <AddToQuoteButton
+            productId={productId}
+            productName={selectedVariant ? `${productName} - ${selectedVariant.name}` : productName}
+            productPrice={currentPrice}
+            productImage={productImage}
+            sku={selectedVariant?.sku ?? sku}
+            variantId={selectedVariant?.id}
+            quantity={selectedQuantity}
+            tierLabel={getCurrentTierLabel()}
+            size="lg"
+            className="w-full"
+          >
+            Add to Quote
+          </AddToQuoteButton>
+        )}
       </div>
     </div>
   )
