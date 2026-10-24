@@ -2,7 +2,7 @@
 
 import { useActionState, useState, useRef, useTransition, useCallback } from 'react'
 import type { Category, ProductImage, Collection, Attribute, AttributeOption, ProductAttributeValue } from '@prisma/client'
-import { Loader2 } from 'lucide-react'
+import { Eye, Loader2 } from 'lucide-react'
 import { createProduct, updateProduct, type ProductState } from '@/actions/products'
 import { buildProductSlugBase } from '@/lib/product-slug'
 import { Button } from '@/components/ui/button'
@@ -27,6 +27,7 @@ import { ContentEditor, type EditorJSData, type ContentEditorRef } from './conte
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
 import { AIGenerateButton, AIImageDialog } from './ai-product-generator'
 import { CollectImageAIDialog } from './collect-image-ai-dialog'
+import { ProductPreviewDialog, prepareProductPreviewContent, type ProductPreviewData } from './product-preview-dialog'
 import type { AIGeneratedProduct } from '@/types/ai-generation'
 import type { ImageData } from '@/types/image'
 import {
@@ -74,6 +75,7 @@ type ProductWithImages = {
     price: number
     sortOrder: number
   }>
+  variants?: ProductPreviewData['variants']
   // SEO Fields
   metaTitle?: string | null
   metaDescription?: string | null
@@ -292,6 +294,12 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [isPreparingSubmit, setIsPreparingSubmit] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const isSaving = isPreparingSubmit || transitionPending || actionPending
+  const [productPreview, setProductPreview] = useState<ProductPreviewData | null>(null)
+  const [productPreviewOpen, setProductPreviewOpen] = useState(false)
+  const [isPreparingPreview, setIsPreparingPreview] = useState(false)
+  const [previewError, setPreviewError] = useState<string | null>(null)
+  const previewPendingRef = useRef(false)
+  const previewTriggerRef = useRef<HTMLButtonElement | null>(null)
   const validationErrors = Object.entries(state.errors ?? {}).flatMap(([field, messages]) =>
     messages.map((message) => `${field}: ${message}`)
   )
@@ -419,11 +427,58 @@ export function ProductForm({ product, categories, collections = [], productColl
     setContentAiImageDialogOpen(false)
   }, [])
 
+  const handlePreview = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (isSaving || previewPendingRef.current) return
+    previewTriggerRef.current = event.currentTarget
+    previewPendingRef.current = true
+    setIsPreparingPreview(true)
+    setPreviewError(null)
+    try {
+      const editorContent = await contentEditorRef.current?.save()
+      const previewAttributes = attributes
+        .filter((attribute) => attribute.isActive)
+        .toSorted((a, b) => a.sortOrder - b.sortOrder)
+        .flatMap((attribute) => {
+          const value = attributeValues[attribute.id]
+          let displayValue = ''
+          if (typeof value === 'boolean') displayValue = value ? 'Yes' : 'No'
+          else if (Array.isArray(value)) {
+            displayValue = value.map((id: unknown) => attribute.options.find((option) => option.id === id)?.value).filter(Boolean).join(', ')
+          } else if (typeof value === 'string') {
+            displayValue = attribute.type === 'SELECT'
+              ? attribute.options.find((option) => option.id === value)?.value ?? ''
+              : value
+          } else if (typeof value === 'number') displayValue = String(value)
+          return displayValue ? [{ name: attribute.name, value: displayValue }] : []
+        })
+      setProductPreview({
+        name,
+        description,
+        categoryName: categories.find((category) => category.id === categoryId)?.name,
+        sku,
+        price: typeof price === 'number' && Number.isFinite(price) ? price : null,
+        comparePrice: typeof comparePrice === 'number' && Number.isFinite(comparePrice) ? comparePrice : null,
+        images: images.map((image) => ({ ...image })),
+        specifications: specifications.map((specification) => ({ ...specification })),
+        content: prepareProductPreviewContent(editorContent ?? content),
+        priceTiers: priceTiers.filter((tier) => Number.isFinite(tier.price) && Number.isFinite(tier.minQuantity)).map((tier, index) => ({ ...tier, id: `preview-tier-${index}`, sortOrder: index })),
+        attributes: previewAttributes,
+        variants: (product?.variants ?? []).map(({ id, name, sku, stock, price }) => ({ id, name, sku, stock, price })),
+      })
+      setProductPreviewOpen(true)
+    } catch {
+      setPreviewError('无法准备产品预览，请稍后重试。当前修改已保留。')
+    } finally {
+      previewPendingRef.current = false
+      setIsPreparingPreview(false)
+    }
+  }
+
   // Handle form submission - save editor content first
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (isSaving) return
+    if (isSaving || previewPendingRef.current || productPreviewOpen) return
 
     setIsPreparingSubmit(true)
     setSubmitError(null)
@@ -463,13 +518,19 @@ export function ProductForm({ product, categories, collections = [], productColl
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
       {/* AI Generate Button at top */}
-      <div className="flex justify-end">
+      <div className="flex flex-wrap justify-end gap-3">
+        <Button type="button" variant="outline" onClick={handlePreview} disabled={isSaving || isPreparingPreview} aria-busy={isPreparingPreview} className="min-h-11 [-webkit-tap-highlight-color:transparent]">
+          {isPreparingPreview ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Eye className="h-4 w-4" aria-hidden="true" />}
+          {isPreparingPreview ? '准备预览…' : '预览产品'}
+        </Button>
         <AIGenerateButton
           categories={categories}
           collections={collections}
           onApply={handleAIApply}
         />
       </div>
+
+      {previewError && <p role="alert" className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">{previewError}</p>}
 
       {(submitError || state.error || validationErrors.length > 0) && (
         <div
@@ -1057,15 +1118,27 @@ export function ProductForm({ product, categories, collections = [], productColl
         </div>
       </div>
 
-      <div className="flex gap-4">
-        <Button type="submit" disabled={isSaving} aria-busy={isSaving}>
+      {previewError && <p role="alert" className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">{previewError}</p>}
+      <div className="flex flex-wrap gap-4">
+        <Button type="submit" disabled={isSaving || isPreparingPreview} aria-busy={isSaving}>
           {isSaving && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
           {isSaving ? 'Saving...' : product ? 'Update Product' : 'Create Product'}
         </Button>
-        <Button type="button" variant="outline" onClick={() => history.back()} disabled={isSaving}>
+        <Button type="button" variant="outline" onClick={handlePreview} disabled={isSaving || isPreparingPreview} aria-busy={isPreparingPreview} className="min-h-11 [-webkit-tap-highlight-color:transparent]">
+          {isPreparingPreview ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Eye className="h-4 w-4" aria-hidden="true" />}
+          {isPreparingPreview ? '准备预览…' : '预览产品'}
+        </Button>
+        <Button type="button" variant="outline" onClick={() => history.back()} disabled={isSaving || isPreparingPreview}>
           Cancel
         </Button>
       </div>
+
+      <ProductPreviewDialog
+        open={productPreviewOpen}
+        onOpenChange={setProductPreviewOpen}
+        product={productPreview}
+        onCloseAutoFocus={() => previewTriggerRef.current?.focus()}
+      />
 
       {/* AI 图片生成 Dialog（主图） */}
       <CollectImageAIDialog
