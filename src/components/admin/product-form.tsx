@@ -114,6 +114,12 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [images, setImages] = useState<ImageData[]>(
     product?.images.map((img) => ({ url: img.url, alt: img.alt || '' })) || []
   )
+  const [isImageUploading, setIsImageUploading] = useState(false)
+  const imageUploadBusyRef = useRef(false)
+  const handleImageUploadBusy = useCallback((busy: boolean) => {
+    imageUploadBusyRef.current = busy
+    setIsImageUploading(busy)
+  }, [])
   const [galleryActionMessage, setGalleryActionMessage] = useState<{
     kind: 'success' | 'error'
     text: string
@@ -213,14 +219,21 @@ export function ProductForm({ product, categories, collections = [], productColl
   }
 
   function handleImagesAIUpdate(newUrls: string[]) {
+    if (imageUploadBusyRef.current) return
     const altMap = new Map(images.map((img) => [img.url, img.alt]))
-    setImages(newUrls.map((url, i) => ({
+    const nextImages = newUrls.map((url, i) => ({
       url,
       alt: altMap.get(url) || (i === 0 ? name : `${name} - Image ${i + 1}`),
-    })))
+    }))
+    // A closed AI dialog may finish after a newer upload or gallery edit.
+    setImages((current) => current === images ? nextImages : current)
   }
 
   const handleSetDetailImageAsPrimary = useCallback((imageUrl: string) => {
+    if (imageUploadBusyRef.current) {
+      setGalleryActionMessage({ kind: 'error', text: '请等待图片上传完成后再设置主图。' })
+      return false
+    }
     const result = promoteToPrimaryProductImage(
       images,
       { url: imageUrl, alt: name || 'Product image' },
@@ -314,6 +327,7 @@ export function ProductForm({ product, categories, collections = [], productColl
 
   // Handle AI generated data
   const handleAIApply = useCallback((data: AIGeneratedProduct) => {
+    if (imageUploadBusyRef.current) return
     // Update all form fields with AI generated data
     setName(data.name)
     setSlug(data.slug)
@@ -429,7 +443,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   }, [])
 
   const handlePreview = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (isSaving || previewPendingRef.current) return
+    if (isSaving || previewPendingRef.current || imageUploadBusyRef.current) return
     previewTriggerRef.current = event.currentTarget
     previewPendingRef.current = true
     setIsPreparingPreview(true)
@@ -479,7 +493,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (isSaving || previewPendingRef.current || productPreviewOpen) return
+    if (isSaving || previewPendingRef.current || productPreviewOpen || imageUploadBusyRef.current) return
 
     setIsPreparingSubmit(true)
     setSubmitError(null)
@@ -520,15 +534,17 @@ export function ProductForm({ product, categories, collections = [], productColl
     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
       {/* AI Generate Button at top */}
       <div className="flex flex-wrap justify-end gap-3">
-        <Button type="button" variant="outline" onClick={handlePreview} disabled={isSaving || isPreparingPreview} aria-busy={isPreparingPreview} className="min-h-11 [-webkit-tap-highlight-color:transparent]">
+        <Button type="button" variant="outline" onClick={handlePreview} disabled={isSaving || isPreparingPreview || isImageUploading} aria-busy={isPreparingPreview} className="min-h-11 [-webkit-tap-highlight-color:transparent]">
           {isPreparingPreview ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Eye className="h-4 w-4" aria-hidden="true" />}
           {isPreparingPreview ? '准备预览…' : '预览产品'}
         </Button>
-        <AIGenerateButton
-          categories={categories}
-          collections={collections}
-          onApply={handleAIApply}
-        />
+        <fieldset disabled={isImageUploading || isSaving || isPreparingPreview} className="min-w-0">
+          <AIGenerateButton
+            categories={categories}
+            collections={collections}
+            onApply={handleAIApply}
+          />
+        </fieldset>
       </div>
 
       {previewError && <p role="alert" className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">{previewError}</p>}
@@ -644,7 +660,7 @@ export function ProductForm({ product, categories, collections = [], productColl
                 variant="outline"
                 size="sm"
                 onClick={() => setImagesAIDialogOpen(true)}
-                disabled={images.length === 0}
+                disabled={images.length === 0 || isImageUploading || isSaving || isPreparingPreview}
               >
                 AI 生成
               </Button>
@@ -655,6 +671,9 @@ export function ProductForm({ product, categories, collections = [], productColl
                 onChange={setImages}
                 maxImages={MAX_PRODUCT_GALLERY_IMAGES}
                 productName={name}
+                pasteAndDrop
+                disabled={isSaving || isPreparingPreview || productPreviewOpen || imagesAIDialogOpen}
+                onBusy={handleImageUploadBusy}
               />
               <div className="mt-4 space-y-2">
                 <Label htmlFor="productSource">商品来源（仅内部）</Label>
@@ -1121,15 +1140,15 @@ export function ProductForm({ product, categories, collections = [], productColl
 
       {previewError && <p role="alert" className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">{previewError}</p>}
       <div className="flex flex-wrap gap-4">
-        <Button type="submit" disabled={isSaving || isPreparingPreview} aria-busy={isSaving}>
+        <Button type="submit" disabled={isSaving || isPreparingPreview || isImageUploading} aria-busy={isSaving}>
           {isSaving && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
           {isSaving ? 'Saving...' : product ? 'Update Product' : 'Create Product'}
         </Button>
-        <Button type="button" variant="outline" onClick={handlePreview} disabled={isSaving || isPreparingPreview} aria-busy={isPreparingPreview} className="min-h-11 [-webkit-tap-highlight-color:transparent]">
+        <Button type="button" variant="outline" onClick={handlePreview} disabled={isSaving || isPreparingPreview || isImageUploading} aria-busy={isPreparingPreview} className="min-h-11 [-webkit-tap-highlight-color:transparent]">
           {isPreparingPreview ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : <Eye className="h-4 w-4" aria-hidden="true" />}
           {isPreparingPreview ? '准备预览…' : '预览产品'}
         </Button>
-        <Button type="button" variant="outline" onClick={() => history.back()} disabled={isSaving || isPreparingPreview}>
+        <Button type="button" variant="outline" onClick={() => history.back()} disabled={isSaving || isPreparingPreview || isImageUploading}>
           Cancel
         </Button>
       </div>

@@ -3,7 +3,7 @@
 import { useState, useTransition, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { GripVertical } from 'lucide-react'
+import { ExternalLink, GripVertical } from 'lucide-react'
 import {
   Table,
   TableBody,
@@ -13,6 +13,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { formatPrice } from '@/lib/utils'
 import { ProductActions } from '@/components/admin/product-actions'
 import { updateProductsOrder, updateProductSortOrder } from '@/actions/products'
@@ -23,6 +24,7 @@ import { cn } from '@/lib/utils'
 interface Product {
   id: string
   name: string
+  slug: string
   sku: string | null
   price: number
   stock: number
@@ -133,7 +135,7 @@ export function SortableProductTable({ products: initialProducts }: SortableProd
             <TableHead>SKU</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead className="w-24">Actions</TableHead>
+            <TableHead className="w-28">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -209,10 +211,42 @@ export function SortableProductTable({ products: initialProducts }: SortableProd
                 </Badge>
               </TableCell>
               <TableCell>
-                <ProductActions
-                  productId={product.id}
-                  isActive={product.isActive}
-                />
+                <div className="flex items-center gap-1">
+                  {product.isActive ? (
+                    <Button asChild variant="ghost" size="icon" className="h-11 w-11 shrink-0">
+                      <Link
+                        href={`/products/${encodeURIComponent(product.slug)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        prefetch={false}
+                        draggable
+                        className="cursor-pointer"
+                        aria-label={`查看 ${product.name} 的商城详情（新标签页）`}
+                        title="查看商城详情（新标签页）"
+                        onClick={(event) => event.stopPropagation()}
+                        onDragStart={(event) => { event.preventDefault(); event.stopPropagation() }}
+                      >
+                        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="h-11 w-11 shrink-0"
+                      disabled
+                      aria-label={`${product.name} 尚未发布，暂无商城详情页`}
+                      title="尚未发布，暂无商城详情页"
+                    >
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </Button>
+                  )}
+                  <ProductActions
+                    productId={product.id}
+                    isActive={product.isActive}
+                  />
+                </div>
               </TableCell>
             </TableRow>
           ))}
