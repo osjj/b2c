@@ -1,5 +1,6 @@
 import { notFound, permanentRedirect } from 'next/navigation'
 import Link from 'next/link'
+import { Fragment } from 'react'
 import type { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
@@ -17,6 +18,7 @@ import {
   buildProductMetaTitle,
 } from '@/lib/product-seo'
 import { getSiteUrl } from '@/lib/site-url'
+import { buildProductCategoryBreadcrumbs } from '@/lib/product-category-breadcrumbs'
 import {
   getStorefrontVisibleProductSpecifications,
   type ProductSpecification,
@@ -226,27 +228,12 @@ export default async function ProductDetailPage({
     { label: 'Standard', value: getSpecValue(visibleSpecs, ['Standard reference', 'Standard']) },
   ].filter((item): item is ProcurementSummaryItem => Boolean(item.value))
 
-  // Breadcrumb items for JSON-LD. Child categories resolve to their nested URL
-  // so the breadcrumb matches the page's canonical location.
-  const categoryPath = product.category
-    ? product.category.parent && product.category.parent.isActive
-      ? `/categories/${product.category.parent.slug}/${product.category.slug}`
-      : `/categories/${product.category.slug}`
-    : null
+  // Visible navigation and JSON-LD share public category destinations.
+  const categoryBreadcrumbs = buildProductCategoryBreadcrumbs(product.category)
   const breadcrumbItems = [
     { name: 'Home', url: baseUrl },
     { name: 'Products', url: `${baseUrl}/products` },
-    ...(product.category && categoryPath
-      ? product.category.parent && product.category.parent.isActive
-        ? [
-            {
-              name: product.category.parent.name,
-              url: `${baseUrl}/categories/${product.category.parent.slug}`,
-            },
-            { name: product.category.name, url: `${baseUrl}${categoryPath}` },
-          ]
-        : [{ name: product.category.name, url: `${baseUrl}${categoryPath}` }]
-      : []),
+    ...categoryBreadcrumbs.map(({ name, href }) => ({ name, url: `${baseUrl}${href}` })),
     { name: product.name, url: `${baseUrl}/products/${product.slug}` },
   ]
 
@@ -347,28 +334,17 @@ export default async function ProductDetailPage({
           <Link href="/products" className="hover:text-foreground transition-colors">
             Products
           </Link>
-          {product.category && categoryPath && (
-            <>
-              {product.category.parent && product.category.parent.isActive && (
-                <>
-                  <ChevronRight className="h-4 w-4 mx-2" />
-                  <Link
-                    href={`/categories/${product.category.parent.slug}`}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {product.category.parent.name}
-                  </Link>
-                </>
-              )}
+          {categoryBreadcrumbs.map(({ name, href }) => (
+            <Fragment key={href}>
               <ChevronRight className="h-4 w-4 mx-2" />
               <Link
-                href={categoryPath}
+                href={href}
                 className="hover:text-foreground transition-colors"
               >
-                {product.category.name}
+                {name}
               </Link>
-            </>
-          )}
+            </Fragment>
+          ))}
           <ChevronRight className="h-4 w-4 mx-2" />
           <span className="text-foreground" aria-current="page">{product.name}</span>
         </nav>
