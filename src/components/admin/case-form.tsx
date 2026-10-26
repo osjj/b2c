@@ -6,9 +6,10 @@ import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Controller, FormProvider, useFieldArray, useForm, useFormContext, useWatch } from 'react-hook-form'
 import type { FieldPathByValue } from 'react-hook-form'
-import { ArrowDown, ArrowUp, Eye, Loader2, Plus, Save, ShieldCheck, Trash2 } from 'lucide-react'
+import { ArrowDown, ArrowUp, Eye, Loader2, Plus, Save, Trash2 } from 'lucide-react'
 import { saveCaseStudy } from '@/actions/admin/cases'
-import { emptyCaseInput, isCaseSectionKey, type AdminCaseView, type CaseInput } from '@/lib/cases/types'
+import { prepareCasePublicationImage } from '@/actions/admin/case-publication'
+import { caseImageAltFallback, emptyCaseInput, isCaseSectionKey, type AdminCaseView, type CaseInput } from '@/lib/cases/types'
 import { clearCaseSectionPlacement, initializeCaseSectionKeys } from '@/lib/cases/layout'
 import { isCasePrivateImage } from '@/lib/cases/private-image-path'
 import { generateSlug } from '@/lib/utils'
@@ -27,6 +28,10 @@ import { CaseDocumentaryUpload } from './case-documentary-upload'
 
 type TextPath = FieldPathByValue<CaseInput, string | undefined>
 type FieldErrors = Record<string, string[]>
+
+function privatePublicationUrls(values: Pick<CaseInput, 'coverImage' | 'gallery'>): string[] {
+  return [...new Set([values.coverImage, ...values.gallery.map((image) => image.url)].map((url) => url.trim()).filter(isCasePrivateImage))]
+}
 
 function editableValues(record?: AdminCaseView): CaseInput {
   if (!record) return emptyCaseInput()
@@ -152,7 +157,7 @@ function CaseImagePreview({ src, alt }: { src: string; alt: string }) {
           <Image key={src} src={src} alt={alt || (privateImage ? 'Private draft source image' : 'Case image preview')} fill unoptimized sizes="(max-width: 768px) 100vw, 640px" className="object-contain" onError={() => setFailedSource(src)} />
         )}
       </div>
-      <figcaption className="text-xs text-muted-foreground">{privateImage ? 'Private original · Administrator access only' : 'Public image · Save the case to keep image changes'}</figcaption>
+      <figcaption className="text-xs text-muted-foreground">{privateImage ? 'Private original · Prepared automatically when you publish' : 'Public image · Save the case to keep image changes'}</figcaption>
     </figure>
   )
 }
@@ -165,16 +170,16 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
   const [version, setVersion] = useState(caseStudy?.version)
   const [savedStatus, setSavedStatus] = useState(caseStudy?.status ?? 'DRAFT')
   const [pending, setPending] = useState(false)
+  const [publicationProgress, setPublicationProgress] = useState('')
   const [uploading, setUploading] = useState(false)
   const editorBusyRef = useRef(false)
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
   const [serverErrors, setServerErrors] = useState<FieldErrors>({})
   const [placementMessage, setPlacementMessage] = useState('')
-  const [publishCandidate, setPublishCandidate] = useState<CaseInput | null>(null)
   const [archiveCandidate, setArchiveCandidate] = useState<CaseInput | null>(null)
   const busy = pending || uploading
-  const uploadsDisabled = busy || Boolean(publishCandidate) || Boolean(archiveCandidate)
+  const uploadsDisabled = busy || Boolean(archiveCandidate)
   const status = useWatch({ control, name: 'status' })
   const coverImage = useWatch({ control, name: 'coverImage' })
   const coverAlt = useWatch({ control, name: 'coverAlt' })
@@ -217,7 +222,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
   )
 
   function changeUploading(active: boolean) {
-    if (active && (editorBusyRef.current || publishCandidate || archiveCandidate)) return false
+    if (active && (editorBusyRef.current || archiveCandidate)) return false
     editorBusyRef.current = active
     setUploading(active)
     if (active) setMessage('')
@@ -231,9 +236,42 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
     setError('')
     setMessage('')
     setServerErrors({})
-    // Creation is always draft-only, matching the server's enforced default.
-    const savedValues: CaseInput = id ? values : { ...values, status: 'DRAFT', publicationApproved: false }
+    // The status selection is the publication request; retain the legacy flag internally.
+    let savedValues: CaseInput = {
+      ...values,
+      publicationApproved: values.status === 'PUBLISHED',
+      coverAlt: values.coverAlt.trim() || (values.coverImage.trim() ? caseImageAltFallback(values.title) : ''),
+      gallery: values.gallery.map((image, index) => ({ ...image, alt: image.alt.trim() ? image.alt : caseImageAltFallback(values.title, index) })),
+    }
+    let saveStarted = false
     try {
+      const privateImages = savedValues.status === 'PUBLISHED' ? privatePublicationUrls(savedValues) : []
+      if (privateImages.length) {
+        if (!id || !version) {
+          setError('Save this case as a draft and reopen it before publishing its imported images. Your edits are still here.')
+          return
+        }
+        const publicUrls = new Map<string, string>()
+        for (const [index, sourceUrl] of privateImages.entries()) {
+          setPublicationProgress(`Preparing image ${index + 1} of ${privateImages.length}…`)
+          const prepared = await prepareCasePublicationImage(savedValues, sourceUrl, id, version)
+          if (!prepared.success || prepared.sourceUrl !== sourceUrl || !prepared.url
+            || !prepared.url.startsWith('https://') || !safePreviewSource(prepared.url)) {
+            const reason = prepared.success ? 'The prepared image response was invalid. Please retry.' : prepared.reason || 'Please retry.'
+            setError(`Image ${index + 1} of ${privateImages.length} could not be prepared. ${reason} Your edits are still here; the publication save has not been made.`)
+            setServerErrors(prepared.errors ?? {})
+            return
+          }
+          publicUrls.set(sourceUrl, prepared.url)
+        }
+        savedValues = {
+          ...savedValues,
+          coverImage: publicUrls.get(savedValues.coverImage.trim()) ?? savedValues.coverImage,
+          gallery: savedValues.gallery.map((image) => ({ ...image, url: publicUrls.get(image.url.trim()) ?? image.url })),
+        }
+        setPublicationProgress('')
+      }
+      saveStarted = true
       const result = await saveCaseStudy(savedValues, id, version)
       if (!result.success || !result.id || !result.version) {
         setError(result.reason || 'The case could not be saved. Your edits are still here.')
@@ -245,28 +283,27 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
       setSavedStatus(savedValues.status)
       reset(savedValues)
       setMessage(savedValues.status === 'PUBLISHED'
-        ? 'Case saved as published. The approved case can now appear on the public case pages.'
+        ? 'Case saved as published. You can keep editing it here.'
         : savedValues.status === 'ARCHIVED'
           ? 'Case archived. It is excluded from the public case pages and sitemap.'
           : 'Draft saved. It is excluded from public case pages and the sitemap.')
       if (!id) router.replace(`/admin/cases/${result.id}`)
       router.refresh()
     } catch {
-      setError('The save result could not be confirmed. Your edits are still here. Open the latest saved version before retrying.')
+      setError(saveStarted
+        ? 'The save result could not be confirmed. Your edits are still here. Open the latest saved version before retrying.'
+        : 'Image preparation could not be confirmed. Your edits are still here. Try publishing again; verified public image copies will be reused.')
     } finally {
       editorBusyRef.current = false
       setPending(false)
+      setPublicationProgress('')
     }
   }
 
   function submit(values: CaseInput) {
     if (editorBusyRef.current) return
-    if (!id) {
+    if (!id || values.status === 'PUBLISHED') {
       void persist(values)
-      return
-    }
-    if (values.status === 'PUBLISHED') {
-      setPublishCandidate(values)
       return
     }
     // Withdrawing an already-public case also deserves an explicit confirmation.
@@ -280,6 +317,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
   const saveLabel = status === 'PUBLISHED'
     ? savedStatus === 'PUBLISHED' ? 'Update published case' : 'Publish case'
     : status === 'ARCHIVED' ? 'Archive case' : 'Save draft'
+  const pendingLabel = publicationProgress || 'Saving…'
 
   return (
     <FormProvider {...form}>
@@ -297,7 +335,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
               {version ? <span className="font-mono text-xs text-muted-foreground">Version {version}</span> : null}
               {formState.isDirty ? <span className="text-xs text-amber-700">Unsaved edits</span> : null}
             </div>
-            <p className="text-xs leading-relaxed text-muted-foreground">This administrator edits the shared site database. Imported private originals require administrator access; images added through the public uploader are publicly accessible.</p>
+            <p className="text-xs leading-relaxed text-muted-foreground">Choose Published and save to make this case live. Imported images are prepared automatically when publishing. You can edit the content after publication.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {id ? (
@@ -307,12 +345,13 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
             ) : null}
             <Button type="submit" disabled={busy} className="min-h-11">
               {pending ? <Loader2 className="mr-2 size-4 animate-spin" /> : <Save className="mr-2 size-4" />}
-              {pending ? 'Saving…' : saveLabel}
+              {pending ? pendingLabel : saveLabel}
             </Button>
           </div>
         </div>
 
         {message ? <div role="status" className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">{message}</div> : null}
+        {publicationProgress ? <p role="status" aria-live="polite" className="rounded-lg border bg-muted/30 p-4 text-sm">{publicationProgress} Keep this page open. The case will be published after every image is ready.</p> : null}
         {uploading ? <p role="status" className="rounded-lg border bg-muted/30 p-4 text-sm">Images are uploading. Wait before saving or changing image order. Uploaded images still require an explicit case save.</p> : null}
         {error ? (
           <div role="alert" className="space-y-3 rounded-lg border border-destructive/25 bg-destructive/5 p-4 text-sm text-destructive">
@@ -350,7 +389,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
             </EditorCard>
 
             <EditorCard number="02" title="Procurement schedule" description="Record each product, confirmed quantity and actual unit separately. Do not add together unlike units.">
-              {procurement.fields.length === 0 ? <p className="text-sm text-muted-foreground">No procurement items yet. A published case requires at least one.</p> : null}
+              {procurement.fields.length === 0 ? <p className="text-sm text-muted-foreground">No procurement items yet. You can add them before or after publishing.</p> : null}
               {procurement.fields.map((row, index) => (
                 <div key={row.id} className="space-y-4 rounded-lg border p-4">
                   <RowControls index={index} count={procurement.fields.length} name="Item" remove={procurement.remove} move={procurement.move} />
@@ -373,7 +412,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
 
             <EditorCard number="03" title="The procurement story" description="Arrange the real background, selection and cooperation process into readable sections. Images follow the section chosen in their “Show after” field. Heading edits and section moves keep those assignments. Plain text is safely rendered; HTML is not supported.">
               {placementMessage ? <p role="status" className="rounded-md border border-blue-200 bg-blue-50 p-3 text-xs leading-relaxed text-blue-950">{placementMessage}</p> : null}
-              {sections.fields.length === 0 ? <p className="text-sm text-muted-foreground">Add a narrative section to explain the case. At least one is required to publish.</p> : null}
+              {sections.fields.length === 0 ? <p className="text-sm text-muted-foreground">Add story sections now or keep editing after publication.</p> : null}
               {sections.fields.map((row, index) => (
                 <div key={row.id} className="space-y-4 rounded-lg border p-4">
                   <RowControls index={index} count={sections.fields.length} name="Section" remove={removeStorySection} move={sections.move} />
@@ -401,7 +440,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
             </EditorCard>
 
             <EditorCard number="05" title="Documentary images & placement" description="Place each image immediately after its related text with “Show after”. Moving an image changes its order within that block. Unassigned images stay available as Additional records. Use genuine, permissioned and redacted photographs; certificate screenshots alone do not establish order-model correspondence or compliance.">
-              <p className="rounded-md border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-950">Imported private originals are for administrator-only draft review and cannot be published. Use permissioned, redacted public images before publication. The public uploader below is not private.</p>
+              <p className="rounded-md border bg-muted/30 p-3 text-xs leading-relaxed text-muted-foreground">Imported originals stay private in drafts and are prepared automatically when you publish. Uploaded images are publicly accessible.</p>
               <CaseDocumentaryUpload
                 id="case-gallery-upload" multiple maxFiles={30 - gallery.fields.length}
                 label="Add gallery image files" buttonLabel="Upload gallery images"
@@ -475,27 +514,17 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
 
           <div className="min-w-0 space-y-6">
             <Card>
-              <CardHeader><CardTitle>Publication controls</CardTitle><CardDescription>New cases start as unpublished drafts.</CardDescription></CardHeader>
+              <CardHeader><CardTitle>Publication</CardTitle><CardDescription>Choose a status and save. Content can be edited after publication.</CardDescription></CardHeader>
               <CardContent className="space-y-5">
                 <div className="space-y-2">
                   <Label htmlFor="case-status">Case status</Label>
                   <select id="case-status" {...register('status')} className="h-11 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                     <option value="DRAFT">Draft — not public</option>
-                    <option value="PUBLISHED" disabled={!id}>Published — public</option>
+                    <option value="PUBLISHED">Published — public</option>
                     <option value="ARCHIVED" disabled={!id}>Archived — not public</option>
                   </select>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{id ? 'Changing the status takes effect only when saved. Publishing requires a separate final confirmation.' : 'Save the new case as a draft first. Publication controls unlock after the first save.'}</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">Published cases go live when saved. Drafts stay private.</p>
                 </div>
-                <div className="flex items-start gap-3 rounded-lg border bg-muted/30 p-3">
-                  <ShieldCheck className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                  <p className="text-xs leading-relaxed">Publication requires a summary, country, industry, at least one procurement item and one story section. Images need accurate alt text.</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Controller control={control} name="publicationApproved" render={({ field }) => <Checkbox id="case-publicationApproved" checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} className="mt-1" />} />
-                  <Label htmlFor="case-publicationApproved" className="min-h-11 cursor-pointer text-xs leading-relaxed">I have reviewed the facts, anonymization and publication permissions for the text and every image. Claims about certification, delivery and outcomes match the available evidence.</Label>
-                </div>
-                {serverErrors.publicationApproved?.[0] ? <p className="text-xs text-destructive">{serverErrors.publicationApproved[0]}</p> : null}
-                <p className="text-xs leading-relaxed text-muted-foreground">This confirmation is an editorial review, not verification of a certificate. Keep unresolved evidence in private notes.</p>
                 <div className="flex items-center gap-3 border-t pt-4">
                   <Controller control={control} name="featured" render={({ field }) => <Checkbox id="case-featured" checked={field.value} onCheckedChange={(checked) => field.onChange(checked === true)} />} />
                   <Label htmlFor="case-featured" className="flex min-h-11 items-center">Featured case</Label>
@@ -506,8 +535,8 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                   <p className="text-xs text-muted-foreground">Featured cases appear first; lower values come first within each group.</p>
                   {serverErrors.sortOrder?.[0] ? <p className="text-xs text-destructive">{serverErrors.sortOrder[0]}</p> : null}
                 </div>
-                <Button type="submit" className="min-h-11 w-full" disabled={busy}>{pending ? 'Saving…' : saveLabel}</Button>
-                {id ? <p className="text-xs text-muted-foreground">Preview shows the last saved version. Save changes before opening it.</p> : <p className="text-xs text-muted-foreground">Save the draft first to unlock its administrator-only preview.</p>}
+                <Button type="submit" className="min-h-11 w-full" disabled={busy}>{pending ? pendingLabel : saveLabel}</Button>
+                {id ? <p className="text-xs text-muted-foreground">Preview shows the last saved version. Save changes before opening it.</p> : <p className="text-xs text-muted-foreground">Save to create the case with your selected status.</p>}
               </CardContent>
             </Card>
 
@@ -525,7 +554,7 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
                 {coverImage ? <Button type="button" variant="outline" className="min-h-11" disabled={busy} onClick={() => {
                   if (!editorBusyRef.current) setValue('coverImage', '', { shouldDirty: true })
                 }}><Trash2 className="mr-2 size-4" />Remove cover image</Button> : null}
-                <p className="text-xs leading-relaxed text-amber-800">A private cover is administrator-only and blocks publication. Replace it with an approved, redacted public image before publishing; the cover uploader does not keep uploads private.</p>
+                <p className="text-xs leading-relaxed text-muted-foreground">An imported private cover is prepared automatically when publishing. Uploaded cover images are publicly accessible.</p>
               </CardContent>
             </Card>
 
@@ -546,24 +575,6 @@ export function CaseForm({ caseStudy }: { caseStudy?: AdminCaseView }) {
           </div>
         </fieldset>
       </form>
-
-      <AlertDialog open={Boolean(publishCandidate)} onOpenChange={(open) => { if (!open) setPublishCandidate(null) }}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{savedStatus === 'PUBLISHED' ? 'Update the public case?' : 'Publish this case?'}</AlertDialogTitle>
-            <AlertDialogDescription>“{publishCandidate?.title}” will be saved as Published in the shared website database. Approved content can appear on /cases, its detail page and the sitemap. Verify the facts and permissions before continuing.</AlertDialogDescription>
-          </AlertDialogHeader>
-          {!publishCandidate?.publicationApproved ? <p className="text-sm text-destructive">Check the editorial review confirmation in the form before publishing.</p> : null}
-          <AlertDialogFooter>
-            <AlertDialogCancel>Keep editing</AlertDialogCancel>
-            <AlertDialogAction disabled={!publishCandidate?.publicationApproved || busy} onClick={() => {
-              const values = publishCandidate
-              setPublishCandidate(null)
-              if (values) void persist(values)
-            }}>{savedStatus === 'PUBLISHED' ? 'Confirm public update' : 'Confirm publication'}</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
 
       <AlertDialog open={Boolean(archiveCandidate)} onOpenChange={(open) => { if (!open) setArchiveCandidate(null) }}>
         <AlertDialogContent>

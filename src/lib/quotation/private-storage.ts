@@ -22,13 +22,14 @@ export type QuotationPrivateObject = {
 }
 
 export type QuotationPrivateReadOptions = { maxBytes: number }
+export type QuotationPrivateWriteOptions = { signal?: AbortSignal }
 
 export interface QuotationPrivateStorage {
   readonly provider: 'local' | 'r2-private'
-  put(key: string, bytes: Buffer, contentType: string): Promise<QuotationPrivateObject>
+  put(key: string, bytes: Buffer, contentType: string, options?: QuotationPrivateWriteOptions): Promise<QuotationPrivateObject>
   get(key: string, contentType: string, options?: QuotationPrivateReadOptions): Promise<QuotationPrivateObject>
   move(sourceKey: string, destinationKey: string, contentType: string): Promise<QuotationPrivateObject>
-  delete(key: string): Promise<void>
+  delete(key: string, options?: QuotationPrivateWriteOptions): Promise<void>
   deletePrefix(prefix: string): Promise<void>
 }
 
@@ -76,10 +77,12 @@ class LocalQuotationPrivateStorage implements QuotationPrivateStorage {
     return target
   }
 
-  async put(key: string, bytes: Buffer, contentType: string): Promise<QuotationPrivateObject> {
+  async put(key: string, bytes: Buffer, contentType: string, options?: QuotationPrivateWriteOptions): Promise<QuotationPrivateObject> {
+    options?.signal?.throwIfAborted()
     const target = this.pathFor(key)
     await mkdir(dirname(target), { recursive: true })
-    await writeFile(target, bytes, { flag: 'wx' })
+    options?.signal?.throwIfAborted()
+    await writeFile(target, bytes, { flag: 'wx', signal: options?.signal })
     return objectMetadata(bytes, contentType)
   }
 
@@ -112,7 +115,8 @@ class LocalQuotationPrivateStorage implements QuotationPrivateStorage {
     return this.get(destinationKey, contentType)
   }
 
-  async delete(key: string): Promise<void> {
+  async delete(key: string, options?: QuotationPrivateWriteOptions): Promise<void> {
+    options?.signal?.throwIfAborted()
     await rm(this.pathFor(key), { force: true })
   }
 
@@ -143,9 +147,10 @@ class R2QuotationPrivateStorage implements QuotationPrivateStorage {
     })
   }
 
-  async put(key: string, bytes: Buffer, contentType: string): Promise<QuotationPrivateObject> {
+  async put(key: string, bytes: Buffer, contentType: string, options?: QuotationPrivateWriteOptions): Promise<QuotationPrivateObject> {
     assertSafeObjectKey(key)
-    await this.client.send(new PutObjectCommand({ Bucket: this.bucket, Key: key, Body: bytes, ContentType: contentType }))
+    options?.signal?.throwIfAborted()
+    await this.client.send(new PutObjectCommand({ Bucket: this.bucket, Key: key, Body: bytes, ContentType: contentType }), { abortSignal: options?.signal })
     return objectMetadata(bytes, contentType)
   }
 
@@ -203,9 +208,10 @@ class R2QuotationPrivateStorage implements QuotationPrivateStorage {
     return source
   }
 
-  async delete(key: string): Promise<void> {
+  async delete(key: string, options?: QuotationPrivateWriteOptions): Promise<void> {
     assertSafeObjectKey(key)
-    await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: key }))
+    options?.signal?.throwIfAborted()
+    await this.client.send(new DeleteObjectCommand({ Bucket: this.bucket, Key: key }), { abortSignal: options?.signal })
   }
 
   async deletePrefix(prefix: string): Promise<void> {

@@ -39,7 +39,8 @@ export async function saveCaseStudy(input: unknown, id?: string, expectedVersion
   }
   if (id && id.length > 200) return { success: false, reason: 'Case not found.' }
 
-  const value = parsed.data
+  // Keep the legacy eligibility field compatible without an editorial approval step.
+  const value = { ...parsed.data, publicationApproved: parsed.data.status === 'PUBLISHED' }
   for (const url of [value.coverImage, ...value.gallery.map((image) => image.url)]) {
     const privateImage = parseCasePrivateImage(url)
     if (privateImage && (!id || privateImage.caseId !== id)) {
@@ -53,9 +54,9 @@ export async function saveCaseStudy(input: unknown, id?: string, expectedVersion
   try {
     const result = await prisma.$transaction(async (tx): Promise<CaseSaveResult | SavedCase> => {
       if (!id) {
-        // Creation is deliberately draft-only. Publishing requires a second explicit edit.
+        // The selected status applies on the first save as well as later edits.
         const created = await tx.caseStudy.create({
-          data: { ...data, status: 'DRAFT', publicationApproved: false, publishedAt: null },
+          data: { ...data, publishedAt: value.status === 'PUBLISHED' ? new Date() : null },
           select: { id: true, version: true, slug: true },
         })
         return { ...created, oldSlug: '' }
@@ -99,7 +100,7 @@ export async function saveCaseStudy(input: unknown, id?: string, expectedVersion
     }
     return {
       success: true,
-      reason: id ? 'Case saved.' : 'Case created as an unpublished draft.',
+      reason: id ? 'Case saved.' : value.status === 'PUBLISHED' ? 'Case created and published.' : 'Case created.',
       id: result.id, version: result.version,
     }
   } catch (error) {

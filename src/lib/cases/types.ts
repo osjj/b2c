@@ -106,11 +106,35 @@ const caseFieldsSchema = z.object({
   seoDescription: text(300),
 })
 
-export const caseInputSchema = caseFieldsSchema.extend({
+/** A neutral accessibility fallback; it never invents product or project facts. */
+export function caseImageAltFallback(title: string, imageIndex?: number): string {
+  return `${title.trim()} — ${imageIndex === undefined ? 'cover image' : `image ${imageIndex + 1}`}`.slice(0, 300)
+}
+
+function defaultEmptyImageAlts(input: unknown): unknown {
+  if (!input || typeof input !== 'object' || Array.isArray(input) || !('title' in input) || typeof input.title !== 'string') return input
+  const value = input as Record<string, unknown>
+  const title = input.title
+  return {
+    ...value,
+    coverAlt: typeof value.coverAlt === 'string' && !value.coverAlt.trim() && typeof value.coverImage === 'string' && value.coverImage.trim()
+      ? caseImageAltFallback(title) : value.coverAlt,
+    gallery: Array.isArray(value.gallery) ? value.gallery.map((image: unknown, index: number) => {
+      if (!image || typeof image !== 'object' || Array.isArray(image) || !('alt' in image) || typeof image.alt !== 'string' || image.alt.trim()) return image
+      return { ...image, alt: caseImageAltFallback(title, index) }
+    }) : value.gallery,
+  }
+}
+
+const caseEditableFieldsSchema = z.preprocess(defaultEmptyImageAlts, caseFieldsSchema.extend({
   status: caseStatusSchema.default('DRAFT'),
   privateNotes: text(12000),
   publicationApproved: z.boolean().default(false),
-}).superRefine((value, context) => {
+}))
+
+function validateCaseInput(
+  value: z.infer<typeof caseEditableFieldsSchema>, context: z.RefinementCtx, preparePrivateImages = false,
+): void {
   const sectionKeys = new Map<string, number>()
   value.sections.forEach((section, index) => {
     if (!section.key) return
@@ -139,24 +163,43 @@ export const caseInputSchema = caseFieldsSchema.extend({
     context.addIssue({ code: 'custom', path: ['coverAlt'], message: 'Cover alt text is required when a cover image is supplied' })
   }
   if (value.status !== 'PUBLISHED') return
-  if (isCasePrivateImage(value.coverImage)) {
-    context.addIssue({ code: 'custom', path: ['coverImage'], message: 'Private draft originals cannot be published. Supply separately approved public images first.' })
+  if (!preparePrivateImages && isCasePrivateImage(value.coverImage)) {
+    context.addIssue({ code: 'custom', path: ['coverImage'], message: 'Imported images must finish preparation before publication. Reload the editor and submit again.' })
   }
   value.gallery.forEach((image, index) => {
-    if (isCasePrivateImage(image.url)) {
-      context.addIssue({ code: 'custom', path: ['gallery', index, 'url'], message: 'Private draft originals cannot be published. Supply separately approved public images first.' })
+    if (!preparePrivateImages && isCasePrivateImage(image.url)) {
+      context.addIssue({ code: 'custom', path: ['gallery', index, 'url'], message: 'Imported images must finish preparation before publication. Reload the editor and submit again.' })
     }
   })
-  if (!value.publicationApproved) {
-    context.addIssue({ code: 'custom', path: ['publicationApproved'], message: 'Confirm factual review and image/customer publication permission before publishing' })
-  }
-  for (const field of ['summary', 'country', 'industry'] as const) {
-    if (!value[field]) context.addIssue({ code: 'custom', path: [field], message: 'Required for publication' })
-  }
-  if (!value.procurement.length) context.addIssue({ code: 'custom', path: ['procurement'], message: 'Add at least one procurement item before publishing' })
-  if (!value.sections.length) context.addIssue({ code: 'custom', path: ['sections'], message: 'Add at least one narrative section before publishing' })
-})
+}
+
+/** Saved public records must contain public media only. */
+export const caseInputSchema = caseEditableFieldsSchema.superRefine((value, context) => validateCaseInput(value, context))
 export type CaseInput = z.infer<typeof caseInputSchema>
+
+/** Selecting Published authorizes media preparation; no separate editorial approval is required. */
+export const casePublicationInputSchema = caseEditableFieldsSchema.superRefine((value, context) => {
+  validateCaseInput(value, context, true)
+  if (value.status !== 'PUBLISHED') {
+    context.addIssue({ code: 'custom', path: ['status'], message: 'Select Published to prepare public images' })
+  }
+})
+
+export const casePublicationImageRequestSchema = z.object({
+  input: casePublicationInputSchema,
+  sourceUrl: text(2048).refine(isCasePrivateImage, 'Choose an imported private image from this case'),
+  id: z.string().regex(/^c[a-z0-9]{24}$/),
+  expectedVersion: z.number().int().positive().safe(),
+})
+
+export const caseImagePreparationResultSchema = z.object({
+  success: z.boolean(),
+  reason: z.string(),
+  sourceUrl: text(2048).refine(isCasePrivateImage).optional(),
+  url: imageSchema.refine((value) => value.startsWith('https://') && !isCasePrivateImage(value)).optional(),
+  errors: z.record(z.string(), z.array(z.string())).optional(),
+})
+export type CaseImagePreparationResult = z.infer<typeof caseImagePreparationResultSchema>
 
 export function hasCasePrivateImages(value: Pick<CaseInput, 'coverImage' | 'gallery'>): boolean {
   return isCasePrivateImage(value.coverImage) || value.gallery.some((image) => isCasePrivateImage(image.url))

@@ -95,16 +95,16 @@ state.authorized = true
 assert.equal((await saveCaseStudy({ ...input, cooperationDate: '2026-02-30' })).success, false)
 assert.equal((await saveCaseStudy({ ...input, procurement: [{ ...input.procurement[0], quantity: -1 }] })).success, false)
 assert.equal((await saveCaseStudy({ ...input, relatedLinks: [{ label: 'Unsafe', href: 'javascript:alert(1)' }] })).success, false)
-assert.equal((await saveCaseStudy({ ...input, status: 'PUBLISHED' })).success, false)
 assert.equal((await saveCaseStudy(privateInput)).success, false, 'Private refs require an existing case')
 assert.equal((await saveCaseStudy({ ...privateInput, status: 'PUBLISHED', publicationApproved: true })).success, false, 'Private images cannot be published')
 assert.equal(state.transactions, 0)
 
-const created = await saveCaseStudy({ ...input, status: 'PUBLISHED', publicationApproved: true })
+const created = await saveCaseStudy({ ...input, status: 'PUBLISHED', publicationApproved: false })
 assert.equal(created.success, true)
-assert.equal(state.rows[0].status, 'DRAFT', 'Creation never publishes')
-assert.equal(state.rows[0].publicationApproved, false)
-assert.equal(state.rows[0].publishedAt, null)
+assert.equal(state.rows[0].status, 'PUBLISHED', 'First submit respects the selected Published status')
+assert.equal(state.rows[0].publicationApproved, true, 'Legacy eligibility follows status without an approval checkbox')
+assert.ok(state.rows[0].publishedAt instanceof Date)
+assert.equal((await getPublishedCase(input.slug)).id, created.id, 'A newly published case is immediately publicly eligible')
 assert.equal(state.rows[0].privateNotes, input.privateNotes)
 assert.equal((await saveCaseStudy(input)).success, false, 'Duplicate slug rejected')
 assert.equal(state.rows.length, 1)
@@ -120,6 +120,8 @@ const saved = await saveCaseStudy(ownPrivate, created.id, 1)
 assert.equal(saved.success, true)
 assert.equal(saved.version, 2)
 assert.equal(state.rows[0].gallery[0].url, ownPrivateImage, 'Same-case draft images survive a save')
+assert.equal(state.rows[0].publicationApproved, false, 'Returning to draft clears the compatibility flag')
+assert.equal(state.rows[0].publishedAt, null)
 assert.equal((await saveCaseStudy({ ...ownPrivate, status: 'PUBLISHED', publicationApproved: true }, created.id, 2)).success, false)
 assert.equal((await saveCaseStudy(input, created.id, 1)).success, false, 'Stale editor rejected')
 state.race = true
@@ -127,16 +129,40 @@ assert.equal((await saveCaseStudy(input, created.id, 2)).success, false, 'Atomic
 state.race = false
 assert.equal(state.rows[0].version, 2)
 
-const published = await saveCaseStudy({ ...input, status: 'PUBLISHED', publicationApproved: true }, created.id, 2)
+const published = await saveCaseStudy({ ...input, status: 'PUBLISHED' }, created.id, 2)
 assert.equal(published.success, true)
 assert.equal(state.rows[0].status, 'PUBLISHED')
 assert.ok(state.rows[0].publishedAt instanceof Date)
+assert.equal(state.rows[0].publicationApproved, true)
 const withdrawn = await saveCaseStudy(input, created.id, 3)
 assert.equal(withdrawn.success, true)
 assert.equal(state.rows[0].status, 'DRAFT')
 assert.equal(state.rows[0].publishedAt, null)
+assert.equal(state.rows[0].publicationApproved, false)
 assert.ok(state.invalidations.includes('/cases'))
 assert.ok(state.invalidations.includes('/sitemap.xml'))
+
+// A first submission can go live before optional content is completed.
+const minimalCreated = await saveCaseStudy({ ...emptyCaseInput(), title: 'Finish content later', slug: 'finish-content-later', status: 'PUBLISHED' })
+assert.equal(minimalCreated.success, true)
+const minimalPublic = await getPublishedCase('finish-content-later')
+assert.equal(minimalPublic.id, minimalCreated.id)
+assert.equal(minimalPublic.summary, '')
+assert.deepEqual(minimalPublic.sections, [])
+const defaultDraft = await saveCaseStudy({ ...emptyCaseInput(), title: 'Default draft', slug: 'default-draft', publicationApproved: true })
+const defaultDraftRow = state.rows.find(row => row.id === defaultDraft.id)
+assert.equal(defaultDraftRow.status, 'DRAFT')
+assert.equal(defaultDraftRow.publicationApproved, false, 'Clients cannot make a draft eligible with the legacy flag')
+assert.equal(defaultDraftRow.publishedAt, null)
+assert.equal(await getPublishedCase('default-draft'), null)
+const autoAltCreated = await saveCaseStudy({
+  ...emptyCaseInput(), title: 'Upload then publish', slug: 'upload-then-publish', status: 'PUBLISHED',
+  coverImage: '/cases/cover.png', coverAlt: '', gallery: [{ url: '/cases/detail.png', alt: '  ', caption: '' }],
+})
+assert.equal(autoAltCreated.success, true)
+const autoAltPublic = await getPublishedCase('upload-then-publish')
+assert.equal(autoAltPublic.coverAlt, 'Upload then publish — cover image')
+assert.equal(autoAltPublic.gallery[0].alt, 'Upload then publish — image 1')
 
 // An outdated editor may have loaded the current version while stripping newly
 // added JSON fields. Version locking alone must not allow that metadata loss.
@@ -259,4 +285,4 @@ await assert.rejects(getAdminCase('draft'), /Denied/)
 assert.equal(state.reads.length, readCount, 'Unauthorized private reads do not reach the database')
 state.authorized = true
 assert.equal((await getAdminCase('draft')).privateNotes, input.privateNotes)
-process.stdout.write('PASS: real case actions and read queries; authorization, validation, draft creation, duplicate slug, optimistic race, layout/reading-field omission protection, product href/document kind save-reopen-public projection, intentional reorder/unlink/role change, publish/withdraw, invalidation, public filtering and private projection verified with mocks. No database or storage contacted.\n')
+process.stdout.write('PASS: real case actions/read queries; one-submit first-save publication and legacy flag normalization, technical validation, authorization, duplicate slug, optimistic race/layout guards, public projection, publish/withdraw and invalidation verified with mocks. No database or storage contacted.\n')

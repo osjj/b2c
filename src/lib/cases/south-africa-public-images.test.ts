@@ -119,13 +119,9 @@ test('rejects wrong targets, publication flags, unknown originals, missing entri
   ]) assert.throws(() => makeSouthAfricaPublicImagePlan(changed, PUBLIC_BASE))
 })
 
-test('approved public URLs remove private-media validation errors without granting case-publication approval', () => {
+test('public URLs allow selecting Published without review while the copy candidate itself remains a draft', () => {
   const { candidate } = makeSouthAfricaPublicImagePlan(source(), PUBLIC_BASE)
-  const notApproved = caseInputSchema.safeParse({ ...candidate, status: 'PUBLISHED' })
-  assert.equal(notApproved.success, false)
-  if (!notApproved.success) {
-    assert.deepEqual(notApproved.error.issues.map(({ path }) => path), [['publicationApproved']])
-  }
+  assert.equal(caseInputSchema.safeParse({ ...candidate, status: 'PUBLISHED' }).success, true)
   assert.equal(caseInputSchema.safeParse({ ...candidate, status: 'PUBLISHED', publicationApproved: true }).success, true)
   assert.equal(candidate.status, 'DRAFT')
   assert.equal(candidate.publicationApproved, false)

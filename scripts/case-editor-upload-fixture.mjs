@@ -9,18 +9,34 @@ import tailwind from '@tailwindcss/postcss'
 const port = Number(process.argv.find((argument) => argument.startsWith('--port='))?.slice(7) || 8769)
 if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Invalid fixture port')
 const readingFields = process.argv.includes('--reading-fields')
+const publication = process.argv.includes('--publication')
+const storageKey = publication ? 'case-publication-fixture' : 'case-upload-fixture'
 
 const mocks = `
 import {caseInputSchema} from '@/lib/cases/types';
 export const useRouter=()=>({replace:()=>{},refresh:()=>{}});
+export async function prepareCasePublicationImage(input,sourceUrl,id,version){
+ window.__casePreparationCalls??=[];
+ window.__casePublicCopies??=[];
+ window.__casePreparationCalls.push({input:structuredClone(input),sourceUrl,id,version});
+ if(window.__casePreparationMode==='hold')await new Promise(resolve=>{window.__releaseCasePreparation=()=>{window.__releaseCasePreparation=null;resolve();};});
+ if(window.__casePreparationFailure===sourceUrl){window.__casePreparationFailure=null;return {success:false,reason:'Simulated image storage failure. Retry preparation.'};}
+ if(input.status!=='PUBLISHED')return {success:false,reason:'Choose Published to prepare images.'};
+ if(!window.__casePublicCopies.includes(sourceUrl))window.__casePublicCopies.push(sourceUrl);
+ return {success:true,sourceUrl,url:'https://shop.laifappe.com/cases/'+id+'/'+sourceUrl.split('/').at(-1),reason:'Image prepared.'};
+}
 export async function saveCaseStudy(input,id,version){
+ window.__caseSaveAttempts=(window.__caseSaveAttempts||0)+1;
  const parsed=caseInputSchema.safeParse(input);
  if(!parsed.success){const errors={};for(const issue of parsed.error.issues){const path=issue.path.join('.')||'_form';(errors[path]??=[]).push(issue.message);}return {success:false,reason:'Review the highlighted fields.',errors};}
  window.__caseSaves=(window.__caseSaves||0)+1;
- window.__savedCase=structuredClone(parsed.data);
+ const savedId=id||'c'+'b'.repeat(24);
+ const savedVersion=id?version+1:1;
+ const savedValues={...parsed.data,publicationApproved:parsed.data.status==='PUBLISHED'};
+ window.__savedCase=structuredClone(savedValues);
  window.__saveVersion=version;
- localStorage.setItem('case-upload-fixture',JSON.stringify({...parsed.data,id,version:version+1}));
- return {success:true,id,version:version+1,reason:'Saved fixture'};
+ localStorage.setItem(window.__caseFixtureStorageKey,JSON.stringify({...savedValues,id:savedId,version:savedVersion}));
+ return {success:true,id:savedId,version:savedVersion,reason:'Saved fixture'};
 }
 `
 const bundle = await build({
@@ -37,29 +53,43 @@ const original={...emptyCaseInput(),id,version:1,title:'Documentary upload fixtu
  gallery:[{url:'/fixture.png',alt:'Original public photograph',caption:'Original caption',placement:'section:samples'},
  {url:'/api/admin/case-images/'+id+'/'+ 'a'.repeat(64)+'.png',alt:'Original private photograph',caption:'Private original',placement:''}],
  publishedAt:null,createdAt:'2026-10-06T00:00:00.000Z',updatedAt:'2026-10-06T00:00:00.000Z'};
-if(${JSON.stringify(readingFields)}){original.procurement[0].href='/categories/hand-protection';original.gallery[0].kind='document';original.gallery[1].kind='photo';}
-const stored=localStorage.getItem('case-upload-fixture');
-const record=stored?{...original,...JSON.parse(stored)}:original;
+if(${JSON.stringify(readingFields || publication)}){original.procurement[0].href='/categories/hand-protection';original.gallery[0].kind='document';original.gallery[1].kind='photo';}
+if(${JSON.stringify(publication)}){
+ const privateImage=(hash)=>'/api/admin/case-images/'+id+'/'+hash.repeat(64)+'.png';
+ original.coverImage=privateImage('a');
+ original.gallery=[
+  {url:privateImage('a'),alt:'First private image',caption:'First original caption',placement:'section:samples',kind:'photo'},
+  {url:privateImage('b'),alt:'Second private image',caption:'Second original caption',placement:'section:samples',kind:'document'},
+  {url:privateImage('c'),alt:'Third private image',caption:'Third original caption',placement:'',kind:'photo'},
+ ];
+}
+window.__initialCase=structuredClone(original);
+const parameters=new URLSearchParams(location.search);
+const run=parameters.get('run');
+window.__newCaseFixture=parameters.has('new');
+window.__caseFixtureStorageKey=${JSON.stringify(storageKey)}+(run?':'+run:'');
+const stored=localStorage.getItem(window.__caseFixtureStorageKey);
+const record=stored?{...original,...JSON.parse(stored)}:window.__newCaseFixture?undefined:original;
 createRoot(document.getElementById('root')).render(<main className="mx-auto max-w-7xl p-4"><p className="mb-4 rounded border bg-amber-50 p-3">Isolated case editor · uploads and saves are simulated</p><CaseForm caseStudy={record}/></main>);
 `,
     resolveDir: process.cwd(), loader: 'tsx',
   },
   bundle: true, write: false, platform: 'browser', format: 'iife', jsx: 'automatic',
-  define: { 'process.env.NODE_ENV': '"development"' },
+  define: { 'process.env.NODE_ENV': '"development"', 'process.env.R2_PUBLIC_URL': '"https://shop.laifappe.com"' },
   plugins: [{ name: 'isolate-case-actions', setup(plugin) {
-    plugin.onResolve({ filter: /^(next\/navigation|@\/actions\/admin\/cases)$/ }, () => ({ path: 'mock', namespace: 'mock' }))
+    plugin.onResolve({ filter: /^(next\/navigation|@\/actions\/admin\/(cases|case-publication))$/ }, () => ({ path: 'mock', namespace: 'mock' }))
     plugin.onLoad({ filter: /.*/, namespace: 'mock' }, () => ({ contents: mocks, loader: 'js', resolveDir: process.cwd() }))
     plugin.onResolve({ filter: /^next\/link$/ }, () => ({ path: 'link', namespace: 'link' }))
     plugin.onLoad({ filter: /.*/, namespace: 'link' }, () => ({ contents: 'import React from "react";export default function Link(props){return <a {...props}/>}', loader: 'jsx', resolveDir: process.cwd() }))
     plugin.onResolve({ filter: /^next\/image$/ }, () => ({ path: 'image', namespace: 'image' }))
-    plugin.onLoad({ filter: /.*/, namespace: 'image' }, () => ({ contents: 'import React from "react";export default function Image({fill,unoptimized,sizes,...props}){return <img {...props} data-unoptimized={String(Boolean(unoptimized))} style={fill?{position:"absolute",width:"100%",height:"100%"}:undefined}/>}', loader: 'jsx', resolveDir: process.cwd() }))
+    plugin.onLoad({ filter: /.*/, namespace: 'image' }, () => ({ contents: `import React from "react";export default function Image({fill,unoptimized,sizes,...props}){return <img {...props} src={${JSON.stringify(publication)}?'/fixture.png':props.src} data-source={props.src} data-unoptimized={String(Boolean(unoptimized))} style={fill?{position:"absolute",width:"100%",height:"100%"}:undefined}/>}`, loader: 'jsx', resolveDir: process.cwd() }))
   } }],
 })
 const css = await postcss([tailwind()]).process(await readFile('src/app/globals.css', 'utf8'), { from: resolve('src/app/globals.css') })
 const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jY1sAAAAASUVORK5CYII=', 'base64')
 const server = createServer((request, response) => {
   response.setHeader('Cache-Control', 'no-store')
-  if (request.url === '/') {
+  if (request.url?.split('?')[0] === '/') {
     response.setHeader('Content-Type', 'text/html; charset=utf-8')
     response.end('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Case upload isolated review</title><link rel="stylesheet" href="/app.css"></head><body><div id="root"></div><script src="/app.js"></script></body></html>')
   } else if (request.url === '/app.js') {

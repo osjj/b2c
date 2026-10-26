@@ -16,10 +16,10 @@ export const usePathname=()=>'/admin/business-customers';
 export async function saveQuotationCustomer(input){window.__customer=input;return {success:true,reason:'已保存'}}
 export async function saveCommonQuotationProduct(input){window.__product=input;if(!input.id||input.id===window.__formProduct?.id){window.__formVersion=(window.__formVersion||0)+1;window.__formProduct={...input,id:'cmockproduct00000000000000',expectedUpdatedAt:new Date(Date.UTC(2026,9,8,0,0,window.__formVersion)).toISOString()}}return {success:true,data:{id:'cmockproduct00000000000000'}}}
 export async function saveCommonProductImages(input){window.__imageInput=input;await new Promise(resolve=>setTimeout(resolve,600));window.__savedImageIds=input.sourceIds;window.__imageVersion=new Date(new Date(input.updatedAt).getTime()+1000).toISOString();return {success:true,reason:'产品图片已保存'}}
-export async function reimportCommonProductImages(input){window.__reimageInput=input;await new Promise(resolve=>setTimeout(resolve,600));if(window.__reimageFail)return {success:false,code:'INTERNAL_ERROR',reason:'模拟导入失败，原图片已保留'};const images=[4,5].map(n=>({id:'00000000-0000-4000-8000-'+String(n).padStart(12,'0'),kind:'source',name:'Fresh catalog '+n}));window.__savedImageIds=images.map(image=>image.id);window.__imageVersion='2026-10-05T00:00:00.000Z';return {success:true,reason:'商城主图已重新导入',data:{id:input.id,updatedAt:window.__imageVersion,images}}}
+export async function reimportCommonProductImages(input){window.__reimageCalls=(window.__reimageCalls||0)+1;window.__reimageInput=input;if(window.__reimageHold)await new Promise(resolve=>{window.__releaseReimage=resolve});else await new Promise(resolve=>setTimeout(resolve,600));if(window.__reimageMode==='network')throw new Error('SECRET transport error');if(window.__reimageMode==='malformed')return {success:true,data:{id:'bad'}};if(window.__reimageMode==='missing-reason')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:false};if(window.__reimageMode==='object-reason')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:false,reason:{secret:'SECRET'}};if(window.__reimageMode==='unknown')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:true,reason:'保存结果尚未确认，排查编号：fixture-uncertain'};if(window.__reimageFail)return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:false,reason:'模拟导入失败，原图片已保留'};const images=[4,5].map(n=>({id:'00000000-0000-4000-8000-'+String(n).padStart(12,'0'),kind:'source',name:'Fresh catalog '+n}));window.__savedImageIds=images.map(image=>image.id);window.__imageVersion='2026-10-05T00:00:00.000Z';return {success:true,reason:'商城主图已重新导入',data:{id:input.id,updatedAt:window.__imageVersion,images}}}
 export async function saveQuotationSettings(input){window.__settings=input;return {success:true,reason:'设置已保存'}}
-export async function searchQuotationCatalog(){return {success:true,data:[{id:'cmockcatalog00000000000000',name:'Catalog Fixture',unitPrice:'12.50',unitCost:'7.25',updatedAt:'2026-09-06T00:00:00.000Z',imageIds:['fixture-image']}]}}
-export async function importQuotationCatalogProduct(input){window.__import=input;return {success:true,data:{id:'cmockproduct00000000000000'}}}
+export async function searchQuotationCatalog(){window.__searchCalls=(window.__searchCalls||0)+1;if(window.__searchHold)await new Promise(resolve=>{window.__releaseSearch=resolve});return {success:true,data:[{id:'cmockcatalog00000000000000',name:window.__catalogName||'Catalog Fixture',unitPrice:'12.50',unitCost:'7.25',updatedAt:'2026-09-06T00:00:00.000Z',imageIds:['fixture-image']}]}}
+export async function importQuotationCatalogProduct(input){window.__import=input;window.__importCalls=(window.__importCalls||0)+1;if(window.__importHold)await new Promise(resolve=>{window.__releaseImport=resolve});if(window.__importMode==='network')throw new Error('SECRET network details');if(window.__importMode==='malformed')return {success:true,data:{id:'not-a-cuid'}};if(window.__importMode==='missing-reason')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:false};if(window.__importMode==='object-reason')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:false,reason:{secret:'SECRET'}};if(window.__importMode==='unknown')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:true,reason:'保存结果尚未确认，排查编号：fixture-uncertain'};if(window.__importMode==='legacy')return {success:false,code:'INTERNAL_ERROR',reason:'Legacy internal failure'};if(window.__importMode==='failure')return {success:false,code:'INTERNAL_ERROR',outcomeUnknown:false,stage:'storage',requestId:'fixture-reference',reason:'导入失败（保存私有图片）：第 1 张图片上传超时，请检查存储配置。排查编号：fixture-reference'};return {success:true,reason:'已确认常用产品',data:{id:'cmockproduct00000000000000'}}}
 `
 const bundle = await build({ stdin: { contents: `
 import React,{useState,useEffect} from 'react';import {createRoot} from 'react-dom/client';
@@ -385,6 +385,121 @@ try {
   assert.deepEqual(await imageOrder(), newSavedOrder, 'Pasted/dropped images retain saved order on reopening')
   assert.equal(maxActiveUploads, 1, 'Batch uploads are sequential')
   await page.screenshot({ path: 'output/playwright/product-source/quotation-image-paste-drop.png', fullPage: true })
+
+  // Catalog import diagnostics: real components, held action promises, no live writes.
+  const openImport = async (mode = '', name = 'Catalog Fixture') => {
+    await page.getByRole('button', { name: '客户', exact: true }).first().click()
+    await page.evaluate(({ mode, name }) => {
+      window.__importMode = mode; window.__catalogName = name
+      window.__searchHold = false; window.__importHold = false
+      window.__importCalls = 0; window.__searchCalls = 0
+      delete window.__route; delete window.__import; delete window.__releaseImport
+    }, { mode, name })
+    await page.getByRole('button', { name: '导入', exact: true }).first().click()
+  }
+  const searchCatalog = async () => {
+    await page.getByRole('button', { name: '搜索商城', exact: true }).click()
+    await page.getByText(await page.evaluate(() => window.__catalogName), { exact: true }).waitFor()
+  }
+  const confirmImport = async () => {
+    await page.getByRole('button', { name: '导入', exact: true }).last().click()
+    await page.getByRole('button', { name: '确认继续', exact: true }).click()
+  }
+  await openImport('failure')
+  await page.evaluate(() => { window.__searchHold = true })
+  await page.getByLabel('搜索商城商品').evaluate(node => {
+    node.form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+    node.form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+  })
+  await page.waitForFunction(() => typeof window.__releaseSearch === 'function')
+  assert.equal(await page.evaluate(() => window.__searchCalls), 1, 'Synchronous search guard')
+  await page.getByRole('status').filter({ hasText: /正在搜索商城商品.*已等待 [1-9]/ }).waitFor()
+  await page.evaluate(() => { window.__searchHold = false; window.__releaseSearch() })
+  await page.getByText('Catalog Fixture', { exact: true }).waitFor()
+  await page.evaluate(() => { window.__importHold = true })
+  await page.getByRole('button', { name: '导入', exact: true }).last().click()
+  await page.getByRole('button', { name: '确认继续', exact: true }).evaluate(node => { node.click(); node.click() })
+  await page.waitForFunction(() => typeof window.__releaseImport === 'function')
+  assert.equal(await page.evaluate(() => window.__importCalls), 1, 'Synchronous import guard')
+  assert.equal(await page.getByRole('button', { name: '搜索商城', exact: true }).isDisabled(), true)
+  assert.equal(await page.getByRole('checkbox').isDisabled(), true)
+  await page.getByRole('status').filter({ hasText: /正在导入.*Catalog Fixture.*已等待 [1-9]/ }).waitFor()
+  await page.evaluate(() => { window.__realDateNow = Date.now; Date.now = () => window.__realDateNow() + 91_000 })
+  await page.getByRole('alert').filter({ hasText: '超过 90 秒' }).waitFor()
+  assert.equal(await page.getByRole('link', { name: '查看常用产品列表', exact: true }).isVisible(), true)
+  assert.equal(await page.evaluate(() => window.__importCalls), 1, 'Watchdog never retries or cancels the write')
+  await page.evaluate(() => { Date.now = window.__realDateNow })
+  await page.evaluate(() => { window.__importHold = false; window.__releaseImport() })
+  await page.getByRole('alert').filter({ hasText: '保存私有图片' }).waitFor()
+  assert.match(await page.getByRole('alert').innerText(), /第 1 张图片.*超时.*fixture-reference/)
+  assert.equal(await page.getByRole('button', { name: '导入', exact: true }).last().isEnabled(), true, 'Known non-committed failure permits explicit retry')
+  assert.equal(await page.getByRole('button', { name: '刷新页面', exact: true }).count(), 0, 'A late definitive response clears watchdog uncertainty')
+  await page.screenshot({ path: 'output/playwright/product-source/catalog-import-diagnostics-desktop.png', fullPage: true })
+  await page.getByRole('checkbox').uncheck()
+  await page.evaluate(() => { window.__importMode = '' })
+  await confirmImport()
+  await page.getByRole('status').filter({ hasText: '正在打开编辑页面' }).waitFor()
+  assert.equal(await page.evaluate(() => window.__import.includeImages), false)
+  assert.equal(await page.evaluate(() => window.__route), '/admin/quotation-products/cmockproduct00000000000000')
+  assert.equal(await page.getByRole('link', { name: '打开已导入产品', exact: true }).getAttribute('href'), '/admin/quotation-products/cmockproduct00000000000000')
+  assert.equal(await page.getByRole('button', { name: '导入', exact: true }).last().isDisabled(), true, 'Success stays locked until navigation')
+
+  for (const mode of ['network', 'malformed', 'missing-reason', 'object-reason', 'unknown', 'legacy']) {
+    await openImport(mode)
+    await searchCatalog(); await confirmImport()
+    await page.getByRole('link', { name: '查看常用产品列表', exact: true }).waitFor()
+    assert.equal(await page.getByRole('button', { name: '导入', exact: true }).last().isDisabled(), true, `Uncertain ${mode} locks import`)
+    assert.equal(await page.getByRole('button', { name: '刷新页面', exact: true }).isVisible(), true)
+    assert.equal(await page.evaluate(() => window.__route), undefined, `Uncertain ${mode} never navigates`)
+    assert.equal(await page.evaluate(() => window.__importCalls), 1)
+    assert.doesNotMatch(await page.getByRole('alert').innerText(), /SECRET/)
+  }
+
+  // Names and safe errors wrap without hiding controls on a narrow screen.
+  await page.setViewportSize({ width: 390, height: 844 })
+  await openImport('failure', 'ABS防撞帽'.repeat(30) + 'A'.repeat(200))
+  await searchCatalog()
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true)
+  await confirmImport()
+  await page.getByRole('alert').filter({ hasText: 'fixture-reference' }).waitFor()
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true)
+  await page.screenshot({ path: 'output/playwright/product-source/catalog-import-diagnostics-mobile.png', fullPage: true })
+
+  // Image reimport shares the immediate guard, elapsed feedback and uncertainty lock.
+  await page.setViewportSize({ width: 1440, height: 1100 })
+  for (const mode of ['network', 'malformed', 'missing-reason', 'object-reason', 'unknown', 'late-success']) {
+    await page.getByRole('button', { name: '客户', exact: true }).first().click()
+    await page.evaluate(mode => { window.__reimageMode = mode === 'late-success' ? '' : mode; window.__reimageHold = mode === 'network' || mode === 'late-success'; window.__reimageCalls = 0; delete window.__releaseReimage }, mode)
+    await page.getByRole('button', { name: '图片', exact: true }).first().click()
+    const keptImages = await imageOrder()
+    await page.getByRole('button', { name: '重新导入商品主图', exact: true }).click()
+    await page.getByRole('button', { name: '确认继续', exact: true }).evaluate(node => { node.click(); node.click() })
+    if (mode === 'network' || mode === 'late-success') {
+      await page.waitForFunction(() => typeof window.__releaseReimage === 'function')
+      await page.getByRole('status').filter({ hasText: /重新导入商品主图.*已等待 [1-9]/ }).waitFor()
+      assert.equal(await page.evaluate(() => window.__reimageCalls), 1)
+      if (mode === 'late-success') {
+        await page.evaluate(() => { window.__realDateNow = Date.now; Date.now = () => window.__realDateNow() + 91_000 })
+        await page.getByRole('alert').filter({ hasText: '超过 90 秒' }).waitFor()
+        assert.equal(await page.getByRole('button', { name: '刷新查看当前产品', exact: true }).isVisible(), true)
+        await page.evaluate(() => { Date.now = window.__realDateNow })
+      }
+      await page.evaluate(() => { window.__reimageHold = false; window.__releaseReimage() })
+    }
+    if (mode === 'late-success') {
+      await page.getByRole('status').filter({ hasText: '商城主图已重新导入' }).waitFor()
+      assert.equal(await page.getByRole('button', { name: '重新导入商品主图', exact: true }).isEnabled(), true)
+      assert.equal(await page.getByRole('button', { name: '刷新查看当前产品', exact: true }).count(), 0)
+      continue
+    }
+    await page.getByRole('button', { name: '刷新查看当前产品', exact: true }).waitFor()
+    assert.equal(await page.getByRole('button', { name: '重新导入商品主图', exact: true }).isDisabled(), true)
+    assert.equal(await page.getByRole('button', { name: '保存图片', exact: true }).isDisabled(), true)
+    assert.equal(await page.locator('input[type=file]').isDisabled(), true)
+    assert.deepEqual(await imageOrder(), keptImages)
+    assert.doesNotMatch(await page.getByRole('alert').innerText(), /SECRET/)
+  }
+  await page.evaluate(() => { window.__reimageMode = '' })
   await page.setViewportSize({ width: 390, height: 844 })
   for (const tab of ['客户', '产品', '设置', '导入', '图片']) {
     await page.getByRole('button', { name: tab, exact: true }).first().click()
@@ -392,7 +507,7 @@ try {
   }
   await page.screenshot({ path: 'tmp/pdfs/studio-review/mobile-ui.png', fullPage: true })
   assert.deepEqual(errors, [])
-  console.log('PASS: real customer/product/settings/import forms, private metadata, image sort/save/reopen, paste/multi-drop/multi-select order, type/size/capacity/duplicate guards, partial failure, immediate busy guard, reimport pending/version behavior, seal upload, 390px layouts. All I/O mocked.')
+  console.log('PASS: real forms and catalog import diagnostics; elapsed search/import/reimport, immediate duplicate guards, safe stage/image/reference errors, retryable known failures, uncertain/malformed/transport locks, text-only import, success navigation, image order/save/paste/drop/reimport regressions, 390px long-name layouts. All I/O mocked.')
 } finally {
   await browser?.close()
   await new Promise(resolve => server.close(resolve))

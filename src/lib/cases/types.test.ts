@@ -3,7 +3,7 @@ import test from 'node:test'
 
 import { southAfricaMiningDraft } from './south-africa-draft'
 import {
-  caseInputSchema, emptyCaseInput, isAllowedCaseImage, isAllowedCaseRelatedLink, isAllowedCaseProcurementLink,
+  caseInputSchema, casePublicationInputSchema, emptyCaseInput, isAllowedCaseImage, isAllowedCaseRelatedLink, isAllowedCaseProcurementLink,
   isCaseDate, isCaseGalleryPlacement, isCaseSectionKey, publicCaseView, toAdminCaseView, toCaseView,
 } from './types'
 import { casePrivateImageUrl } from './private-image-path'
@@ -78,16 +78,41 @@ test('private image references are strictly shaped and never publishable', () =>
   assert.equal(publicCaseView(admin).gallery[0].url, privateImage, 'Protected preview retains private image references')
 })
 
-test('publication requires explicit approval and minimum content', () => {
-  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, status: 'PUBLISHED' }).success, false)
+test('publication uses the selected status without editorial approval or optional-content gates', () => {
+  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, status: 'PUBLISHED' }).success, true)
   assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, status: 'PUBLISHED', publicationApproved: true }).success, true)
-  const empty = { ...emptyCaseInput(), title: 'New case', slug: 'new-case', status: 'PUBLISHED', publicationApproved: true }
-  assert.equal(caseInputSchema.safeParse(empty).success, false)
+  const empty = { ...emptyCaseInput(), title: 'New case', slug: 'new-case', status: 'PUBLISHED' }
+  assert.equal(caseInputSchema.safeParse(empty).success, true)
+  assert.equal(caseInputSchema.safeParse({ ...empty, title: '' }).success, false)
+  assert.equal(caseInputSchema.safeParse({ ...empty, slug: '../unsafe' }).success, false)
+})
+
+test('image preparation accepts publishing intent without review while strict saving still rejects private images', () => {
+  const candidate = {
+    ...southAfricaMiningDraft, status: 'PUBLISHED', publicationApproved: true,
+    coverImage: privateImage, coverAlt: 'Reviewed original',
+    gallery: [{ url: privateImage, alt: 'Reviewed original', caption: 'Existing anonymization' }],
+  }
+  assert.equal(casePublicationInputSchema.safeParse(candidate).success, true)
+  assert.equal(caseInputSchema.safeParse(candidate).success, false)
+  for (const changed of [
+    { publicationApproved: false }, { summary: '' }, { country: '' }, { industry: '' },
+    { procurement: [] }, { sections: [] },
+  ]) assert.equal(casePublicationInputSchema.safeParse({ ...candidate, ...changed }).success, true)
+  for (const changed of [
+    { title: '' }, { slug: '../unsafe' }, { coverAlt: null }, { status: 'DRAFT' }, { status: 'ARCHIVED' },
+  ]) assert.equal(casePublicationInputSchema.safeParse({ ...candidate, ...changed }).success, false)
 })
 
 test('quantities, row limits, date and accessible image text are enforced', () => {
   assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, cooperationDate: '2026-02-30' }).success, false)
-  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, coverImage: '/cases/helmet.jpg', coverAlt: '' }).success, false)
+  const withDefaults = caseInputSchema.parse({
+    ...southAfricaMiningDraft, coverImage: '/cases/helmet.jpg', coverAlt: '',
+    gallery: [{ url: '/cases/helmet.jpg', alt: '', caption: '' }],
+  })
+  assert.equal(withDefaults.coverAlt, `${southAfricaMiningDraft.title} — cover image`)
+  assert.equal(withDefaults.gallery[0].alt, `${southAfricaMiningDraft.title} — image 1`)
+  assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, coverImage: '/cases/helmet.jpg', coverAlt: null }).success, false)
   assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, procurement: [{ name: 'Gloves', quantity: 1.5, unit: 'pairs', note: '' }] }).success, false)
   assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, procurement: [{ name: 'Gloves', quantity: -1, unit: 'pairs', note: '' }] }).success, false)
   assert.equal(caseInputSchema.safeParse({ ...southAfricaMiningDraft, sections: Array.from({ length: 21 }, () => ({ title: 'Section', body: 'Body' })) }).success, false)

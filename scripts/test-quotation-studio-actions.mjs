@@ -1,7 +1,6 @@
-// Real customer/product/catalog actions. Mocked Prisma/S3/private storage, no .env or network.
+// Real customer/product/catalog actions. Mocked Prisma/HTTPS/private storage, no .env or network.
 import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
-import { Readable } from 'node:stream'
 import { build } from 'esbuild'
 import sharp from 'sharp'
 
@@ -27,11 +26,11 @@ const db = {
       if (where.id !== catalog.id) return null
       if (include) {
         assert.deepEqual(include.source, { select: { value: true, costPriceText: true } })
-        return structuredClone(catalog)
+        return { ...structuredClone(catalog), images: catalog.images.toSorted((a, b) => a.sortOrder - b.sortOrder).slice(0, 8).map(row => ({ ...row })) }
       }
       if (select.images) {
-        assert.deepEqual(select, { id: true, updatedAt: true, images: { orderBy: { sortOrder: 'asc' }, take: 8, select: { id: true, url: true } } })
-        return { id: catalog.id, updatedAt: new Date(catalog.updatedAt), images: catalog.images.toSorted((a, b) => a.sortOrder - b.sortOrder).slice(0, 8).map(({ id, url }) => ({ id, url })) }
+        assert.deepEqual(select, { id: true, updatedAt: true, isActive: true, images: { orderBy: { sortOrder: 'asc' }, take: 8, select: { id: true, url: true } } })
+        return { id: catalog.id, isActive: catalog.isActive, updatedAt: new Date(catalog.updatedAt), images: catalog.images.toSorted((a, b) => a.sortOrder - b.sortOrder).slice(0, 8).map(({ id, url }) => ({ id, url })) }
       }
       assert.deepEqual(select, { updatedAt: true, isActive: true })
       return { updatedAt: catalog.updatedAt, isActive: catalog.isActive }
@@ -60,23 +59,35 @@ const db = {
   quotationAuditLog: { create: async ({ data }) => { if (state.failAudit) throw new Error('Mock database failure'); state.audits.push(data) } },
   $executeRaw: async () => 1,
   $queryRaw: async () => { throw new Error('Catalog advisory locks must not deserialize PostgreSQL void results') },
-  $transaction: async (work) => { state.dbCalls++; const backup = structuredClone(state); try { return await work(db) } catch (error) { Object.assign(state, backup); throw error } },
+  $transaction: async (work, options) => {
+    state.dbCalls++
+    if (options) assert.deepEqual(options, { maxWait: 5000, timeout: 15000 })
+    if (state.databaseError) throw Object.assign(new Error('PRIVATE_SECRET_KEY database engine'), { code: state.databaseError })
+    const backup = structuredClone(state)
+    let result
+    try { result = await work(db) } catch (error) { Object.assign(state, backup); throw error }
+    if (state.failCommitReply) throw new Error('PRIVATE_SECRET_KEY commit response lost')
+    return result
+  },
 }
 const bytes = await sharp({ create: { width: 20, height: 30, channels: 3, background: '#789' } }).png().toBuffer()
 const storage = { provider: 'r2-private', put: async (key, data) => { state.putCalls++; objects.set(key, data); if (state.putCalls === state.failPutAt) throw new Error(`PRIVATE_SECRET_KEY ${key}`) }, delete: async (key) => objects.delete(key) }
-async function readCatalogImage(command) {
-  state.s3Calls++; readKeys.push(command.input.Key)
+async function readCatalogImage(url, options) {
+  assert.equal(options.redirect, 'error')
+  assert.equal(options.credentials, 'omit')
+  assert.ok(options.signal instanceof AbortSignal)
+  state.s3Calls++; readKeys.push(new URL(url).pathname.slice(1))
   copyHook?.()
   if (state.s3Calls === state.failReadAt) throw new Error('PRIVATE_SECRET_KEY SDK failure')
-  return { ContentLength: state.contentLength ?? bytes.length, Body: Readable.from([bytes]) }
+  return new Response(bytes, { status: state.httpStatus ?? 200, headers: { 'content-type': 'image/png', 'content-length': String(state.contentLength ?? bytes.length) } })
 }
+globalThis.fetch = readCatalogImage
 const mockSources = {
   '@/lib/prisma': 'export const prisma=require("studio-state").db',
   '@/lib/auth-utils': 'export async function requireAdmin(){if(!require("studio-state").state.admin)throw new Error("No permission");return {id:"admin"}}',
   '@/lib/quotation/feature': 'export function assertQuotationWorkbenchEnabled(){if(!require("studio-state").state.enabled)throw new Error("Disabled")}',
-  '@/lib/r2': 'export function assertR2Configured(){};export const r2BucketName="public";export const r2Client={send:command=>require("studio-state").readCatalogImage(command)}',
   '@/lib/quotation/private-storage': 'export function getQuotationPrivateStorage(){const s=require("studio-state");s.state.storageReads++;return s.storage}',
-  'next/cache': 'export function revalidatePath(){}',
+  'next/cache': 'export function revalidatePath(){if(require("studio-state").state.failCache)throw new Error("PRIVATE_SECRET_KEY cache")}',
   'next/navigation': 'export function unstable_rethrow(){}',
 }
 const built = await build({ stdin: { contents: 'export * from "./src/actions/admin/quotation-customers";export * from "./src/actions/admin/common-quotation-products";export * from "./src/actions/admin/quotation-catalog";', resolveDir: process.cwd(), loader: 'ts' }, bundle: true, write: false, platform: 'node', format: 'cjs', packages: 'external', define: { 'process.env': '{}' }, plugins: [{ name: 'isolate', setup(plugin) {
@@ -168,7 +179,7 @@ assert.equal(refreshed.success, true); assert.equal(refreshed.data.id, imported.
 assert.equal(refreshed.data.updatedAt, currentProduct().updatedAt.toISOString())
 assert.ok(new Date(refreshed.data.updatedAt).getTime() > new Date(latestImageStamp).getTime())
 assert.deepEqual(readKeys.slice(keysBeforeRefresh), ['products/refresh-0.png', 'products/refresh-1.png', 'products/refresh-2.png'])
-assert.deepEqual(refreshed.data.images.map(row => row.name), ['catalog-1.png', 'catalog-2.png', 'catalog-3.png'])
+assert.deepEqual(refreshed.data.images.map(row => row.name), ['catalog-1.jpg', 'catalog-2.jpg', 'catalog-3.jpg'])
 assert.ok(refreshed.data.images.every(row => row.kind === 'source' && !('objectKey' in row)))
 assert.deepEqual(state.images.filter(row => row.quotationProductId === imported.data.id).map(row => row.sourceFileId), refreshed.data.images.map(row => row.id))
 assert.deepEqual(state.images.filter(row => row.quotationProductId === imported.data.id).map(row => row.sortOrder), [0, 1, 2])
@@ -227,6 +238,57 @@ catalog.images = Array.from({ length: 9 }, (_, order) => ({ id: id(), url: `http
 const readsBeforeMaximum = state.s3Calls
 const maxGallery = await actions.reimportCommonProductImages(refreshInput())
 assert.equal(maxGallery.success, true); assert.equal(maxGallery.data.images.length, 8); assert.equal(state.s3Calls - readsBeforeMaximum, 8)
+
+// Errors identify a safe stage/cause/reference; no secret engine or transport messages escape.
+state.httpStatus = 404
+const missingHttp = await assertRefreshFailure('NOT_FOUND')
+assert.equal(missingHttp.stage, 'download'); assert.match(missingHttp.reason, /第 \d+ 张图片.*404/)
+assert.match(missingHttp.requestId, /^[0-9a-f-]{36}$/); assert.equal(missingHttp.outcomeUnknown, false)
+state.httpStatus = null
+for (const databaseError of ['P2021', 'P2022', 'P2024', 'P2028', 'P2034']) {
+  state.databaseError = databaseError
+  const failure = await assertRefreshFailure(databaseError === 'P2034' ? 'VERSION_CONFLICT' : 'INTERNAL_ERROR')
+  assert.equal(failure.stage, 'database'); assert.equal(failure.outcomeUnknown, false)
+  assert.match(failure.reason, databaseError === 'P2034' ? /另一个操作/ : ['P2021', 'P2022'].includes(databaseError) ? /迁移/ : /超时/)
+}
+state.databaseError = null
+
+// Cache errors after a completed commit still acknowledge the successfully saved images.
+state.failCache = true
+assert.equal((await actions.reimportCommonProductImages(refreshInput())).success, true)
+state.failCache = false
+
+// A lost COMMIT response may have persisted records: preserve potentially referenced objects.
+state.failCommitReply = true
+const beforeUncertainImages = state.images.length
+const uncertainRefresh = await actions.reimportCommonProductImages(refreshInput())
+assert.equal(uncertainRefresh.success, false); assert.equal(uncertainRefresh.outcomeUnknown, true)
+assert.match(uncertainRefresh.reason, /保存结果尚未确认.*先检查常用产品列表/)
+assert.equal(state.images.length, beforeUncertainImages)
+for (const row of state.images) assert.ok(objects.has(row.objectKey))
+state.failCommitReply = false
+
+// Fresh imports enforce the gallery snapshot too; callback failure rolls back and compensates.
+const preservedCatalog = structuredClone(catalog)
+catalog.id = id(); catalog.isActive = true; catalog.images = [preservedCatalog.images[0]]
+const beforeGalleryConflict = { products: state.products.length, keys: [...objects.keys()].sort() }
+copyHook = () => { copyHook = undefined; catalog.images[0] = { ...catalog.images[0], url: 'https://shop.laifappe.com/products/changed.png' } }
+const galleryConflict = await actions.importQuotationCatalogProduct({ productId: catalog.id, updatedAt: catalog.updatedAt.toISOString(), includeImages: true })
+assert.equal(galleryConflict.code, 'VERSION_CONFLICT'); assert.equal(galleryConflict.outcomeUnknown, false)
+assert.equal(state.products.length, beforeGalleryConflict.products); assert.deepEqual([...objects.keys()].sort(), beforeGalleryConflict.keys)
+
+// A possibly committed initial import remains reusable without re-copying or overwriting.
+state.failCommitReply = true
+const freshInput = { productId: catalog.id, updatedAt: catalog.updatedAt.toISOString(), includeImages: true }
+const uncertainImport = await actions.importQuotationCatalogProduct(freshInput)
+assert.equal(uncertainImport.outcomeUnknown, true)
+state.failCommitReply = false
+const readCountBeforeReuse = state.s3Calls
+const reopened = await actions.importQuotationCatalogProduct(freshInput)
+assert.equal(reopened.success, true); assert.equal(reopened.data.reused, true)
+assert.equal(state.s3Calls, readCountBeforeReuse)
+for (const row of state.images) assert.ok(objects.has(row.objectKey))
+Object.assign(catalog, preservedCatalog)
 
 // One final create persists information/defaults and selected private-image references together.
 const createPayload = { name: 'Manual product with images', productSource: 'Private supplier', costPriceText: 'Private cost note', specifications: 'Material: Cotton\nSize: L', description: 'Customer description', packaging: '10 per bag', unit: 'pair', unitPrice: '3.50', currency: 'USD', active: true, sourceIds: orderedSourceIds }

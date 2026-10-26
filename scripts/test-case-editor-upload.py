@@ -70,6 +70,7 @@ with sync_playwright() as playwright:
     expect(page.get_by_text('Documentary images & placement', exact=True)).to_be_visible()
     assert page.locator('img').count() == 3, 'Public, private and cover previews expected'
     assert page.locator('img[src^="/api/admin/case-images/"]').get_attribute('data-unoptimized') == 'true'
+    assert page.locator('[id$="-permission"]').count() == 0, 'Image uploads do not require approval checkboxes'
 
     def uploader(input_id):
         file_input = page.locator(f'[id="{input_id}"]')
@@ -77,16 +78,14 @@ with sync_playwright() as playwright:
         # The upload input and button share their bordered panel.
         return file_input, panel
 
-    def allow_and_select(input_id, files):
+    def select_images(input_id, files):
         file_input, panel = uploader(input_id)
-        permission = page.locator(f'[id="{input_id}-permission"]')
-        if permission.get_attribute('data-state') != 'checked':
-            permission.click()
+        expect(file_input).to_be_enabled()
         file_input.set_input_files(files)
         return panel
 
     def perform(input_id, files):
-        panel = allow_and_select(input_id, files)
+        panel = select_images(input_id, files)
         panel.locator('button[data-slot="button"]').click()
         expect(page.get_by_role('button', name='Save draft', exact=True).first).to_be_enabled()
         print(f'Upload scenario completed: {input_id}', flush=True)
@@ -118,7 +117,7 @@ with sync_playwright() as playwright:
     # Whole selection validation must reject before making any request.
     for files in [[image('valid.png'), image('bad.txt', b'text', 'text/plain')], image('empty.png', b''), image('large.png', b'0' * (10 * 1024 * 1024 + 1))]:
         before = len(calls)
-        panel = allow_and_select('case-gallery-upload', files)
+        panel = select_images('case-gallery-upload', files)
         button = panel.locator('button[data-slot="button"]')
         if button.is_enabled():
             button.click()
@@ -173,7 +172,7 @@ with sync_playwright() as playwright:
         add_url.click()
     assert page.locator('[id="case-gallery.28.url"]').count() == 1
     before = len(calls)
-    panel = allow_and_select('case-gallery-upload', [image('overflow1.png'), image('overflow2.png')])
+    panel = select_images('case-gallery-upload', [image('overflow1.png'), image('overflow2.png')])
     button = panel.locator('button[data-slot="button"]')
     if button.is_enabled():
         button.click()

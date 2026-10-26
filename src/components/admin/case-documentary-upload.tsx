@@ -4,7 +4,6 @@ import { useRef, useState } from 'react'
 import { Loader2, Upload } from 'lucide-react'
 import { z } from 'zod'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
@@ -30,7 +29,6 @@ export function CaseDocumentaryUpload({
   const inputRef = useRef<HTMLInputElement>(null)
   const uploadingRef = useRef(false)
   const [files, setFiles] = useState<File[]>([])
-  const [permission, setPermission] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState('')
   const [status, setStatus] = useState('')
@@ -45,7 +43,7 @@ export function CaseDocumentaryUpload({
   }
 
   async function upload() {
-    if (!files.length || !permission || disabled || uploadingRef.current) return
+    if (!files.length || disabled || uploadingRef.current) return
     const invalid = selectionError(files)
     if (invalid) {
       setError(invalid)
@@ -104,23 +102,8 @@ export function CaseDocumentaryUpload({
   return (
     <div className="min-w-0 space-y-3 rounded-lg border border-dashed p-4" aria-busy={uploading}>
       <p className="text-xs leading-relaxed text-muted-foreground" id={`${id}-notice`}>
-        Upload only real documentary images that you have permission to publish. Redact faces,
-        customer names, addresses, order numbers and other sensitive details first. Image storage
-        URLs are public even when the case is a draft. Removing an image here does not delete the
-        uploaded file.
+        Uploaded images are publicly accessible, including while the case is a draft.
       </p>
-      <div className="flex items-start gap-3">
-        <Checkbox
-          id={`${id}-permission`}
-          checked={permission}
-          disabled={disabled || uploading}
-          onCheckedChange={(checked) => setPermission(checked === true)}
-          className="mt-1"
-        />
-        <Label htmlFor={`${id}-permission`} className="min-h-11 cursor-pointer text-xs leading-relaxed">
-          I have permission to make {multiple ? 'these redacted images' : 'this redacted image'} publicly accessible.
-        </Label>
-      </div>
       <Label htmlFor={id} className="text-xs">{label}</Label>
       <Input
         ref={inputRef}
@@ -128,7 +111,7 @@ export function CaseDocumentaryUpload({
         type="file"
         multiple={multiple}
         accept="image/jpeg,image/png,image/webp,image/gif"
-        disabled={!permission || disabled || uploading}
+        disabled={disabled || uploading}
         aria-describedby={`${id}-notice${multiple ? ` ${id}-limit` : ''}${error ? ` ${id}-error` : ''}`}
         aria-invalid={Boolean(error)}
         onChange={(event) => {
@@ -146,7 +129,7 @@ export function CaseDocumentaryUpload({
         variant="outline"
         className="h-auto min-h-11 w-full whitespace-normal"
         onClick={upload}
-        disabled={!permission || !files.length || disabled || uploading}
+        disabled={!files.length || disabled || uploading}
       >
         {uploading ? <Loader2 className="mr-2 size-4 animate-spin" /> : <Upload className="mr-2 size-4" />}
         {uploading ? 'Uploading images…' : buttonLabel}
