@@ -30,6 +30,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   const [saved, setSaved] = useState({ revisionId, quotationId, version: expectedVersion })
   const [busy, startTransition] = useTransition()
   const [uploading, setUploading] = useState(false)
+  const uploadBusyRef = useRef(false)
   const [feedback, setFeedback] = useState('')
   const [error, setError] = useState('')
   const [preview, setPreview] = useState('')
@@ -48,7 +49,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   function change(next: SimpleQuotation) { setValue(next); setDirty(true); setFeedback('') }
   function line(index: number, patch: Partial<SimpleLine>) { change({ ...value, items: value.items.map((item, i) => i === index ? { ...item, ...patch } : item) }) }
   function moveTo(index: number, target: number) {
-    if (busy || uploading || needsRefresh || submitLock.current || pickerTarget) return
+    if (busy || uploadBusyRef.current || needsRefresh || submitLock.current || pickerTarget) return
     const items = moveLine(value.items, index, target)
     if (items === value.items) return
     setLineKeys((keys) => moveLine(keys, index, target))
@@ -56,12 +57,12 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   }
   function move(index: number, offset: number) { moveTo(index, index + offset) }
   function removeLine(index: number) {
-    if (busy || uploading || needsRefresh || submitLock.current || pickerTarget || value.items.length <= 1) return
+    if (busy || uploadBusyRef.current || needsRefresh || submitLock.current || pickerTarget || value.items.length <= 1) return
     setLineKeys((keys) => keys.filter((_, i) => i !== index))
     change({ ...value, items: value.items.filter((_, i) => i !== index) })
   }
   function addLine() {
-    if (busy || uploading || needsRefresh || submitLock.current || pickerTarget || value.items.length >= 100) return
+    if (busy || uploadBusyRef.current || needsRefresh || submitLock.current || pickerTarget || value.items.length >= 100) return
     const key = `line-${nextLineKey.current++}`
     setLineKeys((keys) => [...keys, key])
     change({ ...value, items: [...value.items, blankLine()] })
@@ -71,7 +72,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
     router.refresh()
   }
   function run(mode: 'save' | 'preview' | 'finalize', confirmed = false) {
-    if (submitLock.current || uploading || needsRefresh) return
+    if (submitLock.current || uploadBusyRef.current || needsRefresh) return
     if (mode === 'finalize' && !confirmed) { confirmation.ask('AI 排版并生成正式报价', '将使用现有 AI 接口整理 Jordan 模板排版，发送产品名称和规格文字，可能产生 API 费用。不会发送客户信息、报价金额、图片或内部备注。随后使用当前已保存的 Logo / 盖章设置生成 PDF 和 Excel 并锁定当前版本。', () => run(mode, true)); return }
     submitLock.current = true
     startTransition(async () => {
@@ -109,7 +110,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
     })
   }
   function chooseProduct(index: number, product: CommonProductOption, confirmed = false) {
-    if (!value.items[index] || busy || uploading || needsRefresh) return
+    if (!value.items[index] || busy || uploadBusyRef.current || submitLock.current || needsRefresh) return
     if (value.items[index].name && !confirmed) { confirmation.ask('填充常用产品', '将替换本行的名称、描述、价格和图片。', () => chooseProduct(index, product, true)); return }
     const sameCurrency = product.currency === value.currency
     if (!sameCurrency) setError(`产品默认币种为 ${product.currency}，与当前 ${value.currency} 不同，请手动填写单价。`)
@@ -129,7 +130,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
       {value.items.map((item, index) => <section key={lineKeys[index]} className="overflow-hidden rounded-2xl border bg-white">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b bg-slate-50 px-5 py-3"><LinePosition position={index + 1} total={value.items.length} disabled={busy || uploading || needsRefresh || pickerTarget !== null} onCommit={(position) => moveTo(index, position - 1)} /><div className="flex gap-1"><Button type="button" variant="ghost" size="icon" aria-label={`上移产品 ${index + 1}`} disabled={index === 0} onClick={() => move(index, -1)}><ArrowUp className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`下移产品 ${index + 1}`} disabled={index === value.items.length - 1} onClick={() => move(index, 1)}><ArrowDown className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`删除产品 ${index + 1}`} disabled={value.items.length === 1} onClick={() => confirmation.ask('移除产品明细', '将从当前草稿中移除此产品。不会删除常用产品或商城产品。', () => removeLine(index))}><Trash2 className="size-4" /></Button></div></div>
         <div className="grid gap-6 p-6 xl:grid-cols-[1fr_2fr]">
-          <SimpleImagePicker images={item.images} onChange={(images) => line(index, { images })} onBusy={setUploading} disabled={busy} />
+          <div className="space-y-3"><p className="text-xs text-slate-500">点击图片可放大查看。</p><SimpleImagePicker pasteAndDrop preview images={item.images} onChange={(images) => line(index, { images })} onBusy={(next) => { uploadBusyRef.current = next; setUploading(next) }} disabled={busy || uploading || needsRefresh} /></div>
           <div className="space-y-4"><label className="block space-y-2 text-sm font-medium">产品名称<Input value={item.name} maxLength={500} onChange={(e) => line(index, { name: e.target.value })} placeholder="填写对客户展示的名称，中英文均可" /></label>
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 rounded-lg border bg-slate-50 px-3 py-2"><span className="text-xs text-slate-500">从常用产品填充（可选）</span><Button type="button" variant="outline" className="min-h-11 bg-white" aria-label={`选择常用产品 ${index + 1}`} aria-haspopup="dialog" onClick={(event) => setPickerTarget({ index, trigger: event.currentTarget })}><Search aria-hidden="true" className="mr-2 size-4" />选择常用产品</Button></div>
             <label className="block space-y-2 text-sm font-medium">规格 / 描述 / 包装<Textarea rows={5} value={item.description} onChange={(e) => line(index, { description: e.target.value })} placeholder={'每行一条，例如：\nMaterial: Cotton\nColor: Navy\nSizes: S-3XL'} /></label>
