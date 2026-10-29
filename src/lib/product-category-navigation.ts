@@ -3,7 +3,6 @@ import type { CategoryListItem } from '@/actions/categories'
 const categoryOrder = [
   'fall-protection',
   'respiratory-protection',
-  'other-supplies',
   'body-protection',
   'hand-protection',
   'hearing-protection',
@@ -19,14 +18,14 @@ const categoryRanks = new Map<string, number>(
 )
 
 function getCategoryRank(slug: string) {
-  if (slug === 'uncategorized') return Number.MAX_SAFE_INTEGER
+  if (slug === 'other-supplies') return Number.MAX_SAFE_INTEGER
   return categoryRanks.get(slug) ?? categoryOrder.length
 }
 
 export function buildProductCategoryNavigation(categories: readonly CategoryListItem[]) {
   return categories
     .filter((category) => {
-      if (!category.isActive) return false
+      if (!category.isActive || category.slug === 'uncategorized') return false
       if (category.parentId === null) return true
 
       // These protection types get their own catalog entry while retaining

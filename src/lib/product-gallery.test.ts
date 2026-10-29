@@ -5,7 +5,7 @@ import { promoteToPrimaryProductImage } from './product-gallery'
 
 const image = (url: string, alt = url) => ({ url, alt })
 
-test('adds a detail image to the front of a gallery with available space', () => {
+test('adds a detail image to the front of the gallery', () => {
   const result = promoteToPrimaryProductImage(
     [image('gallery-1'), image('gallery-2')],
     image('detail-1', 'Detail image')
@@ -41,10 +41,10 @@ test('reports when the selected detail image is already primary', () => {
   assert.deepEqual(result.images, gallery)
 })
 
-test('does not remove gallery images when the gallery is full', () => {
-  const gallery = Array.from({ length: 5 }, (_, index) => image(`gallery-${index + 1}`))
+test('adds a detail image beyond ten existing gallery images without removing or reordering them', () => {
+  const gallery = Array.from({ length: 10 }, (_, index) => image(`gallery-${index + 1}`))
   const result = promoteToPrimaryProductImage(gallery, image('detail-1'))
 
-  assert.equal(result.status, 'gallery-full')
-  assert.deepEqual(result.images, gallery)
+  assert.equal(result.status, 'added')
+  assert.deepEqual(result.images, [image('detail-1'), ...gallery])
 })

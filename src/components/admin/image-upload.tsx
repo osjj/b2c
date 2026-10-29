@@ -35,7 +35,7 @@ function clipboardImageFile(file: File) {
 export function ImageUpload({
   value = [],
   onChange,
-  maxImages = 5,
+  maxImages,
   productName = '',
   pasteAndDrop = false,
   disabled = false,
@@ -60,6 +60,7 @@ export function ImageUpload({
   const fileDragDepth = useRef(0)
   const [fileDragging, setFileDragging] = useState(false)
   const controlsDisabled = uploading || disabled
+  const canAddImages = maxImages === undefined || value.length < maxImages
 
   const updateImages = (nextImages: ImageData[]) => {
     valueRef.current = nextImages
@@ -95,8 +96,8 @@ export function ImageUpload({
   // Selection, clipboard, drops and generated files share the public upload contract.
   const uploadFiles = async (files: File[], replaceIndex = -1) => {
     if (files.length === 0) return []
-    const remaining = replaceIndex >= 0 ? 1 : Math.max(0, maxImages - valueRef.current.length)
-    if (files.length > remaining) throw new Error(`最多 ${maxImages} 张图片，目前还可添加 ${remaining} 张；请选择更少的图片。`)
+    const remaining = replaceIndex >= 0 ? 1 : maxImages === undefined ? files.length : Math.max(0, maxImages - valueRef.current.length)
+    if (files.length > remaining) throw new Error(replaceIndex >= 0 ? '一次只能替换一张图片。' : `最多 ${maxImages} 张图片，目前还可添加 ${remaining} 张；请选择更少的图片。`)
     const invalid = files.filter(file => !imageTypes.includes(file.type) || file.size === 0 || file.size > maxImageBytes)
     if (invalid.length) throw new Error(`${invalid.map(file => file.name || '未命名图片').join('、')}：请选择非空且不超过 10 MB 的 JPEG、PNG、WebP 或 GIF 图片。`)
     const failures: string[] = []
@@ -219,16 +220,17 @@ export function ImageUpload({
   const handleAIImagesGenerated = async (generatedImages: string[]) => {
     if (!generatedImages.length || !beginUpload(true)) return
     try {
-      const remaining = regenerateIndex >= 0 ? 1 : Math.max(0, maxImages - valueRef.current.length)
+      const remaining = regenerateIndex >= 0 ? 1 : maxImages === undefined ? generatedImages.length : Math.max(0, maxImages - valueRef.current.length)
+      const selectedImages = maxImages === undefined && regenerateIndex < 0 ? generatedImages : generatedImages.slice(0, remaining)
       const files: File[] = []
-      for (const [index, source] of generatedImages.slice(0, remaining).entries()) {
+      for (const [index, source] of selectedImages.entries()) {
         const response = await fetch(source)
         if (!response.ok) throw new Error('无法读取生成的图片，请重试。')
         const blob = await response.blob()
         const file = new File([blob], `ai-generated-${Date.now()}-${index}.png`, { type: blob.type || 'image/png' })
         files.push(clipboardImageFile(file))
       }
-      if (!files.length) throw new Error(`最多 ${maxImages} 张图片，请先移除一张。`)
+      if (!files.length) throw new Error(maxImages === undefined ? '没有可上传的图片。' : `最多 ${maxImages} 张图片，请先移除一张。`)
       await uploadFiles(files, regenerateIndex)
       setAiDialogOpen(false)
       setRegenerateIndex(-1)
@@ -242,7 +244,7 @@ export function ImageUpload({
   return (
     <div
       data-image-upload
-      data-file-drop-target={pasteAndDrop && fileDragging && !controlsDisabled && value.length < maxImages ? true : undefined}
+      data-file-drop-target={pasteAndDrop && fileDragging && !controlsDisabled && canAddImages ? true : undefined}
       className="space-y-4"
       onPaste={pasteAndDrop ? handlePaste : undefined}
       onDragEnter={pasteAndDrop ? (event) => {
@@ -255,7 +257,7 @@ export function ImageUpload({
         if (!event.dataTransfer.types.includes('Files')) return
         event.preventDefault()
         const inside = event.target instanceof Node && event.currentTarget.contains(event.target)
-        event.dataTransfer.dropEffect = inside && !busyRef.current && !disabled && valueRef.current.length < maxImages ? 'copy' : 'none'
+        event.dataTransfer.dropEffect = inside && !busyRef.current && !disabled && (maxImages === undefined || valueRef.current.length < maxImages) ? 'copy' : 'none'
       } : undefined}
       onDragLeave={pasteAndDrop ? (event) => {
         if (!event.dataTransfer.types.includes('Files') || !(event.target instanceof Node) || !event.currentTarget.contains(event.target)) return
@@ -356,7 +358,7 @@ export function ImageUpload({
           </div>
         ))}
 
-        {value.length < maxImages && (
+        {canAddImages && (
           <label
             className={cn(
               'aspect-square border-2 border-dashed rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-primary transition-colors',
@@ -394,12 +396,12 @@ export function ImageUpload({
           type="button"
           aria-label="粘贴或拖拽上传图片"
           aria-describedby={`${uploadId}-help`}
-          disabled={controlsDisabled || value.length >= maxImages}
+          disabled={controlsDisabled || !canAddImages}
           onClick={(event) => event.currentTarget.focus()}
-          className={cn('flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed px-4 py-4 text-center text-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 [-webkit-tap-highlight-color:transparent]', fileDragging && !controlsDisabled && value.length < maxImages ? 'border-primary bg-primary/5' : 'border-muted-foreground/30 bg-muted/20')}
+          className={cn('flex min-h-24 w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed px-4 py-4 text-center text-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 [-webkit-tap-highlight-color:transparent]', fileDragging && !controlsDisabled && canAddImages ? 'border-primary bg-primary/5' : 'border-muted-foreground/30 bg-muted/20')}
         >
-          <span>{value.length >= maxImages ? `已达到 ${maxImages} 张图片上限` : '将图片拖到这里，或点击这里后按 Ctrl+V 粘贴'}</span>
-          <span id={`${uploadId}-help`} className="text-xs text-muted-foreground">JPEG / PNG / WebP / GIF，单张不超过 10 MB，最多 {maxImages} 张</span>
+          <span>{!canAddImages ? `已达到 ${maxImages} 张图片上限` : '将图片拖到这里，或点击这里后按 Ctrl+V 粘贴'}</span>
+          <span id={`${uploadId}-help`} className="text-xs text-muted-foreground">JPEG / PNG / WebP / GIF，单张不超过 10 MB{maxImages !== undefined ? `，最多 ${maxImages} 张` : ''}</span>
         </button>
       )}
       {uploading && <p role="status" className="text-sm text-muted-foreground">{progress.total ? `正在上传图片（${progress.current}/${progress.total}），请等待上传完成…` : '正在准备图片，请稍候…'}</p>}
@@ -407,10 +409,10 @@ export function ImageUpload({
 
       <div className="flex items-center justify-between">
         <p className="text-sm text-muted-foreground">
-          {value.length}/{maxImages} images uploaded
+          {value.length}{maxImages !== undefined ? `/${maxImages}` : ''} images uploaded
           {value.length > 1 && <span className="ml-2">• Drag to reorder</span>}
         </p>
-        {value.length < maxImages && (
+        {canAddImages && (
           <Button
             type="button"
             variant="outline"

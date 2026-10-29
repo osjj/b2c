@@ -35,10 +35,7 @@ import {
   buildProductMetaDescription,
   buildProductMetaTitle,
 } from '@/lib/product-seo'
-import {
-  MAX_PRODUCT_GALLERY_IMAGES,
-  promoteToPrimaryProductImage,
-} from '@/lib/product-gallery'
+import { promoteToPrimaryProductImage } from '@/lib/product-gallery'
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 type AttributeWithOptions = Attribute & {
@@ -236,17 +233,8 @@ export function ProductForm({ product, categories, collections = [], productColl
     }
     const result = promoteToPrimaryProductImage(
       images,
-      { url: imageUrl, alt: name || 'Product image' },
-      MAX_PRODUCT_GALLERY_IMAGES
+      { url: imageUrl, alt: name || 'Product image' }
     )
-
-    if (result.status === 'gallery-full') {
-      setGalleryActionMessage({
-        kind: 'error',
-        text: `The main gallery already has ${MAX_PRODUCT_GALLERY_IMAGES} images. Remove one before adding this detail image.`,
-      })
-      return false
-    }
 
     setImages(result.images)
     setGalleryActionMessage({
@@ -669,7 +657,6 @@ export function ProductForm({ product, categories, collections = [], productColl
               <ImageUpload
                 value={images}
                 onChange={setImages}
-                maxImages={MAX_PRODUCT_GALLERY_IMAGES}
                 productName={name}
                 pasteAndDrop
                 disabled={isSaving || isPreparingPreview || productPreviewOpen || imagesAIDialogOpen}

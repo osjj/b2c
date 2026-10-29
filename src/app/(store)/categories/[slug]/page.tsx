@@ -19,7 +19,8 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug: requestedSlug } = await params
+  const slug = requestedSlug === 'uncategorized' ? 'other-supplies' : requestedSlug
   const category = await getCategoryBySlug(slug)
 
   if (!category) {
@@ -85,6 +86,10 @@ export default async function CategoryPage({
   const { page: pageParam } = await searchParams
   const page = Number(pageParam) || 1
 
+  if (slug === 'uncategorized') {
+    permanentRedirect(`/categories/other-supplies${page > 1 ? `?page=${page}` : ''}`)
+  }
+
   const category = await getCategoryBySlug(slug)
 
   if (!category) {
@@ -103,7 +108,7 @@ export default async function CategoryPage({
   const { products, pagination } = await getProducts({
     page,
     categoryIds: subtreeIds,
-    includeUncategorized: category.slug === 'uncategorized',
+    includeUncategorized: category.slug === 'other-supplies',
     limit: 12,
     activeOnly: true,
   })

@@ -118,7 +118,7 @@ export async function getProducts({
     where.categoryId = categoryId
   }
 
-  // Uncategorized includes both explicit assignments and products with no category.
+  // Other Supplies includes both explicit assignments and products with no category.
   // Keep this OR separate from the name/SKU search OR so both scopes must match.
   if (includeUncategorized && where.categoryId) {
     where.AND = [{ OR: [{ categoryId: where.categoryId }, { categoryId: null }] }]

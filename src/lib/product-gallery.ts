@@ -1,12 +1,9 @@
 import type { ImageData } from '@/types/image'
 
-export const MAX_PRODUCT_GALLERY_IMAGES = 5
-
 export type PromoteProductImageStatus =
   | 'added'
   | 'moved'
   | 'already-primary'
-  | 'gallery-full'
 
 export interface PromoteProductImageResult {
   images: ImageData[]
@@ -15,8 +12,7 @@ export interface PromoteProductImageResult {
 
 export function promoteToPrimaryProductImage(
   images: readonly ImageData[],
-  image: ImageData,
-  maxImages = MAX_PRODUCT_GALLERY_IMAGES
+  image: ImageData
 ): PromoteProductImageResult {
   const existingIndex = images.findIndex((candidate) => candidate.url === image.url)
 
@@ -34,10 +30,6 @@ export function promoteToPrimaryProductImage(
       ],
       status: 'moved',
     }
-  }
-
-  if (images.length >= maxImages) {
-    return { images: [...images], status: 'gallery-full' }
   }
 
   return {

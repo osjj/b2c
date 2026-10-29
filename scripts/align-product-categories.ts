@@ -8,7 +8,6 @@ import { Prisma, PrismaClient, type Category } from '@prisma/client'
 const groups = [
   { slug: 'fall-protection', name: 'Fall Protection' },
   { slug: 'respiratory-protection', name: 'Respiratory Protection' },
-  { slug: 'other-supplies', name: 'Other Supplies', description: 'Additional workplace supplies and accessories.' },
   { slug: 'body-protection', name: 'Body Protection' },
   { slug: 'hand-protection', name: 'Hand Protection' },
   { slug: 'hearing-protection', name: 'Hearing Protection', parent: 'head-protection' },
@@ -17,11 +16,11 @@ const groups = [
   { slug: 'eye-protection', name: 'Eye & Face Protection' },
   { slug: 'rainwear', name: 'Rainwear & Rain Gear', parent: 'body-protection' },
   { slug: 'foot-protection', name: 'Foot Protection' },
-  { slug: 'uncategorized', name: 'Uncategorized', description: 'Products awaiting assignment to a protection category.' },
+  { slug: 'other-supplies', name: 'Other Supplies', description: 'Additional workplace supplies and accessories.' },
 ] as const
 
 const directory = fileURLToPath(new URL('../.trellis/tasks/10-29-products-category-alignment/evidence/', import.meta.url))
-type CategoryChange = Pick<Category, 'name' | 'parentId' | 'sortOrder'>
+type CategoryChange = Pick<Category, 'name' | 'parentId' | 'sortOrder' | 'isActive'>
 
 export function planCategoryAlignment(categories: readonly Category[]) {
   const bySlug = new Map(categories.map((category) => [category.slug, category]))
@@ -35,11 +34,12 @@ export function planCategoryAlignment(categories: readonly Category[]) {
     const data = {
       name: group.name,
       parentId: parent?.id ?? null,
-      sortOrder: group.slug === 'uncategorized' ? 9999 : index,
+      sortOrder: group.slug === 'other-supplies' ? 9999 : index,
+      isActive: true,
     }
     if (!existing) {
       assert.ok('description' in group, 'Expected existing category is missing')
-      creates.push({ ...data, slug: group.slug, description: group.description, isActive: true })
+      creates.push({ ...data, slug: group.slug, description: group.description })
       return
     }
     assert.ok(existing.isActive, 'Expected category is not active')
@@ -55,7 +55,16 @@ export function planCategoryAlignment(categories: readonly Category[]) {
   assert.ok(face?.isActive && eye?.isActive && head?.isActive, 'Expected face category is unavailable')
   assert.ok(face.parentId === head.id || face.parentId === eye.id, 'Unexpected face category hierarchy')
   if (face.parentId !== eye.id) {
-    updates.push({ before: face, data: { name: face.name, parentId: eye.id, sortOrder: face.sortOrder } })
+    updates.push({ before: face, data: { name: face.name, parentId: eye.id, sortOrder: face.sortOrder, isActive: true } })
+  }
+
+  const retired = bySlug.get('uncategorized')
+  if (retired) {
+    assert.equal(retired.parentId, null, 'Unexpected retired category hierarchy')
+    assert.ok(!categories.some((category) => category.parentId === retired.id), 'Retired category still has children')
+    if (retired.isActive) {
+      updates.push({ before: retired, data: { name: retired.name, parentId: null, sortOrder: retired.sortOrder, isActive: false } })
+    }
   }
   return { updates, creates }
 }
@@ -79,6 +88,8 @@ export async function main(args = process.argv.slice(2)) {
   try {
     stage = 'read-current'
     const before = await snapshot(prisma)
+    const retired = before.categories.find((category) => category.slug === 'uncategorized')
+    assert.ok(!retired || before.products.every((product) => product.categoryId !== retired.id), 'Retired category still has assigned products')
     const plan = planCategoryAlignment(before.categories)
     const summary = {
       mode,
@@ -133,7 +144,7 @@ export async function main(args = process.argv.slice(2)) {
       })
       const remaining = planCategoryAlignment(saved.categories)
       assert.equal(remaining.updates.length + remaining.creates.length, 0, 'Alignment is incomplete')
-    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, timeout: 30000 })
+    }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable, timeout: 60000 })
 
     process.stdout.write(`${JSON.stringify({ success: true, ...summary, databaseWrites: plan.updates.length + plan.creates.length, backupPath }, null, 2)}\n`)
   } finally {

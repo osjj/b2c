@@ -80,7 +80,7 @@ export async function getCategories({
       const productRollupCount = await prisma.product.count({
         where: {
           isActive: true,
-          ...(category.slug === 'uncategorized'
+          ...(category.slug === 'other-supplies'
             ? { OR: [{ categoryId: { in: subtreeIds } }, { categoryId: null }] }
             : { categoryId: { in: subtreeIds } }),
         },

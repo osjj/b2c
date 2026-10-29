@@ -17,7 +17,7 @@ const compiled = ts.transpile(body.replaceAll('export ', '').replaceAll('import.
 const originals = [
   'fall-protection', 'respiratory-protection', 'body-protection', 'hand-protection',
   'hearing-protection', 'head-protection', 'eye-protection', 'rainwear', 'foot-protection',
-  'face-shields', 'unrelated-hidden',
+  'face-shields', 'unrelated-hidden', 'uncategorized',
 ]
 function fixture() {
   return {
@@ -45,6 +45,7 @@ function fixture() {
 
 function harness(options = {}) {
   let state = fixture()
+  if (options.assignedRetired) state.products[0].categoryId = 'uncategorized'
   const metrics = { clients: 0, disconnects: 0, transactions: 0, commits: 0, updates: 0, creates: 0, backups: 0 }
   const files = new Map()
   const output = []
@@ -124,7 +125,7 @@ await check('inspect and default never write or open a transaction', async () =>
   assert.equal(h.metrics.transactions + h.metrics.updates + h.metrics.creates + h.metrics.backups, 0)
   assert.deepEqual(h.state(), before)
   assert.equal(h.output[0].databaseWrites, 0)
-  assert.equal(h.output[0].creates.length, 3)
+  assert.equal(h.output[0].creates.length, 2)
 })
 
 await check('invalid arguments fail before a Prisma client is constructed', async () => {
@@ -134,22 +135,31 @@ await check('invalid arguments fail before a Prisma client is constructed', asyn
   assert.equal(h.metrics.clients, 0)
 })
 
-await check('apply changes only reviewed category fields and creates exactly three roots', async () => {
+await check('retirement rejects assigned products before any mutation or backup', async () => {
+  const h = harness({ assignedRetired: true })
+  const before = h.state()
+  await assert.rejects(h.main(['--apply']), /Retired category still has assigned products/)
+  assert.deepEqual(h.state(), before)
+  assert.equal(h.metrics.transactions + h.metrics.updates + h.metrics.creates + h.metrics.backups, 0)
+})
+
+await check('apply aligns eleven groups, retires Uncategorized and keeps Other Supplies last', async () => {
   const h = harness()
   const before = h.state()
   const expected = h.planCategoryAlignment(before.categories)
   await h.main(['--apply'])
   const saved = h.state()
   assert.equal(h.metrics.commits, 1)
-  assert.equal(h.metrics.creates, 3)
+  assert.equal(h.metrics.creates, 2)
   assert.equal(h.metrics.updates, expected.updates.length)
   assert.deepEqual(saved.products, before.products)
-  assert.equal(saved.categories.length, before.categories.length + 3)
+  assert.equal(saved.categories.length, before.categories.length + 2)
   assert.deepEqual(saved.categories.find(({ slug }) => slug === 'unrelated-hidden'), before.categories.find(({ slug }) => slug === 'unrelated-hidden'))
   assert.equal(saved.categories.find(({ slug }) => slug === 'hearing-protection').parentId, 'head-protection')
   assert.equal(saved.categories.find(({ slug }) => slug === 'rainwear').parentId, 'body-protection')
   assert.equal(saved.categories.find(({ slug }) => slug === 'face-shields').parentId, 'eye-protection')
-  assert.equal(saved.categories.find(({ slug }) => slug === 'uncategorized').sortOrder, 9999)
+  assert.equal(saved.categories.find(({ slug }) => slug === 'uncategorized').isActive, false)
+  assert.equal(saved.categories.find(({ slug }) => slug === 'other-supplies').sortOrder, 9999)
   assert.equal(h.metrics.backups, 1)
   assert.deepEqual(JSON.parse([...h.files.values()][0].toString()).products.map(({ id }) => id), ['active', 'unassigned-hidden'])
 })
@@ -196,6 +206,7 @@ await check('missing or inactive required categories and unexpected hierarchy fa
   assert.throws(() => h.planCategoryAlignment(before.map((row) => row.slug === 'head-protection' ? { ...row, isActive: false } : row)), /Expected parent is unavailable|Expected category is not active/)
   assert.throws(() => h.planCategoryAlignment(before.map((row) => row.slug === 'rainwear' ? { ...row, parentId: 'unexpected' } : row)), /Unexpected category hierarchy/)
   assert.throws(() => h.planCategoryAlignment(before.map((row) => row.slug === 'face-shields' ? { ...row, parentId: 'unexpected' } : row)), /Unexpected face category hierarchy/)
+  assert.throws(() => h.planCategoryAlignment(before.map((row) => row.slug === 'unrelated-hidden' ? { ...row, parentId: 'uncategorized' } : row)), /Retired category still has children/)
 })
 
 console.log(`Category maintenance passed (${checks} checks); no actual database, filesystem writes or network access.`)

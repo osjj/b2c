@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises'
 import ts from 'typescript'
 
 const records = [
-  { id: 'assigned', name: 'Safety Gloves', sku: 'GL-1', categoryId: 'uncategorized', isActive: true },
+  { id: 'assigned', name: 'Safety Gloves', sku: 'GL-1', categoryId: 'other-supplies', isActive: true },
   { id: 'unassigned', name: 'Safety Goggles', sku: 'EG-2', categoryId: null, isActive: true },
   { id: 'hidden', name: 'Safety Gloves Hidden', sku: 'GL-0', categoryId: null, isActive: false },
   { id: 'other', name: 'Safety Helmet', sku: 'HH-1', categoryId: 'head', isActive: true },
@@ -25,8 +25,9 @@ function matches(record, where) {
 
 let selectedWhere
 const categories = [
-  { id: 'uncategorized', slug: 'uncategorized' },
+  { id: 'other-supplies', slug: 'other-supplies' },
   { id: 'head', slug: 'head-protection' },
+  { id: 'legacy', slug: 'uncategorized' },
 ]
 const prisma = {
   category: { findMany: async () => categories },
@@ -62,20 +63,21 @@ async function ids(options) {
   return result.products.map(({ id }) => id)
 }
 
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'different-search'])
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], includeUncategorized: true, search: 'safety', activeOnly: true }), ['assigned', 'unassigned'])
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], includeUncategorized: true, search: 'eg-2', activeOnly: true }), ['unassigned'])
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], includeUncategorized: true, search: 'helmet', activeOnly: true }), [])
-assert.deepEqual(await ids({ categoryId: 'uncategorized', includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'different-search'])
-assert.deepEqual(await ids({ categoryId: 'head', categoryIds: ['uncategorized'], includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'different-search'])
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], activeOnly: true }), ['assigned'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'different-search'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], includeUncategorized: true, search: 'safety', activeOnly: true }), ['assigned', 'unassigned'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], includeUncategorized: true, search: 'eg-2', activeOnly: true }), ['unassigned'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], includeUncategorized: true, search: 'helmet', activeOnly: true }), [])
+assert.deepEqual(await ids({ categoryId: 'other-supplies', includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'different-search'])
+assert.deepEqual(await ids({ categoryId: 'head', categoryIds: ['other-supplies'], includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'different-search'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], activeOnly: true }), ['assigned'])
 assert.deepEqual(await ids({ categoryId: 'head', includeUncategorized: false, activeOnly: true }), ['other'])
 assert.deepEqual(await ids({ includeUncategorized: true, activeOnly: true }), ['assigned', 'unassigned', 'other', 'different-search'])
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], includeUncategorized: true, isActive: false, activeOnly: true }), ['hidden'])
-assert.deepEqual(await ids({ categoryIds: ['uncategorized'], includeUncategorized: true }), ['assigned', 'unassigned', 'hidden', 'different-search'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], includeUncategorized: true, isActive: false, activeOnly: true }), ['hidden'])
+assert.deepEqual(await ids({ categoryIds: ['other-supplies'], includeUncategorized: true }), ['assigned', 'unassigned', 'hidden', 'different-search'])
 
 const counts = await getCategories({ includeProductRollupCount: true })
-assert.equal(counts.find(({ slug }) => slug === 'uncategorized').productRollupCount, 3)
+assert.equal(counts.find(({ slug }) => slug === 'other-supplies').productRollupCount, 3)
 assert.equal(counts.find(({ slug }) => slug === 'head-protection').productRollupCount, 1)
+assert.equal(counts.find(({ slug }) => slug === 'uncategorized').productRollupCount, 0)
 
-console.log('Uncategorized filtering, search intersection, active boundaries, category priority and rollup counts passed (13 checks).')
+console.log('Other Supplies filtering, search intersection, active boundaries, category priority and rollup counts passed (14 checks).')
