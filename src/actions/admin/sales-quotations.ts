@@ -33,6 +33,7 @@ import { assertEditableRevision, assertRevisionTransition } from '@/lib/quotatio
 import { readWorkbenchSettings, readBrandForSnapshot } from '@/lib/quotation/services/workbench-settings'
 import { attachEditorImages } from '@/lib/quotation/services/editor-images'
 import { JORDAN_TEMPLATE_VERSION } from '@/lib/quotation/jordan-layout'
+import { quotationCurrencyMetadata } from '@/lib/quotation/currency-metadata'
 
 async function authorize(): Promise<{ id: string }> {
   assertQuotationWorkbenchEnabled()
@@ -159,7 +160,7 @@ export async function createSalesQuotation(input: unknown): Promise<QuotationAct
           currency: data.currency,
           currencyMinorUnit: data.currencyMinorUnit,
           roundingMode: data.roundingMode,
-          customerSnapshot: json(data.customerName ? { companyName: data.customerName, contacts: [], quotationBrand: brand } : { ...customer, quotationBrand: brand }),
+          customerSnapshot: json(data.customerName ? { companyName: data.customerName, contacts: [], quotationBrand: brand, ...quotationCurrencyMetadata(data.usdToCnyRate) } : { ...customer, quotationBrand: brand, ...quotationCurrencyMetadata(data.usdToCnyRate) }),
           publicTerms: json(data.publicTerms),
           internalNotes: data.internalNotes,
           subtotal: money.subtotal,
@@ -249,7 +250,10 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
           throw new QuotationError('VALIDATION_FAILED', 'Image identifiers do not belong to this quotation line')
         }
         if (submitted.imageAssetIds.length + (submitted.imageSourceIds?.length ?? 0) > 8) throw new QuotationError('VALIDATION_FAILED', '每个产品最多 8 张图片')
-        return item.assets.filter((asset) => submitted.imageAssetIds?.includes(asset.id))
+        return item.assets.filter((asset) => submitted.imageAssetIds?.includes(asset.id)).map((asset) => ({
+          ...asset,
+          sortOrder: submitted.imageOrder ? submitted.imageOrder.findIndex((image) => image.kind === 'asset' && image.id === asset.id) : asset.sortOrder,
+        }))
       })
       if (data.items.some((item) => !item.id && item.imageAssetIds?.length)) throw new QuotationError('VALIDATION_FAILED', 'New lines cannot reuse another line image identifier')
       const updated = await transaction.salesQuotationRevision.updateMany({
@@ -263,7 +267,7 @@ export async function updateSalesQuotation(input: unknown): Promise<QuotationAct
           currency: data.currency,
           currencyMinorUnit: data.currencyMinorUnit,
           roundingMode: data.roundingMode,
-          customerSnapshot: json(data.customerName ? { companyName: data.customerName, contacts: [], quotationBrand: currentBrand } : { ...customer, quotationBrand: currentBrand }),
+          customerSnapshot: json(data.customerName ? { companyName: data.customerName, contacts: [], quotationBrand: currentBrand, ...quotationCurrencyMetadata(data.usdToCnyRate, existing.customerSnapshot) } : { ...customer, quotationBrand: currentBrand, ...quotationCurrencyMetadata(data.usdToCnyRate, existing.customerSnapshot) }),
           publicTerms: json(data.publicTerms),
           internalNotes: data.internalNotes,
           subtotal: money.subtotal,

@@ -4,6 +4,8 @@ const FORBIDDEN_CUSTOMER_KEYS = new Set([
   'totalCost',
   'costCurrency',
   'exchangeRate',
+  'usdToCnyRate',
+  'quotationCurrency',
   'profit',
   'profitMarginPercent',
   'supplierName',

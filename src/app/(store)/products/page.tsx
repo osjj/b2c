@@ -16,20 +16,25 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import {
+  Boxes,
   ChevronRight,
+  Ear,
   Eye,
   Filter,
+  Flame,
   Footprints,
   Hand,
   HardHat,
   Package,
   ShieldCheck,
   Shirt,
+  Umbrella,
   Wind,
 } from 'lucide-react'
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 import { cn } from '@/lib/utils'
+import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 
 type Props = {
   searchParams: Promise<{
@@ -40,8 +45,6 @@ type Props = {
   }>
 }
 
-type ProductCategory = Awaited<ReturnType<typeof getCategories>>[number]
-
 const categoryIconMap: Record<string, LucideIcon> = {
   'foot-protection': Footprints,
   'body-protection': Shirt,
@@ -50,11 +53,17 @@ const categoryIconMap: Record<string, LucideIcon> = {
   'hand-protection': Hand,
   'fall-protection': ShieldCheck,
   'head-protection': HardHat,
+  'hearing-protection': Ear,
+  'other-supplies': Boxes,
+  'firefighting-equipment': Flame,
+  rainwear: Umbrella,
 }
 
-function ProductCategoryNavigation({ categories }: { categories: ProductCategory[] }) {
-  const topLevelCategories = categories.filter((category) => category.parentId === null)
-
+function ProductCategoryNavigation({
+  categories,
+}: {
+  categories: ReturnType<typeof buildProductCategoryNavigation>
+}) {
   return (
     <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
       <nav
@@ -69,7 +78,7 @@ function ProductCategoryNavigation({ categories }: { categories: ProductCategory
             <p className="mt-1 text-sm text-muted-foreground">Choose a protection type</p>
           </div>
           <span className="pb-0.5 text-xs font-medium text-muted-foreground">
-            {topLevelCategories.length} categories
+            {categories.length} categories
           </span>
         </div>
 
@@ -92,15 +101,15 @@ function ProductCategoryNavigation({ categories }: { categories: ProductCategory
             </Link>
           </li>
 
-          {topLevelCategories.map((category, index) => {
+          {categories.map((category, index) => {
             const Icon = categoryIconMap[category.slug] ?? Package
             const isLastUnpairedCategory =
-              topLevelCategories.length % 2 === 1 && index === topLevelCategories.length - 1
+              categories.length % 2 === 1 && index === categories.length - 1
 
             return (
               <li key={category.id} className={isLastUnpairedCategory ? 'col-span-2' : undefined}>
                 <Link
-                  href={`/categories/${category.slug}`}
+                  href={category.href}
                   className={cn(
                     'group relative flex overflow-hidden rounded-md border border-border/80 bg-card p-3.5 pr-9 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.65)] transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-accent/45 hover:shadow-[0_16px_30px_-22px_rgba(234,88,12,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:transform-none motion-reduce:transition-none',
                     isLastUnpairedCategory
@@ -153,7 +162,7 @@ function ProductCategoryNavigation({ categories }: { categories: ProductCategory
             </Link>
           </li>
 
-          {topLevelCategories.map((category) => {
+          {categories.map((category) => {
             const Icon = categoryIconMap[category.slug] ?? Package
 
             return (
@@ -162,7 +171,7 @@ function ProductCategoryNavigation({ categories }: { categories: ProductCategory
                 className="border-b last:border-b-0"
               >
                 <Link
-                  href={`/categories/${category.slug}`}
+                  href={category.href}
                   className="group flex min-h-16 w-full items-center gap-3 border-l-2 border-transparent px-4 text-sm font-semibold text-foreground/80 transition-colors duration-200 hover:border-accent/45 hover:bg-muted/55 hover:text-accent focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset motion-reduce:transition-none"
                 >
                   <Icon
@@ -274,6 +283,7 @@ export default async function ProductsPage({
     }),
     getCategories(),
   ])
+  const navigationCategories = buildProductCategoryNavigation(categories)
 
   return (
     <div className="min-h-screen">
@@ -324,7 +334,7 @@ export default async function ProductsPage({
               </div>
               <div className="w-px h-12 bg-primary-foreground/20" />
               <div className="text-center">
-                <div className="text-3xl font-bold text-accent">{categories.filter((c) => c.parentId === null).length}</div>
+                <div className="text-3xl font-bold text-accent">{navigationCategories.length}</div>
                 <div className="text-sm text-primary-foreground/60">Categories</div>
               </div>
             </div>
@@ -335,7 +345,7 @@ export default async function ProductsPage({
       {/* Main Content */}
       <section className="container mx-auto px-6 lg:px-8 py-8">
         <div className="grid items-start gap-7 lg:grid-cols-[14rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-9">
-          <ProductCategoryNavigation categories={categories} />
+          <ProductCategoryNavigation categories={navigationCategories} />
 
           <div className="min-w-0">
             {/* Toolbar */}

@@ -103,6 +103,7 @@ export default async function CategoryPage({
   const { products, pagination } = await getProducts({
     page,
     categoryIds: subtreeIds,
+    includeUncategorized: category.slug === 'uncategorized',
     limit: 12,
     activeOnly: true,
   })

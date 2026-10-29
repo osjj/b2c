@@ -11,6 +11,7 @@ import {
   voidAndCopyQuotationRevisionInputSchema,
 } from '../schemas'
 import { writeQuotationAudit } from './audit'
+import { quotationCurrencyMetadata } from '../currency-metadata'
 
 type Transaction = Prisma.TransactionClient
 
@@ -243,7 +244,7 @@ export async function copyQuotationToNewCustomer(input: unknown, actorId: string
         createdBy: actorId,
         revisions: {
           create: {
-            ...revisionCreateData(source, actorId, JSON.parse(JSON.stringify(customer)) as Prisma.InputJsonValue),
+            ...revisionCreateData(source, actorId, JSON.parse(JSON.stringify({ ...customer, ...quotationCurrencyMetadata(undefined, source.customerSnapshot) })) as Prisma.InputJsonValue),
             revisionNumber: 1,
             state: 'DRAFT',
           },

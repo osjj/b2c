@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { costPriceTextSchema, productSourceSchema } from '@/lib/product-source'
-import { createSalesQuotationInputSchema, currencySchema, quotationItemInputSchema } from './schemas'
+import { createSalesQuotationInputSchema, currencySchema, quotationItemInputSchema, usdToCnyRateSchema } from './schemas'
 import { commonProductCategorySchema } from './common-product-category'
 import type { WorkbenchSettings } from './workbench-config'
 import { quotationCurrencyMinorUnit } from './workbench-config'
@@ -22,6 +22,7 @@ export const simpleQuotationSchema = z.object({
   customerName: z.string().trim().min(1, '请输入客户名称').max(240),
   quotationDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine((date) => { const parsed = new Date(date); return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === date }, '请选择有效的报价日期'),
   currency: currencySchema,
+  usdToCnyRate: usdToCnyRateSchema.nullish(),
   terms: z.string().max(4000),
   internalNotes: z.string().max(10000),
   shippingFee: quotationItemInputSchema.shape.unitPrice,
@@ -60,13 +61,14 @@ export type CommonProductOption = z.infer<typeof commonProductOptionSchema>
 
 export function blankLine(): SimpleLine { return { name: '', description: '', quantity: '1', unit: 'pcs', unitPrice: '0', images: [] } }
 export function blankQuotation(settings: WorkbenchSettings): SimpleQuotation {
-  return { customerName: '', quotationDate: new Date().toISOString().slice(0, 10), currency: settings.currency, terms: settings.defaultTerms, internalNotes: '', shippingFee: '0', discountAmount: '0', otherFee: '0', items: [blankLine()] }
+  return { customerName: '', quotationDate: new Date().toISOString().slice(0, 10), currency: 'USD', usdToCnyRate: null, terms: settings.defaultTerms, internalNotes: '', shippingFee: '0', discountAmount: '0', otherFee: '0', items: [blankLine()] }
 }
 export function toQuotationInput(value: SimpleQuotation) {
   const data = simpleQuotationSchema.parse(value)
   return createSalesQuotationInputSchema.parse({
     customerId: data.customerId, customerName: data.customerName, quotationDate: data.quotationDate,
     currency: data.currency, currencyMinorUnit: quotationCurrencyMinorUnit(data.currency),
+    usdToCnyRate: data.usdToCnyRate,
     publicTerms: { Terms: data.terms }, internalNotes: data.internalNotes,
     shippingFee: data.shippingFee, discountAmount: data.discountAmount, otherFee: data.otherFee,
     items: data.items.map((item, index) => ({
@@ -76,6 +78,7 @@ export function toQuotationInput(value: SimpleQuotation) {
       unitCost: item.unitCost, costCurrency: item.unitCost != null ? data.currency : undefined,
       imageSourceIds: item.images.filter((image) => image.kind === 'source').map((image) => image.id),
       imageAssetIds: item.images.filter((image) => image.kind === 'asset').map((image) => image.id),
+      imageOrder: item.images.map(({ kind, id }) => ({ kind, id })),
     })),
   })
 }

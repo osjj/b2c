@@ -17,12 +17,15 @@ export async function attachEditorImages(tx: Prisma.TransactionClient, quotation
     const sources = allSources.filter((source) => ids.includes(source.id))
     if (sources.length !== ids.length) throw new QuotationError('FILE_NOT_CLEAN', '图片不可用、未通过安全检查或属于其他报价')
     const hashes = new Set(item.assets.map((asset) => asset.sha256))
+    const legacyStart = item.assets.reduce((highest, asset) => Math.max(highest, asset.sortOrder), -1) + 1
     for (const [index, id] of ids.entries()) {
       const source = sources.find((entry) => entry.id === id)
       if (!source || !['image/png', 'image/jpeg'].includes(source.contentType) || source.sizeBytes > 5 * 1024 * 1024) throw new QuotationError('VALIDATION_FAILED', '请选择不超过 5 MB 的 PNG / JPEG 图片')
       if (hashes.has(source.sha256)) throw new QuotationError('DUPLICATE_FILE', '产品图片重复')
       hashes.add(source.sha256)
-      additions.push({ itemId: item.id, sourceFileId: source.id, displayName: source.displayName, objectKey: source.objectKey, contentType: source.contentType, sizeBytes: source.sizeBytes, sha256: source.sha256, sortOrder: item.assets.length + index })
+      const sortOrder = input.imageOrder ? input.imageOrder.findIndex((image) => image.kind === 'source' && image.id === id) : legacyStart + index
+      if (sortOrder < 0) throw new QuotationError('VALIDATION_FAILED', 'Quotation image order is incomplete')
+      additions.push({ itemId: item.id, sourceFileId: source.id, displayName: source.displayName, objectKey: source.objectKey, contentType: source.contentType, sizeBytes: source.sizeBytes, sha256: source.sha256, sortOrder })
     }
   }
   if (additions.length) await tx.salesQuotationItemAsset.createMany({ data: additions })

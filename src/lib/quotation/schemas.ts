@@ -44,6 +44,12 @@ const exchangeRateDecimalStringSchema = positiveDecimalStringSchema.refine(
   'Exchange rate supports at most 8 decimal places',
 )
 
+/** Quotation-level convention: one USD equals this many CNY. */
+export const usdToCnyRateSchema = exchangeRateDecimalStringSchema.refine(
+  (value) => value.split('.')[0].length <= 10,
+  'Exchange rate exceeds the supported range',
+)
+
 export const currencySchema = z.string().trim().toUpperCase().regex(/^[A-Z]{3}$/)
 export const quotationLanguageSchema = z.enum(['CHINESE', 'ENGLISH', 'BILINGUAL'])
 export const quotationProductStatusSchema = z.enum(['DRAFT', 'ACTIVE', 'INACTIVE'])
@@ -144,12 +150,18 @@ export const quotationProductCostInputSchema = z.object({
   notes: z.string().trim().max(4000).nullish(),
 })
 
+export const quotationImageOrderSchema = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('source'), id: z.string().uuid() }),
+  z.object({ kind: z.literal('asset'), id: z.string().cuid() }),
+])
+
 export const quotationItemInputSchema = z
   .object({
     id: z.string().cuid().optional(),
     quotationProductId: z.string().cuid().nullish(),
     imageSourceIds: z.array(z.string().uuid()).max(8).optional(),
     imageAssetIds: z.array(z.string().cuid()).max(8).optional(),
+    imageOrder: z.array(quotationImageOrderSchema).max(8).optional(),
     productId: z.string().cuid().nullish(),
     sortOrder: z.number().int().min(0).max(10000),
     nameZh: z.string().trim().max(500).nullish(),
@@ -168,6 +180,18 @@ export const quotationItemInputSchema = z
     internalNotes: z.string().trim().max(10000).nullish(),
   })
   .superRefine((value, context) => {
+    if (value.imageOrder !== undefined) {
+      if (value.imageSourceIds === undefined || value.imageAssetIds === undefined) {
+        context.addIssue({ code: 'custom', path: ['imageOrder'], message: 'Ordered images require explicit source and asset arrays' })
+      } else {
+        const expected = [...value.imageSourceIds.map((id) => `source:${id}`), ...value.imageAssetIds.map((id) => `asset:${id}`)]
+        const ordered = value.imageOrder.map((image) => `${image.kind}:${image.id}`)
+        const expectedSet = new Set(expected)
+        if (expected.length > 8 || expectedSet.size !== expected.length || new Set(ordered).size !== ordered.length || ordered.length !== expected.length || ordered.some((key) => !expectedSet.has(key))) {
+          context.addIssue({ code: 'custom', path: ['imageOrder'], message: 'Image order must contain each selected image exactly once' })
+        }
+      }
+    }
     if (value.quotationProductId && value.productId) {
       context.addIssue({
         code: 'custom',
@@ -206,6 +230,7 @@ export const createSalesQuotationInputSchema = z.object({
   documentLanguage: quotationLanguageSchema.default('ENGLISH'),
   currency: currencySchema,
   currencyMinorUnit: z.number().int().min(0).max(4).default(2),
+  usdToCnyRate: usdToCnyRateSchema.nullish(),
   roundingMode: quotationRoundingModeSchema.default('HALF_UP'),
   publicTerms: z.record(z.string(), z.string().max(4000)).default({}),
   internalNotes: z.string().trim().max(10000).nullish(),

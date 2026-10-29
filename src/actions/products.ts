@@ -5,6 +5,7 @@ import { invalidateHomeCache } from '@/lib/home-cache'
 import { redirect } from 'next/navigation'
 import { after } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import type { Prisma } from '@prisma/client'
 import { buildProductEmbeddingText, generateEmbedding } from '@/lib/embeddings'
 import {
   collectProductIndexNowUrls,
@@ -86,6 +87,7 @@ export async function getProducts({
   search = '',
   categoryId = '',
   categoryIds = [],
+  includeUncategorized = false,
   isActive,
   activeOnly = false,
   orderBy = 'sortOrder',
@@ -95,11 +97,12 @@ export async function getProducts({
   search?: string
   categoryId?: string
   categoryIds?: string[]
+  includeUncategorized?: boolean
   isActive?: boolean
   activeOnly?: boolean
   orderBy?: 'sortOrder' | 'createdAt' | 'name' | 'price'
 } = {}) {
-  const where: any = {}
+  const where: Prisma.ProductWhereInput = {}
 
   if (search) {
     where.OR = [
@@ -115,6 +118,13 @@ export async function getProducts({
     where.categoryId = categoryId
   }
 
+  // Uncategorized includes both explicit assignments and products with no category.
+  // Keep this OR separate from the name/SKU search OR so both scopes must match.
+  if (includeUncategorized && where.categoryId) {
+    where.AND = [{ OR: [{ categoryId: where.categoryId }, { categoryId: null }] }]
+    delete where.categoryId
+  }
+
   if (typeof isActive === 'boolean') {
     where.isActive = isActive
   } else if (activeOnly) {
@@ -122,7 +132,7 @@ export async function getProducts({
   }
 
   // Build orderBy clause
-  const orderByClause: any = orderBy === 'sortOrder'
+  const orderByClause: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[] = orderBy === 'sortOrder'
     ? [{ sortOrder: 'asc' }, { createdAt: 'desc' }]
     : orderBy === 'name'
     ? { name: 'asc' }

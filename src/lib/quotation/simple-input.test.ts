@@ -18,6 +18,35 @@ test('new quote needs neither an existing customer nor storefront product', () =
   assert.equal(input.items[0].productId, undefined)
   assert.equal(input.items[0].unitCost, undefined)
 })
+
+test('simple image DTO retains arbitrary mixed source and saved-asset order', () => {
+  const value = fixture()
+  value.items[0].images = [
+    { id: '00000000-0000-4000-8000-000000000001', kind: 'source', name: 'First new' },
+    { id: 'c000000000000000000000001', kind: 'asset', name: 'Saved' },
+    { id: '00000000-0000-4000-8000-000000000002', kind: 'source', name: 'Second new' },
+  ]
+  const line = toQuotationInput(value).items[0]
+  assert.deepEqual(line.imageSourceIds, [value.items[0].images[0].id, value.items[0].images[2].id])
+  assert.deepEqual(line.imageAssetIds, [value.items[0].images[1].id])
+  assert.deepEqual(line.imageOrder, value.items[0].images.map(({ kind, id }) => ({ kind, id })))
+  value.items[0].images.push(value.items[0].images[0])
+  assert.throws(() => toQuotationInput(value), /each selected image exactly once/)
+})
+
+test('new quotations default USD independently of saved workbench currency and persist applied rate', () => {
+  const blank = blankQuotation(workbenchSettingsSchema.parse({ currency: 'CNY' }))
+  assert.equal(blank.currency, 'USD')
+  assert.equal(blank.usdToCnyRate, null)
+  const value = fixture()
+  value.usdToCnyRate = '7.2'
+  assert.equal(toQuotationInput(value).usdToCnyRate, '7.2')
+  assert.equal(toQuotationInput({ ...value, usdToCnyRate: null }).usdToCnyRate, null)
+  assert.equal(toQuotationInput({ ...value, usdToCnyRate: undefined }).usdToCnyRate, undefined)
+  for (const invalid of ['0', '-7', '1.123456789', '10000000000', '1e2', '']) {
+    assert.throws(() => toQuotationInput({ ...value, usdToCnyRate: invalid }))
+  }
+})
 test('simple editor totals match authoritative HALF_UP totals at decimal boundaries', () => {
   for (const currency of ['USD', 'JPY', 'KWD']) for (const price of ['0.335', '0.005', '1.234567', '1000']) {
     const value = fixture(); value.currency = currency; value.items[0].unitPrice = price

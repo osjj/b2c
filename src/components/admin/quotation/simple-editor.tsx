@@ -11,6 +11,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { blankLine, blankQuotation, commonProductDescription, simpleTotals, toQuotationInput, type CommonProductOption, type SimpleLine, type SimpleQuotation } from '@/lib/quotation/simple-input'
 import type { WorkbenchSettings } from '@/lib/quotation/workbench-config'
 import { moveLine } from '@/lib/quotation/line-order'
+import { usdToCnyRateSchema } from '@/lib/quotation/schemas'
+import { captureCurrencyConversionBase, convertCurrencyAmount, convertQuotationCurrency, quotationMoneyFingerprint } from '@/lib/quotation/currency-conversion'
 import { SimpleImagePicker } from './simple-image-picker'
 import { CommonProductPicker } from './common-product-picker'
 import { LinePosition } from './line-position'
@@ -24,6 +26,8 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   const router = useRouter()
   const confirmation = useQuotationConfirm()
   const [value, setValue] = useState(initialValue ?? blankQuotation(settings))
+  const [rateDraft, setRateDraft] = useState(value.usdToCnyRate ?? '')
+  const currencyBaseRef = useRef(captureCurrencyConversionBase(value))
   // UI keys follow entire rows, including drafts that do not have database IDs yet.
   const [lineKeys, setLineKeys] = useState(() => value.items.map((_, index) => `line-${index}`))
   const nextLineKey = useRef(value.items.length)
@@ -46,14 +50,41 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
     window.addEventListener('beforeunload', guard)
     return () => window.removeEventListener('beforeunload', guard)
   }, [dirty])
-  function change(next: SimpleQuotation) { setValue(next); setDirty(true); setFeedback('') }
-  function line(index: number, patch: Partial<SimpleLine>) { change({ ...value, items: value.items.map((item, i) => i === index ? { ...item, ...patch } : item) }) }
+  function change(next: SimpleQuotation, keepCurrencyBase = false) {
+    if (!keepCurrencyBase && quotationMoneyFingerprint(next) !== quotationMoneyFingerprint(value)) currencyBaseRef.current = captureCurrencyConversionBase(next)
+    setValue(next); setDirty(true); setFeedback('')
+  }
+  function line(index: number, patch: Partial<SimpleLine>, resetCurrencyBase = false) {
+    const next = { ...value, items: value.items.map((item, i) => i === index ? { ...item, ...patch } : item) }
+    if (resetCurrencyBase) currencyBaseRef.current = captureCurrencyConversionBase(next)
+    change(next)
+  }
+  function applyCurrency(currency = value.currency) {
+    if (busy || uploadBusyRef.current || needsRefresh || submitLock.current || pickerTarget) return
+    if (!rateDraft.trim() && currency === 'USD' && value.currency === 'USD') {
+      const next = { ...value, usdToCnyRate: null }
+      currencyBaseRef.current = captureCurrencyConversionBase(next)
+      change(next, true); setError(''); setRateDraft(''); setFeedback('已清除换算汇率')
+      return
+    }
+    const parsed = usdToCnyRateSchema.safeParse(rateDraft)
+    if (!parsed.success) { setError('请填写有效汇率：1 USD 等于多少人民币，必须大于 0，最多 8 位小数。'); return }
+    try {
+      const base = currencyBaseRef.current.currency === 'CNY' && !currencyBaseRef.current.usdToCnyRate
+        ? captureCurrencyConversionBase({ ...value, usdToCnyRate: parsed.data }) : currencyBaseRef.current
+      const next = convertQuotationCurrency(value, currency, parsed.data, base)
+      currencyBaseRef.current = base
+      change(next, true); setRateDraft(next.usdToCnyRate ?? ''); setError('')
+      setFeedback(`已按 1 USD = ${parsed.data} CNY 应用汇率，当前报价币种为 ${currency}`)
+    } catch (cause) { setError(cause instanceof Error ? cause.message : '币种换算失败，请检查汇率和金额') }
+  }
   function moveTo(index: number, target: number) {
     if (busy || uploadBusyRef.current || needsRefresh || submitLock.current || pickerTarget) return
     const items = moveLine(value.items, index, target)
     if (items === value.items) return
+    currencyBaseRef.current = { ...currencyBaseRef.current, items: moveLine(currencyBaseRef.current.items, index, target) }
     setLineKeys((keys) => moveLine(keys, index, target))
-    change({ ...value, items })
+    change({ ...value, items }, true)
   }
   function move(index: number, offset: number) { moveTo(index, index + offset) }
   function removeLine(index: number) {
@@ -73,6 +104,7 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
   }
   function run(mode: 'save' | 'preview' | 'finalize', confirmed = false) {
     if (submitLock.current || uploadBusyRef.current || needsRefresh) return
+    if (rateDraft.trim() !== (value.usdToCnyRate ?? '')) { setError('汇率尚未应用，请先点击“应用汇率”或切换币种，再保存或生成报价。'); return }
     if (mode === 'finalize' && !confirmed) { confirmation.ask('AI 排版并生成正式报价', '将使用现有 AI 接口整理 Jordan 模板排版，发送产品名称和规格文字，可能产生 API 费用。不会发送客户信息、报价金额、图片或内部备注。随后使用当前已保存的 Logo / 盖章设置生成 PDF 和 Excel 并锁定当前版本。', () => run(mode, true)); return }
     submitLock.current = true
     startTransition(async () => {
@@ -113,8 +145,19 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
     if (!value.items[index] || busy || uploadBusyRef.current || submitLock.current || needsRefresh) return
     if (value.items[index].name && !confirmed) { confirmation.ask('填充常用产品', '将替换本行的名称、描述、价格和图片。', () => chooseProduct(index, product, true)); return }
     const sameCurrency = product.currency === value.currency
-    if (!sameCurrency) setError(`产品默认币种为 ${product.currency}，与当前 ${value.currency} 不同，请手动填写单价。`)
-    line(index, { quotationProductId: product.id, name: product.name, description: commonProductDescription(product), unit: product.unit, unitPrice: sameCurrency ? product.unitPrice : '0', unitCost: sameCurrency ? product.unitCost : null, images: product.images })
+    let unitPrice = product.unitPrice, unitCost = product.unitCost
+    if (!sameCurrency) {
+      if (['USD', 'CNY'].includes(product.currency) && ['USD', 'CNY'].includes(value.currency)) {
+        const rate = usdToCnyRateSchema.safeParse(value.usdToCnyRate)
+        if (!rate.success || rateDraft.trim() !== (value.usdToCnyRate ?? '')) { setError('请先设置并应用美元兑人民币汇率，再填充不同币种的常用产品。'); return }
+        try {
+          unitPrice = convertCurrencyAmount(product.unitPrice, product.currency, value.currency, rate.data)
+          unitCost = product.unitCost == null ? product.unitCost : convertCurrencyAmount(product.unitCost, product.currency, value.currency, rate.data)
+        } catch (cause) { setError(cause instanceof Error ? cause.message : '产品价格换算失败'); return }
+        setError('')
+      } else { unitPrice = '0'; unitCost = null; setError(`产品默认币种为 ${product.currency}，暂不支持与 ${value.currency} 自动换算，请手动填写单价。`) }
+    }
+    line(index, { quotationProductId: product.id, name: product.name, description: commonProductDescription(product), unit: product.unit, unitPrice, unitCost, images: product.images }, true)
   }
   return <div className="space-y-6">
     {confirmation.dialog}
@@ -124,13 +167,14 @@ export function SimpleQuotationEditor({ customers, settings, initialValue, revis
       <section className="grid gap-5 rounded-2xl border bg-white p-6 md:grid-cols-[2fr_1fr_1fr]">
         <label className="space-y-2 text-sm font-medium">客户名称 <span className="text-red-600">*</span><Input list="quote-customers" value={value.customerName} onChange={(e) => change({ ...value, customerName: e.target.value })} placeholder="直接输入客户或公司名称" maxLength={240} /><datalist id="quote-customers">{customers.map((customer) => <option key={customer.id} value={customer.companyName} />)}</datalist></label>
         <label className="space-y-2 text-sm font-medium">报价日期<Input type="date" value={value.quotationDate} onChange={(e) => change({ ...value, quotationDate: e.target.value })} /></label>
-        <label className="space-y-2 text-sm font-medium">币种<Input value={value.currency} maxLength={3} onChange={(e) => change({ ...value, currency: e.target.value.toUpperCase() })} /></label>
+        <label className="space-y-2 text-sm font-medium">币种<select aria-label="报价币种" value={value.currency} onChange={(event) => applyCurrency(event.target.value)} className="border-input focus-visible:border-ring focus-visible:ring-ring/50 flex h-10 w-full min-w-0 rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-[3px] disabled:opacity-50"><option value="USD">USD · 美元</option><option value="CNY">CNY · 人民币</option>{!['USD', 'CNY'].includes(value.currency) && <option value={value.currency}>{value.currency} · 现有报价币种</option>}</select></label>
+        {['USD', 'CNY'].includes(value.currency) && <div className="space-y-3 rounded-xl border bg-slate-50 p-4 md:col-span-3"><div className="flex flex-wrap items-end gap-3"><label className="block min-w-0 flex-1 space-y-2 text-sm font-medium" htmlFor="quotation-usd-cny-rate">美元兑人民币汇率<span className="flex items-center gap-2"><span className="shrink-0 text-slate-500">1 USD =</span><Input id="quotation-usd-cny-rate" aria-describedby="quotation-rate-help" inputMode="decimal" maxLength={22} placeholder="例如 7.20" value={rateDraft} onChange={(event) => { setRateDraft(event.target.value); setDirty(true); setFeedback('') }} className="min-w-0 max-w-52 bg-white" /><span className="shrink-0 text-slate-500">CNY</span></span></label><Button type="button" variant="outline" className="min-h-11 bg-white" onClick={() => applyCurrency()}>应用汇率</Button></div><p id="quotation-rate-help" className="text-xs leading-5 text-slate-500">切换币种时换算整张报价的单价及费用。修改汇率后点击“应用汇率”，再保存或生成对应币种的 PDF / Excel。{value.usdToCnyRate && <span className="block text-teal-800">当前已应用：1 USD = {value.usdToCnyRate} CNY</span>}</p></div>}
       </section>
       <div className="flex items-end justify-between gap-3"><div><h2 className="text-lg font-semibold">产品明细</h2><p className="mt-1 text-sm text-slate-500">直接录入，或从常用产品填充。填写序号后按 Enter 或离开输入框即可调整顺序。</p></div><span className="shrink-0 text-sm text-slate-500">{value.items.length} 项产品</span></div>
       {value.items.map((item, index) => <section key={lineKeys[index]} className="overflow-hidden rounded-2xl border bg-white">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b bg-slate-50 px-5 py-3"><LinePosition position={index + 1} total={value.items.length} disabled={busy || uploading || needsRefresh || pickerTarget !== null} onCommit={(position) => moveTo(index, position - 1)} /><div className="flex gap-1"><Button type="button" variant="ghost" size="icon" aria-label={`上移产品 ${index + 1}`} disabled={index === 0} onClick={() => move(index, -1)}><ArrowUp className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`下移产品 ${index + 1}`} disabled={index === value.items.length - 1} onClick={() => move(index, 1)}><ArrowDown className="size-4" /></Button><Button type="button" variant="ghost" size="icon" aria-label={`删除产品 ${index + 1}`} disabled={value.items.length === 1} onClick={() => confirmation.ask('移除产品明细', '将从当前草稿中移除此产品。不会删除常用产品或商城产品。', () => removeLine(index))}><Trash2 className="size-4" /></Button></div></div>
         <div className="grid gap-6 p-6 xl:grid-cols-[1fr_2fr]">
-          <div className="space-y-3"><p className="text-xs text-slate-500">点击图片可放大查看。</p><SimpleImagePicker pasteAndDrop preview compressImages images={item.images} onChange={(images) => line(index, { images })} onBusy={(next) => { uploadBusyRef.current = next; setUploading(next) }} disabled={busy || uploading || needsRefresh} /></div>
+          <div className="space-y-3"><p className="text-xs text-slate-500">点击图片可放大；可拖拽或使用前后箭头调整顺序，保存后生效。</p><SimpleImagePicker sortable pasteAndDrop preview compressImages images={item.images} onChange={(images) => line(index, { images })} onBusy={(next) => { uploadBusyRef.current = next; setUploading(next) }} disabled={busy || uploading || needsRefresh} /></div>
           <div className="space-y-4"><label className="block space-y-2 text-sm font-medium">产品名称<Input value={item.name} maxLength={500} onChange={(e) => line(index, { name: e.target.value })} placeholder="填写对客户展示的名称，中英文均可" /></label>
             <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 rounded-lg border bg-slate-50 px-3 py-2"><span className="text-xs text-slate-500">从常用产品填充（可选）</span><Button type="button" variant="outline" className="min-h-11 bg-white" aria-label={`选择常用产品 ${index + 1}`} aria-haspopup="dialog" onClick={(event) => setPickerTarget({ index, trigger: event.currentTarget })}><Search aria-hidden="true" className="mr-2 size-4" />选择常用产品</Button></div>
             <label className="block space-y-2 text-sm font-medium">规格 / 描述 / 包装<Textarea rows={5} value={item.description} onChange={(e) => line(index, { description: e.target.value })} placeholder={'每行一条，例如：\nMaterial: Cotton\nColor: Navy\nSizes: S-3XL'} /></label>

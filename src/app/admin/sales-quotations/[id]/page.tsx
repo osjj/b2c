@@ -7,6 +7,7 @@ import { isQuotationWorkbenchEnabled } from '@/lib/quotation/feature'
 import { readWorkbenchSettings } from '@/lib/quotation/services/workbench-settings'
 import { revisionStatusLabel } from '@/lib/quotation/workbench-config'
 import { buildCanonicalSnapshot } from '@/lib/quotation/artifacts/snapshot'
+import { readQuotationCurrencyRate } from '@/lib/quotation/currency-metadata'
 import type { SimpleQuotation } from '@/lib/quotation/simple-input'
 import { WorkbenchHeader } from '@/components/admin/quotation/workbench-header'
 import { SimpleQuotationEditor } from '@/components/admin/quotation/simple-editor'
@@ -31,6 +32,7 @@ export default async function QuotationDetailPage({ params, searchParams }: { pa
   const initial: SimpleQuotation = {
     customerId: quotation.customerId, customerName: snapshot.customer.companyName, quotationDate: snapshot.quotation.date,
     currency: revision.currency, terms: Object.entries(snapshot.terms).map(([key, val]) => key === 'Terms' ? val : `${key}: ${val}`).join('\n'), internalNotes: revision.internalNotes || '',
+    usdToCnyRate: readQuotationCurrencyRate(revision.customerSnapshot),
     shippingFee: revision.shippingFee.toString(), discountAmount: revision.discountAmount.toString(), otherFee: revision.otherFee.toString(),
     items: revision.items.map((item) => ({ id: item.id, quotationProductId: item.quotationProductId, name: item.nameEn || item.nameZh || '', description: z.array(z.string()).catch([]).parse(item.specifications).join('\n'), quantity: item.quantity.toString(), unit: item.unit, unitPrice: item.unitPrice.toString(), unitCost: item.unitCost?.toString() ?? null, images: item.assets.filter((asset) => asset.assetType === 'PRODUCT_IMAGE').map((asset) => ({ id: asset.id, kind: 'asset', name: asset.displayName || '产品图片' })) })),
   }
