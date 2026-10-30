@@ -103,7 +103,7 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
                     </table>
                   </div>
                   <div className={styles.orderActions}>
-                    <p className={styles.tableNote}>Quantities and units refer to this order only.</p>
+                    <p className={styles.tableNote}>Quantities and units are specific to this procurement record.</p>
                     <Link href={caseInquiryHref(c.slug)} data-source={caseInquirySource(c.slug)} className={styles.textLink}>Discuss your product list <ArrowUpRight size={16} aria-hidden="true" /></Link>
                   </div>
                   <InlineRecords entries={imagesAt('procurement-scope')} />
