@@ -8,6 +8,8 @@ import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { StorePagination } from '@/components/store/store-pagination'
+import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
+import styles from '@/components/store/catalog-background.module.css'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
@@ -170,8 +172,8 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={seoContent.faqs} />
 
-      <div>
-        <div className="container mx-auto px-6 py-4 lg:px-8">
+      <CatalogBackground>
+        <div className={`${styles.breadcrumb} container mx-auto px-6 py-4 lg:px-8`}>
           <nav className="flex flex-wrap items-center text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">
               Home
@@ -192,7 +194,7 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
           </nav>
         </div>
 
-        <section className="relative bg-secondary/30 py-16">
+        <CatalogHero className="py-16">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-2xl">
               <p className="mb-2 text-sm uppercase tracking-[0.2em] text-primary">
@@ -204,11 +206,11 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
               )}
             </div>
           </div>
-        </section>
+        </CatalogHero>
 
         <div className="container mx-auto px-6 py-12 lg:px-8">
           {category.children && category.children.length > 0 && (
-            <div className="mb-8">
+            <div className={`${styles.subcategories} mb-8`}>
               <h2 className="mb-4 font-serif text-xl">Subcategories</h2>
               <div className="flex flex-wrap gap-3">
                 {category.children.map((child) => (
@@ -224,7 +226,7 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
             </div>
           )}
 
-          <div className="mb-6">
+          <div className={`${styles.count} mb-6`}>
             <p className="text-sm text-muted-foreground">
               Showing <span className="font-medium text-foreground">{products.length}</span> of{' '}
               <span className="font-medium text-foreground">{pagination.total}</span> products
@@ -265,7 +267,7 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
             />
           </div>
         </div>
-      </div>
+      </CatalogBackground>
     </>
   )
 }

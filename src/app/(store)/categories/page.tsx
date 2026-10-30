@@ -8,6 +8,8 @@ import { buildProductCategoryNavigation } from '@/lib/product-category-navigatio
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
+import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
+import styles from '@/components/store/catalog-background.module.css'
 
 // Categories can be reordered or renamed outside an application release.
 // Render the current catalog instead of retaining a build-time taxonomy snapshot.
@@ -56,9 +58,9 @@ export default async function CategoriesPage() {
   })
 
   return (
-    <div>
+    <CatalogBackground>
       {/* Hero Banner */}
-      <section className="relative py-20 bg-secondary/30">
+      <CatalogHero className="py-20">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
             <p className="text-sm tracking-[0.2em] uppercase text-primary mb-2 animate-fade-up">
@@ -72,7 +74,7 @@ export default async function CategoriesPage() {
             </p>
           </div>
         </div>
-      </section>
+      </CatalogHero>
 
       <div className="container mx-auto px-6 lg:px-8 py-12">
         {categories.length > 0 ? (
@@ -84,9 +86,9 @@ export default async function CategoriesPage() {
               <Link
                 key={category.id}
                 href={category.href}
-                className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+                className={`${styles.categoryCard} group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4`}
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted mb-4 rounded-lg">
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted rounded-lg">
                   {category.image ? (
                     <Image
                       src={category.image}
@@ -143,6 +145,6 @@ export default async function CategoriesPage() {
           </div>
         )}
       </div>
-    </div>
+    </CatalogBackground>
   )
 }

@@ -8,6 +8,8 @@ import { getCategories } from '@/actions/categories'
 import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/store/product-card'
 import { StorePagination } from '@/components/store/store-pagination'
+import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
+import styles from '@/components/store/catalog-background.module.css'
 import {
   Select,
   SelectContent,
@@ -286,24 +288,9 @@ export default async function ProductsPage({
   const navigationCategories = buildProductCategoryNavigation(categories)
 
   return (
-    <div className="min-h-screen">
+    <CatalogBackground className="min-h-screen">
       {/* Hero Section - Industrial Style */}
-      <section className="relative bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90 overflow-hidden">
-        {/* Geometric Pattern Background */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-        </div>
-
-        {/* Diagonal Accent */}
-        <div className="absolute -right-20 top-0 w-96 h-full bg-primary/20 transform skew-x-12" />
-
+      <CatalogHero tone="dark">
         <div className="container mx-auto px-6 lg:px-8 py-16 relative">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-primary-foreground/60 mb-8 animate-fade-up">
@@ -340,7 +327,7 @@ export default async function ProductsPage({
             </div>
           </div>
         </div>
-      </section>
+      </CatalogHero>
 
       {/* Main Content */}
       <section className="container mx-auto px-6 lg:px-8 py-8">
@@ -349,7 +336,7 @@ export default async function ProductsPage({
 
           <div className="min-w-0">
             {/* Toolbar */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b">
+            <div className={`${styles.toolbar} flex flex-wrap items-center justify-between gap-3`}>
               <div className="flex items-center gap-3">
                 <span className="text-sm text-muted-foreground">
                   <span className="font-semibold text-foreground">{pagination.total}</span> products
@@ -416,6 +403,6 @@ export default async function ProductsPage({
           </div>
         </div>
       </section>
-    </div>
+    </CatalogBackground>
   )
 }

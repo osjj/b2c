@@ -8,6 +8,8 @@ import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { StorePagination } from '@/components/store/store-pagination'
+import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
+import styles from '@/components/store/catalog-background.module.css'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
@@ -135,9 +137,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={seoContent.faqs} />
 
-      <div>
+      <CatalogBackground>
       {/* Breadcrumb */}
-      <div className="container mx-auto px-6 lg:px-8 py-4">
+      <div className={`${styles.breadcrumb} container mx-auto px-6 lg:px-8 py-4`}>
         <nav className="flex items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
@@ -152,7 +154,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       </div>
 
       {/* Hero Banner */}
-      <section className="relative py-16 bg-secondary/30">
+      <CatalogHero className="py-16">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
             <p className="mb-2 text-sm uppercase tracking-[0.2em] text-primary">
@@ -168,12 +170,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             )}
           </div>
         </div>
-      </section>
+      </CatalogHero>
 
       <div className="container mx-auto px-6 lg:px-8 py-12">
         {/* Subcategories */}
         {category.children && category.children.length > 0 && (
-          <div className="mb-8">
+          <div className={`${styles.subcategories} mb-8`}>
             <h2 className="font-serif text-xl mb-4">Subcategories</h2>
             <div className="flex flex-wrap gap-3">
               {category.children.map((child) => (
@@ -190,7 +192,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         )}
 
         {/* Products */}
-        <div className="mb-6">
+        <div className={`${styles.count} mb-6`}>
           <p className="text-sm text-muted-foreground">
             Showing <span className="text-foreground font-medium">{products.length}</span> of{' '}
             <span className="text-foreground font-medium">{pagination.total}</span> products
@@ -231,7 +233,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           />
         </div>
       </div>
-      </div>
+      </CatalogBackground>
     </>
   )
 }

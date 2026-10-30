@@ -13,6 +13,8 @@ import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 import { ProductSectionTabs } from '@/components/store/product-section-tabs'
+import { CatalogBackground } from '@/components/store/catalog-background'
+import styles from '@/components/store/catalog-background.module.css'
 import {
   buildProductMetaDescription,
   buildProductMetaTitle,
@@ -323,9 +325,9 @@ export default async function ProductDetailPage({
       <ProductJsonLd product={product} baseUrl={baseUrl} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
 
-      <div className="bg-background text-foreground">
+      <CatalogBackground className="text-foreground">
       {/* Breadcrumb */}
-      <div className="container mx-auto hidden px-6 py-4 md:block lg:px-8">
+      <div className={`${styles.breadcrumb} container mx-auto hidden px-6 py-4 md:block lg:px-8`}>
         <nav aria-label="Breadcrumb" className="flex items-center text-sm text-muted-foreground">
           <Link href="/" className="hover:text-foreground transition-colors">
             Home
@@ -361,7 +363,7 @@ export default async function ProductDetailPage({
         <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
 
           {/* LEFT COLUMN: Images + Content Sections */}
-          <div className="order-2 rounded-lg bg-white p-4 lg:order-1">
+          <div className={`${styles.panel} order-2 rounded-lg bg-card p-4 lg:order-1`}>
             {/* Images */}
             <div className="hidden lg:block">
               <ProductImageGallery
@@ -407,7 +409,7 @@ export default async function ProductDetailPage({
             )}
           </div>
           {/* RIGHT COLUMN: Sticky Product Info */}
-          <div className="order-1 rounded-lg bg-white p-4 lg:order-2 lg:sticky lg:top-28 lg:z-[10] lg:self-start">
+          <div className={`${styles.panel} order-1 rounded-lg bg-card p-4 lg:order-2 lg:sticky lg:top-28 lg:z-[10] lg:self-start`}>
             {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
               <B2BProductActions
                 productId={product.id}
@@ -453,7 +455,7 @@ export default async function ProductDetailPage({
           </div>
         </section>
       )}
-      </div>
+      </CatalogBackground>
     </>
   )
 }

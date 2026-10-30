@@ -12,17 +12,11 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import { Checkbox } from '@/components/ui/checkbox'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { ImageUpload } from './image-upload'
 import { ProductAttributesInput } from './product-attributes-input'
+import { ProductCategorySelect } from './product-category-select'
 import { SpecificationsEditor, type Specification } from './specifications-editor'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
 import { PriceTiersEditor, type PriceTierInput } from './price-tiers-editor'
@@ -36,6 +30,7 @@ import {
   buildProductMetaTitle,
 } from '@/lib/product-seo'
 import { promoteToPrimaryProductImage } from '@/lib/product-gallery'
+import { buildProductCategorySelection } from '@/lib/product-category-selection'
 import { USAGE_SCENES, formatUsageSceneLabel } from '@/types/solution'
 
 type AttributeWithOptions = Attribute & {
@@ -105,6 +100,7 @@ export function ProductForm({ product, categories, collections = [], productColl
   const [sku, setSku] = useState(product?.sku || '')
   const [stock, setStock] = useState(product?.stock ?? 999999)
   const [categoryId, setCategoryId] = useState(product?.categoryId || 'none')
+  const categorySelection = buildProductCategorySelection(categories, categoryId)
   const [isActive, setIsActive] = useState(product?.isActive ?? true)
   const [isFeatured, setIsFeatured] = useState(product?.isFeatured ?? false)
 
@@ -528,7 +524,7 @@ export function ProductForm({ product, categories, collections = [], productColl
         </Button>
         <fieldset disabled={isImageUploading || isSaving || isPreparingPreview} className="min-w-0">
           <AIGenerateButton
-            categories={categories}
+            categories={categories.filter((category) => categorySelection.selectableCategoryIds.has(category.id))}
             collections={collections}
             onApply={handleAIApply}
           />
@@ -1046,19 +1042,7 @@ export function ProductForm({ product, categories, collections = [], productColl
               <CardTitle>Category</CardTitle>
             </CardHeader>
             <CardContent>
-              <Select name="categoryId" value={categoryId} onValueChange={setCategoryId}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">No category</SelectItem>
-                  {categories.map((category) => (
-                    <SelectItem key={category.id} value={category.id}>
-                      {category.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <ProductCategorySelect selection={categorySelection} onValueChange={setCategoryId} />
             </CardContent>
           </Card>
 

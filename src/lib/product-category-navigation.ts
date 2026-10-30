@@ -1,5 +1,9 @@
 import type { CategoryListItem } from '@/actions/categories'
 
+type CategoryNavigationInput = Pick<CategoryListItem, 'id' | 'name' | 'slug' | 'parentId' | 'isActive'> & {
+  parent: Pick<NonNullable<CategoryListItem['parent']>, 'slug' | 'isActive'> | null
+}
+
 const categoryOrder = [
   'fall-protection',
   'respiratory-protection',
@@ -22,7 +26,7 @@ function getCategoryRank(slug: string) {
   return categoryRanks.get(slug) ?? categoryOrder.length
 }
 
-export function buildProductCategoryNavigation(categories: readonly CategoryListItem[]) {
+export function buildProductCategoryNavigation(categories: readonly CategoryNavigationInput[]) {
   return categories
     .filter((category) => {
       if (!category.isActive || category.slug === 'uncategorized') return false
