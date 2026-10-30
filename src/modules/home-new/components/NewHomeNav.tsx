@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from "react"
 import { QuoteDrawer } from "./QuoteRequestForm"
 import styles from "./home-new.module.css"
 import { pointerPressHandlers } from "./pointerPress"
+import { ScrollProgress } from "./ScrollProgress"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -185,6 +186,7 @@ export function NewHomeNav() {
           </nav>
         </div>
       </header>
+      <ScrollProgress />
     </div>
   )
 }

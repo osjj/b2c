@@ -150,7 +150,7 @@ export const catalogProofProducts: CatalogProofProduct[] = [
     name: "Vented ABS safety helmet",
   },
   {
-    image: "https://shop.laifappe.com/products/1769958520632-qoa0ws.webp",
+    image: "/homepage/hero-safety-shoes.webp",
     certification: "EN ISO 20345",
     name: "Steel-toe safety shoes",
   },
