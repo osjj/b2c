@@ -9,17 +9,18 @@ import { ProductCard } from '@/components/store/product-card'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { StorePagination } from '@/components/store/store-pagination'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
-import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
+import { buildCategoryPagePath, buildCategoryPageTitle, normalizeCategoryPage } from '@/lib/category-pagination'
 
 type Props = {
   params: Promise<{ slug: string }>
-  searchParams: Promise<{ page?: string }>
+  searchParams: Promise<{ page?: string | string[] }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { slug: requestedSlug } = await params
+  const page = normalizeCategoryPage((await searchParams).page)
   const slug = requestedSlug === 'uncategorized' ? 'other-supplies' : requestedSlug
   const category = await getCategoryBySlug(slug)
 
@@ -31,18 +32,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const baseUrl = getSiteUrl()
-  const categoryUrl = `${baseUrl}/categories/${slug}`
+  const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, category.parent?.slug, page)}`
   const seoContent = getCategorySeoContent(category)
 
   // Use SEO fields from database if available, otherwise fallback to defaults
-  const title = category.metaTitle || seoContent.metaTitle
+  const title = buildCategoryPageTitle(category.metaTitle || seoContent.metaTitle, page)
   const description =
     category.metaDescription ||
     seoContent.metaDescription
 
   return {
     title: {
-      absolute: buildPageTitle(title),
+      absolute: title,
     },
     description,
     openGraph: {
@@ -75,19 +76,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function CategoryPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ slug: string }>
-  searchParams: Promise<{ page?: string }>
-}) {
+export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params
   const { page: pageParam } = await searchParams
-  const page = Number(pageParam) || 1
+  const page = normalizeCategoryPage(pageParam)
 
   if (slug === 'uncategorized') {
-    permanentRedirect(`/categories/other-supplies${page > 1 ? `?page=${page}` : ''}`)
+    permanentRedirect(buildCategoryPagePath('other-supplies', null, page))
   }
 
   const category = await getCategoryBySlug(slug)
@@ -99,7 +94,7 @@ export default async function CategoryPage({
   // A child category always canonicalizes to /categories/{parent}/{slug} to keep
   // the hierarchy signal in the URL. Preserve any external link equity via 301.
   if (category.parent) {
-    permanentRedirect(`/categories/${category.parent.slug}/${category.slug}`)
+    permanentRedirect(buildCategoryPagePath(category.slug, category.parent.slug, page))
   }
 
   // Roll up the whole subtree so the parent page keeps its listing after products
@@ -114,7 +109,9 @@ export default async function CategoryPage({
   })
 
   const baseUrl = getSiteUrl()
+  const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, null, page)}`
   const seoContent = getCategorySeoContent(category)
+  const heroDescription = seoContent.heroDescription ?? category.description
   const relatedLinks = category.children.map((child) => ({
     name: child.name,
     href: `/categories/${category.slug}/${child.slug}`,
@@ -134,7 +131,7 @@ export default async function CategoryPage({
   return (
     <>
       {/* SEO: Structured Data */}
-      <CategoryJsonLd category={category} products={products} baseUrl={baseUrl} />
+      <CategoryJsonLd category={category} products={products} baseUrl={baseUrl} url={categoryUrl} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={seoContent.faqs} />
 
@@ -164,9 +161,9 @@ export default async function CategoryPage({
             <h1 className="font-serif text-4xl md:text-5xl mb-4">
               {category.name}
             </h1>
-            {category.description && (
+            {heroDescription && (
               <p className="text-muted-foreground">
-                {category.description}
+                {heroDescription}
               </p>
             )}
           </div>

@@ -12,6 +12,7 @@ type CategoryFaq = {
 type CategorySeoContent = {
   metaTitle: string
   metaDescription: string
+  heroDescription?: string
   eyebrow: string
   leadTitle: string
   intro: string[]
@@ -129,20 +130,22 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
     ],
   },
   'head-protection': {
-    metaTitle: 'Industrial Safety Helmets and Head Protection',
+    metaTitle: 'Safety Helmets, Bump Caps & Head Protection',
     metaDescription:
-      'Explore industrial head protection including safety helmets, bump caps, face shields, and related PPE for construction and manufacturing environments.',
+      'Compare safety helmets, bump caps, protective hoods, earplugs and earmuffs by fit, task requirements and compatibility with other PPE.',
+    heroDescription:
+      'Safety helmets, bump caps, protective hoods, and hearing protection for workplace selection.',
     eyebrow: 'Impact and overhead protection',
     leadTitle: 'How buyers sort head protection by job and hazard',
     intro: [
-      'Head protection covers several very different purchasing jobs, from safety helmets and bump caps to face shields and hearing protection.',
-      'The main comparison points are protection type, comfort, accessory compatibility, and whether the item is meant for overhead impact, low-clearance work, splash coverage, or noise control.',
+      'Compare safety helmets, bump caps, and protective hoods by the task, required coverage, fit, and compatibility with the rest of the PPE kit.',
+      'Earplugs and earmuffs are available through the hearing protection category. Review their fit and model-specific noise-reduction information alongside any helmet or hood requirements.',
     ],
     guideTitle: 'How to choose head protection',
     guideSteps: [
-      'Confirm whether the job requires full helmet protection, a bump cap, face shielding, or a combined setup.',
+      'Confirm whether the job requires a safety helmet, a bump cap, a protective hood, or a combination selected for the task.',
       'Check adjustment systems, suspension design, and comfort because fit affects real adoption on site.',
-      'Review visor, chin strap, hearing protection, and accessory compatibility if the gear will be used as part of a wider PPE system.',
+      'Review chin straps, hearing protection, and accessory compatibility if the gear will be used as part of a wider PPE system.',
       'Separate lightweight visitor or low-risk options from helmets intended for demanding industrial environments.',
     ],
     applicationsTitle: 'Common head protection use cases',
@@ -168,14 +171,14 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
           'Bump caps are generally considered for low-clearance contact hazards, while safety helmets are chosen when stronger impact protection is required.',
       },
       {
-        question: 'Why include face shields in head protection navigation?',
+        question: 'What should buyers compare when choosing protective hoods?',
         answer:
-          'Many buyers evaluate face protection together with helmets and head-mounted accessories, so the category path should reflect that buying behavior.',
+          'Check the intended use, material, coverage, fastening, and compatibility with the helmet, eyewear, or respiratory equipment used for the task. Confirm performance against the documentation for the specific model.',
       },
       {
-        question: 'What makes a head protection category more useful for buyers?',
+        question: 'How should hearing protection be selected with head protection?',
         answer:
-          'The page is more useful when it explains real use cases, selection criteria, and how helmets, bump caps, face shields, and related items fit into the same PPE kit.',
+          'Compare earplugs or earmuffs for the noise environment, then check fit and compatibility with the selected helmet or hood. Confirm any mounting accessories and the model-specific noise-reduction information before ordering.',
       },
     ],
   },
@@ -332,24 +335,110 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
       },
     ],
   },
-  'eye-protection': {
-    metaTitle: 'Safety Glasses and Goggles',
+  'firefighting-equipment': {
+    metaTitle: 'Firefighting Equipment Sourcing',
     metaDescription:
-      'Find safety glasses and safety goggles for dust, anti-fog performance, impact protection, and industrial eye protection applications.',
-    eyebrow: 'Clear vision in hazardous environments',
-    leadTitle: 'Eye protection searches split by coverage and lens behavior',
+      'Define firefighting equipment requirements by application, equipment compatibility, quantities and the documentation needed for your purchasing review.',
+    heroDescription:
+      'Specify firefighting equipment by application, compatibility, and required documentation.',
+    eyebrow: 'Equipment requirements and compatibility',
+    leadTitle: 'Start a firefighting equipment enquiry with a clear specification',
     intro: [
-      'Eye protection decisions usually start with one question: do you need open-frame glasses or a more enclosed goggle format?',
-      'After that, the real comparison tends to be anti-fog behavior, comfort, seal, and how well the eyewear works with nearby PPE.',
+      'Specify the equipment type, intended application, required quantities, and any existing system or accessory it must work with.',
+      'Use the enquiry form to request a model-specific proposal. Confirm availability, suitability, and supporting documentation for each proposed item before placing an order.',
     ],
-    guideTitle: 'How to choose eye protection',
+    guideTitle: 'What to include in your equipment request',
     guideSteps: [
-      'Decide whether the user needs open safety glasses or a more sealed goggle style for dust, splash, or higher exposure environments.',
-      'Check anti-fog and anti-scratch characteristics for the real work environment rather than relying on a basic image comparison.',
-      'Evaluate comfort around the nose, temples, and straps when the product will be worn with helmets or respirators.',
-      'Keep glasses and goggles on their own paths so buyers can reach the right format faster.',
+      'Describe the intended application and list the equipment types required.',
+      'Provide model numbers, dimensions, connection details, or reference photos where compatibility matters.',
+      'State the quantities, delivery destination, and required purchasing documents.',
+      'Review the proposed item specifications and documentation before confirming a purchase.',
     ],
-    applicationsTitle: 'Common eye protection use cases',
+    applicationsTitle: 'Details that help us review your enquiry',
+    applications: ['Equipment type', 'Intended application', 'Existing equipment details', 'Required quantities'],
+    differentiatorsTitle: 'What to confirm in the proposal',
+    differentiators: ['Exact model and specification', 'System and accessory compatibility', 'Availability and delivery terms', 'Requested supporting documentation'],
+    faqTitle: 'Firefighting equipment enquiries',
+    faqs: [
+      {
+        question: 'What information should I send with a firefighting equipment enquiry?',
+        answer:
+          'Send the equipment type, intended application, quantities, delivery destination, and any required model, connection, or documentation details. Reference photos or an existing specification help clarify the request.',
+      },
+      {
+        question: 'Can I request equipment that is not currently listed?',
+        answer:
+          'You can submit the specification for review. Availability, the proposed model, and any supporting documents must be confirmed in the response to your enquiry.',
+      },
+      {
+        question: 'How should I check compatibility before ordering?',
+        answer:
+          'Compare the exact model, dimensions, connections, accessories, and manufacturer information with the equipment it will be used with. Resolve any differences before approving the purchase.',
+      },
+    ],
+  },
+  'other-supplies': {
+    metaTitle: 'Other Workplace Supplies & Accessories',
+    metaDescription:
+      'Source additional workplace supplies and accessories. Send product details, intended use, quantities and any documentation requirements for review.',
+    heroDescription:
+      'Additional workplace supplies and accessories, with sourcing requirements confirmed by enquiry.',
+    eyebrow: 'Additional workplace requirements',
+    leadTitle: 'Send a clear request for workplace supplies and accessories',
+    intro: [
+      'Use this category for additional workplace supplies and accessories that do not fit the main protection categories.',
+      'If the item you need is not listed, send its name, intended use, reference details, and quantity. Availability and the proposed specification will be confirmed in the enquiry response.',
+    ],
+    guideTitle: 'How to prepare a supplies enquiry',
+    guideSteps: [
+      'Name the product and explain the task it needs to support.',
+      'Include a reference photo, model number, dimensions, or material requirement when available.',
+      'State quantities, packaging preferences, delivery destination, and required documents.',
+      'Check the proposed specification and commercial terms before approving the order.',
+    ],
+    applicationsTitle: 'Useful enquiry details',
+    applications: ['Product name and reference', 'Intended use', 'Dimensions and materials', 'Quantity and packaging'],
+    differentiatorsTitle: 'What to compare before ordering',
+    differentiators: ['Specification match', 'Compatibility with existing equipment', 'Availability and delivery terms', 'Packaging and repeat-order requirements'],
+    faqTitle: 'Other supplies enquiries',
+    faqs: [
+      {
+        question: 'What belongs in Other Supplies?',
+        answer:
+          'Additional workplace supplies and accessories that do not fit the main protection categories can be reviewed here. Include the intended use so the request can be assessed against the right specification.',
+      },
+      {
+        question: 'Can I enquire about an item that has no product page?',
+        answer:
+          'Yes. Send the product name, reference photo or model, quantity, and delivery requirements. The response should confirm whether a suitable item is available and identify its specification.',
+      },
+      {
+        question: 'How can I keep repeat orders consistent?',
+        answer:
+          'Record the approved model, dimensions, materials, packaging, and any agreed sample or documentation requirements. Refer to that specification when requesting the next order.',
+      },
+    ],
+  },
+  'eye-protection': {
+    metaTitle: 'Eye & Face Protection Equipment',
+    metaDescription:
+      'Compare safety glasses, goggles and face shields for industrial work, checking coverage, lens or visor details and compatibility with other PPE.',
+    heroDescription:
+      'Safety glasses, goggles, and face shields for task-specific eye and face protection.',
+    eyebrow: 'Clear vision in hazardous environments',
+    leadTitle: 'Compare eyewear and face shields by coverage and task',
+    intro: [
+      'This range brings together open-frame safety glasses, more enclosed goggles, and face shields. Start with the task and the eye or face coverage required, then compare the appropriate product family.',
+      'Check the lens or visor details, fit, cleaning requirements, and compatibility with helmets or respirators. Confirm any stated performance against the documentation for the specific model.',
+    ],
+    guideTitle: 'How to choose eye and face protection',
+    guideSteps: [
+      'Identify the task and determine the required combination of safety glasses, goggles, and face shielding.',
+      'Check the documented lens or visor material, coverage, and any anti-fog or anti-scratch features required for the job.',
+      'Evaluate comfort around the nose, temples, and straps when the product will be worn with helmets or respirators.',
+      'Compare replacement lenses or visors, cleaning instructions, and mounting accessories before standardizing a product.',
+    ],
+    applicationsTitle: 'Common eye and face protection use cases',
     applications: [
       'Grinding and cutting',
       'Dusty construction zones',
@@ -359,12 +448,12 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
     ],
     differentiatorsTitle: 'What buyers usually compare',
     differentiators: [
-      'Goggle versus glasses coverage',
+      'Glasses, goggles, and face shield coverage',
       'Anti-fog and anti-scratch performance',
       'Comfort with other PPE',
-      'Fit, seal, and all-day wearability',
+      'Fit, visor mounting, and daily wearability',
     ],
-    faqTitle: 'Eye protection FAQ',
+    faqTitle: 'Eye and face protection FAQ',
     faqs: [
       {
         question: 'When are safety goggles a better choice than safety glasses?',
@@ -372,14 +461,14 @@ const topLevelCategoryContent: Record<string, CategorySeoContent> = {
           'Goggles are usually considered when more enclosed coverage is needed for dust, splash, or higher exposure work zones.',
       },
       {
-        question: 'Why should eye protection pages discuss anti-fog performance?',
+        question: 'What should buyers check when selecting a face shield?',
         answer:
-          'Because anti-fog behavior strongly affects user satisfaction and repeat purchase decisions in active work environments.',
+          'Review the intended task, visor material, coverage, mounting system, and replacement options. Confirm the required eyewear combination and the performance documented for the particular shield.',
       },
       {
-        question: 'Can eye protection pages support related respiratory searches?',
+        question: 'Can eyewear and face shields be worn with respirators or helmets?',
         answer:
-          'Yes. Buyers often evaluate goggles and respirators together, so category content should acknowledge cross-PPE compatibility.',
+          'Check the full PPE combination for fit and compatibility. Eyewear, visor mounts, helmet attachments, and respirator straps can affect each other, so compare the exact models together before a bulk order.',
       },
     ],
   },
@@ -787,42 +876,44 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
     ],
   },
   'hearing-protection': {
-    metaTitle: 'Hearing Protection Earmuffs for Industrial Noise',
+    metaTitle: 'Earplugs and Earmuffs for Workplace Noise',
     metaDescription:
-      'Browse hearing protection earmuffs for industrial noise reduction, construction sites, workshops, and loud production environments.',
+      'Compare earplugs and earmuffs for workplace noise, checking fit, wear time, compatibility and the noise-reduction information for each model.',
+    heroDescription:
+      'Compare earplugs and earmuffs by fit, wear time, and verified noise-reduction information.',
     eyebrow: 'Industrial noise reduction',
     leadTitle: 'How buyers compare hearing protection for noisy work areas',
     intro: [
-      'Hearing protection sits close to head protection in procurement logic, but the search behavior is distinct. Buyers usually search for earmuffs or hearing protection by noise exposure rather than by helmet type.',
-      'Keeping hearing protection separate makes it easier to compare noise-control products within the broader head protection range.',
+      'Compare earplugs and earmuffs for the workplace noise environment, expected wear time, and the way the protection will be fitted and used.',
+      'Review the noise-reduction information for the exact model, together with comfort, cleaning or replacement needs, and compatibility with helmets, eyewear, or other headgear.',
     ],
     guideTitle: 'How to choose hearing protection',
     guideSteps: [
       'Start with the noise environment and how long users will wear the protection.',
-      'Check compatibility if earmuffs need to work alongside helmets or other headgear.',
-      'Compare comfort and fit because adoption can drop quickly when hearing protection is cumbersome.',
-      'Keep hearing protection separate from impact-oriented head protection topics.',
+      'Compare earplug fitting methods with earmuff headbands or mounting options for the intended users.',
+      'Review the documented noise-reduction information for the exact model and the fit it requires.',
+      'Check comfort, compatibility with other PPE, and the cleaning or replacement routine.',
     ],
     applicationsTitle: 'Typical hearing protection applications',
     applications: ['Workshops', 'Construction sites', 'Factories', 'High-noise maintenance'],
     differentiatorsTitle: 'What buyers compare in hearing protection',
-    differentiators: ['Noise reduction level', 'Helmet compatibility', 'Comfort', 'Daily wearability'],
+    differentiators: ['Model-specific noise-reduction information', 'Earplug fit and earmuff seal', 'Helmet and eyewear compatibility', 'Cleaning and replacement needs'],
     faqTitle: 'Hearing protection FAQ',
     faqs: [
       {
-        question: 'Why should hearing protection have its own category page?',
+        question: 'How should I compare earplugs and earmuffs?',
         answer:
-          'Because buyers commonly compare hearing protection by noise-control needs, which is different from how they compare helmets or face shields.',
+          'Compare the noise environment, model-specific noise-reduction information, fitting method, wear time, and compatibility with other PPE. Include cleaning, storage, and replacement needs in the purchasing decision.',
       },
       {
-        question: 'Is hearing protection always bought separately from helmets?',
+        question: 'Can earmuffs be used with a safety helmet?',
         answer:
-          'Not always. Many buyers compare both together, which is why the page should mention compatibility with the wider head protection system.',
+          'Confirm the earmuff and helmet combination, including any required mounts, from the information for the exact models. Check that other PPE does not interfere with fit.',
       },
       {
-        question: 'What makes hearing protection different from the parent category?',
+        question: 'What should I check when ordering disposable earplugs?',
         answer:
-          'It focuses on industrial noise reduction, earmuff use cases, and product selection criteria that are specific to hearing protection.',
+          'Review the fitting instructions, documented noise-reduction information, corded or uncorded format, packaging quantity, and replacement instructions for the particular model.',
       },
     ],
   },
@@ -1359,26 +1450,41 @@ const subcategoryContent: Record<string, CategorySeoContent> = {
   },
 }
 
-const signalMatchers = [
-  { label: 'cut-resistant handling', patterns: ['cut resistant', 'anti-cut', 'hppe', 'a5'] },
-  { label: 'nitrile palm grip', patterns: ['nitrile'] },
-  { label: 'latex grip coating', patterns: ['latex'] },
-  { label: 'welding-ready construction', patterns: ['welding', 'welder'] },
-  { label: 'leather glove build', patterns: ['cowhide', 'leather'] },
-  { label: 'safety helmet coverage', patterns: ['helmet', 'hard hat'] },
-  { label: 'bump-cap format', patterns: ['bump cap'] },
-  { label: 'face shield coverage', patterns: ['face shield'] },
-  { label: 'hearing protection', patterns: ['ear muff', 'earmuff', 'hearing protection', 'noise'] },
-  { label: 'steel toe protection', patterns: ['steel toe'] },
-  { label: 'waterproof footwear', patterns: ['waterproof', 'rain boot', 'wellington', 'pvc'] },
-  { label: 'reflective workwear', patterns: ['reflective', 'hi-vis', 'high visibility'] },
-  { label: 'coverall construction', patterns: ['coverall'] },
-  { label: 'flame-resistant apparel', patterns: ['flame', 'fr ', 'anti-static', 'nfpa'] },
-  { label: 'disposable garment use', patterns: ['disposable', 'nonwoven'] },
-  { label: 'anti-fog eyewear', patterns: ['anti-fog'] },
-  { label: 'safety goggles', patterns: ['goggle'] },
-  { label: 'safety glasses', patterns: ['glasses'] },
-  { label: 'reusable respirator setup', patterns: ['respirator', 'half face', 'filter'] },
+type ProductSignalMatcher = {
+  label: string
+  productType: RegExp
+  feature?: RegExp
+}
+
+const gloveType = /\bgloves?\b/
+const footwearType = /\b(?:shoes?|boots?|wellingtons?)\b/
+const garmentType = /\b(?:coveralls?|overalls?|workwear|apparel|garments?|jackets?|shirts?|vests?|coats?|raincoats?|rain[-\s]*suits?|trousers?|pants|aprons?|hoods?)\b/
+const eyewearType = /\b(?:glasses|goggles?|eyewear)\b/
+
+// A feature and its product type must occur in the same name. Material names,
+// model codes, or a feature on another product cannot establish a protection claim.
+const signalMatchers: ProductSignalMatcher[] = [
+  { label: 'Cut-resistant gloves', productType: gloveType, feature: /\b(?:cut[-\s]+resistant|anti[-\s]*cut)\b/ },
+  { label: 'Nitrile gloves', productType: gloveType, feature: /\bnitrile\b/ },
+  { label: 'Latex gloves', productType: gloveType, feature: /\blatex\b/ },
+  { label: 'Welding gloves', productType: gloveType, feature: /\bweld(?:ing|er)\b/ },
+  { label: 'Leather gloves', productType: gloveType, feature: /\b(?:cowhide|leather)\b/ },
+  { label: 'Helmet styles', productType: /\b(?:helmets?|hard[-\s]*hats?)\b/ },
+  { label: 'Bump caps', productType: /\bbump[-\s]*caps?\b/ },
+  { label: 'Face shields', productType: /\bface[-\s]*shields?\b/ },
+  { label: 'Earplug formats', productType: /\bear[-\s]*plugs?\b/ },
+  { label: 'Earmuff formats', productType: /\bear[-\s]*muffs?\b/ },
+  { label: 'Steel toe footwear', productType: footwearType, feature: /\bsteel[-\s]+toe\b/ },
+  { label: 'Waterproof footwear', productType: footwearType, feature: /\bwaterproof\b/ },
+  { label: 'Reflective or hi-vis garments', productType: garmentType, feature: /\b(?:reflective|hi[-\s]*vis|high[-\s]+visibility)\b/ },
+  { label: 'Coverall styles', productType: /\bcoveralls?\b/ },
+  { label: 'Flame-resistant or flame-retardant garments', productType: garmentType, feature: /\b(?:flame[-\s]+(?:resistant|retardant)|fire[-\s]+resistant)\b/ },
+  { label: 'Disposable garments', productType: garmentType, feature: /\bdisposable\b/ },
+  { label: 'Rainwear styles', productType: /\b(?:raincoats?|rain[-\s]*suits?|rainwear)\b/ },
+  { label: 'Anti-fog eyewear', productType: eyewearType, feature: /\banti[-\s]*fog\b/ },
+  { label: 'Goggle styles', productType: /\bgoggles?\b/ },
+  { label: 'Glasses styles', productType: /\bglasses\b/ },
+  { label: 'Respirator styles', productType: /\brespirators?\b/ },
 ]
 
 function buildGenericMetaTitle(category: CategoryLike, parent?: CategoryLike | null) {
@@ -1391,10 +1497,10 @@ function buildGenericMetaTitle(category: CategoryLike, parent?: CategoryLike | n
 
 function buildGenericMetaDescription(category: CategoryLike, parent?: CategoryLike | null) {
   if (parent) {
-    return `Browse ${category.name} in our ${parent.name} range with category-specific buying guidance, internal links, and product themes drawn from the live catalog.`
+    return `Compare ${category.name} in our ${parent.name} range by intended use, fit, materials and compatibility. Review each model before requesting a quote.`
   }
 
-  return `Browse ${category.name} with stronger buying guidance, category-specific FAQ content, and live product signals from our industrial PPE catalog.`
+  return `Compare ${category.name} by intended use, fit, materials and compatibility. Review individual product details or send a specification for an enquiry.`
 }
 
 function buildGenericContent(
@@ -1407,16 +1513,16 @@ function buildGenericContent(
     metaTitle: buildGenericMetaTitle(category, parent),
     metaDescription: buildGenericMetaDescription(category, parent),
     eyebrow: parent ? `${parent.name} range` : 'Industrial PPE category',
-    leadTitle: `How ${category.name} fits inside the catalog`,
+    leadTitle: `Compare ${category.name} for your workplace requirements`,
     intro: [
-      `${category.name} is part of our ${parentName} range and is grouped here to make product comparison easier than a broad parent category alone can provide.`,
-      'The category includes buying guidance, FAQ content, internal links, and product-driven signals from the current catalog so buyers can narrow down options faster.',
+      `Compare ${category.name} within the ${parentName} range by the task, intended users, and equipment it needs to work with.`,
+      'Review the individual product specification, fit, materials, and care requirements. Confirm any required performance or documentation for the exact model before ordering.',
     ],
     guideTitle: `How to evaluate ${category.name}`,
     guideSteps: [
       `Start with the task, work environment, and protection requirement driving demand for ${category.name.toLowerCase()}.`,
       'Compare comfort, durability, and PPE compatibility rather than choosing on product image alone.',
-      'Use related category paths and visible subcategory links to narrow the shortlist faster.',
+      'Compare the relevant product family and review the details of each shortlisted model.',
       'Keep replenishment and cross-team standardization in mind when comparing product families.',
     ],
     applicationsTitle: `Where ${category.name} is commonly used`,
@@ -1442,27 +1548,25 @@ function buildGenericContent(
           'Start with the real task and hazard, then compare fit, protection level, comfort, and catalog consistency across repeat purchasing cycles.',
       },
       {
-        question: `Why include buying guidance on a ${category.name} category page?`,
+        question: `What information should I include in a ${category.name} enquiry?`,
         answer:
-          'Because buyers often need help understanding what belongs in the range before they move from browsing into a final product shortlist.',
+          'Include the product name or reference, intended task, quantities, sizes or dimensions, delivery destination, and any model-specific performance or documentation requirements.',
       },
       {
-        question: `Should ${category.name} pages link to related PPE categories?`,
+        question: 'How should I check compatibility with other PPE?',
         answer:
-          'Yes. Related links help buyers continue their journey and reinforce how the page fits into the broader site architecture.',
+          'Review the exact combination of products, including fit, attachments, and any manufacturer compatibility information. Check the combination with the intended users before approving a bulk order.',
       },
     ],
   }
 }
 
 export function extractCatalogSignals(productNames: string[]): string[] {
-  const normalized = productNames.map((name) => name.toLowerCase())
+  const normalized = productNames.map((name) => name.toLowerCase().replace(/[‐‑‒–—]/g, '-'))
 
   return signalMatchers
     .filter((matcher) =>
-      normalized.some((name) =>
-        matcher.patterns.some((pattern) => name.includes(pattern)),
-      ),
+      normalized.some((name) => matcher.productType.test(name) && (!matcher.feature || matcher.feature.test(name))),
     )
     .map((matcher) => matcher.label)
     .slice(0, 6)

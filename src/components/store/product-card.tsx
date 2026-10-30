@@ -101,7 +101,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           <div className="flex items-center gap-1.5 mb-2">
             <ShieldCheck className="w-3 h-3 text-primary" />
             <span className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider">
-              {product.category?.name || 'Uncategorized'}
+              {product.category?.name || 'Other Supplies'}
             </span>
           </div>
 

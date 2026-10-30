@@ -9,13 +9,13 @@ import { ProductCard } from '@/components/store/product-card'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { StorePagination } from '@/components/store/store-pagination'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
-import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
+import { buildCategoryPagePath, buildCategoryPageTitle, normalizeCategoryPage } from '@/lib/category-pagination'
 
 type Props = {
   params: Promise<{ slug: string; child: string }>
-  searchParams: Promise<{ page?: string }>
+  searchParams: Promise<{ page?: string | string[] }>
 }
 
 type NestedCategoryContext = {
@@ -40,8 +40,9 @@ async function resolveNestedCategory(
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { child: childSlug, slug: parentSlug } = await params
+  const page = normalizeCategoryPage((await searchParams).page)
   const resolved = await resolveNestedCategory(parentSlug, childSlug)
 
   if (!resolved) {
@@ -62,15 +63,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const baseUrl = getSiteUrl()
-  const categoryUrl = `${baseUrl}/categories/${parent.slug}/${childSlug}`
+  const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, parent.slug, page)}`
   const seoContent = getCategorySeoContent(category, parent)
 
-  const title = category.metaTitle || seoContent.metaTitle
+  const title = buildCategoryPageTitle(category.metaTitle || seoContent.metaTitle, page)
   const description = category.metaDescription || seoContent.metaDescription
 
   return {
     title: {
-      absolute: buildPageTitle(title),
+      absolute: title,
     },
     description,
     openGraph: {
@@ -103,16 +104,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function NestedCategoryPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ slug: string; child: string }>
-  searchParams: Promise<{ page?: string }>
-}) {
+export default async function NestedCategoryPage({ params, searchParams }: Props) {
   const { child: childSlug, slug: parentSlug } = await params
   const { page: pageParam } = await searchParams
-  const page = Number(pageParam) || 1
+  const page = normalizeCategoryPage(pageParam)
 
   const resolved = await resolveNestedCategory(parentSlug, childSlug)
 
@@ -128,7 +123,7 @@ export default async function NestedCategoryPage({
   }
 
   if (!matchesParentSlug) {
-    permanentRedirect(`/categories/${parent.slug}/${category.slug}`)
+    permanentRedirect(buildCategoryPagePath(category.slug, parent.slug, page))
   }
 
   const subtreeIds = await getCategorySubtreeIds(category.id)
@@ -140,7 +135,9 @@ export default async function NestedCategoryPage({
   })
 
   const baseUrl = getSiteUrl()
+  const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, parent.slug, page)}`
   const seoContent = getCategorySeoContent(category, parent)
+  const heroDescription = seoContent.heroDescription ?? category.description
   const relatedLinks = parent.children
     .filter((item) => item.id !== category.id)
     .map((item) => ({
@@ -168,7 +165,7 @@ export default async function NestedCategoryPage({
         category={category}
         products={products}
         baseUrl={baseUrl}
-        url={`${baseUrl}/categories/${parent.slug}/${category.slug}`}
+        url={categoryUrl}
       />
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={seoContent.faqs} />
@@ -202,8 +199,8 @@ export default async function NestedCategoryPage({
                 {seoContent.eyebrow}
               </p>
               <h1 className="mb-4 font-serif text-4xl md:text-5xl">{category.name}</h1>
-              {category.description && (
-                <p className="text-muted-foreground">{category.description}</p>
+              {heroDescription && (
+                <p className="text-muted-foreground">{heroDescription}</p>
               )}
             </div>
           </div>

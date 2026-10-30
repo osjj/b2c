@@ -1,4 +1,5 @@
 import { Category } from "@prisma/client";
+import { getCategorySeoContent } from "@/lib/category-seo-content";
 
 interface ProductForJsonLd {
   name: string;
@@ -20,7 +21,7 @@ export function CategoryJsonLd({ category, products, baseUrl, url }: CategoryJso
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: category.name,
-    description: category.description,
+    description: getCategorySeoContent(category).heroDescription ?? category.description,
     url: url ?? `${baseUrl}/categories/${category.slug}`,
     mainEntity: {
       "@type": "ItemList",

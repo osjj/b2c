@@ -59,8 +59,8 @@ export function CategorySeoContent({
       ? `Explore ${item.name} in ${parent.name}`
       : `Explore ${item.name} under ${category.name}`,
     description: parent
-      ? `Follow this path to compare ${item.name.toLowerCase()} alongside the rest of the ${parent.name.toLowerCase()} range.`
-      : `Use this subcategory to narrow ${category.name.toLowerCase()} intent into a more specific buying path.`,
+      ? `Compare ${item.name.toLowerCase()} with other options in the ${parent.name.toLowerCase()} range.`
+      : `Compare ${item.name.toLowerCase()} for your team's tasks and equipment requirements.`,
     href: item.href,
   }))
   const productClusterItems: TopicClusterItem[] = popularProductLinks.slice(0, 4).map((item) => ({
@@ -72,7 +72,7 @@ export function CategorySeoContent({
     ? [
         {
           title: `Return to ${parent.name}`,
-          description: `Use the parent category to understand how ${category.name.toLowerCase()} fits into the broader ${parent.name.toLowerCase()} architecture.`,
+          description: `Compare more ${parent.name.toLowerCase()} options for the same workplace or PPE kit.`,
           href: `/categories/${parent.slug}`,
         },
       ]
@@ -86,7 +86,7 @@ export function CategorySeoContent({
     },
     {
       key: 'products',
-      title: 'Popular products',
+      title: 'Product examples',
       icon: Sparkles,
       items: productClusterItems,
     },
@@ -122,7 +122,7 @@ export function CategorySeoContent({
           <div className="flex items-start gap-3">
             <ShieldCheck className="mt-0.5 h-5 w-5 text-primary" />
             <div>
-              <p className="text-sm font-semibold text-foreground">Catalog depth</p>
+              <p className="text-sm font-semibold text-foreground">Products in this range</p>
               <p className="text-sm text-muted-foreground">
                 {productCount} product{productCount === 1 ? '' : 's'} currently listed in this category
               </p>
@@ -132,26 +132,26 @@ export function CategorySeoContent({
           <div className="flex items-start gap-3">
             <Layers3 className="mt-0.5 h-5 w-5 text-primary" />
             <div>
-              <p className="text-sm font-semibold text-foreground">Navigation strength</p>
+              <p className="text-sm font-semibold text-foreground">Compare product types</p>
               <p className="text-sm text-muted-foreground">
                 {childCount > 0
-                  ? `${childCount} subcategory links help users refine intent`
-                  : 'Focused page targeting with direct product and FAQ content'}
+                  ? `${childCount} product families to explore`
+                  : 'Review product details or send us your requirements'}
               </p>
             </div>
           </div>
 
           {parent ? (
             <div className="rounded-2xl bg-secondary/60 p-4 text-sm text-muted-foreground">
-              This category sits inside{' '}
+              Compare more options in{' '}
               <Link href={`/categories/${parent.slug}`} className="font-medium text-foreground underline-offset-4 hover:underline">
                 {parent.name}
               </Link>{' '}
-              so buyers can move back to the broader range when they want to compare nearby product families.
+              when selecting equipment for the same team or task.
             </div>
           ) : (
             <div className="rounded-2xl bg-secondary/60 p-4 text-sm text-muted-foreground">
-              Use the sections below to compare product types, narrow down the right subcategory, and move into more detailed product pages.
+              Compare the relevant product family, then review individual models for the fit, materials, and details your task requires.
             </div>
           )}
         </aside>
@@ -203,9 +203,9 @@ export function CategorySeoContent({
 
       {catalogSignals.length > 0 && (
         <section className="rounded-[24px] border border-border/60 bg-background p-6">
-          <h2 className="mb-3 font-serif text-2xl">{category.name} catalog signals</h2>
+          <h2 className="mb-3 font-serif text-2xl">{category.name} product highlights</h2>
           <p className="mb-5 text-sm leading-7 text-muted-foreground">
-            The products currently listed here share the following themes, which gives buyers a quicker summary of what shows up most often in this range.
+            Explore the product types and named features shown here. Review each model&apos;s details when comparing options for your workplace.
           </p>
           <div className="flex flex-wrap gap-2.5">
             {catalogSignals.map((signal) => (
@@ -225,9 +225,9 @@ export function CategorySeoContent({
           <div className="mb-6 flex items-start gap-3">
             <FolderTree className="mt-1 h-5 w-5 text-primary" />
             <div>
-              <h2 className="font-serif text-2xl">Useful next paths</h2>
+              <h2 className="font-serif text-2xl">Related products and categories</h2>
               <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
-                Use these links to move into the most relevant nearby categories, product pages, or the broader parent range when you need a wider comparison.
+                Compare related product families and individual models before preparing your enquiry.
               </p>
             </div>
           </div>

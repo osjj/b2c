@@ -1,20 +1,59 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
-import { getCategoryTree } from '@/actions/categories'
+import type { LucideIcon } from 'lucide-react'
+import { Boxes, Ear, Eye, Flame, Footprints, Hand, HardHat, Package, ShieldCheck, Shirt, Umbrella, Wind } from 'lucide-react'
+import { getCategories } from '@/actions/categories'
+import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
+import { buildPageTitle } from '@/lib/seo-title'
+import { getSiteUrl } from '@/lib/site-url'
+import { getCategorySeoContent } from '@/lib/category-seo-content'
+
+// Categories can be reordered or renamed outside an application release.
+// Render the current catalog instead of retaining a build-time taxonomy snapshot.
+export const dynamic = 'force-dynamic'
+
+const categoryIcons: Record<string, LucideIcon> = {
+  'fall-protection': ShieldCheck,
+  'respiratory-protection': Wind,
+  'body-protection': Shirt,
+  'hand-protection': Hand,
+  'hearing-protection': Ear,
+  'head-protection': HardHat,
+  'firefighting-equipment': Flame,
+  'eye-protection': Eye,
+  rainwear: Umbrella,
+  'foot-protection': Footprints,
+  'other-supplies': Boxes,
+}
+
+const categoryUrl = `${getSiteUrl()}/categories`
 
 export const metadata: Metadata = {
-  title: 'Product Categories',
+  title: { absolute: buildPageTitle('Product Categories') },
   description: 'Browse our complete range of PPE products organized by category. Find safety gloves, shoes, workwear, and more protective equipment.',
   openGraph: {
     title: 'Product Categories',
     description: 'Browse our complete range of PPE products organized by category.',
+    url: categoryUrl,
     type: 'website',
   },
+  alternates: { canonical: categoryUrl },
 }
 
 export default async function CategoriesPage() {
-  const categories = await getCategoryTree()
+  const catalog = await getCategories()
+  const categoriesById = new Map(catalog.map((category) => [category.id, category]))
+  const categories = buildProductCategoryNavigation(catalog).flatMap((entry) => {
+    const category = categoriesById.get(entry.id)
+    if (!category) return []
+
+    return [{
+      ...category,
+      href: entry.href,
+      description: getCategorySeoContent(category, category.parent).heroDescription ?? category.description,
+    }]
+  })
 
   return (
     <div>
@@ -38,11 +77,14 @@ export default async function CategoriesPage() {
       <div className="container mx-auto px-6 lg:px-8 py-12">
         {categories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((category, index) => (
+            {categories.map((category, index) => {
+              const Icon = categoryIcons[category.slug] ?? Package
+
+              return (
               <Link
                 key={category.id}
-                href={`/categories/${category.slug}`}
-                className="group block"
+                href={category.href}
+                className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-muted mb-4 rounded-lg">
                   {category.image ? (
@@ -54,7 +96,11 @@ export default async function CategoriesPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       priority={index < 3}
                     />
-                  ) : null}
+                  ) : (
+                    <div className="absolute inset-0 flex items-start justify-end bg-gradient-to-br from-foreground via-foreground/90 to-primary/50 p-8">
+                      <Icon className="h-24 w-24 text-background/30" strokeWidth={1.1} aria-hidden="true" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 text-white">
                     <h2 className="font-serif text-2xl mb-2 group-hover:text-primary-foreground/90 transition-colors">
@@ -88,7 +134,8 @@ export default async function CategoriesPage() {
                   </div>
                 )}
               </Link>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <div className="text-center py-16">

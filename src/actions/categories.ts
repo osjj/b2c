@@ -21,6 +21,12 @@ const categorySchema = z.object({
   isActive: z.boolean().default(true),
 })
 
+function invalidateCategoryPages() {
+  revalidatePath('/admin/categories')
+  revalidatePath('/products')
+  revalidatePath('/categories', 'layout')
+}
+
 export type CategoryState = {
   error?: string
   errors?: Record<string, string[]>
@@ -251,8 +257,7 @@ export async function createCategory(
     })
   )
 
-  revalidatePath('/admin/categories')
-  revalidatePath('/categories')
+  invalidateCategoryPages()
   redirect('/admin/categories')
 }
 
@@ -356,8 +361,7 @@ export async function updateCategory(
 
   scheduleIndexNowUrls(indexNowUrls)
 
-  revalidatePath('/admin/categories')
-  revalidatePath('/categories')
+  invalidateCategoryPages()
   redirect('/admin/categories')
 }
 
@@ -407,8 +411,7 @@ export async function deleteCategory(id: string) {
     )
   )
 
-  revalidatePath('/admin/categories')
-  revalidatePath('/categories')
+  invalidateCategoryPages()
 }
 
 // Get categories for select dropdown
