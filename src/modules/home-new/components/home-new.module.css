@@ -214,7 +214,6 @@
 }
 
 .scrollProgress {
-  background: rgba(217, 88, 32, 0.14);
   height: 3px;
   left: 0;
   pointer-events: none;
@@ -225,6 +224,7 @@
 
 .scrollProgressFill {
   background: var(--home-accent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--home-accent) 60%, transparent);
   height: 100%;
   transform: scaleX(0);
   transform-origin: left center;

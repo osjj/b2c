@@ -7,6 +7,7 @@ import { caseImagesAt, caseSectionPlacement, caseUnplacedImages } from '@/lib/ca
 import { isCasePrivateImage } from '@/lib/cases/private-image-path'
 import { caseInquiryHref, caseInquirySource } from '@/lib/cases/inquiry'
 import { caseNumber, formatCaseDate } from './case-format'
+import { caseTextSegments } from './case-text'
 import { CaseInquiry } from './case-listing'
 import { CaseContents } from './case-contents'
 import styles from './cases.module.css'
@@ -205,5 +206,17 @@ function OriginalImageLink({ url, alt }: { url: string; alt: string }) {
 }
 
 function PlainText({ value }: { value: string }) {
-  return <div className={styles.prose}>{value.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>
+  return (
+    <div className={styles.prose}>
+      {value.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
+        <p key={index}>
+          {caseTextSegments(paragraph).map((segment, segmentIndex) => segment.href ? (
+            <a key={segmentIndex} href={segment.href} target="_blank" rel="noopener noreferrer">
+              {segment.text}<span className={styles.srOnly}> (opens in a new tab)</span>
+            </a>
+          ) : segment.text)}
+        </p>
+      ))}
+    </div>
+  )
 }

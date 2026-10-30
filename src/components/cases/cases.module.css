@@ -142,6 +142,8 @@
 .prose { max-width: 66ch; }
 .prose p { font-size: 16px; line-height: 1.85; color: #465a62; white-space: pre-line; margin: 0 0 22px; }
 .prose p:last-child { margin-bottom: 0; }
+.detailPage .prose a { color: var(--case-ink); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.detailPage .prose a:focus-visible { outline: 2px solid var(--case-accent); outline-offset: 3px; }
 .tableWrap { border: 1px solid var(--case-line); background: #fcfbf6; border-radius: 4px; overflow: hidden; }
 .procurementTable { width: 100%; border-collapse: collapse; table-layout: fixed; }
 .procurementTable thead { background: #18313a; }
