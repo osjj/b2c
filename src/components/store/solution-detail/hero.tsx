@@ -7,6 +7,7 @@ interface SolutionHeroProps {
   excerpt?: string | null
   usageScenes: string[]
   coverImage?: string | null
+  sectionLink?: { href: string; label: string }
 }
 
 export function SolutionHero({
@@ -14,6 +15,7 @@ export function SolutionHero({
   excerpt,
   usageScenes,
   coverImage,
+  sectionLink,
 }: SolutionHeroProps) {
   return (
     <section className="relative border-b bg-slate-900">
@@ -56,6 +58,15 @@ export function SolutionHero({
               <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
                 {excerpt}
               </p>
+            )}
+
+            {sectionLink && (
+              <a
+                href={sectionLink.href}
+                className="inline-flex min-h-11 items-center text-sm font-medium text-amber-300 underline underline-offset-4 hover:text-amber-200"
+              >
+                {sectionLink.label}
+              </a>
             )}
           </div>
 

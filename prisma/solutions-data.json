@@ -2070,7 +2070,7 @@
   {
     "slug": "ppe-safety-equipment-for-warehouse-logistics",
     "title": "Warehouse PPE: Task Selection and Bulk Buying Guide",
-    "excerpt": "Plan warehouse and logistics PPE by task, approved model, fit, issue quantities and supplier documents before placing a bulk order.",
+    "excerpt": "Compare warehouse PPE kits for receiving, picking and packing, loading docks, and cold storage. Use the examples to shortlist samples and prepare a bulk quote by role and size.",
     "usageScenes": [
       "heavy-duty",
       "slip-resistant",
@@ -2110,6 +2110,60 @@
             "Use this page to turn warehouse PPE requirements into a bulk buying brief: task, product specification, approved sample, size allocation, issue quantity and supporting documents. Confirm the delivery destination and applicable requirements before comparing supplier prices.",
             "PPE supports the site hazard assessment and operating controls. It does not replace vehicle segregation, dock protection or safe handling arrangements. Specialized maintenance, chemical work and work at height need their own selection decisions."
           ]
+        }
+      },
+      {
+        "key": "task-based-ppe",
+        "type": "table",
+        "title": "Build Warehouse PPE Kits by Task",
+        "enabled": true,
+        "data": {
+          "headers": [
+            "Warehouse team",
+            "Starting kit to assess",
+            "Confirm before ordering"
+          ],
+          "rows": [
+            [
+              "Receiving & putaway",
+              "Handling gloves and protective footwear. Add hi-vis where the work zone requires it.",
+              "Test pallet grip, scanner use and footwear fit."
+            ],
+            [
+              "Picking & packing",
+              "Gloves that allow fine handling and protective footwear. Assess eye protection for debris or strapping.",
+              "Trial the gloves with actual cartons and approved cutters. Check footwear width and fit."
+            ],
+            [
+              "Loading dock",
+              "Visibility clothing and protective footwear. Assess glove needs separately for operators and handlers.",
+              "Check vest fit over workwear and footwear grip on actual dock surfaces."
+            ],
+            [
+              "Palletizing & racking",
+              "Handling gloves and protective footwear. Assess head and eye protection for overhead material or debris.",
+              "Check grip on pallet edges, any required cut or abrasion performance, and compatibility of added protection."
+            ],
+            [
+              "Cold storage",
+              "Assess thermal gloves, clothing and footwear as a complete kit.",
+              "Confirm temperature, exposure time and moisture. Trial grip and movement with the full kit."
+            ]
+          ]
+        }
+      },
+      {
+        "key": "warehouse-kit-quote",
+        "type": "cta",
+        "title": null,
+        "enabled": true,
+        "data": {
+          "title": "Get a Bulk Quote for Your Warehouse Team",
+          "text": "Use these kits as starting points and confirm each selection through your site risk assessment and a sample trial. For a quote, send the roles and headcounts, proposed models and sizes, delivery destination, and sample and document requirements.",
+          "primaryLabel": "Request a quote by role and size",
+          "primaryHref": "/contact",
+          "secondaryLabel": "See the 100-person RFQ example",
+          "secondaryHref": "#africa-warehouse-quantity-example"
         }
       },
       {
@@ -2159,61 +2213,6 @@
               "Protection identified by the relevant assessment",
               "Measured exposure or task information and model-specific suitability before adding items to the kit."
             ]
-          ]
-        }
-      },
-      {
-        "key": "task-based-ppe",
-        "type": "group",
-        "title": "Build Warehouse PPE Kits by Task",
-        "enabled": true,
-        "data": {
-          "groups": [
-            {
-              "title": "Receiving and Putaway",
-              "description": "Specify a kit for unloading, scanning and pallet movement from the actual task assessment.",
-              "items": [
-                "Confirm visibility clothing and protective footwear for the work area.",
-                "Trial handling gloves for grip, fit and scanner operation.",
-                "Record any eye or head protection required for the specific exposure."
-              ]
-            },
-            {
-              "title": "Picking and Packing",
-              "description": "Check the selected gloves and footwear during representative picking, packing and approved cutter tasks.",
-              "items": [
-                "Match glove dexterity and documented performance to cartons, cutters and straps.",
-                "Confirm footwear fit, width and floor suitability.",
-                "Include eye protection when the task assessment requires it."
-              ]
-            },
-            {
-              "title": "Forklift and Loading Dock Teams",
-              "description": "Define the PPE requirements for operators and nearby handlers separately.",
-              "items": [
-                "Record visibility clothing and footwear requirements for each role.",
-                "Check garment closures and fit with the equipment and work position.",
-                "Select additional head, eye or hand protection for the task; PPE does not control vehicle movement or dock edges."
-              ]
-            },
-            {
-              "title": "Palletizing and Racking",
-              "description": "Review handling grip, sharp edges and overhead material before agreeing the kit.",
-              "items": [
-                "Specify glove grip and cut or abrasion performance where needed.",
-                "Confirm protective footwear and any required head or eye protection.",
-                "Document accessory compatibility and inspect samples before approving substitutions."
-              ]
-            },
-            {
-              "title": "Cold Storage",
-              "description": "Give the supplier temperature, exposure duration and moisture conditions before requesting thermal PPE.",
-              "items": [
-                "Verify the proposed thermal glove, clothing and footwear evidence for the intended conditions.",
-                "Trial the complete kit for grip, dexterity, fit and movement.",
-                "Plan sizes, drying or cleaning rotation and replacement stock from site use."
-              ]
-            }
           ]
         }
       },

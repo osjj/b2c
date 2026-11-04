@@ -320,6 +320,10 @@ export default async function SolutionDetailPage({ params }: Props) {
     .filter((section) => section.enabled)
     .sort((a, b) => a.sort - b.sort)
 
+  const warehouseKitSection = slug === 'ppe-safety-equipment-for-warehouse-logistics'
+    ? sections.find((section) => section.key === 'task-based-ppe' && section.type === 'table')
+    : undefined
+
   const recommendedSection = sections.find((section) => section.key === RECOMMENDED_PPE_BLOCK_KEY)
   const recommendationMode = resolveRecommendationMode(
     (recommendedSection?.data as { mode?: unknown } | undefined)?.mode
@@ -474,6 +478,10 @@ export default async function SolutionDetailPage({ params }: Props) {
         excerpt={solution.excerpt}
         usageScenes={solution.usageScenes}
         coverImage={solution.coverImage}
+        sectionLink={warehouseKitSection && {
+          href: `#${warehouseKitSection.key}`,
+          label: 'Compare PPE kits by role',
+        }}
       />
 
       <div className="container mx-auto py-8 px-4 lg:px-6">
