@@ -1,9 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import {
+  ChevronLeft, ChevronRight, FlipHorizontal2, FlipVertical2, Maximize2,
+  RotateCcw, RotateCw, X, ZoomIn, ZoomOut,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import type { ProductImage } from '@/types'
 import { buildProductImageAlt } from '@/lib/product-image-alt'
 import { cn } from '@/lib/utils'
@@ -17,6 +21,131 @@ interface ProductImageGalleryProps {
   discountPercentage?: number
 }
 
+const MIN_ZOOM = 100
+const MAX_ZOOM = 400
+const ZOOM_STEP = 25
+
+function ProductImagePreview({ src, alt }: { src: string; alt: string }) {
+  const [originalStatus, setOriginalStatus] = useState<'loading' | 'loaded' | 'failed'>('loading')
+  const [orientation, setOrientation] = useState({ turns: 0, flipX: false, flipY: false })
+  const [zoom, setZoom] = useState(MIN_ZOOM)
+  const stageRef = useRef<HTMLDivElement>(null)
+  const previousZoom = useRef(zoom)
+
+  useLayoutEffect(() => {
+    const stage = stageRef.current
+    if (stage && zoom !== previousZoom.current) {
+      const ratio = zoom / previousZoom.current
+      const centerX = stage.clientWidth / 2
+      const centerY = stage.clientHeight / 2
+      stage.scrollLeft = (stage.scrollLeft + centerX) * ratio - centerX
+      stage.scrollTop = (stage.scrollTop + centerY) * ratio - centerY
+    }
+    previousZoom.current = zoom
+  }, [zoom])
+
+  const rotate = (direction: -1 | 1) => {
+    setOrientation(({ turns, flipX, flipY }) => ({
+      turns: (turns + direction + 4) % 4,
+      // Screen-relative flip axes swap when the image rotates by a quarter turn.
+      flipX: flipY,
+      flipY: flipX,
+    }))
+  }
+
+  const controls = [
+    { label: 'Flip vertically', Icon: FlipVertical2, pressed: orientation.flipY, action: () => setOrientation(view => ({ ...view, flipY: !view.flipY })) },
+    { label: 'Flip horizontally', Icon: FlipHorizontal2, pressed: orientation.flipX, action: () => setOrientation(view => ({ ...view, flipX: !view.flipX })) },
+    { label: 'Rotate left', Icon: RotateCcw, action: () => rotate(-1) },
+    { label: 'Rotate right', Icon: RotateCw, action: () => rotate(1) },
+    { label: 'Zoom out', Icon: ZoomOut, disabled: zoom === MIN_ZOOM, action: () => setZoom(value => Math.max(MIN_ZOOM, value - ZOOM_STEP)) },
+    { label: 'Zoom in', Icon: ZoomIn, disabled: zoom === MAX_ZOOM, action: () => setZoom(value => Math.min(MAX_ZOOM, value + ZOOM_STEP)) },
+  ]
+  const sideways = orientation.turns % 2 === 1
+
+  return (
+    <>
+      <div className="flex shrink-0 items-center justify-center border-b bg-background py-1 md:justify-between">
+        <DialogTitle className="sr-only md:not-sr-only md:pl-4">Product image preview</DialogTitle>
+        <DialogDescription className="sr-only">
+          Flip, rotate or zoom the selected product image. Scroll the image area to view more detail when zoomed in.
+        </DialogDescription>
+        <div role="group" aria-label="Image controls" className="flex flex-wrap justify-center md:px-2">
+          {controls.map(({ label, Icon, action, pressed, disabled }) => (
+            <Button
+              key={label}
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label={label}
+              aria-pressed={pressed}
+              title={label}
+              disabled={disabled}
+              onClick={action}
+              className="size-11 aria-pressed:bg-accent"
+            >
+              <Icon className="size-5" aria-hidden="true" />
+            </Button>
+          ))}
+          <DialogClose asChild>
+            <Button type="button" variant="ghost" size="icon" aria-label="Close" title="Close" className="size-11">
+              <X className="size-5" aria-hidden="true" />
+            </Button>
+          </DialogClose>
+        </div>
+      </div>
+      <div className="relative min-h-0 flex-1 bg-muted/40 [container-type:size]">
+        <div
+          ref={stageRef}
+          data-product-image-stage
+          role="region"
+          aria-label="Product image"
+          tabIndex={0}
+          className="absolute inset-0 overflow-auto overscroll-contain focus-visible:outline-ring focus-visible:-outline-offset-2"
+        >
+          <div className="relative overflow-hidden" style={{ width: `${zoom}cqw`, height: `${zoom}cqh` }}>
+            <div
+              className="absolute top-1/2 left-1/2"
+              style={{
+                width: sideways ? `${zoom}cqh` : '100%',
+                height: sideways ? `${zoom}cqw` : '100%',
+                transform: `translate(-50%, -50%) scale(${orientation.flipX ? -1 : 1}, ${orientation.flipY ? -1 : 1}) rotate(${orientation.turns * 90}deg)`,
+              }}
+            >
+              {originalStatus !== 'loaded' && (
+                <Image src={src} alt={alt} fill className="object-contain" />
+              )}
+              {originalStatus !== 'failed' && (
+                // next/image reassigns src with onError and can request the original twice.
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={src}
+                  alt={alt}
+                  aria-hidden={originalStatus !== 'loaded'}
+                  className={cn('absolute inset-0 h-full w-full object-contain', originalStatus !== 'loaded' && 'opacity-0')}
+                  onLoad={() => setOriginalStatus('loaded')}
+                  onError={() => setOriginalStatus('failed')}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      {originalStatus === 'loading' && (
+        <p role="status" className="shrink-0 border-t px-4 py-2 text-sm text-muted-foreground">Loading full-size image…</p>
+      )}
+      {originalStatus === 'failed' && (
+        <div className="flex shrink-0 flex-wrap items-center gap-3 border-t px-4 py-2 text-sm">
+          <p role="status" className="text-muted-foreground">The full-size image could not be loaded.</p>
+          <Button type="button" variant="outline" className="min-h-11" onClick={() => setOriginalStatus('loading')}>
+            Retry
+          </Button>
+        </div>
+      )}
+    </>
+  )
+}
+
 export function ProductImageGallery({
   images,
   productName,
@@ -25,7 +154,6 @@ export function ProductImageGallery({
 }: ProductImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [previewOpen, setPreviewOpen] = useState(false)
-  const [originalStatus, setOriginalStatus] = useState<'loading' | 'loaded' | 'failed'>('loading')
   const [thumbnailStart, setThumbnailStart] = useState(0)
 
   const safeCurrentIndex = images.length > 0 ? Math.min(currentIndex, images.length - 1) : 0
@@ -70,11 +198,6 @@ export function ProductImageGallery({
     selectImage(safeCurrentIndex + 1)
   }
 
-  const handlePreviewOpenChange = (open: boolean) => {
-    if (open) setOriginalStatus('loading')
-    setPreviewOpen(open)
-  }
-
   if (images.length === 0) {
     return (
       <div className="space-y-3">
@@ -91,7 +214,7 @@ export function ProductImageGallery({
     <div className="space-y-3">
       <div className="group relative aspect-square overflow-hidden bg-white">
         {currentImage && (
-          <Dialog open={previewOpen} onOpenChange={handlePreviewOpenChange}>
+          <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
             <DialogTrigger asChild>
               <button
                 type="button"
@@ -105,43 +228,12 @@ export function ProductImageGallery({
                 </span>
               </button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl gap-3 p-4 sm:p-6">
-              <DialogTitle className="pr-8">Product image preview</DialogTitle>
-              <DialogDescription className="sr-only">Full-size preview of the selected product image.</DialogDescription>
-              <div className="relative h-[min(70dvh,calc(100vw-4rem))] bg-white">
-                {originalStatus !== 'loaded' && (
-                  <Image src={currentImage.url} alt={currentImageAlt} fill className="object-contain" />
-                )}
-                {previewOpen && originalStatus !== 'failed' && (
-                  // next/image reassigns src with onError and can request the original twice.
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={currentImage.url}
-                    alt={currentImageAlt}
-                    aria-hidden={originalStatus !== 'loaded'}
-                    className={cn(
-                      'absolute inset-0 h-full w-full object-contain',
-                      originalStatus !== 'loaded' && 'opacity-0'
-                    )}
-                    onLoad={() => setOriginalStatus('loaded')}
-                    onError={() => setOriginalStatus('failed')}
-                  />
-                )}
-              </div>
-              {originalStatus === 'loading' && (
-                <p role="status" className="text-sm text-muted-foreground">Loading full-size image…</p>
-              )}
-              {originalStatus === 'failed' && (
-                <div className="flex flex-wrap items-center gap-3 text-sm">
-                  <p role="status" className="text-muted-foreground">The full-size image could not be loaded.</p>
-                  <button
-                    type="button"
-                    onClick={() => setOriginalStatus('loading')}
-                    className="min-h-11 rounded-md border px-3 font-medium hover:bg-muted"
-                  >
-                    Retry
-                  </button>
-                </div>
+            <DialogContent
+              showCloseButton={false}
+              className="flex h-[min(92dvh,72rem)] w-[calc(100%-0.5rem)] max-w-[90rem] flex-col gap-0 overflow-hidden p-0 sm:w-[calc(100%-2rem)] motion-reduce:animate-none"
+            >
+              {previewOpen && (
+                <ProductImagePreview key={currentImage.url} src={currentImage.url} alt={currentImageAlt} />
               )}
             </DialogContent>
           </Dialog>
