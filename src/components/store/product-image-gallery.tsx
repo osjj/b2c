@@ -230,7 +230,8 @@ export function ProductImageGallery({
             </DialogTrigger>
             <DialogContent
               showCloseButton={false}
-              className="flex h-[min(92dvh,72rem)] w-[calc(100%-0.5rem)] max-w-[90rem] flex-col gap-0 overflow-hidden p-0 sm:w-[calc(100%-2rem)] motion-reduce:animate-none"
+              overlayClassName="z-[1100]"
+              className="z-[1101] flex h-[min(92dvh,72rem)] w-[calc(100%-0.5rem)] max-w-[90rem] flex-col gap-0 overflow-hidden p-0 sm:w-[calc(100%-2rem)] motion-reduce:animate-none"
             >
               {previewOpen && (
                 <ProductImagePreview key={currentImage.url} src={currentImage.url} alt={currentImageAlt} />

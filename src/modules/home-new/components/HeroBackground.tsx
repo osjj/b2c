@@ -6,18 +6,20 @@ import styles from "./home-new.module.css"
 
 type HeroBackgroundProps = {
   images: string[]
+  firstSlide: { src: string; srcSet: string }
 }
 
 const HERO_SLIDE_INTERVAL_MS = 5200
 const HERO_PREPARE_DELAY_MS = 3200
 
-export function HeroBackground({ images }: HeroBackgroundProps) {
-  return <HeroSlides key={images.join("|")} images={images} />
+export function HeroBackground(props: HeroBackgroundProps) {
+  return <HeroSlides key={props.images.join("|")} {...props} />
 }
 
-function HeroSlides({ images }: HeroBackgroundProps) {
+function HeroSlides({ images, firstSlide }: HeroBackgroundProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [mountedIndexes, setMountedIndexes] = useState([0])
+  const [useFirstSlideFallback, setUseFirstSlideFallback] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const readyIndexes = useRef(new Set<number>())
   const failedIndexes = useRef(new Set<number>())
@@ -30,10 +32,13 @@ function HeroSlides({ images }: HeroBackgroundProps) {
     onImageSettled.current(index)
   }, [])
 
-  const handleLoad = useCallback((event: SyntheticEvent<HTMLImageElement>) => {
-    const imageElement = event.currentTarget
+  const markImageReady = useCallback((imageElement: HTMLImageElement) => {
     const index = Number(imageElement.dataset.slideIndex)
+    if (readyIndexes.current.has(index)) return
+
     void imageElement.decode().then(() => {
+      if (readyIndexes.current.has(index)) return
+      failedIndexes.current.delete(index)
       readyIndexes.current.add(index)
       onImageSettled.current(index)
     }).catch(() => {
@@ -41,6 +46,17 @@ function HeroSlides({ images }: HeroBackgroundProps) {
       onImageSettled.current(index)
     })
   }, [])
+
+  const handleLoad = useCallback((event: SyntheticEvent<HTMLImageElement>) => {
+    markImageReady(event.currentTarget)
+  }, [markImageReady])
+
+  const checkFirstSlide = useCallback((image: HTMLImageElement | null) => {
+    // The CDN image can finish before React hydrates the load/error handlers.
+    if (!image?.complete) return
+    if (image.naturalWidth > 0) markImageReady(image)
+    else setUseFirstSlideFallback(true)
+  }, [markImageReady])
 
   useEffect(() => {
     const container = containerRef.current
@@ -112,23 +128,47 @@ function HeroSlides({ images }: HeroBackgroundProps) {
 
   return (
     <div ref={containerRef} className={styles.heroMedia} aria-hidden="true">
-      {images.map((image, index) => mountedIndexes.includes(index) ? (
-        <Image
-          key={image}
-          data-slide-index={index}
-          src={image}
-          alt=""
-          fill
-          priority={index === 0}
-          loading={index === 0 ? undefined : "eager"}
-          fetchPriority={index === 0 ? "high" : "low"}
-          quality={60}
-          sizes="100vw"
-          className={`${styles.heroSlide} ${index === activeIndex ? styles.heroSlideActive : ""}`}
-          onLoad={handleLoad}
-          onError={handleError}
-        />
-      ) : null)}
+      {images.map((image, index) => {
+        if (!mountedIndexes.includes(index)) return null
+        const className = `${styles.heroSlide} ${index === activeIndex ? styles.heroSlideActive : ""}`
+
+        if (index === 0 && !useFirstSlideFallback) {
+          return (
+            // Pre-sized CDN variants skip runtime optimization. React preloads the matching srcSet.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={image}
+              ref={checkFirstSlide}
+              data-slide-index={index}
+              srcSet={firstSlide.srcSet}
+              sizes="100vw"
+              src={firstSlide.src}
+              alt=""
+              fetchPriority="high"
+              className={className}
+              onLoad={handleLoad}
+              onError={() => setUseFirstSlideFallback(true)}
+            />
+          )
+        }
+
+        return (
+          <Image
+            key={image}
+            data-slide-index={index}
+            src={image}
+            alt=""
+            fill
+            loading="eager"
+            fetchPriority={index === 0 ? "high" : "low"}
+            quality={60}
+            sizes="100vw"
+            className={className}
+            onLoad={handleLoad}
+            onError={handleError}
+          />
+        )
+      })}
       <div className={styles.heroOverlay} />
       <div className={styles.heroOverlay2} />
     </div>

@@ -126,10 +126,20 @@ function HeroSection() {
     "https://shop.laifappe.com/homepage/hero/hero03-348c52a45c.webp",
     "https://shop.laifappe.com/homepage/hero/hero04-e302dc0bc7.webp",
   ]
+  const heroAssetBase = "https://shop.laifappe.com/homepage/hero/"
+  const firstSlide = {
+    src: `${heroAssetBase}hero01-1280w-5421d264eef5.webp`,
+    srcSet: [
+      `${heroAssetBase}hero01-640w-a976e924a971.webp 640w`,
+      `${heroAssetBase}hero01-828w-43cb19a05ca3.webp 828w`,
+      `${heroAssetBase}hero01-1280w-5421d264eef5.webp 1280w`,
+      `${heroAssetBase}hero01-1672w-9e191427d07d.webp 1672w`,
+    ].join(", "),
+  }
 
   return (
     <section className={styles.hero}>
-      <HeroBackground images={heroImages} />
+      <HeroBackground images={heroImages} firstSlide={firstSlide} />
       <div className={`${styles.wrap} ${styles.heroContent}`}>
         <div className={styles.heroGrid}>
           <div>
