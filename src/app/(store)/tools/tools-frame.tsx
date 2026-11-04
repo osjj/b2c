@@ -3,14 +3,16 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowUpRight, Calculator, HardHat, LayoutGrid, Pause, Play, Ruler, ScanLine, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Calculator, Hand, HardHat, LayoutGrid, Pause, Play, Ruler, ScanLine, Sparkles, TableProperties } from 'lucide-react'
 import styles from './tools-theme.module.css'
 import { ToolsBackgroundPattern } from './tools-background-pattern'
 
 const LINKS = [
   { href: '/tools', title: 'All tools', icon: LayoutGrid, skin: 'hub' },
   { href: '/tools/ppe-calculator', title: 'Quantity planner', icon: Calculator, skin: 'planner' },
+  { href: '/tools/footwear-size-allocation', title: 'Bulk footwear sizes', icon: TableProperties, skin: 'sizes' },
   { href: '/tools/compliance-checker', title: 'Footwear labels', icon: ScanLine, skin: 'labels' },
+  { href: '/tools/glove-marking-decoder', title: 'Glove markings', icon: Hand, skin: 'labels' },
   { href: '/tools/size-guide', title: 'Boot sizes', icon: Ruler, skin: 'sizes' },
   { href: '/tools/hard-hat-class-decoder', title: 'Hard hat classes', icon: HardHat, skin: 'hats' },
   { href: '/tools/ai-quote', title: 'AI quote', icon: Sparkles, skin: 'quote' },

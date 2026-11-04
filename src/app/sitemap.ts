@@ -8,11 +8,13 @@ import type { CaseView } from '@/lib/cases/types'
 export const revalidate = 3600
 export const dynamic = 'force-dynamic'
 
-const TOOLS_HUB_LASTMOD = new Date('2026-06-08')
+const TOOLS_HUB_LASTMOD = new Date('2026-10-31')
 const AI_QUOTE_TOOL_LASTMOD = new Date('2026-04-20')
 const PPE_CALCULATOR_TOOL_LASTMOD = new Date('2026-04-20')
 const SIZE_GUIDE_TOOL_LASTMOD = new Date('2026-04-25')
+const FOOTWEAR_ALLOCATION_TOOL_LASTMOD = new Date('2026-10-30')
 const COMPLIANCE_TOOL_LASTMOD = new Date('2026-04-25')
+const GLOVE_MARKING_TOOL_LASTMOD = new Date('2026-10-31')
 const HARD_HAT_DECODER_TOOL_LASTMOD = new Date('2026-06-08')
 const CONSTRUCTION_PPE_RFQ_TEMPLATE_LASTMOD = new Date('2026-06-08')
 const HOME_LASTMOD = new Date('2026-05-30')
@@ -140,8 +142,20 @@ function buildStaticPages(baseUrl: string): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools/footwear-size-allocation`,
+      lastModified: FOOTWEAR_ALLOCATION_TOOL_LASTMOD,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/tools/compliance-checker`,
       lastModified: COMPLIANCE_TOOL_LASTMOD,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/glove-marking-decoder`,
+      lastModified: GLOVE_MARKING_TOOL_LASTMOD,
       changeFrequency: 'monthly',
       priority: 0.8,
     },

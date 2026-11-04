@@ -498,6 +498,13 @@ Size 10 W`}
                 >
                   Browse safety footwear
                 </Link>
+                <Link
+                  href="/tools/glove-marking-decoder"
+                  data-source="tool-footwear-label-glove-decoder"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+                >
+                  Decode EN388 / EN407 glove markings
+                </Link>
               </div>
             </div>
           </div>

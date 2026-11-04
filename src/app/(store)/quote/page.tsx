@@ -5,6 +5,8 @@ import { QuoteRequestForm } from '@/modules/home-new/components'
 import { Button } from '@/components/ui/button'
 import { getPublishedCase } from '@/lib/cases/data'
 import { quotePageSource, resolveCaseInquiryContext } from '@/lib/cases/inquiry'
+import { FootwearAllocationInquiry } from '@/components/store/footwear-allocation-inquiry'
+import { GloveMarkingInquiry } from '@/components/store/glove-marking-inquiry'
 
 export const metadata: Metadata = {
   title: 'Request a PPE Quote | Laifappe',
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 type QuotePageProps = {
-  searchParams: Promise<{ source?: string | string[]; case?: string | string[] }>
+  searchParams: Promise<{ source?: string | string[]; case?: string | string[]; tool?: string | string[]; draft?: string | string[] }>
 }
 
 export default async function QuotePage({ searchParams }: QuotePageProps) {
@@ -77,7 +79,13 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
               <p className="mt-2 leading-relaxed text-muted-foreground">Edit the message below to describe your own PPE requirements.</p>
             </aside>
           )}
-          <QuoteRequestForm key={context?.slug ?? 'quote-page'} source={source} initialMessage={context?.initialMessage} />
+          {!context && params.tool === 'footwear-size-allocation' ? (
+            <FootwearAllocationInquiry key={typeof params.draft === 'string' ? params.draft : 'missing-draft'} draftId={typeof params.draft === 'string' ? params.draft : ''} />
+          ) : !context && params.tool === 'glove-marking-decoder' ? (
+            <GloveMarkingInquiry key={typeof params.draft === 'string' ? params.draft : 'missing-glove-draft'} draftId={typeof params.draft === 'string' ? params.draft : ''} />
+          ) : (
+            <QuoteRequestForm key={context?.slug ?? 'quote-page'} source={source} initialMessage={context?.initialMessage} />
+          )}
         </div>
       </section>
     </main>

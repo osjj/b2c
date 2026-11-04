@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Calculator, Check, ChevronRight, HardHat, Ruler, ScanLine, Sparkles } from 'lucide-react'
+import { ArrowRight, Calculator, Check, ChevronRight, Hand, HardHat, Ruler, ScanLine, Sparkles, TableProperties } from 'lucide-react'
 import styles from './tools.module.css'
 import { getSiteUrl } from '@/lib/site-url'
 import { TOOLS_HUB_RELATED_GUIDES } from '@/lib/tool-related-guides'
@@ -9,9 +9,9 @@ import { TOOLS_HUB_RELATED_GUIDES } from '@/lib/tool-related-guides'
 export const revalidate = 3600
 
 const HUB_TITLE =
-  'Free PPE Tools - Quote Generator, Quantity Calculator, Size and Hard Hat Decoders'
+  'Free PPE Tools - Quantity Planning, Size Allocation, Quotes and Label Decoders'
 const HUB_DESCRIPTION =
-  'Free online toolkit for PPE procurement, hazard assessment and compliance: AI quote generator, PPE quantity calculator, safety boot size converter, ASTM / EN ISO 20345 label decoder and hard hat class decoder. No signup.'
+  'Free PPE procurement tools: quantity and budget planning, bulk footwear size allocation, boot size conversion, glove and footwear marking decoders, hard hat guidance, and AI quote generation. No signup.'
 
 export const metadata: Metadata = {
   title: HUB_TITLE,
@@ -21,8 +21,11 @@ export const metadata: Metadata = {
     'PPE procurement tools',
     'safety equipment calculator',
     'safety boot size chart',
+    'bulk footwear size allocation',
     'ASTM F2413 decoder',
     'EN ISO 20345 decoder',
+    'EN388 glove marking decoder',
+    'EN407 glove marking decoder',
     'hard hat class decoder',
     'ANSI Z89.1 hard hat classes',
     'free PPE calculator',
@@ -81,6 +84,18 @@ const TOOLS: ToolEntry[] = [
     description:
       'Decode Type I vs Type II and Class G, Class E, and Class C before adding head protection to an RFQ.',
   },
+  {
+    href: '/tools/footwear-size-allocation',
+    title: 'Safety Footwear Bulk Size Allocator',
+    description:
+      'Combine size counts by model and color, add spare pairs, adjust final quantities, and export Excel or prepare an RFQ.',
+  },
+  {
+    href: '/tools/glove-marking-decoder',
+    title: 'Glove Marking Decoder',
+    description:
+      'Interpret supported EN388 and EN407 glove markings, check edition context, and keep unresolved text visible in a complete report.',
+  },
 ]
 
 const TASK_DETAILS: Record<string, { input: string; output: string; action: string }> = {
@@ -89,6 +104,8 @@ const TASK_DETAILS: Record<string, { input: string; output: string; action: stri
   '/tools/size-guide': { input: 'Shoe size or foot measurements', output: 'Regional size equivalents and fit guidance', action: 'Convert boot sizes' },
   '/tools/compliance-checker': { input: 'Footwear label, standard and edition year', output: 'Code meanings, edition conflicts and unknown tokens', action: 'Decode footwear labels' },
   '/tools/hard-hat-class-decoder': { input: 'Hard hat type and electrical class', output: 'Impact coverage, class limits and buyer checks', action: 'Compare hard hat classes' },
+  '/tools/footwear-size-allocation': { input: 'Size counts by model, color and size system', output: 'Final size allocation, Excel and editable RFQ', action: 'Build a bulk size order' },
+  '/tools/glove-marking-decoder': { input: 'EN388 or EN407 glove markings and edition', output: 'Position-by-position meanings, warnings and report', action: 'Decode glove markings' },
 }
 
 export default function ToolsIndexPage() {
@@ -127,10 +144,11 @@ export default function ToolsIndexPage() {
     },
   }
 
-  const taskOrder = [TOOLS[1], TOOLS[3], TOOLS[2], TOOLS[4], TOOLS[0]]
-  const displayTitles = ['Quantity & budget planner', 'Footwear label decoder', 'Boot size converter', 'Hard hat class decoder', 'AI quote generator']
-  const disciplines = ['Planning / CSV', 'Standards / Footwear', 'Sizing / Footwear', 'Standards / Head protection', 'Quoting / AI-assisted']
-  const icons = [Calculator, ScanLine, Ruler, HardHat, Sparkles]
+  const taskOrder = [TOOLS[1], TOOLS[5], TOOLS[3], TOOLS[6], TOOLS[2], TOOLS[4], TOOLS[0]]
+  const displayTitles = ['Quantity & budget planner', 'Bulk footwear size allocator', 'Footwear label decoder', 'Glove marking decoder', 'Boot size converter', 'Hard hat class decoder', 'AI quote generator']
+  const disciplines = ['Planning / CSV', 'Bulk sizing / Excel', 'Standards / Footwear', 'Standards / Gloves', 'Sizing / Footwear', 'Standards / Head protection', 'Quoting / AI-assisted']
+  const icons = [Calculator, TableProperties, ScanLine, Hand, Ruler, HardHat, Sparkles]
+  const toolCount = String(TOOLS.length).padStart(2, '0')
 
   return (
     <>
@@ -164,7 +182,7 @@ export default function ToolsIndexPage() {
           <section aria-labelledby="tool-directory-title" className={styles.directory}>
             <div className={styles.sectionLine}>
               <h2 id="tool-directory-title">Choose your task</h2>
-              <span className={styles.smallLabel}>01—05 <span aria-hidden="true">/</span> Tools</span>
+              <span className={styles.smallLabel}>01—{toolCount} <span aria-hidden="true">/</span> Tools</span>
             </div>
             <div className={styles.toolGrid}>
               {taskOrder.map((tool, index) => {
@@ -191,7 +209,7 @@ export default function ToolsIndexPage() {
               <span className={styles.smallLabel}>Field notes <span aria-hidden="true">/</span> Buying guides</span>
               <h2 id="buying-guides-title">The detail behind<br className={styles.desktopBreak} /> the decision.</h2>
               <p>Practical reading for specifications, fit and the questions to put to a supplier.</p>
-              <span className={styles.guideCount}>06 <span>guides for your next order</span></span>
+              <span className={styles.guideCount}>{String(TOOLS_HUB_RELATED_GUIDES.length).padStart(2, '0')} <span>guides for your next order</span></span>
             </div>
             <div className={styles.guideList}>
               {TOOLS_HUB_RELATED_GUIDES.map((guide, index) => (
@@ -208,7 +226,7 @@ export default function ToolsIndexPage() {
             <div><span className={styles.smallLabel}>Help shape the workbench</span><h2 id="tool-request-title">What would make your next order easier?</h2><p>Tell us which purchasing task could use a better tool.</p></div>
             <Link href="/contact?topic=tools">Suggest a tool<ArrowRight size={18} aria-hidden="true" /></Link>
           </aside>
-          <div className={styles.colophon} aria-hidden="true"><span>LAIFAPPE / PROCUREMENT RESOURCES</span><span>END OF DIRECTORY — 05 TOOLS</span></div>
+          <div className={styles.colophon} aria-hidden="true"><span>LAIFAPPE / PROCUREMENT RESOURCES</span><span>END OF DIRECTORY — {toolCount} TOOLS</span></div>
         </div>
       </div>
     </>

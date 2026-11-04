@@ -312,6 +312,18 @@ export const TOOL_RELATED_GUIDES = {
     'construction-ppe-checklist',
     'osha-ppe-requirements-construction',
   ]),
+  'footwear-size-allocation': pickBuyerGuides([
+    'construction-safety-footwear-guide',
+    'mining-quarry-safety-boots-guide',
+    'bulk-construction-ppe-procurement',
+    'ppe-sample-approval-pre-shipment-checklist',
+  ]),
+  'glove-marking-decoder': pickBuyerGuides([
+    'construction-gloves-selection-guide',
+    'mining-work-gloves-maintenance-material-handling',
+    'ppe-sample-approval-pre-shipment-checklist',
+    'bulk-construction-ppe-procurement',
+  ]),
   'compliance-checker': pickBuyerGuides([
     'construction-safety-footwear-guide',
     'mining-quarry-safety-boots-guide',

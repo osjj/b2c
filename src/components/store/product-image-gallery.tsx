@@ -1,8 +1,9 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import type { ProductImage } from '@/types'
 import { buildProductImageAlt } from '@/lib/product-image-alt'
 import { cn } from '@/lib/utils'
@@ -23,10 +24,9 @@ export function ProductImageGallery({
   discountPercentage,
 }: ProductImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isZooming, setIsZooming] = useState(false)
-  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 })
+  const [previewOpen, setPreviewOpen] = useState(false)
+  const [originalStatus, setOriginalStatus] = useState<'loading' | 'loaded' | 'failed'>('loading')
   const [thumbnailStart, setThumbnailStart] = useState(0)
-  const imageContainerRef = useRef<HTMLDivElement>(null)
 
   const safeCurrentIndex = images.length > 0 ? Math.min(currentIndex, images.length - 1) : 0
   const currentImage = images[safeCurrentIndex]
@@ -70,22 +70,9 @@ export function ProductImageGallery({
     selectImage(safeCurrentIndex + 1)
   }
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!imageContainerRef.current) return
-
-    const rect = imageContainerRef.current.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 100
-    const y = ((e.clientY - rect.top) / rect.height) * 100
-
-    setZoomPosition({ x, y })
-  }
-
-  const handleMouseEnter = () => {
-    setIsZooming(true)
-  }
-
-  const handleMouseLeave = () => {
-    setIsZooming(false)
+  const handlePreviewOpenChange = (open: boolean) => {
+    if (open) setOriginalStatus('loading')
+    setPreviewOpen(open)
   }
 
   if (images.length === 0) {
@@ -102,46 +89,67 @@ export function ProductImageGallery({
 
   return (
     <div className="space-y-3">
-      {/* Main Image with Zoom */}
-      <div
-        ref={imageContainerRef}
-        className="relative aspect-square overflow-hidden bg-white cursor-crosshair group"
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="group relative aspect-square overflow-hidden bg-white">
         {currentImage && (
-          <>
-            {/* Normal Image */}
-            <Image
-              src={currentImage.url}
-              alt={currentImageAlt}
-              fill
-              className={cn(
-                'object-contain transition-opacity duration-200',
-                isZooming && 'opacity-0'
+          <Dialog open={previewOpen} onOpenChange={handlePreviewOpenChange}>
+            <DialogTrigger asChild>
+              <button
+                type="button"
+                aria-label="View full-size image"
+                className="absolute inset-0 w-full cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring"
+              >
+                <Image src={currentImage.url} alt={currentImageAlt} fill className="object-contain" priority />
+                <span className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium text-black shadow-sm">
+                  <Maximize2 className="size-3.5" aria-hidden="true" />
+                  View full size
+                </span>
+              </button>
+            </DialogTrigger>
+            <DialogContent className="max-w-4xl gap-3 p-4 sm:p-6">
+              <DialogTitle className="pr-8">Product image preview</DialogTitle>
+              <DialogDescription className="sr-only">Full-size preview of the selected product image.</DialogDescription>
+              <div className="relative h-[min(70dvh,calc(100vw-4rem))] bg-white">
+                {originalStatus !== 'loaded' && (
+                  <Image src={currentImage.url} alt={currentImageAlt} fill className="object-contain" />
+                )}
+                {previewOpen && originalStatus !== 'failed' && (
+                  // next/image reassigns src with onError and can request the original twice.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={currentImage.url}
+                    alt={currentImageAlt}
+                    aria-hidden={originalStatus !== 'loaded'}
+                    className={cn(
+                      'absolute inset-0 h-full w-full object-contain',
+                      originalStatus !== 'loaded' && 'opacity-0'
+                    )}
+                    onLoad={() => setOriginalStatus('loaded')}
+                    onError={() => setOriginalStatus('failed')}
+                  />
+                )}
+              </div>
+              {originalStatus === 'loading' && (
+                <p role="status" className="text-sm text-muted-foreground">Loading full-size image…</p>
               )}
-              priority
-            />
-            {/* Zoomed Image */}
-            <div
-              className={cn(
-                'absolute inset-0 transition-opacity duration-200',
-                isZooming ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              {originalStatus === 'failed' && (
+                <div className="flex flex-wrap items-center gap-3 text-sm">
+                  <p role="status" className="text-muted-foreground">The full-size image could not be loaded.</p>
+                  <button
+                    type="button"
+                    onClick={() => setOriginalStatus('loading')}
+                    className="min-h-11 rounded-md border px-3 font-medium hover:bg-muted"
+                  >
+                    Retry
+                  </button>
+                </div>
               )}
-              style={{
-                backgroundImage: `url(${currentImage.url})`,
-                backgroundPosition: `${zoomPosition.x}% ${zoomPosition.y}%`,
-                backgroundSize: '200%',
-                backgroundRepeat: 'no-repeat',
-              }}
-            />
-          </>
+            </DialogContent>
+          </Dialog>
         )}
 
         {/* Discount Badge */}
         {hasDiscount && (
-          <span className="absolute top-4 right-4 bg-red-500 text-white text-sm px-3 py-1 z-10">
+          <span className="pointer-events-none absolute top-4 right-4 bg-red-500 text-white text-sm px-3 py-1 z-10">
             -{discountPercentage}%
           </span>
         )}
@@ -150,20 +158,16 @@ export function ProductImageGallery({
         {images.length > 1 && (
           <>
             <button
-              onClick={(e) => {
-                e.stopPropagation()
-                goToPrevious()
-              }}
+              type="button"
+              onClick={goToPrevious}
               className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
-              onClick={(e) => {
-                e.stopPropagation()
-                goToNext()
-              }}
+              type="button"
+              onClick={goToNext}
               className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
               aria-label="Next image"
             >
@@ -174,7 +178,7 @@ export function ProductImageGallery({
 
         {/* Image Counter */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-2 py-1 rounded-full z-10">
+          <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-2 py-1 rounded-full z-10">
             {safeCurrentIndex + 1} / {images.length}
           </div>
         )}

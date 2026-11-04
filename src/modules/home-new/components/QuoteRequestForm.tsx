@@ -115,6 +115,7 @@ type QuoteRequestFormProps = {
   compact?: boolean
   eyebrow?: string
   initialMessage?: string
+  messageMaxLength?: 1000 | 6000
   source?: string
   title?: ReactNode
 }
@@ -277,6 +278,7 @@ export function QuoteRequestForm({
   compact = false,
   eyebrow = "- Get Instant Quote",
   initialMessage = "",
+  messageMaxLength = 1000,
   source = "FAST RFQ",
   title = (
     <>
@@ -289,7 +291,7 @@ export function QuoteRequestForm({
   const idPrefix = useId()
   const [values, setValues] = useState<QuoteRequestFormValues>(() => ({
     ...initialValues,
-    message: initialMessage.slice(0, 1000),
+    message: initialMessage.slice(0, messageMaxLength),
   }))
   const [errors, setErrors] = useState<QuoteRequestFormErrors>({})
   const [status, setStatus] = useState<string | null>(null)
@@ -484,14 +486,14 @@ export function QuoteRequestForm({
           aria-invalid={Boolean(errors.message)}
           className={styles.quoteTextarea}
           id={`${idPrefix}-message`}
-          maxLength={1000}
+          maxLength={messageMaxLength}
           name="message"
           onChange={updateValue("message")}
           placeholder="Which products are you interested in? and what is the quantity?"
           value={values.message}
         />
         <span className={`${styles.quoteCounter} ${styles.quoteTextareaCounter}`}>
-          {values.message.length}/1000
+          {values.message.length}/{messageMaxLength}
         </span>
         {errors.message ? (
           <p className={styles.fieldError} id={`${idPrefix}-message-error`} role="alert">

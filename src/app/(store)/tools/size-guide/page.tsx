@@ -348,6 +348,14 @@ export default function SizeGuidePage() {
         </div>
       </section>
 
+      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-16">
+        <div className="rounded-2xl border bg-primary/5 p-6 sm:p-8">
+          <h2 className="font-serif text-2xl">Ordering footwear for a team?</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Combine confirmed size counts by model, color and size system, add spare pairs and adjust the final order. The bulk allocator keeps size systems separate and lets you export Excel or prepare an editable RFQ.</p>
+          <Link href="/tools/footwear-size-allocation" data-source="tool-size-guide-bulk-allocation" className="mt-4 inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground">Build a bulk footwear size order</Link>
+        </div>
+      </section>
+
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <ToolRelatedGuidesSection
           title="Footwear guides to use after sizing"
