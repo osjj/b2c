@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { MiniQuote } from "@/components/store/mini-quote"
+import type { buildProductCategoryNavigation } from "@/lib/product-category-navigation"
 import { Mail, Menu, MessageCircle, X } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
@@ -10,6 +11,7 @@ import { QuoteDrawer } from "./QuoteRequestForm"
 import styles from "./home-new.module.css"
 import { pointerPressHandlers } from "./pointerPress"
 import { ScrollProgress } from "./ScrollProgress"
+import { ProductsNavMenu } from "./ProductsNavMenu"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,12 +22,21 @@ const navLinks = [
   { href: "/about", label: "About" },
 ]
 
-export function NewHomeNav() {
+type NewHomeNavProps = {
+  categories: ReturnType<typeof buildProductCategoryNavigation>
+}
+
+export function NewHomeNav({ categories }: NewHomeNavProps) {
+  const pathname = usePathname()
+  return <NewHomeNavContent key={pathname} categories={categories} pathname={pathname} />
+}
+
+function NewHomeNavContent({ categories, pathname }: NewHomeNavProps & { pathname: string }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const headerRef = useRef<HTMLElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
-  const pathname = usePathname()
+  const isToolsPage = pathname === "/tools" || pathname.startsWith("/tools/")
   const showQuoteList = process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B"
 
   useEffect(() => {
@@ -35,7 +46,7 @@ export function NewHomeNav() {
       if (desktop.matches) setMenuOpen(false)
     }
     const keydown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape") return
+      if (event.key !== "Escape" || event.defaultPrevented) return
       event.preventDefault()
       setMenuOpen(false)
       menuButtonRef.current?.focus()
@@ -50,10 +61,13 @@ export function NewHomeNav() {
     desktop.addEventListener("change", closeForDesktop)
     document.addEventListener("keydown", keydown)
     document.addEventListener("pointerdown", outside)
+    const closeForNavigation = () => setMenuOpen(false)
+    window.addEventListener("popstate", closeForNavigation)
     return () => {
       desktop.removeEventListener("change", closeForDesktop)
       document.removeEventListener("keydown", keydown)
       document.removeEventListener("pointerdown", outside)
+      window.removeEventListener("popstate", closeForNavigation)
     }
   }, [menuOpen])
 
@@ -66,12 +80,16 @@ export function NewHomeNav() {
       return true
     }
 
+    if (href === "/products" && (pathname === "/categories" || pathname.startsWith("/categories/"))) {
+      return true
+    }
+
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
   return (
     <div className={styles.navSticky}>
-      <header ref={headerRef} className={styles.nav} data-tools-page={pathname === '/tools' || pathname.startsWith('/tools/')}>
+      <header ref={headerRef} className={styles.nav} data-tools-page={isToolsPage}>
         <div className={styles.wrap}>
           <Link className={styles.logo} href="/" aria-label="Laifappe homepage">
             <Image
@@ -90,6 +108,10 @@ export function NewHomeNav() {
           <nav className={styles.navLinks} aria-label="New homepage navigation">
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href)
+
+              if (link.href === "/products") {
+                return <ProductsNavMenu key={link.href} categories={categories} active={isActive} isToolsPage={isToolsPage} />
+              }
 
               return (
                 <Link
@@ -137,6 +159,7 @@ export function NewHomeNav() {
                   type="button"
                 >
                   <span className={styles.navBtnText}>Request Quote</span>
+                  {isToolsPage && <span className={styles.toolsQuoteShortLabel}>Get quote</span>}
                   <span className={styles.arr} aria-hidden="true">
                     &rarr;
                   </span>
@@ -173,7 +196,16 @@ export function NewHomeNav() {
           aria-hidden={!menuOpen}
         >
           <nav aria-label="Mobile homepage navigation">
-            {navLinks.map((link) => (
+            {navLinks.map((link) => link.href === "/products" ? (
+              <ProductsNavMenu
+                key={`${link.href}-${menuOpen}`}
+                categories={categories}
+                active={isActiveLink(link.href)}
+                isToolsPage={isToolsPage}
+                mobile
+                onNavigate={() => setMenuOpen(false)}
+              />
+            ) : (
               <Link
                 aria-current={isActiveLink(link.href) ? "page" : undefined}
                 href={link.href}
@@ -184,6 +216,12 @@ export function NewHomeNav() {
               </Link>
             ))}
           </nav>
+          {isToolsPage && (
+            <div className={styles.toolsMobileContacts}>
+              <a href="mailto:sales@laifappe.com"><Mail size={16} aria-hidden="true" />Email sales</a>
+              <a href="https://wa.me/8618029309938"><MessageCircle size={16} aria-hidden="true" />WhatsApp</a>
+            </div>
+          )}
         </div>
       </header>
       <ScrollProgress />

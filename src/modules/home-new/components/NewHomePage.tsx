@@ -10,7 +10,7 @@ import { ASSET_BASE, catalogProofProducts, categories, facilityImages, testimoni
 import { DeferredBackgroundSection } from "./DeferredBackgroundSection"
 import { FactoryTourDialog } from "./FactoryTourDialog"
 import { HeroBackground } from "./HeroBackground"
-import { NewHomeNav } from "./NewHomeNav"
+import { StorefrontNav } from "./StorefrontNav"
 import { QuoteDrawer, QuoteRequestForm } from "./QuoteRequestForm"
 import { SectionHeader } from "./SectionHeader"
 import styles from "./home-new.module.css"
@@ -70,7 +70,7 @@ export function NewHomePage() {
   return (
     <NewHomeShell>
       <NewHomeTopBar />
-      <NewHomeNav />
+      <StorefrontNav />
       <HeroSection />
       <TrustStrip />
       <CategorySection />

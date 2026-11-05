@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowUpRight, Calculator, Hand, HardHat, LayoutGrid, Pause, Play, Ruler, ScanLine, Sparkles, TableProperties } from 'lucide-react'
+import { Calculator, Hand, HardHat, LayoutGrid, Pause, Play, Ruler, ScanLine, Sparkles, TableProperties } from 'lucide-react'
 import styles from './tools-theme.module.css'
 import { ToolsBackgroundPattern } from './tools-background-pattern'
 
@@ -75,17 +75,22 @@ export function ToolsFrame({ children }: { children: ReactNode }) {
         <ToolsBackgroundPattern />
       </div>
       <div className={styles.navigation}>
-        <div className={styles.navHeading}><span className={styles.brandMark}><LayoutGrid size={15} aria-hidden="true" /></span><span>THE PPE WORKBENCH</span><ArrowUpRight size={14} aria-hidden="true" /></div>
-        <nav className={styles.tabs} aria-label="Procurement tools">
-          {LINKS.map(({ href, title, icon: Icon }) => (
-            <Link href={href} key={href} aria-current={pathname === href ? 'page' : undefined}>
-              <Icon size={16} aria-hidden="true" /><span>{title}</span>
-            </Link>
-          ))}
-        </nav>
-        <button type="button" className={styles.motionControl} onClick={() => setMotionEnabled(value => !value)} aria-pressed={!motionEnabled} aria-label={motionEnabled ? 'Pause decorative animations' : 'Enable decorative animations'}>
-          {motionEnabled ? <Pause size={13} aria-hidden="true" /> : <Play size={13} aria-hidden="true" />}<span>Motion {motionEnabled ? 'on' : 'off'}</span>
-        </button>
+        <div className={styles.navSurface}>
+          <Link href="/tools" className={styles.navHeading}>
+            <span className={styles.brandMark}><LayoutGrid size={19} aria-hidden="true" /></span>
+            <span><strong>PPE workbench</strong><small>Tools for your next order</small></span>
+          </Link>
+          <button type="button" className={styles.motionControl} onClick={() => setMotionEnabled(value => !value)} aria-pressed={!motionEnabled} aria-label={motionEnabled ? 'Pause decorative animations' : 'Enable decorative animations'}>
+            {motionEnabled ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}<span>Motion {motionEnabled ? 'on' : 'off'}</span>
+          </button>
+          <nav className={styles.tabs} aria-label="Procurement tools">
+            {LINKS.map(({ href, title, icon: Icon }) => (
+              <Link href={href} key={href} className={styles.toolLink} aria-current={pathname === href ? 'page' : undefined}>
+                <Icon size={16} className={styles.toolLinkIcon} aria-hidden="true" /><span>{title}</span>
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
       <div className={styles.content}>{children}</div>
     </div>

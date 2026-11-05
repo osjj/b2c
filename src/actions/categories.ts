@@ -22,6 +22,7 @@ const categorySchema = z.object({
 })
 
 function invalidateCategoryPages() {
+  revalidatePath('/', 'layout')
   revalidatePath('/admin/categories')
   revalidatePath('/products')
   revalidatePath('/categories', 'layout')
