@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { COMPANY_NAME } from "@/lib/company"
+import { ViewportImage } from "@/components/ui/viewport-image"
 import { Suspense, type ReactNode } from "react"
 import { CheckCircle2, Clock3, Mail, MapPin, Monitor, MoveRight, Phone, Shield } from "lucide-react"
 import { getHomeFeaturedProducts, getHomeSolutions } from "../lib/home-data"
@@ -18,6 +19,8 @@ type FeaturedProductsData = NonNullable<Awaited<ReturnType<typeof getHomeFeature
 type FeaturedProduct = FeaturedProductsData["products"][number]
 type HomeSolutionsData = NonNullable<Awaited<ReturnType<typeof getHomeSolutions>>>
 type HomeSolution = HomeSolutionsData["solutions"][number]
+
+const CATEGORY_IMAGE_SIZES = "(max-width: 768px) calc(100vw - 40px), (max-width: 1100px) calc(50vw - 40px), (max-width: 1320px) calc(25vw - 20px), 310px"
 
 async function FeaturedProducts() {
   const data = await getHomeFeaturedProducts()
@@ -264,7 +267,7 @@ function CategorySection() {
           {categories.map((category) => (
             <Link className={styles.categoryCard} href={category.href} key={category.href}>
               <div className={styles.categoryImage}>
-                <Image src={category.image} alt={category.name} fill sizes="(max-width: 768px) 100vw, 25vw" />
+                <Image src={category.image} alt={category.name} fill loading="lazy" sizes={CATEGORY_IMAGE_SIZES} />
                 <span>{category.skuCount}</span>
               </div>
               <div className={styles.categoryBody}>
@@ -281,7 +284,8 @@ function CategorySection() {
                 src="https://shop.laifappe.com/homepage/zhanshiting-157199625c.webp"
                 alt="Laifappe OEM and ODM development"
                 fill
-                sizes="25vw"
+                loading="lazy"
+                sizes={CATEGORY_IMAGE_SIZES}
               />
             </div>
             <div className={styles.categoryBody}>
@@ -969,11 +973,11 @@ function OemOdmSection() {
             </p>
           </div>
           <div className={styles.oemMedia}>
-            <Image
+            <ViewportImage
               src="/homepage/oem-odm-workwear-programs.png"
               alt="Custom workwear program: material options, product specification, private label packaging, and sample approval"
               fill
-              sizes="(max-width: 1320px) 100vw, 1240px"
+              sizes="(max-width: 768px) calc(100vw - 40px), (max-width: 1320px) calc(100vw - 80px), 1240px"
             />
           </div>
           <div className={styles.oemCapabilityList}>

@@ -24,6 +24,8 @@ interface ProductImageGalleryProps {
 const MIN_ZOOM = 100
 const MAX_ZOOM = 400
 const ZOOM_STEP = 25
+const MAIN_IMAGE_SIZES = '(min-width: 96rem) 54rem, (min-width: 80rem) 44rem, (min-width: 64rem) 34rem, calc(100vw - 2rem)'
+const THUMBNAIL_SIZES = '(min-width: 96rem) 9rem, (min-width: 80rem) 7.5rem, (min-width: 64rem) 6rem, 16vw'
 
 function ProductImagePreview({ src, alt }: { src: string; alt: string }) {
   const [originalStatus, setOriginalStatus] = useState<'loading' | 'loaded' | 'failed'>('loading')
@@ -113,7 +115,7 @@ function ProductImagePreview({ src, alt }: { src: string; alt: string }) {
               }}
             >
               {originalStatus !== 'loaded' && (
-                <Image src={src} alt={alt} fill className="object-contain" />
+                <Image src={src} alt={alt} fill sizes={MAIN_IMAGE_SIZES} className="object-contain" />
               )}
               {originalStatus !== 'failed' && (
                 // next/image reassigns src with onError and can request the original twice.
@@ -221,7 +223,14 @@ export function ProductImageGallery({
                 aria-label="View full-size image"
                 className="absolute inset-0 w-full cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring"
               >
-                <Image src={currentImage.url} alt={currentImageAlt} fill className="object-contain" priority />
+                <Image
+                  src={currentImage.url}
+                  alt={currentImageAlt}
+                  fill
+                  sizes={MAIN_IMAGE_SIZES}
+                  className="object-contain"
+                  priority
+                />
                 <span className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium text-black shadow-sm">
                   <Maximize2 className="size-3.5" aria-hidden="true" />
                   View full size
@@ -323,6 +332,8 @@ export function ProductImageGallery({
                       imageIndex,
                     })}
                     fill
+                    sizes={THUMBNAIL_SIZES}
+                    loading="lazy"
                     className="object-contain"
                   />
                 </button>

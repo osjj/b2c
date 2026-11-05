@@ -450,7 +450,7 @@ export default async function ProductDetailPage({
           <h2 className="font-serif text-2xl mb-8">Related Products</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredRelated.map((relatedProduct, index) => (
-              <ProductCard key={relatedProduct.id} product={relatedProduct} index={index} />
+              <ProductCard key={relatedProduct.id} product={relatedProduct} index={index} deferImage />
             ))}
           </div>
         </section>

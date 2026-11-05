@@ -5,6 +5,7 @@ import { formatPrice } from '@/lib/utils'
 import { getLowestTierPrice } from '@/lib/pricing'
 import { AddToCartButton } from './add-to-cart-button'
 import { AddToQuoteButton } from './add-to-quote-button'
+import { ViewportImage } from '@/components/ui/viewport-image'
 import { ShieldCheck, Zap } from 'lucide-react'
 
 type ProductWithRelations = {
@@ -31,9 +32,11 @@ type ProductWithRelations = {
 interface ProductCardProps {
   product: ProductWithRelations
   index?: number
+  deferImage?: boolean
 }
 
-export function ProductCard({ product, index = 0 }: ProductCardProps) {
+export function ProductCard({ product, index = 0, deferImage = false }: ProductCardProps) {
+  const CardImage = deferImage ? ViewportImage : Image
   const imageUrl = product.images[0]?.url || '/placeholder.jpg'
   const hasDiscount = product.comparePrice && Number(product.comparePrice) > Number(product.price)
   const isB2B = process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B'
@@ -65,7 +68,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         <Link href={`/products/${product.slug}`}>
           <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-secondary/30 to-secondary/60">
             <div className="absolute inset-3 sm:inset-4">
-              <Image
+              <CardImage
                 src={imageUrl}
                 alt={product.name}
                 fill

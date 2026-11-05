@@ -371,7 +371,7 @@ export default async function ProductsPage({
             {products.length > 0 ? (
               <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 xl:grid-cols-4">
                 {products.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
+                  <ProductCard key={product.id} product={product} index={index} deferImage={index >= 4} />
                 ))}
               </div>
             ) : (
