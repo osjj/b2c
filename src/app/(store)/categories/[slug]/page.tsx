@@ -3,15 +3,17 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { ChevronRight } from 'lucide-react'
-import { getCategoryBySlug, getCategorySubtreeIds } from '@/actions/categories'
+import { getCategories, getCategoryBySlug, getCategorySubtreeIds } from '@/actions/categories'
 import { getProducts } from '@/actions/products'
 import { ProductCard } from '@/components/store/product-card'
+import { ProductCategoryNavigation } from '@/components/store/product-category-navigation'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { StorePagination } from '@/components/store/store-pagination'
 import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
 import styles from '@/components/store/catalog-background.module.css'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
+import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
 import { buildCategoryPagePath, buildCategoryPageTitle, normalizeCategoryPage } from '@/lib/category-pagination'
 
@@ -102,13 +104,17 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   // Roll up the whole subtree so the parent page keeps its listing after products
   // are moved into more-specific child categories.
   const subtreeIds = await getCategorySubtreeIds(category.id)
-  const { products, pagination } = await getProducts({
-    page,
-    categoryIds: subtreeIds,
-    includeUncategorized: category.slug === 'other-supplies',
-    limit: 12,
-    activeOnly: true,
-  })
+  const [{ products, pagination }, categories] = await Promise.all([
+    getProducts({
+      page,
+      categoryIds: subtreeIds,
+      includeUncategorized: category.slug === 'other-supplies',
+      limit: 12,
+      activeOnly: true,
+    }),
+    getCategories(),
+  ])
+  const navigationCategories = buildProductCategoryNavigation(categories)
 
   const baseUrl = getSiteUrl()
   const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, null, page)}`
@@ -173,53 +179,58 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       </CatalogHero>
 
       <div className="container mx-auto px-6 lg:px-8 py-12">
-        {/* Subcategories */}
-        {category.children && category.children.length > 0 && (
-          <div className={`${styles.subcategories} mb-8`}>
-            <h2 className="font-serif text-xl mb-4">Subcategories</h2>
-            <div className="flex flex-wrap gap-3">
-              {category.children.map((child) => (
-                <Link
-                  key={child.id}
-                  href={`/categories/${category.slug}/${child.slug}`}
-                  className="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-full text-sm transition-colors"
-                >
-                  {child.name}
-                </Link>
-              ))}
+        <div className="grid items-start gap-7 lg:grid-cols-[14rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-9">
+          <ProductCategoryNavigation categories={navigationCategories} activeHref={`/categories/${category.slug}`} />
+          <div className="min-w-0">
+            {/* Subcategories */}
+            {category.children && category.children.length > 0 && (
+              <div className={`${styles.subcategories} mb-8`}>
+                <h2 className="font-serif text-xl mb-4">Subcategories</h2>
+                <div className="flex flex-wrap gap-3">
+                  {category.children.map((child) => (
+                    <Link
+                      key={child.id}
+                      href={`/categories/${category.slug}/${child.slug}`}
+                      className="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-full text-sm transition-colors"
+                    >
+                      {child.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Products */}
+            <div className={`${styles.count} mb-6`}>
+              <p className="text-sm text-muted-foreground">
+                Showing <span className="text-foreground font-medium">{products.length}</span> of{' '}
+                <span className="text-foreground font-medium">{pagination.total}</span> products
+              </p>
+            </div>
+
+            {products.length > 0 ? (
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 xl:grid-cols-4">
+                {products.map((product, index) => (
+                  <ProductCard key={product.id} product={product} index={index} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16">
+                <p className="text-muted-foreground">No products found in this category.</p>
+              </div>
+            )}
+
+            {/* Pagination */}
+            <div className="mt-16">
+              <Suspense fallback={null}>
+                <StorePagination
+                  currentPage={pagination.page}
+                  totalPages={pagination.totalPages}
+                  total={pagination.total}
+                />
+              </Suspense>
             </div>
           </div>
-        )}
-
-        {/* Products */}
-        <div className={`${styles.count} mb-6`}>
-          <p className="text-sm text-muted-foreground">
-            Showing <span className="text-foreground font-medium">{products.length}</span> of{' '}
-            <span className="text-foreground font-medium">{pagination.total}</span> products
-          </p>
-        </div>
-
-        {products.length > 0 ? (
-          <div className="grid gap-6 lg:gap-8 grid-cols-2 lg:grid-cols-4">
-            {products.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <p className="text-muted-foreground">No products found in this category.</p>
-          </div>
-        )}
-
-        {/* Pagination */}
-        <div className="mt-16">
-          <Suspense fallback={null}>
-            <StorePagination
-              currentPage={pagination.page}
-              totalPages={pagination.totalPages}
-              total={pagination.total}
-            />
-          </Suspense>
         </div>
 
         <div className="mt-16">
