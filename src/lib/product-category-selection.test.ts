@@ -52,6 +52,25 @@ test('main choices reuse the ordered storefront projection without mutating cate
   assert.deepEqual(categories, before)
 })
 
+test('numeric Sort Order can move both Other Supplies and promoted categories', () => {
+  const sortOrders = new Map([
+    ['other-supplies', -20],
+    ['rainwear', -10],
+    ['fall-protection', 10],
+  ])
+  const reordered = categories.map((row) => ({
+    ...row,
+    sortOrder: sortOrders.get(row.slug) ?? row.sortOrder,
+  }))
+  const selection = buildProductCategorySelection(reordered, 'none')
+
+  assert.deepEqual(selection.mainCategories.map(({ slug }) => slug), [
+    'other-supplies', 'rainwear', 'respiratory-protection', 'body-protection', 'hand-protection',
+    'hearing-protection', 'head-protection', 'firefighting-equipment', 'eye-protection',
+    'foot-protection', 'fall-protection',
+  ])
+})
+
 test('a detailed assignment resolves its main category and scoped ordered choices', () => {
   const selection = buildProductCategorySelection(categories, 'safety-glasses')
 
@@ -120,10 +139,14 @@ test('main changes, detail removal and unassignment use one category ID without 
   assert.equal(buildProductCategorySelection([], null).mainCategoryId, 'none')
 })
 
-test('unknown active roots remain before Other Supplies in the shared projection', () => {
-  const selection = buildProductCategorySelection([...categories, category('new-equipment')], 'new-equipment')
+test('unknown active roots with equal Sort Order use slug order before tied Other Supplies', () => {
+  const selection = buildProductCategorySelection([
+    ...categories, category('new-equipment'), category('additional-equipment'),
+  ], 'new-equipment')
 
-  assert.deepEqual(selection.mainCategories.slice(-2).map(({ id }) => id), ['new-equipment', 'other-supplies'])
+  assert.deepEqual(selection.mainCategories.slice(-3).map(({ id }) => id), [
+    'additional-equipment', 'new-equipment', 'other-supplies',
+  ])
   assert.equal(selection.mainCategoryId, 'new-equipment')
   assert.equal(selection.currentCategory, null)
 })

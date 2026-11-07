@@ -1,10 +1,10 @@
 import type { CategoryListItem } from '@/actions/categories'
 
-type CategoryNavigationInput = Pick<CategoryListItem, 'id' | 'name' | 'slug' | 'parentId' | 'isActive'> & {
+type CategoryNavigationInput = Pick<CategoryListItem, 'id' | 'name' | 'slug' | 'parentId' | 'isActive' | 'sortOrder'> & {
   parent: Pick<NonNullable<CategoryListItem['parent']>, 'slug' | 'isActive'> | null
 }
 
-const categoryOrder = [
+const categoryTieBreakOrder = [
   'fall-protection',
   'respiratory-protection',
   'body-protection',
@@ -18,12 +18,12 @@ const categoryOrder = [
 ] as const
 
 const categoryRanks = new Map<string, number>(
-  categoryOrder.map((slug, index) => [slug, index]),
+  categoryTieBreakOrder.map((slug, index) => [slug, index]),
 )
 
 function getCategoryRank(slug: string) {
   if (slug === 'other-supplies') return Number.MAX_SAFE_INTEGER
-  return categoryRanks.get(slug) ?? categoryOrder.length
+  return categoryRanks.get(slug) ?? categoryTieBreakOrder.length
 }
 
 export function buildProductCategoryNavigation(categories: readonly CategoryNavigationInput[]) {
@@ -39,7 +39,11 @@ export function buildProductCategoryNavigation(categories: readonly CategoryNavi
         category.parent?.isActive === true
       )
     })
-    .sort((left, right) => getCategoryRank(left.slug) - getCategoryRank(right.slug))
+    .sort((left, right) => {
+      const order = left.sortOrder - right.sortOrder || getCategoryRank(left.slug) - getCategoryRank(right.slug)
+      if (order !== 0 || left.slug === right.slug) return order
+      return left.slug < right.slug ? -1 : 1
+    })
     .map((category) => ({
       id: category.id,
       name: category.name,

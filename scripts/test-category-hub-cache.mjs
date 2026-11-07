@@ -24,6 +24,10 @@ async function load(file, overrides = {}) {
 
 const navigation = await load('../src/lib/product-category-navigation.ts')
 const categoryContent = await load('../src/lib/category-seo-content.ts')
+const catalogBackground = await load('../src/components/store/catalog-background.tsx', {
+  '@/lib/utils': { cn: (...classes) => classes.filter(Boolean).join(' ') },
+  './catalog-background.module.css': {},
+})
 const expected = [
   'fall-protection', 'respiratory-protection', 'body-protection', 'hand-protection',
   'hearing-protection', 'head-protection', 'firefighting-equipment', 'eye-protection',
@@ -46,6 +50,8 @@ const page = await load('../src/app/(store)/categories/page.tsx', {
     return createElement('img', imageProps)
   },
   '@/actions/categories': { getCategories: async () => { reads++; return catalog } },
+  '@/components/store/catalog-background': catalogBackground,
+  '@/components/store/catalog-background.module.css': {},
   '@/lib/product-category-navigation': navigation,
   '@/lib/category-seo-content': categoryContent,
   '@/lib/seo-title': { buildPageTitle: (title) => `${title} | Laifappe` },
@@ -69,9 +75,11 @@ for (const slug of ['head-protection', 'eye-protection', 'hearing-protection', '
   assert.ok(!first.includes(category.description), `Stale database summary still visible on ${slug} card`)
 }
 assert.ok(first.includes('fall-protection current description'))
-catalog.find(({ slug }) => slug === 'eye-protection').name = 'Updated Eye & Face Protection'
+const eyeProtection = catalog.find(({ slug }) => slug === 'eye-protection')
+eyeProtection.name = 'Updated Eye & Face Protection'
+eyeProtection.sortOrder = -1
 const second = renderToStaticMarkup(await page.default())
-assert.ok(second.includes('Updated Eye &amp; Face Protection'))
+assert.equal(second.match(/<h2\b[^>]*>([^<]+)<\/h2>/)?.[1], 'Updated Eye &amp; Face Protection')
 assert.equal(reads, 2)
 assert.equal(page.metadata.alternates.canonical, 'https://www.laifappe.com/categories')
 
@@ -112,7 +120,7 @@ for (const operation of ['createCategory', 'updateCategory', 'deleteCategory']) 
   else if (operation === 'updateCategory') await assert.rejects(actions[operation]('id', {}, form()), /ADMIN_REDIRECT/)
   else await actions[operation]('id')
   assert.equal(h.writes(), 1)
-  assert.deepEqual(h.invalidations, [['/admin/categories'], ['/products'], ['/categories', 'layout']])
+  assert.deepEqual(h.invalidations, [['/', 'layout'], ['/admin/categories'], ['/products'], ['/categories', 'layout']])
 }
 for (const options of [{ denied: true }, { duplicate: true }]) {
   const h = mutationHarness(options)
