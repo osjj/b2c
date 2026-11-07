@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth"
 import { Sidebar } from "@/components/admin/sidebar"
 import { AdminHeader } from "@/components/admin/header"
 import { isQuotationWorkbenchEnabled } from "@/lib/quotation/feature"
+import { WorkbenchShell } from "@/components/admin/quotation/workbench-shell"
 
 export default async function AdminLayout({
   children,
@@ -19,12 +20,16 @@ export default async function AdminLayout({
     redirect('/')
   }
 
+  const quotationEnabled = isQuotationWorkbenchEnabled()
+
   return (
     <div className="flex min-h-screen w-full bg-muted/30">
-      <Sidebar quotationEnabled={isQuotationWorkbenchEnabled()} />
+      <Sidebar quotationEnabled={quotationEnabled} />
       <div className="flex min-w-0 flex-1 flex-col">
         <AdminHeader user={session.user} />
-        <main className="min-w-0 flex-1 p-6">{children}</main>
+        <main className="min-w-0 flex-1 p-6">
+          <WorkbenchShell enabled={quotationEnabled}>{children}</WorkbenchShell>
+        </main>
       </div>
     </div>
   )
