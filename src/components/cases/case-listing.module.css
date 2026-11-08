@@ -123,13 +123,13 @@
 .cardMedia {
   position: relative;
   min-width: 0;
+  aspect-ratio: 4/3;
   background: var(--case-panel);
 }
 
-.featuredMedia { aspect-ratio: 2.25; }
-.cardMedia { grid-area: media; aspect-ratio: 2.65; }
-.caseImage { object-fit: cover; }
-.detailImage { object-fit: contain; }
+.cardMedia { grid-area: media; }
+.caseImage { object-fit: contain; }
+.caseImage[data-cover-backdrop="white"] { background-color: #fff; }
 
 .featuredContent,
 .cardContent {
@@ -388,8 +388,6 @@
 }
 
 @container case-listing (max-width: 1020px) {
-  .featuredMedia { aspect-ratio: 1.55; }
-
   .caseCard {
     grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
     grid-template-areas: "media content" "media action";
@@ -405,7 +403,6 @@
   .sectionHeading { align-items: start; flex-direction: column; }
   .sectionHeading > p { text-align: left; }
   .featuredCase { grid-template-columns: minmax(0, 1fr); }
-  .featuredMedia { aspect-ratio: 4/3; }
   .featuredContent { padding: 0 0 2px; }
 
   .caseCard {
@@ -416,7 +413,6 @@
   }
 
   .cardContent { padding: 0; border: 0; }
-  .cardMedia { aspect-ratio: 16/9; }
   .emptyArchive { grid-template-columns: minmax(0, 1fr); }
   .emptyMark { flex-direction: row; justify-content: flex-start; min-height: 80px; }
   .emptyMark svg { width: 30px; height: 30px; }

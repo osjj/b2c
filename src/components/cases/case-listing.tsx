@@ -8,6 +8,8 @@ import { caseNumber, formatCaseDate } from './case-format'
 import styles from './case-listing.module.css'
 import sharedStyles from './cases.module.css'
 
+const CENTRAL_ASIA_WORKWEAR_CASE_SLUG = 'central-asia-oil-company-workwear-ppe-procurement-case-study'
+
 export function CaseListing({ cases, preview = false }: { cases: CaseView[]; preview?: boolean }) {
   const [lead, ...archive] = cases
   const caseHref = (caseStudy: CaseView) => preview ? `/admin/cases/${caseStudy.id}/preview` : `/cases/${caseStudy.slug}`
@@ -38,7 +40,18 @@ export function CaseListing({ cases, preview = false }: { cases: CaseView[]; pre
           <>
             <Link href={caseHref(lead)} className={styles.featuredCase}>
               <div className={styles.featuredMedia}>
-                {lead.coverImage ? <Image src={lead.coverImage} alt={lead.coverAlt} fill priority unoptimized={isCasePrivateImage(lead.coverImage)} sizes="(max-width: 720px) 100vw, (max-width: 1440px) 50vw, 660px" className={isCasePrivateImage(lead.coverImage) ? styles.detailImage : styles.caseImage} /> : <DossierCover caseStudy={lead} />}
+                {lead.coverImage ? (
+                  <Image
+                    src={lead.coverImage}
+                    alt={lead.coverAlt}
+                    fill
+                    priority
+                    unoptimized={isCasePrivateImage(lead.coverImage)}
+                    sizes="(max-width: 720px) 100vw, (max-width: 1440px) 50vw, 660px"
+                    className={styles.caseImage}
+                    data-cover-backdrop={lead.slug === CENTRAL_ASIA_WORKWEAR_CASE_SLUG ? 'white' : undefined}
+                  />
+                ) : <DossierCover caseStudy={lead} />}
               </div>
               <div className={styles.featuredContent}>
                 <span className={styles.featuredLabel}>{lead.featured ? 'Featured case' : 'Case file 01'}</span>
@@ -52,7 +65,20 @@ export function CaseListing({ cases, preview = false }: { cases: CaseView[]; pre
                 <h3 id="case-list-title">Case archive</h3>
                 <div className={styles.caseGrid}>{archive.map((caseStudy, index) => (
                   <Link href={caseHref(caseStudy)} key={caseStudy.id} className={styles.caseCard}>
-                    <div className={styles.cardMedia}>{caseStudy.coverImage ? <Image src={caseStudy.coverImage} alt={caseStudy.coverAlt} fill unoptimized={isCasePrivateImage(caseStudy.coverImage)} sizes="(max-width: 720px) 100vw, (max-width: 1440px) 27vw, 352px" className={isCasePrivateImage(caseStudy.coverImage) ? styles.detailImage : styles.caseImage} /> : <DossierCover caseStudy={caseStudy} />}<span className={styles.mediaLabel}>CASE FILE {caseNumber(index + 1)}</span></div>
+                    <div className={styles.cardMedia}>
+                      {caseStudy.coverImage ? (
+                        <Image
+                          src={caseStudy.coverImage}
+                          alt={caseStudy.coverAlt}
+                          fill
+                          unoptimized={isCasePrivateImage(caseStudy.coverImage)}
+                          sizes="(max-width: 720px) 100vw, (max-width: 1440px) 27vw, 352px"
+                          className={styles.caseImage}
+                          data-cover-backdrop={caseStudy.slug === CENTRAL_ASIA_WORKWEAR_CASE_SLUG ? 'white' : undefined}
+                        />
+                      ) : <DossierCover caseStudy={caseStudy} />}
+                      <span className={styles.mediaLabel}>CASE FILE {caseNumber(index + 1)}</span>
+                    </div>
                     <div className={styles.cardContent}>
                       <CaseMeta caseStudy={caseStudy} />
                       <h4>{caseStudy.title}</h4>
