@@ -9,74 +9,43 @@ const factoryTourAssetUrls = {
 } as const
 
 export type CategoryCard = {
-  href: string
-  image: string
-  skuCount: string
-  index: string
+  slug: string
   name: string
-  description: string
+  preferredSubcategories?: readonly string[]
 }
 
 export const categories: CategoryCard[] = [
   {
-    href: "/categories/hand-protection",
-    image: "https://shop.laifappe.com/homepage/hand-protection-a1a00d94a6.webp",
-    skuCount: "14 SKUs",
-    index: "Category 01",
+    slug: "hand-protection",
     name: "Hand protection",
-    description:
-      "Cut, impact, chemical, and heat-resistant gloves engineered for industrial handling and welding.",
+    preferredSubcategories: ["cut-resistant-gloves", "welding-gloves", "nitrile-coated-gloves"],
   },
   {
-    href: "/categories/foot-protection",
-    image: "https://shop.laifappe.com/homepage/foot-protection-1a14384a6c.webp",
-    skuCount: "11 SKUs",
-    index: "Category 02",
+    slug: "foot-protection",
     name: "Foot protection",
-    description:
-      "Steel-toe boots, anti-slip safety shoes, and waterproof footwear for construction and wet-site work.",
   },
   {
-    href: "/categories/head-protection",
-    image: "https://shop.laifappe.com/homepage/head-protection-4c67729361.webp",
-    skuCount: "12 SKUs",
-    index: "Category 03",
+    slug: "head-protection",
     name: "Head protection",
-    description:
-      "CE EN397-certified safety helmets with adjustable suspension and switchable ventilation.",
+    preferredSubcategories: ["safety-helmets", "bump-caps", "hearing-protection"],
   },
   {
-    href: "/categories/body-protection",
-    image: "https://shop.laifappe.com/homepage/body-protection-c0b5f82358.webp",
-    skuCount: "6 SKUs",
-    index: "Category 04",
+    slug: "body-protection",
     name: "Body protection",
-    description:
-      "Workwear, coveralls, hi-vis apparel, and chemical-resistant rainwear for every industrial setting.",
+    preferredSubcategories: ["hi-vis-workwear", "rainwear", "general-workwear"],
   },
   {
-    href: "/categories/eye-protection",
-    image: "https://shop.laifappe.com/homepage/eye-protection-4a69b1993a.webp",
-    skuCount: "3 SKUs",
-    index: "Category 05",
+    slug: "eye-protection",
     name: "Eye protection",
-    description: "Anti-fog safety glasses and impact-rated goggles for dust, splash, and projectile protection.",
+    preferredSubcategories: ["safety-glasses", "safety-goggles", "face-shields"],
   },
   {
-    href: "/categories/respiratory-protection",
-    image: "https://shop.laifappe.com/homepage/respiratory-aa3d1e42ee.webp",
-    skuCount: "2 SKUs",
-    index: "Category 06",
+    slug: "respiratory-protection",
     name: "Respiratory",
-    description: "N95, FFP2, and reusable half-mask respirators with replaceable filter cartridges.",
   },
   {
-    href: "/categories/fall-protection",
-    image: "https://shop.laifappe.com/homepage/fall-protection-20877fb5c3.webp",
-    skuCount: "2 SKUs",
-    index: "Category 07",
+    slug: "fall-protection",
     name: "Fall protection",
-    description: "Full-body harnesses and lanyard systems for elevated work, roof access, and scaffolding.",
   },
 ]
 

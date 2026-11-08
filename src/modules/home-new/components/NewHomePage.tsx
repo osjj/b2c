@@ -1,11 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
+import { getCategories } from "@/actions/categories"
 import { ViewportImage } from "@/components/ui/viewport-image"
+import { buildCategoryPagePath } from "@/lib/category-pagination"
 import { Suspense, type ReactNode } from "react"
 import { ArrowDown, CheckCircle2, Clock3, Globe, Mail, MapPin, Monitor, MoveRight, Phone, Shield } from "lucide-react"
 import { getHomeFeaturedProducts, getHomeSolutions } from "../lib/home-data"
 import { formatUsageSceneLabel, USAGE_SCENES, type UsageScene } from "@/types/solution"
-import { ASSET_BASE, catalogProofProducts, categories, facilityImages, testimonials } from "./data"
+import { ASSET_BASE, catalogProofProducts, categories, facilityImages, testimonials, type CategoryCard } from "./data"
 import { BackToTop } from "./BackToTop"
 import { DeferredBackgroundSection } from "./DeferredBackgroundSection"
 import { FactoryTourDialog } from "./FactoryTourDialog"
@@ -25,7 +27,7 @@ type FeaturedProduct = FeaturedProductsData["products"][number]
 type HomeSolutionsData = NonNullable<Awaited<ReturnType<typeof getHomeSolutions>>>
 type HomeSolution = HomeSolutionsData["solutions"][number]
 
-const CATEGORY_IMAGE_SIZES = "(max-width: 680px) calc(50vw - 32px), (max-width: 1180px) calc(25vw - 28px), 180px"
+const CATEGORY_CARD_ASSETS = `${ASSET_BASE}/category-cards`
 const STOREFRONT_TOP_ID = "storefront-top"
 
 async function FeaturedProducts() {
@@ -73,10 +75,12 @@ function getSolutionSceneLabel(solution: HomeSolution) {
 }
 
 export function NewHomePage() {
+  const categoryData = getCategories()
+
   return (
     <NewHomeShell>
       <NewHomeTopBar />
-      <StorefrontNav />
+      <StorefrontNav categoryData={categoryData} />
       <main className={industrial.home}>
         <HeroSection />
         <div className={industrial.container}>
@@ -87,7 +91,7 @@ export function NewHomePage() {
             <li>Export coordination</li>
           </ul>
         </div>
-        <CategorySection />
+        <CategorySection categoryData={categoryData} />
         <FactoryProcurementSection />
         <HomeBuyerProof />
         <TrustStrip />
@@ -278,59 +282,87 @@ function TrustStrip() {
   )
 }
 
-function CategorySection() {
+type StorefrontCategory = Awaited<ReturnType<typeof getCategories>>[number]
+
+function ProtectionCard({ category, activeSubcategories }: {
+  category: CategoryCard
+  activeSubcategories: StorefrontCategory["children"]
+}) {
+  const preferredSlugs = category.preferredSubcategories ?? []
+  const subcategories = [
+    ...preferredSlugs.flatMap((slug) => activeSubcategories.filter((subcategory) => subcategory.slug === slug)),
+    ...activeSubcategories.filter((subcategory) => !preferredSlugs.includes(subcategory.slug)),
+  ].slice(0, 3)
+
   return (
-    <DeferredBackgroundSection className={`${styles.categoriesSection} ${industrial.categories}`}>
+    <article className={industrial.category}>
+      <div className={industrial.categoryImage}>
+        <Image src={`${CATEGORY_CARD_ASSETS}/${category.slug}.webp`} alt="" fill loading="lazy" unoptimized />
+      </div>
+      <h3 className={industrial.categoryTitle}>
+        <Link className={industrial.categoryTitleLink} href={buildCategoryPagePath(category.slug)}>
+          {category.name}
+        </Link>
+      </h3>
+      {subcategories.length > 0 && (
+        <ul className={industrial.categoryChoices} aria-label={`${category.name} subcategories`}>
+          {subcategories.map((subcategory) => (
+            <li key={subcategory.id}>
+              <Link className={industrial.categoryRow} href={buildCategoryPagePath(subcategory.slug, category.slug)} prefetch={false}>
+                {subcategory.slug === "rainwear" ? "Rainwear" : subcategory.name}
+                <MoveRight size={18} aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </article>
+  )
+}
+
+async function CategorySection({ categoryData }: { categoryData: ReturnType<typeof getCategories> }) {
+  const storefrontCategories = await categoryData.catch(() => [])
+  const roots = new Map(
+    storefrontCategories.filter((category) => category.parentId === null).map((category) => [category.slug, category]),
+  )
+
+  return (
+    <section className={industrial.categories} aria-labelledby="home-protection-heading">
       <div className={industrial.container}>
-        <div className={industrial.categoriesHeading}>
-          <h2>Shop by Protection</h2>
-          <p>
-            <strong>Full-range protection, built in-house.</strong> From precision-engineered cut-resistant gloves to
-            ANSI-certified safety footwear, produced under one roof and governed by one quality standard.
-          </p>
+        <div id="shop-by-protection" className={industrial.categoriesHeading}>
+          <h2 id="home-protection-heading">Shop by Protection</h2>
+          <p>Choose a protection category or jump straight to the product type you need.</p>
         </div>
         <div className={industrial.categoryGrid}>
           {categories.map((category) => (
-            <Link className={industrial.category} href={category.href} key={category.href}>
-              <div className={industrial.categoryImage}>
-                <Image src={category.image} alt="" fill loading="lazy" sizes={CATEGORY_IMAGE_SIZES} />
-              </div>
-              <div className={industrial.categoryBody}>
-                <h3>{category.name}</h3>
-                <span className={industrial.categoryAction} aria-hidden="true">
-                  View Products <MoveRight size={16} />
-                </span>
-              </div>
-              <p className={industrial.categoryNote}>
-                <small>{category.index} · {category.skuCount}</small>
-                {category.description}
-              </p>
-            </Link>
+            <ProtectionCard
+              key={category.slug}
+              category={category}
+              activeSubcategories={roots.get(category.slug)?.children ?? []}
+            />
           ))}
           <Link className={industrial.category} href="/about#oem-odm">
-            <div className={industrial.categoryImage}>
+            <div className={`${industrial.categoryImage} ${industrial.categoryShowroom}`}>
               <Image
-                src="https://shop.laifappe.com/homepage/zhanshiting-157199625c.webp"
+                src={`${CATEGORY_CARD_ASSETS}/oem-odm.webp`}
                 alt=""
-                fill
+                width={293}
+                height={138}
                 loading="lazy"
-                sizes={CATEGORY_IMAGE_SIZES}
+                unoptimized
               />
             </div>
-            <div className={industrial.categoryBody}>
-              <h3>OEM / ODM development</h3>
-              <span className={industrial.categoryAction} aria-hidden="true">
-                Learn More <MoveRight size={16} />
-              </span>
-            </div>
-            <p className={industrial.categoryNote}>
-              <small>Custom build</small>
-              Design custom PPE under your brand. From sketch to shipment in 8-12 weeks.
-            </p>
+            <h3 className={industrial.categoryTitle}>OEM / ODM</h3>
+            <span className={industrial.categoryRow}>
+              Learn more <MoveRight size={18} aria-hidden="true" />
+            </span>
           </Link>
         </div>
+        <Link className={industrial.categoriesAll} href="/categories" aria-label="View all categories">
+          View all <MoveRight size={18} aria-hidden="true" />
+        </Link>
       </div>
-    </DeferredBackgroundSection>
+    </section>
   )
 }
 
