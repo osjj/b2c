@@ -2,16 +2,13 @@
 
 import { useState } from 'react'
 import { HelpCircle, ChevronDown } from 'lucide-react'
+import type { ContentBlock } from '@/components/store/content-renderer'
 import { cn } from '@/lib/utils'
 
 interface EditorJSContent {
   time?: number
   version?: string
-  blocks: Array<{
-    id: string
-    type: string
-    data: Record<string, any>
-  }>
+  blocks: ContentBlock[]
 }
 
 interface FaqSectionProps {
@@ -33,9 +30,10 @@ function parseFaqFromBlocks(blocks: EditorJSContent['blocks']): FaqItem[] {
         // Save previous if exists without answer
         faqs.push({ question: currentQuestion, answer: '' })
       }
-      currentQuestion = block.data.text
+      currentQuestion = typeof block.data.text === 'string' ? block.data.text : ''
     } else if (block.type === 'paragraph' && currentQuestion) {
-      faqs.push({ question: currentQuestion, answer: block.data.text })
+      const answer = typeof block.data.text === 'string' ? block.data.text : ''
+      faqs.push({ question: currentQuestion, answer })
       currentQuestion = ''
     }
   }

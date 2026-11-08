@@ -7,6 +7,7 @@ import { CartItem } from '@/components/store/cart-item'
 import { CartSummary } from '@/components/store/cart-summary'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import styles from '../../customer-pages.module.css'
 
 export default function CartPage() {
   const { items, isHydrated, totalItems } = useCart()
@@ -18,7 +19,7 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="container py-16">
-        <div className="max-w-md mx-auto text-center">
+        <div className={`max-w-md mx-auto text-center ${styles.centered}`}>
           <ShoppingBag className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
           <h1 className="text-2xl font-bold mb-2">Your cart is empty</h1>
           <p className="text-muted-foreground mb-6">
@@ -43,7 +44,7 @@ export default function CartPage() {
 
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg border divide-y">
+          <div className={`divide-y ${styles.panel}`}>
             {items.map((item) => (
               <CartItem
                 key={`${item.productId}-${item.variantId || ''}`}

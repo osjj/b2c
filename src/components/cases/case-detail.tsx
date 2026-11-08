@@ -16,6 +16,7 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
   const c = caseStudy
   const openingIndex = c.coverImage ? c.gallery.findIndex((image) => image.url === c.coverImage) : -1
   const openingImage = c.gallery[openingIndex]
+  const titleSeparator = c.title.indexOf(': ')
   const imagesAt = (placement: string) => caseImagesAt(c, placement).filter(({ index }) => index !== openingIndex)
   const remainingImages = caseUnplacedImages(c).filter(({ index }) => index !== openingIndex)
   const narrative = c.sections.map((section, index) => ({ section, placement: caseSectionPlacement(section, index) }))
@@ -36,7 +37,7 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
   )
 
   return (
-    <div className={`${styles.page} ${styles.detailPage}`} data-case-page>
+    <div className={`${styles.theme} ${styles.page} ${styles.detailPage}`} data-case-page data-case-preview={preview}>
       {preview && (
         <div className={styles.previewBanner}>
           <FileText size={16} aria-hidden="true" />
@@ -47,13 +48,15 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
         <div className={styles.wrap}>
           <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
             <Link href="/">Home</Link><span aria-hidden="true">/</span>
-            <Link href="/cases">Procurement cases</Link><span aria-hidden="true">/</span>
-            <span>Case file</span>
+            <Link href="/cases">Procurement Cases</Link><span aria-hidden="true">/</span>
+            <span aria-current="page">{c.country || 'Case file'}</span>
           </nav>
-          <div className={`${styles.detailHeading} ${c.coverImage ? styles.detailHeadingPhoto : styles.detailHeadingText}`}>
+          <div className={c.coverImage ? styles.detailHeading : `${styles.detailHeading} ${styles.detailHeadingText}`}>
             <div className={styles.detailLead}>
-              <div className={styles.eyebrow}><span className={styles.redDot} /> PROCUREMENT CASE / {c.industry || 'PROJECT RECORD'}</div>
-              <h1>{c.title}</h1>
+              <div className={`${styles.eyebrow} ${styles.caseKicker}`}>CASE FILE / {c.industry || 'PROJECT RECORD'}</div>
+              <h1>
+                {titleSeparator > 0 ? <>{c.title.slice(0, titleSeparator + 1)} <span className={styles.detailSubtitle}>{c.title.slice(titleSeparator + 2)}</span></> : c.title}
+              </h1>
               <div className={styles.detailSynopsis}>
                 <p className={styles.detailSummary}>{c.summary}</p>
                 <div className={styles.detailActions}>
@@ -64,14 +67,16 @@ export function CaseDetail({ caseStudy, preview = false }: { caseStudy: CaseView
             </div>
             {c.coverImage && (
               <figure data-case-placement="opening-record" data-case-image-index={openingIndex >= 0 ? openingIndex : undefined} className={styles.openingRecord}>
-                <div className={styles.recordTopline}>
-                  <span>{openingIndex >= 0 ? `RECORD / ${caseNumber(openingIndex)}` : 'PROJECT PHOTOGRAPH'}</span>
-                  <OriginalImageLink url={c.coverImage} alt={openingImage?.alt || c.coverAlt} />
-                </div>
                 <div className={styles.openingImage}>
-                  <Image src={c.coverImage} alt={openingImage?.alt || c.coverAlt} fill priority unoptimized={isCasePrivateImage(c.coverImage)} sizes="(max-width: 700px) calc(100vw - 44px), (max-width: 1000px) 46vw, 560px" className={styles.detailImage} />
+                  <Image src={c.coverImage} alt={openingImage?.alt || c.coverAlt} fill priority unoptimized={isCasePrivateImage(c.coverImage)} sizes="(max-width: 700px) calc(100vw - 36px), (max-width: 1440px) 48vw, 660px" className={styles.detailImage} />
                 </div>
-                {openingImage?.caption && <figcaption><span className={styles.recordCaptionMark} aria-hidden="true">{caseNumber(openingIndex)}</span><span>{openingImage.caption}</span></figcaption>}
+                <figcaption className={styles.openingCaption}>
+                  <div>
+                    {openingIndex >= 0 && <span className={styles.recordCaptionMark} aria-hidden="true">{caseNumber(openingIndex)}</span>}
+                    <span>{openingImage?.caption || 'Project photograph'}</span>
+                  </div>
+                  <OriginalImageLink url={c.coverImage} alt={openingImage?.alt || c.coverAlt} />
+                </figcaption>
               </figure>
             )}
           </div>
@@ -171,7 +176,7 @@ function InlineRecords({ entries }: { entries: ReturnType<typeof caseImagesAt> }
     <div className={styles.recordGroups} data-inline-records>
       {photos.length > 0 && (
         <div className={styles.inlineRecords} data-record-count={photos.length}>
-          {photos.map((entry) => <RecordFigure key={`image-${entry.index}`} entry={entry} sizes={photos.length === 1 ? '(max-width: 700px) calc(100vw - 44px), (max-width: 1000px) calc(100vw - 279px), 640px' : '(max-width: 700px) calc((100vw - 60px) / 2), (max-width: 1000px) calc((100vw - 295px) / 2), 465px'} />)}
+          {photos.map((entry) => <RecordFigure key={`image-${entry.index}`} entry={entry} sizes={photos.length === 1 ? '(max-width: 700px) calc(100vw - 36px), (max-width: 1000px) 67vw, 640px' : '(max-width: 420px) calc(100vw - 36px), (max-width: 700px) calc((100vw - 52px) / 2), (max-width: 1000px) 34vw, 465px'} />)}
         </div>
       )}
       {documents.length > 0 && (

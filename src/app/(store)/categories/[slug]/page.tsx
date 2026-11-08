@@ -1,16 +1,9 @@
 import { notFound, permanentRedirect } from 'next/navigation'
-import { Suspense } from 'react'
-import Link from 'next/link'
 import { Metadata } from 'next'
-import { ChevronRight } from 'lucide-react'
 import { getCategories, getCategoryBySlug, getCategorySubtreeIds } from '@/actions/categories'
 import { getProducts } from '@/actions/products'
-import { ProductCard } from '@/components/store/product-card'
-import { ProductCategoryNavigation } from '@/components/store/product-category-navigation'
+import { CatalogCategoryHeader, CatalogListingLayout, CatalogProductResults } from '@/components/store/catalog-listing'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
-import { StorePagination } from '@/components/store/store-pagination'
-import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
-import styles from '@/components/store/catalog-background.module.css'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
 import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
@@ -143,97 +136,17 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={seoContent.faqs} />
 
-      <CatalogBackground>
-      {/* Breadcrumb */}
-      <div className={`${styles.breadcrumb} container mx-auto px-6 lg:px-8 py-4`}>
-        <nav className="flex items-center text-sm text-muted-foreground">
-          <Link href="/" className="hover:text-foreground transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="h-4 w-4 mx-2" />
-          <Link href="/categories" className="hover:text-foreground transition-colors">
-            Categories
-          </Link>
-          <ChevronRight className="h-4 w-4 mx-2" />
-          <span className="text-foreground">{category.name}</span>
-        </nav>
-      </div>
-
-      {/* Hero Banner */}
-      <CatalogHero className="py-16">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="mb-2 text-sm uppercase tracking-[0.2em] text-primary">
-              {seoContent.eyebrow}
-            </p>
-            <h1 className="font-serif text-4xl md:text-5xl mb-4">
-              {category.name}
-            </h1>
-            {heroDescription && (
-              <p className="text-muted-foreground">
-                {heroDescription}
-              </p>
-            )}
-          </div>
-        </div>
-      </CatalogHero>
-
-      <div className="container mx-auto px-6 lg:px-8 py-12">
-        <div className="grid items-start gap-7 lg:grid-cols-[14rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-9">
-          <ProductCategoryNavigation categories={navigationCategories} activeHref={`/categories/${category.slug}`} />
-          <div className="min-w-0">
-            {/* Subcategories */}
-            {category.children && category.children.length > 0 && (
-              <div className={`${styles.subcategories} mb-8`}>
-                <h2 className="font-serif text-xl mb-4">Subcategories</h2>
-                <div className="flex flex-wrap gap-3">
-                  {category.children.map((child) => (
-                    <Link
-                      key={child.id}
-                      href={`/categories/${category.slug}/${child.slug}`}
-                      className="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-full text-sm transition-colors"
-                    >
-                      {child.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Products */}
-            <div className={`${styles.count} mb-6`}>
-              <p className="text-sm text-muted-foreground">
-                Showing <span className="text-foreground font-medium">{products.length}</span> of{' '}
-                <span className="text-foreground font-medium">{pagination.total}</span> products
-              </p>
-            </div>
-
-            {products.length > 0 ? (
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 xl:grid-cols-4">
-                {products.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16">
-                <p className="text-muted-foreground">No products found in this category.</p>
-              </div>
-            )}
-
-            {/* Pagination */}
-            <div className="mt-16">
-              <Suspense fallback={null}>
-                <StorePagination
-                  currentPage={pagination.page}
-                  totalPages={pagination.totalPages}
-                  total={pagination.total}
-                />
-              </Suspense>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16">
+      <CatalogListingLayout categories={navigationCategories} activeHref={`/categories/${category.slug}`}>
+        <CatalogCategoryHeader
+          name={category.name}
+          description={category.slug === 'foot-protection' ? 'Safety footwear for industrial work' : heroDescription}
+          image={category.image}
+          breadcrumbs={[{ name: 'Home', href: '/' }, { name: 'Categories', href: '/categories' }]}
+          subcategories={relatedLinks}
+          isFootProtection={category.slug === 'foot-protection'}
+        />
+        <CatalogProductResults products={products} pagination={pagination} variant="category" />
+        <div className="mt-12">
           <CategorySeoContent
             category={category}
             productCount={pagination.total}
@@ -243,8 +156,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             productNames={products.map((product) => product.name)}
           />
         </div>
-      </div>
-      </CatalogBackground>
+      </CatalogListingLayout>
     </>
   )
 }

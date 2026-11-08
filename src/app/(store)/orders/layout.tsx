@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
+import styles from '../../customer-pages.module.css'
 
 const baseUrl = getSiteUrl()
 const ordersUrl = `${baseUrl}/orders`
@@ -31,5 +32,5 @@ export const metadata: Metadata = {
 }
 
 export default function OrdersLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return <div className={styles.page}>{children}</div>
 }

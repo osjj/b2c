@@ -7,6 +7,7 @@ import {
   createConnectorPath,
 } from '@/lib/body-link-map'
 import { resolveListItemBodyAnchor } from '@/lib/body-anchor-points'
+import styles from './solution-detail.module.css'
 
 type BodyLinkMapSectionProps = {
   imageSrc?: string
@@ -123,7 +124,7 @@ export function BodyLinkMapSection({
   if (linkedItems.length === 0) return null
 
   return (
-    <div className="rounded-2xl border bg-card/70 p-4 md:p-6">
+    <div className={styles.mapFrame}>
       <div ref={containerRef} className="relative">
         <svg
           aria-hidden="true"
@@ -167,7 +168,7 @@ export function BodyLinkMapSection({
           {/* Anchor percentages must stay tied to the image aspect box, not a stretched grid row. */}
           <div
             ref={imageRef}
-            className="relative mx-auto w-full max-w-[420px] self-start overflow-hidden rounded-xl border bg-muted/20"
+            className={`relative mx-auto w-full max-w-[420px] self-start overflow-hidden ${styles.mapImage}`}
           >
             <div className="relative aspect-[2/3] w-full">
               <Image
@@ -195,9 +196,8 @@ export function BodyLinkMapSection({
                 >
                   <span
                     aria-hidden="true"
-                    className={`absolute inset-0 rounded-full transition-all ${
-                      isActive ? 'scale-110 bg-slate-500/60' : 'bg-slate-400/45'
-                    }`}
+                    className={styles.mapPoint}
+                    data-active={isActive}
                   />
                 </button>
               )
@@ -218,11 +218,8 @@ export function BodyLinkMapSection({
                   onMouseLeave={() => setActiveItemKey(null)}
                   onFocus={() => setActiveItemKey(item.itemKey)}
                   onBlur={() => setActiveItemKey(null)}
-                  className={`w-full cursor-pointer rounded-xl border p-4 text-left transition-all ${
-                    isActive
-                      ? 'border-primary/60 bg-primary/5 shadow-sm'
-                      : 'border-border/80 bg-background/70 hover:border-primary/30'
-                  }`}
+                  className={styles.mapOption}
+                  data-active={isActive}
                 >
                   {item.title && (
                     <p className="text-sm font-semibold text-foreground">{item.title}</p>

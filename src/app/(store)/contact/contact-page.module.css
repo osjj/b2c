@@ -1,0 +1,253 @@
+.page {
+  --contact-paper: var(--catalog-paper, #f4efe6);
+  --contact-surface: #fffaf2;
+  --contact-ink: var(--catalog-ink, #171410);
+  --contact-orange: var(--catalog-accent, #c83a06);
+  --contact-orange-hover: var(--catalog-accent-hover, #a93108);
+  --contact-rule: #d1c5b6;
+  --contact-muted: #5f574d;
+  background: var(--contact-paper);
+  color: var(--contact-ink);
+  font-family: var(--catalog-font, Archivo, "Segoe UI", sans-serif);
+}
+
+.container {
+  width: min(100%, 1280px);
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 58px) clamp(16px, 3.3vw, 48px) clamp(36px, 6vw, 80px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 60px);
+  padding-block-end: clamp(22px, 3.5vw, 44px);
+  border-block-end: 1px solid var(--contact-rule);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 13px;
+  color: var(--contact-orange);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  width: 33px;
+  height: 10px;
+  margin-inline-start: 3px;
+  background: repeating-linear-gradient(90deg, currentColor 0 8px, transparent 8px 11px);
+  content: "";
+  transform: skewX(-24deg);
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: clamp(2.3rem, 5.1vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -.052em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.summary {
+  max-width: 58ch;
+  margin: 16px 0 0;
+  color: var(--contact-muted);
+  font-size: clamp(.95rem, 1.35vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-start: clamp(18px, 2.5vw, 28px);
+}
+
+.actions .action {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  height: auto;
+  padding: .6rem .9rem;
+  border: 1px solid var(--contact-rule);
+  border-radius: 0;
+  background: var(--contact-surface);
+  color: var(--contact-ink);
+  font: 700 .92rem/1.3 var(--catalog-font, Archivo, "Segoe UI", sans-serif);
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.actions .action:hover {
+  border-color: var(--contact-orange);
+  color: var(--contact-orange);
+}
+
+.actions .primary {
+  border-color: var(--contact-orange);
+  background: var(--contact-orange);
+  color: #fff;
+}
+
+.actions .primary:hover {
+  border-color: var(--contact-orange-hover);
+  background: var(--contact-orange-hover);
+  color: #fff;
+}
+
+.office {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(20px, 3.4vw, 44px);
+  border-block-start: 4px solid var(--contact-orange);
+  background: var(--contact-ink);
+  color: var(--contact-surface);
+}
+
+.office > svg {
+  margin-block-end: 14px;
+  color: #ffad85;
+}
+
+.office h2,
+.method h2 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -.027em;
+  line-height: 1.2;
+}
+
+.office p {
+  margin: 6px 0 0;
+  color: #e4d7c9;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+
+.office .officeLocation {
+  margin-block-start: 12px;
+  color: var(--contact-surface);
+  font-weight: 700;
+}
+
+.contacts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.5vw, 22px);
+  margin: clamp(18px, 2.9vw, 36px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contacts > li {
+  min-width: 0;
+}
+
+.method {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 100%;
+  padding: clamp(16px, 2.3vw, 30px);
+  border: 1px solid var(--contact-rule);
+  background: var(--contact-surface);
+  color: var(--contact-ink);
+  text-decoration: none;
+}
+
+.featured .method {
+  border-block-start: 3px solid var(--contact-orange);
+}
+
+.methodTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-block-end: 4px;
+  color: var(--contact-orange);
+}
+
+.preferred {
+  padding: 4px 6px;
+  border: 1px solid var(--contact-rule);
+  font-size: .69rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.value,
+.note {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.value {
+  font-size: clamp(.93rem, 1.6vw, 1.16rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.featured .value {
+  color: var(--contact-orange);
+}
+
+.note {
+  color: var(--contact-muted);
+  font-size: .89rem;
+  line-height: 1.5;
+}
+
+a.method:hover {
+  border-color: var(--contact-orange);
+}
+
+a.method:hover .value {
+  color: var(--contact-orange);
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+.page :is(.action, a.method):focus-visible {
+  outline: 2px solid var(--contact-orange);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contacts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .featured {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 570px) {
+  .contacts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

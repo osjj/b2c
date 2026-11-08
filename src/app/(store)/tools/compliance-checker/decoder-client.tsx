@@ -23,14 +23,13 @@ export function ComplianceDecoder() {
   const { matches, warnings, unknown } = useMemo(() => decodeLabel(input), [input])
 
   return (
-    <div className="space-y-8">
-      {/* Input card */}
-      <div data-tool-panel className={[theme.panel, "rounded-2xl border bg-background p-6 sm:p-8 shadow-sm"].join(" ")}>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <Search className="h-5 w-5" />
+    <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+      <section data-tool-panel aria-labelledby="label-input-heading" className={`${theme.panel} min-w-0 p-5 sm:p-6`}>
+        <div className="mb-5 flex items-center gap-3">
+          <div className="grid size-10 shrink-0 place-items-center border border-primary/30 bg-primary/10 text-primary">
+            <Search className="size-5" aria-hidden="true" />
           </div>
-          <h2 className="font-serif text-xl sm:text-2xl text-foreground">
+          <h2 id="label-input-heading" className="text-xl font-extrabold text-foreground sm:text-2xl">
             Paste the label
           </h2>
         </div>
@@ -44,70 +43,67 @@ export function ComplianceDecoder() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="e.g. EN ISO 20345:2022 S3 SR HRO CI"
-            className="font-mono"
+            className="min-h-12 rounded-none font-mono"
           />
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          <span className="text-xs text-muted-foreground mr-1 self-center">Try:</span>
-          {EXAMPLES.map((ex) => (
-            <Button
-              key={ex}
-              size="sm"
-              variant="outline"
-              onClick={() => setInput(ex)}
-              className="h-auto min-h-11 whitespace-normal text-left text-xs font-mono"
-            >
-              {ex}
-            </Button>
-          ))}
-        </div>
-      </div>
-
-      {/* Result */}
-      <p className="text-sm text-muted-foreground">This explains label text only. Verify the model, edition, declaration of conformity and test reports before purchasing; this tool does not validate certification.</p>
-      {warnings.length > 0 && <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950" role="status"><h3 className="font-semibold">Check the standard and edition</h3><ul className="mt-2 space-y-2">{warnings.map(w => <li key={w}>{w}</li>)}</ul></div>}
-      {unknown.length > 0 && <div className="rounded-xl border p-4 text-sm" role="status"><h3 className="font-semibold">Unrecognised or unresolved markings</h3><ul className="mt-2 space-y-1 font-mono break-words">{unknown.map(t => <li key={t}>{t}</li>)}</ul><p className="mt-2 text-muted-foreground">These tokens were not interpreted. Confirm them against the original label and manufacturer documentation.</p></div>}
-      {matches.length > 0 ? (
-        <div data-testid="decoded-codes" data-tool-results className={[theme.results, "rounded-2xl border bg-gradient-to-br from-primary/5 to-background p-6 sm:p-8 shadow-sm"].join(" ")}>
-          <div className="flex items-center gap-3 mb-5">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <h3 className="font-serif text-xl text-foreground">
-              Decoded {matches.length} code{matches.length === 1 ? '' : 's'}
-            </h3>
-          </div>
-
-          <ul className="space-y-3">
-            {matches.map(({ code, context }) => (
-              <li
-                key={`${context}-${code.code}`}
-                className="rounded-xl border bg-background p-4 sm:p-5"
+        <div className="mt-5 space-y-2">
+          <p className="text-xs font-semibold text-muted-foreground">Try a sample marking</p>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {EXAMPLES.map((ex) => (
+              <Button
+                key={ex}
+                size="sm"
+                variant="outline"
+                onClick={() => setInput(ex)}
+                className="h-auto min-h-11 justify-start rounded-none whitespace-normal text-left font-mono text-xs"
               >
-                <div className="flex flex-wrap items-start gap-x-4 gap-y-2">
-                  <span className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1.5 font-mono text-sm font-semibold text-primary">
-                    {code.code}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-foreground">{code.name}</p>
-                    <p className="mt-0.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                      {context} · {STANDARD_LABEL[code.standard]}
-                    </p>
-                  </div>
-                </div>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  {code.description}
-                </p>
-              </li>
+                {ex}
+              </Button>
             ))}
-          </ul>
+          </div>
         </div>
-      ) : (
-        <div className="rounded-2xl border border-dashed bg-background p-6 text-center text-sm text-muted-foreground">
-          Paste a marking like <code className="font-mono">S3 SRC HRO</code> or{' '}
-          <code className="font-mono">ASTM F2413-18 M I/75 C/75 EH PR</code> to
-          interpret supported markings.
-        </div>
-      )}
+        <p className="mt-5 border-t pt-4 text-sm leading-relaxed text-muted-foreground">This explains label text only. Verify the model, edition, declaration of conformity and test reports before purchasing; this tool does not validate certification.</p>
+      </section>
+
+      <div className="min-w-0 space-y-4">
+        {warnings.length > 0 && <div className="border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950" role="status"><h3 className="font-semibold">Check the standard and edition</h3><ul className="mt-2 space-y-2">{warnings.map(w => <li key={w}>{w}</li>)}</ul></div>}
+        {unknown.length > 0 && <div className="border bg-background p-4 text-sm" role="status"><h3 className="font-semibold">Unrecognised or unresolved markings</h3><ul className="mt-2 space-y-1 break-words font-mono">{unknown.map(t => <li key={t}>{t}</li>)}</ul><p className="mt-2 text-muted-foreground">These tokens were not interpreted. Confirm them against the original label and manufacturer documentation.</p></div>}
+        {matches.length > 0 ? (
+          <section data-testid="decoded-codes" data-tool-results aria-labelledby="label-results-heading" className={`${theme.results} border p-5 sm:p-6`}>
+            <div className="mb-4 flex items-center gap-3">
+              <Sparkles className="size-5 shrink-0 text-primary" aria-hidden="true" />
+              <h2 id="label-results-heading" className="text-xl font-extrabold text-foreground">
+                Decoded {matches.length} code{matches.length === 1 ? '' : 's'}
+              </h2>
+            </div>
+            <ul className="divide-y border-y">
+              {matches.map(({ code, context }) => (
+                <li key={`${context}-${code.code}`} className="py-4">
+                  <div className="flex flex-wrap items-start gap-x-3 gap-y-2">
+                    <span className="inline-flex items-center border border-primary/30 bg-primary/10 px-2.5 py-1 font-mono text-sm font-semibold text-primary">
+                      {code.code}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-foreground">{code.name}</p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {context} · {STANDARD_LABEL[code.standard]}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{code.description}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : (
+          <div className="border border-dashed bg-background p-6 text-sm text-muted-foreground">
+            Paste a marking like <code className="font-mono">S3 SRC HRO</code> or{' '}
+            <code className="font-mono">ASTM F2413-18 M I/75 C/75 EH PR</code> to
+            interpret supported markings.
+          </div>
+        )}
+      </div>
     </div>
   )
 }

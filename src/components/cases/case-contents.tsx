@@ -1,13 +1,20 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ChevronDown } from 'lucide-react'
 import { caseNumber } from './case-format'
 import styles from './cases.module.css'
 
+function subscribeToHash(onChange: () => void) {
+  window.addEventListener('hashchange', onChange)
+  return () => window.removeEventListener('hashchange', onChange)
+}
+
 export function CaseContents({ chapters }: { chapters: { placement: string; title: string }[] }) {
   const detailsRef = useRef<HTMLDetailsElement>(null)
+  const anchor = useSyncExternalStore(subscribeToHash, () => window.location.hash.slice(1), () => '')
+  const activeChapter = chapters.find(({ placement }) => placement === anchor) ?? chapters[0]
 
   useEffect(() => {
     const details = detailsRef.current
@@ -33,7 +40,7 @@ export function CaseContents({ chapters }: { chapters: { placement: string; titl
           <summary className={styles.contentsSummary}><span>In this case <span className={styles.contentsCount}>{chapters.length} sections</span></span><ChevronDown size={17} aria-hidden="true" /></summary>
           <nav aria-label="Case contents">
             <span className={`${styles.eyebrow} ${styles.contentsHeading}`}>IN THIS CASE</span>
-            <ol>{chapters.map((chapter, index) => <li key={chapter.placement}><a href={`#${chapter.placement}`}><span className={styles.contentsNumber}>{caseNumber(index)}</span><span>{chapter.title}</span></a></li>)}</ol>
+            <ol>{chapters.map((chapter, index) => <li key={chapter.placement}><a href={`#${chapter.placement}`} aria-current={chapter === activeChapter ? 'location' : undefined}><span className={styles.contentsNumber}>{caseNumber(index)}</span><span>{chapter.title}</span></a></li>)}</ol>
             <Link href="/cases" className={styles.backLink}><ArrowLeft size={15} aria-hidden="true" /> All procurement cases</Link>
           </nav>
         </details>

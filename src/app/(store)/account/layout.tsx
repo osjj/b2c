@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth'
 import { buildPageTitle } from '@/lib/seo-title'
 import { User, Package, MapPin, Settings } from 'lucide-react'
+import styles from '../../customer-pages.module.css'
 
 const accountLinks = [
   { href: '/account', label: 'Profile', icon: User },
@@ -36,26 +37,26 @@ export default async function AccountLayout({
   }
 
   return (
-    <div className="container py-8">
-      <div className="flex flex-col md:flex-row gap-8">
-        <aside className="w-full md:w-64 shrink-0">
-          <nav className="space-y-1">
+    <div className={styles.page}>
+      <div className={`container ${styles.accountBody}`}>
+        <aside>
+          <nav aria-label="Account navigation" className={styles.accountNav}>
             {accountLinks.map((link) => {
               const Icon = link.icon
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-muted transition-colors"
+                  className={styles.accountLink}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-5 w-5" aria-hidden="true" />
                   {link.label}
                 </Link>
               )
             })}
           </nav>
         </aside>
-        <main className="flex-1">{children}</main>
+        <div className="min-w-0">{children}</div>
       </div>
     </div>
   )

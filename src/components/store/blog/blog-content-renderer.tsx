@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 import Image from 'next/image'
 import { slugifyHeading } from '@/lib/blog-toc'
 import { rewriteInternalAttributionLinksInHtml } from '@/lib/seo-links'
+import styles from './blog-content-renderer.module.css'
 
 interface Block {
   id?: string
@@ -36,7 +37,7 @@ export function BlogContentRenderer({ content }: BlogContentRendererProps) {
   const usedHeadingIds = new Set<string>()
 
   return (
-    <div className={BLOG_LINK_SCOPE_CLASS}>
+    <div className={`${BLOG_LINK_SCOPE_CLASS} ${styles.content}`}>
       {content.blocks.map((block, index) => {
         switch (block.type) {
           case 'header':
@@ -86,7 +87,6 @@ function renderHeader(block: Block, index: number, usedIds: Set<string>) {
       <h2
         key={key}
         id={id}
-        className="scroll-mt-28 font-serif text-2xl sm:text-3xl leading-tight mt-14 mb-5 text-foreground"
         dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
       />
     )
@@ -96,7 +96,6 @@ function renderHeader(block: Block, index: number, usedIds: Set<string>) {
     return (
       <h3
         key={key}
-        className="font-serif text-xl sm:text-2xl leading-snug mt-10 mb-4 text-foreground"
         dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
       />
     )
@@ -105,7 +104,6 @@ function renderHeader(block: Block, index: number, usedIds: Set<string>) {
   return (
     <h4
       key={key}
-      className="font-sans font-semibold text-lg mt-8 mb-3 text-foreground"
       dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
     />
   )
@@ -115,7 +113,6 @@ function renderParagraph(block: Block, index: number) {
   return (
     <p
       key={block.id || `p-${index}`}
-      className="my-5 text-base leading-[1.85] text-foreground/85"
       dangerouslySetInnerHTML={{
         __html: rewriteInternalAttributionLinksInHtml(String(block.data.text ?? '')),
       }}
@@ -137,25 +134,20 @@ function renderList(block: Block, index: number) {
           : null
 
       return (
-        <li key={idx} className="mb-2 leading-[1.85]">
+        <li key={idx}>
           <span
             dangerouslySetInnerHTML={{
               __html: rewriteInternalAttributionLinksInHtml(content),
             }}
           />
-          {nestedItems && <Tag className="mt-2 ml-2">{renderItems(nestedItems)}</Tag>}
+          {nestedItems && <Tag>{renderItems(nestedItems)}</Tag>}
         </li>
       )
     })
   }
 
-  const listClass =
-    style === 'ordered'
-      ? 'my-5 list-decimal pl-6 text-foreground/85 marker:text-primary marker:font-semibold'
-      : 'my-5 list-disc pl-6 text-foreground/85 marker:text-primary'
-
   return (
-    <Tag key={block.id || `l-${index}`} className={listClass}>
+    <Tag key={block.id || `l-${index}`}>
       {renderItems(items)}
     </Tag>
   )
@@ -184,27 +176,24 @@ function renderImage(block: Block, index: number) {
   return (
     <figure
       key={block.id || `i-${index}`}
-      className={`my-10 ${stretched ? 'w-full' : ''} ${
-        withBackground ? 'bg-muted p-4 rounded-xl' : ''
-      }`}
+      className={styles.figure}
+      data-stretched={stretched || undefined}
+      data-with-background={withBackground || undefined}
     >
       <div
-        className={`relative overflow-hidden ${
-          withBorder ? 'border rounded-xl' : 'rounded-xl'
-        } shadow-sm`}
+        className={styles.figureImage}
+        data-with-border={withBorder || undefined}
       >
         <Image
           src={trimmedUrl}
           alt={hasCaption ? caption : 'Article illustration'}
           width={1200}
           height={800}
-          className="w-full h-auto object-cover"
-          sizes="(max-width: 768px) 100vw, 800px"
+          sizes="(max-width: 768px) 94vw, 800px"
         />
       </div>
       {hasCaption && (
         <figcaption
-          className="text-center text-sm italic text-muted-foreground mt-3"
           dangerouslySetInnerHTML={{
             __html: rewriteInternalAttributionLinksInHtml(caption),
           }}
@@ -216,13 +205,7 @@ function renderImage(block: Block, index: number) {
 
 function renderDelimiter(block: Block, index: number) {
   return (
-    <div key={block.id || `d-${index}`} className="flex justify-center my-12">
-      <div className="flex gap-2">
-        <span className="w-1.5 h-1.5 bg-primary/40 rounded-full" />
-        <span className="w-1.5 h-1.5 bg-primary/40 rounded-full" />
-        <span className="w-1.5 h-1.5 bg-primary/40 rounded-full" />
-      </div>
-    </div>
+    <div key={block.id || `d-${index}`} className={styles.delimiter} aria-hidden="true" />
   )
 }
 
@@ -239,16 +222,19 @@ function renderTable(block: Block, index: number) {
   return (
     <div
       key={block.id || `t-${index}`}
-      className="my-8 overflow-x-auto rounded-xl border shadow-sm"
+      className={styles.tableFrame}
+      role="group"
+      aria-label="Article table"
+      tabIndex={0}
     >
-      <table className="w-full border-collapse text-sm">
+      <table>
         {withHeadings && headerRow ? (
           <thead>
-            <tr className="bg-muted/60">
+            <tr>
               {headerRow.map((cell, idx) => (
                 <th
                   key={idx}
-                  className="border-b px-4 py-3 text-left font-semibold text-foreground"
+                  scope="col"
                   dangerouslySetInnerHTML={{
                     __html: rewriteInternalAttributionLinksInHtml(cell),
                   }}
@@ -259,18 +245,10 @@ function renderTable(block: Block, index: number) {
         ) : null}
         <tbody>
           {(withHeadings ? bodyRows : rows).map((row, rIdx) => (
-            <tr
-              key={rIdx}
-              className="border-b last:border-b-0 odd:bg-background even:bg-muted/20 hover:bg-muted/40 transition-colors"
-            >
+            <tr key={rIdx}>
               {row.map((cell, cIdx) => (
                 <td
                   key={cIdx}
-                  className={
-                    cIdx === 0
-                      ? 'px-4 py-3 align-top font-medium text-foreground'
-                      : 'px-4 py-3 align-top text-foreground/85'
-                  }
                   dangerouslySetInnerHTML={{
                     __html: rewriteInternalAttributionLinksInHtml(cell),
                   }}
@@ -292,16 +270,14 @@ function renderQuote(block: Block, index: number) {
   return (
     <blockquote
       key={block.id || `q-${index}`}
-      className={`border-l-4 border-primary bg-primary/5 pl-5 pr-4 py-4 my-8 rounded-r-lg ${
-        alignment === 'center' ? 'text-center' : ''
-      }`}
+      className={styles.quote}
+      data-alignment={alignment === 'center' ? 'center' : undefined}
     >
       <p
-        className="text-lg italic text-foreground/90 leading-relaxed"
         dangerouslySetInnerHTML={{ __html: rewriteInternalAttributionLinksInHtml(text) }}
       />
       {caption && (
-        <cite className="block mt-3 text-sm text-muted-foreground not-italic">
+        <cite>
           — {caption}
         </cite>
       )}

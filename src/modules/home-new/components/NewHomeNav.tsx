@@ -13,6 +13,8 @@ import { pointerPressHandlers } from "./pointerPress"
 import { ScrollProgress } from "./ScrollProgress"
 import { ProductsNavMenu } from "./ProductsNavMenu"
 
+const brandNameZh = "粤来发劳保"
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
@@ -36,12 +38,11 @@ function NewHomeNavContent({ categories, pathname }: NewHomeNavProps & { pathnam
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const headerRef = useRef<HTMLElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
-  const isToolsPage = pathname === "/tools" || pathname.startsWith("/tools/")
   const showQuoteList = process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B"
 
   useEffect(() => {
     if (!menuOpen) return
-    const desktop = window.matchMedia("(min-width: 1251px)")
+    const desktop = window.matchMedia("(min-width: 1024px)")
     const closeForDesktop = () => {
       if (desktop.matches) setMenuOpen(false)
     }
@@ -89,28 +90,36 @@ function NewHomeNavContent({ categories, pathname }: NewHomeNavProps & { pathnam
 
   return (
     <div className={styles.navSticky}>
-      <header ref={headerRef} className={styles.nav} data-tools-page={isToolsPage}>
+      <header
+        ref={headerRef}
+        className={styles.nav}
+        data-archivo-typography="true"
+        data-industrial-page="true"
+      >
         <div className={styles.wrap}>
           <Link className={styles.logo} href="/" aria-label="Laifappe homepage">
             <Image
               src="/favicon.ico"
-              alt="Yuelaifa PPE icon"
+              alt=""
               width={52}
               height={52}
               className={styles.logoIcon}
               priority
             />
             <span className={styles.logoText}>
-              <strong>{"\u7ca4\u6765\u53d1\u52b3\u4fdd"}</strong>
-              <small>YUELAIFA PPE · EST. 2003</small>
+              <strong>LAIFAPPE</strong>
+              <small>
+                <span lang="zh-CN">{brandNameZh}</span>
+                {" · EST. 2003"}
+              </small>
             </span>
           </Link>
-          <nav className={styles.navLinks} aria-label="New homepage navigation">
+          <nav className={styles.navLinks} aria-label="Storefront navigation">
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href)
 
               if (link.href === "/products") {
-                return <ProductsNavMenu key={link.href} categories={categories} active={isActive} isToolsPage={isToolsPage} />
+                return <ProductsNavMenu key={link.href} categories={categories} active={isActive} />
               }
 
               return (
@@ -159,7 +168,6 @@ function NewHomeNavContent({ categories, pathname }: NewHomeNavProps & { pathnam
                   type="button"
                 >
                   <span className={styles.navBtnText}>Request Quote</span>
-                  {isToolsPage && <span className={styles.toolsQuoteShortLabel}>Get quote</span>}
                   <span className={styles.arr} aria-hidden="true">
                     &rarr;
                   </span>
@@ -195,13 +203,12 @@ function NewHomeNavContent({ categories, pathname }: NewHomeNavProps & { pathnam
           inert={!menuOpen}
           aria-hidden={!menuOpen}
         >
-          <nav aria-label="Mobile homepage navigation">
+          <nav aria-label="Mobile storefront navigation">
             {navLinks.map((link) => link.href === "/products" ? (
               <ProductsNavMenu
                 key={`${link.href}-${menuOpen}`}
                 categories={categories}
                 active={isActiveLink(link.href)}
-                isToolsPage={isToolsPage}
                 mobile
                 onNavigate={() => setMenuOpen(false)}
               />
@@ -216,12 +223,14 @@ function NewHomeNavContent({ categories, pathname }: NewHomeNavProps & { pathnam
               </Link>
             ))}
           </nav>
-          {isToolsPage && (
-            <div className={styles.toolsMobileContacts}>
-              <a href="mailto:sales@laifappe.com"><Mail size={16} aria-hidden="true" />Email sales</a>
-              <a href="https://wa.me/8618029309938"><MessageCircle size={16} aria-hidden="true" />WhatsApp</a>
-            </div>
-          )}
+          <div className={styles.toolsMobileContacts}>
+            <a className={styles.btnEmailNav} href="mailto:sales@laifappe.com">
+              <Mail size={16} aria-hidden="true" />Email sales
+            </a>
+            <a className={styles.btnWa} href="https://wa.me/8618029309938">
+              <MessageCircle size={16} aria-hidden="true" />WhatsApp
+            </a>
+          </div>
         </div>
       </header>
       <ScrollProgress />

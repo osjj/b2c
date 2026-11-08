@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { auth } from '@/lib/auth'
+import styles from '../../customer-pages.module.css'
 
 export const metadata: Metadata = {
   title: 'Profile',
@@ -12,7 +13,7 @@ export default async function AccountPage() {
     <div>
       <h1 className="text-2xl font-bold mb-6">My Profile</h1>
 
-      <div className="bg-muted p-6 rounded-lg">
+      <div className={`p-6 ${styles.panel}`}>
         <div className="space-y-4">
           <div>
             <p className="text-sm text-muted-foreground">Name</p>

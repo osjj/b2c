@@ -1,13 +1,14 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import { FileText, Lightbulb } from 'lucide-react'
+import { ArrowRight, FileText, Lightbulb } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn, formatPrice } from '@/lib/utils'
 import { calculateTierPrice, getNextTierHint, type PriceTier } from '@/lib/pricing'
 import { PriceTiersTable } from './price-tiers-table'
 import { QuantitySelector } from './quantity-selector'
 import { AddToQuoteButton } from './add-to-quote-button'
+import styles from './product-detail.module.css'
 
 type ProductVariantOptionValue = string | number | boolean | null
 
@@ -31,6 +32,8 @@ interface B2BProductActionsProps {
   children?: ReactNode
   className?: string
   preview?: boolean
+  catalog?: boolean
+  summary?: ReactNode
 }
 
 const OPTION_LABELS: Record<string, string> = {
@@ -81,6 +84,8 @@ export function B2BProductActions({
   children,
   className,
   preview = false,
+  catalog = false,
+  summary,
 }: B2BProductActionsProps) {
   const variantOptions = useMemo(
     () => variants.filter((variant) => Object.keys(variant.options).length > 0),
@@ -219,7 +224,7 @@ export function B2BProductActions({
     return undefined
   }
 
-  const hasPanelHeader = Boolean(children)
+  const hasPanelHeader = Boolean(children) && !catalog
   const panelRef = useRef<HTMLDivElement>(null)
   const [panelMaxHeight, setPanelMaxHeight] = useState<number | undefined>()
 
@@ -263,41 +268,50 @@ export function B2BProductActions({
     }
   }, [hasPanelHeader])
 
+  const pricingTable = priceTiers.length > 0 && (
+    <PriceTiersTable
+      tiers={activePriceTiers}
+      currentQuantity={selectedQuantity}
+      defaultPrice={activeDefaultPrice}
+    />
+  )
+
   return (
     <div
       ref={panelRef}
       style={hasPanelHeader && panelMaxHeight !== undefined ? { maxHeight: panelMaxHeight } : undefined}
       className={cn(
-        hasPanelHeader ? 'lg:flex lg:max-h-[calc(100dvh-7rem)] lg:flex-col' : 'space-y-6',
+        hasPanelHeader && 'lg:flex lg:max-h-[calc(100dvh-7rem)] lg:flex-col',
+        catalog ? styles.orderPanel : !hasPanelHeader && 'space-y-6',
         className
       )}
     >
       <div
         className={cn(
-          'space-y-6',
+          catalog ? styles.orderControls : 'space-y-6',
           hasPanelHeader && 'lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:pb-4 lg:pr-2 lg:[scrollbar-color:rgba(203,213,225,0.5)_transparent] lg:[scrollbar-width:thin] lg:[&::-webkit-scrollbar]:w-1 lg:[&::-webkit-scrollbar-thumb]:rounded-full lg:[&::-webkit-scrollbar-thumb]:bg-slate-300/40 lg:[&::-webkit-scrollbar-thumb:hover]:bg-slate-300/60 lg:[&::-webkit-scrollbar-track]:bg-transparent'
         )}
       >
         {children}
 
-        {/* Tiered pricing table */}
-        {priceTiers.length > 0 && (
+        {!catalog && pricingTable && (
           <div className="space-y-2">
             <p className="text-sm font-medium">Bulk Pricing</p>
-            <PriceTiersTable
-              tiers={activePriceTiers}
-              currentQuantity={selectedQuantity}
-              defaultPrice={activeDefaultPrice}
-            />
+            {pricingTable}
           </div>
         )}
 
         {hasVariants && (
-          <div className="space-y-4">
+          <div className={catalog ? undefined : 'space-y-4'}>
             {optionValuesByKey.map(({ key, values }) => (
-              <div key={key} className="space-y-2">
-                <p className="text-sm font-medium">{formatOptionKey(key)}</p>
-                <div className="flex flex-wrap gap-2">
+              <div
+                key={key}
+                role="group"
+                aria-label={formatOptionKey(key)}
+                className={catalog ? styles.optionRow : 'space-y-2'}
+              >
+                <p className={catalog ? styles.optionLabel : 'text-sm font-medium'}>{formatOptionKey(key)}</p>
+                <div className={cn('flex flex-wrap', catalog ? 'gap-1.5' : 'gap-2')}>
                   {values.map((value) => {
                     const isSelected = effectiveSelectedOptions[key] === value
                     const isAvailable = isOptionAvailable(key, value)
@@ -309,11 +323,15 @@ export function B2BProductActions({
                         disabled={!isAvailable}
                         onClick={() => handleOptionChange(key, value)}
                         className={cn(
-                          'min-h-11 rounded-md border px-3 py-2 text-sm font-medium transition-colors [-webkit-tap-highlight-color:transparent]',
-                          isSelected
-                            ? 'border-primary bg-primary text-primary-foreground'
-                            : 'border-border bg-background hover:border-primary/60 hover:bg-muted',
-                          !isAvailable && 'cursor-not-allowed opacity-40 hover:border-border hover:bg-background'
+                          catalog
+                            ? styles.option
+                            : cn(
+                                'min-h-11 rounded-md border px-3 py-2 text-sm font-medium transition-colors [-webkit-tap-highlight-color:transparent]',
+                                isSelected
+                                  ? 'border-primary bg-primary text-primary-foreground'
+                                  : 'border-border bg-background hover:border-primary/60 hover:bg-muted',
+                                !isAvailable && 'cursor-not-allowed opacity-40 hover:border-border hover:bg-background'
+                              )
                         )}
                       >
                         {value}
@@ -328,8 +346,8 @@ export function B2BProductActions({
         )}
 
         {/* Quantity selector */}
-        <div className="space-y-2">
-          <p className="text-sm font-medium">Quantity</p>
+        <div className={catalog ? cn(styles.optionRow, styles.quantityRow) : 'space-y-2'}>
+          <p className={catalog ? styles.optionLabel : 'text-sm font-medium'}>Quantity</p>
           <QuantitySelector
             value={selectedQuantity}
             onChange={setQuantity}
@@ -338,7 +356,7 @@ export function B2BProductActions({
         </div>
 
         {/* Current unit price and subtotal */}
-        <div className="flex items-baseline justify-between py-3 border-t border-b">
+        <div className={cn('flex items-baseline justify-between gap-2', catalog ? styles.priceTotals : 'border-y py-3')}>
           <div className="space-y-1">
             <p className="text-sm text-muted-foreground">Unit Price</p>
             <p className="text-xl font-bold text-primary">{formatPrice(currentPrice)}</p>
@@ -350,7 +368,7 @@ export function B2BProductActions({
         </div>
 
         {/* Next tier hint */}
-        {nextTierHint && (
+        {!catalog && nextTierHint && (
           <div className="flex items-start gap-2 p-3 bg-amber-50 text-amber-800 rounded-lg text-sm">
             <Lightbulb className="h-5 w-5 shrink-0 mt-0.5" />
             <p>
@@ -360,6 +378,7 @@ export function B2BProductActions({
             </p>
           </div>
         )}
+        {summary}
       </div>
 
       {/* Add to quote button */}
@@ -384,12 +403,25 @@ export function B2BProductActions({
             quantity={selectedQuantity}
             tierLabel={getCurrentTierLabel()}
             size="lg"
-            className="w-full"
+            className={cn('w-full', catalog && [styles.orderButton, styles.quoteButton])}
           >
-            Add to Quote
+            {catalog ? <>Add to Quote <ArrowRight aria-hidden="true" /></> : 'Add to Quote'}
           </AddToQuoteButton>
         )}
       </div>
+      {catalog && pricingTable && (
+        <details className={styles.tierPricing}>
+          <summary>Bulk Pricing</summary>
+          {pricingTable}
+          {nextTierHint && (
+            <p>
+              Add <strong>{nextTierHint.quantityNeeded}</strong> more units to unlock{' '}
+              <strong>{formatPrice(nextTierHint.nextPrice)}/unit</strong> and save{' '}
+              {nextTierHint.savingsPercent}%.
+            </p>
+          )}
+        </details>
+      )}
     </div>
   )
 }

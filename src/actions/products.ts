@@ -91,6 +91,7 @@ export async function getProducts({
   isActive,
   activeOnly = false,
   orderBy = 'sortOrder',
+  priceDirection = 'asc',
 }: {
   page?: number
   limit?: number
@@ -101,6 +102,7 @@ export async function getProducts({
   isActive?: boolean
   activeOnly?: boolean
   orderBy?: 'sortOrder' | 'createdAt' | 'name' | 'price'
+  priceDirection?: 'asc' | 'desc'
 } = {}) {
   const where: Prisma.ProductWhereInput = {}
 
@@ -137,7 +139,7 @@ export async function getProducts({
     : orderBy === 'name'
     ? { name: 'asc' }
     : orderBy === 'price'
-    ? { price: 'asc' }
+    ? [{ price: priceDirection }, { id: 'asc' }]
     : { createdAt: 'desc' }
 
   const [productsRaw, total] = await Promise.all([

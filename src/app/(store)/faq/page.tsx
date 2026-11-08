@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import styles from '../information.module.css'
 
 export const metadata: Metadata = {
   title: 'FAQ | Laifappe',
@@ -41,31 +42,31 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="container mx-auto px-6 lg:px-8 py-12 md:py-16 max-w-4xl">
-      <h1 className="text-3xl md:text-4xl font-bold mb-3">Frequently Asked Questions</h1>
-      <p className="text-muted-foreground mb-10">
-        Common questions from wholesale and project procurement customers.
-      </p>
+    <div className={styles.page}>
+      <div className={styles.reading}>
+        <header className={styles.heading}>
+          <h1>Frequently Asked Questions</h1>
+          <p>Common questions from wholesale and project procurement customers.</p>
+        </header>
 
-      <div className="space-y-4">
-        {faqs.map((item) => (
-          <details key={item.question} className="group rounded-xl border bg-card p-5">
-            <summary className="cursor-pointer list-none font-semibold">
-              {item.question}
-            </summary>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.answer}</p>
-          </details>
-        ))}
-      </div>
+        <div className={styles.questions}>
+          {faqs.map((item) => (
+            <details key={item.question}>
+              <summary>
+                {item.question}
+                <span className={styles.questionMark} aria-hidden="true" />
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
 
-      <div className="mt-10 pt-6 border-t text-sm">
-        <p className="text-muted-foreground">
-          Still need help?{' '}
-          <Link href="/contact" className="text-primary hover:underline">
-            Contact our team
-          </Link>
-          .
-        </p>
+        <div className={styles.footer}>
+          <p>
+            Still need help?{' '}
+            <Link href="/contact">Contact our team</Link>.
+          </p>
+        </div>
       </div>
     </div>
   )

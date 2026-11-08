@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { formatPrice, formatDate } from '@/lib/utils'
 import { SaveGuestOrder } from '@/components/store/save-guest-order'
 import { ClearCart } from '@/components/store/clear-cart'
+import styles from '../../../customer-pages.module.css'
 
 interface SuccessPageProps {
   searchParams: Promise<{ orderId?: string }>
@@ -57,13 +58,13 @@ export default async function CheckoutSuccessPage({
         />
       )}
 
-      <div className="text-center mb-8">
+      <div className={`text-center mb-8 ${styles.centered}`}>
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
           <CheckCircle className="h-8 w-8 text-green-600" />
         </div>
         <h1 className="text-2xl font-bold">Order Confirmed!</h1>
         <p className="text-muted-foreground mt-2">
-          Thank you for your order. We've sent a confirmation email to {order.email}
+          Thank you for your order. We&apos;ve sent a confirmation email to {order.email}
         </p>
       </div>
 

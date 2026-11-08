@@ -2,7 +2,6 @@ import { Fragment, type ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { ProductImage, Category } from '@prisma/client'
-import { Button } from '@/components/ui/button'
 import { ProductCard } from '@/components/store/product-card'
 import { BodyLinkMapSection } from './body-link-map-section'
 import { isBodyLinkedList } from '@/lib/body-link-map'
@@ -21,6 +20,7 @@ import type {
   SectionCtaData,
   SectionFaqData,
 } from '@/types/solution'
+import styles from './solution-detail.module.css'
 
 interface SolutionSectionsProps {
   sections: SolutionSectionItem[]
@@ -105,11 +105,11 @@ export function SolutionSections({ sections, productsBySectionKey = {} }: Soluti
   if (!sections || sections.length === 0) return null
 
   return (
-    <div className="space-y-10">
+    <div className={styles.sectionStack}>
       {sections.map((section) => {
         const products = productsBySectionKey[section.key] || []
         return (
-          <div key={section.key} className="space-y-6">
+          <div key={section.key} className={styles.sectionUnit}>
             <SectionRenderer section={section} />
             {products.length > 0 && <SectionProducts products={products} />}
           </div>
@@ -121,7 +121,7 @@ export function SolutionSections({ sections, productsBySectionKey = {} }: Soluti
 
 function SectionProducts({ products }: { products: RecommendedProduct[] }) {
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+    <div className={styles.productGrid}>
       {products.map((product, index) => (
         <ProductCard key={product.id} product={product} index={index} />
       ))}
@@ -139,29 +139,25 @@ function TaskCardsGrid({ data }: { data: SectionTaskCardsData }) {
   if (cards.length === 0) return null
 
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className={styles.subCards}>
       {cards.map((card) => {
         const preset = getTaskScenePreset(card.scene)
         return (
-          <article key={card.scene} className="overflow-hidden rounded-xl border bg-card">
-            <div className="relative aspect-video w-full">
+          <article key={card.scene} className={`${styles.subCard} ${styles.taskCard}`}>
+            <div className={styles.taskImage}>
               <Image
                 src={card.image || preset.image}
                 alt={card.title || preset.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
               />
             </div>
-            <div className="space-y-3 p-4">
-              <h3 className="text-base font-semibold text-foreground">{card.title || preset.title}</h3>
-              {card.description && (
-                <p className="text-sm text-muted-foreground">{card.description}</p>
-              )}
-              <ul className="space-y-2 border-t pt-3 text-sm text-foreground">
+            <div className={styles.taskBody}>
+              <h3>{card.title || preset.title}</h3>
+              {card.description && <p>{card.description}</p>}
+              <ul className={styles.bodyList}>
                 {card.items.map((item, index) => (
-                  <li key={`${card.scene}-${index}`} className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                  <li key={`${card.scene}-${index}`}>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -176,9 +172,9 @@ function TaskCardsGrid({ data }: { data: SectionTaskCardsData }) {
 
 function SectionRenderer({ section }: { section: SolutionSectionItem }) {
   const common = (children: ReactNode) => (
-    <section id={section.key} className="scroll-mt-24 space-y-4">
+    <section id={section.key} className={styles.section}>
       {section.title && (
-        <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+        <h2 className={styles.sectionTitle}>
           {renderRichText(section.title, `${section.key}-title`)}
         </h2>
       )}
@@ -191,17 +187,16 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const data = section.data as SectionHeroData
       const bullets = Array.isArray(data?.bullets) ? data.bullets : []
       return common(
-        <div className="space-y-3">
+        <div className={styles.bodyCopy}>
           {data?.intro && (
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+            <p>
               {renderRichText(data.intro, `${section.key}-intro`)}
             </p>
           )}
           {bullets.length > 0 && (
-            <ul className="space-y-2 text-sm text-foreground">
+            <ul className={styles.bodyList}>
               {bullets.map((bullet, index) => (
-                <li key={`${bullet}-${index}`} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                <li key={`${bullet}-${index}`}>
                   <span>{renderRichText(bullet, `${section.key}-bullet-${index}`)}</span>
                 </li>
               ))}
@@ -214,9 +209,9 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const data = section.data as SectionParagraphsData
       const paragraphs = Array.isArray(data?.paragraphs) ? data.paragraphs : []
       return common(
-        <div className="space-y-3">
+        <div className={styles.bodyCopy}>
           {paragraphs.map((paragraph, index) => (
-            <p key={`${section.key}-p-${index}`} className="text-sm md:text-base text-muted-foreground leading-relaxed">
+            <p key={`${section.key}-p-${index}`}>
               {renderRichText(paragraph, `${section.key}-p-${index}`)}
             </p>
           ))}
@@ -232,18 +227,17 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
         )
       }
       return common(
-        <ul className="space-y-3">
+        <ul className={styles.bodyList}>
           {items.map((item, index) => (
-            <li key={`${section.key}-i-${index}`} className="flex items-start gap-3">
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-              <div className="space-y-1">
+            <li key={`${section.key}-i-${index}`}>
+              <div>
                 {item.title && (
-                  <p className="text-sm font-medium text-foreground">
+                  <p className={styles.bodyListTitle}>
                     {renderRichText(item.title, `${section.key}-title-${index}`)}
                   </p>
                 )}
                 {item.text && (
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p>
                     {renderRichText(item.text, `${section.key}-text-${index}`)}
                   </p>
                 )}
@@ -258,13 +252,13 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const headers = Array.isArray(data?.headers) ? data.headers : []
       const rows = Array.isArray(data?.rows) ? data.rows : []
       return common(
-        <div className="overflow-x-auto border rounded-lg">
-          <table className="min-w-full text-sm">
+        <div className={styles.tableFrame} tabIndex={0} role="region" aria-label={section.title || 'Solution comparison table'}>
+          <table>
             {headers.length > 0 && (
-              <thead className="bg-muted/50">
+              <thead>
                 <tr>
                   {headers.map((header, index) => (
-                    <th key={`${section.key}-h-${index}`} className="px-4 py-2 text-left font-semibold text-foreground">
+                    <th key={`${section.key}-h-${index}`} scope="col">
                       {header}
                     </th>
                   ))}
@@ -273,9 +267,9 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
             )}
             <tbody>
               {rows.map((row, rowIndex) => (
-                <tr key={`${section.key}-r-${rowIndex}`} className="border-t">
+                <tr key={`${section.key}-r-${rowIndex}`}>
                   {row.map((cell, cellIndex) => (
-                    <td key={`${section.key}-c-${rowIndex}-${cellIndex}`} className="px-4 py-2 text-muted-foreground">
+                    <td key={`${section.key}-c-${rowIndex}-${cellIndex}`}>
                       {renderRichText(cell, `${section.key}-c-${rowIndex}-${cellIndex}`)}
                     </td>
                   ))}
@@ -290,24 +284,23 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const data = section.data as SectionGroupData
       const groups = Array.isArray(data?.groups) ? data.groups : []
       return common(
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className={styles.subCards}>
           {groups.map((group, index) => {
             const items = Array.isArray(group.items) ? group.items : []
             if (items.length === 0) return null
             return (
-            <div key={`${section.key}-g-${index}`} className="rounded-xl border bg-card p-4 space-y-3">
-              <h3 className="text-base font-semibold text-foreground">
+            <div key={`${section.key}-g-${index}`} className={styles.subCard}>
+              <h3>
                 {renderRichText(group.title, `${section.key}-g-title-${index}`)}
               </h3>
               {group.description && (
-                <p className="text-sm text-muted-foreground">
+                <p>
                   {renderRichText(group.description, `${section.key}-g-description-${index}`)}
                 </p>
               )}
-              <ul className="space-y-2 border-t pt-3 text-sm text-foreground">
+              <ul className={styles.bodyList}>
                 {items.map((item, itemIndex) => (
-                  <li key={`${section.key}-g-${index}-${itemIndex}`} className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                  <li key={`${section.key}-g-${index}-${itemIndex}`}>
                     <span>{renderRichText(item, `${section.key}-g-item-${index}-${itemIndex}`)}</span>
                   </li>
                 ))}
@@ -324,7 +317,7 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
     case 'callout': {
       const data = section.data as SectionCalloutData
       return common(
-        <div className="rounded-lg border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-foreground">
+        <div className={styles.callout}>
           {data?.text ? renderRichText(data.text, `${section.key}-callout`) : null}
         </div>
       )
@@ -334,27 +327,23 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const ctaTitle = typeof data?.title === 'string' ? data.title.trim() : ''
       const sectionTitle = typeof section.title === 'string' ? section.title.trim() : ''
       return common(
-        <div className="rounded-2xl border bg-foreground text-background px-6 py-6">
+        <div className={styles.callToAction}>
           {ctaTitle && ctaTitle !== sectionTitle && (
-            <h3 className="text-lg font-semibold">
+            <h3>
               {renderRichText(ctaTitle, `${section.key}-cta-title`)}
             </h3>
           )}
           {data?.text && (
-            <p className="mt-2 text-sm text-background/80">
+            <p>
               {renderRichText(data.text, `${section.key}-cta-text`)}
             </p>
           )}
-          <div className="mt-4 flex flex-wrap items-stretch gap-3">
+          <div className={styles.actions}>
             {data?.primaryLabel && data?.primaryHref && (
-              <Button asChild className="h-auto min-h-10 whitespace-normal text-center">
-                <Link href={normalizePublicCtaHref(data.primaryHref)}>{data.primaryLabel}</Link>
-              </Button>
+              <Link className={styles.button} href={normalizePublicCtaHref(data.primaryHref)}>{data.primaryLabel}</Link>
             )}
             {data?.secondaryLabel && data?.secondaryHref && (
-              <Button variant="secondary" asChild className="h-auto min-h-10 whitespace-normal text-center">
-                <Link href={normalizePublicCtaHref(data.secondaryHref)}>{data.secondaryLabel}</Link>
-              </Button>
+              <Link className={styles.button} data-variant="outline" href={normalizePublicCtaHref(data.secondaryHref)}>{data.secondaryLabel}</Link>
             )}
           </div>
         </div>
@@ -364,13 +353,13 @@ function SectionRenderer({ section }: { section: SolutionSectionItem }) {
       const data = section.data as SectionFaqData
       const items = Array.isArray(data?.items) ? data.items : []
       return common(
-        <div className="space-y-4">
+        <div className={styles.faqGrid}>
           {items.map((item, index) => (
-            <div key={`${section.key}-f-${index}`} className="rounded-lg border bg-background p-4">
-              <h3 className="text-sm font-semibold text-foreground">
+            <div key={`${section.key}-f-${index}`} className={styles.faqItem}>
+              <h3>
                 {renderRichText(item.q, `${section.key}-q-${index}`)}
               </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              <p>
                 {renderRichText(item.a, `${section.key}-a-${index}`)}
               </p>
             </div>

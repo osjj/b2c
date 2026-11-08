@@ -40,6 +40,7 @@ export function QuantitySelector({
         type="button"
         variant="outline"
         size="icon"
+        aria-label="Decrease quantity"
         className="h-10 w-10"
         onClick={decrease}
         disabled={value <= min}
@@ -48,6 +49,7 @@ export function QuantitySelector({
       </Button>
       <Input
         type="number"
+        aria-label="Quantity"
         value={value}
         onChange={handleInputChange}
         className="w-20 text-center h-10"
@@ -58,6 +60,7 @@ export function QuantitySelector({
         type="button"
         variant="outline"
         size="icon"
+        aria-label="Increase quantity"
         className="h-10 w-10"
         onClick={increase}
         disabled={value >= max}

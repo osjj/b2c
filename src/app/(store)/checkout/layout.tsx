@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import styles from '../../customer-pages.module.css'
 
 export const metadata: Metadata = {
   robots: {
@@ -13,7 +14,7 @@ export default function CheckoutLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={styles.page}>
       {children}
     </div>
   )

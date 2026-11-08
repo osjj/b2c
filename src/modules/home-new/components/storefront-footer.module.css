@@ -1,0 +1,243 @@
+.root {
+  --footer-ink: #171410;
+  --footer-paper: #f4efe6;
+  --footer-muted: #c9c0b3;
+  --footer-rule: #433a31;
+  --footer-highlight: #ff8550;
+  background: var(--footer-ink);
+  border-top: 4px solid var(--catalog-accent, #c83a06);
+  color: var(--footer-paper);
+  font-family: var(--catalog-font, Archivo, "Segoe UI", sans-serif);
+}
+
+.root a:focus-visible {
+  outline: 2px solid var(--footer-highlight);
+  outline-offset: 3px;
+}
+
+.wrap {
+  margin-inline: auto;
+  max-width: 1540px;
+  padding-inline: clamp(18px, 3vw, 48px);
+}
+
+.masthead {
+  display: grid;
+  gap: 24px clamp(24px, 6vw, 96px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, .58fr);
+  padding-block: clamp(28px, 4vw, 56px);
+}
+
+.brandLink {
+  --footer-logo-size: clamp(38px, 5vw, 62px);
+  align-items: center;
+  display: inline-flex;
+  gap: clamp(10px, 1.3vw, 18px);
+}
+
+.logo {
+  flex: none;
+  height: var(--footer-logo-size);
+  object-fit: contain;
+  padding: 4px;
+  width: var(--footer-logo-size);
+}
+
+.brandLink strong {
+  display: block;
+  font-size: calc(var(--footer-logo-size) * .72);
+  font-weight: 800;
+  letter-spacing: -.065em;
+  line-height: 1;
+}
+
+.brandLink small {
+  color: var(--footer-muted);
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.brand > p {
+  color: var(--footer-muted);
+  font-size: .9rem;
+  line-height: 1.55;
+  margin-top: 16px;
+  max-width: 55ch;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.badges li {
+  border: 1px solid #64584c;
+  color: var(--footer-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: 4px 8px;
+}
+
+.inquiry {
+  align-self: center;
+  border-inline-start: 2px solid var(--catalog-accent, #c83a06);
+  padding: 6px 0 6px clamp(14px, 2vw, 28px);
+}
+
+.eyebrow {
+  color: var(--footer-highlight);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.inquiry h2 {
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.05;
+  margin-block: 7px 16px;
+}
+
+.quote {
+  align-items: center;
+  background: var(--catalog-accent, #c83a06);
+  color: #fff;
+  display: inline-flex;
+  font-size: .875rem;
+  font-weight: 800;
+  gap: 18px;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 10px 16px;
+}
+
+.quote:hover {
+  background: var(--catalog-accent-hover, #a93108);
+}
+
+.quote svg,
+.contact svg {
+  flex: none;
+}
+
+.directory {
+  border-block: 1px solid var(--footer-rule);
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.35fr);
+  padding-block: clamp(24px, 3vw, 42px);
+}
+
+.group h3 {
+  align-items: center;
+  display: flex;
+  font-size: .8125rem;
+  font-weight: 800;
+  gap: 8px;
+  letter-spacing: .08em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.group h3::before {
+  background: var(--footer-highlight);
+  content: "";
+  flex: 0 0 10px;
+  height: 2px;
+}
+
+.group > a,
+.contact li,
+.contact a,
+.bottom a {
+  align-items: center;
+  color: var(--footer-muted);
+  display: flex;
+  font-size: .875rem;
+  line-height: 1.3;
+  min-height: 30px;
+  overflow-wrap: anywhere;
+}
+
+.group > a,
+.contact a {
+  width: fit-content;
+}
+
+.group a:hover,
+.bottom a:hover {
+  color: var(--footer-paper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact li,
+.contact a {
+  gap: 9px;
+}
+
+.contact svg {
+  color: var(--footer-highlight);
+}
+
+.bottom {
+  align-items: center;
+  color: var(--footer-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: .75rem;
+  gap: 4px 24px;
+  justify-content: space-between;
+  padding-block: 14px;
+}
+
+.bottom nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 18px;
+}
+
+.bottom a {
+  font-size: inherit;
+}
+
+@media (min-width: 581px) {
+  .bottom nav {
+    /* Clear the fixed back-to-top control when the page is at its end. */
+    margin-inline-end: max(0px, calc(76px + env(safe-area-inset-right, 0px) - clamp(18px, 3vw, 48px)));
+  }
+}
+
+@media (max-width: 760px) {
+  .directory {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 16px;
+  }
+
+  .group > a,
+  .contact li,
+  .contact a,
+  .bottom a {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 580px) {
+  .masthead {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

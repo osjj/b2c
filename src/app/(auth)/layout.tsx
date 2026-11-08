@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 import { buildPageTitle } from '@/lib/seo-title'
+import styles from '../customer-pages.module.css'
 
 export const metadata: Metadata = {
   title: {
@@ -19,10 +22,14 @@ export default function AuthLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-      <div className="max-w-md w-full space-y-8">
+    <main className={`${styles.page} ${styles.auth}`}>
+      <div className={styles.authInner}>
+        <Link href="/" className={styles.brand} aria-label="Laifappe homepage">
+          <Image src="/favicon.ico" alt="" width={38} height={38} />
+          LAIFAPPE
+        </Link>
         {children}
       </div>
-    </div>
+    </main>
   )
 }

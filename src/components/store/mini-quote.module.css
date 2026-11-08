@@ -1,0 +1,411 @@
+.trigger {
+  border: 1px solid var(--catalog-line, #d1c5b6);
+  border-radius: 0;
+  color: var(--catalog-ink, #171410);
+}
+
+.trigger:hover {
+  background: var(--catalog-paper, #f4efe6);
+  color: var(--catalog-accent, #c83a06);
+}
+
+.count {
+  position: absolute;
+  inset-block-start: -5px;
+  inset-inline-end: -5px;
+  display: grid;
+  place-items: center;
+  min-inline-size: 20px;
+  block-size: 20px;
+  padding-inline: 3px;
+  border: 1px solid #fffaf2;
+  background: var(--catalog-accent, #c83a06);
+  color: #fff;
+  font: 800 .625rem/1 var(--catalog-font, Archivo, sans-serif);
+}
+
+:global([data-slot="sheet-overlay"]):has(+ .drawer) {
+  background: rgb(23 20 16 / 58%);
+}
+
+.drawer {
+  --quote-paper: var(--catalog-paper, #f4efe6);
+  --quote-surface: #fffaf2;
+  --quote-ink: var(--catalog-ink, #171410);
+  --quote-muted: #63594d;
+  --quote-rule: #d1c5b6;
+  --quote-accent: var(--catalog-accent, #c83a06);
+  --quote-accent-hover: var(--catalog-accent-hover, #a93108);
+  --quote-gutter: clamp(16px, 4vw, 30px);
+  inline-size: min(100%, 35rem);
+  max-inline-size: none;
+  block-size: 100dvh;
+  gap: 0;
+  border-inline-start: 1px solid var(--quote-rule);
+  background: var(--quote-paper);
+  color: var(--quote-ink);
+  font-family: var(--catalog-font, Archivo, "Segoe UI", sans-serif);
+  box-shadow: -12px 0 40px rgb(23 20 16 / 12%);
+}
+
+.header {
+  gap: 6px;
+  padding: clamp(19px, 4vw, 29px) calc(var(--quote-gutter) + 44px) clamp(16px, 3vw, 24px) var(--quote-gutter);
+  border-block-start: 4px solid var(--quote-accent);
+  border-block-end: 1px solid var(--quote-rule);
+  background: var(--quote-surface);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 0;
+  color: var(--quote-accent);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  flex: 0 0 3px;
+  block-size: .85em;
+  background: currentColor;
+  content: "";
+  transform: skewX(-22deg);
+}
+
+.title {
+  margin: 0;
+  color: var(--quote-ink);
+  font-size: clamp(1.6rem, 5vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1.1;
+}
+
+.drawer > button,
+.drawer .remove {
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  border: 1px solid var(--quote-rule);
+  border-radius: 0;
+  background: var(--quote-surface);
+  color: var(--quote-ink);
+  opacity: 1;
+}
+
+.drawer > button {
+  inset-block-start: 17px;
+  inset-inline-end: var(--quote-gutter);
+}
+
+.drawer > button:hover,
+.drawer .remove:hover {
+  border-color: var(--quote-accent);
+  color: var(--quote-accent);
+}
+
+.drawer :is(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--quote-accent);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.stage {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-block-size: 0;
+}
+
+.scrollArea,
+.centered {
+  flex: 1;
+  min-block-size: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--quote-gutter);
+}
+
+.items,
+.reviewList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.items {
+  display: grid;
+  gap: 10px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: clamp(48px, 15vw, 72px) minmax(0, 1fr) 44px;
+  align-items: start;
+  gap: clamp(7px, 2vw, 14px);
+  padding: clamp(8px, 2vw, 14px);
+  border: 1px solid var(--quote-rule);
+  background: var(--quote-surface);
+}
+
+.thumbnail {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--quote-rule);
+  background: var(--quote-paper);
+  color: var(--quote-muted);
+  font-size: .625rem;
+  text-align: center;
+}
+
+.thumbnail img {
+  object-fit: contain;
+}
+
+.itemDetails {
+  display: grid;
+  gap: 3px;
+  color: var(--quote-muted);
+  font-size: .82rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.itemDetails p {
+  margin: 0;
+}
+
+.itemDetails .itemName {
+  margin-block-end: 2px;
+  color: var(--quote-ink);
+  font-size: .975rem;
+  font-weight: 800;
+}
+
+.itemDetails strong {
+  color: var(--quote-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer {
+  display: grid;
+  flex: none;
+  gap: 12px;
+  padding: 16px var(--quote-gutter) max(16px, env(safe-area-inset-bottom, 0px));
+  border-block-start: 1px solid var(--quote-rule);
+  background: var(--quote-surface);
+}
+
+.total {
+  margin: 0;
+  color: var(--quote-ink);
+  font-size: .875rem;
+  font-weight: 750;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  gap: 10px;
+}
+
+.drawer :is(.primary, .secondary) {
+  min-block-size: 44px;
+  block-size: auto;
+  border: 1px solid var(--quote-accent);
+  border-radius: 0;
+  font-size: .875rem;
+  font-weight: 750;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+}
+
+.drawer .primary {
+  background: var(--quote-accent);
+  color: #fff;
+}
+
+.drawer .primary:hover {
+  border-color: var(--quote-accent-hover);
+  background: var(--quote-accent-hover);
+}
+
+.drawer .secondary {
+  border-color: var(--quote-rule);
+  background: var(--quote-surface);
+  color: var(--quote-ink);
+  box-shadow: none;
+}
+
+.drawer .secondary:hover {
+  border-color: var(--quote-accent);
+  color: var(--quote-accent);
+}
+
+.fields {
+  display: grid;
+  gap: 16px;
+}
+
+.fields :global([data-slot="label"]) {
+  margin-block-end: 6px;
+  color: var(--quote-ink);
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.fields :is(:global([data-slot="input"]), :global([data-slot="textarea"])) {
+  min-block-size: 44px;
+  border-color: var(--quote-rule);
+  border-radius: 0;
+  background: var(--quote-surface);
+  color: var(--quote-ink);
+  font-size: 1rem;
+  box-shadow: none;
+}
+
+.fields input::placeholder,
+.fields textarea::placeholder {
+  color: var(--quote-muted);
+}
+
+.fields input[type="file"] {
+  padding-block: 7px;
+}
+
+.fields input::file-selector-button {
+  margin-inline-end: 10px;
+  padding-inline: 7px;
+  border: 1px solid var(--quote-rule);
+  border-radius: 0;
+  background: var(--quote-paper);
+  color: var(--quote-ink);
+  font-weight: 700;
+}
+
+.hint,
+.fieldError,
+.fileStatus {
+  margin: 6px 0 0;
+  color: var(--quote-muted);
+  font-size: .8rem;
+  line-height: 1.4;
+}
+
+.fieldError,
+.formError {
+  color: #92291d;
+}
+
+.formError {
+  margin: 0;
+  padding: 9px 12px;
+  border-inline-start: 3px solid #92291d;
+  background: #fae9df;
+  font-size: .875rem;
+  overflow-wrap: anywhere;
+}
+
+.fileStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-wrap: anywhere;
+}
+
+.fileStatus svg {
+  flex: none;
+  color: var(--quote-accent);
+}
+
+.review {
+  padding: 12px 14px 0;
+  border: 1px solid var(--quote-rule);
+  background: var(--quote-surface);
+}
+
+.review > p {
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.reviewList li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding-block: 8px;
+  border-block-start: 1px solid var(--quote-rule);
+  font-size: .875rem;
+  overflow-wrap: anywhere;
+}
+
+.reviewList li > span + span {
+  color: var(--quote-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: safe center;
+  gap: 10px;
+  text-align: center;
+}
+
+.centered h3,
+.centered p {
+  margin: 0;
+}
+
+.centered h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+.centered p {
+  color: var(--quote-muted);
+}
+
+.centered .quoteNumber {
+  color: var(--quote-accent);
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.stateMark {
+  display: grid;
+  place-items: center;
+  inline-size: 60px;
+  block-size: 60px;
+  margin-block-end: 6px;
+  border: 1px solid var(--quote-rule);
+  background: var(--quote-surface);
+  color: var(--quote-accent);
+}
+
+.centered :is(.primary, .secondary) {
+  margin-block-start: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  :global([data-slot="sheet-overlay"]):has(+ .drawer) {
+    animation-duration: 1ms;
+    transition-duration: 1ms;
+  }
+}

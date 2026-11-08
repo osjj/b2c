@@ -22,9 +22,10 @@ async function main() {
     const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
     await context.route(/https:\/\/[^/]*(?:googletagmanager|google-analytics|facebook)\.(?:com|net)\//, route => route.abort());
     const page = await context.newPage();
+    page.setDefaultNavigationTimeout(60_000);
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(base, { waitUntil: 'domcontentloaded' });
-    const quoteTrigger = page.getByRole('button', { name: 'Request Quote', exact: true });
+    const quoteTrigger = page.locator('header').getByRole('button', { name: 'Request Quote', exact: true });
     await quoteTrigger.waitFor();
     await page.waitForFunction(() => document.querySelector('[aria-label="Request Quote"]')?.getAttribute('aria-haspopup') === 'dialog');
 
@@ -89,13 +90,12 @@ async function main() {
     check('reduced drawer has no displacement and decorative pulses stop', reduce);
     await page.keyboard.press('Escape');
     await page.getByRole('dialog').waitFor({ state: 'hidden' });
-    await page.locator('img[src*="order-world-map.svg"]').scrollIntoViewIfNeeded();
+    const orderMap = page.locator('img[src*="order-world-map.svg"]');
+    await orderMap.scrollIntoViewIfNeeded();
     await page.waitForFunction(() => document.querySelector('img[src*="order-world-map.svg"]').currentSrc.endsWith('order-world-map-static.svg'));
-    const staticMap = await page.locator('img[src*="order-world-map.svg"]').evaluate(node => node.currentSrc);
-    assert.ok(staticMap.endsWith('order-world-map-static.svg'));
     const svg = fs.readFileSync(path.resolve('public/newpage/xuanchuan/order-world-map-static.svg'), 'utf8');
     assert.ok(!/animation\s*:|@keyframes|<animate(?:Transform|Motion)?\b/i.test(svg));
-    check('reduced map selects an animation-free SVG', { currentSrc: staticMap });
+    check('reduced map selects an animation-free SVG');
 
     const category = page.locator('a').filter({ has: page.locator('h3', { hasText: 'Hand protection' }) }).first();
     await category.hover();
@@ -104,7 +104,7 @@ async function main() {
 
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     const menus = [];
-    for (const width of [390, 768, 1024, 1250]) {
+    for (const width of [320, 390, 768, 1023]) {
       await page.setViewportSize({ width, height: 844 });
       const toggle = page.getByRole('button', { name: 'Open navigation menu' });
       await toggle.click();
@@ -116,7 +116,7 @@ async function main() {
         headerBottom: node.parentElement.getBoundingClientRect().bottom,
         menuTop: node.getBoundingClientRect().top,
         overflow: document.documentElement.scrollWidth > innerWidth,
-        links: [...node.querySelectorAll('a')].length,
+        links: [...node.querySelectorAll('nav a')].length,
       }));
       assert.equal(menu.position, 'absolute');
       assert.ok(!menu.transition.includes('height'));
@@ -129,9 +129,10 @@ async function main() {
     }
     check('responsive menu overlays without height animation; Escape makes it inert', { menus });
     await page.getByRole('button', { name: 'Open navigation menu' }).click();
-    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.setViewportSize({ width: 1024, height: 900 });
     await page.waitForFunction(() => document.querySelector('[aria-controls="new-home-mobile-menu"]').getAttribute('aria-expanded') === 'false');
     check('desktop breakpoint clears mobile menu state');
+    await page.setViewportSize({ width: 1440, height: 900 });
 
     await quoteTrigger.focus();
     await page.keyboard.down('Space');
@@ -145,7 +146,20 @@ async function main() {
     assert.equal(await quoteTrigger.evaluate(node => [...node.classList].some(name => name.includes('pointerPress'))), false);
     check('press feedback is pointer-only and cancels cleanly');
 
-    await page.getByRole('button', { name: 'Tour the factory', exact: true }).click();
+    const homeTourTrigger = page.getByRole('button', { name: 'Tour the factory', exact: true });
+    await homeTourTrigger.click();
+    await page.getByRole('dialog', { name: 'Factory tour gallery' }).waitFor();
+    await page.keyboard.press('Escape');
+    await page.getByRole('dialog').waitFor({ state: 'hidden' });
+    assert.equal(await homeTourTrigger.evaluate(node => document.activeElement === node), true);
+    check('Home retains the factory gallery and restores focus when it closes');
+
+    const factorySection = page.getByRole('region', { name: 'Factory & Procurement', exact: true });
+    await factorySection.screenshot({ path: path.join(output, `${mode}-home-procurement.png`) });
+    await factorySection.getByRole('link', { name: 'Explore Our Foshan PPE Factory', exact: true }).click();
+    await page.waitForURL(`${base}/about#factory`);
+    const tourTrigger = page.getByRole('button', { name: 'Tour the factory', exact: true });
+    await tourTrigger.click();
     const galleryFrames = await page.getByRole('dialog').evaluate(node => node.getAnimations().flatMap(animation => animation.effect.getKeyframes().map(frame => frame.transform)));
     await page.keyboard.press('ArrowRight');
     assert.equal(await page.getByRole('dialog').locator('strong').textContent(), 'Factory entrance');
@@ -161,7 +175,26 @@ async function main() {
     await page.screenshot({ path: path.join(output, `${mode}-factory-gallery.png`), fullPage: false });
     await page.keyboard.press('Escape');
     await page.getByRole('dialog').waitFor({ state: 'hidden' });
+    assert.equal(await tourTrigger.evaluate(node => document.activeElement === node), true);
+    check('Home factory link reaches the About gallery and closing restores focus');
 
+    const aboutNavigation = page.getByRole('navigation', { name: 'Supplier information' });
+    for (const [label, id] of [
+      ['Factory & QC', 'factory'],
+      ['Certifications', 'certifications'],
+      ['OEM / ODM', 'oem-odm'],
+      ['Packing & Export', 'delivery'],
+    ]) {
+      await aboutNavigation.getByRole('link', { name: label }).click();
+      await page.waitForURL(`${base}/about#${id}`);
+      assert.equal(await page.locator(`main #${id}`).count(), 1);
+    }
+    check('About supplier navigation resolves all four section links');
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await page.waitForFunction(() => window.scrollY === 0);
+    await page.getByRole('main').screenshot({ path: path.join(output, `${mode}-about.png`) });
+
+    await page.goto(base, { waitUntil: 'domcontentloaded' });
     let mockedRequests = 0;
     await page.route('**/api/quote-email', route => {
       mockedRequests += 1;

@@ -1,8 +1,7 @@
 import { notFound, permanentRedirect } from 'next/navigation'
 import Link from 'next/link'
-import { Fragment } from 'react'
 import type { Metadata } from 'next'
-import { ChevronRight } from 'lucide-react'
+import { ArrowRight, ChevronRight } from 'lucide-react'
 import { getProductBySlug, getProducts } from '@/actions/products'
 import { getTierPriceRange, type PriceTier } from '@/lib/pricing'
 import { formatPrice } from '@/lib/utils'
@@ -13,8 +12,7 @@ import { ProductImageGallery } from '@/components/store/product-image-gallery'
 import { ContentRenderer } from '@/components/store/content-renderer'
 import { ProductJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 import { ProductSectionTabs } from '@/components/store/product-section-tabs'
-import { CatalogBackground } from '@/components/store/catalog-background'
-import styles from '@/components/store/catalog-background.module.css'
+import styles from '@/components/store/product-detail.module.css'
 import {
   buildProductMetaDescription,
   buildProductMetaTitle,
@@ -75,18 +73,29 @@ function ProductProcurementSummary({
   if (items.length === 0) return null
 
   return (
-    <dl
-      aria-label="Procurement summary"
-      className="grid grid-cols-2 gap-x-3 gap-y-2 border-y bg-muted/30 px-3 py-3 text-xs sm:grid-cols-3 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-3 lg:px-4 lg:py-4 lg:text-sm"
-    >
-      {items.map((item) => (
-        <div key={item.label} className="min-w-0 space-y-1">
-          <dt className="text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground lg:text-[11px]">
-            {item.label}
-          </dt>
-          <dd className="break-words font-semibold leading-snug text-foreground">
-            {item.value}
-          </dd>
+    <div className={styles.summary}>
+      <a href="#specifications" className={styles.summaryTitle}>
+        Specifications <ArrowRight aria-hidden="true" />
+      </a>
+      <dl aria-label="Procurement summary">
+        {items.map((item) => (
+          <div key={item.label}>
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  )
+}
+
+function SpecificationList({ specifications }: { specifications: ProductSpecification[] }) {
+  return (
+    <dl className={styles.specifications}>
+      {specifications.map(({ name, value }, index) => (
+        <div key={index}>
+          <dt>{name}</dt>
+          <dd>{value}</dd>
         </div>
       ))}
     </dl>
@@ -223,12 +232,34 @@ export default async function ProductDetailPage({
     ? `${Math.min(...normalizedPriceTiers.map((tier) => tier.minQuantity))}+ units`
     : null
   const procurementSummaryItems = [
+    { label: 'Material', value: getSpecValue(visibleSpecs, ['Upper material', 'Material']) },
+    { label: 'Toe', value: getSpecValue(visibleSpecs, ['Toe protection', 'Toe cap']) },
     { label: 'MOQ', value: getSpecValue(visibleSpecs, ['Minimum order']) || minimumOrderFromTier },
     { label: 'Package', value: getSpecValue(visibleSpecs, ['Package size']) },
     { label: 'G.W.', value: getSpecValue(visibleSpecs, ['Gross weight']) },
     { label: 'Origin', value: getSpecValue(visibleSpecs, ['Origin']) },
     { label: 'Standard', value: getSpecValue(visibleSpecs, ['Standard reference', 'Standard']) },
   ].filter((item): item is ProcurementSummaryItem => Boolean(item.value))
+
+  const productAttributes = product.attributeValues
+    .filter((attributeValue) => attributeValue.attribute.isActive)
+    .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
+    .flatMap((attributeValue): ProductSpecification[] => {
+      const selectedValues = attributeValue.optionIds
+        .map((id) => attributeValue.attribute.options?.find((option) => option.id === id)?.value)
+        .filter(Boolean)
+        .join(', ')
+      const booleanValue = attributeValue.boolValue === null
+        ? ''
+        : attributeValue.boolValue ? 'Yes' : 'No'
+      const value = attributeValue.textValue
+        || attributeValue.option?.value
+        || (attributeValue.optionIds.length ? selectedValues : booleanValue)
+      return value ? [{ name: attributeValue.attribute.name, value }] : []
+    })
+  const hasSpecifications = visibleSpecs.length > 0
+    || productAttributes.length > 0
+    || procurementSummaryItems.length > 0
 
   // Visible navigation and JSON-LD share public category destinations.
   const categoryBreadcrumbs = buildProductCategoryBreadcrumbs(product.category)
@@ -239,223 +270,143 @@ export default async function ProductDetailPage({
     { name: product.name, url: `${baseUrl}/products/${product.slug}` },
   ]
 
-  const productInfoContent = (
-    <>
-      {product.category && (
-        <p className="text-sm tracking-[0.2em] uppercase text-primary">
-          {product.category.name}
-        </p>
-      )}
-
-      <h1
-        className="line-clamp-3 font-serif text-2xl leading-tight sm:text-3xl md:line-clamp-none md:text-4xl"
-        title={product.name}
-      >
-        {product.name}
-      </h1>
-
-      <div className="flex items-baseline gap-3">
-        <span className="text-2xl font-bold">
-          {displayPrice}
-        </span>
-        {hasDiscount && (
-          <span className="text-lg text-muted-foreground line-through">
-            {formatPrice(Number(product.comparePrice))}
-          </span>
-        )}
-      </div>
-
-      <ProductProcurementSummary items={procurementSummaryItems} />
-
-      <div className="lg:hidden">
-        <ProductImageGallery
-          images={product.images}
-          productName={product.name}
-          hasDiscount={!!hasDiscount}
-          discountPercentage={discountPercentage}
-        />
-      </div>
-
-      {/* Product Attributes */}
-      {product.attributeValues && product.attributeValues.length > 0 && (
-        <div className="space-y-3">
-          {product.attributeValues
-            .filter(av => av.attribute.isActive)
-            .sort((a, b) => a.attribute.sortOrder - b.attribute.sortOrder)
-            .map((av) => {
-              let displayValue = ''
-              if (av.textValue) {
-                displayValue = av.textValue
-              } else if (av.option) {
-                displayValue = av.option.value
-              } else if (av.optionIds && av.optionIds.length > 0) {
-                const optionValues = av.optionIds
-                  .map(id => av.attribute.options?.find(opt => opt.id === id)?.value)
-                  .filter(Boolean)
-                displayValue = optionValues.join(', ')
-              } else if (av.boolValue !== null) {
-                displayValue = av.boolValue ? 'Yes' : 'No'
-              }
-              if (!displayValue) return null
-
-              return (
-                <div key={av.id} className="space-y-1">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide">
-                    {av.attribute.name}
-                  </p>
-                  <p className="text-sm font-medium">{displayValue}</p>
-                </div>
-              )
-            })}
-        </div>
-      )}
-
-      {/* SKU */}
-      {product.sku && normalizedVariants.length === 0 && (
-        <p className="text-sm text-muted-foreground">
-          SKU: {product.sku}
-        </p>
-      )}
-    </>
-  )
+  const purchaseSummary = <ProductProcurementSummary items={procurementSummaryItems.slice(0, 3)} />
 
   return (
     <>
-      {/* SEO: Structured Data */}
       <ProductJsonLd product={product} baseUrl={baseUrl} />
       <BreadcrumbJsonLd items={breadcrumbItems} />
 
-      <CatalogBackground className="text-foreground">
-      {/* Breadcrumb */}
-      <div className={`${styles.breadcrumb} container mx-auto hidden px-6 py-4 md:block lg:px-8`}>
-        <nav aria-label="Breadcrumb" className="flex items-center text-sm text-muted-foreground">
-          <Link href="/" className="hover:text-foreground transition-colors">
-            Home
-          </Link>
-          <ChevronRight className="h-4 w-4 mx-2" />
-          <Link href="/products" className="hover:text-foreground transition-colors">
-            Products
-          </Link>
-          {categoryBreadcrumbs.map(({ name, href }) => (
-            <Fragment key={href}>
-              <ChevronRight className="h-4 w-4 mx-2" />
-              <Link
-                href={href}
-                className="hover:text-foreground transition-colors"
-              >
-                {name}
-              </Link>
-            </Fragment>
-          ))}
-          <ChevronRight className="h-4 w-4 mx-2" />
-          <span className="text-foreground" aria-current="page">{product.name}</span>
-        </nav>
-      </div>
+      <div className={styles.page}>
+        <div className={styles.shell}>
+          <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
+            <Link href="/">Home</Link>
+            <span className={styles.breadcrumbItem}>
+              <ChevronRight aria-hidden="true" />
+              <Link href="/products">Products</Link>
+            </span>
+            {categoryBreadcrumbs.map(({ name, href }) => (
+              <span className={styles.breadcrumbItem} key={href}>
+                <ChevronRight aria-hidden="true" />
+                <Link href={href}>{name}</Link>
+              </span>
+            ))}
+            <span className={styles.breadcrumbItem}>
+              <ChevronRight aria-hidden="true" />
+              <span aria-current="page">{product.name}</span>
+            </span>
+          </nav>
 
-      <ProductSectionTabs
-        hasDescription={!!product.description}
-        hasSpecifications={visibleSpecs.length > 0}
-        hasDetails={!!productContent}
-      />
-
-      {/* Product Detail - persistent two-column layout */}
-      <div className="container mx-auto px-4 py-4 md:px-6 md:py-8 lg:px-8">
-        <div className="grid lg:grid-cols-[3fr_2fr] gap-12 items-start">
-
-          {/* LEFT COLUMN: Images + Content Sections */}
-          <div className={`${styles.panel} order-2 rounded-lg bg-card p-4 lg:order-1`}>
-            {/* Images */}
-            <div className="hidden lg:block">
+          <div className={styles.hero}>
+            <div className={styles.heading}>
+              <h1>{product.name}</h1>
+              <div className={styles.headlinePrice}>
+                <span>{displayPrice}</span>
+                {hasDiscount && <s>{formatPrice(Number(product.comparePrice))}</s>}
+                {product.sku && normalizedVariants.length === 0 && (
+                  <span className={styles.sku}>SKU: {product.sku}</span>
+                )}
+              </div>
+            </div>
+            <div className={styles.media}>
               <ProductImageGallery
                 images={product.images}
                 productName={product.name}
-                hasDiscount={!!hasDiscount}
+                hasDiscount={Boolean(hasDiscount)}
                 discountPercentage={discountPercentage}
+                catalog
               />
             </div>
-
-            {/* Description Section */}
-            {product.description && (
-              <section id="description" className="scroll-mt-[150px] pt-8 border-t mt-8">
-                <h2 className="font-serif text-2xl mb-4">Description</h2>
-                <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                  {product.description}
-                </p>
-              </section>
-            )}
-            {/* Specifications Section */}
-            {visibleSpecs.length > 0 && (
-              <section id="specifications" className="scroll-mt-[150px] pt-8 border-t mt-8">
-                <h2 className="font-serif text-2xl mb-4">Specifications</h2>
-                <div className="bg-muted/30 rounded-lg overflow-hidden">
-                  <dl className="divide-y">
-                    {visibleSpecs.map((spec, index) => (
-                      <div key={index} className="flex py-3 px-4">
-                        <dt className="w-1/3 text-muted-foreground">{spec.name}</dt>
-                        <dd className="w-2/3 font-medium">{spec.value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </section>
-            )}
-
-            {/* Product Details Section */}
-            {productContent && (
-              <section id="product-details" className="scroll-mt-[150px] pt-8 border-t mt-8">
-                <h2 className="font-serif text-2xl mb-6">Product Details</h2>
-                <ContentRenderer content={productContent} seamlessDetailImages />
-              </section>
-            )}
-          </div>
-          {/* RIGHT COLUMN: Sticky Product Info */}
-          <div className={`${styles.panel} order-1 rounded-lg bg-card p-4 lg:order-2 lg:sticky lg:top-28 lg:z-[10] lg:self-start`}>
-            {process.env.NEXT_PUBLIC_PROJECT_TYPE === "B2B" ? (
-              <B2BProductActions
-                productId={product.id}
-                productName={product.name}
-                productImage={product.images[0]?.url}
-                sku={product.sku || undefined}
-                defaultPrice={Number(product.price)}
-                priceTiers={normalizedPriceTiers}
-                variants={normalizedVariants}
-              >
-                {productInfoContent}
-              </B2BProductActions>
-            ) : (
-              <div className="space-y-4 lg:space-y-6">
-                {productInfoContent}
-                <div className="pt-4">
+            <div className={styles.purchase}>
+              {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
+                <B2BProductActions
+                  productId={product.id}
+                  productName={product.name}
+                  productImage={product.images[0]?.url}
+                  sku={product.sku || undefined}
+                  defaultPrice={Number(product.price)}
+                  priceTiers={normalizedPriceTiers}
+                  variants={normalizedVariants}
+                  summary={purchaseSummary}
+                  catalog
+                />
+              ) : (
+                <div className={styles.orderPanel}>
+                  {purchaseSummary}
                   <AddToCartButton
                     productId={product.id}
                     productName={product.name}
                     productPrice={Number(product.price)}
                     productImage={product.images[0]?.url}
                     size="lg"
-                    className="w-full"
+                    className={styles.orderButton}
                   >
-                    Add to Cart
+                    Add to Cart <ArrowRight aria-hidden="true" />
                   </AddToCartButton>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
+        </div>
 
+        <ProductSectionTabs
+          hasDescription={Boolean(product.description)}
+          hasSpecifications={hasSpecifications}
+          hasDetails={Boolean(productContent)}
+        />
+
+        <div className={styles.shell}>
+          {product.description && (
+            <section id="description" className={styles.contentSection}>
+              <h2>Description</h2>
+              <p className="max-w-[75ch] whitespace-pre-line leading-relaxed">
+                {product.description}
+              </p>
+            </section>
+          )}
+
+          {hasSpecifications && (
+            <section id="specifications" className={styles.contentSection}>
+              <h2>Specifications</h2>
+              {visibleSpecs.length > 0 ? (
+                <SpecificationList specifications={visibleSpecs} />
+              ) : procurementSummaryItems.length > 0 && (
+                <SpecificationList specifications={procurementSummaryItems.map(({ label, value }) => ({ name: label, value }))} />
+              )}
+              {productAttributes.length > 0 && (
+                <div className={visibleSpecs.length > 0 || procurementSummaryItems.length > 0 ? 'mt-6' : undefined}>
+                  <h3 className="mb-2 text-sm font-semibold">Product Attributes</h3>
+                  <SpecificationList specifications={productAttributes} />
+                </div>
+              )}
+            </section>
+          )}
+
+          {productContent && (
+            <section id="product-details" className={styles.contentSection}>
+              <h2>Product Details</h2>
+              <ContentRenderer content={productContent} seamlessDetailImages />
+            </section>
+          )}
+
+          {filteredRelated.length > 0 && (
+            <section className={styles.contentSection}>
+              <h2>Related Products</h2>
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+                {filteredRelated.map((relatedProduct, index) => (
+                  <ProductCard
+                    key={relatedProduct.id}
+                    product={relatedProduct}
+                    index={index}
+                    variant="catalog"
+                    deferImage
+                  />
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
-
-      {/* Related Products */}
-      {filteredRelated.length > 0 && (
-        <section className="container mx-auto px-6 lg:px-8 py-16 border-t">
-          <h2 className="font-serif text-2xl mb-8">Related Products</h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredRelated.map((relatedProduct, index) => (
-              <ProductCard key={relatedProduct.id} product={relatedProduct} index={index} deferImage />
-            ))}
-          </div>
-        </section>
-      )}
-      </CatalogBackground>
     </>
   )
 }

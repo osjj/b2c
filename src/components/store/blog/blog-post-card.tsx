@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
+import styles from './blog-layout.module.css'
 
 interface BlogPostCardProps {
   slug: string
@@ -15,37 +16,35 @@ export function BlogPostCard({ slug, title, excerpt, coverImage, date }: BlogPos
   return (
     <Link
       href={`/blog/${slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border bg-background transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+      className={styles.postCard}
     >
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
+      <div className={styles.postMedia}>
         {coverImage ? (
           <Image
             src={coverImage}
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            className={styles.coverImage}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-muted-foreground text-sm">
-            No cover image
-          </div>
+          <span className={styles.imageFallback}>No cover image</span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-6">
-        <time className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+      <div className={styles.postCopy}>
+        <time dateTime={date.toISOString()} className={styles.sectionMeta}>
           {formatDate(date)}
         </time>
-        <h3 className="font-serif text-xl leading-tight text-foreground transition-colors group-hover:text-primary line-clamp-2">
+        <h3 className={styles.postTitle}>
           {title}
         </h3>
         {excerpt ? (
-          <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">{excerpt}</p>
+          <p className={styles.postExcerpt}>{excerpt}</p>
         ) : null}
-        <span className="mt-auto pt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+        <span className={styles.textAction}>
           Read article
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+          <ArrowRight size={16} aria-hidden="true" />
         </span>
       </div>
     </Link>

@@ -157,33 +157,33 @@ export default function CompliancePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
-        <ol className="flex items-center gap-1.5 text-muted-foreground">
+      <nav aria-label="Breadcrumb" className="container mx-auto max-w-5xl px-4 py-2.5 text-xs lg:px-6">
+        <ol className="flex flex-wrap items-center gap-1.5 text-muted-foreground">
           <li>
-            <Link href="/" className="hover:text-foreground transition-colors">
-              <Home className="h-3.5 w-3.5" />
+            <Link href="/" aria-label="Home" className="transition-colors hover:text-foreground">
+              <Home className="size-3.5" aria-hidden="true" />
             </Link>
           </li>
-          <ChevronRight className="h-3 w-3" />
+          <li aria-hidden="true"><ChevronRight className="size-3" /></li>
           <li>
             <Link href="/tools" className="hover:text-foreground transition-colors">
               Tools
             </Link>
           </li>
-          <ChevronRight className="h-3 w-3" />
-          <li className="text-foreground font-medium">Compliance Checker</li>
+          <li aria-hidden="true"><ChevronRight className="size-3" /></li>
+          <li aria-current="page" className="font-medium text-foreground">Compliance Checker</li>
         </ol>
       </nav>
 
       {/* Hero */}
-      <header data-tool-hero className={[theme.hero, "container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center"].join(" ")}>
+      <header data-tool-hero className={[theme.hero, "container mx-auto px-4 lg:px-6 max-w-5xl"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary mb-4">
           Compliance Tool · Free
         </p>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-5">
+        <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-5">
           Safety Footwear Label Decoder
         </h1>
-        <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl">
           Paste a marking with its standard and year to interpret supported codes, identify edition conflicts and flag unknown text.
         </p>
       </header>
@@ -205,14 +205,14 @@ export default function CompliancePage() {
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <div className="flex items-center gap-3 mb-3">
           <FileCheck className="h-6 w-6 text-primary" />
-          <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
+          <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight">
             ASTM F2413 vs EN ISO 20345
           </h2>
         </div>
         <p className="text-muted-foreground text-base leading-[1.85] mb-6">
           These standards use different tests and marking systems. Select footwear against your workplace hazards and local requirements, and verify evidence for the exact model. A decoded label is not a certification check.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto rounded-none border bg-background">
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -241,14 +241,14 @@ export default function CompliancePage() {
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
         <div className="flex items-center gap-3 mb-3">
           <ShieldCheck className="h-6 w-6 text-primary" />
-          <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
+          <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight">
             EN ISO 20345 protection classes
           </h2>
         </div>
         <p className="text-muted-foreground text-base leading-[1.85] mb-6">
           The summaries below use the 2022 edition. The decoder distinguishes 2011 where the printed header provides that year. Class codes do not specify toecap material; additional codes describe further requirements.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto rounded-none border bg-background">
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -277,14 +277,14 @@ export default function CompliancePage() {
 
       {/* EN additional codes */}
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-16">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
+        <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight mb-3">
           EN additional requirement codes
         </h2>
         <p className="text-muted-foreground text-base leading-[1.85] mb-6">
           Add-on codes extend the baseline class — for example, an S3 HRO CI boot adds
           heat-resistant outsole (HRO) and cold insulation (CI) to the S3 specification.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto rounded-none border bg-background">
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -313,13 +313,13 @@ export default function CompliancePage() {
 
       {/* Slip resistance */}
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-16">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
+        <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight mb-3">
           Slip resistance codes
         </h2>
         <p className="text-muted-foreground text-base leading-[1.85] mb-6">
           EN ISO 20345:2022 removed SRA/SRB/SRC. Basic slip testing normally has no marking; SR is an optional additional test on ceramic tile with glycerol. Specialised footwear that cannot be tested may carry Ø. Legacy codes belong to the 2011 system.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto rounded-none border bg-background">
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -347,13 +347,13 @@ export default function CompliancePage() {
 
       {/* ASTM codes */}
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-16">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
+        <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight mb-3">
           ASTM F2413 section codes
         </h2>
         <p className="text-muted-foreground text-base leading-[1.85] mb-6">
           Read the printed ASTM F2413 edition alongside footwear designation (M or F), impact/compression markings and additional protections. ASTM lists F2413-24 as active and F2413-18 as historical. Legacy /75 formats should be checked against the model report and stated edition.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto rounded-none border bg-background">
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -384,7 +384,7 @@ export default function CompliancePage() {
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
         <div className="flex items-center gap-3 mb-3">
           <BookOpen className="h-6 w-6 text-primary" />
-          <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
+          <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight">
             How to read a safety boot label
           </h2>
         </div>
@@ -394,11 +394,11 @@ export default function CompliancePage() {
         </p>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="rounded-xl border bg-background p-6 shadow-sm">
+          <div className="rounded-none border bg-background p-6">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-3">
               EN ISO 20345 example
             </p>
-            <pre className="font-mono text-sm bg-muted/40 rounded-lg p-4 mb-4 whitespace-pre-wrap leading-relaxed">
+            <pre className="font-mono text-sm bg-muted/40 rounded-none p-4 mb-4 whitespace-pre-wrap leading-relaxed">
 {`EN ISO 20345:2022
 S3 SR HRO CI
 Size 43`}
@@ -411,11 +411,11 @@ Size 43`}
             </ul>
           </div>
 
-          <div className="rounded-xl border bg-background p-6 shadow-sm">
+          <div className="rounded-none border bg-background p-6">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-3">
               ASTM F2413 example
             </p>
-            <pre className="font-mono text-sm bg-muted/40 rounded-lg p-4 mb-4 whitespace-pre-wrap leading-relaxed">
+            <pre className="font-mono text-sm bg-muted/40 rounded-none p-4 mb-4 whitespace-pre-wrap leading-relaxed">
 {`ASTM F2413-18
 M I/75 C/75
 EH PR
@@ -441,14 +441,14 @@ Size 10 W`}
 
       {/* FAQ */}
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-8 text-center">
+        <h2 className="font-extrabold text-3xl sm:text-4xl leading-tight mb-8 text-center">
           Frequently asked questions
         </h2>
         <div className="space-y-5">
           {FAQ.map((item) => (
             <details
               key={item.q}
-              className="group rounded-xl border bg-background p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden"
+              className="group rounded-none border bg-background p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex items-start justify-between gap-4 cursor-pointer font-semibold text-foreground list-none">
                 <span>{item.q}</span>
@@ -462,11 +462,11 @@ Size 10 W`}
 
       {/* Related */}
       <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
-        <div className="rounded-2xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 sm:p-10 shadow-sm">
+        <div className="rounded-none border bg-gradient-to-br from-primary/5 via-background to-background p-8 sm:p-10">
           <div className="flex items-start gap-4">
             <Info className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h2 className="font-serif text-2xl leading-tight mb-3">
+              <h2 className="font-extrabold text-2xl leading-tight mb-3">
                 Need help sourcing compliant PPE?
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-5">
@@ -488,7 +488,7 @@ Size 10 W`}
                 <Link
                   href={QUOTE_HREF}
                   data-source={QUOTE_SOURCE}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:shadow-md transition-all"
                 >
                   Get a quote
                 </Link>

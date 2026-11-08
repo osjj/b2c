@@ -102,14 +102,14 @@ export function HardHatDecoder() {
   )
 
   return (
-    <section data-tool-panel className={[theme.panel, "rounded-2xl border bg-background p-5 shadow-sm sm:p-6"].join(" ")}>
+    <section id="hard-hat-decoder" data-tool-panel aria-labelledby="hard-hat-decoder-heading" tabIndex={-1} className={`${theme.panel} scroll-mt-24 p-5 sm:p-6`}>
       <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)]">
         <div className="space-y-5">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
               Quick decoder
             </p>
-            <h2 className="mt-2 font-serif text-2xl leading-tight text-foreground sm:text-3xl">
+            <h2 id="hard-hat-decoder-heading" className="mt-2 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
               Choose the hard hat type and class
             </h2>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -129,7 +129,7 @@ export function HardHatDecoder() {
                     setImpact(value)
                   }
                 }}
-                className="mt-2 min-h-11 w-full rounded-md border bg-background px-3 text-sm outline-none transition-colors focus:border-primary"
+                className="mt-2 min-h-11 w-full rounded-none border bg-background px-3 text-sm outline-none transition-colors focus:border-primary"
               >
                 {IMPACT_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -152,7 +152,7 @@ export function HardHatDecoder() {
                     setElectrical(value)
                   }
                 }}
-                className="mt-2 min-h-11 w-full rounded-md border bg-background px-3 text-sm outline-none transition-colors focus:border-primary"
+                className="mt-2 min-h-11 w-full rounded-none border bg-background px-3 text-sm outline-none transition-colors focus:border-primary"
               >
                 {ELECTRICAL_OPTIONS.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -167,9 +167,9 @@ export function HardHatDecoder() {
           </div>
         </div>
 
-        <aside data-tool-results className={[theme.results, "rounded-xl border bg-primary/5 p-5"].join(" ")}>
+        <aside data-tool-results className={[theme.results, "rounded-none border bg-primary/5 p-5"].join(" ")}>
           <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-none bg-primary text-primary-foreground">
               <HardHat className="h-5 w-5" aria-hidden="true" />
             </span>
             <div>
@@ -203,7 +203,7 @@ export function HardHatDecoder() {
             <Link
               href="/downloads/construction-ppe-rfq-template"
               data-source={LINK_SOURCE}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-none bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Add to RFQ template
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -211,7 +211,7 @@ export function HardHatDecoder() {
             <Link
               href="/quote"
               data-source={LINK_SOURCE}
-              className="inline-flex min-h-11 items-center justify-center rounded-md border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+              className="inline-flex min-h-11 items-center justify-center rounded-none border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
             >
               Request head protection quote
             </Link>

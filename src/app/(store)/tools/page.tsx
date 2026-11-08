@@ -164,7 +164,7 @@ export default function ToolsIndexPage() {
               <p className={styles.kicker}><span aria-hidden="true" />Procurement workbench</p>
               <h1>Know what<br /> to <span>order.</span></h1>
               <p className={styles.introCopy}>Work out quantities. Check the specification. Get the fit right.<br className={styles.desktopBreak} /> Practical PPE tools for the decisions before an order.</p>
-              <a href="#tool-directory-title" className={styles.explore}>Find your tool<ArrowRight size={17} aria-hidden="true" /></a>
+              <Link href="/tools#tool-directory-title" className={styles.explore}>Find your tool<ArrowRight size={17} aria-hidden="true" /></Link>
             </div>
             <div className={styles.introNote}>
               <div className={styles.deskGraphic} aria-hidden="true">

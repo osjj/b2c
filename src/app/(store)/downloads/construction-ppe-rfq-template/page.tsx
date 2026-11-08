@@ -15,6 +15,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
+import styles from './rfq-template.module.css'
 
 const PAGE_PATH = '/downloads/construction-ppe-rfq-template'
 const PDF_PATH = '/downloads/construction-ppe-rfq-template.pdf'
@@ -160,12 +161,12 @@ export default function ConstructionPpeRfqTemplatePage() {
   ]
 
   return (
-    <main className="min-h-screen bg-ppe-bg-page">
+    <div className={styles.page}>
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={FAQ_ITEMS} />
       <WebPageJsonLd url={pageUrl} />
 
-      <section className="border-b bg-background">
+      <section className={styles.hero}>
         <div className="container mx-auto grid gap-10 px-4 py-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:px-6 lg:py-16">
           <div className="flex min-w-0 flex-col justify-center">
             <nav className="mb-7 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
@@ -175,11 +176,11 @@ export default function ConstructionPpeRfqTemplatePage() {
               <span>/</span>
               <span className="text-foreground">RFQ template</span>
             </nav>
-            <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-semibold text-primary">
+            <div className={styles.kicker}>
               <FileCheck2 className="h-3.5 w-3.5" aria-hidden="true" />
               Construction PPE procurement asset
             </div>
-            <h1 className="max-w-4xl font-serif text-4xl leading-[1.08] text-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="max-w-4xl text-4xl leading-[1.08] text-foreground sm:text-5xl lg:text-6xl">
               Construction PPE RFQ Template for Bulk Orders
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
@@ -212,14 +213,14 @@ export default function ConstructionPpeRfqTemplatePage() {
             </div>
             <div className="mt-7 flex flex-wrap gap-2 text-xs font-semibold text-muted-foreground">
               {['Standards', 'Quantities', 'Sizes', 'Supplier documents', 'Delivery'].map((item) => (
-                <span key={item} className="rounded-full border bg-background px-3 py-1.5">
+                <span key={item} className={styles.tag}>
                   {item}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
+          <div className={`${styles.fieldMap} p-5 sm:p-6`}>
             <div className="flex items-start justify-between gap-4 border-b pb-5">
               <div>
                 <p className="text-sm font-semibold text-primary">RFQ field map</p>
@@ -227,11 +228,11 @@ export default function ConstructionPpeRfqTemplatePage() {
                   What the template helps you capture
                 </h2>
               </div>
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className={`${styles.icon} flex h-11 w-11 shrink-0 items-center justify-center`}>
                 <ClipboardCheck className="h-5 w-5" aria-hidden="true" />
               </span>
             </div>
-            <div className="mt-5 divide-y rounded-xl border bg-background">
+            <div className="mt-5 divide-y border bg-background">
               {FIELD_GROUPS.map((group) => (
                 <section key={group.label} className="p-4">
                   <h3 className="text-sm font-semibold text-foreground">{group.label}</h3>
@@ -239,7 +240,7 @@ export default function ConstructionPpeRfqTemplatePage() {
                     {group.items.map((item) => (
                       <span
                         key={item}
-                        className="rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                        className="border bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground"
                       >
                         {item}
                       </span>
@@ -264,7 +265,7 @@ export default function ConstructionPpeRfqTemplatePage() {
           </p>
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-2xl border bg-background shadow-sm">
+        <div className="mt-8 min-w-0 overflow-hidden border bg-background">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] text-left text-sm">
               <thead className="bg-muted/60 text-xs font-semibold uppercase text-muted-foreground">
@@ -288,7 +289,7 @@ export default function ConstructionPpeRfqTemplatePage() {
         </div>
       </section>
 
-      <section className="border-y bg-background">
+      <section className={styles.sectionBand}>
         <div className="container mx-auto grid gap-8 px-4 py-12 lg:grid-cols-[0.8fr_1.2fr] lg:px-6">
           <div>
             <p className="text-sm font-semibold text-primary">Category matrix</p>
@@ -302,14 +303,14 @@ export default function ConstructionPpeRfqTemplatePage() {
             <div className="mt-6 flex flex-col gap-3">
               <Link
                 href="/blog/bulk-construction-ppe-procurement"
-                className="inline-flex min-h-10 items-center gap-2 rounded-md border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                className="inline-flex min-h-11 items-center gap-2 border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 Bulk procurement guide
                 <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />
               </Link>
               <Link
                 href="/blog/construction-ppe-checklist"
-                className="inline-flex min-h-10 items-center gap-2 rounded-md border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                className="inline-flex min-h-11 items-center gap-2 border px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 Construction PPE checklist
                 <ArrowRight className="h-4 w-4 text-primary" aria-hidden="true" />
@@ -318,9 +319,9 @@ export default function ConstructionPpeRfqTemplatePage() {
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {CATEGORY_ROWS.map(([category, standard, notes]) => (
-              <article key={category} className="rounded-xl border bg-card p-4 shadow-sm">
+              <article key={category} className="border bg-card p-4">
                 <div className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <span className={`${styles.icon} mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center`}>
                     <ShieldCheck className="h-4 w-4" aria-hidden="true" />
                   </span>
                   <div className="min-w-0">
@@ -337,12 +338,12 @@ export default function ConstructionPpeRfqTemplatePage() {
 
       <section className="container mx-auto px-4 py-12 lg:px-6">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.75fr)]">
-          <div className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
+          <div className="border bg-card p-5 sm:p-6">
             <p className="text-sm font-semibold text-primary">Copy/paste email</p>
             <h2 className="mt-3 font-serif text-3xl leading-tight text-foreground">
               Short RFQ email to send with the template
             </h2>
-            <div className="mt-6 rounded-xl border bg-background p-4 text-sm leading-6 text-muted-foreground">
+            <div className="mt-6 border bg-muted/30 p-4 text-sm leading-6 text-muted-foreground">
               <p className="font-semibold text-foreground">Subject: Construction PPE RFQ request</p>
               <p className="mt-4">
                 Hello, please quote the attached construction PPE scope. We need pricing,
@@ -357,9 +358,9 @@ export default function ConstructionPpeRfqTemplatePage() {
             </div>
           </div>
 
-          <aside className="rounded-2xl border bg-background p-5 shadow-sm sm:p-6">
+          <aside className="border bg-background p-5 sm:p-6">
             <p className="text-sm font-semibold text-primary">Use it with tools</p>
-            <div className="mt-4 divide-y rounded-xl border">
+            <div className="mt-4 divide-y border">
               {TOOL_STEPS.map((item) => {
                 const Icon = item.icon
                 return (
@@ -367,10 +368,10 @@ export default function ConstructionPpeRfqTemplatePage() {
                     key={item.href}
                     href={item.href}
                     data-source={ATTRIBUTION_SOURCE}
-                    className="group block bg-card p-4 transition-colors first:rounded-t-xl last:rounded-b-xl hover:bg-primary/5"
+                    className="group block bg-card p-4 transition-colors hover:bg-primary/5"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <span className={`${styles.icon} flex h-9 w-9 shrink-0 items-center justify-center`}>
                         <Icon className="h-4 w-4" aria-hidden="true" />
                       </span>
                       <div className="min-w-0">
@@ -404,7 +405,7 @@ export default function ConstructionPpeRfqTemplatePage() {
             </div>
             <div className="grid gap-3">
               {FAQ_ITEMS.map((item) => (
-                <article key={item.question} className="rounded-xl border bg-background p-5 shadow-sm">
+                <article key={item.question} className="border bg-background p-5">
                   <h3 className="text-base font-semibold text-foreground">{item.question}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
                 </article>
@@ -415,7 +416,7 @@ export default function ConstructionPpeRfqTemplatePage() {
       </section>
 
       <section className="container mx-auto px-4 py-12 lg:px-6">
-        <div className="rounded-2xl border bg-primary/5 p-5 shadow-sm sm:p-7">
+        <div className={`${styles.closing} p-5 sm:p-7`}>
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-primary">
@@ -452,7 +453,7 @@ export default function ConstructionPpeRfqTemplatePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
 

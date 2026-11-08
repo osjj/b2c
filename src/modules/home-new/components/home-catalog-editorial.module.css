@@ -1,0 +1,606 @@
+.section {
+  --sheet: #fffaf2;
+  --rule: #d1c5b6;
+  --ink: var(--catalog-ink, #171410);
+  --paper: var(--catalog-paper, #f4efe6);
+  --accent: var(--catalog-accent, #c83a06);
+  --accent-light: #ffad85;
+  --muted: #5f574d;
+  background: var(--paper);
+  color: var(--ink);
+  padding-block: clamp(36px, 6vw, 88px);
+}
+
+.header {
+  align-items: end;
+  border-block-start: 1px solid var(--rule);
+  display: grid;
+  gap: 14px 24px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-bottom: clamp(16px, 3vw, 34px);
+  padding-top: clamp(14px, 2vw, 24px);
+}
+
+.eyebrow,
+.productInfo small,
+.featuredCopy small,
+.hubCopy small,
+.rowCopy small,
+.orderStations small,
+.mapFacts dt {
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  font-size: clamp(1.9rem, 4.7vw, 4rem);
+  font-stretch: 85%;
+  font-weight: 800;
+  letter-spacing: -.055em;
+  line-height: 1.02;
+  margin: .4rem 0 0;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.header p:not(.eyebrow) {
+  line-height: 1.55;
+  margin: .75rem 0 0;
+  max-width: 60ch;
+}
+
+.headerLink,
+.solutionAction {
+  align-items: center;
+  display: inline-flex;
+  font-weight: 750;
+  gap: .5rem;
+  line-height: 1.3;
+}
+
+.headerLink {
+  border: 1px solid currentColor;
+  justify-content: space-between;
+  min-height: 46px;
+  padding: .65rem .95rem;
+}
+
+.headerLink:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--sheet);
+}
+
+.section a svg {
+  flex: none;
+}
+
+.productSection {
+  --home-section-background: url("https://shop.laifappe.com/homepage/featured-products-028c82538c.webp");
+}
+
+.productSection .header {
+  background-image: linear-gradient(#f4efe6dc, #f4efe6ed), var(--home-section-image, none);
+  background-position: center;
+  background-size: cover;
+  padding: clamp(14px, 2vw, 24px);
+}
+
+.productSheets {
+  display: grid;
+  gap: clamp(8px, 1.25vw, 16px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.productSheet {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  display: grid;
+  grid-template-columns: minmax(0, .58fr) minmax(0, 1fr);
+  min-width: 0;
+}
+
+.productSheet:hover {
+  border-color: var(--accent);
+}
+
+.productVisual {
+  align-items: center;
+  background: #fff;
+  border-inline-end: 1px solid var(--rule);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: clamp(5px, .85vw, 12px);
+}
+
+.productTag {
+  border-block-start: 2px solid var(--accent);
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+  padding-top: .35rem;
+}
+
+.productPhoto {
+  aspect-ratio: 1;
+  color: var(--muted);
+  display: grid;
+  font-size: .82rem;
+  place-items: center;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.productPhoto img {
+  object-fit: contain;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: clamp(10px, 1.3vw, 18px);
+}
+
+.productInfo h3,
+.orderStations h3,
+.featuredCopy h3,
+.hubCopy h3,
+.rowCopy h3,
+.directoryEmpty h3 {
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.16;
+  margin: 0;
+}
+
+.productInfo h3 {
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+}
+
+.productInfo p,
+.orderStations p,
+.featuredCopy p,
+.hubCopy p,
+.rowCopy p {
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.productMeta {
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: .85rem;
+  gap: .35rem .7rem;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: .55rem;
+}
+
+.productMeta > span {
+  align-items: center;
+  color: var(--accent);
+  display: inline-flex;
+  font-weight: 750;
+  gap: .35rem;
+}
+
+.catalogStamp {
+  align-content: center;
+  background: var(--ink);
+  border-block-start: 4px solid var(--accent);
+  color: var(--sheet);
+  display: grid;
+  line-height: 1;
+  min-height: 118px;
+  padding: 10px;
+  text-align: center;
+}
+
+.catalogStamp strong {
+  font-size: clamp(1.9rem, 4.2vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -.06em;
+}
+
+.catalogStamp span {
+  color: var(--accent-light);
+  font-size: clamp(.62rem, .95vw, .84rem);
+  font-weight: 800;
+  letter-spacing: .065em;
+}
+
+.orderSection {
+  --home-section-background: url("https://shop.laifappe.com/homepage/how-order-bg2-7c3b40ff6e.webp");
+}
+
+.orderStations,
+.solutionRows,
+.solutionChecks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.orderStations {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  border-block-start: 3px solid var(--accent);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.orderStations li {
+  display: grid;
+  align-content: start;
+  gap: .65rem;
+  padding: clamp(14px, 2.25vw, 30px);
+}
+
+.orderStations li + li {
+  border-inline-start: 1px solid var(--rule);
+}
+
+.orderStations small {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: .45rem;
+}
+
+.orderStations h3 {
+  font-size: clamp(1.2rem, 2.15vw, 1.9rem);
+}
+
+.shippingPanel {
+  background: var(--sheet);
+  border: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  margin-top: clamp(12px, 2vw, 24px);
+}
+
+.mapFrame {
+  aspect-ratio: 2.4;
+  isolation: isolate;
+  min-height: 190px;
+  min-width: 0;
+  position: relative;
+  width: 100%;
+}
+
+.mapFrame::before {
+  background-image: var(--home-section-image, none);
+  background-position: center;
+  background-size: cover;
+  content: "";
+  inset: 0;
+  opacity: .22;
+  position: absolute;
+  z-index: -1;
+}
+
+.worldMap {
+  display: block;
+  inset: 6px;
+  position: absolute;
+}
+
+.worldMap img {
+  object-fit: contain;
+}
+
+.mapFacts {
+  background: var(--ink);
+  color: var(--sheet);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.mapFacts div {
+  align-content: center;
+  border-block-end: 1px solid #54493f;
+  display: grid;
+  gap: .35rem;
+  padding: clamp(10px, 1.5vw, 20px);
+}
+
+.mapFacts div:nth-child(even) {
+  border-inline-start: 1px solid #54493f;
+}
+
+.mapFacts div:nth-child(n + 3) {
+  border-block-end: 0;
+}
+
+.mapFacts dt {
+  color: var(--accent-light);
+}
+
+.mapFacts dd {
+  font-size: clamp(1rem, 1.9vw, 1.48rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.directory {
+  --rule: #695e53;
+  background: var(--ink);
+  color: var(--sheet);
+}
+
+.directory .eyebrow,
+.directory .solutionNumber {
+  color: var(--accent-light);
+}
+
+.directory .header p:not(.eyebrow) {
+  color: #dfd5c8;
+}
+
+.directory .headerLink:hover {
+  background: var(--sheet);
+  border-color: var(--sheet);
+  color: var(--ink);
+}
+
+.directory a:focus-visible {
+  outline-color: var(--accent-light);
+}
+
+.priorityHubs {
+  display: grid;
+  gap: clamp(10px, 1.5vw, 20px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: clamp(16px, 2.7vw, 34px);
+}
+
+.priorityHub,
+.featuredSolution {
+  background: var(--sheet);
+  color: var(--ink);
+  display: grid;
+}
+
+.priorityHub {
+  border-block-start: 3px solid var(--accent);
+  grid-template-columns: minmax(0, .58fr) minmax(0, 1fr);
+}
+
+.featuredSolution {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+}
+
+.hubPhoto,
+.featuredPhoto,
+.rowPhoto {
+  background: #dfd5c8;
+  position: relative;
+}
+
+.hubPhoto img,
+.featuredPhoto img,
+.rowPhoto img {
+  object-fit: cover;
+}
+
+.featuredPhoto {
+  min-height: clamp(240px, 28vw, 430px);
+}
+
+.featuredPhoto > span {
+  background: var(--ink);
+  bottom: .75rem;
+  color: var(--sheet);
+  font-size: .75rem;
+  font-weight: 800;
+  left: .75rem;
+  padding: .35rem .65rem;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.photoFallback {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.photoFallback svg {
+  height: clamp(24px, 4vw, 48px);
+  width: clamp(24px, 4vw, 48px);
+}
+
+.hubCopy,
+.featuredCopy {
+  align-content: center;
+  display: grid;
+  gap: .65rem;
+  padding: clamp(12px, 2.15vw, 28px);
+}
+
+.hubCopy h3 {
+  font-size: clamp(1.14rem, 1.85vw, 1.6rem);
+}
+
+.featuredCopy h3 {
+  font-size: clamp(1.35rem, 2.9vw, 2.5rem);
+}
+
+.solutionChecks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .8rem;
+}
+
+.solutionChecks li,
+.rowActions > span {
+  align-items: center;
+  display: inline-flex;
+  font-size: .79rem;
+  font-weight: 650;
+  gap: .33rem;
+  line-height: 1.35;
+}
+
+.solutionChecks svg {
+  color: var(--accent);
+  height: 14px;
+  width: 14px;
+}
+
+.solutionAction {
+  color: var(--accent);
+  font-size: .92rem;
+}
+
+.priorityHub:hover .solutionAction,
+.featuredSolution:hover .solutionAction,
+.solutionRow:hover .solutionAction {
+  text-decoration: underline;
+  text-underline-offset: .25em;
+}
+
+.solutionRows {
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(16px, 3vw, 36px);
+}
+
+.solutionRow {
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  color: inherit;
+  display: grid;
+  gap: clamp(8px, 1.8vw, 24px);
+  grid-template-columns: auto minmax(90px, 168px) minmax(0, 1fr) auto;
+  padding: clamp(10px, 1.5vw, 20px);
+}
+
+.solutionRow:hover {
+  background: #26201b;
+}
+
+.solutionNumber {
+  align-self: start;
+  font-size: .84rem;
+  font-weight: 800;
+}
+
+.rowPhoto {
+  aspect-ratio: 16 / 10;
+  min-height: 60px;
+}
+
+.rowCopy {
+  display: grid;
+  gap: .35rem;
+}
+
+.rowCopy h3 {
+  font-size: clamp(1rem, 1.8vw, 1.55rem);
+}
+
+.rowCopy p,
+.rowActions > span,
+.directoryEmpty p {
+  color: #dfd5c8;
+}
+
+.rowCopy small,
+.rowActions .solutionAction {
+  color: var(--accent-light);
+}
+
+.rowActions {
+  display: grid;
+  gap: .35rem;
+  justify-items: start;
+}
+
+.directoryEmpty {
+  border: 1px solid var(--rule);
+  display: grid;
+  gap: .6rem;
+  justify-items: start;
+  padding: clamp(16px, 3vw, 34px);
+}
+
+.directoryEmpty > svg {
+  color: var(--accent-light);
+}
+
+@media (max-width: 1080px) {
+  .productSheets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .priorityHubs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .header,
+  .featuredSolution,
+  .shippingPanel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .headerLink {
+    justify-self: start;
+  }
+
+  .featuredPhoto {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .orderStations,
+  .productSheets {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .orderStations li + li {
+    border-block-start: 1px solid var(--rule);
+    border-inline-start: 0;
+  }
+
+  .solutionRow {
+    grid-template-columns: auto minmax(62px, 85px) minmax(0, 1fr);
+  }
+
+  .rowActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem .65rem;
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 520px) {
+  .priorityHub {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hubPhoto {
+    aspect-ratio: 16 / 9;
+  }
+}

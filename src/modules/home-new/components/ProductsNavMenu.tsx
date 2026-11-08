@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   ArrowRight,
   Boxes,
@@ -26,7 +27,6 @@ import styles from "./products-nav-menu.module.css"
 type ProductsNavMenuProps = {
   categories: ReturnType<typeof buildProductCategoryNavigation>
   active: boolean
-  isToolsPage: boolean
   mobile?: boolean
   onNavigate?: () => void
 }
@@ -48,10 +48,10 @@ const categoryIcons: Record<string, LucideIcon> = {
 export function ProductsNavMenu({
   categories,
   active,
-  isToolsPage,
   mobile = false,
   onNavigate,
 }: ProductsNavMenuProps) {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
   const panelRef = useRef<HTMLElement>(null)
@@ -63,6 +63,8 @@ export function ProductsNavMenu({
   const focusFirstRef = useRef(false)
   const panelId = useId()
   const hasCategories = categories.length > 0
+  const currentCategory = categories.find(({ href }) => href === pathname)
+    ?? categories.find(({ href }) => pathname.startsWith(`${href}/`))
 
   const cancelClose = useCallback(() => {
     if (closeTimerRef.current !== null) {
@@ -148,7 +150,6 @@ export function ProductsNavMenu({
       ref={rootRef}
       className={`${styles.root} ${mobile ? styles.mobile : styles.desktop}`}
       data-active={active}
-      data-tools-page={isToolsPage}
       onKeyDown={keydown}
       onPointerDown={() => { keyboardFocusRef.current = false }}
       onPointerEnter={(event) => {
@@ -210,7 +211,7 @@ export function ProductsNavMenu({
             <p className={styles.catalogLabel}>Product catalog</p>
             <p className={styles.catalogTitle}>Find your protection.</p>
             <p className={styles.catalogDescription}>Browse our range by category.</p>
-            <Link className={styles.allProducts} href="/products" onClick={navigate}>
+            <Link className={styles.allProducts} href="/products" aria-current={pathname === "/products" ? "page" : undefined} onClick={navigate}>
               All products <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
@@ -219,12 +220,14 @@ export function ProductsNavMenu({
             <ul className={styles.categories}>
               {categories.map((category, index) => {
                 const Icon = categoryIcons[category.slug] ?? Package
+                const current = category === currentCategory
                 return (
                   <li key={category.id}>
                     <Link
                       ref={index === 0 ? firstCategoryRef : undefined}
                       className={styles.categoryLink}
                       href={category.href}
+                      aria-current={current ? (category.href === pathname ? "page" : "location") : undefined}
                       onClick={navigate}
                     >
                       <span className={styles.categoryIcon}>

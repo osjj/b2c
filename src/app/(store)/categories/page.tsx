@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Metadata } from 'next'
 import type { LucideIcon } from 'lucide-react'
-import { Boxes, Ear, Eye, Flame, Footprints, Hand, HardHat, Package, ShieldCheck, Shirt, Umbrella, Wind } from 'lucide-react'
+import { ArrowRight, Boxes, Ear, Eye, Flame, Footprints, Hand, HardHat, Package, ShieldCheck, Shirt, Umbrella, Wind } from 'lucide-react'
 import { getCategories } from '@/actions/categories'
 import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 import { buildPageTitle } from '@/lib/seo-title'
@@ -66,7 +66,7 @@ export default async function CategoriesPage() {
             <p className="text-sm tracking-[0.2em] uppercase text-primary mb-2 animate-fade-up">
               Browse
             </p>
-            <h1 className="font-serif text-4xl md:text-6xl mb-4 animate-fade-up stagger-1">
+            <h1 className="font-extrabold text-4xl md:text-6xl mb-4 animate-fade-up stagger-1">
               Categories
             </h1>
             <p className="text-muted-foreground animate-fade-up stagger-2">
@@ -83,59 +83,40 @@ export default async function CategoriesPage() {
               const Icon = categoryIcons[category.slug] ?? Package
 
               return (
-              <Link
-                key={category.id}
-                href={category.href}
-                className={`${styles.categoryCard} group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4`}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-muted rounded-lg">
-                  {category.image ? (
-                    <Image
-                      src={category.image}
-                      alt={category.name}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      priority={index < 3}
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-start justify-end bg-gradient-to-br from-foreground via-foreground/90 to-primary/50 p-8">
-                      <Icon className="h-24 w-24 text-background/30" strokeWidth={1.1} aria-hidden="true" />
+                <Link key={category.id} href={category.href} className={styles.categoryCard}>
+                  <div className={styles.categoryPhoto}>
+                    {category.image ? (
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        priority={index < 3}
+                      />
+                    ) : (
+                      <div className={styles.categoryDrawing}>
+                        <Icon size={72} strokeWidth={1.1} aria-hidden="true" />
+                      </div>
+                    )}
+                  </div>
+                  <div className={styles.categoryBody}>
+                    <div className={styles.categoryTitle}>
+                      <h2>{category.name}</h2>
+                      <ArrowRight size={20} aria-hidden="true" />
                     </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h2 className="font-serif text-2xl mb-2 group-hover:text-primary-foreground/90 transition-colors">
-                      {category.name}
-                    </h2>
-                    {category.description && (
-                      <p className="text-sm text-white/80 line-clamp-2">
-                        {category.description}
-                      </p>
+                    {category.description && <p>{category.description}</p>}
+                    {category.children && category.children.length > 0 && (
+                      <div className={styles.categoryTags}>
+                        {category.children.slice(0, 4).map((child) => (
+                          <span key={child.id} title={`${category.name} / ${child.name}`}>
+                            {child.name}
+                          </span>
+                        ))}
+                        {category.children.length > 4 && <span>+{category.children.length - 4} more</span>}
+                      </div>
                     )}
                   </div>
-                </div>
-
-                {/* Subcategories */}
-                {category.children && category.children.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {category.children.slice(0, 4).map((child) => (
-                      <span
-                        key={child.id}
-                        className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded"
-                        title={`${category.name} / ${child.name}`}
-                      >
-                        {child.name}
-                      </span>
-                    ))}
-                    {category.children.length > 4 && (
-                      <span className="text-xs text-muted-foreground">
-                        +{category.children.length - 4} more
-                      </span>
-                    )}
-                  </div>
-                )}
-              </Link>
+                </Link>
               )
             })}
           </div>

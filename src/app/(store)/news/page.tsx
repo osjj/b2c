@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
+import styles from "../information.module.css"
 
 // News data
 const newsItems = [
@@ -90,93 +91,65 @@ export default function NewsPage() {
       : newsItems.filter((item) => item.category === selectedCategory)
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[40vh] min-h-[300px] bg-neutral-900">
-        <Image
-          src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600"
-          alt="News & Insights"
-          fill
-          className="object-cover opacity-40"
-          priority
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">
-              News & Insights
-            </h1>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto px-4">
-              Stay informed with industry trends and latest updates
-            </p>
+    <div className={styles.page}>
+      <div className={styles.wide}>
+        <header className={styles.newsHeading}>
+          <div className={styles.heading}>
+            <h1>News & Insights</h1>
+            <p>Stay informed with industry trends and latest updates</p>
           </div>
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <section className="bg-muted py-6 sticky top-[73px] z-40 border-b">
-        <div className="container mx-auto px-6">
-          <div className="flex gap-4 overflow-x-auto no-scrollbar">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full whitespace-nowrap transition-colors ${
-                  selectedCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-background text-muted-foreground hover:bg-background/80 border"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          <div className={styles.heroImage}>
+            <Image
+              src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600"
+              alt="News & Insights"
+              fill
+              sizes="(max-width: 680px) 100vw, 42vw"
+              priority
+            />
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* News Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredNews.map((item) => (
-              <article
-                key={item.id}
-                className="bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow border"
-              >
-                <div className="aspect-video overflow-hidden bg-muted relative group">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+        <div className={styles.filters} role="group" aria-label="News category">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setSelectedCategory(category)}
+              className={styles.filter}
+              aria-pressed={selectedCategory === category}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <section className={styles.newsGrid} aria-label="News articles">
+          {filteredNews.map((item) => (
+            <article key={item.id} className={styles.card}>
+              <div className={styles.cardImage}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 680px) 100vw, (max-width: 940px) 50vw, 33vw"
+                />
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.cardMeta}>
+                  <span>{item.category}</span>
+                  <time dateTime={item.date}>{item.date}</time>
                 </div>
-
-                <div className="p-6">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
-                    <span className="bg-primary/10 text-primary px-2 py-1 rounded">
-                      {item.category}
-                    </span>
-                    <span>{item.date}</span>
-                  </div>
-
-                  <h3 className="text-lg font-semibold mb-3 line-clamp-2 min-h-[3.5rem]">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {item.excerpt}
-                  </p>
-
-                  <button className="text-primary hover:text-primary/80 text-sm flex items-center gap-2 font-medium">
-                    Read More
-                    <span>→</span>
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+                <h2>{item.title}</h2>
+                <p>{item.excerpt}</p>
+                <button type="button" className={styles.readMore}>
+                  Read More
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </article>
+          ))}
+        </section>
+      </div>
     </div>
   )
 }

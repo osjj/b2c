@@ -1,0 +1,237 @@
+.page {
+  --background: var(--catalog-paper, #f4efe6);
+  --foreground: var(--catalog-ink, #171410);
+  --card: #fffaf2;
+  --card-foreground: var(--foreground);
+  --primary: var(--catalog-accent, #c83a06);
+  --primary-foreground: #fff;
+  --secondary: #ebe2d5;
+  --secondary-foreground: var(--foreground);
+  --muted: #efe8dc;
+  --muted-foreground: #5f574d;
+  --accent: #f2e2d2;
+  --accent-foreground: var(--foreground);
+  --border: #d1c5b6;
+  --input: #ad9e8c;
+  --ring: var(--primary);
+  min-height: calc(100svh - var(--catalog-header-height, 68px));
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--catalog-font, Archivo, 'Segoe UI', sans-serif);
+}
+
+.page > :global(.container) {
+  margin-inline: auto;
+  padding-inline: clamp(16px, 3vw, 44px);
+}
+
+.page h1 {
+  font-size: clamp(1.8rem, 4vw, 3.65rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+}
+
+.page h1::before {
+  display: block;
+  width: 28px;
+  height: 8px;
+  margin: 0 0 12px 3px;
+  background: repeating-linear-gradient(90deg, var(--primary) 0 7px, transparent 7px 10px);
+  content: '';
+  transform: skewX(-24deg);
+}
+
+.centered h1::before {
+  margin-inline: auto;
+}
+
+.page :global([data-slot='card']),
+.panel {
+  border: 1px solid var(--border);
+  border-block-start: 3px solid var(--primary);
+  border-radius: 0;
+  background: var(--card);
+  box-shadow: none;
+}
+
+.page :global([data-slot='card-title']) {
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.page :global([data-slot='button']) {
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 700;
+}
+
+.page :global([data-slot='button'][data-variant='outline']) {
+  border-color: var(--input);
+  background: var(--card);
+}
+
+.page :global([data-slot='button'][data-variant='outline']):hover {
+  background: var(--accent);
+}
+
+.page :is(input:not([type='hidden'], [type='radio'], [type='checkbox']), textarea),
+.page :global([data-slot='select-trigger']) {
+  min-width: 0;
+  border: 1px solid var(--input);
+  border-radius: 0;
+  background: #fffdf8;
+  box-shadow: none;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.page :is(input[type='checkbox'], input[type='radio']) {
+  accent-color: var(--primary);
+}
+
+.page :is(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.page :is(input, textarea)[aria-invalid='true'] {
+  border-color: var(--destructive);
+}
+
+.page :global([data-slot='tabs-list']) {
+  height: auto;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.page :global([data-slot='tabs-trigger']) {
+  min-height: 44px;
+  border-radius: 0;
+  font-weight: 700;
+}
+
+.page :global([data-slot='tabs-trigger'][data-state='active']) {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: none;
+}
+
+.accountBody {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(16px, 3vw, 42px);
+  padding-block: clamp(24px, 5vw, 64px);
+}
+
+.accountNav {
+  display: grid;
+  border: 1px solid var(--border);
+  border-block-start: 3px solid var(--primary);
+  background: var(--card);
+}
+
+.accountLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.accountLink + .accountLink {
+  border-block-start: 1px solid var(--border);
+}
+
+.accountLink:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.accountLink svg {
+  flex: none;
+  color: var(--primary);
+}
+
+body:has(.accountBody) :global([data-slot='alert-dialog-content']) {
+  --background: #fffaf2;
+  --foreground: #171410;
+  --primary: #c83a06;
+  --primary-foreground: #fff;
+  --accent: #f2e2d2;
+  --accent-foreground: var(--foreground);
+  --muted-foreground: #5f574d;
+  --border: #d1c5b6;
+  --ring: var(--primary);
+  border-radius: 0;
+  font-family: var(--catalog-font, Archivo, 'Segoe UI', sans-serif);
+}
+
+body:has(.accountBody) :global([data-slot='alert-dialog-footer'] > button) {
+  border-radius: 0;
+}
+
+.auth {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: clamp(24px, 6vw, 60px) 16px;
+}
+
+.authInner {
+  width: min(100%, 29rem);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  color: var(--foreground);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -.045em;
+}
+
+.auth :global([data-slot='card-title']) {
+  font-size: clamp(1.75rem, 4vw, 2.45rem);
+  text-align: start;
+}
+
+.auth :global([data-slot='card-description']) {
+  text-align: start;
+}
+
+.auth :global([data-slot='card-footer']) :global(.text-gray-600) {
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 700px) {
+  .accountBody {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .accountNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .accountLink + .accountLink {
+    border-block-start: 0;
+  }
+
+  .accountLink:nth-child(even) {
+    border-inline-start: 1px solid var(--border);
+  }
+
+  .accountLink:nth-child(n + 3) {
+    border-block-start: 1px solid var(--border);
+  }
+}

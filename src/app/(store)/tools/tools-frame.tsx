@@ -8,21 +8,20 @@ import styles from './tools-theme.module.css'
 import { ToolsBackgroundPattern } from './tools-background-pattern'
 
 const LINKS = [
-  { href: '/tools', title: 'All tools', icon: LayoutGrid, skin: 'hub' },
-  { href: '/tools/ppe-calculator', title: 'Quantity planner', icon: Calculator, skin: 'planner' },
-  { href: '/tools/footwear-size-allocation', title: 'Bulk footwear sizes', icon: TableProperties, skin: 'sizes' },
-  { href: '/tools/compliance-checker', title: 'Footwear labels', icon: ScanLine, skin: 'labels' },
-  { href: '/tools/glove-marking-decoder', title: 'Glove markings', icon: Hand, skin: 'labels' },
-  { href: '/tools/size-guide', title: 'Boot sizes', icon: Ruler, skin: 'sizes' },
-  { href: '/tools/hard-hat-class-decoder', title: 'Hard hat classes', icon: HardHat, skin: 'hats' },
-  { href: '/tools/ai-quote', title: 'AI quote', icon: Sparkles, skin: 'quote' },
+  { href: '/tools', title: 'All tools', icon: LayoutGrid },
+  { href: '/tools/ppe-calculator', title: 'Quantity planner', icon: Calculator },
+  { href: '/tools/footwear-size-allocation', title: 'Bulk footwear sizes', icon: TableProperties },
+  { href: '/tools/compliance-checker', title: 'Footwear labels', icon: ScanLine },
+  { href: '/tools/glove-marking-decoder', title: 'Glove markings', icon: Hand },
+  { href: '/tools/size-guide', title: 'Boot sizes', icon: Ruler },
+  { href: '/tools/hard-hat-class-decoder', title: 'Hard hat classes', icon: HardHat },
+  { href: '/tools/ai-quote', title: 'AI quote', icon: Sparkles },
 ]
 
 export function ToolsFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const frame = useRef<HTMLDivElement>(null)
   const [motionEnabled, setMotionEnabled] = useState(true)
-  const current = LINKS.find(link => link.href === pathname)
 
   useEffect(() => {
     const root = frame.current
@@ -47,8 +46,8 @@ export function ToolsFrame({ children }: { children: ReactNode }) {
         reveal.unobserve(entry.target)
         if (!canMove()) return
         const animation = entry.target.animate(
-          [{ opacity: 0.55, transform: 'translateY(22px)' }, { opacity: 1, transform: 'translateY(0)' }],
-          { duration: 650, delay: Number(entry.target.getAttribute('data-tool-entry') || 0) * 65, easing: 'cubic-bezier(.2,.7,.2,1)' },
+          [{ opacity: 0.7, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }],
+          { duration: 360, delay: Number(entry.target.getAttribute('data-tool-entry') || 0) * 35, easing: 'cubic-bezier(.2,.7,.2,1)' },
         )
         animations.add(animation)
         animation.finished.then(() => animations.delete(animation), () => animations.delete(animation))
@@ -68,9 +67,8 @@ export function ToolsFrame({ children }: { children: ReactNode }) {
   }, [pathname, motionEnabled])
 
   return (
-    <div ref={frame} className={styles.frame} data-skin={current?.skin || 'hub'} data-motion="paused">
+    <div ref={frame} className={styles.frame} data-motion="paused">
       <div className={styles.atmosphere} aria-hidden="true">
-        <span className={styles.sky} /><span className={styles.mint} /><span className={styles.sun} />
         <div className={styles.grid} />
         <ToolsBackgroundPattern />
       </div>

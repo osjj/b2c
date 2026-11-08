@@ -18,13 +18,13 @@ export function ToolRelatedGuidesSection({
   }
 
   return (
-    <section className="rounded-3xl border bg-background p-6 shadow-sm sm:p-8">
+    <section className="border border-t-2 border-t-primary bg-background p-5 sm:p-8">
       <div className="max-w-2xl">
         <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
           <BookOpenCheck className="h-4 w-4" aria-hidden="true" />
           Related buying guides
         </p>
-        <h2 className="mt-3 font-serif text-2xl leading-tight text-foreground sm:text-3xl">
+        <h2 className="mt-3 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
           {title}
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -37,9 +37,9 @@ export function ToolRelatedGuidesSection({
           <Link
             key={guide.href}
             href={guide.href}
-            className="group flex min-w-0 flex-col rounded-2xl border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md"
+            className="group flex min-w-0 flex-col border bg-card p-4 transition-colors hover:border-primary sm:p-5"
           >
-            <span className="w-fit rounded-full bg-primary/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-primary">
+            <span className="w-fit border-l-2 border-primary bg-primary/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
               {guide.eyebrow}
             </span>
             <h3 className="mt-4 text-lg font-semibold leading-tight text-foreground group-hover:text-primary">

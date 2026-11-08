@@ -1,18 +1,8 @@
 import { Award } from 'lucide-react'
 import { ContentRenderer } from '@/components/store/content-renderer'
 
-interface EditorJSContent {
-  time?: number
-  version?: string
-  blocks: Array<{
-    id: string
-    type: string
-    data: Record<string, any>
-  }>
-}
-
 interface StandardsSectionProps {
-  content: EditorJSContent | null
+  content: Parameters<typeof ContentRenderer>[0]['content']
 }
 
 export function StandardsSection({ content }: StandardsSectionProps) {

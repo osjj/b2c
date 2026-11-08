@@ -1,7 +1,8 @@
 import type { Solution } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
+import styles from './blog-layout.module.css'
 
 type SolutionSummary = Pick<Solution, 'id' | 'slug' | 'title' | 'excerpt' | 'coverImage'>
 
@@ -39,66 +40,52 @@ export function BlogIndustrySolutions({ solutions }: { solutions: SolutionSummar
     <section
       id="industry-solutions"
       aria-labelledby="industry-solutions-heading"
-      className="container mx-auto mb-16 scroll-mt-28 px-4 lg:px-6"
+      className={styles.industrySection}
     >
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className={styles.sectionHeader}>
         <div>
-          <h2 id="industry-solutions-heading" className="font-serif text-2xl sm:text-3xl">
-            Industry solutions
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+          <h2 id="industry-solutions-heading" className={styles.sectionTitle}>Industry solutions</h2>
+          <p className={styles.sectionDescription}>
             Select a work setting to review hazards, PPE options and procurement requirements.
           </p>
         </div>
-        <span className="shrink-0 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+        <span className={styles.sectionMeta}>
           {solutions.length} industry guide{solutions.length === 1 ? '' : 's'}
         </span>
       </div>
 
       {hubs.length > 0 ? (
-        <div className="mb-6 grid gap-6 lg:grid-cols-2">
+        <div className={styles.hubGrid}>
           {hubs.map((hub) => (
             <Link
               key={hub.slug}
               href={`/solutions/${hub.slug}`}
               aria-label={hub.title}
-              className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border bg-background shadow-sm transition-colors hover:border-primary/50 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              className={styles.hubCard}
+              data-with-image={Boolean(hub.solution.coverImage)}
             >
               {hub.solution.coverImage ? (
-                <div className="relative aspect-video bg-muted">
+                <div className={styles.hubMedia}>
                   <Image
                     src={hub.solution.coverImage}
                     alt={hub.solution.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-contain"
+                    sizes="(max-width: 639px) 94vw, (max-width: 1199px) 46vw, 22vw"
+                    className={styles.coverImage}
                   />
                 </div>
               ) : null}
-              <div className="flex flex-1 flex-col p-5 sm:p-7">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-primary">
-                  Industry hub
-                </p>
-                <h3 className="mt-3 font-serif text-2xl leading-tight sm:text-3xl">{hub.title}</h3>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-                  {hub.description}
-                </p>
-                <div className="mt-5 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
-                  {hub.features.map((item) => (
-                    <span key={item} className="flex min-w-0 items-center gap-2">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                      <span className="min-w-0">{item}</span>
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-auto flex flex-wrap gap-3 pt-6">
-                  <span
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors group-hover:bg-primary/90 motion-reduce:transition-none"
-                  >
-                    {hub.action}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </span>
-                </div>
+              <div className={styles.hubCopy}>
+                <p className={styles.sectionMeta}>Industry hub</p>
+                <h3 className={styles.hubTitle}>{hub.title}</h3>
+                <p className={styles.hubDescription}>{hub.description}</p>
+                <ul className={styles.hubFeatures}>
+                  {hub.features.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+                <span className={styles.textAction}>
+                  {hub.action}
+                  <ArrowRight size={16} aria-hidden="true" />
+                </span>
               </div>
             </Link>
           ))}
@@ -106,28 +93,28 @@ export function BlogIndustrySolutions({ solutions }: { solutions: SolutionSummar
       ) : null}
 
       {otherSolutions.length > 0 ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {otherSolutions.map((solution) => (
-            <Link
-              key={solution.id}
-              href={`/solutions/${solution.slug}`}
-              className="group flex min-w-0 flex-col rounded-xl border bg-background p-5 transition-colors hover:border-primary/50 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            >
-              <h3 className="text-base font-semibold leading-6 group-hover:text-primary">
-                {solution.title}
-              </h3>
-              {solution.excerpt ? (
-                <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
-                  {solution.excerpt}
-                </p>
-              ) : null}
-              <span className="mt-auto inline-flex min-h-11 items-center gap-2 pt-3 text-sm font-semibold text-primary">
-                View solution
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </span>
-            </Link>
-          ))}
-        </div>
+        <details className={styles.moreGuides} open={hubs.length === 0}>
+          <summary>
+            {hubs.length > 0 ? 'More industry guides' : 'Browse industry guides'}
+            <span>({otherSolutions.length})</span>
+          </summary>
+          <div className={styles.solutionGrid}>
+            {otherSolutions.map((solution) => (
+              <Link
+                key={solution.id}
+                href={`/solutions/${solution.slug}`}
+                className={styles.solutionLink}
+              >
+                <h3 className={styles.solutionTitle}>{solution.title}</h3>
+                {solution.excerpt ? <p className={styles.solutionExcerpt}>{solution.excerpt}</p> : null}
+                <span className={styles.textAction}>
+                  View solution
+                  <ArrowRight size={16} aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </details>
       ) : null}
     </section>
   )

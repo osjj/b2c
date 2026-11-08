@@ -10,7 +10,7 @@ export const aboutImageUrls = {
   factoryFacility: "https://shop.laifappe.com/homepage/factory-facility-793ca4aa0f.webp",
   hero02: "https://shop.laifappe.com/homepage/hero02-2a99dcb0f1.webp",
   officeTeam02: "https://shop.laifappe.com/homepage/office-team02-7d7151ec94.webp",
-  oemOdmCapabilities: "https://shop.laifappe.com/homepage/oem-odm-capabilities02-471b1fbf6f.webp",
+  oemOdmCapabilities: "/homepage/custom-ppe-workwear-workflow-hd.webp",
   productionFloor: "https://shop.laifappe.com/homepage/productionfloor-6e9249f950.webp",
   wuliu: "https://shop.laifappe.com/homepage/wuliu-ee38d3b5b3.webp",
   zhanghui01: "https://shop.laifappe.com/homepage/zhanghui01-c7d39b4b03.webp",

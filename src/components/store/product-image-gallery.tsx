@@ -11,6 +11,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, Dia
 import type { ProductImage } from '@/types'
 import { buildProductImageAlt } from '@/lib/product-image-alt'
 import { cn } from '@/lib/utils'
+import styles from './product-detail.module.css'
 
 type ProductGalleryImage = Pick<ProductImage, 'id' | 'url' | 'alt'>
 
@@ -19,6 +20,7 @@ interface ProductImageGalleryProps {
   productName: string
   hasDiscount?: boolean
   discountPercentage?: number
+  catalog?: boolean
 }
 
 const MIN_ZOOM = 100
@@ -26,6 +28,8 @@ const MAX_ZOOM = 400
 const ZOOM_STEP = 25
 const MAIN_IMAGE_SIZES = '(min-width: 96rem) 54rem, (min-width: 80rem) 44rem, (min-width: 64rem) 34rem, calc(100vw - 2rem)'
 const THUMBNAIL_SIZES = '(min-width: 96rem) 9rem, (min-width: 80rem) 7.5rem, (min-width: 64rem) 6rem, 16vw'
+const CATALOG_IMAGE_SIZES = '(min-width: 90rem) 43rem, (min-width: 48rem) 48vw, calc(100vw - 2rem)'
+const CATALOG_THUMBNAIL_SIZES = '(min-width: 90rem) 8.5rem, (min-width: 48rem) 10vw, 18vw'
 
 function ProductImagePreview({ src, alt }: { src: string; alt: string }) {
   const [originalStatus, setOriginalStatus] = useState<'loading' | 'loaded' | 'failed'>('loading')
@@ -153,6 +157,7 @@ export function ProductImageGallery({
   productName,
   hasDiscount,
   discountPercentage,
+  catalog = false,
 }: ProductImageGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [previewOpen, setPreviewOpen] = useState(false)
@@ -167,7 +172,7 @@ export function ProductImageGallery({
         imageIndex: safeCurrentIndex,
       })
     : ''
-  const visibleThumbnailCount = Math.min(images.length, 6)
+  const visibleThumbnailCount = Math.min(images.length, catalog ? 5 : 6)
   const maxThumbnailStart = Math.max(0, images.length - visibleThumbnailCount)
   const safeThumbnailStart = Math.min(thumbnailStart, maxThumbnailStart)
   const visibleThumbnails = images.slice(
@@ -202,8 +207,8 @@ export function ProductImageGallery({
 
   if (images.length === 0) {
     return (
-      <div className="space-y-3">
-        <div className="relative aspect-square overflow-hidden bg-muted">
+      <div className={catalog ? styles.gallery : 'space-y-3'}>
+        <div className={cn('relative overflow-hidden', catalog ? styles.galleryStage : 'aspect-square bg-muted')}>
           <div className="w-full h-full flex items-center justify-center text-muted-foreground">
             No image
           </div>
@@ -213,8 +218,8 @@ export function ProductImageGallery({
   }
 
   return (
-    <div className="space-y-3">
-      <div className="group relative aspect-square overflow-hidden bg-white">
+    <div className={catalog ? styles.gallery : 'space-y-3'}>
+      <div className={cn('group relative overflow-hidden', catalog ? styles.galleryStage : 'aspect-square bg-white')}>
         {currentImage && (
           <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
             <DialogTrigger asChild>
@@ -227,11 +232,11 @@ export function ProductImageGallery({
                   src={currentImage.url}
                   alt={currentImageAlt}
                   fill
-                  sizes={MAIN_IMAGE_SIZES}
+                  sizes={catalog ? CATALOG_IMAGE_SIZES : MAIN_IMAGE_SIZES}
                   className="object-contain"
                   priority
                 />
-                <span className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium text-black shadow-sm">
+                <span className={cn('absolute right-3 bottom-3 flex items-center gap-1.5 bg-white/95 px-3 py-1.5 text-xs font-medium text-black', catalog ? styles.zoomLabel : 'rounded-full shadow-sm')}>
                   <Maximize2 className="size-3.5" aria-hidden="true" />
                   View full size
                 </span>
@@ -251,7 +256,7 @@ export function ProductImageGallery({
 
         {/* Discount Badge */}
         {hasDiscount && (
-          <span className="pointer-events-none absolute top-4 right-4 bg-red-500 text-white text-sm px-3 py-1 z-10">
+          <span className={cn('pointer-events-none absolute top-4 right-4 text-white text-sm px-3 py-1 z-10', catalog ? styles.galleryDiscount : 'bg-red-500')}>
             -{discountPercentage}%
           </span>
         )}
@@ -262,7 +267,7 @@ export function ProductImageGallery({
             <button
               type="button"
               onClick={goToPrevious}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              className={cn('absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white flex items-center justify-center transition-opacity z-10', catalog ? styles.galleryArrow : 'rounded-full shadow-md opacity-0 group-hover:opacity-100')}
               aria-label="Previous image"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -270,7 +275,7 @@ export function ProductImageGallery({
             <button
               type="button"
               onClick={goToNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-10"
+              className={cn('absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white flex items-center justify-center transition-opacity z-10', catalog ? styles.galleryArrow : 'rounded-full shadow-md opacity-0 group-hover:opacity-100')}
               aria-label="Next image"
             >
               <ChevronRight className="h-5 w-5" />
@@ -280,7 +285,7 @@ export function ProductImageGallery({
 
         {/* Image Counter */}
         {images.length > 1 && (
-          <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-2 py-1 rounded-full z-10">
+          <div className={cn('pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-2 py-1 z-10', !catalog && 'rounded-full')}>
             {safeCurrentIndex + 1} / {images.length}
           </div>
         )}
@@ -300,14 +305,14 @@ export function ProductImageGallery({
             <button
               type="button"
               onClick={goToPrevious}
-              className="flex min-h-11 items-center justify-center rounded-md border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
+              className={cn('flex min-h-11 items-center justify-center transition-colors', catalog ? styles.thumbnailArrow : 'rounded-md border bg-background text-foreground shadow-sm hover:bg-muted')}
               aria-label="Show previous image"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
           )}
 
-          <div className="grid grid-cols-6 gap-2">
+          <div className={cn('grid gap-2', catalog ? 'grid-cols-5' : 'grid-cols-6')}>
             {visibleThumbnails.map((image, offset) => {
               const imageIndex = safeThumbnailStart + offset
               return (
@@ -316,10 +321,15 @@ export function ProductImageGallery({
                   type="button"
                   onClick={() => selectImage(imageIndex)}
                   className={cn(
-                    'relative aspect-square overflow-hidden bg-muted transition-all',
-                    safeCurrentIndex === imageIndex
-                      ? 'ring-2 ring-primary ring-offset-1'
-                      : 'hover:ring-2 hover:ring-muted-foreground/30 opacity-70 hover:opacity-100'
+                    'relative overflow-hidden transition-colors',
+                    catalog
+                      ? styles.thumbnail
+                      : cn(
+                          'aspect-square bg-muted',
+                          safeCurrentIndex === imageIndex
+                            ? 'ring-2 ring-primary ring-offset-1'
+                            : 'hover:ring-2 hover:ring-muted-foreground/30 opacity-70 hover:opacity-100'
+                        )
                   )}
                   aria-label={`Show image ${imageIndex + 1}`}
                   aria-current={safeCurrentIndex === imageIndex ? 'true' : undefined}
@@ -332,7 +342,7 @@ export function ProductImageGallery({
                       imageIndex,
                     })}
                     fill
-                    sizes={THUMBNAIL_SIZES}
+                    sizes={catalog ? CATALOG_THUMBNAIL_SIZES : THUMBNAIL_SIZES}
                     loading="lazy"
                     className="object-contain"
                   />
@@ -345,7 +355,7 @@ export function ProductImageGallery({
             <button
               type="button"
               onClick={goToNext}
-              className="flex min-h-11 items-center justify-center rounded-md border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
+              className={cn('flex min-h-11 items-center justify-center transition-colors', catalog ? styles.thumbnailArrow : 'rounded-md border bg-background text-foreground shadow-sm hover:bg-muted')}
               aria-label="Show next image"
             >
               <ChevronRight className="h-5 w-5" />

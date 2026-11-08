@@ -23,7 +23,7 @@ function LoginForm() {
   return (
     <Card>
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl text-center">Login</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-center">Login</CardTitle>
         <CardDescription className="text-center">
           Enter your email and password to login
         </CardDescription>
@@ -82,7 +82,7 @@ export default function LoginPage() {
     <Suspense fallback={
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">Login</CardTitle>
+          <CardTitle className="text-2xl font-extrabold text-center">Login</CardTitle>
           <CardDescription className="text-center">
             Loading...
           </CardDescription>

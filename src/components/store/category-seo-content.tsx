@@ -2,6 +2,7 @@ import Link from 'next/link'
 import {
   ArrowRight,
   CheckCircle2,
+  ChevronDown,
   FolderTree,
   HelpCircle,
   Layers3,
@@ -9,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { extractCatalogSignals, getCategorySeoContent } from '@/lib/category-seo-content'
+import styles from './category-seo-content.module.css'
 
 type CategoryLink = {
   name: string
@@ -99,41 +101,34 @@ export function CategorySeoContent({
   ].filter((group) => group.items.length > 0)
 
   return (
-    <div className="space-y-10">
-      <section className="grid gap-6 rounded-[28px] border border-border/60 bg-gradient-to-br from-secondary/50 via-background to-secondary/20 p-6 md:grid-cols-[minmax(0,1.6fr)_minmax(260px,0.9fr)] md:p-8">
-        <div className="space-y-5">
-          <div className="space-y-2">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-primary">
-              {content.eyebrow}
-            </p>
-            <h2 className="font-serif text-2xl md:text-3xl">
-              {content.leadTitle}
-            </h2>
-          </div>
-
-          <div className="space-y-4 text-sm leading-7 text-muted-foreground md:text-base">
+    <div className={styles.guide}>
+      <section className={styles.lead}>
+        <div>
+          <p className={styles.eyebrow}>{content.eyebrow}</p>
+          <h2>{content.leadTitle}</h2>
+          <div className={styles.intro}>
             {content.intro.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </div>
 
-        <aside className="grid gap-3 rounded-[24px] border border-border/60 bg-background/95 p-5 shadow-sm">
-          <div className="flex items-start gap-3">
-            <ShieldCheck className="mt-0.5 h-5 w-5 text-primary" />
+        <aside className={styles.facts}>
+          <div className={styles.fact}>
+            <ShieldCheck aria-hidden="true" />
             <div>
-              <p className="text-sm font-semibold text-foreground">Products in this range</p>
-              <p className="text-sm text-muted-foreground">
+              <p className={styles.factLabel}>Products in this range</p>
+              <p>
                 {productCount} product{productCount === 1 ? '' : 's'} currently listed in this category
               </p>
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
-            <Layers3 className="mt-0.5 h-5 w-5 text-primary" />
+          <div className={styles.fact}>
+            <Layers3 aria-hidden="true" />
             <div>
-              <p className="text-sm font-semibold text-foreground">Compare product types</p>
-              <p className="text-sm text-muted-foreground">
+              <p className={styles.factLabel}>Compare product types</p>
+              <p>
                 {childCount > 0
                   ? `${childCount} product families to explore`
                   : 'Review product details or send us your requirements'}
@@ -141,134 +136,99 @@ export function CategorySeoContent({
             </div>
           </div>
 
-          {parent ? (
-            <div className="rounded-2xl bg-secondary/60 p-4 text-sm text-muted-foreground">
-              Compare more options in{' '}
-              <Link href={`/categories/${parent.slug}`} className="font-medium text-foreground underline-offset-4 hover:underline">
-                {parent.name}
-              </Link>{' '}
-              when selecting equipment for the same team or task.
-            </div>
-          ) : (
-            <div className="rounded-2xl bg-secondary/60 p-4 text-sm text-muted-foreground">
-              Compare the relevant product family, then review individual models for the fit, materials, and details your task requires.
-            </div>
-          )}
+          <p className={styles.factNote}>
+            {parent ? (
+              <>
+                Compare more options in{' '}
+                <Link href={`/categories/${parent.slug}`}>{parent.name}</Link>{' '}
+                when selecting equipment for the same team or task.
+              </>
+            ) : (
+              'Compare the relevant product family, then review individual models for the fit, materials, and details your task requires.'
+            )}
+          </p>
         </aside>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <div className="rounded-[24px] border border-border/60 bg-background p-6">
-          <h2 className="mb-4 font-serif text-2xl">{content.guideTitle}</h2>
-          <ol className="space-y-4">
+      <div className={styles.comparison}>
+        <section className={styles.panel}>
+          <h2>{content.guideTitle}</h2>
+          <ol className={styles.steps}>
             {content.guideSteps.map((step, index) => (
-              <li key={step} className="flex gap-3">
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
-                  {index + 1}
-                </span>
-                <p className="text-sm leading-7 text-muted-foreground">{step}</p>
+              <li key={step}>
+                <span aria-hidden="true">{index + 1}</span>
+                <p>{step}</p>
               </li>
             ))}
           </ol>
-        </div>
+        </section>
 
-        <div className="grid gap-6">
-          <div className="rounded-[24px] border border-border/60 bg-background p-6">
-            <h2 className="mb-4 font-serif text-2xl">{content.applicationsTitle}</h2>
-            <div className="flex flex-wrap gap-2.5">
+        <div className={styles.comparisonSide}>
+          <section className={styles.panel}>
+            <h2>{content.applicationsTitle}</h2>
+            <ul className={styles.tags}>
               {content.applications.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-border/70 bg-secondary/50 px-3 py-2 text-sm text-foreground"
-                >
-                  {item}
-                </span>
+                <li key={item}>{item}</li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </section>
 
-          <div className="rounded-[24px] border border-border/60 bg-background p-6">
-            <h2 className="mb-4 font-serif text-2xl">{content.differentiatorsTitle}</h2>
-            <ul className="space-y-3">
+          <section className={styles.panel}>
+            <h2>{content.differentiatorsTitle}</h2>
+            <ul className={styles.checklist}>
               {content.differentiators.map((item) => (
-                <li key={item} className="flex gap-3 text-sm leading-7 text-muted-foreground">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                <li key={item}>
+                  <CheckCircle2 aria-hidden="true" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
         </div>
-      </section>
+      </div>
 
       {catalogSignals.length > 0 && (
-        <section className="rounded-[24px] border border-border/60 bg-background p-6">
-          <h2 className="mb-3 font-serif text-2xl">{category.name} product highlights</h2>
-          <p className="mb-5 text-sm leading-7 text-muted-foreground">
+        <section className={styles.panel}>
+          <h2>{category.name} product highlights</h2>
+          <p>
             Explore the product types and named features shown here. Review each model&apos;s details when comparing options for your workplace.
           </p>
-          <div className="flex flex-wrap gap-2.5">
+          <ul className={styles.tags}>
             {catalogSignals.map((signal) => (
-              <span
-                key={signal}
-                className="rounded-full border border-border/70 bg-secondary/50 px-3 py-2 text-sm text-foreground"
-              >
-                {signal}
-              </span>
+              <li key={signal}>{signal}</li>
             ))}
-          </div>
+          </ul>
         </section>
       )}
 
       {topicClusterGroups.length > 0 && (
-        <section className="rounded-[24px] border border-border/60 bg-background p-6">
-          <div className="mb-6 flex items-start gap-3">
-            <FolderTree className="mt-1 h-5 w-5 text-primary" />
-            <div>
-              <h2 className="font-serif text-2xl">Related products and categories</h2>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-muted-foreground">
-                Compare related product families and individual models before preparing your enquiry.
-              </p>
-            </div>
-          </div>
+        <section className={styles.panel}>
+          <h2>Related products and categories</h2>
+          <p>Compare related product families and individual models before preparing your enquiry.</p>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className={styles.related}>
             {topicClusterGroups.map((group) => {
               const Icon = group.icon
 
               return (
-                <div
-                  key={group.key}
-                  className="rounded-[22px] border border-border/60 bg-secondary/20 p-5"
-                >
-                  <div className="mb-4 flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-primary" />
-                    <h3 className="text-base font-semibold text-foreground">
-                      {group.title}
-                    </h3>
-                  </div>
-
-                  <div className="space-y-3">
+                <div key={group.key}>
+                  <h3>
+                    <Icon aria-hidden="true" />
+                    {group.title}
+                  </h3>
+                  <ul>
                     {group.items.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block rounded-2xl border border-border/60 bg-background px-4 py-3 transition-colors hover:bg-secondary/30"
-                      >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="space-y-1.5">
-                            <p className="text-sm font-medium text-foreground">
-                              {item.title}
-                            </p>
-                            <p className="text-sm leading-6 text-muted-foreground">
-                              {item.description}
-                            </p>
+                      <li key={item.href}>
+                        <Link href={item.href}>
+                          <div>
+                            <strong>{item.title}</strong>
+                            <p>{item.description}</p>
                           </div>
-                          <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                        </div>
-                      </Link>
+                          <ArrowRight aria-hidden="true" />
+                        </Link>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               )
             })}
@@ -276,21 +236,19 @@ export function CategorySeoContent({
         </section>
       )}
 
-      <section className="rounded-[24px] border border-border/60 bg-background p-6">
-        <div className="mb-5 flex items-center gap-3">
-          <HelpCircle className="h-5 w-5 text-primary" />
-          <h2 className="font-serif text-2xl">{content.faqTitle}</h2>
-        </div>
-        <div className="space-y-3">
+      <section className={styles.panel}>
+        <h2 className={styles.faqTitle}>
+          <HelpCircle aria-hidden="true" />
+          {content.faqTitle}
+        </h2>
+        <div className={styles.faq}>
           {content.faqs.map((item) => (
-            <details
-              key={item.question}
-              className="group rounded-2xl border border-border/60 bg-secondary/20 p-4"
-            >
-              <summary className="cursor-pointer list-none text-sm font-medium text-foreground">
+            <details key={item.question}>
+              <summary>
                 {item.question}
+                <ChevronDown aria-hidden="true" />
               </summary>
-              <p className="pt-3 text-sm leading-7 text-muted-foreground">{item.answer}</p>
+              <p>{item.answer}</p>
             </details>
           ))}
         </div>

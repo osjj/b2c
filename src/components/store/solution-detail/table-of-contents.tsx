@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { cn } from '@/lib/utils'
+import { ChevronDown } from 'lucide-react'
+import { useEffect, useId, useState } from 'react'
+import styles from './solution-detail.module.css'
 
 interface TocItem {
   id: string
@@ -13,73 +14,82 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ items }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>('')
+  const listId = useId()
+  const [expanded, setExpanded] = useState(false)
+  const [activeId, setActiveId] = useState(items[0]?.id)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      {
-        rootMargin: '-100px 0px -80% 0px',
-        threshold: 0,
+    const sections = items
+      .map(({ id }) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null)
+    const firstSection = sections[0]
+    if (!firstSection) return
+
+    let frame: number | undefined
+    const update = () => {
+      frame = undefined
+      const inset = Number.parseFloat(getComputedStyle(firstSection).scrollMarginTop) || 0
+      let current = firstSection
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top > inset + 2) break
+        current = section
       }
-    )
-
-    items.forEach((item) => {
-      const element = document.getElementById(item.id)
-      if (element) {
-        observer.observe(element)
-      }
-    })
-
-    return () => observer.disconnect()
-  }, [items])
-
-  const handleClick = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setActiveId(current.id)
     }
-  }
+
+    const scheduleUpdate = () => {
+      if (frame === undefined) frame = window.requestAnimationFrame(update)
+    }
+
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+    window.addEventListener('hashchange', scheduleUpdate)
+    scheduleUpdate()
+
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      window.removeEventListener('hashchange', scheduleUpdate)
+      if (frame !== undefined) window.cancelAnimationFrame(frame)
+    }
+  }, [items])
 
   if (items.length === 0) return null
 
   return (
-    <nav className="sticky top-24 rounded-2xl border bg-background/90 p-5 shadow-sm">
-      <div className="flex items-center justify-between">
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.3em]">
-          On This Page
-        </h3>
-        <span className="text-xs text-muted-foreground">{items.length} sections</span>
-      </div>
-      <ul className="mt-4 space-y-2">
-        {items.map((item) => (
+    <nav aria-label="On this page" className={styles.toc}>
+      <p className={styles.tocHeading}>
+        On this page
+        <span className={styles.tocCount}>{items.length} sections</span>
+      </p>
+      <button
+        type="button"
+        className={styles.tocToggle}
+        aria-controls={listId}
+        aria-expanded={expanded}
+        onClick={() => setExpanded(!expanded)}
+      >
+        On this page
+        <span className={styles.tocCount}>{items.length} sections</span>
+        <ChevronDown size={17} aria-hidden="true" />
+      </button>
+      <ol id={listId} className={styles.tocList} data-expanded={expanded}>
+        {items.map((item, index) => (
           <li key={item.id}>
-            <button
-              onClick={() => handleClick(item.id)}
-              className={cn(
-                'flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-sm transition-colors cursor-pointer',
-                activeId === item.id
-                  ? 'border-primary/40 bg-primary/5 text-primary'
-                  : 'border-transparent text-muted-foreground hover:border-muted-foreground/30 hover:text-foreground'
-              )}
+            <a
+              href={`#${item.id}`}
+              aria-current={activeId === item.id ? 'location' : undefined}
+              onClick={() => {
+                setActiveId(item.id)
+                setExpanded(false)
+              }}
             >
-              <span
-                className={cn(
-                  'h-2 w-2 rounded-full',
-                  activeId === item.id ? 'bg-primary' : 'bg-muted-foreground/30'
-                )}
-              />
-              <span className="flex-1 text-left">{item.title}</span>
-            </button>
+              <span className={styles.tocNumber} aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span>{item.title}</span>
+            </a>
           </li>
         ))}
-      </ul>
+      </ol>
     </nav>
   )
 }

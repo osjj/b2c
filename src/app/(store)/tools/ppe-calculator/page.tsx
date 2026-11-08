@@ -164,7 +164,7 @@ export default function PpeCalculatorPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
+      <nav className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] pt-4 text-xs">
         <ol className="flex items-center gap-1.5 text-muted-foreground">
           <li>
             <Link href="/" className="hover:text-foreground transition-colors">
@@ -183,32 +183,32 @@ export default function PpeCalculatorPage() {
       </nav>
 
       {/* Hero */}
-      <header data-tool-hero className={[theme.hero, "container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center"].join(" ")}>
+      <header data-tool-hero className={[theme.hero, "mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)]"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary mb-4">
           Planning Tool · Free
         </p>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-5">
+        <h1 className="mb-5 max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
           PPE Quantity Calculator
         </h1>
-        <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           Estimate monthly and annual PPE consumption by industry, shift pattern and
           exposure level. Get a worker-level cost breakdown and export a budget-ready CSV.
         </p>
       </header>
 
-      <div className="container mx-auto px-4 lg:px-6 max-w-6xl">
+      <div className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)]">
         <PpeCalculator />
       </div>
 
       {/* How it works */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-6">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl mb-6">
           How to calculate PPE needs
         </h2>
-        <p className="text-muted-foreground text-base leading-[1.85] mb-6">
+        <p className="max-w-[76ch] text-muted-foreground text-base leading-[1.85] mb-6">
           A replenishment plan starts with assessed tasks, selected items, workforce size, usage records and supplier prices. The defaults are illustrative; the editable inputs use this logic:
         </p>
-        <div className="rounded-xl border bg-background p-6 shadow-sm font-mono text-sm leading-relaxed">
+        <div className="rounded-none border bg-background p-6 text-sm leading-relaxed">
           <span className="text-primary font-semibold">Monthly quantity</span> ={' '}
           <span className="text-foreground">Workers</span> ×{' '}
           <span className="text-foreground">Baseline rate per worker</span> ×{' '}
@@ -218,21 +218,21 @@ export default function PpeCalculatorPage() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-3 mt-8">
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-none border bg-background p-5">
             <Clock className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Shift pattern</h3>
             <p className="text-sm text-muted-foreground">
               Illustrative factors: single shift 1.0, extended 1.5, continuous 2.2. Avoid double-counting the workforce.
             </p>
           </div>
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-none border bg-background p-5">
             <RefreshCw className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Exposure level</h3>
             <p className="text-sm text-muted-foreground">
               Illustrative factors: low 0.7, medium 1.0, high 1.6. Adjust item usage from your own records.
             </p>
           </div>
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-none border bg-background p-5">
             <FileCheck className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Stock and initial issue</h3>
             <p className="text-sm text-muted-foreground">
@@ -243,14 +243,14 @@ export default function PpeCalculatorPage() {
       </section>
 
       {/* Replacement schedule */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl mb-3">
           Replacement decisions and budget assumptions
         </h2>
-        <p className="text-muted-foreground text-base leading-relaxed mb-6">
+        <p className="max-w-[76ch] text-muted-foreground text-base leading-relaxed mb-6">
           A budget cycle does not determine when PPE remains safe. Use the product instructions, inspection findings and site program; the calculator cycles are editable planning assumptions.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto border bg-background" role="region" aria-label="PPE replacement intervals" tabIndex={0}>
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -275,7 +275,7 @@ export default function PpeCalculatorPage() {
         </div>
       </section>
 
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
         <ToolRelatedGuidesSection
           title="Use these guides to refine your PPE quantities"
           description="The calculator gives a planning number. These buying guides help you adjust that number by task, replacement rate, and PPE category before sending an RFQ."
@@ -284,15 +284,15 @@ export default function PpeCalculatorPage() {
       </section>
 
       {/* FAQ */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-8 text-center">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl mb-8">
           Frequently asked questions
         </h2>
         <div className="space-y-5">
           {FAQ.map((item) => (
             <details
               key={item.q}
-              className="group rounded-xl border bg-background p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden"
+              className="group rounded-none border bg-background p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex items-start justify-between gap-4 cursor-pointer font-semibold text-foreground list-none">
                 <span>{item.q}</span>
@@ -305,12 +305,12 @@ export default function PpeCalculatorPage() {
       </section>
 
       {/* Related links */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
-        <div className="rounded-2xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 sm:p-10 shadow-sm">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <div className="rounded-none border bg-primary/5 p-6 sm:p-8">
           <div className="flex items-start gap-4">
             <Info className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h2 className="font-serif text-2xl leading-tight mb-3">
+              <h2 className="mb-3 text-2xl font-extrabold leading-tight">
                 Next step: get a tailored quote
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-5">
@@ -330,19 +330,19 @@ export default function PpeCalculatorPage() {
                 <Link
                   href={QUOTE_HREF}
                   data-source={QUOTE_SOURCE}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
+                  className="inline-flex items-center gap-2 rounded-none bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                 >
                   Request quote
                 </Link>
                 <Link
                   href="/tools/ai-quote"
-                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+                  className="inline-flex items-center gap-2 rounded-none border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
                 >
                   Open AI Quote
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+                  className="inline-flex items-center gap-2 rounded-none border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
                 >
                   Browse catalog
                 </Link>

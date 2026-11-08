@@ -1,0 +1,76 @@
+.page {
+  --background: #fffaf2;
+  --card: #fffaf2;
+  --foreground: var(--catalog-ink, #171410);
+  --primary: var(--catalog-accent, #c83a06);
+  --primary-foreground: #fff;
+  --muted: #eee4d7;
+  --muted-foreground: #5f574d;
+  --border: #d1c5b6;
+  background: var(--catalog-paper, #f4efe6);
+  color: var(--foreground);
+  font-family: var(--catalog-font, Archivo, "Segoe UI", sans-serif);
+}
+
+.page :is(h1, h2) {
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+.hero {
+  border-block-end: 1px solid var(--border);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-block-end: 12px;
+  color: var(--primary);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.tag {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+
+.fieldMap {
+  align-self: start;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-block-start: 3px solid var(--primary);
+  background: var(--card);
+}
+
+.icon {
+  border: 1px solid var(--border);
+  color: var(--primary);
+}
+
+.sectionBand {
+  border-block: 1px solid var(--border);
+  background: var(--background);
+}
+
+.closing {
+  border: 1px solid var(--border);
+  border-block-start: 3px solid var(--primary);
+  background: var(--background);
+}
+
+.page :global([data-slot='button']) {
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 700;
+}
+
+.page a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}

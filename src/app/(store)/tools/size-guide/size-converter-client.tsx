@@ -45,14 +45,14 @@ export function SizeConverter() {
   const match = useMemo(() => findRow(system, value), [system, value])
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       {/* Converter card */}
-      <div data-tool-panel className={[theme.panel, "rounded-2xl border bg-background p-6 sm:p-8 shadow-sm"].join(" ")}>
+      <div data-tool-panel className={[theme.panel, "p-4 sm:p-7"].join(" ")}>
         <div className="flex items-center gap-3 mb-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <div className="flex h-10 w-10 items-center justify-center rounded-none bg-primary/10 text-primary">
             <ArrowLeftRight className="h-5 w-5" />
           </div>
-          <h2 className="font-serif text-xl sm:text-2xl text-foreground">
+          <h2 className="text-xl font-extrabold text-foreground sm:text-2xl">
             Size converter
           </h2>
         </div>
@@ -91,27 +91,27 @@ export function SizeConverter() {
 
       {/* Result */}
       {match ? (
-        <div data-tool-results className={[theme.results, theme.sizeResults, "rounded-2xl border bg-gradient-to-br from-primary/5 to-background p-6 sm:p-8 shadow-sm"].join(" ")}>
+        <div data-tool-results className={[theme.results, theme.sizeResults, "p-4 sm:p-7"].join(" ")}>
           <div className="flex items-center gap-3 mb-5">
             <Ruler className="h-5 w-5 text-primary" />
-            <h3 className="font-serif text-xl text-foreground">
+            <h3 className="text-xl text-foreground">
               Matching sizes for foot length {match.mm} mm
             </h3>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-7">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
             {SYSTEMS.map((s) => (
               <div
                 key={s.key}
-                className={`rounded-xl border p-4 text-center ${
+                className={`min-w-0 border px-2 py-3 text-center sm:p-4 ${
                   s.key === system
-                    ? 'border-primary/50 bg-primary/5'
+                    ? 'border-primary bg-primary/5'
                     : 'bg-background'
                 }`}
               >
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-1.5">
                   {s.abbr}
                 </p>
-                <p className="font-serif text-2xl text-foreground">
+                <p className="text-2xl font-bold tabular-nums text-foreground">
                   {match[s.key]}
                 </p>
               </div>
@@ -119,7 +119,7 @@ export function SizeConverter() {
           </div>
         </div>
       ) : (
-        <div className="rounded-2xl border border-dashed bg-background p-6 text-center text-sm text-muted-foreground">
+        <div className="rounded-none border border-dashed bg-background p-6 text-center text-sm text-muted-foreground">
           Enter a size to see conversions across US, UK, EU, CN and JP systems.
         </div>
       )}

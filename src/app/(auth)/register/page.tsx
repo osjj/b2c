@@ -17,7 +17,7 @@ export default function RegisterPage() {
   return (
     <Card>
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl text-center">Create Account</CardTitle>
+        <CardTitle className="text-2xl font-extrabold text-center">Create Account</CardTitle>
         <CardDescription className="text-center">
           Enter your information to create an account
         </CardDescription>

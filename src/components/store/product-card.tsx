@@ -6,7 +6,8 @@ import { getLowestTierPrice } from '@/lib/pricing'
 import { AddToCartButton } from './add-to-cart-button'
 import { AddToQuoteButton } from './add-to-quote-button'
 import { ViewportImage } from '@/components/ui/viewport-image'
-import { ShieldCheck, Zap } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Zap } from 'lucide-react'
+import styles from './catalog-listing.module.css'
 
 type ProductWithRelations = {
   id: string
@@ -33,9 +34,17 @@ interface ProductCardProps {
   product: ProductWithRelations
   index?: number
   deferImage?: boolean
+  variant?: 'default' | 'catalog' | 'category' | 'featured'
+  featuredLabel?: string
 }
 
-export function ProductCard({ product, index = 0, deferImage = false }: ProductCardProps) {
+export function ProductCard({
+  product,
+  index = 0,
+  deferImage = false,
+  variant = 'default',
+  featuredLabel,
+}: ProductCardProps) {
   const CardImage = deferImage ? ViewportImage : Image
   const imageUrl = product.images[0]?.url || '/placeholder.jpg'
   const hasDiscount = product.comparePrice && Number(product.comparePrice) > Number(product.price)
@@ -56,6 +65,79 @@ export function ProductCard({ product, index = 0, deferImage = false }: ProductC
   const discountPercent = hasDiscount
     ? Math.round((1 - Number(product.price) / Number(product.comparePrice)) * 100)
     : 0
+  const href = `/products/${product.slug}`
+  const isCatalog = variant !== 'default'
+  const isCategoryCard = variant === 'category'
+  const isFeaturedCard = variant === 'featured'
+  const actionClass = isCatalog ? styles.cardAction : 'flex-1 text-xs h-8'
+  const actionLabel = isCatalog ? (
+    <>
+      {isB2B ? 'Add to Quote' : 'Add to Cart'}
+      <ArrowRight size={15} aria-hidden="true" />
+    </>
+  ) : undefined
+  const action = isB2B ? (
+    <AddToQuoteButton
+      productId={product.id}
+      productName={product.name}
+      productPrice={Number(product.price)}
+      productImage={imageUrl}
+      variant="default"
+      size="sm"
+      className={actionClass}
+    >
+      {actionLabel}
+    </AddToQuoteButton>
+  ) : (
+    <AddToCartButton
+      productId={product.id}
+      variant="default"
+      size="sm"
+      className={actionClass}
+    >
+      {actionLabel}
+    </AddToCartButton>
+  )
+  const price = (
+    <>
+      <span className={isCatalog ? styles.cardPriceAmount : 'text-lg font-bold text-accent'}>
+        {showFromPrice && <span className="text-sm font-normal">From </span>}
+        {formatPrice(displayPrice)}
+      </span>
+      {!showFromPrice && hasDiscount && (
+        <span className="text-xs text-muted-foreground line-through">
+          {formatPrice(Number(product.comparePrice))}
+        </span>
+      )}
+    </>
+  )
+
+  if (isCatalog) {
+    return (
+      <article className={isFeaturedCard ? styles.featuredCard : styles.productCard}>
+        <Link href={href} className={styles.cardLink}>
+          <div className={styles.cardImage}>
+            <CardImage
+              src={imageUrl}
+              alt={isCategoryCard ? product.name : ''}
+              fill
+              loading={isCategoryCard ? 'lazy' : undefined}
+              className="object-contain"
+              sizes={isFeaturedCard ? '(min-width: 1280px) 120px, 88px' : '(min-width: 1024px) 26vw, (min-width: 640px) 33vw, 50vw'}
+            />
+            {!isFeaturedCard && hasDiscount && (
+              <span className={styles.cardDiscount}>-{discountPercent}%</span>
+            )}
+          </div>
+          <h3 className={styles.cardTitle} title={isFeaturedCard ? product.name : undefined}>
+            {isFeaturedCard && featuredLabel ? featuredLabel : product.name}
+          </h3>
+        </Link>
+        {!isFeaturedCard && <div className={styles.cardPrice}>{price}</div>}
+        {action}
+      </article>
+    )
+  }
 
   return (
     <div
@@ -65,7 +147,7 @@ export function ProductCard({ product, index = 0, deferImage = false }: ProductC
       {/* Card Container */}
       <div className="relative bg-card rounded-lg border border-border/60 overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20">
         {/* Image Section */}
-        <Link href={`/products/${product.slug}`}>
+        <Link href={href}>
           <div className="relative aspect-square overflow-hidden bg-gradient-to-b from-secondary/30 to-secondary/60">
             <div className="absolute inset-3 sm:inset-4">
               <CardImage
@@ -109,7 +191,7 @@ export function ProductCard({ product, index = 0, deferImage = false }: ProductC
           </div>
 
           {/* Product Name */}
-          <Link href={`/products/${product.slug}`}>
+          <Link href={href}>
             <h3 className="font-semibold text-sm leading-tight mb-2 line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5rem]">
               {product.name}
             </h3>
@@ -117,37 +199,12 @@ export function ProductCard({ product, index = 0, deferImage = false }: ProductC
 
           {/* Price */}
           <div className="flex items-baseline gap-2 mb-3">
-            <span className="text-lg font-bold text-accent">
-              {showFromPrice && <span className="text-sm font-normal">From </span>}
-              {formatPrice(displayPrice)}
-            </span>
-            {!showFromPrice && hasDiscount && (
-              <span className="text-xs text-muted-foreground line-through">
-                {formatPrice(Number(product.comparePrice))}
-              </span>
-            )}
+            {price}
           </div>
 
           {/* Actions */}
           <div className="flex gap-2">
-            {process.env.NEXT_PUBLIC_PROJECT_TYPE === 'B2B' ? (
-              <AddToQuoteButton
-                productId={product.id}
-                productName={product.name}
-                productPrice={Number(product.price)}
-                productImage={imageUrl}
-                variant="default"
-                size="sm"
-                className="flex-1 text-xs h-8"
-              />
-            ) : (
-              <AddToCartButton
-                productId={product.id}
-                variant="default"
-                size="sm"
-                className="flex-1 text-xs h-8"
-              />
-            )}
+            {action}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight, ChevronRight, Home } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getPublishedBlogPosts } from '@/actions/blog'
 import { BlogIndustrySolutions } from '@/components/store/blog/blog-industry-solutions'
 import { prisma } from '@/lib/prisma'
@@ -18,6 +18,7 @@ import {
   splitFeaturedBlogPost,
 } from '@/lib/store-blog-pagination'
 import { formatDate } from '@/lib/utils'
+import styles from '@/components/store/blog/blog-layout.module.css'
 
 type BlogIndexPageProps = {
   searchParams: Promise<{ page?: string | string[] }>
@@ -76,144 +77,117 @@ export default async function BlogIndexPage({ searchParams }: BlogIndexPageProps
   const visibleRange = getStoreBlogPageRange(page, posts.length, total)
 
   return (
-    <div className="bg-ppe-bg-page min-h-screen pb-24">
-      <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
-        <ol className="flex items-center gap-1.5 text-muted-foreground">
-          <li>
-            <Link href="/" className="hover:text-foreground transition-colors">
-              <Home className="h-3.5 w-3.5" />
-            </Link>
-          </li>
-          <ChevronRight className="h-3 w-3" />
-          <li className="text-foreground font-medium">Blog</li>
-        </ol>
-      </nav>
-
-      {/* Page header */}
-      <header className="container mx-auto px-4 lg:px-6 pt-16 pb-12 max-w-3xl text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary mb-4">
-          Guides & Industry Solutions
-        </p>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-5">
-          PPE guides &amp;
-          <br className="hidden sm:block" /> industry solutions.
-        </h1>
-        <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-          Find industry PPE plans, product selection guides and procurement checklists
-          for construction, mining, warehouse and workshop teams.
-        </p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <span className="h-px w-12 bg-border" />
-          <span className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            {total} article{total === 1 ? '' : 's'}
-          </span>
-          <span className="h-px w-12 bg-border" />
-        </div>
-        <nav aria-label="Browse guides by content type" className="mt-6 flex flex-wrap justify-center gap-3">
-          {solutions.length > 0 ? (
-            <Link href="#industry-solutions" className="inline-flex min-h-11 items-center rounded-md border bg-background px-5 text-sm font-semibold hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-              Industry solutions
-            </Link>
-          ) : null}
-          <Link href="#articles" className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-            Articles &amp; checklists
-          </Link>
+    <div className={styles.page}>
+      <div className={styles.frame}>
+        <nav aria-label="Breadcrumb" className={styles.breadcrumb}>
+          <ol>
+            <li><Link href="/">Home</Link></li>
+            <li aria-current="page">Blog</li>
+          </ol>
         </nav>
-      </header>
 
-      <BlogIndustrySolutions solutions={solutions} />
-
-      <div id="articles" className="scroll-mt-28">
-        {total === 0 ? (
-          <section className="container mx-auto px-4 lg:px-6">
-            <div className="border rounded-2xl py-20 text-center bg-background">
-              <p className="text-muted-foreground">No articles published yet.</p>
-            </div>
-          </section>
-        ) : (
-          <>
-            {/* Featured article */}
-            {featured ? (
-              <section className="container mx-auto px-4 lg:px-6 mb-16">
-                <Link
-                  href={`/blog/${featured.slug}`}
-                  className="group grid gap-8 lg:grid-cols-2 lg:gap-12 rounded-2xl border bg-background p-5 sm:p-8 lg:p-10 shadow-sm transition-all hover:shadow-md"
-                >
-                  <div className="relative aspect-[4/3] lg:aspect-[5/4] w-full overflow-hidden rounded-xl bg-muted">
-                    {featured.coverImage ? (
-                      <Image
-                        src={featured.coverImage}
-                        alt={featured.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                        priority
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center text-muted-foreground text-sm">
-                        No cover image
-                      </div>
-                    )}
-                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary-foreground shadow-sm">
-                      Featured
-                    </span>
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <time className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                      {formatDate(featured.publishedAt ?? featured.createdAt)}
-                    </time>
-                    <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl leading-tight mb-5 transition-colors group-hover:text-primary">
-                      {featured.title}
-                    </h2>
-                    {featured.excerpt ? (
-                      <p className="text-muted-foreground text-base leading-relaxed line-clamp-4 mb-6">
-                        {featured.excerpt}
-                      </p>
-                    ) : null}
-                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                      Read the full guide
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </div>
+        <header className={styles.indexMasthead}>
+          <div>
+            <h1 className={styles.indexTitle}>PPE guides &amp; industry solutions.</h1>
+            <p className={styles.indexIntro}>
+              Find industry PPE plans, product selection guides and procurement checklists
+              for construction, mining, warehouse and workshop teams.
+            </p>
+          </div>
+          <div className={styles.indexActions}>
+            <nav aria-label="Browse guides by content type" className={styles.jumpLinks}>
+              {solutions.length > 0 ? (
+                <Link href="#industry-solutions" className={styles.solidButton}>
+                  Industry solutions
                 </Link>
-              </section>
-            ) : null}
+              ) : null}
+              <Link href="#articles" className={solutions.length > 0 ? styles.outlineButton : styles.solidButton}>
+                Articles &amp; checklists
+              </Link>
+            </nav>
+            <p className={styles.sectionMeta}>
+              {total} article{total === 1 ? '' : 's'}
+            </p>
+          </div>
+        </header>
 
-            {/* Other posts grid */}
-            {rest.length > 0 ? (
-              <section className="container mx-auto px-4 lg:px-6">
-                <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <h2 className="font-serif text-2xl sm:text-3xl">
-                    {page === 1 ? 'More articles' : 'Latest articles'}
-                  </h2>
-                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    Page {page} · Articles {visibleRange.start}–{visibleRange.end} of {total}
-                  </span>
-                </div>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {rest.map((post) => (
-                    <BlogPostCard
-                      key={post.id}
-                      slug={post.slug}
-                      title={post.title}
-                      excerpt={post.excerpt}
-                      coverImage={post.coverImage}
-                      date={post.publishedAt ?? post.createdAt}
-                    />
-                  ))}
-                </div>
-              </section>
-            ) : null}
+        <BlogIndustrySolutions solutions={solutions} />
 
-            {totalPages > 1 ? (
-              <div className="container mx-auto mt-12 px-4 lg:px-6">
-                <Suspense fallback={null}>
-                  <StorePagination currentPage={page} totalPages={totalPages} total={total} />
-                </Suspense>
-              </div>
-            ) : null}
-          </>
-        )}
+        <div id="articles" className={styles.articleArchive}>
+          {total === 0 ? (
+            <p className={styles.empty}>No articles published yet.</p>
+          ) : (
+            <>
+              {featured ? (
+                <section aria-label="Featured guide" className={styles.featuredSection}>
+                  <Link href={`/blog/${featured.slug}`} className={styles.featuredCard}>
+                    <div className={styles.featuredMedia}>
+                      {featured.coverImage ? (
+                        <Image
+                          src={featured.coverImage}
+                          alt={featured.title}
+                          fill
+                          sizes="(max-width: 719px) 100vw, 48vw"
+                          className={styles.coverImage}
+                          priority
+                        />
+                      ) : (
+                        <span className={styles.imageFallback}>No cover image</span>
+                      )}
+                    </div>
+                    <div className={styles.featuredCopy}>
+                      <p className={styles.eyebrow}>Featured guide</p>
+                      <time dateTime={(featured.publishedAt ?? featured.createdAt).toISOString()} className={styles.sectionMeta}>
+                        {formatDate(featured.publishedAt ?? featured.createdAt)}
+                      </time>
+                      <h2 className={styles.featuredTitle}>{featured.title}</h2>
+                      {featured.excerpt ? (
+                        <p className={styles.featuredExcerpt}>{featured.excerpt}</p>
+                      ) : null}
+                      <span className={styles.textAction}>
+                        Read the full guide
+                        <ArrowRight size={18} aria-hidden="true" />
+                      </span>
+                    </div>
+                  </Link>
+                </section>
+              ) : null}
+
+              {rest.length > 0 ? (
+                <section className={styles.postsSection}>
+                  <div className={styles.sectionHeader}>
+                    <h2 className={styles.sectionTitle}>
+                      {page === 1 ? 'Articles & checklists' : 'Latest articles'}
+                    </h2>
+                    <span className={styles.sectionMeta}>
+                      Page {page} · Articles {visibleRange.start}–{visibleRange.end} of {total}
+                    </span>
+                  </div>
+                  <div className={styles.postGrid}>
+                    {rest.map((post) => (
+                      <BlogPostCard
+                        key={post.id}
+                        slug={post.slug}
+                        title={post.title}
+                        excerpt={post.excerpt}
+                        coverImage={post.coverImage}
+                        date={post.publishedAt ?? post.createdAt}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              {totalPages > 1 ? (
+                <div className={styles.pagination}>
+                  <Suspense fallback={null}>
+                    <StorePagination currentPage={page} totalPages={totalPages} total={total} />
+                  </Suspense>
+                </div>
+              ) : null}
+            </>
+          )}
+        </div>
       </div>
     </div>
   )

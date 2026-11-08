@@ -12,15 +12,16 @@ import { Textarea } from '@/components/ui/textarea'
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import { Badge } from '@/components/ui/badge'
 import { createQuote } from '@/actions/quotes'
 import { pushDataLayerEvent } from '@/lib/analytics-events'
 import { cn, formatPrice } from '@/lib/utils'
 import type { QuoteItem } from '@/hooks/use-quote'
+import styles from './mini-quote.module.css'
 
 interface MiniQuoteProps {
   hideWhenEmpty?: boolean
@@ -47,6 +48,20 @@ type QuoteEmailResponse = {
 
 const QUOTE_LIST_EMAIL_MESSAGE_MAX_LENGTH = 6000
 const QUOTE_LIST_EMAIL_MESSAGE_TRUNCATION_NOTE = '\n\n[Message truncated; quote is saved in admin.]'
+
+function QuoteThumbnail({ src }: { src: string }) {
+  const [failed, setFailed] = useState(false)
+
+  return (
+    <div className={styles.thumbnail} aria-hidden="true">
+      {src && !failed ? (
+        <Image src={src} alt="" fill sizes="72px" unoptimized onError={() => setFailed(true)} />
+      ) : (
+        <span>No image</span>
+      )}
+    </div>
+  )
+}
 
 function normalizeFormData(formData: MiniQuoteFormData): MiniQuoteFormData {
   return {
@@ -361,6 +376,7 @@ export function MiniQuote({
           className={cn(
             'relative h-11 w-11 sm:h-9 sm:w-9',
             triggerLabel && 'w-auto px-4 sm:w-auto',
+            !triggerClassName && styles.trigger,
             triggerClassName
           )}
           size={triggerLabel ? 'default' : 'icon'}
@@ -370,41 +386,42 @@ export function MiniQuote({
           <FileText className={cn('h-6 w-6 sm:h-5 sm:w-5', triggerLabel && 'h-4 w-4 sm:h-4 sm:w-4')} />
           {triggerLabel && <span className={triggerLabelClassName}>{triggerLabel}</span>}
           {totalItems > 0 && (
-            <Badge
-              variant="secondary"
-              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-blue-500 text-white"
-            >
+            <span aria-hidden="true" className={styles.count}>
               {totalItems > 99 ? '99+' : totalItems}
-            </Badge>
+            </span>
           )}
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col w-full sm:max-w-lg p-6">
-        <SheetHeader className="mb-4">
-          <SheetTitle>
+      <SheetContent className={styles.drawer}>
+        <SheetHeader className={styles.header}>
+          <p className={styles.kicker}>PPE Procurement</p>
+          <SheetTitle className={styles.title} aria-live="polite">
             {submitSuccess ? 'Quote Submitted' : showForm ? 'Request Quote' : `Quote List (${totalItems})`}
           </SheetTitle>
+          <SheetDescription className="sr-only">
+            {submitSuccess
+              ? 'Your quote request has been sent.'
+              : showForm
+                ? 'Add your contact details and any requirements for the selected products.'
+                : 'Review the products selected for your quote request.'}
+          </SheetDescription>
         </SheetHeader>
 
         {submitSuccess ? (
-          <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
-            <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
-              <Check className="h-8 w-8 text-green-600" />
+          <div className={styles.centered}>
+            <div className={styles.stateMark} aria-hidden="true">
+              <Check size={30} />
             </div>
-            <h3 className="text-lg font-semibold mb-2">Quote Request Submitted!</h3>
-            <p className="text-muted-foreground mb-2">
-              Your quote number is:
-            </p>
-            <p className="font-mono text-lg font-bold text-primary mb-4">{quoteNumber}</p>
-            <p className="text-sm text-muted-foreground mb-6">
-              We will contact you shortly by email.
-            </p>
-            <Button onClick={resetAndClose}>Continue Shopping</Button>
+            <h3>Quote Request Submitted!</h3>
+            <p>Your quote number is:</p>
+            <p className={styles.quoteNumber}>{quoteNumber}</p>
+            <p>We will contact you shortly by email.</p>
+            <Button className={styles.primary} onClick={resetAndClose}>Continue Shopping</Button>
           </div>
         ) : showForm ? (
-          <form onSubmit={handleSubmit} className="flex-1 flex flex-col min-h-0">
-            <div className="flex-1 overflow-y-auto pr-2">
-              <div className="space-y-4 pb-4">
+          <form onSubmit={handleSubmit} className={styles.stage}>
+            <div className={styles.scrollArea}>
+              <div className={styles.fields}>
                 <div>
                   <Label htmlFor="name">Name *</Label>
                   <Input
@@ -415,7 +432,7 @@ export function MiniQuote({
                     placeholder="Your name"
                     required
                   />
-                  {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name[0]}</p>}
+                  {errors.name && <p className={styles.fieldError}>{errors.name[0]}</p>}
                 </div>
 
                 <div>
@@ -429,7 +446,7 @@ export function MiniQuote({
                     placeholder="your@email.com"
                     required
                   />
-                  {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email[0]}</p>}
+                  {errors.email && <p className={styles.fieldError}>{errors.email[0]}</p>}
                 </div>
 
                 <div>
@@ -441,7 +458,7 @@ export function MiniQuote({
                     onChange={handleInputChange}
                     placeholder="Optional phone, WhatsApp, or WeChat ID"
                   />
-                  {errors.contact && <p className="text-sm text-red-500 mt-1">{errors.contact[0]}</p>}
+                  {errors.contact && <p className={styles.fieldError}>{errors.contact[0]}</p>}
                 </div>
 
                 <div>
@@ -479,14 +496,15 @@ export function MiniQuote({
                     onChange={handleInputChange}
                     placeholder="Your expected total price"
                   />
-                  <p className="text-xs text-muted-foreground mt-1">
+                  <p className={styles.hint}>
                     Providing an expected price helps us offer you a better quote
                   </p>
+                  {errors.expectedPrice && <p className={styles.fieldError}>{errors.expectedPrice[0]}</p>}
                 </div>
 
                 <div>
                   <Label htmlFor="file">Upload File</Label>
-                  <div className="mt-1">
+                  <div>
                     <Input
                       id="file"
                       type="file"
@@ -494,59 +512,57 @@ export function MiniQuote({
                       accept="image/*,.pdf,.xls,.xlsx,.doc,.docx"
                       disabled={isUploading}
                     />
-                    <p className="text-xs text-muted-foreground mt-1">
+                    <p className={styles.hint}>
                       Logo or purchase list (Images, PDF, Excel, Word)
                     </p>
                     {isUploading && (
-                      <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                        <Loader2 className="h-4 w-4 animate-spin" />
+                      <div className={styles.fileStatus} role="status">
+                        <Loader2 aria-hidden="true" className="size-4 animate-spin" />
                         Uploading...
                       </div>
                     )}
                     {formData.fileName && !isUploading && (
-                      <div className="flex items-center gap-2 mt-2 text-sm text-green-600">
-                        <Check className="h-4 w-4" />
+                      <div className={styles.fileStatus} role="status">
+                        <Check aria-hidden="true" size={16} />
                         {formData.fileName}
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="border-t my-2" />
-
-                <div>
-                  <p className="text-sm font-medium mb-2">Items ({items.length})</p>
-                  <div className="space-y-2">
+                <div className={styles.review}>
+                  <p>Items ({items.length})</p>
+                  <ul className={styles.reviewList}>
                     {items.map((item) => (
-                      <div key={`${item.productId}-${item.variantId || ''}`} className="flex items-center gap-2 text-sm">
-                        <span className="flex-1 truncate">{item.name}</span>
-                        <span className="text-muted-foreground">x{item.quantity}</span>
-                      </div>
+                      <li key={`${item.productId}-${item.variantId || ''}`}>
+                        <span>{item.name}</span>
+                        <span>x{item.quantity}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            <div className="shrink-0 pt-4 space-y-2 border-t mt-4">
+            <div className={styles.footer}>
               {errors.form?.[0] && (
-                <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600" role="alert">
+                <p className={styles.formError} role="alert">
                   {errors.form[0]}
                 </p>
               )}
-              <div className="flex gap-2">
-                <Button type="button" variant="outline" className="flex-1" onClick={() => setShowForm(false)}>
+              <div className={styles.actions}>
+                <Button type="button" variant="outline" className={styles.secondary} onClick={() => setShowForm(false)}>
                   Back
                 </Button>
-                <Button type="submit" className="flex-1" disabled={isSubmitting}>
+                <Button type="submit" className={styles.primary} disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      <Loader2 aria-hidden="true" className="size-4 animate-spin" />
                       Submitting...
                     </>
                   ) : (
                     <>
-                      <Send className="h-4 w-4 mr-2" />
+                      <Send aria-hidden="true" size={16} />
                       Submit Quote
                     </>
                   )}
@@ -555,66 +571,54 @@ export function MiniQuote({
             </div>
           </form>
         ) : items.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <FileText className="h-12 w-12 text-muted-foreground mb-4" />
-            <p className="text-muted-foreground">Your quote list is empty</p>
-            <Button asChild variant="link" onClick={closeQuote}>
+          <div className={styles.centered}>
+            <div className={styles.stateMark} aria-hidden="true">
+              <FileText size={30} />
+            </div>
+            <p>Your quote list is empty</p>
+            <Button asChild className={styles.secondary} variant="outline" onClick={closeQuote}>
               <Link href="/products">Browse Products</Link>
             </Button>
           </div>
         ) : (
-          <div className="flex-1 flex flex-col min-h-0">
-            <div className="flex-1 overflow-y-auto pr-2">
-              <div className="space-y-4">
+          <div className={styles.stage}>
+            <div className={styles.scrollArea}>
+              <ul className={styles.items}>
                 {items.map((item) => (
-                  <div
+                  <li
                     key={`${item.productId}-${item.variantId || ''}`}
-                    className="flex gap-3"
+                    className={styles.item}
                   >
-                    <div className="w-16 h-16 relative rounded overflow-hidden bg-gray-100 shrink-0">
-                      {item.image ? (
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          className="object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">
-                          No img
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm line-clamp-2">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">
-                        Qty: {item.quantity}
-                      </p>
+                    <QuoteThumbnail key={item.image} src={item.image} />
+                    <div className={styles.itemDetails}>
+                      <p className={styles.itemName}>{item.name}</p>
+                      {item.sku && <p>SKU: {item.sku}</p>}
+                      <p>Qty: <strong>{item.quantity}</strong></p>
                       {item.tierLabel && (
-                        <p className="text-xs text-muted-foreground">
-                          ({item.tierLabel})
-                        </p>
+                        <p>({item.tierLabel})</p>
                       )}
                     </div>
                     <Button
+                      aria-label={`Remove ${item.name}`}
                       variant="ghost"
                       size="icon"
-                      className="shrink-0 h-8 w-8"
+                      className={styles.remove}
+                      type="button"
                       onClick={() => removeItem(item.productId, item.variantId)}
                     >
-                      <X className="h-4 w-4" />
+                      <X aria-hidden="true" size={16} />
                     </Button>
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            <div className="shrink-0 pt-4 space-y-4 border-t mt-4">
-              <p className="text-sm text-muted-foreground text-center">
+            <div className={styles.footer}>
+              <p className={styles.total}>
                 {totalItems} item(s) selected for quote
               </p>
-              <Button className="w-full" onClick={() => setShowForm(true)}>
-                <Send className="h-4 w-4 mr-2" />
+              <Button className={styles.primary} onClick={() => setShowForm(true)}>
+                <Send aria-hidden="true" size={16} />
                 Request Quote
               </Button>
             </div>

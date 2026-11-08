@@ -1,44 +1,47 @@
-import { Suspense } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { permanentRedirect } from 'next/navigation'
+import { ArrowRight } from 'lucide-react'
 import { getProducts } from '@/actions/products'
 import { getCategories } from '@/actions/categories'
 import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/store/product-card'
-import { ProductCategoryNavigation } from '@/components/store/product-category-navigation'
-import { StorePagination } from '@/components/store/store-pagination'
-import { CatalogBackground, CatalogHero } from '@/components/store/catalog-background'
-import styles from '@/components/store/catalog-background.module.css'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import {
-  ChevronRight,
-  Filter,
-  Package,
-  ShieldCheck,
-} from 'lucide-react'
+import { CatalogListingLayout, CatalogProductResults } from '@/components/store/catalog-listing'
+import styles from '@/components/store/catalog-listing.module.css'
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
+import { normalizeCategoryPage } from '@/lib/category-pagination'
+
+const sortOptions = [
+  { value: 'catalog', label: 'Catalog order', orderBy: 'sortOrder' },
+  { value: 'newest', label: 'Newest', orderBy: 'createdAt' },
+  { value: 'price-asc', label: 'Base Price: Low to High', orderBy: 'price' },
+  { value: 'price-desc', label: 'Base Price: High to Low', orderBy: 'price' },
+  { value: 'name', label: 'Name', orderBy: 'name' },
+] as const
+
+const spotlight = [
+  { slug: 's3-black-cowhide-steel-toe-safety-shoes', label: 'Black Cowhide Steel Toe Safety Shoes' },
+  { slug: 'heavy-duty-cowhide-leather-back-cotton-blend-work-gloves', label: 'Cowhide Work Gloves' },
+  { slug: 'ce-en397-abs-safety-helmet-with-switchable-vents-slotted', label: 'Yellow Safety Helmet' },
+  { slug: 'reflective-quick-dry-work-polo-optional-trousers', label: 'Reflective Quick-Dry Work Polo' },
+]
 
 type Props = {
   searchParams: Promise<{
-    page?: string
-    category?: string
-    sort?: string
-    search?: string
+    page?: string | string[]
+    category?: string | string[]
+    sort?: string | string[]
+    search?: string | string[]
   }>
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams
-  const { search, page } = params
+  const search = typeof params.search === 'string' ? params.search : ''
+  const page = normalizeCategoryPage(params.page)
 
   let title = 'Wholesale PPE Products & Safety Equipment'
   let description = 'Browse PPE products from Laifappe for bulk sourcing: safety gloves, steel toe footwear, workwear, helmets, eye protection, and respiratory equipment.'
@@ -48,7 +51,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     description = `Find ${search} in our collection of safety equipment and PPE products.`
   }
 
-  if (page && Number(page) > 1) {
+  if (page > 1) {
     title += ` - Page ${page}`
   }
 
@@ -76,21 +79,13 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   }
 }
 
-export default async function ProductsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{
-    page?: string
-    category?: string
-    sort?: string
-    search?: string
-  }>
-}) {
+export default async function ProductsPage({ searchParams }: Props) {
   const params = await searchParams
-  const page = Number(params.page) || 1
-  const category = params.category || ''
-  const sort = params.sort || 'newest'
-  const search = params.search || ''
+  const page = normalizeCategoryPage(params.page)
+  const category = typeof params.category === 'string' ? params.category : ''
+  const search = typeof params.search === 'string' ? params.search : ''
+  const sort = sortOptions.find(({ value }) => value === params.sort) ?? sortOptions[0]
+  const showOverview = !search && page === 1
 
   // SEO: any `?category=` link (legacy cuid or slug) is a 301 to the canonical
   // `/categories/{slug}` URL. For child categories we go straight to the nested
@@ -115,133 +110,94 @@ export default async function ProductsPage({
     }
   }
 
-  const [{ products, pagination }, categories] = await Promise.all([
+  const [listing, categories, featured] = await Promise.all([
     getProducts({
       page,
       search: search || undefined,
       limit: 12,
       activeOnly: true,
+      orderBy: sort.orderBy,
+      priceDirection: sort.value === 'price-desc' ? 'desc' : 'asc',
     }),
     getCategories(),
+    showOverview
+      ? prisma.product.findMany({
+          where: { isActive: true, slug: { in: spotlight.map(({ slug }) => slug) }, images: { some: {} } },
+          include: { category: true, images: { orderBy: { sortOrder: 'asc' }, take: 1 } },
+        })
+      : [],
   ])
   const navigationCategories = buildProductCategoryNavigation(categories)
+  const spotlightProducts = spotlight.flatMap(({ slug, label }) => {
+    const product = featured.find((entry) => entry.slug === slug)
+    if (!product) return []
+    return [{
+      label,
+      product: { ...product, price: Number(product.price), comparePrice: product.comparePrice ? Number(product.comparePrice) : null },
+    }]
+  })
+  const remainingProducts = listing.products.filter(
+    (product) => !spotlightProducts.some((entry) => entry.product.id === product.id),
+  )
+  const featuredProducts = [
+    ...spotlightProducts,
+    ...remainingProducts.map((product) => ({ product, label: undefined })),
+  ].slice(0, spotlight.length)
 
   return (
-    <CatalogBackground className="min-h-screen">
-      {/* Hero Section - Industrial Style */}
-      <CatalogHero tone="dark">
-        <div className="container mx-auto px-6 lg:px-8 py-16 relative">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-primary-foreground/60 mb-8 animate-fade-up">
-            <Link href="/" className="hover:text-primary-foreground transition-colors">Home</Link>
-            <ChevronRight className="w-4 h-4" />
-            <span className="text-primary-foreground">Products</span>
-          </nav>
-
-          <div className="flex items-start justify-between">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1.5 rounded-full text-sm font-medium mb-4 animate-fade-up">
-                <ShieldCheck className="w-4 h-4" />
-                Professional Protective Equipment
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-up stagger-1">
-                All Products
-              </h1>
-              <p className="text-primary-foreground/70 text-lg animate-fade-up stagger-2">
-                We provide high-quality industrial safety equipment that meets international standards and protects every worker.
-              </p>
+    <CatalogListingLayout categories={navigationCategories}>
+      {showOverview ? (
+        <header className={styles.hero}>
+          <div className={styles.heroCopy}>
+            <div className={styles.heroStripes} aria-hidden="true">
+              <span /><span /><span />
             </div>
-
-            {/* Stats */}
-            <div className="hidden lg:flex items-center gap-8 animate-fade-up stagger-2">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">{pagination.total}</div>
-                <div className="text-sm text-primary-foreground/60">Total Products</div>
-              </div>
-              <div className="w-px h-12 bg-primary-foreground/20" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent">{navigationCategories.length}</div>
-                <div className="text-sm text-primary-foreground/60">Categories</div>
-              </div>
-            </div>
+            <h1 className={styles.heroTitle}>All <span>Products</span></h1>
+            <p className={styles.heroDescription}>Work safety equipment<br />for industrial buyers</p>
+            <a href="#catalog-products" className={styles.browseButton}>
+              Browse Products <ArrowRight size={19} aria-hidden="true" />
+            </a>
           </div>
-        </div>
-      </CatalogHero>
-
-      {/* Main Content */}
-      <section className="container mx-auto px-6 lg:px-8 py-8">
-        <div className="grid items-start gap-7 lg:grid-cols-[14rem_minmax(0,1fr)] xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-9">
-          <ProductCategoryNavigation categories={navigationCategories} />
-
-          <div className="min-w-0">
-            {/* Toolbar */}
-            <div className={`${styles.toolbar} flex flex-wrap items-center justify-between gap-3`}>
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">{pagination.total}</span> products
-                </span>
-                {search && (
-                  <span className="text-sm bg-primary/10 text-primary px-2 py-0.5 rounded">
-                    Search: {search}
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Filter className="w-4 h-4 text-muted-foreground" />
-                <form>
-                  {search && <input type="hidden" name="search" value={search} />}
-                  <Select name="sort" defaultValue={sort}>
-                    <SelectTrigger className="w-36 h-9 text-sm">
-                      <SelectValue placeholder="Sort by" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="newest">Newest</SelectItem>
-                      <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                      <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                      <SelectItem value="name">Name</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </form>
-              </div>
-            </div>
-
-            {/* Products Grid */}
-            {products.length > 0 ? (
-              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 xl:grid-cols-4">
-                {products.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} deferImage={index >= 4} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-20">
-                <Package className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">No products found</h3>
-                <p className="text-muted-foreground mb-6">No products are currently available in this category. Please check other categories.</p>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                >
-                  View All Products
-                </Link>
-              </div>
-            )}
-
-            {/* Pagination */}
-            {pagination.totalPages > 1 && (
-              <div className="mt-12">
-                <Suspense fallback={null}>
-                  <StorePagination
-                    currentPage={pagination.page}
-                    totalPages={pagination.totalPages}
-                    total={pagination.total}
-                  />
-                </Suspense>
-              </div>
-            )}
+          <div className={styles.heroArt}>
+            <Image
+              src="/catalog/catalog-hero.webp"
+              alt=""
+              fill
+              priority
+              sizes="(min-width: 960px) 56vw, (min-width: 640px) 70vw, 100vw"
+            />
           </div>
-        </div>
-      </section>
-    </CatalogBackground>
+        </header>
+      ) : (
+        <h1 className={styles.categoryTitle}>{search ? `Search results for “${search}”` : 'All Products'}</h1>
+      )}
+      {showOverview && featuredProducts.length > 0 && (
+        <section className={styles.featureSection} aria-labelledby="featured-products">
+          <h2 className="sr-only" id="featured-products">Featured Products</h2>
+          <div className={styles.featureStrip}>
+            {featuredProducts.map(({ product, label }) => (
+              <ProductCard key={product.id} product={product} variant="featured" featuredLabel={label} />
+            ))}
+          </div>
+        </section>
+      )}
+      <CatalogProductResults
+        {...listing}
+        emptyText={search ? 'No products match your search.' : 'No products found.'}
+        toolbar={
+          <form className={styles.sortForm} action="/products#catalog-products">
+            {search && <input type="hidden" name="search" value={search} />}
+            <label htmlFor="catalog-sort">Sort by</label>
+            <select id="catalog-sort" name="sort" defaultValue={sort.value}>
+              {sortOptions.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
+            </select>
+            <button type="submit">Apply</button>
+          </form>
+        }
+      />
+      {search && listing.products.length === 0 && (
+        <Link href="/products" className={styles.browseButton}>View All Products <ArrowRight size={19} aria-hidden="true" /></Link>
+      )}
+    </CatalogListingLayout>
   )
 }

@@ -172,47 +172,46 @@ export default function HardHatClassDecoderPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <nav className="container mx-auto border-b bg-background/50 px-4 py-2.5 text-xs lg:px-6">
-        <ol className="flex items-center gap-1.5 text-muted-foreground">
+      <nav aria-label="Breadcrumb" className="container mx-auto max-w-6xl px-4 py-2.5 text-xs lg:px-6">
+        <ol className="flex flex-wrap items-center gap-1.5 text-muted-foreground">
           <li>
             <Link href="/" className="hover:text-foreground" aria-label="Home">
               <Home className="h-3.5 w-3.5" aria-hidden="true" />
             </Link>
           </li>
-          <ChevronRight className="h-3 w-3" aria-hidden="true" />
+          <li aria-hidden="true"><ChevronRight className="size-3" /></li>
           <li>
             <Link href="/tools" className="hover:text-foreground">
               Tools
             </Link>
           </li>
-          <ChevronRight className="h-3 w-3" aria-hidden="true" />
-          <li className="text-foreground font-medium">Hard Hat Class Decoder</li>
+          <li aria-hidden="true"><ChevronRight className="size-3" /></li>
+          <li aria-current="page" className="font-medium text-foreground">Hard Hat Class Decoder</li>
         </ol>
       </nav>
 
-      <header data-tool-hero className={[theme.hero, "container mx-auto max-w-4xl px-4 pb-10 pt-14 text-center lg:px-6"].join(" ")}>
+      <header data-tool-hero className={[theme.hero, "container mx-auto max-w-6xl px-4 lg:px-6"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
           Head Protection Tool
         </p>
-        <h1 className="mt-4 font-serif text-4xl leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+        <h1 className="mt-4 font-extrabold text-4xl leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
           Hard Hat Class Decoder
         </h1>
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           Decode Type I vs Type II and Class G, Class E, and Class C before you
           specify construction hard hats in a bulk PPE order.
         </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-          <Link
-            href={RFQ_HREF}
-            data-source={LINK_SOURCE}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+        <div className="mt-7 flex flex-wrap gap-3">
+          <a
+            href="#hard-hat-decoder"
+            className="inline-flex min-h-11 items-center justify-center gap-2 bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 max-[360px]:w-full sm:px-5"
           >
-            Add to RFQ template
+            Use the decoder
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          </a>
           <Link
             href="/blog/type-1-vs-type-2-hard-hats"
-            className="inline-flex min-h-11 items-center justify-center rounded-md border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+            className="inline-flex min-h-11 items-center justify-center border bg-background px-4 text-sm font-semibold text-foreground transition-colors hover:bg-muted max-[360px]:w-full sm:px-5"
           >
             Read Type I/II guide
           </Link>
@@ -222,22 +221,22 @@ export default function HardHatClassDecoderPage() {
       <main className="container mx-auto max-w-6xl px-4 lg:px-6">
         <HardHatDecoder />
 
-        <section data-tool-reading className="mt-16 grid gap-5 md:grid-cols-3">
-          <article className="rounded-2xl border bg-background p-5 shadow-sm">
+        <section data-tool-reading className="mt-12 grid gap-px border bg-border md:grid-cols-3">
+          <article className="bg-background p-5">
             <HardHat className="h-6 w-6 text-primary" aria-hidden="true" />
             <h2 className="mt-4 text-lg font-semibold text-foreground">Type answers impact direction</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Use Type I for top impact. Use Type II when side or lateral impact is a realistic jobsite hazard.
             </p>
           </article>
-          <article className="rounded-2xl border bg-background p-5 shadow-sm">
+          <article className="bg-background p-5">
             <Zap className="h-6 w-6 text-primary" aria-hidden="true" />
             <h2 className="mt-4 text-lg font-semibold text-foreground">Class answers electrical exposure</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Class E and G are electrical classes. Class C is conductive and should not be used around electrical hazards.
             </p>
           </article>
-          <article className="rounded-2xl border bg-background p-5 shadow-sm">
+          <article className="bg-background p-5">
             <ClipboardCheck className="h-6 w-6 text-primary" aria-hidden="true" />
             <h2 className="mt-4 text-lg font-semibold text-foreground">RFQ should name both</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
@@ -249,13 +248,13 @@ export default function HardHatClassDecoderPage() {
         <section data-tool-reading className="mt-20">
           <div className="mb-6 flex items-center gap-3">
             <ShieldCheck className="h-6 w-6 text-primary" aria-hidden="true" />
-            <h2 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl">
+            <h2 className="font-extrabold text-3xl leading-tight text-foreground sm:text-4xl">
               Hard hat types and classes
             </h2>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <div className="overflow-hidden rounded-2xl border bg-background shadow-sm">
+            <div className="overflow-hidden rounded-none border bg-background">
               <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="bg-muted/60">
@@ -276,7 +275,7 @@ export default function HardHatClassDecoderPage() {
               </table>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border bg-background shadow-sm">
+            <div className="overflow-hidden rounded-none border bg-background">
               <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="bg-muted/60">
@@ -302,11 +301,11 @@ export default function HardHatClassDecoderPage() {
         <section data-tool-reading className="mt-20">
           <div className="mb-6 flex items-center gap-3">
             <FileCheck2 className="h-6 w-6 text-primary" aria-hidden="true" />
-            <h2 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl">
+            <h2 className="font-extrabold text-3xl leading-tight text-foreground sm:text-4xl">
               Construction task matrix
             </h2>
           </div>
-          <div className="overflow-x-auto rounded-2xl border bg-background shadow-sm">
+          <div className="overflow-x-auto rounded-none border bg-background">
             <table className="w-full min-w-[760px] border-collapse text-sm">
               <thead>
                 <tr className="bg-muted/60">
@@ -342,7 +341,7 @@ export default function HardHatClassDecoderPage() {
               <BookOpenCheck className="h-4 w-4" aria-hidden="true" />
               FAQ
             </p>
-            <h2 className="mt-3 font-serif text-3xl leading-tight text-foreground">
+            <h2 className="mt-3 font-extrabold text-3xl leading-tight text-foreground">
               Hard hat class questions
             </h2>
             <p className="mt-4 text-sm leading-6 text-muted-foreground">
@@ -351,7 +350,7 @@ export default function HardHatClassDecoderPage() {
           </div>
           <div className="grid gap-3">
             {FAQ.map((item) => (
-              <article key={item.q} className="rounded-xl border bg-background p-5 shadow-sm">
+              <article key={item.q} className="rounded-none border bg-background p-5">
                 <h3 className="text-base font-semibold text-foreground">{item.q}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.a}</p>
               </article>
@@ -359,10 +358,10 @@ export default function HardHatClassDecoderPage() {
           </div>
         </section>
 
-        <section data-tool-reading className="mt-20 rounded-2xl border bg-primary/5 p-6 shadow-sm sm:p-8">
+        <section data-tool-reading className="mt-20 rounded-none border bg-primary/5 p-6 sm:p-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
-              <h2 className="font-serif text-3xl leading-tight text-foreground">
+              <h2 className="font-extrabold text-3xl leading-tight text-foreground">
                 Add the selected hard hat type and class to your PPE RFQ.
               </h2>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -374,7 +373,7 @@ export default function HardHatClassDecoderPage() {
               <Link
                 href={RFQ_HREF}
                 data-source={LINK_SOURCE}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-none bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Open RFQ template
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -382,7 +381,7 @@ export default function HardHatClassDecoderPage() {
               <Link
                 href={QUOTE_HREF}
                 data-source={LINK_SOURCE}
-                className="inline-flex min-h-11 items-center justify-center rounded-md border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                className="inline-flex min-h-11 items-center justify-center rounded-none border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
                 Request a quote
               </Link>

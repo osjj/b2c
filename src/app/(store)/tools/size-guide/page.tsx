@@ -165,7 +165,7 @@ export default function SizeGuidePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
+      <nav className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] pt-4 text-xs">
         <ol className="flex items-center gap-1.5 text-muted-foreground">
           <li>
             <Link href="/" className="hover:text-foreground transition-colors">
@@ -184,32 +184,32 @@ export default function SizeGuidePage() {
       </nav>
 
       {/* Hero */}
-      <header data-tool-hero className={[theme.hero, "container mx-auto px-4 lg:px-6 pt-14 pb-10 max-w-4xl text-center"].join(" ")}>
+      <header data-tool-hero className={[theme.hero, "mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)]"].join(" ")}>
         <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-primary mb-4">
           Reference Tool · Free
         </p>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-5">
+        <h1 className="mb-5 max-w-4xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
           Safety Boot Size Guide
         </h1>
-        <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           Convert safety footwear sizing across US, UK, EU, China and Japan — plus width
           fittings for ASTM F2413 and EN ISO 20345 boots.
         </p>
       </header>
 
-      <div className="container mx-auto px-4 lg:px-6 max-w-5xl">
+      <div className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)]">
         <SizeConverter />
       </div>
 
       {/* How to measure */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
         <div className="flex items-center gap-3 mb-3">
           <Ruler className="h-6 w-6 text-primary" />
-          <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
+          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
             How to measure your feet
           </h2>
         </div>
-        <p className="text-muted-foreground text-base leading-[1.85] mb-8">
+        <p className="max-w-[76ch] text-muted-foreground text-base leading-[1.85] mb-8">
           Foot length in millimetres is the most accurate measurement for safety footwear.
           Take 5 minutes to do it properly and you will avoid the 40% of online boot
           returns caused by size mismatch.
@@ -219,9 +219,9 @@ export default function SizeGuidePage() {
           {MEASURE_STEPS.map((step, idx) => (
             <li
               key={step.title}
-              className="flex gap-4 rounded-xl border bg-background p-5 shadow-sm"
+              className="flex gap-4 rounded-none border bg-background p-5"
             >
-              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-sm">
+              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-none bg-primary text-primary-foreground font-semibold text-sm">
                 {idx + 1}
               </div>
               <div>
@@ -234,15 +234,15 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Full conversion chart */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-6xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-3">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl mb-3">
           US to EU safety boot size conversion chart
         </h2>
-        <p className="text-muted-foreground text-base leading-relaxed mb-6">
+        <p className="max-w-[76ch] text-muted-foreground text-base leading-relaxed mb-6">
           Cross-reference table for safety-footwear sizing across the major systems.
           Sizes are based on Brannock / ISO 9407 foot-length measurement.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto border bg-background" role="region" aria-label="Safety boot size conversion chart" tabIndex={0}>
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -276,19 +276,19 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Width chart */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
         <div className="flex items-center gap-3 mb-3">
           <Footprints className="h-6 w-6 text-primary" />
-          <h2 className="font-serif text-3xl sm:text-4xl leading-tight">
+          <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">
             Width fittings explained
           </h2>
         </div>
-        <p className="text-muted-foreground text-base leading-relaxed mb-6">
+        <p className="max-w-[76ch] text-muted-foreground text-base leading-relaxed mb-6">
           Safety footwear width is measured across the ball of the foot. US systems use
           letter codes (D, E, 2E, 4E), European systems use F/G/H/K. Both ASTM F2413 and
           EN ISO 20345 permit these variants.
         </p>
-        <div className="overflow-x-auto rounded-xl border bg-background shadow-sm">
+        <div className="overflow-x-auto border bg-background" role="region" aria-label="Safety footwear width chart" tabIndex={0}>
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/60">
@@ -316,12 +316,12 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Break-in tips */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-6">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl mb-6">
           Break-in and on-site fit check
         </h2>
         <div className="grid gap-5 sm:grid-cols-3">
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-none border bg-background p-5">
             <Clock className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">First 40 hours</h3>
             <p className="text-sm text-muted-foreground">
@@ -329,7 +329,7 @@ export default function SizeGuidePage() {
               conforms. Sharp pain or toe-cap contact means wrong size.
             </p>
           </div>
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-none border bg-background p-5">
             <Ruler className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Toe test</h3>
             <p className="text-sm text-muted-foreground">
@@ -337,7 +337,7 @@ export default function SizeGuidePage() {
               if it does, the boot is too short regardless of labelled size.
             </p>
           </div>
-          <div className="rounded-xl border bg-background p-5 shadow-sm">
+          <div className="rounded-none border bg-background p-5">
             <Footprints className="h-5 w-5 text-primary mb-2" />
             <h3 className="font-semibold text-foreground mb-1">Heel lock test</h3>
             <p className="text-sm text-muted-foreground">
@@ -348,15 +348,15 @@ export default function SizeGuidePage() {
         </div>
       </section>
 
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-16">
-        <div className="rounded-2xl border bg-primary/5 p-6 sm:p-8">
-          <h2 className="font-serif text-2xl">Ordering footwear for a team?</h2>
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-16">
+        <div className="rounded-none border bg-primary/5 p-6 sm:p-8">
+          <h2 className="text-2xl font-extrabold">Ordering footwear for a team?</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Combine confirmed size counts by model, color and size system, add spare pairs and adjust the final order. The bulk allocator keeps size systems separate and lets you export Excel or prepare an editable RFQ.</p>
-          <Link href="/tools/footwear-size-allocation" data-source="tool-size-guide-bulk-allocation" className="mt-4 inline-flex min-h-11 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground">Build a bulk footwear size order</Link>
+          <Link href="/tools/footwear-size-allocation" data-source="tool-size-guide-bulk-allocation" className="mt-4 inline-flex min-h-11 items-center rounded-none bg-primary px-5 text-sm font-semibold text-primary-foreground">Build a bulk footwear size order</Link>
         </div>
       </section>
 
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-5xl mt-20">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
         <ToolRelatedGuidesSection
           title="Footwear guides to use after sizing"
           description="Once size and width are clear, use these buying guides to confirm standards, role needs, and bulk order details before requesting safety footwear pricing."
@@ -365,15 +365,15 @@ export default function SizeGuidePage() {
       </section>
 
       {/* FAQ */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-3xl mt-20">
-        <h2 className="font-serif text-3xl sm:text-4xl leading-tight mb-8 text-center">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl mb-8">
           Frequently asked questions
         </h2>
         <div className="space-y-5">
           {FAQ.map((item) => (
             <details
               key={item.q}
-              className="group rounded-xl border bg-background p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden"
+              className="group rounded-none border bg-background p-5 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex items-start justify-between gap-4 cursor-pointer font-semibold text-foreground list-none">
                 <span>{item.q}</span>
@@ -386,12 +386,12 @@ export default function SizeGuidePage() {
       </section>
 
       {/* Related */}
-      <section data-tool-reading className="container mx-auto px-4 lg:px-6 max-w-4xl mt-20">
-        <div className="rounded-2xl border bg-gradient-to-br from-primary/5 via-background to-background p-8 sm:p-10 shadow-sm">
+      <section data-tool-reading className="mx-auto max-w-[var(--tools-width)] px-[var(--tools-gutter)] mt-12 lg:mt-16">
+        <div className="rounded-none border bg-primary/5 p-6 sm:p-8">
           <div className="flex items-start gap-4">
             <Info className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h2 className="font-serif text-2xl leading-tight mb-3">
+              <h2 className="mb-3 text-2xl font-extrabold leading-tight">
                 Ready to choose your boots?
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-5">
@@ -410,19 +410,19 @@ export default function SizeGuidePage() {
                 <Link
                   href={QUOTE_HREF}
                   data-source={QUOTE_SOURCE}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:shadow-md transition-all"
+                  className="inline-flex items-center gap-2 rounded-none bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                 >
                   Request footwear quote
                 </Link>
                 <Link
                   href="/categories/foot-protection"
-                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+                  className="inline-flex items-center gap-2 rounded-none border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
                 >
                   Shop safety boots
                 </Link>
                 <Link
                   href="/tools/compliance-checker"
-                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+                  className="inline-flex items-center gap-2 rounded-none border px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted transition-colors"
                 >
                   Decode a label
                 </Link>

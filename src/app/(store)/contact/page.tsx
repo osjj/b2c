@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Mail, MessageCircle, Clock, MapPin, ArrowRight, FileText } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { RequestQuoteButton } from '@/components/store/request-quote-button'
+import styles from './contact-page.module.css'
 
 export const metadata: Metadata = {
   title: 'Contact Us | Laifappe',
@@ -36,96 +36,72 @@ const contacts = [
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <section className="border-b bg-gradient-to-br from-foreground via-foreground/95 to-foreground/90">
-        <div className="container mx-auto px-6 lg:px-8 py-14 md:py-20">
-          <p className="text-sm text-primary-foreground/70 mb-3">Contact</p>
-          <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-5">
-            Talk To Our PPE Team
-          </h1>
-          <p className="text-primary-foreground/80 max-w-2xl">
-            Email your product requirements, target quantity, and delivery timeline. Our sales team will reply with a clear quotation plan.
-          </p>
-          <div className="flex flex-wrap gap-3 mt-8">
-            <Button size="lg" className="h-12 px-6 bg-white text-foreground hover:bg-white/90" asChild>
-              <a href="mailto:sales@laifappe.com">
-                <Mail className="mr-2 h-4 w-4" />
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <div className={styles.hero}>
+          <header className={styles.intro}>
+            <p className={styles.kicker}>Contact</p>
+            <h1>Talk To Our PPE Team</h1>
+            <p className={styles.summary}>
+              Email your product requirements, target quantity, and delivery timeline. Our sales team will reply with a clear quotation plan.
+            </p>
+            <div className={styles.actions}>
+              <a className={`${styles.action} ${styles.primary}`} href="mailto:sales@laifappe.com">
+                <Mail size={18} aria-hidden="true" />
                 Email Sales
               </a>
-            </Button>
-            <RequestQuoteButton size="lg" variant="secondary" className="h-12 px-6">
-              <FileText className="mr-2 h-4 w-4" />
-              Request Quote
-            </RequestQuoteButton>
-            <Button size="lg" variant="outline" className="h-12 px-6 bg-transparent border-white/30 text-white hover:bg-white hover:text-foreground" asChild>
-              <Link href="/products">
+              <RequestQuoteButton className={styles.action} variant="outline">
+                <FileText size={18} aria-hidden="true" />
+                Request Quote
+              </RequestQuoteButton>
+              <Link className={styles.action} href="/products">
                 Browse Products
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight size={18} aria-hidden="true" />
               </Link>
-            </Button>
-          </div>
+            </div>
+          </header>
+          <aside className={styles.office} aria-labelledby="contact-office-title">
+            <MapPin size={24} aria-hidden="true" />
+            <h2 id="contact-office-title">Office &amp; Factory</h2>
+            <p className={styles.officeLocation}>Foshan, Guangdong, China</p>
+            <p>OEM/ODM projects and bulk procurement are supported.</p>
+          </aside>
         </div>
-      </section>
 
-      <section className="container mx-auto px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid md:grid-cols-3 gap-5">
+        <ul className={styles.contacts}>
           {contacts.map((item) => {
             const Icon = item.icon
-            const body = (
-              <div className={`h-full rounded-xl border bg-card p-6 shadow-sm transition-shadow hover:shadow-md ${item.featured ? 'border-primary/40 bg-primary/5 md:col-span-3 md:p-8' : ''}`}>
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <div className={`mb-4 flex items-center justify-center rounded-lg bg-primary/10 ${item.featured ? 'h-12 w-12' : 'h-10 w-10'}`}>
-                      <Icon className={`${item.featured ? 'h-6 w-6' : 'h-5 w-5'} text-primary`} />
-                    </div>
-                    <h2 className={`${item.featured ? 'text-2xl' : 'text-lg'} font-semibold`}>{item.title}</h2>
-                  </div>
-                  {item.featured && (
-                    <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary-foreground">
-                      Preferred
-                    </span>
-                  )}
+            const content = (
+              <>
+                <div className={styles.methodTop}>
+                  <Icon size={22} aria-hidden="true" />
+                  {item.featured && <span className={styles.preferred}>Preferred</span>}
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">{item.note}</p>
-                <p className={`mt-4 break-all ${item.featured ? 'text-2xl font-bold text-primary md:text-3xl' : 'font-medium'}`}>
-                  {item.value}
-                </p>
-              </div>
+                <h2>{item.title}</h2>
+                <p className={styles.value}>{item.value}</p>
+                <p className={styles.note}>{item.note}</p>
+              </>
             )
-
-            if (!item.href) {
-              return <div key={item.title} className={item.featured ? 'md:col-span-3' : undefined}>{body}</div>
-            }
 
             return (
-              <a
-                key={item.title}
-                href={item.href}
-                target={item.href.startsWith('http') ? '_blank' : undefined}
-                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={item.featured ? 'md:col-span-3' : undefined}
-              >
-                {body}
-              </a>
+              <li key={item.title} className={item.featured ? styles.featured : undefined}>
+                {item.href ? (
+                  <a
+                    className={styles.method}
+                    href={item.href}
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div className={styles.method}>{content}</div>
+                )}
+              </li>
             )
           })}
-        </div>
-
-        <div className="mt-8 rounded-xl border bg-secondary/30 p-6">
-          <div className="flex items-start gap-3">
-            <MapPin className="h-5 w-5 text-primary mt-0.5" />
-            <div>
-              <h3 className="font-semibold">Office & Factory</h3>
-              <p className="text-muted-foreground mt-1">
-                Foshan, Guangdong, China
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                OEM/ODM projects and bulk procurement are supported.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </ul>
+      </div>
     </div>
   )
 }

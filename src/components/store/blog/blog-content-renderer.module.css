@@ -1,0 +1,237 @@
+.content {
+  min-width: 0;
+  color: var(--blog-ink);
+  font: 400 clamp(1.0625rem, 1.2vw, 1.125rem)/1.72 var(--catalog-font, Archivo, "Segoe UI", sans-serif);
+  font-stretch: 100%;
+  overflow-wrap: anywhere;
+}
+
+.content > :is(p, ol, ul, blockquote) {
+  max-inline-size: 72ch;
+}
+
+.content > :is(p, ol, ul) {
+  margin-block: 0.85rem 1.1rem;
+}
+
+.content > :first-child {
+  margin-block-start: 0;
+}
+
+.content > :last-child {
+  margin-block-end: 0;
+}
+
+.content > :is(h2, h3, h4) {
+  font-family: var(--blog-display);
+  font-stretch: 95%;
+  font-weight: 750;
+  line-height: 1.2;
+  text-wrap: pretty;
+}
+
+.content > h2 {
+  position: relative;
+  padding-block-end: 0.65rem;
+  padding-inline-start: 0.8em;
+  border-block-end: 1px solid var(--blog-rule);
+  margin-block: clamp(2rem, 4vw, 3.5rem) 0.9rem;
+  scroll-margin-top: var(--blog-anchor);
+  font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+  font-weight: 800;
+}
+
+.content > h2::before {
+  position: absolute;
+  inset-block-start: 0.13em;
+  inset-inline-start: 0.15em;
+  width: 0.24em;
+  height: 0.81em;
+  transform: skew(-21deg);
+  background: var(--blog-orange);
+  content: "";
+}
+
+.content > h3 {
+  margin-block: 1.65rem 0.55rem;
+  font-size: clamp(1.2rem, 1.85vw, 1.6rem);
+}
+
+.content > h4 {
+  margin-block: 1.25rem 0.5rem;
+  font-size: 1.12rem;
+}
+
+.content a {
+  border-radius: 0;
+  background: none;
+  color: var(--blog-orange);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.19em;
+}
+
+.content a:hover {
+  color: var(--blog-ink);
+  text-decoration-thickness: 2px;
+}
+
+.content :is(ol, ul) {
+  padding-inline-start: 1.4em;
+}
+
+.content ol { list-style: decimal; }
+.content ul { list-style: disc; }
+
+.content li + li,
+.content li > :is(ol, ul) {
+  margin-block-start: 0.35rem;
+}
+
+.content li::marker {
+  color: var(--blog-orange);
+  font-weight: 750;
+}
+
+.figure {
+  margin-block: clamp(1.35rem, 3vw, 2.5rem);
+}
+
+.figure[data-stretched="true"] {
+  inline-size: 100%;
+}
+
+.figure[data-with-background="true"] {
+  padding: clamp(0.5rem, 2vw, 1rem);
+  background: var(--blog-paper);
+}
+
+.figureImage {
+  background: var(--blog-paper);
+}
+
+.figureImage[data-with-border="true"] {
+  border: 1px solid var(--blog-rule);
+}
+
+.figureImage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure figcaption {
+  padding: 0.6rem 0.85rem;
+  border-inline-start: 3px solid var(--blog-orange);
+  background: var(--blog-paper);
+  color: var(--blog-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.delimiter {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-block: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--blog-orange);
+}
+
+.delimiter::before {
+  width: 0.42rem;
+  height: 0.85rem;
+  margin-inline-start: 0.2rem;
+  transform: skew(-21deg);
+  background: currentColor;
+  content: "";
+}
+
+.delimiter::after {
+  flex: 1;
+  border-block-start: 1px solid var(--blog-rule);
+  content: "";
+}
+
+.tableFrame {
+  max-inline-size: 100%;
+  margin-block: clamp(1.35rem, 3vw, 2.5rem);
+  overflow-x: auto;
+  border: 1px solid var(--blog-rule);
+  background: var(--blog-surface);
+  scrollbar-color: var(--blog-muted) var(--blog-paper);
+}
+
+.tableFrame:focus-visible {
+  outline: 2px solid var(--blog-orange);
+  outline-offset: 3px;
+}
+
+.tableFrame table {
+  inline-size: 100%;
+  min-inline-size: 22rem;
+  border-collapse: collapse;
+  font-size: clamp(0.9rem, 1.1vw, 0.98rem);
+  line-height: 1.5;
+}
+
+.tableFrame table:has(tr > :nth-child(3)) {
+  min-inline-size: 32rem;
+}
+
+.tableFrame :is(th, td) {
+  min-inline-size: 7rem;
+  padding: 0.65rem clamp(0.6rem, 1.3vw, 0.95rem);
+  text-align: start;
+  vertical-align: top;
+}
+
+.tableFrame thead {
+  border-block-end: 2px solid var(--blog-orange);
+  background: var(--blog-ink);
+  color: var(--blog-surface);
+}
+
+.tableFrame th {
+  font-weight: 750;
+}
+
+.tableFrame th a {
+  color: inherit;
+  text-decoration-color: #ffb089;
+}
+
+.tableFrame th a:hover {
+  color: #ffb089;
+}
+
+.tableFrame tbody tr:nth-child(even) {
+  background: var(--blog-paper);
+}
+
+.tableFrame tbody tr + tr { border-block-start: 1px solid var(--blog-rule); }
+.tableFrame td + td { border-inline-start: 1px solid var(--blog-rule); }
+.tableFrame td:first-child { font-weight: 650; }
+
+.quote {
+  margin-block: clamp(1.35rem, 3vw, 2.35rem);
+  padding: clamp(0.75rem, 2vw, 1.25rem);
+  border-inline-start: 3px solid var(--blog-orange);
+  background: var(--blog-highlight);
+}
+
+.quote[data-alignment="center"] {
+  text-align: center;
+}
+
+.quote p {
+  font-weight: 550;
+}
+
+.quote cite {
+  display: block;
+  margin-block-start: 0.5rem;
+  color: var(--blog-muted);
+  font-size: 0.9rem;
+  font-style: normal;
+}

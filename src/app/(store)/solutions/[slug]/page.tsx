@@ -7,11 +7,9 @@ import {
   Award,
   BadgeCheck,
   CheckCircle2,
-  ChevronRight,
   Download,
   Factory,
   FileCheck,
-  Home,
   ShieldCheck,
 } from 'lucide-react'
 import { getSolutionBySlug } from '@/actions/solutions'
@@ -30,6 +28,7 @@ import { getToolRecommendationsForSolution } from '@/lib/tool-recommendations'
 import type { ProductImage, Category } from '@prisma/client'
 import { getSiteUrl } from '@/lib/site-url'
 import { ArticleJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
+import styles from '@/components/store/solution-detail/solution-detail.module.css'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -433,16 +432,20 @@ export default async function SolutionDetailPage({ params }: Props) {
     <>
       <SolutionTrustProofSection />
       <SolutionProcurementDownloads source={solutionSource} solutionSlug={slug} />
-      <ToolRecommendationsSection
-        tools={relatedTools}
-        title="Move from PPE guidance to order planning"
-        description="These tools help buyers convert the solution into sizing checks, compliance review, quantity planning, and a faster quote request."
-      />
+      {relatedTools.length > 0 ? (
+        <div className={styles.toolResources}>
+          <ToolRecommendationsSection
+            tools={relatedTools}
+            title="Move from PPE guidance to order planning"
+            description="These tools help buyers convert the solution into sizing checks, compliance review, quantity planning, and a faster quote request."
+          />
+        </div>
+      ) : null}
     </>
   )
 
   return (
-    <div className="bg-ppe-bg-page min-h-screen pb-16">
+    <div className={styles.page}>
       <ArticleJsonLd
         type="TechArticle"
         headline={solution.title}
@@ -455,52 +458,37 @@ export default async function SolutionDetailPage({ params }: Props) {
       />
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={faqItems} />
-      <nav className="container mx-auto py-2.5 px-4 lg:px-6 text-xs border-b bg-background/50">
-        <ol className="flex items-center gap-1.5 text-muted-foreground">
-          <li>
-            <Link href="/" className="hover:text-foreground transition-colors">
-              <Home className="h-3.5 w-3.5" />
-            </Link>
-          </li>
-          <ChevronRight className="h-3 w-3" />
-          <li>
-            <Link href="/solutions" className="hover:text-foreground transition-colors">
-              Solutions
-            </Link>
-          </li>
-          <ChevronRight className="h-3 w-3" />
-          <li className="text-foreground font-medium truncate max-w-[200px]">{solution.title}</li>
-        </ol>
-      </nav>
+      <div className={styles.frame}>
+        <nav className={styles.breadcrumb} aria-label="Breadcrumb">
+          <ol>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/solutions">Solutions</Link></li>
+            <li aria-current="page">{solution.title}</li>
+          </ol>
+        </nav>
 
-      <SolutionHero
-        title={solution.title}
-        excerpt={solution.excerpt}
-        usageScenes={solution.usageScenes}
-        coverImage={solution.coverImage}
-        sectionLink={warehouseKitSection && {
-          href: `#${warehouseKitSection.key}`,
-          label: 'Compare PPE kits by role',
-        }}
-      />
+        <SolutionHero
+          title={solution.title}
+          excerpt={solution.excerpt}
+          usageScenes={solution.usageScenes}
+          coverImage={solution.coverImage}
+          sectionLink={warehouseKitSection && {
+            href: `#${warehouseKitSection.key}`,
+            label: 'Compare PPE kits by role',
+          }}
+        />
 
-      <div className="container mx-auto py-8 px-4 lg:px-6">
-        {hasToc ? (
-          <div className="grid gap-8 lg:grid-cols-[240px_minmax(0,1fr)]">
-            <aside className="hidden lg:block">
+        <div className={styles.layout} data-has-toc={hasToc}>
+          {hasToc ? (
+            <aside className={styles.sidebar}>
               <TableOfContents items={tocItems} />
             </aside>
-            <div className="min-w-0 max-w-4xl space-y-6">
-              <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
-              {solutionResourceSections}
-            </div>
-          </div>
-        ) : (
-          <div className="min-w-0 max-w-4xl space-y-6">
+          ) : null}
+          <div className={styles.article}>
             <SolutionSections sections={sections} productsBySectionKey={productsBySectionKey} />
             {solutionResourceSections}
           </div>
-        )}
+        </div>
       </div>
     </div>
   )
@@ -508,50 +496,39 @@ export default async function SolutionDetailPage({ params }: Props) {
 
 function SolutionTrustProofSection() {
   return (
-    <section className="overflow-hidden rounded-2xl border bg-background shadow-sm">
-      <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_260px]">
-        <div className="p-5 sm:p-6">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              Trust proof
-            </span>
-            <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-              Standards ready
-            </span>
-          </div>
-          <h2 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
-            Verify standards before sending an RFQ
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Review the required standards, certificate samples, document needs, and factory capability before confirming
-            quantities, packaging, and delivery details.
-          </p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {TRUST_PROOF_ITEMS.map((item) => {
-              const Icon = item.icon
-              return (
-                <article key={item.title} className="rounded-xl border bg-card p-4">
-                  <div className="mb-3 flex items-center gap-2">
-                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
-                  </div>
-                  <p className="text-sm leading-5 text-muted-foreground">{item.description}</p>
-                </article>
-              )
-            })}
-          </div>
+    <section className={styles.proofPanel}>
+      <div className={styles.proofCopy}>
+        <div className={styles.proofTags}>
+          <span className={styles.eyebrow}>Trust proof</span>
+          <span className={styles.proofTag}>Standards ready</span>
         </div>
-        <div className="relative min-h-[260px] border-t bg-muted/40 lg:border-l lg:border-t-0">
-          <Image
-            src="/newpage/xuanchuan/zhengshu02.png"
-            alt="Laifappe PPE certification document sample"
-            fill
-            sizes="(max-width: 1024px) 100vw, 260px"
-            className="object-contain p-4"
-          />
+        <h2 className={styles.resourceTitle}>Verify standards before sending an RFQ</h2>
+        <p className={styles.resourceCopy}>
+          Review the required standards, certificate samples, document needs, and factory capability before confirming
+          quantities, packaging, and delivery details.
+        </p>
+        <div className={styles.proofItems}>
+          {TRUST_PROOF_ITEMS.map((item) => {
+            const Icon = item.icon
+            return (
+              <article key={item.title} className={styles.subCard}>
+                <h3 className={styles.resourceLabel}>
+                  <Icon size={16} aria-hidden="true" />
+                  {item.title}
+                </h3>
+                <p>{item.description}</p>
+              </article>
+            )
+          })}
         </div>
+      </div>
+      <div className={styles.proofImage}>
+        <Image
+          src="/newpage/xuanchuan/zhengshu02.png"
+          alt="Laifappe PPE certification document sample"
+          fill
+          sizes="(max-width: 1120px) 90vw, 260px"
+        />
       </div>
     </section>
   )
@@ -560,33 +537,27 @@ function SolutionTrustProofSection() {
 function SolutionProcurementDownloads({ source, solutionSlug }: { source: string; solutionSlug: string }) {
   const resources = getProcurementResources(solutionSlug)
   const assetGridColumns =
-    solutionSlug === 'ppe-safety-equipment-for-mining-quarrying'
-      ? 'sm:grid-cols-2'
-      : 'sm:grid-cols-3'
+    solutionSlug === 'ppe-safety-equipment-for-mining-quarrying' ? 'two' : 'three'
 
   return (
-    <section className="rounded-2xl border bg-card p-5 shadow-sm sm:p-6">
-      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+    <section className={styles.downloads}>
+      <div className={styles.downloadsHeading}>
         <div>
-          <div className="mb-2 flex items-center gap-2 text-sm font-medium text-primary">
-            <Download className="h-4 w-4" aria-hidden="true" />
-            {resources.eyebrow}
-          </div>
-          <h2 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
-            {resources.title}
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">{resources.description}</p>
+          <p className={styles.eyebrow}>{resources.eyebrow}</p>
+          <h2 className={styles.resourceTitle}>{resources.title}</h2>
+          <p className={styles.resourceCopy}>{resources.description}</p>
         </div>
         <Link
           href={resources.quoteHref ?? '/quote'}
           data-source={source}
-          className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+          className={styles.button}
+          data-variant="outline"
         >
           Request quote
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
-      <div className={`mt-5 grid gap-3 ${assetGridColumns}`}>
+      <div className={styles.downloadGrid} data-columns={assetGridColumns}>
         {resources.assets.map((asset) => (
           <Link
             key={asset.id}
@@ -595,28 +566,22 @@ function SolutionProcurementDownloads({ source, solutionSlug }: { source: string
             download={asset.isDownload ? true : undefined}
             data-download-asset={asset.isDownload ? asset.id : undefined}
             data-download-source={asset.isDownload ? source : undefined}
-            className="group flex min-w-0 flex-col rounded-xl border bg-background p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            className={styles.downloadCard}
           >
-            <span className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <BadgeCheck className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <span className="text-sm font-semibold text-foreground">{asset.label}</span>
-            <span className="mt-2 text-sm leading-5 text-muted-foreground">{asset.description}</span>
-            <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-primary">
+            {asset.isDownload ? <Download size={17} aria-hidden="true" /> : <BadgeCheck size={17} aria-hidden="true" />}
+            <strong>{asset.label}</strong>
+            <p>{asset.description}</p>
+            <span className={styles.downloadAction}>
               {asset.action}
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              <ArrowRight size={14} aria-hidden="true" />
             </span>
           </Link>
         ))}
       </div>
-      <div className="mt-5 flex flex-wrap gap-3 border-t pt-5 text-sm">
+      <div className={styles.relatedLinks}>
         {resources.relatedLinks.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="inline-flex min-h-10 items-center rounded-md border px-4 font-medium text-foreground transition-colors hover:bg-muted"
-          >
-            <CheckCircle2 className="mr-2 h-4 w-4 flex-shrink-0 text-primary" aria-hidden="true" />
+          <Link key={item.href} href={item.href}>
+            <CheckCircle2 size={15} aria-hidden="true" />
             {item.label}
           </Link>
         ))}
