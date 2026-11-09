@@ -133,6 +133,11 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
     }),
     getCategories(),
   ])
+
+  if (page > 1 && page > pagination.totalPages) {
+    notFound()
+  }
+
   const navigationCategories = buildProductCategoryNavigation(categories)
   const activeNavigationHref =
     navigationCategories.find((entry) => entry.id === category.id)?.href ??

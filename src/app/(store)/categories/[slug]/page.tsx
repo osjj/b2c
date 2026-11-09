@@ -107,6 +107,11 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     }),
     getCategories(),
   ])
+
+  if (page > 1 && page > pagination.totalPages) {
+    notFound()
+  }
+
   const navigationCategories = buildProductCategoryNavigation(categories)
 
   const baseUrl = getSiteUrl()
