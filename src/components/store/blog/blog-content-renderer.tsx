@@ -25,11 +25,12 @@ interface EditorJSContent {
 
 interface BlogContentRendererProps {
   content: EditorJSContent | null | undefined
+  unoptimizedImages?: boolean
 }
 
 const BLOG_LINK_SCOPE_CLASS = 'blog-prose content-link-scope'
 
-export function BlogContentRenderer({ content }: BlogContentRendererProps) {
+export function BlogContentRenderer({ content, unoptimizedImages = false }: BlogContentRendererProps) {
   if (!content?.blocks?.length) {
     return null
   }
@@ -47,7 +48,7 @@ export function BlogContentRenderer({ content }: BlogContentRendererProps) {
           case 'list':
             return renderList(block, index)
           case 'image':
-            return renderImage(block, index)
+            return renderImage(block, index, unoptimizedImages)
           case 'delimiter':
             return renderDelimiter(block, index)
           case 'quote':
@@ -153,7 +154,7 @@ function renderList(block: Block, index: number) {
   )
 }
 
-function renderImage(block: Block, index: number) {
+function renderImage(block: Block, index: number, unoptimized: boolean) {
   const file = block.data.file as { url?: string } | undefined
   const caption = (block.data.caption as string | undefined) || ''
   const stretched = Boolean(block.data.stretched)
@@ -190,6 +191,7 @@ function renderImage(block: Block, index: number) {
           width={1200}
           height={800}
           sizes="(max-width: 768px) 94vw, 800px"
+          unoptimized={unoptimized}
         />
       </div>
       {hasCaption && (

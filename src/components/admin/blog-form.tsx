@@ -1,6 +1,7 @@
 'use client'
 
 import { useActionState, useRef, useState, useTransition } from 'react'
+import { Eye } from 'lucide-react'
 import { createBlogPost, updateBlogPost, type BlogPostState } from '@/actions/admin/blog'
 import { generateSlug } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -9,8 +10,11 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+import { BlogPreviewDialog, type BlogPreviewSnapshot } from './blog-preview-dialog'
 import { ImageUpload } from './image-upload'
 import { ContentEditor, type EditorJSData, type ContentEditorRef } from './content-editor'
+import { getPreviewImageUrl, prepareBlogPreviewContent } from './preview-content'
 import type { ImageData } from '@/types/image'
 
 interface BlogPostRecord {
@@ -45,7 +49,11 @@ export function BlogForm({ post }: BlogFormProps) {
   const [seoKeywords, setSeoKeywords] = useState(post?.seoKeywords ?? '')
 
   const contentEditorRef = useRef<ContentEditorRef>(null)
+  const editorReadPending = useRef(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const [preview, setPreview] = useState<BlogPreviewSnapshot | null>(null)
+  const [previewPending, setPreviewPending] = useState(false)
+  const [previewError, setPreviewError] = useState<string | null>(null)
 
   const initialContent = (post?.content ?? null) as EditorJSData | null
 
@@ -61,17 +69,51 @@ export function BlogForm({ post }: BlogFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const form = formRef.current
-    if (!form) return
+    if (!form || pending || preview || editorReadPending.current) return
 
-    // Pull the latest EditorJS data and stuff it into the hidden field before submit.
-    const content = (await contentEditorRef.current?.save()) ?? null
-    const hidden = form.elements.namedItem('content') as HTMLInputElement | null
-    if (hidden) hidden.value = content ? JSON.stringify(content) : ''
+    editorReadPending.current = true
+    try {
+      // Pull the latest EditorJS data and stuff it into the hidden field before submit.
+      const content = (await contentEditorRef.current?.save()) ?? null
+      const hidden = form.elements.namedItem('content') as HTMLInputElement | null
+      if (hidden) hidden.value = content ? JSON.stringify(content) : ''
 
-    const formData = new FormData(form)
-    startTransition(() => {
-      formAction(formData)
-    })
+      const formData = new FormData(form)
+      startTransition(() => {
+        formAction(formData)
+      })
+    } finally {
+      editorReadPending.current = false
+    }
+  }
+
+  const handlePreview = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Open the dialog only after capturing the current editor state.
+    event.preventDefault()
+    if (pending || editorReadPending.current) return
+
+    editorReadPending.current = true
+    setPreviewPending(true)
+    setPreviewError(null)
+    try {
+      const content = await contentEditorRef.current?.save()
+      if (!content) {
+        setPreviewError('The article preview is not ready yet. Please try again.')
+        return
+      }
+
+      setPreview({
+        title: title.trim() || 'Untitled post',
+        excerpt: excerpt.trim(),
+        coverImage: getPreviewImageUrl(coverImage[0]?.url),
+        content: prepareBlogPreviewContent(content),
+      })
+    } catch {
+      setPreviewError('Could not prepare the article preview. Please try again.')
+    } finally {
+      editorReadPending.current = false
+      setPreviewPending(false)
+    }
   }
 
   return (
@@ -237,7 +279,29 @@ export function BlogForm({ post }: BlogFormProps) {
             </CardContent>
           </Card>
 
-          <Button type="submit" className="w-full" disabled={pending}>
+          <Dialog
+            open={preview !== null}
+            onOpenChange={(open) => {
+              if (!open) setPreview(null)
+            }}
+          >
+            <DialogTrigger asChild>
+              <Button
+                type="button"
+                variant="outline"
+                className="min-h-11 w-full"
+                disabled={pending || previewPending}
+                onClick={handlePreview}
+              >
+                <Eye aria-hidden="true" />
+                {previewPending ? 'Preparing preview…' : 'Preview Post'}
+              </Button>
+            </DialogTrigger>
+            {preview && <BlogPreviewDialog snapshot={preview} />}
+          </Dialog>
+          {previewError && <p role="alert" className="text-sm text-destructive">{previewError}</p>}
+
+          <Button type="submit" className="w-full" disabled={pending || previewPending}>
             {pending ? 'Saving...' : post ? 'Update Post' : 'Create Post'}
           </Button>
         </div>

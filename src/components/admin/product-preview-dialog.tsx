@@ -11,6 +11,7 @@ import { getStorefrontVisibleProductSpecifications, type ProductSpecification } 
 import { formatPrice } from '@/lib/utils'
 import type { ImageData } from '@/types/image'
 import type { EditorJSData } from './content-editor'
+import { sanitizeInline, sanitizeListItems } from './preview-content'
 
 export interface ProductPreviewData {
   name: string
@@ -32,67 +33,6 @@ interface ProductPreviewDialogProps {
   onOpenChange: (open: boolean) => void
   product: ProductPreviewData | null
   onCloseAutoFocus: () => void
-}
-
-const INLINE_TAGS = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'S', 'STRIKE', 'MARK', 'BR', 'CODE', 'SUB', 'SUP', 'A'])
-const OMITTED_TAGS = new Set(['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED', 'SVG', 'MATH', 'TEMPLATE'])
-
-// The storefront renderer accepts HTML. Sanitize only the preview copy, keeping
-// the editor's original data intact while showing its supported inline styles.
-function sanitizeInline(value: unknown): string {
-  if (typeof value !== 'string') return ''
-  const parsed = new DOMParser().parseFromString(value, 'text/html')
-  const result = document.createElement('div')
-  const copyChildren = (source: Node, destination: Node) => {
-    for (const child of source.childNodes) {
-      if (child.nodeType === Node.TEXT_NODE) {
-        destination.appendChild(document.createTextNode(child.textContent ?? ''))
-      } else if (child instanceof Element && !OMITTED_TAGS.has(child.tagName)) {
-        if (!INLINE_TAGS.has(child.tagName)) {
-          copyChildren(child, destination)
-          continue
-        }
-        const safeElement = document.createElement(child.tagName.toLowerCase())
-        if (child.tagName === 'A') {
-          const href = child.getAttribute('href')
-          if (href) {
-            try {
-              const url = new URL(href, window.location.href)
-              if (['http:', 'https:', 'mailto:', 'tel:'].includes(url.protocol)) {
-                safeElement.setAttribute('href', href)
-                safeElement.setAttribute('rel', 'noopener noreferrer')
-              }
-            } catch {
-              // Invalid draft links remain visible as text.
-            }
-          }
-        }
-        copyChildren(child, safeElement)
-        destination.appendChild(safeElement)
-      }
-    }
-  }
-  copyChildren(parsed.body, result)
-  return result.innerHTML
-}
-
-interface PreviewListItem {
-  content: string
-  items: PreviewListItem[]
-}
-
-function sanitizeListItems(value: unknown, depth = 0): PreviewListItem[] {
-  if (!Array.isArray(value) || depth > 20) return []
-  return value.map((item: unknown) => {
-    if (typeof item === 'string') return { content: sanitizeInline(item), items: [] }
-    if (item && typeof item === 'object' && 'content' in item) {
-      return {
-        content: sanitizeInline(item.content),
-        items: sanitizeListItems('items' in item ? item.items : [], depth + 1),
-      }
-    }
-    return { content: '', items: [] }
-  })
 }
 
 export function prepareProductPreviewContent(content: EditorJSData | null): ProductPreviewData['content'] {
