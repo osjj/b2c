@@ -330,6 +330,7 @@
 }
 
 .subcategories {
+  margin-top: 12px;
   border-bottom: 1px solid var(--catalog-line, #b6aca0);
 }
 
