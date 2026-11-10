@@ -44,12 +44,14 @@
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, .39fr) minmax(0, .61fr);
+  grid-template-columns: minmax(0, .35fr) minmax(0, .65fr);
   align-items: center;
   padding-block: clamp(20px, 3vw, 42px) var(--section-gap);
 }
 
 .heroCopy {
+  position: relative;
+  z-index: 1;
   padding-inline-end: clamp(12px, 2vw, 28px);
 }
 
@@ -164,10 +166,11 @@
 }
 
 .heroFigure {
-  --hero-slant: 15%;
+  --hero-slant: 21%;
   --hero-stripe: clamp(12px, 1.4vw, 22px);
   position: relative;
   margin: 0;
+  margin-inline-start: clamp(-64px, 330px - 27.5vw, -12px);
 }
 
 .heroFigure::before {
@@ -896,6 +899,7 @@
 
   .heroFigure {
     --hero-slant: 8%;
+    margin-inline-start: 0;
   }
 
   .factoryPhoto {

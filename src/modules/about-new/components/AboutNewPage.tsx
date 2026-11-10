@@ -156,7 +156,7 @@ function HeroSection() {
               alt="Laifappe PPE production floor in Foshan"
               fill
               priority
-              sizes="(min-width: 1440px) 870px, (min-width: 861px) 61vw, 100vw"
+              sizes="(min-width: 1440px) 945px, (min-width: 861px) 66vw, 100vw"
             />
           </div>
         </div>
