@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Suspense, type ReactNode } from 'react'
 import { ChevronRight } from 'lucide-react'
 import type { getProducts } from '@/actions/products'
+import { catalogSortOptions, type CatalogSortValue } from '@/lib/catalog-sort'
 import type { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 import { ProductCard } from './product-card'
 import { ProductCategoryNavigation } from './product-category-navigation'
@@ -36,7 +37,6 @@ export function CatalogCategoryHeader({
   breadcrumbs,
   subcategories,
   activeHref,
-  isFootProtection = false,
 }: {
   name: string
   description?: string | null
@@ -44,13 +44,9 @@ export function CatalogCategoryHeader({
   breadcrumbs: CatalogLink[]
   subcategories: CatalogLink[]
   activeHref?: string
-  isFootProtection?: boolean
 }) {
-  const bannerImage = isFootProtection ? '/catalog/foot-protection-banner.webp' : image
-  const bannerKind = isFootProtection ? 'footwear' : bannerImage ? 'photo' : 'stripe'
-
   return (
-    <header>
+    <header className={styles.categoryHeader}>
       <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
         {breadcrumbs.map(({ name, href }) => (
           <span key={href}>
@@ -60,40 +56,36 @@ export function CatalogCategoryHeader({
         ))}
         <span aria-current="page">{name}</span>
       </nav>
-      <div className={styles.categoryHeading}>
-        <div>
+      <div className={styles.categoryHero} data-has-image={Boolean(image)}>
+        <div className={styles.categoryHeading}>
           <h1 className={styles.categoryTitle}>{name}</h1>
-          {description && (
-            <p className={styles.categoryDescription} data-compact={isFootProtection}>{description}</p>
-          )}
+          {description && <p className={styles.categoryDescription}>{description}</p>}
         </div>
-        {subcategories.length > 0 && (
-          <nav aria-labelledby="catalog-subcategories-label" className={styles.subcategories}>
-            <p id="catalog-subcategories-label" className={styles.subcategoriesLabel}>Browse by Type</p>
-            <ul>
-              {subcategories.map(({ href, name }) => (
-                <li key={href}>
-                  <Link href={href} aria-current={href === activeHref ? 'page' : undefined}>
-                    <span>{name}</span>
-                    <ChevronRight size={16} aria-hidden="true" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        {image && (
+          <div className={styles.categoryHeroArt}>
+            <Image
+              src={image}
+              alt=""
+              fill
+              sizes="(min-width: 1440px) 735px, (min-width: 960px) 51vw, (min-width: 768px) 66vw, 100vw"
+              preload
+            />
+          </div>
         )}
       </div>
-      <div className={styles.categoryBanner} data-category-graphic={bannerKind}>
-        {bannerImage && (
-          <Image
-            src={bannerImage}
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 78vw, 100vw"
-            priority={isFootProtection}
-          />
-        )}
-      </div>
+      {subcategories.length > 0 && (
+        <nav aria-label="Browse by Type" className={styles.subcategories}>
+          <ul>
+            {subcategories.map(({ href, name }) => (
+              <li key={href}>
+                <Link href={href} aria-current={href === activeHref ? 'page' : undefined}>
+                  {name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   )
 }
@@ -142,5 +134,26 @@ export function CatalogProductResults({
         </div>
       )}
     </section>
+  )
+}
+
+export function CatalogSortForm({
+  path,
+  sort,
+  search,
+}: {
+  path: string
+  sort: CatalogSortValue
+  search?: string
+}) {
+  return (
+    <form className={styles.sortForm} action={`${path}#catalog-products`}>
+      {search && <input type="hidden" name="search" value={search} />}
+      <label htmlFor="catalog-sort">Sort by</label>
+      <select id="catalog-sort" name="sort" defaultValue={sort}>
+        {catalogSortOptions.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
+      </select>
+      <button type="submit">Apply</button>
+    </form>
   )
 }

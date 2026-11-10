@@ -2,17 +2,18 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { Metadata } from 'next'
 import { getCategories, getCategoryBySlug, getCategorySubtreeIds } from '@/actions/categories'
 import { getProducts } from '@/actions/products'
-import { CatalogCategoryHeader, CatalogListingLayout, CatalogProductResults } from '@/components/store/catalog-listing'
+import { CatalogCategoryHeader, CatalogListingLayout, CatalogProductResults, CatalogSortForm } from '@/components/store/catalog-listing'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
 import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
 import { buildCategoryPagePath, buildCategoryPageTitle, normalizeCategoryPage } from '@/lib/category-pagination'
+import { getCatalogSort } from '@/lib/catalog-sort'
 
 type Props = {
   params: Promise<{ slug: string }>
-  searchParams: Promise<{ page?: string | string[] }>
+  searchParams: Promise<{ page?: string | string[]; sort?: string | string[] }>
 }
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
@@ -75,8 +76,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params
-  const { page: pageParam } = await searchParams
+  const { page: pageParam, sort: sortParam } = await searchParams
   const page = normalizeCategoryPage(pageParam)
+  const sort = getCatalogSort(sortParam)
 
   if (slug === 'uncategorized') {
     permanentRedirect(buildCategoryPagePath('other-supplies', null, page))
@@ -104,6 +106,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       includeUncategorized: category.slug === 'other-supplies',
       limit: 12,
       activeOnly: true,
+      orderBy: sort.orderBy,
+      priceDirection: sort.priceDirection,
     }),
     getCategories(),
   ])
@@ -116,6 +120,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   const baseUrl = getSiteUrl()
   const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, null, page)}`
+  const categoryPath = buildCategoryPagePath(category.slug)
+  const isFootProtection = category.slug === 'foot-protection'
   const seoContent = getCategorySeoContent(category)
   const heroDescription = seoContent.heroDescription ?? category.description
   const relatedLinks = category.children.map((child) => ({
@@ -141,16 +147,21 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <BreadcrumbJsonLd items={breadcrumbItems} />
       <FaqJsonLd items={seoContent.faqs} />
 
-      <CatalogListingLayout categories={navigationCategories} activeHref={`/categories/${category.slug}`}>
+      <CatalogListingLayout categories={navigationCategories} activeHref={categoryPath}>
         <CatalogCategoryHeader
           name={category.name}
-          description={category.slug === 'foot-protection' ? 'Safety footwear for industrial work' : heroDescription}
-          image={category.image}
+          description={isFootProtection ? 'Safety footwear for construction, industrial work, and on-site conditions.' : heroDescription}
+          image={isFootProtection ? '/catalog/foot-protection-hero.webp' : category.image}
           breadcrumbs={[{ name: 'Home', href: '/' }, { name: 'Categories', href: '/categories' }]}
-          subcategories={relatedLinks}
-          isFootProtection={category.slug === 'foot-protection'}
+          subcategories={relatedLinks.length ? [{ name: 'All', href: categoryPath }, ...relatedLinks] : []}
+          activeHref={categoryPath}
         />
-        <CatalogProductResults products={products} pagination={pagination} variant="category" />
+        <CatalogProductResults
+          products={products}
+          pagination={pagination}
+          variant="category"
+          toolbar={<CatalogSortForm path={categoryPath} sort={sort.value} />}
+        />
         <div className="mt-12">
           <CategorySeoContent
             category={category}

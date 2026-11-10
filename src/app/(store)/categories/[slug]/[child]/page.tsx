@@ -2,17 +2,18 @@ import { notFound, permanentRedirect } from 'next/navigation'
 import { Metadata } from 'next'
 import { getCategories, getCategoryBySlug, getCategorySubtreeIds } from '@/actions/categories'
 import { getProducts } from '@/actions/products'
-import { CatalogCategoryHeader, CatalogListingLayout, CatalogProductResults } from '@/components/store/catalog-listing'
+import { CatalogCategoryHeader, CatalogListingLayout, CatalogProductResults, CatalogSortForm } from '@/components/store/catalog-listing'
 import { CategorySeoContent } from '@/components/store/category-seo-content'
 import { CategoryJsonLd, BreadcrumbJsonLd, FaqJsonLd } from '@/components/seo'
 import { getSiteUrl } from '@/lib/site-url'
 import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 import { getCategorySeoContent } from '@/lib/category-seo-content'
 import { buildCategoryPagePath, buildCategoryPageTitle, normalizeCategoryPage } from '@/lib/category-pagination'
+import { getCatalogSort } from '@/lib/catalog-sort'
 
 type Props = {
   params: Promise<{ slug: string; child: string }>
-  searchParams: Promise<{ page?: string | string[] }>
+  searchParams: Promise<{ page?: string | string[]; sort?: string | string[] }>
 }
 
 type NestedCategoryContext = {
@@ -103,8 +104,9 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 
 export default async function NestedCategoryPage({ params, searchParams }: Props) {
   const { child: childSlug, slug: parentSlug } = await params
-  const { page: pageParam } = await searchParams
+  const { page: pageParam, sort: sortParam } = await searchParams
   const page = normalizeCategoryPage(pageParam)
+  const sort = getCatalogSort(sortParam)
 
   const resolved = await resolveNestedCategory(parentSlug, childSlug)
 
@@ -130,6 +132,8 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
       categoryIds: subtreeIds,
       limit: 12,
       activeOnly: true,
+      orderBy: sort.orderBy,
+      priceDirection: sort.priceDirection,
     }),
     getCategories(),
   ])
@@ -138,14 +142,16 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
     notFound()
   }
 
+  const categoryPath = buildCategoryPagePath(category.slug, parent.slug)
   const navigationCategories = buildProductCategoryNavigation(categories)
   const activeNavigationHref =
     navigationCategories.find((entry) => entry.id === category.id)?.href ??
     navigationCategories.find((entry) => entry.id === parent.id)?.href ??
-    buildCategoryPagePath(category.slug, parent.slug)
+    categoryPath
 
   const baseUrl = getSiteUrl()
   const categoryUrl = `${baseUrl}${buildCategoryPagePath(category.slug, parent.slug, page)}`
+  const isSafetyShoes = parent.slug === 'foot-protection' && category.slug === 'safety-shoes'
   const seoContent = getCategorySeoContent(category, parent)
   const heroDescription = seoContent.heroDescription ?? category.description
   const relatedLinks = parent.children
@@ -184,19 +190,25 @@ export default async function NestedCategoryPage({ params, searchParams }: Props
         <CatalogCategoryHeader
           name={category.name}
           description={heroDescription}
-          image={category.image || parent.image}
+          image={isSafetyShoes ? '/catalog/foot-protection-hero.webp' : category.image || parent.image}
           breadcrumbs={[
             { name: 'Home', href: '/' },
             { name: 'Categories', href: '/categories' },
             { name: parent.name, href: `/categories/${parent.slug}` },
           ]}
           subcategories={[
+            { name: 'All', href: buildCategoryPagePath(parent.slug) },
             ...parent.children.map(({ name, slug }) => ({ name, href: buildCategoryPagePath(slug, parent.slug) })),
             ...category.children.map(({ name, slug }) => ({ name, href: buildCategoryPagePath(slug, category.slug) })),
           ]}
-          activeHref={buildCategoryPagePath(category.slug, parent.slug)}
+          activeHref={categoryPath}
         />
-        <CatalogProductResults products={products} pagination={pagination} variant="category" />
+        <CatalogProductResults
+          products={products}
+          pagination={pagination}
+          variant="category"
+          toolbar={<CatalogSortForm path={categoryPath} sort={sort.value} />}
+        />
         <div className="mt-12">
           <CategorySeoContent
             category={category}

@@ -7,20 +7,13 @@ import { getProducts } from '@/actions/products'
 import { getCategories } from '@/actions/categories'
 import { prisma } from '@/lib/prisma'
 import { ProductCard } from '@/components/store/product-card'
-import { CatalogListingLayout, CatalogProductResults } from '@/components/store/catalog-listing'
+import { CatalogListingLayout, CatalogProductResults, CatalogSortForm } from '@/components/store/catalog-listing'
 import styles from '@/components/store/catalog-listing.module.css'
 import { buildPageTitle } from '@/lib/seo-title'
 import { getSiteUrl } from '@/lib/site-url'
 import { buildProductCategoryNavigation } from '@/lib/product-category-navigation'
 import { normalizeCategoryPage } from '@/lib/category-pagination'
-
-const sortOptions = [
-  { value: 'catalog', label: 'Catalog order', orderBy: 'sortOrder' },
-  { value: 'newest', label: 'Newest', orderBy: 'createdAt' },
-  { value: 'price-asc', label: 'Base Price: Low to High', orderBy: 'price' },
-  { value: 'price-desc', label: 'Base Price: High to Low', orderBy: 'price' },
-  { value: 'name', label: 'Name', orderBy: 'name' },
-] as const
+import { getCatalogSort } from '@/lib/catalog-sort'
 
 const spotlight = [
   { slug: 's3-black-cowhide-steel-toe-safety-shoes', label: 'Black Cowhide Steel Toe Safety Shoes' },
@@ -84,7 +77,7 @@ export default async function ProductsPage({ searchParams }: Props) {
   const page = normalizeCategoryPage(params.page)
   const category = typeof params.category === 'string' ? params.category : ''
   const search = typeof params.search === 'string' ? params.search : ''
-  const sort = sortOptions.find(({ value }) => value === params.sort) ?? sortOptions[0]
+  const sort = getCatalogSort(params.sort)
   const showOverview = !search && page === 1
 
   // SEO: any `?category=` link (legacy cuid or slug) is a 301 to the canonical
@@ -117,7 +110,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       limit: 12,
       activeOnly: true,
       orderBy: sort.orderBy,
-      priceDirection: sort.value === 'price-desc' ? 'desc' : 'asc',
+      priceDirection: sort.priceDirection,
     }),
     getCategories(),
     showOverview
@@ -184,16 +177,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       <CatalogProductResults
         {...listing}
         emptyText={search ? 'No products match your search.' : 'No products found.'}
-        toolbar={
-          <form className={styles.sortForm} action="/products#catalog-products">
-            {search && <input type="hidden" name="search" value={search} />}
-            <label htmlFor="catalog-sort">Sort by</label>
-            <select id="catalog-sort" name="sort" defaultValue={sort.value}>
-              {sortOptions.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
-            </select>
-            <button type="submit">Apply</button>
-          </form>
-        }
+        toolbar={<CatalogSortForm path="/products" sort={sort.value} search={search} />}
       />
       {search && listing.products.length === 0 && (
         <Link href="/products" className={styles.browseButton}>View All Products <ArrowRight size={19} aria-hidden="true" /></Link>
