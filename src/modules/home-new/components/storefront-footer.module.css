@@ -52,7 +52,7 @@
 }
 
 .brandLink small {
-  color: var(--footer-muted);
+  color: var(--footer-highlight);
   display: block;
   font-size: 10px;
   font-weight: 700;

@@ -5513,7 +5513,7 @@ body:has(.nav[data-industrial-page='true']) .quoteDrawerPanel .quoteSubmit:hover
 }
 
 .nav[data-industrial-page='true'] .logoText small {
-  color: var(--catalog-ink);
+  color: var(--catalog-accent);
   font-size: 9px;
   font-weight: 750;
   letter-spacing: .065em;
