@@ -54,6 +54,8 @@ Record who tried which sizes, what combination was checked, the activity and any
 
 The [mining and quarrying PPE solution](/solutions/ppe-safety-equipment-for-mining-quarrying) can help organize a multi-category order by task. Keep each task's approval scope visible in the order record.
 
+The [AEDC coverall tender analysis](https://www.laifappe.com/cases/aedc-fr-workwear-procurement-case-study) explains movement checks and retaining a separate factory reference when bid samples are non-returnable. The [Central Asia workwear procurement case](https://www.laifappe.com/cases/central-asia-oil-company-workwear-ppe-procurement-case-study) illustrates garment-specific size allocations and printing or embroidery instructions. These examples provide planning context; they do not establish that the full approval procedure described here was performed.
+
 ## Lock Logo Artwork, Sizes and Packing Instructions
 
 Create a final artwork reference with revision, color, dimensions, position and application method. Obtain the appropriate manufacturer's confirmation or instructions for decoration where it could affect equipment performance or markings. A buyer's visual approval alone does not establish that an application is suitable.

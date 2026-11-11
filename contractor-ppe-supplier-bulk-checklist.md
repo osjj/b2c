@@ -106,6 +106,8 @@ This matters because a bulk PPE order can look correct on paper and still fail a
 
 Use the [PPE Size & Standards Planning Sheet](/downloads/ppe-size-standards-planning-sheet.xlsx?source=blog-contractor-ppe-supplier-bulk-checklist-size) before asking for final price. For footwear-heavy orders, also use the [safety boot size guide](/tools/size-guide?source=blog-contractor-ppe-supplier-bulk-checklist).
 
+The [South Africa mining PPE procurement case](https://www.laifappe.com/cases/south-africa-mining-ppe-procurement-2026) shows why a mixed order needs separate quantities and units: its six lines included helmet pieces, glove and footwear pairs, and workwear sets. Use that purchasing schedule as a reference for defining each line, rather than assuming every item forms an equal number of worker kits.
+
 ---
 
 ## Kit Packing, Labeling, And Site Issue Control
@@ -185,6 +187,8 @@ Compare:
 
 When comparing two quotes, mark which quote is lower only because it removed documents, size coverage, packing control, or replacement support. That is not a true saving.
 
+The [Central Asia oil-company workwear and PPE case](https://www.laifappe.com/cases/central-asia-oil-company-workwear-ppe-procurement-case-study) pairs a detailed garment and size schedule with a reported 80% reduction against the customer's previous supplier quotation. Freight, duty and tax inclusions were not specified, so the figure is not a verified landed-cost comparison.
+
 ---
 
 ## RFQ Wording For Contractor PPE Supplier Bulk Orders
@@ -209,6 +213,8 @@ Include these fields in the request:
 12. Quote validity and payment terms
 
 If you want to turn the scope into a supplier message faster, use the [AI Quote Generator](/tools/ai-quote?source=blog-contractor-ppe-supplier-bulk-checklist-rfq).
+
+The [AEDC FR coverall tender analysis](https://www.laifappe.com/cases/aedc-fr-workwear-procurement-case-study) uses a public 2020 tender to explain sample references, six size quantities and an award-based delivery deadline. It offers RFQ planning context, not evidence that LAIFAPPE won or fulfilled the tender.
 
 ---
 
