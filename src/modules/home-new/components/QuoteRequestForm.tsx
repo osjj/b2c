@@ -127,6 +127,7 @@ type QuoteDrawerProps = {
 
 type QuoteEmailResponse = {
   success: boolean
+  inquiryId?: string
   reason?: string
   errors?: Partial<Record<keyof QuoteRequestFormValues, string[]>>
 }
@@ -296,6 +297,8 @@ export function QuoteRequestForm({
   const [errors, setErrors] = useState<QuoteRequestFormErrors>({})
   const [status, setStatus] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const pendingSubmission = useRef<{ id: string; fingerprint: string } | null>(null)
+  const submissionInProgress = useRef(false)
 
   const formClassName = [
     styles.quoteRequestForm,
@@ -327,6 +330,7 @@ export function QuoteRequestForm({
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (submissionInProgress.current) return
 
     const trimmedEmail = values.email.trim()
     const trimmedMessage = values.message.trim()
@@ -345,6 +349,7 @@ export function QuoteRequestForm({
       return
     }
 
+    submissionInProgress.current = true
     setIsSubmitting(true)
     setErrors({})
     setStatus(null)
@@ -352,44 +357,64 @@ export function QuoteRequestForm({
       source === "Quote page" ? readRecentAttributionSource() ?? source : source
 
     try {
+      const submission = {
+        ...values,
+        email: trimmedEmail,
+        phoneCode: values.phoneCode.trim(),
+        phone: values.phone.trim(),
+        name: values.name.trim(),
+        companyName: values.companyName.trim(),
+        ...getQuoteTrackingContext(),
+        message: trimmedMessage,
+        source: submissionSource,
+      }
+      const fingerprint = JSON.stringify(submission)
+      if (pendingSubmission.current?.fingerprint !== fingerprint) {
+        pendingSubmission.current = { id: crypto.randomUUID(), fingerprint }
+      }
+      const submissionId = pendingSubmission.current.id
       const response = await fetch("/api/quote-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...values,
-          email: trimmedEmail,
-          ...getQuoteTrackingContext(),
-          message: trimmedMessage,
-          source: submissionSource,
+          ...submission,
+          submissionId,
         }),
       })
       const payload = (await response.json().catch(() => null)) as QuoteEmailResponse | null
 
-      if (!response.ok || !payload?.success) {
+      if (!response.ok || payload?.success !== true) {
         setErrors({
           email: payload?.errors?.email?.[0],
           message: payload?.errors?.message?.[0],
-          form: payload?.reason || "We could not send your quote request. Please try again.",
+          form: payload?.reason || "We could not confirm receipt of your request. Please try again.",
         })
         return
       }
 
       setValues(initialValues)
-      pushDataLayerEvent({
-        event: "quote_submit",
-        form_id: "quote_request_form",
-        quote_type: "fast_rfq",
-        source: submissionSource,
-      })
+      pendingSubmission.current = null
+      setStatus("Your request has been received. Our team will follow up with you.")
+      try {
+        pushDataLayerEvent({
+          event: "quote_submit",
+          form_id: "quote_request_form",
+          quote_type: "fast_rfq",
+          source: submissionSource,
+          inquiry_id: payload.inquiryId || submissionId,
+        })
+      } catch {
+        // Analytics failure must not turn a saved inquiry into a failed submission.
+      }
       clearRecentAttributionSource()
-      setStatus("Your quote request has been sent successfully.")
     } catch {
       setErrors({
-        form: "We could not send your quote request. Please try again.",
+        form: "We could not confirm receipt of your request. Please try again.",
       })
     } finally {
+      submissionInProgress.current = false
       setIsSubmitting(false)
     }
   }

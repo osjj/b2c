@@ -1,6 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { createHash } from 'node:crypto'
+import { after, NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { appendQuoteEmailHistory } from '@/lib/quote-email-history'
+import { deliverQuoteEmail, enqueueQuoteEmail, QuoteEmailConflictError } from '@/lib/quote-email-outbox'
+
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -19,27 +24,19 @@ const quoteEmailInputSchema = z.object({
   source: z.string().trim().max(80, 'Source is too long.').optional(),
   entryPage: z.string().trim().max(1000, 'Entry page is too long.').optional(),
   referrer: z.string().trim().max(1000, 'Referrer is too long.').optional(),
+  submissionId: z.string().uuid().optional(),
 })
 
 const quoteEmailOutputSchema = z.object({
   success: z.boolean(),
   reason: z.string(),
   requestId: z.string().optional(),
+  inquiryId: z.string().uuid().optional(),
+  notificationStatus: z.enum(['pending', 'sending', 'sent', 'failed']).optional(),
   errors: z.record(z.string(), z.array(z.string())).optional(),
 })
 
 type QuoteEmailInput = z.infer<typeof quoteEmailInputSchema>
-
-type Smtp2GoResponse = {
-  request_id?: string
-  error?: string
-  data?: {
-    email_id?: string
-  }
-  email_response?: {
-    email_id?: string
-  }
-}
 
 export async function POST(request: NextRequest) {
   const body = await readJson(request)
@@ -67,19 +64,8 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const apiKey = process.env.SMTP2GO_API_KEY
   const sender = process.env.SMTP2GO_DEFAULT_SENDER || 'sales@laifappe.com'
   const recipient = process.env.QUOTE_EMAIL_TO || process.env.SMTP2GO_DEFAULT_SENDER || 'sales@laifappe.com'
-
-  if (!apiKey) {
-    return jsonResponse(
-      {
-        success: false,
-        reason: 'SMTP2GO_API_KEY is not configured in the server environment.',
-      },
-      500
-    )
-  }
 
   try {
     const subject = `New quote request from ${parsed.data.email}`
@@ -91,87 +77,69 @@ export async function POST(request: NextRequest) {
     const textBody = buildQuoteText(quoteInput)
     const htmlBody = buildQuoteHtml(quoteInput)
 
-    const response = await fetch('https://api.smtp2go.com/v3/email/send', {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Smtp2go-Api-Key': apiKey,
-      },
-      body: JSON.stringify({
-        sender,
-        to: [recipient],
-        subject,
-        text_body: textBody,
-        html_body: htmlBody,
-      }),
-      cache: 'no-store',
-    })
-
-    const payload = (await response.json().catch(() => null)) as Smtp2GoResponse | null
-
-    if (!response.ok) {
-      return jsonResponse(
-        {
-          success: false,
-          reason: payload?.error || `SMTP2GO request failed with status ${response.status}.`,
-        },
-        response.status
-      )
+    const { submissionId } = parsed.data
+    // Bind the customer's normalized input, independent of optional empty fields,
+    // rendered templates, notification configuration and fallback request headers.
+    const customerInput = {
+      email: parsed.data.email,
+      phoneCode: parsed.data.phoneCode || '',
+      phone: parsed.data.phone || '',
+      name: parsed.data.name || '',
+      companyName: parsed.data.companyName || '',
+      message: parsed.data.message,
+      source: parsed.data.source || '',
+      entryPage: parsed.data.entryPage || '',
+      referrer: parsed.data.referrer || '',
     }
+    const submissionFingerprint = createHash('sha256').update(JSON.stringify(customerInput)).digest('hex')
+    const saved = await enqueueQuoteEmail({
+      sender,
+      recipient,
+      subject,
+      customerEmail: parsed.data.email,
+      phone: formatPhone(parsed.data),
+      name: parsed.data.name || '',
+      companyName: parsed.data.companyName || '',
+      source: quoteInput.source || '',
+      entryPage: quoteInput.entryPage || '',
+      referrer: quoteInput.referrer || '',
+      message: quoteInput.message,
+      textBody,
+      htmlBody,
+      submissionFingerprint,
+    }, submissionId)
 
-    if (payload?.error) {
-      return jsonResponse(
-        {
-          success: false,
-          reason: payload.error,
-        },
-        400
-      )
-    }
-
-    const requestId = payload?.request_id || payload?.data?.email_id || payload?.email_response?.email_id
-
+    // Saving is independent of the one initial mail attempt. If registration
+    // fails, the saved request remains visible for manual handling in ADMIN.
     try {
-      await appendQuoteEmailHistory({
-        sender,
-        recipient,
-        subject,
-        customerEmail: parsed.data.email,
-        phone: formatPhone(parsed.data),
-        name: parsed.data.name || '',
-        companyName: parsed.data.companyName || '',
-        source: quoteInput.source || '',
-        entryPage: quoteInput.entryPage || '',
-        referrer: quoteInput.referrer || '',
-        message: quoteInput.message,
-        textBody,
-        htmlBody,
-        requestId,
+      after(async () => {
+        try {
+          await deliverQuoteEmail(saved.id)
+        } catch {
+          console.error('fast_rfq_notification_attempt_failed', { inquiryId: saved.id })
+        }
       })
     } catch {
-      return jsonResponse({
-        success: true,
-        reason: 'Quote request sent successfully, but history recording failed.',
-        requestId,
-      })
+      console.error('fast_rfq_notification_needs_manual_attention', { inquiryId: saved.id })
     }
 
     return jsonResponse({
       success: true,
-      reason: 'Quote request sent successfully.',
-      requestId,
+      reason: 'Your quote request has been received.',
+      inquiryId: saved.id,
+      notificationStatus: saved.notificationStatus,
     })
   } catch (error) {
+    if (error instanceof QuoteEmailConflictError) {
+      return jsonResponse({ success: false, reason: 'This submission ID is already in use. Please submit the updated request again.' }, 409)
+    }
+    console.error('fast_rfq_capture_failed')
     return jsonResponse(
       {
         success: false,
-        reason:
-          error instanceof Error
-            ? error.message
-            : 'An unexpected error occurred while sending the quote request.',
+        reason: 'We could not save your quote request. Please try again.',
       },
-      500
+      503
     )
   }
 }
@@ -202,7 +170,7 @@ async function readJson(request: NextRequest): Promise<
 function jsonResponse(input: z.infer<typeof quoteEmailOutputSchema>, status = 200) {
   const output = quoteEmailOutputSchema.parse(input)
 
-  return NextResponse.json(output, { status })
+  return NextResponse.json(output, { status, headers: { 'Cache-Control': 'no-store' } })
 }
 
 function buildQuoteText(input: QuoteEmailInput) {

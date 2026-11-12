@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Eye } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Eye, RefreshCw } from 'lucide-react'
+import { retryQuoteEmailNotification } from '@/actions/admin/quote-email-history'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -28,25 +30,49 @@ interface QuoteEmailHistoryTableProps {
   page: number
   pageSize: number
   total: number
+  checkedAt: number
 }
 
-export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEmailHistoryTableProps) {
-  const [selectedItem, setSelectedItem] = useState<QuoteEmailHistoryItem | null>(null)
+export function QuoteEmailHistoryTable({ items, page, pageSize, total, checkedAt }: QuoteEmailHistoryTableProps) {
+  const router = useRouter()
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
+  const [retryingId, setRetryingId] = useState<string | null>(null)
+  const [retryMessage, setRetryMessage] = useState<{ success: boolean; reason: string } | null>(null)
+  const selectedItem = items.find((item) => item.id === selectedItemId) ?? null
   const startItem = total > 0 ? (page - 1) * pageSize + 1 : 0
   const endItem = Math.min(page * pageSize, total)
+
+  async function handleRetry(id: string) {
+    if (retryingId) return
+    setRetryingId(id)
+    setRetryMessage(null)
+    try {
+      setRetryMessage(await retryQuoteEmailNotification(id))
+    } catch {
+      setRetryMessage({ success: false, reason: 'The notification could not be checked. Refresh and try again.' })
+    } finally {
+      setRetryingId(null)
+      router.refresh()
+    }
+  }
 
   return (
     <>
       <Card>
         <CardHeader>
-          <CardTitle className="font-serif">Quote Email History</CardTitle>
+          <CardTitle className="font-serif">Saved Quote Inquiries</CardTitle>
           <CardDescription>
             {total > 0
-              ? `Showing ${startItem}-${endItem} of ${total} quote request emails.`
-              : 'Quote request emails sent from the home page will be recorded here.'}
+              ? `Showing ${startItem}-${endItem} of ${total} saved quote requests.`
+              : 'Saved quote requests and legacy email records appear here.'}
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {retryMessage && (
+            <p className={`mb-4 text-sm ${retryMessage.success ? 'text-muted-foreground' : 'text-destructive'}`} role="status" aria-live="polite">
+              {retryMessage.reason}
+            </p>
+          )}
           <Table>
             <TableHeader>
               <TableRow>
@@ -55,6 +81,7 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
                 <TableHead>Contact</TableHead>
                 <TableHead>Source</TableHead>
                 <TableHead>Recipient</TableHead>
+                <TableHead>Notification</TableHead>
                 <TableHead>Message</TableHead>
                 <TableHead className="w-24">Action</TableHead>
               </TableRow>
@@ -62,8 +89,8 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
             <TableBody>
               {items.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
-                    No quote request emails have been sent yet.
+                  <TableCell colSpan={8} className="py-10 text-center text-muted-foreground">
+                    No quote inquiries have been recorded yet.
                   </TableCell>
                 </TableRow>
               ) : (
@@ -92,16 +119,27 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
                       )}
                     </TableCell>
                     <TableCell className="max-w-48 truncate text-muted-foreground">{item.recipient}</TableCell>
+                    <TableCell className="min-w-44">
+                      <NotificationStatus item={item} />
+                    </TableCell>
                     <TableCell className="max-w-md">
                       <p className="line-clamp-3 text-sm text-muted-foreground">
                         {item.message || '-'}
                       </p>
                     </TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm" onClick={() => setSelectedItem(item)}>
-                        <Eye className="mr-2 h-4 w-4" />
-                        Open
-                      </Button>
+                      <div className="flex flex-col items-start gap-2">
+                        <Button variant="outline" size="sm" onClick={() => setSelectedItemId(item.id)}>
+                          <Eye className="mr-2 h-4 w-4" />
+                          Open
+                        </Button>
+                        {canRetryQuoteEmailNotification(item, checkedAt) && (
+                          <Button variant="outline" size="sm" disabled={Boolean(retryingId)} onClick={() => void handleRetry(item.id)}>
+                            <RefreshCw className={`mr-2 h-4 w-4 ${retryingId === item.id ? 'animate-spin' : ''}`} aria-hidden="true" />
+                            {retryingId === item.id ? 'Retrying...' : 'Retry notification'}
+                          </Button>
+                        )}
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))
@@ -111,14 +149,14 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
         </CardContent>
       </Card>
 
-      <Dialog open={Boolean(selectedItem)} onOpenChange={(open) => !open && setSelectedItem(null)}>
+      <Dialog open={Boolean(selectedItem)} onOpenChange={(open) => !open && setSelectedItemId(null)}>
         <DialogContent className="max-w-5xl">
           {selectedItem && (
             <>
               <DialogHeader>
                 <DialogTitle>{selectedItem.subject}</DialogTitle>
                 <DialogDescription>
-                  Sent {formatDateTime(selectedItem.createdAt)} from {selectedItem.sender} to {selectedItem.recipient}
+                  Recorded {formatDateTime(selectedItem.createdAt)}. Notification from {selectedItem.sender} to {selectedItem.recipient}.
                 </DialogDescription>
               </DialogHeader>
 
@@ -132,6 +170,11 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
                   <Detail label="Entry Page" value={selectedItem.entryPage || '-'} />
                   <Detail label="Referrer" value={selectedItem.referrer || '-'} />
                   <Detail label="Request ID" value={selectedItem.requestId || '-'} />
+                  <Detail label="Inquiry ID" value={selectedItem.id} />
+                  <Detail label="Notification" value={quoteEmailNotificationLabel(selectedItem)} />
+                  {typeof selectedItem.attempts === 'number' && <Detail label="Attempts" value={String(selectedItem.attempts)} />}
+                  {selectedItem.sentAt && <Detail label="Provider accepted" value={formatDateTime(selectedItem.sentAt)} />}
+                  {selectedItem.lastError && <Detail label="Last notification error" value={selectedItem.lastError} />}
                 </div>
 
                 <Tabs defaultValue="message" className="space-y-4">
@@ -183,6 +226,35 @@ export function QuoteEmailHistoryTable({ items, page, pageSize, total }: QuoteEm
         </DialogContent>
       </Dialog>
     </>
+  )
+}
+
+export function quoteEmailNotificationLabel(item: QuoteEmailHistoryItem) {
+  switch (item.notificationStatus) {
+    case 'pending': return 'Notification not sent'
+    case 'sending': return 'Notification in progress'
+    case 'sent': return 'Provider accepted'
+    case 'failed': return 'Notification failed; inquiry saved'
+    default: return 'Legacy email record'
+  }
+}
+
+export function canRetryQuoteEmailNotification(item: QuoteEmailHistoryItem, checkedAt: number) {
+  if (item.notificationStatus === 'pending' || item.notificationStatus === 'failed') return true
+  if (item.notificationStatus !== 'sending' || !item.leaseUntil) return false
+  const leaseUntil = Date.parse(item.leaseUntil)
+  return Number.isFinite(leaseUntil) && leaseUntil <= checkedAt
+}
+
+function NotificationStatus({ item }: { item: QuoteEmailHistoryItem }) {
+  return (
+    <div className="space-y-1">
+      <Badge variant={item.notificationStatus === 'failed' ? 'destructive' : 'secondary'}>
+        {quoteEmailNotificationLabel(item)}
+      </Badge>
+      {typeof item.attempts === 'number' && <p className="text-xs text-muted-foreground">Attempts: {item.attempts}</p>}
+      {item.lastError && <p className="max-w-56 text-xs text-destructive">{item.lastError}</p>}
+    </div>
   )
 }
 

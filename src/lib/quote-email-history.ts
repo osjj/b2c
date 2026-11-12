@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto'
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
+import { parseQuoteEmailRecord, QUOTE_EMAIL_REQUEST_PREFIX } from '@/lib/quote-email-outbox'
 
 export type QuoteEmailHistoryItem = {
   id: string
@@ -19,6 +20,13 @@ export type QuoteEmailHistoryItem = {
   htmlBody: string
   requestId?: string
   createdAt: string
+  notificationStatus?: 'pending' | 'sending' | 'sent' | 'failed'
+  attempts?: number
+  nextAttemptAt?: string | null
+  lastAttemptAt?: string | null
+  sentAt?: string | null
+  lastError?: string | null
+  leaseUntil?: string | null
 }
 
 export const DEFAULT_QUOTE_EMAIL_HISTORY_PAGE_SIZE = 20
@@ -59,22 +67,49 @@ export async function getQuoteEmailHistory({
   page?: number
   limit?: number
 } = {}) {
-  const setting = await prisma.setting.findUnique({
-    where: { key: QUOTE_EMAIL_HISTORY_KEY },
-  })
+  const [setting, requestCount] = await Promise.all([
+    prisma.setting.findUnique({ where: { key: QUOTE_EMAIL_HISTORY_KEY } }),
+    prisma.setting.count({ where: { key: { startsWith: QUOTE_EMAIL_REQUEST_PREFIX } } }),
+  ])
 
   const history = normalizeQuoteEmailHistory(setting?.value)
   const pageSize = Number.isFinite(limit)
-    ? Math.max(Math.floor(limit), 1)
+    ? Math.min(100, Math.max(Math.floor(limit), 1))
     : DEFAULT_QUOTE_EMAIL_HISTORY_PAGE_SIZE
   const requestedPage = Number.isFinite(page) ? Math.max(Math.floor(page), 1) : 1
-  const total = history.length
+  const total = history.length + requestCount
   const totalPages = Math.ceil(total / pageSize)
   const currentPage = totalPages > 0 ? Math.min(requestedPage, totalPages) : 1
   const start = (currentPage - 1) * pageSize
 
+  // At most 200 legacy entries can fall before this page. Fetch only that
+  // bounded overlap of the individually stored records, then merge by time.
+  const skip = Math.max(0, start - history.length)
+  const rows = await prisma.setting.findMany({
+    where: { key: { startsWith: QUOTE_EMAIL_REQUEST_PREFIX } },
+    orderBy: [{ createdAt: 'desc' }, { key: 'desc' }],
+    skip, take: pageSize + history.length,
+    select: { value: true },
+  })
+  const records: QuoteEmailHistoryItem[] = rows.map(row => {
+    const record = parseQuoteEmailRecord(row.value)
+    // Explicit projection keeps private fingerprints and lease ownership out
+    // of the client component even though the admin is authorized to read.
+    return {
+      id: record.id, sender: record.sender, recipient: record.recipient, subject: record.subject,
+      customerEmail: record.customerEmail, phone: record.phone, name: record.name,
+      companyName: record.companyName, source: record.source, entryPage: record.entryPage,
+      referrer: record.referrer, message: record.message, textBody: record.textBody,
+      htmlBody: record.htmlBody, requestId: record.requestId, createdAt: record.createdAt,
+      notificationStatus: record.notificationStatus, attempts: record.attempts,
+      nextAttemptAt: record.nextAttemptAt, lastAttemptAt: record.lastAttemptAt,
+      sentAt: record.sentAt, lastError: record.lastError, leaseUntil: record.leaseUntil,
+    }
+  })
+  const merged = [...history, ...records].sort((a, b) => b.createdAt.localeCompare(a.createdAt) || b.id.localeCompare(a.id))
+
   return {
-    items: history.slice(start, start + pageSize),
+    items: merged.slice(start - skip, start - skip + pageSize),
     pagination: {
       page: currentPage,
       limit: pageSize,
@@ -108,6 +143,7 @@ function normalizeQuoteEmailHistory(value: unknown): QuoteEmailHistoryItem[] {
       htmlBody: String(item.htmlBody || ''),
       requestId: item.requestId ? String(item.requestId) : undefined,
       createdAt: String(item.createdAt || ''),
+      notificationStatus: 'sent' as const,
     }))
     .filter((item) => item.id && item.customerEmail && item.createdAt)
 }

@@ -55,6 +55,7 @@
     "indexnow:submit": "npx tsx scripts/submit-indexnow.ts",
     "mailbox:verify": "tsx scripts/verify-admin-mailbox.ts",
     "mailbox:sync": "tsx scripts/sync-admin-mailbox.ts",
+    "test:quote-email": "node scripts/test-quote-email-outbox.mjs && node scripts/test-quote-email-route.mjs && node scripts/test-fast-rfq-ui.mjs",
     "test:mailbox": "tsx --test src/lib/mailbox/*.test.ts src/components/admin/mailbox-*.test.ts"
   },
   "dependencies": {

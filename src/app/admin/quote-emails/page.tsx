@@ -13,7 +13,7 @@ const QUOTE_EMAIL_HISTORY_PAGE_SIZE = 20
 export default async function AdminQuoteEmailsPage({ searchParams }: AdminQuoteEmailsPageProps) {
   const params = await searchParams
   const page = Math.max(Number(params.page) || 1, 1)
-  const { items, pagination } = await getQuoteEmailHistory({
+  const { items, pagination, checkedAt } = await getQuoteEmailHistory({
     page,
     limit: QUOTE_EMAIL_HISTORY_PAGE_SIZE,
   })
@@ -21,9 +21,9 @@ export default async function AdminQuoteEmailsPage({ searchParams }: AdminQuoteE
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-serif text-3xl mb-1">Quote Emails</h1>
+        <h1 className="font-serif text-3xl mb-1">Quote Inquiries</h1>
         <p className="text-muted-foreground">
-          Review quote request emails sent by the home page form through SMTP2GO.
+          Review saved quote requests and their email notification status.
         </p>
       </div>
 
@@ -32,6 +32,7 @@ export default async function AdminQuoteEmailsPage({ searchParams }: AdminQuoteE
         page={pagination.page}
         pageSize={pagination.limit}
         total={pagination.total}
+        checkedAt={checkedAt}
       />
       <Pagination {...pagination} />
     </div>
